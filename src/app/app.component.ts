@@ -10,6 +10,6 @@ export class AppComponent {
   //
   title             : string = "[MCSD - CONSULTAS]"; 
   appName           : string = "[MCSD - CONSULTAS]";
-  appVersion        : string = '1.0.0.2';
+  appVersion        : string = '1.0.0.3';
   runtimeVersion    : string = VERSION.full;
  }   

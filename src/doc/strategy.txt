@@ -1,15 +1,18 @@
 =====================================================================
 -- STRATEGY
 =====================================================================
-
--- [_] [HOME]
--- [_] [ALGORITMOS - DISTANCIA MAS CORTA]
--- [_] [ALGORITMOS - ORDENAMIENTO]
--- [_] [ALGORITMOS - EXPRESIONES REGULARES]
--- [_] [GENERAR ARCHIVO ZIP]
--- [_] [GENERAR ARCHIVO PDF] 
--- [_] [GENERAR ARCHIVO CSV]
--- [_] [GENERAR ARCHIVO XLS]
--- [_] [TUTORIALES]
+-- [x] Set-ExecutionPolicy -Scope CurrentUser unrestricted
+-- [_] [COMPONENTS]
+    -- [_] [HOME]
+    -- [_] [ALGORITMOS]
+        -- [_] [ALGORITMOS - DISTANCIA MAS CORTA]
+        -- [_] [ALGORITMOS - ORDENAMIENTO]
+        -- [_] [ALGORITMOS - EXPRESIONES REGULARES]
+    -- [_] [GENERAR ARCHIVO]
+        -- [_] [GENERAR ARCHIVO ZIP]
+        -- [_] [GENERAR ARCHIVO PDF] 
+        -- [_] [GENERAR ARCHIVO CSV]
+        -- [_] [GENERAR ARCHIVO XLS]
+    -- [_] [TUTORIALES]
 
 =====================================================================
