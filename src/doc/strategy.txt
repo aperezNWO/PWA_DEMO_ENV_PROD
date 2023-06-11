@@ -1,0 +1,15 @@
+=====================================================================
+-- STRATEGY
+=====================================================================
+
+-- [_] [HOME]
+-- [_] [ALGORITMOS - DISTANCIA MAS CORTA]
+-- [_] [ALGORITMOS - ORDENAMIENTO]
+-- [_] [ALGORITMOS - EXPRESIONES REGULARES]
+-- [_] [GENERAR ARCHIVO ZIP]
+-- [_] [GENERAR ARCHIVO PDF] 
+-- [_] [GENERAR ARCHIVO CSV]
+-- [_] [GENERAR ARCHIVO XLS]
+-- [_] [TUTORIALES]
+
+=====================================================================
