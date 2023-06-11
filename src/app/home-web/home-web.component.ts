@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-web.component.css']
 })
 export class HomeWebComponent {
-
+  //
+  pageTitle            : string = '[DEMOS - PROGRAMACION]';
+  //
+  static pageTitle()   : string {
+    return '[DEMOS - PROGRAMACION]';
+  }
 }

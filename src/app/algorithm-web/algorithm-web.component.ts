@@ -5,6 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './algorithm-web.component.html',
   styleUrls: ['./algorithm-web.component.css']
 })
+//
 export class AlgorithmWebComponent {
-
+  //
+  pageTitle            : string = '[ALGORITMOS]';
+  //
+  static pageTitle()   : string {
+    //
+    return '[ALGORITMOS]';
+  }
 }
