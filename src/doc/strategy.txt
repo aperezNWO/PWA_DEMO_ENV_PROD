@@ -1,7 +1,10 @@
 =====================================================================
 -- STRATEGY
 =====================================================================
--- [x] Set-ExecutionPolicy -Scope CurrentUser unrestricted
+-- [x] Set-ExecutionPolicy -Scope CurrentUser unrestricted.
+-- [_] Backend como webapi service.
+-- [_] Turn off .net core uix.
+-- [_] put uix on separated hosting.
 -- [_] [COMPONENTS]
     -- [_] [HOME]
     -- [_] [ALGORITMOS]
