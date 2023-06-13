@@ -2,10 +2,6 @@
 -- STRATEGY
 =====================================================================
 -- [x] Set-ExecutionPolicy -Scope CurrentUser unrestricted.
--- [_] ANGULAR TOPICS.
-    -- [_] TEMPLADE DRIVEN FORMS.
-    -- [_] REACTIVE FORMS.
-    -- [_] DYNAMIC FORMS.
 -- [_] Backend como webapi service.
 -- [_] Turn off .net core uix.
 -- [_] put uix on separated hosting.
@@ -22,6 +18,9 @@
         -- [_] [ALGORITMOS - EXPRESIONES REGULARES]
     -- [_] [TUTORIALES]
     -- [_] [HOME]
- 
+    -- [_] ANGULAR TOPICS.
+        -- [_] TEMPLADE DRIVEN FORMS.
+        -- [_] REACTIVE FORMS.
+        -- [_] DYNAMIC FORMS. 
  
 =====================================================================
