@@ -1,8 +1,13 @@
 //
 import { NgModule                      } from '@angular/core';
-import { BrowserModule                 } from '@angular/platform-browser';
 import { RouterModule                  } from '@angular/router';
+import { MatListModule                 } from '@angular/material/list';
+import { MatTableModule                } from '@angular/material/table';
+import { MatPaginatorModule            } from '@angular/material/paginator';
+import { BrowserModule                 } from '@angular/platform-browser';
 import { BrowserAnimationsModule       } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule           } from '@angular/forms';
+import { HttpClientModule              } from '@angular/common/http';
 import { AppRoutingModule              } from './app-routing.module';
 import { AppComponent                  } from './app.component';
 import { HomeWebComponent              } from './home-web/home-web.component';
@@ -14,13 +19,13 @@ import { FilesGenerationPDFComponent   } from './files-generation-pdf/files-gene
 import { FilesGenerationZIPComponent   } from './files-generation-zip/files-generation-zip.component';
 import { AlgorithmWebComponent         } from './algorithm-web/algorithm-web.component';
 import { AlgorithmRegExComponent       } from './algorithm-reg-ex/algorithm-reg-ex.component';
-import { AlgorithmSortComponent } from './algorithm-sort/algorithm-sort.component';
-import { AlgorithmDijkstraComponent } from './algorithm-dijkstra/algorithm-dijkstra.component';
+import { AlgorithmSortComponent        } from './algorithm-sort/algorithm-sort.component';
+import { AlgorithmDijkstraComponent    } from './algorithm-dijkstra/algorithm-dijkstra.component';
 //
 @NgModule({
   declarations: [
     AppComponent,
-    HomeWebComponent,
+    HomeWebComponent,  
     AlgorithmWebComponent,
     AlgorithmRegExComponent,
     AlgorithmSortComponent,
@@ -35,6 +40,12 @@ import { AlgorithmDijkstraComponent } from './algorithm-dijkstra/algorithm-dijks
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    ReactiveFormsModule,
+    RouterModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {  path: 'HomeWebComponent'                 , component: HomeWebComponent                     },
       {  path: 'AlgorithmWebComponent'            , component: AlgorithmWebComponent                },
