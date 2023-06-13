@@ -2,20 +2,26 @@
 -- STRATEGY
 =====================================================================
 -- [x] Set-ExecutionPolicy -Scope CurrentUser unrestricted.
+-- [_] ANGULAR TOPICS.
+    -- [_] TEMPLADE DRIVEN FORMS.
+    -- [_] REACTIVE FORMS.
+    -- [_] DYNAMIC FORMS.
 -- [_] Backend como webapi service.
 -- [_] Turn off .net core uix.
 -- [_] put uix on separated hosting.
 -- [_] [COMPONENTS]
-    -- [_] [HOME]
+    -- [>] [GENERAR ARCHIVO]
+        -- [>] [GENERAR ARCHIVO XLS]
+                -- [>] TABS
+        -- [_] [GENERAR ARCHIVO ZIP]
+        -- [_] [GENERAR ARCHIVO PDF] 
+        -- [_] [GENERAR ARCHIVO CSV]
     -- [_] [ALGORITMOS]
         -- [_] [ALGORITMOS - DISTANCIA MAS CORTA]
         -- [_] [ALGORITMOS - ORDENAMIENTO]
         -- [_] [ALGORITMOS - EXPRESIONES REGULARES]
-    -- [_] [GENERAR ARCHIVO]
-        -- [_] [GENERAR ARCHIVO ZIP]
-        -- [_] [GENERAR ARCHIVO PDF] 
-        -- [_] [GENERAR ARCHIVO CSV]
-        -- [_] [GENERAR ARCHIVO XLS]
     -- [_] [TUTORIALES]
-
+    -- [_] [HOME]
+ 
+ 
 =====================================================================
