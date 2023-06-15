@@ -8,33 +8,31 @@ import { Observable                        } from 'rxjs';
 })
 //
 export class MCSDService {
-//
-  //
-  constructor(private http: HttpClient) { 
-      //
-  }
-  //
+    //
+    constructor(private http: HttpClient) { 
+        //
+    }
     //
     getLogRemoto() {
-      //
-      let url = 'https://mcsd.somee.com/demos/generarinformejson';
-      // 
-      return this.http.get<LogEntry[]>(url);   
+        //
+        let url = 'https://mcsd.somee.com/demos/generarinformejson';
+        // 
+        return this.http.get<LogEntry[]>(url);   
     }
     //
     getInformeExcel(){
-      //
-      let p_url                              = 'https://mcsd.somee.com/demos/generarinformexls';
-      //
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-           'Accept':'application/text'
-        }),
-        'responseType': 'text' as 'json'
-      };
-      //
-      let excelFileName : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
-      //
-      return excelFileName; 
+        //
+        let p_url                              = 'https://mcsd.somee.com/demos/generarinformexls';
+        //
+        var HTTPOptions = {
+          headers: new HttpHeaders({
+            'Accept':'application/text'
+          }),
+          'responseType': 'text' as 'json'
+        };
+        //
+        let excelFileName : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+        //
+        return excelFileName; 
     }
 }

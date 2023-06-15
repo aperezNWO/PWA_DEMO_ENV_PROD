@@ -1,82 +1,99 @@
-<div class="mat-elevation-z8">
-    <hr>  
-    <div class="searchPanel">
-      <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-        <!--P_ROW_NUM-->
-        <div>
-          <label for="_P_ROW_NUM">
-            # de Registros :
-          </label>
-          <input id="_P_ROW_NUM" type="text" formControlName="_P_ROW_NUM">
-        </div>
-        <!--P_FECHA_INICIO-->
-        <div>
-          <label for="_P_FECHA_INICIO">
-            Fecha Inicial :
-          </label>
-          <input id="_P_FECHA_INICIO" type="date" formControlName="_P_FECHA_INICIO">
-        </div>
-        <!--P_FECHA_FIN-->
-        <div>
-          <label for="_P_FECHA_FIN">
-            Fecha Final :
-          </label>
-          <input id="_P_FECHA_FIN" type="date" formControlName="_P_FECHA_FIN">
-        </div>
-        <!-- INICIO BUTTONS PANEL        -->
-        <hr>
-        <div align="right">
-          <button class="button" type="submit" [disabled]="(this.td_buttonCaption != '[Buscar]')">{{this.td_buttonCaption}}</button>
-          <button class="button" type="button" (click)="this.newSearch()">[Nueva]</button>
-        </div>
-        <!-- FIN BUTTONS PANEL           -->
-        <!-- INICIO STATUS BUSQUEDA      -->
-        <hr>
-        <div align="center">
-          <span id="status" name="searchStatus" class="searchStatus" id="searchStatus">{{this.td_textStatus}}</span>
-        </div>
-        <!-- FIN    STATUS BUSQUEDA      -->
-        <!-- INICIO DESCARGA EXCEL       -->
-        <hr>
-        <div id="divdescargaexcel" style="display: block;" align="right">
-          <br>
-          <button class="button" type="button" (click)="GenerarInformeXLSValidate()" [disabled]="(this.td_buttonCaption_xls != '[Generar Excel]')">{{this.td_buttonCaption_xls}}</button>
-          <br>
-          <br>
-          <a [href]="this.td_ExcelDownloadLink" id="DownloadFile">{{this.td_textStatus_xls}}</a>
-        </div>
-        <!-- FIN DESCARGA EXCEL          -->
-        <hr>  
-      </form>
-    </div>
-    <hr>  
-    <table  mat-table  [dataSource]="dataSource"  class="mat-elevation-z8" aria-label="informelogremoto">
-      <ng-container matColumnDef="id_Column">
-        <th mat-header-cell *matHeaderCellDef>id_Column</th>
-        <td mat-cell *matCellDef="let element">{{ element.id_Column}}</td>
-      </ng-container>
-      <ng-container matColumnDef="pageName">
-        <th mat-header-cell *matHeaderCellDef>pageName</th>
-        <td mat-cell *matCellDef="let element">{{ element.pageName }}</td>
-      </ng-container>
-      <ng-container matColumnDef="accessDate">
-        <th mat-header-cell *matHeaderCellDef>accessDate</th>
-        <td mat-cell *matCellDef="let element">{{ element.accessDate }}</td>
-      </ng-container>
-      <ng-container matColumnDef="ipValue">
-        <th mat-header-cell *matHeaderCellDef>ipValue</th>
-        <td mat-cell *matCellDef="let element">{{ element.ipValue }}</td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
-    <hr>
-    <mat-paginator #paginator="matPaginator"
-        class="demo-paginator" 
-        [length]=""
-        [pageSize]="10"
-        [pageSizeOptions]="[3, 10, 25, 100]"
-        aria-label="informelogremoto"></mat-paginator>
+<div align="center" style="padding-top:10px;">
+  <h4>{{pageTitle}}</h4>
 </div>
-    
+<mat-tab-group>
+  <mat-tab label="[CONSULTA_1 (TEMPLATE DRIVEN)]">
+    <div align="center" style="padding-top:10px;">
+      <h5>[CONSULTA_1 (TEMPLATE DRIVEN)]</h5>
+    </div>
+  </mat-tab>
+  <mat-tab label="[CONSULTA_2 (REACTIVE)]">
+    <div align="center" style="padding-top:10px;">
+    <h5>[CONSULTA_2 (REACTIVE)]</h5>
+    </div>
+    <div class="mat-elevation-z8">
+        <div class="searchPanel">
+          <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+            <!--P_ROW_NUM-->
+            <div>
+              <label for="_P_ROW_NUM">
+                # de Registros :
+              </label>
+              <input id="_P_ROW_NUM" type="text" formControlName="_P_ROW_NUM">
+            </div>
+            <!--P_FECHA_INICIO-->
+            <div>
+              <label for="_P_FECHA_INICIO">
+                Fecha Inicial :
+              </label>
+              <input id="_P_FECHA_INICIO" type="date" formControlName="_P_FECHA_INICIO">
+            </div>
+            <!--P_FECHA_FIN-->
+            <div>
+              <label for="_P_FECHA_FIN">
+                Fecha Final :
+              </label>
+              <input id="_P_FECHA_FIN" type="date" formControlName="_P_FECHA_FIN">
+            </div>
+            <!-- INICIO BUTTONS PANEL        -->
+            <hr>
+            <div align="right">
+              <button class="button" type="submit" [disabled]="(this.td_buttonCaption != '[Buscar]')">{{this.td_buttonCaption}}</button>
+              <button class="button" type="button" (click)="this.newSearch()">[Nueva]</button>
+            </div>
+            <!-- FIN BUTTONS PANEL           -->
+            <!-- INICIO STATUS BUSQUEDA      -->
+            <hr>
+            <div align="center">
+              <span id="status" name="searchStatus" class="searchStatus" id="searchStatus">{{this.td_textStatus}}</span>
+            </div>
+            <!-- FIN    STATUS BUSQUEDA      -->
+            <!-- INICIO DESCARGA EXCEL       -->
+            <hr>
+            <div id="divdescargaexcel" style="display: block;" align="right">
+              <br>
+              <button class="button" type="button" (click)="GenerarInformeXLSValidate()" [disabled]="(this.td_buttonCaption_xls != '[Generar Excel]')">{{this.td_buttonCaption_xls}}</button>
+              <br>
+              <br>
+              <a [href]="this.td_ExcelDownloadLink" id="DownloadFile">{{this.td_textStatus_xls}}</a>
+            </div>
+            <!-- FIN DESCARGA EXCEL          -->
+            <hr>  
+          </form>
+        </div>
+        <table  mat-table  [dataSource]="dataSource"  class="mat-elevation-z8" aria-label="informelogremoto">
+          <ng-container matColumnDef="id_Column">
+            <th mat-header-cell *matHeaderCellDef>id_Column</th>
+            <td mat-cell *matCellDef="let element">{{ element.id_Column}}</td>
+          </ng-container>
+          <ng-container matColumnDef="pageName">
+            <th mat-header-cell *matHeaderCellDef>pageName</th>
+            <td mat-cell *matCellDef="let element">{{ element.pageName }}</td>
+          </ng-container>
+          <ng-container matColumnDef="accessDate">
+            <th mat-header-cell *matHeaderCellDef>accessDate</th>
+            <td mat-cell *matCellDef="let element">{{ element.accessDate }}</td>
+          </ng-container>
+          <ng-container matColumnDef="ipValue">
+            <th mat-header-cell *matHeaderCellDef>ipValue</th>
+            <td mat-cell *matCellDef="let element">{{ element.ipValue }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <hr>
+        <mat-paginator #paginator="matPaginator"
+            class="demo-paginator" 
+            [length]=""
+            [pageSize]="10"
+            [pageSizeOptions]="[3, 10, 25, 100]"
+            aria-label="informelogremoto"></mat-paginator>
+    </div>
+  </mat-tab>
+  <mat-tab label="[CONSULTA_3 (ESTADISTICAS)]">
+    <div align="center" style="padding-top:10px;">
+    <h5>[CONSULTA_3 (ESTADISTICAS)]</h5>
+    </div>
+  </mat-tab>
+</mat-tab-group>    
     

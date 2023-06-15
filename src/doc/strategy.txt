@@ -5,6 +5,7 @@
 -- [_] Backend como webapi service.
 -- [_] Turn off .net core uix.
 -- [_] put uix on separated hosting.
+-- [_] copiar de "angularspaeconsultalog.loginfoiview".
 -- [_] [COMPONENTS]
     -- [>] [GENERAR ARCHIVO]
         -- [>] [GENERAR ARCHIVO XLS]
@@ -22,5 +23,8 @@
         -- [_] TEMPLADE DRIVEN FORMS.
         -- [_] REACTIVE FORMS.
         -- [_] DYNAMIC FORMS. 
+-- [_] disable chorome security.
+        -- [_] "C:\Program Files\Google\Chrome\Application\chrome.exe"
+        -- [_] chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
  
 =====================================================================

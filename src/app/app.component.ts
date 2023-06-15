@@ -11,11 +11,11 @@ import { FilesGenerationWebComponent   } from './files-generation-web/files-gene
 })
 //
 export class AppComponent {
-  //
-  title             : string = "[MCSD - CONSULTAS]"; 
-  appName           : string = "[MCSD - CONSULTAS]";
-  appVersion        : string = '1.0.0.8';
-  runtimeVersion    : string = VERSION.full;
+    //
+    title             : string = "[MCSD - CONSULTAS]"; 
+    appName           : string = "[MCSD - CONSULTAS]";
+    appVersion        : string = '1.0.0.9';
+    runtimeVersion    : string = VERSION.full;
     //
     readonly HomeWebComponent_pageTitle                   : string = HomeWebComponent.pageTitle();
     readonly AlgorithmWebComponent_pageTitle              : string = AlgorithmWebComponent.pageTitle();

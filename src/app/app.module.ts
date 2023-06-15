@@ -1,9 +1,11 @@
 //
 import { NgModule                      } from '@angular/core';
 import { RouterModule                  } from '@angular/router';
+import { FormsModule                   } from '@angular/forms';
 import { MatListModule                 } from '@angular/material/list';
 import { MatTableModule                } from '@angular/material/table';
 import { MatPaginatorModule            } from '@angular/material/paginator';
+import { MatTabsModule                 } from '@angular/material/tabs';
 import { BrowserModule                 } from '@angular/platform-browser';
 import { BrowserAnimationsModule       } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule           } from '@angular/forms';
@@ -38,11 +40,13 @@ import { AlgorithmDijkstraComponent    } from './algorithm-dijkstra/algorithm-di
     AngularTutorialsnWebComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
+    MatTabsModule,
     ReactiveFormsModule,
     RouterModule,
     HttpClientModule,

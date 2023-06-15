@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild   } from '@angular/core';
-import { MatTableDataSource                            } from '@angular/material/table';
-import { MatPaginator                                  } from '@angular/material/paginator';
 import { FormBuilder, Validators                       } from '@angular/forms';
+import { MatTableDataSource                            } from '@angular/material/table';
+import { MatTabsModule                                 } from '@angular/material/tabs';
+import { MatPaginator                                  } from '@angular/material/paginator';
 import { Observable                                    } from 'rxjs';
 import { LogEntry,SearchCriteria                       } from '../log-info.model';
 import { MCSDService                                   } from '../mcsd.service';
@@ -13,6 +14,12 @@ import { MCSDService                                   } from '../mcsd.service';
 })
 //
 export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
+    //
+    pageTitle            : string = '[GENERAR ARCHIVO XLS]';
+    //
+    static pageTitle()   : string {
+      return '[GENERAR ARCHIVOS XLS]';
+    }
   //
   informeLogRemoto!                  : Observable<LogEntry[]>;
   //
