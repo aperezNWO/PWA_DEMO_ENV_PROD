@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class HomeWebComponent {
   //
-  pageTitle            : string = '[DEMOS - PROGRAMACION]';
+  pageTitle            : string = '[INDICE/TOPICOS]';
   //
   static pageTitle()   : string {
-    return '[DEMOS - PROGRAMACION]';
+    return '[INDICE/TOPICOS]';
   }
 }
