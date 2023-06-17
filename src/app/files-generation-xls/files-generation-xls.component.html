@@ -49,10 +49,10 @@
                       let _P_FECHA_FIN       : string = this.searchForm.value["_P_FECHA_FIN"]      || "";-->
              <ul *ngIf="(this.searchForm.invalid) && (this.td_formSubmit == true)" class="alert alert-danger">
                         <p>Favor revise los datos del formulario</p>
-                        <!--
-                        <li *ngIf="((this._searchForm.value['_P_DATA_SOURCE_ID'] == null) ||  (this._searchForm.value['_P_DATA_SOURCE_ID'] == '') || (this._searchForm.value['_P_DATA_SOURCE_ID'] == '0') ) && (this._formSubmit == true)">
+                        <li *ngIf="((this.searchForm.value['_P_ROW_NUM'] == null) ||  (this.searchForm.value['_P_ROW_NUM'] == '') || (this.searchForm.value['_P_ROW_NUM'] == '0') ) && (this.td_formSubmit == true)" class="alert alert-danger">
                           El campo 'Origen de datos' es requerido.
                         </li>
+                        <!--
                         <li *ngIf="(((this._searchForm.value['_P_VIGENCIA'] == null)  || (this._searchForm.value['_P_VIGENCIA'] == '') || (this._searchForm.value['_P_VIGENCIA'] == '0')) && (this._formSubmit == true) )">
                           El campo 'Vigencia' es requerido.
                         </li>
