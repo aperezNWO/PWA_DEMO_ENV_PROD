@@ -123,7 +123,11 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
                             , _P_FECHA_FIN
                             , "","");
       //
-      if (_model.P_DATA_SOURCE_ID != "0")
+      this.td_formSubmit        = true;
+      //
+      this.td_textStatus        = "";
+      //
+      if ((this.searchForm.valid == true))
           this.update(_model);
   }
   //

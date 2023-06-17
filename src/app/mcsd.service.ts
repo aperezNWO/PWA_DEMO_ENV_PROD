@@ -15,14 +15,14 @@ export class MCSDService {
     //
     getLogRemoto() {
         //
-        let url = 'https://mcsd.somee.com/demos/generarinformejson';
+        let url    = 'https://mcsd.somee.com/demos/generarinformejson';
         // 
         return this.http.get<LogEntry[]>(url);   
     }
     //
     getInformeExcel(){
         //
-        let p_url                              = 'https://mcsd.somee.com/demos/generarinformexls';
+        let p_url  = 'https://mcsd.somee.com/demos/generarinformexls';
         //
         var HTTPOptions = {
           headers: new HttpHeaders({
