@@ -13,7 +13,7 @@
     </div>
     <div class="mat-elevation-z8">
         <div class="searchPanel">
-          <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="td_searchForm" (ngSubmit)="onSubmit()">
             <!--P_ROW_NUM-->
             <div>
               <label for="_P_ROW_NUM">
@@ -44,15 +44,15 @@
             <!-- FIN BUTTONS PANEL           -->
             <!-- INICIO MENSAJES VALIDACION (REACTIVE)-->
             <div align="left">
-              <ul *ngIf="(this.searchForm.invalid) && (this.td_formSubmit == true)" class="alert alert-danger">
+              <ul *ngIf="(this.td_searchForm.invalid) && (this.td_formSubmit == true)" class="alert alert-danger">
                     <p>Favor revise los datos del formulario</p>
-                    <li *ngIf="((this.searchForm.value['_P_ROW_NUM'] == null) ||  (this.searchForm.value['_P_ROW_NUM'] == '') || (this.searchForm.value['_P_ROW_NUM'] == '0') ) && (this.td_formSubmit == true)" class="alert alert-danger">
+                    <li *ngIf="((this.td_searchForm.value['_P_ROW_NUM'] == null) ||  (this.td_searchForm.value['_P_ROW_NUM'] == '') || (this.td_searchForm.value['_P_ROW_NUM'] == '0') ) && (this.td_formSubmit == true)" class="alert alert-danger">
                       El campo '# de Registros' es requerido.
                     </li>
-                    <li *ngIf="(((this.searchForm.value['_P_FECHA_INICIO'] == null)  || (this.searchForm.value['_P_FECHA_INICIO'] == '') ) && (this.td_formSubmit == true) )" class="alert alert-danger">
+                    <li *ngIf="(((this.td_searchForm.value['_P_FECHA_INICIO'] == null)  || (this.td_searchForm.value['_P_FECHA_INICIO'] == '') ) && (this.td_formSubmit == true) )" class="alert alert-danger">
                       El campo 'Fecha Inicial' es requerido.
                     </li>
-                    <li *ngIf="(((this.searchForm.value['_P_FECHA_FIN'] == null)  || (this.searchForm.value['_P_FECHA_FIN'] == '')) && (this.td_formSubmit == true) )" class="alert alert-danger">
+                    <li *ngIf="(((this.td_searchForm.value['_P_FECHA_FIN'] == null)  || (this.td_searchForm.value['_P_FECHA_FIN'] == '')) && (this.td_formSubmit == true) )" class="alert alert-danger">
                       El campo 'Fecha Final' es requerido.0
                     </li>
               </ul>
@@ -77,7 +77,7 @@
             <hr>  
           </form>
         </div>
-        <table  mat-table  [dataSource]="dataSource"  class="mat-elevation-z8" aria-label="informelogremoto">
+        <table  mat-table  [dataSource]="td_dataSource"  class="mat-elevation-z8" aria-label="informelogremoto">
           <ng-container matColumnDef="id_Column">
             <th mat-header-cell *matHeaderCellDef>id_Column</th>
             <td mat-cell *matCellDef="let element">{{ element.id_Column}}</td>
@@ -94,8 +94,8 @@
             <th mat-header-cell *matHeaderCellDef>ipValue</th>
             <td mat-cell *matCellDef="let element">{{ element.ipValue }}</td>
           </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr mat-header-row *matHeaderRowDef="td_displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: td_displayedColumns"></tr>
         </table>
         <hr>
         <mat-paginator #paginator="matPaginator"

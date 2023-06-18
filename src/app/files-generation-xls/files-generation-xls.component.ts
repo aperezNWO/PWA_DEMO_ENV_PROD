@@ -37,9 +37,9 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
   //
   td_textStatus_xls                  : string  = "";
   //
-  dataSource                         = new MatTableDataSource<LogEntry>();
+  td_dataSource                      = new MatTableDataSource<LogEntry>();
   // 
-  displayedColumns                   : string[] = ['id_Column', 'pageName', 'accessDate', 'ipValue'];
+  td_displayedColumns                : string[] = ['id_Column', 'pageName', 'accessDate', 'ipValue'];
   //
   model                              = new SearchCriteria( "0"
                                           ,"0"
@@ -49,9 +49,9 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
                                           ,""
                                           ,"");
   //
-  @ViewChild("paginator" ,{read:MatPaginator}) paginator!:  MatPaginator;
+  @ViewChild("paginator" ,{read:MatPaginator}) td_paginator!:  MatPaginator;
   //
-  searchForm   = this.formBuilder.group({
+  td_searchForm   = this.formBuilder.group({
     _P_ROW_NUM          : ["999"         , Validators.required],
     _P_FECHA_INICIO     : ["2023-01-01"  , Validators.required],
     _P_FECHA_FIN        : ["2022-12-31"  , Validators.required],
@@ -75,19 +75,19 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       console.warn("(NEW SEARCH 2)");
       //
-      this.dataSource           = new MatTableDataSource<LogEntry>();
-      this.dataSource.paginator = this.paginator;
+      this.td_dataSource           = new MatTableDataSource<LogEntry>();
+      this.td_dataSource.paginator = this.td_paginator;
       //
-      this.searchForm   = this.formBuilder.group({
+      this.td_searchForm   = this.formBuilder.group({
         _P_ROW_NUM          : ["999"         , Validators.required],
         _P_FECHA_INICIO     : ["2023-01-01"  , Validators.required],
         _P_FECHA_FIN        : ["2023-12-31"  , Validators.required],
       });
       //
       console.log("(DEFAULT VALUES - INIT)");
-      console.log("P_ROW_NUM         : " + (this.searchForm.value["_P_ROW_NUM"]        || ""));
-      console.log("P_FECHA_INICIO    : " + (this.searchForm.value["_P_FECHA_INICIO"]   || ""));      
-      console.log("P_FECHA_FIN       : " + (this.searchForm.value["_P_FECHA_FIN"]      || "")); 
+      console.log("P_ROW_NUM         : " + (this.td_searchForm.value["_P_ROW_NUM"]        || ""));
+      console.log("P_FECHA_INICIO    : " + (this.td_searchForm.value["_P_FECHA_INICIO"]   || ""));      
+      console.log("P_FECHA_FIN       : " + (this.td_searchForm.value["_P_FECHA_FIN"]      || "")); 
       console.log("(DEFAULT VALUES - END)");
       //
       this.td_buttonCaption     = "[Buscar]";
@@ -110,9 +110,9 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       let _P_DATA_SOURCE_ID  : string = ""/*this.searchForm.value["_P_DATA_SOURCE_ID"] || ""*/;
       let _P_ID_TIPO_LOG     : string = ""/*this.searchForm.value["_P_ID_TIPO_LOG"]    || ""*/;
-      let _P_ROW_NUM         : string = this.searchForm.value["_P_ROW_NUM"]        || "";
-      let _P_FECHA_INICIO    : string = this.searchForm.value["_P_FECHA_INICIO"]   || "";      
-      let _P_FECHA_FIN       : string = this.searchForm.value["_P_FECHA_FIN"]      || "";
+      let _P_ROW_NUM         : string = this.td_searchForm.value["_P_ROW_NUM"]        || "";
+      let _P_FECHA_INICIO    : string = this.td_searchForm.value["_P_FECHA_INICIO"]   || "";      
+      let _P_FECHA_FIN       : string = this.td_searchForm.value["_P_FECHA_FIN"]      || "";
 
       //
       let _model  = new SearchCriteria( 
@@ -127,7 +127,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       this.td_textStatus        = "";
       //
-      if ((this.searchForm.valid == true))
+      if ((this.td_searchForm.valid == true))
           this.update(_model);
   }
   //
@@ -149,8 +149,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
         //
         this.td_textStatus        = "Se encontraton [" + recordCount  + "] registros";
         //
-        this.dataSource           = new MatTableDataSource<LogEntry>(p_logEntry);
-        this.dataSource.paginator = this.paginator;
+        this.td_dataSource           = new MatTableDataSource<LogEntry>(p_logEntry);
+        this.td_dataSource.paginator = this.td_paginator;
         //
         // los botones se configuran en el evento "complete()".
       },
