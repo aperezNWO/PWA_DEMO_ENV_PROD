@@ -61,9 +61,9 @@ th {
    color:aquamarine;
 }
 
-a:active
+a:link
 {
-  color:#ccc;  
+  color:#fff;  
 }
 
 a:visited
