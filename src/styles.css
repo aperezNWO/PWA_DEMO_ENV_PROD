@@ -4,6 +4,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }l, body
    height: 100%; 
 }
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 body { 
    margin: 0; 
    font-family: Roboto, "Helvetica Neue", sans-serif; 
@@ -58,6 +61,14 @@ th {
    color:aquamarine;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+a:active
+{
+  color:#ccc;  
+}
+
+a:visited
+{
+  color:#ccc;  
+}
+
 
