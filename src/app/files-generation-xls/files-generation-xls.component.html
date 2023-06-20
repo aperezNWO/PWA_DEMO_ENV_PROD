@@ -8,8 +8,75 @@
       <div class="mat-elevation-z8">
           <!-- INIT SEARCH PANEL -->
           <div class="searchPanel">
-          <form (ngSubmit)="_td_onSubmit()">
-
+          <form (ngSubmit)="td_onSubmit()" #td_searchForm="ngForm">
+              <!-- [_] P_ROW_NUM -->
+              <div class="form-group">
+                <label for="P_ROW_NUM" style="width:100px;"># registros : </label>
+                <input class="form-control" 
+                        id="P_ROW_NUM"
+                        type="number"
+                        required
+                        [(ngModel)]="td_model.P_ROW_NUM" 
+                        name="P_ROW_NUM"
+                        #P_ROW_NUM="ngModel">
+              </div>
+              <!-- [_] P_FECHA_INICIO -->
+              <div class="form-group">
+                <label for="P_FECHA_INICIO" style="width:100px;">Fecha Inicio : </label>
+                <input class="form-control" 
+                        id="P_FECHA_INICIO"
+                        type="date"
+                        required
+                        [(ngModel)]="td_model.P_FECHA_INICIO" 
+                        name="P_FECHA_INICIO"
+                        #P_FECHA_INICIO="ngModel">
+              </div>
+              <!-- [_] P_FECHA_FIN -->
+              <div class="form-group">
+                <label for="P_FECHA_FIN" style="width:100px;">Fecha Fin : </label>
+                <input class="form-control" 
+                        id="P_FECHA_FIN"
+                        type="date"
+                        required
+                        [(ngModel)]="td_model.P_FECHA_FIN" 
+                        name="P_FECHA_FIN"
+                        #P_FECHA_FIN="ngModel">
+              </div>
+              <hr>
+              <!-- INICIO PANEL DE BOTONES    -->
+              <div align="right">
+                <button class="button" type="submit" [disabled]="(this.td_buttonCaption != '[Buscar]')">{{this.td_buttonCaption}}</button>
+                <button class="button" type="button" (click)="td_newSearch()">[Nueva]</button>
+              </div>
+              <!-- FIN    PANEL DE BOTONES    -->
+              <!-- INICIO MENSAJES DE VALIDACION -->
+              <div align="left">
+                <ul *ngIf="((!this.td_valid_form()) && (this.td_formSubmit))">
+                  <p>Favor revise los datos del formulario</p>
+                  <li *ngIf="(this.td_model.P_DATA_SOURCE_ID == '0')" class="alert alert-danger">
+                    Favor seleccione el campo 'Origen de datos'
+                  </li>
+                  <li *ngIf="(this.td_model.P_ID_TIPO_LOG == '0')"    class="alert alert-danger">
+                    Favor seleccione el campo 'Tipo de Consulta'
+                  </li>
+                  <li *ngIf="((this.td_model.P_ROW_NUM       == '0') || (this.td_model.P_ROW_NUM       == '') || (this.td_model.P_ROW_NUM  == null))" class="alert alert-danger">
+                    Favor seleccione el campo 'Número de Filas'
+                  </li>
+                  <li *ngIf="((this.td_model.P_FECHA_INICIO  == '')  || (this.td_model.P_FECHA_INICIO  == null))"                                     class="alert alert-danger">
+                    Favor seleccione el campo 'Fecha de Inicio'
+                  </li>
+                  <li *ngIf="((this.td_model.P_FECHA_FIN     == '')  || (this.td_model.P_FECHA_FIN     == null))"                                     class="alert alert-danger">
+                    Favor seleccione el campo 'Fecha Final'
+                  </li> 
+                </ul>
+              </div>
+              <!-- FIN    MENSAJES VALIDACION      -->
+              <hr>
+              <!-- INICIO STATUS BUSQUEDA -->
+              <div align="center">
+                <label id="status" name="searchStatus" class="searchStatus" id="searchStatus">{{this.td_textStatus}}</label>
+              </div>
+              <!-- FIN    STATUS BUSQUEDA -->
           </form> 
           </div>
           <!-- END SEARCH PANEL -->
@@ -26,7 +93,7 @@
     </div>
     <div class="mat-elevation-z8">
         <div class="searchPanel">
-          <form [formGroup]="rf_searchForm" (ngSubmit)="onSubmit()">
+          <form [formGroup]="rf_searchForm" (ngSubmit)="rf_onSubmit()">
             <!--P_ROW_NUM-->
             <div>
               <label for="_P_ROW_NUM">
@@ -52,7 +119,7 @@
             <hr>
             <div align="right">
               <button class="button" type="submit" [disabled]="(this.rf_buttonCaption != '[Buscar]')">{{this.rf_buttonCaption}}</button>
-              <button class="button" type="button" (click)="this.newSearch()">[Nueva]</button>
+              <button class="button" type="button" (click)="this.rf_newSearch()">[Nueva]</button>
             </div>
             <!-- FIN BUTTONS PANEL           -->
             <!-- INICIO MENSAJES VALIDACION (REACTIVE)-->
