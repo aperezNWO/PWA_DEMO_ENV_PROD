@@ -61,6 +61,11 @@ th {
    color:aquamarine;
 }
 
+.searchStatus
+{
+   width: 100%;   
+}
+
 a:link
 {
   color:#fff;  

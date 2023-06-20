@@ -53,12 +53,6 @@
               <div align="left">
                 <ul *ngIf="((!this.td_valid_form()) && (this.td_formSubmit))">
                   <p>Favor revise los datos del formulario</p>
-                  <li *ngIf="(this.td_model.P_DATA_SOURCE_ID == '0')" class="alert alert-danger">
-                    Favor seleccione el campo 'Origen de datos'
-                  </li>
-                  <li *ngIf="(this.td_model.P_ID_TIPO_LOG == '0')"    class="alert alert-danger">
-                    Favor seleccione el campo 'Tipo de Consulta'
-                  </li>
                   <li *ngIf="((this.td_model.P_ROW_NUM       == '0') || (this.td_model.P_ROW_NUM       == '') || (this.td_model.P_ROW_NUM  == null))" class="alert alert-danger">
                     Favor seleccione el campo 'Número de Filas'
                   </li>
@@ -74,7 +68,8 @@
               <hr>
               <!-- INICIO STATUS BUSQUEDA -->
               <div align="center">
-                <label id="status" name="searchStatus" class="searchStatus" id="searchStatus">{{this.td_textStatus}}</label>
+                <br/>
+                <label id="status" name="searchStatus" class="searchStatus" id="searchStatus" style="width:100%;">{{this.td_textStatus}}</label>
               </div>
               <!-- FIN    STATUS BUSQUEDA -->
           </form> 

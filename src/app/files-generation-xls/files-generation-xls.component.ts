@@ -45,8 +45,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     // 
     rf_displayedColumns                : string[] = ['id_Column', 'pageName', 'accessDate', 'ipValue'];
     //
-    rf_model                           = new SearchCriteria( "0"
-                                            ,"0"
+    rf_model                           = new SearchCriteria( "1"
+                                            ,"1"
                                             ,"999"
                                             ,"2023-01-01"
                                             ,"2023-12-31"
@@ -72,8 +72,9 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     @ViewChild("td_paginator" ,{read:MatPaginator}) td_paginator!:  MatPaginator;
     //
-    td_model                  = new SearchCriteria( "0"
-      ,"0"
+    td_model                  = new SearchCriteria( 
+       "1"
+      ,"1"
       ,"999"
       ,"2022-09-01"
       ,"2022-09-30"
@@ -91,6 +92,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
         //
         this.rf_newSearch();
+        this.td_newSearch();
     }
     //
     ngAfterViewInit() {
@@ -144,6 +146,38 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
         //
         return strMsg;
     };
+    //
+    GetFormattedDate(p_date : /*Date*/ string, order : number) {
+      //
+      var today = '';
+      switch (order) {
+          case 0:  // FECHA COMPLATIBLE CON ORACLE
+              var p_dates = p_date.toString().split('-'); // P_DATE   = 2022-04-09
+              var day     = p_dates[2];
+              var month   = p_dates[1];
+              var year    = p_dates[0];
+              today       = day + "/" + month + "/" + year;
+              //
+              break;
+          case 1:  // FECHA COMPATIBLE  CON UIX
+              //
+              /*
+              var _day      :number  = p_date.getDate();
+              var _month    :number  = p_date.getMonth() + 1;
+              var _yearStr  :string  = p_date.getFullYear().toString();
+              var _monthStr :string  = "";
+              var _dayStr   :string  = "";
+              //
+              if (_month < 10) _monthStr = "0"   + _month.toString();
+              if (_day < 10)   _dayStr   = "0"   + _day.toString();
+              //
+              today                 = _yearStr  + "-" + _monthStr + "-" + _dayStr;*/
+              //
+              break;
+      }
+      //
+      return today;
+    } 
     //--------------------------------------------------------------------------
     // METODOS REACTIVE FORMS 
     //--------------------------------------------------------------------------
@@ -157,6 +191,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
         this.rf_dataSource.paginator = this.rf_paginator;
         //
         this.rf_searchForm   = this.formBuilder.group({
+          //_P_DATA_SOURCE_ID   : ["1"           , Validators.required],
+          //_P_ID_TIPO_LOG      : ["1"           , Validators.required],
           _P_ROW_NUM          : ["999"         , Validators.required],
           _P_FECHA_INICIO     : ["2023-01-01"  , Validators.required],
           _P_FECHA_FIN        : ["2023-12-31"  , Validators.required],
@@ -215,7 +251,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       this.rf_formSubmit        = true;
       //
-      this.rf_informeLogRemoto  = this.mcsdService.getLogRemoto();
+      this.rf_informeLogRemoto  = this.mcsdService.getLogRemoto(_searchCriteria);
       //
       const logSearchObserver   = {
         //
@@ -270,7 +306,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       this.rf_textStatus_xls                  = "[Generando por favor espere...]";
       //
-      this.rf_excelFileName                      = this.mcsdService.getInformeExcel();
+      this.rf_excelFileName                   = this.mcsdService.getInformeExcel(this.rf_model);
       //
       const xlsObserver                       = {
         //
@@ -309,13 +345,19 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     td_newSearch() : void {
         //
+        this.td_model                  = new SearchCriteria( 
+             "1"
+            ,"1"
+            ,"999"
+            ,"2022-09-01"
+            ,"2022-09-30"
+            ,""
+            ,"");
     }
     //
     td_valid_form() : boolean {
       return (     
-             (   this.td_model.P_DATA_SOURCE_ID != "0") 
-          && (   this.td_model.P_ID_TIPO_LOG    != "0")  
-          && ( ( this.td_model.P_ROW_NUM        != "" ) && (this.td_model.P_ROW_NUM       !=  null) && (this.td_model.P_ROW_NUM      != "0") ) 
+             ( ( this.td_model.P_ROW_NUM        != "" ) && (this.td_model.P_ROW_NUM       !=  null) && (this.td_model.P_ROW_NUM      != "0") ) 
           && ( ( this.td_model.P_FECHA_INICIO   != "" ) && (this.td_model.P_FECHA_INICIO  !=  null) ) 
           && ( ( this.td_model.P_FECHA_FIN      != "" ) && (this.td_model.P_FECHA_FIN     !=  null) ) 
       );  
@@ -336,5 +378,53 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     td_update(td_searchCriteria : SearchCriteria):void {
       //
-    };    
+      this.td_buttonCaption = "[Favor espere...]";
+      //
+      this.td_textStatus    = "";
+      //
+      td_searchCriteria.P_FECHA_INICIO_STR = this.GetFormattedDate(td_searchCriteria.P_FECHA_INICIO,0);
+      td_searchCriteria.P_FECHA_FIN_STR    = this.GetFormattedDate(td_searchCriteria.P_FECHA_FIN   ,0); 
+      //
+      console.log("(FROM PARAM) : P_DATA_SOURCE_ID                     : " + td_searchCriteria.P_DATA_SOURCE_ID);
+      console.log("(FROM PARAM) : P_ROW_NUM                            : " + td_searchCriteria.P_ROW_NUM);  
+      console.log("(FROM PARAM) : P_FECHA_INICIO (origen)              : " + td_searchCriteria.P_FECHA_INICIO);
+      console.log("(FROM PARAM) : P_FECHA_FIN    (origen)              : " + td_searchCriteria.P_FECHA_FIN);  
+      console.log("(FROM PARAM) : P_FECHA_INICIO (valid : 01/09/2022)  : " + td_searchCriteria.P_FECHA_INICIO_STR);
+      console.log("(FROM PARAM) : P_FECHA_FIN    (valid : 30/09/2022)  : " + td_searchCriteria.P_FECHA_FIN_STR);
+      console.log("(SEARCH INIT)");
+      // 
+      let td_informeLogRemoto!                 : Observable<LogEntry[]>;
+      td_informeLogRemoto                      = this.mcsdService.getLogRemoto(td_searchCriteria);
+      //
+      const td_observer = {
+        next: (td_logEntry: LogEntry[])     => { 
+          //
+          console.log('TEMPLATE DRIVEN - RETURN VALUES (Record Count): ' + td_logEntry.length);
+          //
+          this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry);
+          this.td_dataSource.paginator = this.td_paginator;
+          //
+          this.td_textStatus           = "Se encontraron [" + td_logEntry.length + "] registros ";
+          this.td_formSubmit           = false;
+        },
+        error           : (err: Error)      => {
+          //
+          console.error('TEMPLATE DRIVEN - (ERROR) : ' + JSON.stringify(err.message));
+          //
+          this.td_textStatus           = "Ha ocurrido un error. Favor intente de nuevo";
+          this.td_formSubmit           = false;
+          this.td_buttonCaption        = "[Buscar]";
+          //
+        },
+        complete        : ()                => {
+          //
+          console.log('TEMPLATE DRIVEN -  (SEARCH END)');
+          //
+          this.td_formSubmit           = false;
+          this.td_buttonCaption        = "[Buscar]";
+        },
+    }; 
+    //
+    td_informeLogRemoto.subscribe(td_observer);
+  }   
 }

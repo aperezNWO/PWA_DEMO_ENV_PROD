@@ -24,7 +24,7 @@
         -- [_] REACTIVE FORMS.
         -- [_] DYNAMIC FORMS. 
 -- [_] disable chorome security.
-        -- [_] "C:\Program Files\Google\Chrome\Application\chrome.exe"
+        -- [_] "C:\Program Files\Google\Chrome\Application\"
         -- [_] chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
  
 =====================================================================
