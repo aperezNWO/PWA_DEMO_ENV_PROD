@@ -65,11 +65,13 @@
                     <li *ngIf="(((this.rf_searchForm.value['_P_FECHA_INICIO'] == null)  || (this.rf_searchForm.value['_P_FECHA_INICIO'] == '') ) && (this.rf_formSubmit == true) )" class="alert alert-danger">
                       El campo 'Fecha Inicial' es requerido.
                     </li>
+                    <li *ngIf="(((this.rf_searchForm.value['_P_FECHA_FIN'] == null)     || (this.rf_searchForm.value['_P_FECHA_FIN'] == '') ) && (this.rf_formSubmit == true) )" class="alert alert-danger">
+                      El campo 'Fecha Final ' es requerido.
+                    </li>
               </ul>
             </div>
             <!-- FIN MENSAJES DE VALIDACION (REACTIVE)-->
             <!-- INICIO STATUS BUSQUEDA      -->
-            <!--<hr>-->
             <div align="center">
               <span id="status" name="searchStatus" class="searchStatus" id="searchStatus">{{this.rf_textStatus}}</span>
             </div>
