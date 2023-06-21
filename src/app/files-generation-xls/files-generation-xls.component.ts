@@ -25,8 +25,6 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     // PROPIEADES - REACTIVE FORMS
     //--------------------------------------------------------------------------
     //
-    rf_informeLogRemoto!               : Observable<LogEntry[]>;
-    //
     rf_excelFileName!                  : Observable<string>;
     //
     rf_textStatus                      : string = "";
@@ -251,7 +249,9 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       this.rf_formSubmit        = true;
       //
-      this.rf_informeLogRemoto  = this.mcsdService.getLogRemoto(_searchCriteria);
+      let rf_informeLogRemoto!  : Observable<LogEntry[]>;
+      //
+      rf_informeLogRemoto       = this.mcsdService.getLogRemoto(_searchCriteria);
       //
       const logSearchObserver   = {
         //
@@ -288,7 +288,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
         },
       };
       //
-      this.rf_informeLogRemoto.subscribe(logSearchObserver);
+      rf_informeLogRemoto.subscribe(logSearchObserver);
     }
     //
     GenerarInformeXLSValidate():void{
