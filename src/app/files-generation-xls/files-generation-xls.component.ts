@@ -25,8 +25,6 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     // PROPIEADES - REACTIVE FORMS
     //--------------------------------------------------------------------------
     //
-    rf_excelFileName!                  : Observable<string>;
-    //
     rf_textStatus                      : string = "";
     //
     rf_buttonCaption                   : string = "[Buscar]";
@@ -62,24 +60,30 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     // PROPIEADES - TEMPLATE FORMS
     //--------------------------------------------------------------------------
     //
-    td_textStatus           : string = "";
+    td_textStatus                      : string  = "";
     //
-    td_formSubmit           : boolean        = false;
+    td_formSubmit                      : boolean = false;
     //
-    td_buttonCaption        : string         = "[Buscar]";
+    td_buttonCaption                   : string  = "[Buscar]";
+    //
+    td_buttonCaption_xls               : string  = "[Generar Excel]";
+    //
+    td_textStatus_xls                  : string  = "";
+    //
+    td_ExcelDownloadLink               : string  = "#";
+    //
+    td_dataSource                      = new MatTableDataSource<LogEntry>();
+    //
+    td_model                           = new SearchCriteria( 
+      "1"
+     ,"1"
+     ,"999"
+     ,"2022-09-01"
+     ,"2022-09-30"
+     ,""
+     ,"");
     //
     @ViewChild("td_paginator" ,{read:MatPaginator}) td_paginator!:  MatPaginator;
-    //
-    td_model                  = new SearchCriteria( 
-       "1"
-      ,"1"
-      ,"999"
-      ,"2022-09-01"
-      ,"2022-09-30"
-      ,""
-      ,"");
-    //
-    td_dataSource                         = new MatTableDataSource<LogEntry>();
     //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
@@ -183,7 +187,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     rf_newSearch()
     {
         //
-        console.warn("(NEW SEARCH 2)");
+        console.warn("(NEW SEARCH RF)");
         //
         this.rf_dataSource           = new MatTableDataSource<LogEntry>();
         this.rf_dataSource.paginator = this.rf_paginator;
@@ -291,22 +295,24 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       rf_informeLogRemoto.subscribe(logSearchObserver);
     }
     //
-    GenerarInformeXLSValidate():void{
+    rf_GenerarInformeXLSValidate():void{
       //
-      this.GenerarInformeXLSPost();
+      this.rf_GenerarInformeXLSPost();
     };
     //
-    GenerarInformeXLSPost():void  {
+    rf_GenerarInformeXLSPost():void  {
       //
-      console.log("GENERAR EXCEL - POST");
+      console.log("GENERAR EXCEL (RF) - POST");
+      //
+      let rf_excelFileName!                   : Observable<string>;
+      //
+      rf_excelFileName                        = this.mcsdService.getInformeExcel(this.rf_model);
       //
       this.rf_ExcelDownloadLink               = "#";
       //
       this.rf_buttonCaption_xls               = "[Generando por favor espere...]";
       //
       this.rf_textStatus_xls                  = "[Generando por favor espere...]";
-      //
-      this.rf_excelFileName                   = this.mcsdService.getInformeExcel(this.rf_model);
       //
       const xlsObserver                       = {
         //
@@ -337,22 +343,45 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
         },
       };
       //
-      this.rf_excelFileName.subscribe(xlsObserver);
+      rf_excelFileName.subscribe(xlsObserver);
     }
     //--------------------------------------------------------------------------
     // METODOS REACTIVE FORMS 
     //--------------------------------------------------------------------------
     //
     td_newSearch() : void {
-        //
-        this.td_model                  = new SearchCriteria( 
-             "1"
-            ,"1"
-            ,"999"
-            ,"2022-09-01"
-            ,"2022-09-30"
-            ,""
-            ,"");
+      //
+      console.warn("(NEW SEARCH TD)");
+      //
+      this.td_dataSource           = new MatTableDataSource<LogEntry>();
+      this.td_dataSource.paginator = this.rf_paginator;
+      //
+      this.td_model                  = new SearchCriteria( 
+          "1"
+         ,"1"
+         ,"999"
+         ,"2022-09-01"
+         ,"2022-09-30"
+         ,""
+         ,"");
+      //
+      console.log("(DEFAULT VALUES - INIT)");
+      console.log("P_ROW_NUM         : " + this.td_model.P_ROW_NUM);
+      console.log("P_FECHA_INICIO    : " + this.td_model.P_FECHA_INICIO);      
+      console.log("P_FECHA_FIN       : " + this.td_model.P_FECHA_FIN); 
+      console.log("(DEFAULT VALUES - END)");
+      //
+      this.td_buttonCaption     = "[Buscar]";
+      //
+      this.td_formSubmit        = false;
+      //
+      this.td_textStatus        = "";
+      //
+      this.td_buttonCaption_xls               = "[Generar Excel]";
+      //
+      this.td_textStatus_xls                  = "";
+      //
+      this.td_ExcelDownloadLink               = "#";
     }
     //
     td_valid_form() : boolean {
@@ -426,5 +455,56 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     }; 
     //
     td_informeLogRemoto.subscribe(td_observer);
-  }   
+    };
+    //
+    td_GenerarInformeXLSValidate():void
+    {
+        this.td_GenerarInformeXLS(this.td_model);
+    }
+    td_GenerarInformeXLS(_searchCriteria : SearchCriteria)
+    {
+      //
+      console.log("GENERAR EXCEL (td) - POST");
+      //
+      let td_excelFileName!                   : Observable<string>;
+      //
+      td_excelFileName                        = this.mcsdService.getInformeExcel(this.rf_model);
+      //
+      this.td_ExcelDownloadLink               = "#";
+      //
+      this.td_buttonCaption_xls               = "[Generando por favor espere...]";
+      //
+      this.td_textStatus_xls                  = "[Generando por favor espere...]";
+      //
+      const xlsObserver                       = {
+        //
+        next: (_excelFileName: string) => { 
+          //
+          console.log('Observer got a next value: ' + _excelFileName);
+          //
+          let urlFile               = 'https://mcsd.somee.com/xlsx/' + _excelFileName;
+          this.td_ExcelDownloadLink = this.DebugHostingContent(urlFile);
+          //
+          this.td_textStatus_xls     = "[Descargar Excel]";
+        },
+        error   : (err: Error)  => {
+          //
+          console.error('Observer got an error: ' + err.cause);
+          //
+          console.error('Observer got an error: ' + err.message);
+          //
+          this.td_buttonCaption_xls  = "[Ha ocurrido un error]";
+          //
+          this.td_textStatus_xls     = "[Ha ocurrido un error]";
+        },
+        complete: () => {
+          //
+          console.log('Observer got a complete notification')
+          //
+          this.td_buttonCaption_xls  = "[Generar Excel]";
+        },
+      };
+      //
+      td_excelFileName.subscribe(xlsObserver);
+    }
 }

@@ -65,13 +65,22 @@
                 </ul>
               </div>
               <!-- FIN    MENSAJES VALIDACION      -->
-              <hr>
               <!-- INICIO STATUS BUSQUEDA -->
               <div align="center">
-                <br/>
-                <label id="status" name="searchStatus" class="searchStatus" id="searchStatus" style="width:100%;">{{this.td_textStatus}}</label>
+                <span id="td_status" name="td_searchStatus" id="td_searchStatus" class="searchStatus"  style="width:100%;">{{this.td_textStatus}}</span>
               </div>
+              <hr>
               <!-- FIN    STATUS BUSQUEDA -->
+              <!-- INICIO DESCARGA EXCEL       -->
+              <div id="td_divdescargaexcel" style="display: block;" align="right">
+                <br>
+                <button class="button" type="button" (click)="td_GenerarInformeXLSValidate()" [disabled]="(this.td_buttonCaption_xls != '[Generar Excel]')">{{this.td_buttonCaption_xls}}</button>
+                <br>
+                <br>
+                <a [href]="this.td_ExcelDownloadLink" id="DownloadFile">{{this.td_textStatus_xls}}</a>
+              </div>
+              <!-- FIN DESCARGA EXCEL          -->
+              <hr>  
           </form> 
           </div>
           <!-- END SEARCH PANEL -->
@@ -169,7 +178,7 @@
             <hr>
             <div id="divdescargaexcel" style="display: block;" align="right">
               <br>
-              <button class="button" type="button" (click)="GenerarInformeXLSValidate()" [disabled]="(this.rf_buttonCaption_xls != '[Generar Excel]')">{{this.rf_buttonCaption_xls}}</button>
+              <button class="button" type="button" (click)="rf_GenerarInformeXLSValidate()" [disabled]="(this.rf_buttonCaption_xls != '[Generar Excel]')">{{this.rf_buttonCaption_xls}}</button>
               <br>
               <br>
               <a [href]="this.rf_ExcelDownloadLink" id="DownloadFile">{{this.rf_textStatus_xls}}</a>

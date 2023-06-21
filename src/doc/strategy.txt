@@ -26,5 +26,5 @@
 -- [_] disable chorome security.
         -- [_] "C:\Program Files\Google\Chrome\Application\"
         -- [_] chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
- 
+-- [_] implementar filtro de busqueda en WEBAPI remoto.
 =====================================================================
