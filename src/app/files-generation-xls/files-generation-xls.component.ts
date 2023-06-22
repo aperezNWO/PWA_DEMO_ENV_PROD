@@ -507,4 +507,110 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       td_excelFileName.subscribe(xlsObserver);
     }
+    //---------------------------------------------------------------------------
+    // METODOS PARA ESTADISTICAS / CHART
+    //---------------------------------------------------------------------------
+    SetChart():void {
+      //
+      console.log("[LOG DEMO] - SET CHART ");
+      //
+      var url_post         = "GetConsultaLogStatPost";
+      //
+      /*
+      $.ajax({
+          url: url_post
+          , method: "POST"
+          , dataType: "JSON"
+          , success: function(jsondata) {
+              //
+              console.log("[LOG DEMO] - SET CHART - DATA " + JSON.stringify(jsondata));
+              //
+              const statLabels          = [];
+              const statData            = [];
+              const statBackgroundColor = [];
+              //
+              $.each(jsondata, function(index, value) {
+                  //
+                  console.log("[SI-SPAE-WEB] - GET STAT - RESULT : index [" + index + "] value={"
+                      + jsondata[index]["pageName"]
+                      + "-" + jsondata[index]["ipValue"] + "}");
+                  //
+                  statLabels.push(jsondata[index]["pageName"] + " - " + jsondata[index]["ipValue"]);
+                  statData.push(Number(jsondata[index]["ipValue"]));
+                  statBackgroundColor.push('rgb('
+                      + (Number(jsondata[index]["ipValue"]) / 4) + ','
+                      + (Number(jsondata[index]["ipValue"]) / 3) + ','
+                      + (Number(jsondata[index]["ipValue"]) / 2) + ')');
+
+              });
+              //
+              const ctx = document.getElementById('pieChart').getContext('2d');
+              //
+              const data = {
+                  labels: statLabels,
+                  datasets: [{
+                      label: 'CONTEO DE SESIONES',
+                      data: statData,
+                      backgroundColor: statBackgroundColor,
+                      hoverOffset: 4
+                  }]
+              };
+              //
+              if (pieChart) {
+                  pieChart.destroy();
+              }
+              pieChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: data,
+                  options: {
+                      responsive: true,
+                      plugins: {
+                          legend: {
+                              position: 'top',
+                          },
+                          title: {
+                              display: true,
+                              text: 'CONTEO DE SESIONES'
+                          }
+                      }
+                  }
+              });
+          }
+          , error: function (xhr, textStatus, errorThrown) {
+              //
+              alert("Se presentó un fallo.<br/>Favor comunicarse con el administrador del sistema");
+              //
+              if (xhr != null) {
+                  //
+                  console.log('[LOG DEMO] - SET CHART - ERROR :   ' + xhr.responseText);
+              }
+              //
+              //_HideProgressBarTimer();
+          }
+      });*/
+    };
+    //
+    GetPdf():void
+    {  
+        /*
+        //
+        html2canvas($("#pieChart")[0]).then((canvas) => {
+            //
+            var w = document.getElementById("divPieChart").offsetWidth;
+            var h = document.getElementById("divPieChart").offsetHeight;
+            //
+            var imgData              = canvas.toDataURL('image/png');
+            //
+            var p_orientation        = 'p';  // LANDSCAPE  - POTRAIT
+            var p_measurement_unit   = 'mm'; // MILIMETERS
+            var doc                  = new jsPDF(p_orientation, p_measurement_unit );
+            //
+            doc.addImage(imgData, 'PNG', 20, -10);
+            //
+            var img = canvas.toDataURL("image/jpeg", 1);
+            var doc = new jsPDF('L', 'px', [w, h]);
+            doc.addImage(img, 'JPEG', 0, 0, w, h);
+            doc.save('sample-file.pdf');
+        });*/
+    };
 }
