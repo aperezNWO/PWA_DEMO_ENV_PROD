@@ -4,6 +4,7 @@ import { MatTableDataSource                            } from '@angular/material
 import { MatPaginator                                  } from '@angular/material/paginator';
 import { Observable                                    } from 'rxjs';
 import { Chart, registerables                          } from 'chart.js';
+//import { jsPDF                                         } from 'jspdf';
 import { LogEntry,SearchCriteria                       } from '../log-info.model';
 import { MCSDService                                   } from '../mcsd.service';
 //
@@ -600,5 +601,34 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       };
       //
       td_informeLogStat.subscribe(td_observer);
-    }     
+    }   
+    //--------------------------------------------------------------------------
+    // METODOS - PDF
+    //--------------------------------------------------------------------------
+    //
+    GetPDF():void
+    {
+      /*
+      //
+      html2canvas(this.canvas.nativeElement[0]).then((canvas) => {
+          //
+          var w = document.getElementById("divPieChart").offsetWidth;
+          var h = document.getElementById("divPieChart").offsetHeight;
+          //
+          var imgData              = canvas.toDataURL('image/png');
+          //
+          var p_orientation        = 'p';  // LANDSCAPE  - POTRAIT
+          var p_measurement_unit   = 'mm'; // MILIMETERS
+          var doc                  = new jsPDF(p_orientation, p_measurement_unit );
+          //
+          doc.addImage(imgData, 'PNG', 20, -10);
+          //
+          var img = canvas.toDataURL("image/jpeg", 1);
+          var doc = new jsPDF('L', 'px', [w, h]);
+          doc.addImage(img, 'JPEG', 0, 0, w, h);
+          doc.save('sample-file.pdf');
+      });*/
+    }
 }
+
+

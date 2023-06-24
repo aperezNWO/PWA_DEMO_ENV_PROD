@@ -27,4 +27,6 @@
         -- [_] "C:\Program Files\Google\Chrome\Application\"
         -- [_] chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
 -- [_] implementar filtro de busqueda en WEBAPI remoto.
+-- [_] https://mugan86.medium.com/exportar-pdfs-en-angular-con-jspdf-85c7a11a110f
+
 =====================================================================
