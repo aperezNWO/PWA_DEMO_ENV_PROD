@@ -85,6 +85,10 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     @ViewChild("td_paginator" ,{read:MatPaginator}) td_paginator!:  MatPaginator;
     //--------------------------------------------------------------------------
+    // PROPIEDADES - ESTADISTICA
+    //--------------------------------------------------------------------------
+    //
+    //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
     constructor(private mcsdService: MCSDService, private formBuilder: FormBuilder) {
@@ -95,6 +99,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
         //
         this.rf_newSearch();
         this.td_newSearch();
+        //
+        this.SetChart();
     }
     //
     ngAfterViewInit() {
@@ -507,4 +513,95 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       td_excelFileName.subscribe(xlsObserver);
     }
+    //--------------------------------------------------------------------------
+    // METODOS - ESTADISTICAS
+    //--------------------------------------------------------------------------
+    //
+    SetChart():void {
+      //
+      let table;
+      let pieChart;
+      //
+      console.log(this.pageTitle + " - SET CHART ");
+      // 
+      let td_informeLogStat!                 : Observable<string>;
+      td_informeLogStat                      = this.mcsdService.getLogStatPOST();
+      //
+      const td_observer = {
+        next: (td_logEntry: string)     => { 
+          //
+          let jsondata     = JSON.parse(JSON.stringify(td_logEntry));
+          //
+          let recordNumber = jsondata.length;
+          //
+          console.log('ESTADISTICA - (return): ' + recordNumber);
+          //
+          const statLabels          : string[]          = [];
+          const statData            : Number[]          = [];
+          const statBackgroundColor : string[]          = [];
+          //
+          jsondata.forEach((element: JSON, index : number) => {
+              //
+              console.log(index + " " + JSON.stringify(element));
+              //
+              console.log("[SI-SPAE-WEB] - GET STAT - RESULT : index [" + index + "] value={"
+              + jsondata[index]["pageName"]
+              + "," + jsondata[index]["ipValue"] + "}");
+                //
+                statLabels.push(jsondata[index]["pageName"] + " - " + jsondata[index]["ipValue"]);
+                statData.push(Number(jsondata[index]["ipValue"]));
+                statBackgroundColor.push('rgb('
+                    + (Number(jsondata[index]["ipValue"]) / 4) + ','
+                    + (Number(jsondata[index]["ipValue"]) / 3) + ','
+                    + (Number(jsondata[index]["ipValue"]) / 2) + ')');
+          });
+          //
+          const data = {
+                labels              : statLabels,
+                datasets            : [{
+                    label           : 'CONTEO DE SESIONES',
+                    data            : statData,
+                    backgroundColor : statBackgroundColor,
+                    hoverOffset     : 4
+                }]
+          };
+          //
+          //const ctx = document.getElementById('pieChart').getContext('2d');
+          //
+          //if (pieChart) {
+          //  pieChart.destroy();
+          //}
+          //
+          /*
+              pieChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'CONTEO DE SESIONES'
+                        }
+                    }
+                }
+          });*/
+        },
+        error           : (err: Error)      => {
+          //
+          console.error('ESTADISTICA- (ERROR) : ' + JSON.stringify(err.message));
+          //
+        },
+        complete        : ()                => {
+          //
+          console.log('ESTADISTICA -  (SEARCH END)');
+          //
+        },
+      };
+      //
+      td_informeLogStat.subscribe(td_observer);
+    }     
 }

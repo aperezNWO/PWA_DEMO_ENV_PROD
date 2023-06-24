@@ -42,4 +42,21 @@ export class MCSDService {
         //
         return excelFileName; 
     }
+    //
+    getLogStatPOST() {
+      //
+      let url    = 'https://mcsd.somee.com/demos/GetConsultaLogStatPost';
+      //
+      console.warn(" REQUESTING URL : " + url);
+      //    
+        //
+        var HTTPOptions = {
+          headers: new HttpHeaders({
+               'Content-Type' : 'application/json'
+          }),
+          'responseType': 'text' as 'json'
+        }; 
+        //
+        return this.http.post<string>(url,HTTPOptions);   
+    }     
 }
