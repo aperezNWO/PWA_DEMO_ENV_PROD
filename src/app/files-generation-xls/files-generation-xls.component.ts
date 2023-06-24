@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild   } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild   } from '@angular/core';
 import { FormBuilder, Validators                       } from '@angular/forms';
 import { MatTableDataSource                            } from '@angular/material/table';
 import { MatPaginator                                  } from '@angular/material/paginator';
 import { Observable                                    } from 'rxjs';
+import { Chart, registerables                          } from 'chart.js';
 import { LogEntry,SearchCriteria                       } from '../log-info.model';
 import { MCSDService                                   } from '../mcsd.service';
 //
@@ -88,11 +89,15 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     // PROPIEDADES - ESTADISTICA
     //--------------------------------------------------------------------------
     //
+    @ViewChild('canvas') canvas: any;
+    //
+    public pieChartVar         : any;
     //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
     constructor(private mcsdService: MCSDService, private formBuilder: FormBuilder) {
       //
+      Chart.register(...registerables);
     }
     //
     ngOnInit(): void {
@@ -519,10 +524,11 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     SetChart():void {
       //
-      let table;
-      let pieChart;
-      //
       console.log(this.pageTitle + " - SET CHART ");
+      //
+      const statLabels          : string[]          = [];
+      const statData            : Number[]          = [];
+      const statBackgroundColor : string[]          = [];
       // 
       let td_informeLogStat!                 : Observable<string>;
       td_informeLogStat                      = this.mcsdService.getLogStatPOST();
@@ -535,10 +541,6 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           let recordNumber = jsondata.length;
           //
           console.log('ESTADISTICA - (return): ' + recordNumber);
-          //
-          const statLabels          : string[]          = [];
-          const statData            : Number[]          = [];
-          const statBackgroundColor : string[]          = [];
           //
           jsondata.forEach((element: JSON, index : number) => {
               //
@@ -555,40 +557,6 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
                     + (Number(jsondata[index]["ipValue"]) / 3) + ','
                     + (Number(jsondata[index]["ipValue"]) / 2) + ')');
           });
-          //
-          const data = {
-                labels              : statLabels,
-                datasets            : [{
-                    label           : 'CONTEO DE SESIONES',
-                    data            : statData,
-                    backgroundColor : statBackgroundColor,
-                    hoverOffset     : 4
-                }]
-          };
-          //
-          //const ctx = document.getElementById('pieChart').getContext('2d');
-          //
-          //if (pieChart) {
-          //  pieChart.destroy();
-          //}
-          //
-          /*
-              pieChart = new Chart(ctx, {
-                type: 'bar',
-                data: data,
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: true,
-                            text: 'CONTEO DE SESIONES'
-                        }
-                    }
-                }
-          });*/
         },
         error           : (err: Error)      => {
           //
@@ -599,6 +567,35 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           //
           console.log('ESTADISTICA -  (SEARCH END)');
           //
+          const data = {
+            labels              : statLabels,
+            datasets            : [{
+                label           : 'CONTEO DE SESIONES',
+                data            : statData,
+                backgroundColor : statBackgroundColor,
+                hoverOffset     : 4
+            }]
+          };
+          //
+          let context = this.canvas.nativeElement.getContext('2d');
+          //
+          this.pieChartVar = new Chart(context, 
+          {
+                type    : 'bar',
+                data    : data,
+                options : {
+                    responsive: true,
+                    plugins   : {
+                            legend      : {
+                                position: 'top',
+                            },
+                            title       : {
+                                display : true,
+                                text    : 'CONTEO DE SESIONES'
+                              }
+                          }
+                }
+          });
         },
       };
       //

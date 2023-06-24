@@ -362,17 +362,20 @@
     <div align="center" style="padding-top:10px;">
       <h5>[CONSULTA_3 (ESTADISTICAS)]</h5>
       <!-- PANEL GRAFICO / INICIO -->
-      <div id="divPieChart" style="display: block; box-sizing: border-box; height: 400px; width: 800px;padding:5px;" height="400" width="800">
+      <!--<div id="divPieChart" style="display: block; box-sizing: border-box; height: 400px; width: 800px;padding:5px;" height="400" width="800">
         <canvas id="pieChart" style="background-color:bisque;padding:10px 10px 10px 10px;">
         </canvas>
-    </div>
-    <!-- PANEL GRAFICO / FIN     -->
-    <hr />
-    <!-- PANEL DESCARGA / INICIO -->
-    <div id="divdescargapdf" style="display: block" align="right">
-        <input id="GetPDF" type="button" title="[GENERAR PDF]" value="[GENERAR PDF]">           
-    </div>
-    </div>
+      </div>-->
+      <div class="chart-container" style="display: block; box-sizing: border-box; height: 400px; width: 800px;padding:5px;" height="400" width="800">
+            <canvas  id="pieChart" #canvas style="background-color:bisque;padding:10px 10px 10px 10px;">{{ this.pieChartVar }}</canvas>
+      </div>
+      <!-- PANEL GRAFICO / FIN     -->
+      <hr />
+      <!-- PANEL DESCARGA / INICIO -->
+      <div id="divdescargapdf" style="display: block" align="right">
+          <input id="GetPDF" type="button" title="[GENERAR PDF]" value="[GENERAR PDF]">           
+      </div>
+      </div>
   </mat-tab>
 </mat-tab-group>    
 
