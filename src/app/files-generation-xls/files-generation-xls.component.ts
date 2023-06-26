@@ -613,18 +613,20 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     GetPDF():void
     {
       //
-      html2canvas(this.canvas.nativeElement[0]).then((canvas) => {
+      console.log("getting pdf");
+      //
+      html2canvas(this.canvas.nativeElement).then((_canvas) => {
           //
-          var w = this.divPieChart.offsetWidth;
-          var h = this.divPieChart.offsetHeight;
+          let w = this.divPieChart.nativeElement.offsetWidth;
+          let h = this.divPieChart.nativeElement.offsetHeight;
           //
-          var imgData              = canvas.toDataURL('image/png');
+          let imgData = _canvas.toDataURL('image/jpeg');
           //
-          var img = canvas.toDataURL("image/jpeg", 1);
-          var doc = new jsPDF("landscape", "px", [w, h]);
+          let pdfDoc  = new jsPDF("landscape", "px", [w, h]);
           //
-          doc.addImage(img, 'JPEG', 0, 0, w, h);
-          doc.save('sample-file.pdf');
+          pdfDoc.addImage(imgData, 0, 0, w, h);
+          //
+          pdfDoc.save('sample-file.pdf');
       });
     }
 }
