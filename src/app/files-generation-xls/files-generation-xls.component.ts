@@ -107,13 +107,15 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     ngOnInit(): void {
         //
+        console.log(this.pageTitle);
+        //
         this.rf_newSearch();
         this.td_newSearch();
         //
         this.SetChart();
     }
     //
-    ngAfterViewInit() {
+    ngAfterViewInit():void {
       //
     }
     //--------------------------------------------------------------------------
@@ -529,7 +531,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     SetChart():void {
       //
-      console.log(this.pageTitle + " - SET CHART ");
+      console.log(this.pageTitle + " - [SET CHART]");
       //
       const statLabels          : string[]          = [];
       const statData            : Number[]          = [];
