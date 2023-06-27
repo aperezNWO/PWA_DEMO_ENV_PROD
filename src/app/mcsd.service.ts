@@ -33,6 +33,24 @@ export class MCSDService {
         return jsonCSVData; 
     }
     //
+    getInformeRemotoCSV_STAT():Observable<string> {
+          //
+          let p_url    = this.prefix + 'GenerarInformeCSVJsonSTAT';
+          //
+          console.warn(" REQUESTING URL : " + p_url);
+          //
+          var HTTPOptions = {
+            headers: new HttpHeaders({
+              'Accept':'application/text'
+            }),
+            'responseType': 'text' as 'json'
+          };
+          //
+          let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+          //
+          return jsonCSVData; 
+    }
+    //
     getLogRemoto(_searchCriteria : SearchCriteria) {
         //
         let url    = this.prefix + 'generarinformejson';

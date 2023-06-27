@@ -91,7 +91,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
           const statBackgroundColor : string[]          = [];
           //
           let csv_informeLogRemoto!                 : Observable<string>;
-          csv_informeLogRemoto                      = this.mcsdService.getInformeRemotoCSV();
+          csv_informeLogRemoto                      = this.mcsdService.getInformeRemotoCSV_STAT();
           //
           const csv_observer = {
             next: (csv_data: string)     => { 
@@ -140,12 +140,12 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
               console.log(this.pageTitle + " - [SET CSV DATA] - [Search end]");
               //
               const data = {
-                labels              : statLabels,
-                datasets            : [{
-                    label           : 'CONTEO DE SESIONES',
-                    data            : statData,
-                    backgroundColor : statBackgroundColor,
-                    hoverOffset     : 4
+                labels: statLabels,
+                datasets: [{
+                    label: 'CIUDADES',
+                    data: statData,
+                    backgroundColor: statBackgroundColor,
+                    hoverOffset: 4
                 }]
               };
               //
@@ -172,7 +172,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
         //
         csv_informeLogRemoto.subscribe(csv_observer);
     }   
-        //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     // METODOS - PDF
     //--------------------------------------------------------------------------
     //
