@@ -6,7 +6,7 @@ import { Observable                                    } from 'rxjs';
 import { Chart, registerables                          } from 'chart.js';
 import jsPDF                                             from 'jspdf';
 import html2canvas                                       from 'html2canvas';
-import { LogEntry,SearchCriteria                       } from '../log-info.model';
+import { PersonEntity                                  } from '../log-info.model';
 import { MCSDService                                   } from '../mcsd.service';
 //
 @Component({
@@ -24,6 +24,14 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     static pageTitle()   : string {
       return '[GENERAR ARCHIVOS CSV]';
     }
+    //--------------------------------------------------------------------------
+    // PROPIEDADES - LISTADO
+    //--------------------------------------------------------------------------
+    csv_dataSource                                                 = new MatTableDataSource<PersonEntity>();
+    // 
+    csv_displayedColumns                                           : string[] = ['id_Column', 'ciudad','nombreCompleto'];
+    //
+    @ViewChild("csv_paginator" ,{read:MatPaginator}) csv_paginator!:  MatPaginator;
     //--------------------------------------------------------------------------
     // PROPIEDADES - ESTADISTICA
     //--------------------------------------------------------------------------
@@ -68,6 +76,15 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
           next: (csv_data: string)     => { 
             //
             console.log(this.pageTitle + " - [SET CSV DATA] - Return Values : [" + csv_data + "]");
+            //
+            let jsondata     = JSON.parse(csv_data);
+            //
+            let recordNumber = jsondata.length;
+            //
+            console.log('ESTADISTICA - (return): ' + recordNumber);
+            //
+            this.csv_dataSource           = new MatTableDataSource<PersonEntity>(jsondata);
+            this.csv_dataSource.paginator = this.csv_paginator;
           },
           error           : (err: Error)      => {
             //

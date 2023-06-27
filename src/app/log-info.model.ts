@@ -5,6 +5,13 @@ export interface LogEntry {
   ipValue     :string;
 }
 //
+export interface PersonEntity 
+{
+    id_Column   :string;
+    ciudad      :string;
+}
+
+//
 export class  SearchCriteria
 {
     //

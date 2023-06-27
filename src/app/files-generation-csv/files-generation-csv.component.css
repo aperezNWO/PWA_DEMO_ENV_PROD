@@ -1,27 +1,15 @@
-.mat-column-ID_LOG {
+.mat-column-id_Column {
     flex: none;
     width: 100px;
     padding: 1rem;
   }
 
-.mat-column-DATE_TIME {
+.mat-column-ciudad {
   flex: none;
   width: 100px;
   padding: 1rem;
 }
 
-.mat-column-TEXT_1_WEB {
-  flex: none;
-  width: 100px;
-  padding: 1rem;
-}
-
-.mat-column-TEXT_2_WEB {
-  flex: none;
-  width: 100px;
-  padding: 1rem;
-}
-    
 form {
   width: 40%;
   margin: 0 auto;

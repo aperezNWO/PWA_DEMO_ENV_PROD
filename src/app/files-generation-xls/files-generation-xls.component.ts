@@ -91,7 +91,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     // PROPIEDADES - ESTADISTICA
     //--------------------------------------------------------------------------
     //
-    @ViewChild('canvas_xls')      canvas_xls      : any;
+    @ViewChild('canvas_xls')      canvas_xls     : any;
     //
     @ViewChild('divPieChart_XLS') divPieChart_xls : any;
     //
