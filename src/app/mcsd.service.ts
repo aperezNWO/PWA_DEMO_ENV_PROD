@@ -15,13 +15,22 @@ export class MCSDService {
         //
     }
     //
-    getInformeRemotoCSV(_searchCriteria : SearchCriteria) {
+    getInformeRemotoCSV() {
         //
-        let url    = this.prefix + 'GenerarInformeCSVJson';
+        let p_url    = this.prefix + 'GenerarInformeCSVJson';
         //
-        console.warn(" REQUESTING URL : " + url);
-        //    
-        return this.http.get<LogEntry[]>(url);
+        console.warn(" REQUESTING URL : " + p_url);
+        //
+        var HTTPOptions = {
+          headers: new HttpHeaders({
+            'Accept':'application/text'
+          }),
+          'responseType': 'text' as 'json'
+        };
+        //
+        let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+        //
+        return jsonCSVData; 
     }
     //
     getLogRemoto(_searchCriteria : SearchCriteria) {

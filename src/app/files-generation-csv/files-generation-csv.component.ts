@@ -51,11 +51,50 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     {
         //
         console.log(this.pageTitle + " - [SET CSV DATA]");
-    }
-    //
+        //
+        let csv_informeLogRemoto!                 : Observable<string>;
+        csv_informeLogRemoto                      = this.mcsdService.getInformeRemotoCSV();
+        //
+        const csv_observer = {
+          next: (csv_data: string)     => { 
+            //
+            console.log(this.pageTitle + " - [SET CSV DATA] - Return Values : [" + csv_data + "]");
+          },
+          error           : (err: Error)      => {
+            //
+            console.log(this.pageTitle + " - [SET CSV DATA] - Error : [" + err.message + "]");
+          },
+          complete        : ()                => {
+            //
+            console.log(this.pageTitle + " - [SET CSV DATA] - [Search end]");
+          },
+        }
+        //
+        csv_informeLogRemoto.subscribe(csv_observer);
+    }  
     SetChart():void
     {
         //
         console.log(this.pageTitle + " - [SET CHART]");
-    }
+          //
+          let csv_informeLogRemoto!                 : Observable<string>;
+          csv_informeLogRemoto                      = this.mcsdService.getInformeRemotoCSV();
+          //
+          const csv_observer = {
+            next: (csv_data: string)     => { 
+              //
+              console.log(this.pageTitle + " - [SET CSV DATA] - Return Values : [" + csv_data + "]");
+            },
+            error           : (err: Error)      => {
+              //
+              console.log(this.pageTitle + " - [SET CSV DATA] - Error : [" + err.message + "]");
+            },
+            complete        : ()                => {
+              //
+              console.log(this.pageTitle + " - [SET CSV DATA] - [Search end]");
+            },
+        };
+        //
+        csv_informeLogRemoto.subscribe(csv_observer);
+    }   
 }
