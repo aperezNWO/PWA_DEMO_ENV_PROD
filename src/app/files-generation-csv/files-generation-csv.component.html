@@ -1,1 +1,26 @@
-<p>files-generation-csv works!</p>
+<div align="center" style="padding-top:10px;">
+    <h4>{{pageTitle}}</h4>
+</div>
+<mat-tab-group>
+    <mat-tab label="[CONSULTA_1 (TEMPLATE DRIVEN)]">
+        <div align="center" style="padding-top:10px;">
+          <h5>[CONSULTA_1 (LISTADO)]</h5>
+        </div>
+    </mat-tab>
+    <mat-tab label="[CONSULTA_2 (ESTADISTICAS)]">
+        <div align="center" style="padding-top:10px;">
+            <h5>[CONSULTA_2 (ESTADISTICAS)]</h5>
+            <!-- PANEL GRAFICO / INICIO  -->
+            <div id="divPieChart_CSV" #divPieChart_CSV class="chart-container" style="display: block; box-sizing: border-box; height: 400px; width: 400px;padding:5px;" height="400" width="400">
+                <canvas  id="canvas_csv" #canvas_csv style="background-color:bisque;padding:10px 10px 10px 10px;">{{ this.pieChartVar }}</canvas>
+            </div>
+            <!-- PANEL GRAFICO / FIN     -->
+            <hr />
+            <!-- PANEL DESCARGA PDF / INICIO -->
+            <div id="divdescargapdf" style="display: block" align="right">
+                <input id="GetPDF" type="button" title="[GENERAR PDF]" value="[GENERAR PDF]" (click)="GetPDF()">           
+            </div>
+            <!-- PANEL DESCARGA PDF / FIN    -->
+        </div>
+    </mat-tab>               
+</mat-tab-group>      

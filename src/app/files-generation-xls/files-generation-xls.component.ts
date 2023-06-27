@@ -91,11 +91,11 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     // PROPIEDADES - ESTADISTICA
     //--------------------------------------------------------------------------
     //
-    @ViewChild('canvas') canvas          : any;
+    @ViewChild('canvas_xls')      canvas_xls      : any;
     //
-    @ViewChild('divPieChart') divPieChart: any;
+    @ViewChild('divPieChart_XLS') divPieChart_xls : any;
     //
-    public pieChartVar         : any;
+    public pieChartVar                            : any;
     //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
@@ -584,7 +584,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
             }]
           };
           //
-          let context = this.canvas.nativeElement.getContext('2d');
+          let context = this.canvas_xls.nativeElement.getContext('2d');
           //
           this.pieChartVar = new Chart(context, 
           {
@@ -617,10 +617,10 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       console.log("getting pdf");
       //
-      html2canvas(this.canvas.nativeElement).then((_canvas) => {
+      html2canvas(this.canvas_xls .nativeElement).then((_canvas) => {
           //
-          let w = this.divPieChart.nativeElement.offsetWidth;
-          let h = this.divPieChart.nativeElement.offsetHeight;
+          let w = this.divPieChart_xls.nativeElement.offsetWidth;
+          let h = this.divPieChart_xls.nativeElement.offsetHeight;
           //
           let imgData = _canvas.toDataURL('image/jpeg');
           //
