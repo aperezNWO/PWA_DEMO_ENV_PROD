@@ -30,6 +30,75 @@
 -- [_] https://mugan86.medium.com/exportar-pdfs-en-angular-con-jspdf-85c7a11a110f
 -- [_] ERROR Error: Uncaught (in promise): Invalid element provided as first argument
     at resolvePromise (zone.js:1193:31)
--- [_] Invalid argument passed to jsPDF.hpf.
-    
+-- [x] Invalid argument passed to jsPDF.hpf.
+-- [_] zip demo.
+        -- [_] download parsed html file.
+        -- [_] file uplodad angular .net client core example.
+                -- [_] https://www.bezkoder.com/angular-15-file-upload/
+
+ <form action="/Demos/_ZipDemo" enctype="multipart/form-data" method="post">            
+            <label for="UploadFileCtrl">Cargar Archivo a Comprimir:</label>
+            <!--<input type="file" name="UploadFileCtrl" id="UploadFileCtrl" />-->
+            <input type="file" name="postedFiles" multiple="">  
+            <br>
+            <input type="submit" value="[CARGAR ARCHIVO]">
+            <br>
+            <br>
+            <span> STATUS : []</span>
+            <br>
+</form>   
+
+<div>
+    <input id="GetZIP" type="button" title="[OBTENER ZIP]" value="[OBTENER ZIP]"></input>
+    <hr />
+    <a href="#" id="DownloadFile">Descargar ZIP</a>
+</div>
+
+//
+$("#GetZIP").click(function ()
+{
+    try {
+        //
+        _ShowProgressBar();
+        //
+        //var p_url = "SetZipAsync";
+        let p_url   = "SetZip";
+        //
+        $.ajax({
+                url    : p_url
+            ,method :'POST'
+        })
+        .done(function(msg) {
+            //
+            _HideProgressBar();
+            //
+            var filePath = DebugHostingContent(msg);
+            //
+            console.log("SET_ZIP_ASYNC. ZIP PATH : " + filePath);
+            //
+            $("#DownloadFile").attr("href", "javascript:void window.open('" + filePath + "');");
+            //
+            alert('SE GENERÓ CORRECTAMENTE EL ARCHIVO');
+            //
+        }).fail(function(e) {
+            //
+            _HideProgressBar();
+            //
+            alert('ZIP ERROR : ' + e.statusText);
+            //
+            console.error(" error : " + e.statusText);
+        });
+    }
+    catch (error)
+    {
+        //
+        alert("ERROR EN ARCHIVO ZIP");
+        //
+        console.error(error);
+    }
+    //
+});
+
+-- [_] install bootstrap.
+
 =====================================================================

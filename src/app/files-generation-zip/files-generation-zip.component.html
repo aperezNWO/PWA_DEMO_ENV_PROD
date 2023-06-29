@@ -1,1 +1,32 @@
-<p>files-generation-zip works!</p>
+
+<div align="center" style="padding-top:10px;">
+    <h4>{{this.pageTitle}}</h4>
+</div>
+<div class="mat-elevation-z8">
+    <!-- INIT SEARCH PANEL -->
+    <div class="searchPanel">
+    <!--<form (ngSubmit)="td_onSubmit()" #td_searchForm="ngForm">-->
+    <form action="https://mcsd.somee.com/Demos/_ZipDemo" enctype="multipart/form-data" method="post">            
+        <label for="UploadFileCtrl">Cargar Archivo a Comprimir:</label>
+        <!--<input type="file" name="UploadFileCtrl" id="UploadFileCtrl" />-->
+        <input type="file" name="postedFiles" multiple="">  
+        <br>
+        <input type="submit" value="[CARGAR ARCHIVO]">
+        <br>
+        <br>
+        <span> STATUS : []</span>
+        <br>
+        <!-- INICIO PANEL DE BOTONES    -->
+        <!--
+        <div align="right">
+        <button class="button" type="submit" [disabled]="(this.td_buttonCaption != '[Buscar]')">{{this.td_buttonCaption}}</button>
+        <button class="button" type="button" (click)="td_newSearch()">[Nueva]</button>
+        </div>
+        -->
+        <!-- FIN    PANEL DE BOTONES    -->
+    </form>   
+    <hr>
+    <input id="GetZIP" type="button" title="[OBTENER ZIP]" value="[OBTENER ZIP]">
+    <hr />
+    <a href="#" id="DownloadFile">Descargar ZIP</a>
+</div>
