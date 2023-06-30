@@ -14,7 +14,9 @@
  npm update   @angular/compiler        --legacy-peer-deps
  npm install   @angular/compiler@16.1.2 --legacy-peer-deps
  npm update @angular-devkit/build-angular --legacy-peer-deps
- ng update @angular-devkit/build-angular 
+ ng update @angular-devkit/build-angular
+ ng update @angular/compiler
+  
  
  Error: Module not found: Error: Can't lve '@ngtools\webpack\src\ivy\index.js' 
  Error [ERR_REQUIRE_ESM]: require() of ES Module @angular\compiler\fesm2022\compiler.mjs not supported.
