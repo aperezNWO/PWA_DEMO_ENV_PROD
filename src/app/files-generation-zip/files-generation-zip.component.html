@@ -3,41 +3,7 @@
     <h4>{{this.pageTitle}}</h4>
 </div>
 <mat-tab-group>
-    <mat-tab label="[METODO_1 (FORM SUBMIT)]">
-        <div class="mat-elevation-z8">
-            <div class="searchPanel">
-                <br>
-                <!--<form (ngSubmit)="td_onSubmit()" #td_searchForm="ngForm">-->
-                <form action="https://mcsd.somee.com/Demos/_ZipDemo" enctype="multipart/form-data" method="post">            
-                    <label for="_uploadFileCtrl">Cargar Archivo a Comprimir:</label>
-                    <input type="file" name="_uploadFileCtrl" multiple="">  
-                    <br>
-                    <br>
-                    <!-- INICIO PANEL DE BOTONES -->
-                    <div align="left">
-                        <!--<button class="button" type="submit" [disabled]="(this.td_buttonCaption != '[Buscar]')">{{this.td_buttonCaption}}</button>-->
-                        <!--<button class="button" type="button" (click)="td_newSearch()">[Nueva]</button>-->
-                        <button type="submit" value="[CARGAR ARCHIVO]">[CARGAR ARCHIVO]</button>
-                    </div>
-                    <!-- FIN    PANEL DE BOTONES -->
-                    <!-- INICIO STATUS -->
-                    <br>
-                    <span> STATUS : []</span>
-                    <br>
-                    <!-- FIN STATUS -->
-                </form> 
-                <hr>
-                <!-- INICIO [OBTENER ZIP]-->
-                <div>
-                    <input id="GetZIP" type="button" title="[OBTENER ZIP]" value="[OBTENER ZIP]">
-                    <hr />
-                    <a href="#" id="DownloadFile">Descargar ZIP</a>
-                </div> 
-                <!-- FIN [OBTENER ZIP]-->
-            </div>
-        </div>  
-    </mat-tab>
-    <mat-tab label="[METODO_2 (BYTE STREAM)]">
+    <mat-tab label="[METODO_1 (BYTE STREAM)]">
         <!-- FILE UPLODAD ANGULAR -->          
         <hr />     
         <div class="row" align="left">

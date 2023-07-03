@@ -96,28 +96,31 @@ export class MCSDService {
     //-------------------------------------------------------------
     // FILE UPLODAD METHODS
     //-------------------------------------------------------------
-    upload(file: File) /*: Observable<HttpEvent<any>> */{
+    upload(file: File) : Observable<HttpEvent<any>> {
       //
-      //const formData: FormData = new FormData();
+      const formData: FormData = new FormData();
       //
-      //formData.append('file', file);
+      formData.append('file', file);
       //
       let url    = `${this.prefix}_ZipDemoGetFileName`;
       //
-      /*const req = new HttpRequest('POST', url, formData, {
-        reportProgress: true,
-        responseType  : 'text'
-      });*/
+      console.log("url: " + url);
       //
+      const req = new HttpRequest('POST', url, formData, {
+        reportProgress: true,
+        responseType  : 'text',
+      });
+      //
+      /*
       var HTTPOptions = {
         headers: new HttpHeaders({
              'Content-Type' : 'application/text; charset= UTF-8'
         })
         ,'responseType' : 'text'
-        /*,'enctype'      : 'multipart/form-data' */
-      }; 
+      }; */
       //
-      return this.http.post<string>(url,HTTPOptions);
+      //return this.http.post<string>(url,HTTPOptions);
+      return this.http.request<HttpEvent<any>>(req);
     }
     //
     getFiles(): Observable<any> {

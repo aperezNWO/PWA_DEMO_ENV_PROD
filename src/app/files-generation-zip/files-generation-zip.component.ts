@@ -19,7 +19,12 @@ export class FilesGenerationZIPComponent implements OnInit {
     }
     //
     //--------------------------------------------------------------------------
-    // PROPIEDADES - FILE UPLOAD COMPONENT
+    // PROPIEDADES - FILE UPLOAD - FORM SUBMIT
+    //--------------------------------------------------------------------------
+    public urlPost       : string='https://mcsd.somee.com/Demos/_ZipDemo';
+    //
+    //--------------------------------------------------------------------------
+    // PROPIEDADES - FILE UPLOAD  - BYTESTREAM
     //--------------------------------------------------------------------------
     selectedFiles?         : FileList;
     currentFile?           : File;
