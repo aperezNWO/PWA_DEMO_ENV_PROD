@@ -37,25 +37,14 @@
         </div>
         <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
         <!-- STATUS / FIN   -->
-        <!-- LISTADO ARCHIVOS / INICIO -->
-        <hr>
-        <div class="card mt-3">
-        <div class="card-header">Listado de Archivos</div>
-        <ul class="list-group list-group-flush">
-            <li *ngFor="let file of fileInfos | async" class="list-group-item">
-            <a href="{{ file.url }}">{{ file.name }}</a>
-            </li>
-        </ul>
-        </div>
-        <!-- LISTADO ARCHIVOS / FIN    -->
         <!-- DOWNLOAD ZIP / INICIO -->
         <hr>       
         <div class="row" align="left">
             <div class="col-12">
-                <button class="btn btn-success btn-sm" id="GetZIP" type="button" title="[OBTENER ZIP]" value="[OBTENER ZIP]">
+                <button class="btn btn-success btn-sm" id="GetZIP" type="button" title="[GENERAR ZIP]" value="[GENERAR ZIP]">
                     [Obtener ZIP]
                 </button>  
-                <a href="#" class="btn btn-success btn-sm" id="DownloadFile">[Descargar ZIP]</a>
+                <a href="#" class="btn btn-success btn-sm" id="DownloadFile">[DESCARGAR ZIP]</a>
             </div>
         </div>
         <!-- DOWNLOAD ZIP / FIN    -->

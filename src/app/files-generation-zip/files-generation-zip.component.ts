@@ -70,15 +70,15 @@ export class FilesGenerationZIPComponent implements OnInit {
               else if (event instanceof HttpResponse) 
               {
                 //
-                console.log("RESPONSE : " + event);
+                console.log("RESPONSE : " + event.body);
                 //
-                this.message = event.body.message;
-                //this.fileInfos = this.mcsdService.getFiles();
+                this.message = event.body;
               }
             },
             error: (err: any) => {
               //
               console.log(err);
+              //
               this.progress = 0;
               //  
               if (err.error && err.error.message) 
