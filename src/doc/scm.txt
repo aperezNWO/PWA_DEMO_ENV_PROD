@@ -1,5 +1,7 @@
 -- [x] Set-ExecutionPolicy -Scope CurrentUser unrestricted
 
+-- [x] npm packages
+
  npm list  --depth=0  
 
  npm install -g @angular/cli

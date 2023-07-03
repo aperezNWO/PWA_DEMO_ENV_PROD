@@ -2,82 +2,96 @@
 <div align="center" style="padding-top:10px;">
     <h4>{{this.pageTitle}}</h4>
 </div>
-<!--
-<div class="mat-elevation-z8">
-    <div class="searchPanel">
-        <!--<form (ngSubmit)="td_onSubmit()" #td_searchForm="ngForm">
-        <!--<form action="https://mcsd.somee.com/Demos/_ZipDemo" enctype="multipart/form-data" method="post">            
-            <label for="UploadFileCtrl">Cargar Archivo a Comprimir:</label>
-            <input type="file" name="postedFiles" multiple="">  
-            <br>
-            <input type="submit" value="[CARGAR ARCHIVO]">
-            <br>
-            <br>
-            <span> STATUS : []</span>
-            <br>
-        </form>  
-        <!-- INICIO PANEL DE BOTONES
-        <div align="right">
-        <button class="button" type="submit" [disabled]="(this.td_buttonCaption != '[Buscar]')">{{this.td_buttonCaption}}</button>
-        <button class="button" type="button" (click)="td_newSearch()">[Nueva]</button>
+<mat-tab-group>
+    <mat-tab label="[METODO_1 (FORM SUBMIT)]">
+        <div class="mat-elevation-z8">
+            <div class="searchPanel">
+                <br>
+                <!--<form (ngSubmit)="td_onSubmit()" #td_searchForm="ngForm">-->
+                <form action="https://mcsd.somee.com/Demos/_ZipDemo" enctype="multipart/form-data" method="post">            
+                    <label for="_uploadFileCtrl">Cargar Archivo a Comprimir:</label>
+                    <input type="file" name="_uploadFileCtrl" multiple="">  
+                    <br>
+                    <br>
+                    <!-- INICIO PANEL DE BOTONES -->
+                    <div align="left">
+                        <!--<button class="button" type="submit" [disabled]="(this.td_buttonCaption != '[Buscar]')">{{this.td_buttonCaption}}</button>-->
+                        <!--<button class="button" type="button" (click)="td_newSearch()">[Nueva]</button>-->
+                        <button type="submit" value="[CARGAR ARCHIVO]">[CARGAR ARCHIVO]</button>
+                    </div>
+                    <!-- FIN    PANEL DE BOTONES -->
+                    <!-- INICIO STATUS -->
+                    <br>
+                    <span> STATUS : []</span>
+                    <br>
+                    <!-- FIN STATUS -->
+                </form> 
+                <hr>
+                <!-- INICIO [OBTENER ZIP]-->
+                <div>
+                    <input id="GetZIP" type="button" title="[OBTENER ZIP]" value="[OBTENER ZIP]">
+                    <hr />
+                    <a href="#" id="DownloadFile">Descargar ZIP</a>
+                </div> 
+                <!-- FIN [OBTENER ZIP]-->
+            </div>
+        </div>  
+    </mat-tab>
+    <mat-tab label="[METODO_2 (BYTE STREAM)]">
+        <!-- FILE UPLODAD ANGULAR -->          
+        <hr />     
+        <div class="row" align="left">
+            <div class="col-12">
+                <label class="btn btn-default p-0">
+                <input type="file" (change)="selectFile($event)"/>
+                </label>
+            </div>
+        </div>    
+        <hr>       
+        <div class="row" align="left">
+            <div class="col-12">
+                <button class="btn btn-success btn-sm"  [disabled]="!selectedFiles" (click)="upload()">
+                    [Cargar Archivo]
+                </button>
+            </div>
         </div>
-        <!-- FIN    PANEL DE BOTONES
+        <!--STATUS / INICIO -->
+        <hr>
+        <div *ngIf="currentFile" class="progress my-3">
+            <div
+            class="progress-bar progress-bar-info progress-bar-striped"
+            role="progressbar"
+            attr.aria-valuenow="{{ progress }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [ngStyle]="{ width: progress + '%' }"
+            >
+            {{ progress }}%
+            </div>
         </div>
-</div>  
--->
-<!-- FILE UPLODAD ANGULAR -->          
-<hr />     
-<div class="row" align="left">
-    <div class="col-12">
-        <label class="btn btn-default p-0">
-        <input type="file" (change)="selectFile($event)"/>
-        </label>
-    </div>
-</div>    
-<hr>       
-<div class="row" align="left">
-    <div class="col-12">
-        <button class="btn btn-success btn-sm"  [disabled]="!selectedFiles" (click)="upload()">
-            [Cargar Archivo]
-        </button>
-    </div>
-</div>
-<!--STATUS / INICIO -->
-<hr>
-<div *ngIf="currentFile" class="progress my-3">
-    <div
-      class="progress-bar progress-bar-info progress-bar-striped"
-      role="progressbar"
-      attr.aria-valuenow="{{ progress }}"
-      aria-valuemin="0"
-      aria-valuemax="100"
-      [ngStyle]="{ width: progress + '%' }"
-    >
-      {{ progress }}%
-    </div>
-</div>
-<div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
-<!-- STATUS / FIN   -->
-<!-- LISTADO ARCHIVOS / INICIO -->
-<hr>
-<div class="card mt-3">
-  <div class="card-header">Listado de Archivos</div>
-  <ul class="list-group list-group-flush">
-    <li *ngFor="let file of fileInfos | async" class="list-group-item">
-      <a href="{{ file.url }}">{{ file.name }}</a>
-    </li>
-  </ul>
-</div>
-<!-- LISTADO ARCHIVOS / FIN    -->
-<!-- DOWNLOAD ZIP / INICIO -->
-<hr>       
-<div class="row" align="left">
-    <div class="col-12">
-        <button class="btn btn-success btn-sm" id="GetZIP" type="button" title="[OBTENER ZIP]" value="[OBTENER ZIP]">
-            [Obtener ZIP]
-        </button>  
-        <a href="#" class="btn btn-success btn-sm" id="DownloadFile">[Descargar ZIP]</a>
-    </div>
-</div>
-<!-- DOWNLOAD ZIP / FIN    -->
-<hr>
+        <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+        <!-- STATUS / FIN   -->
+        <!-- LISTADO ARCHIVOS / INICIO -->
+        <hr>
+        <div class="card mt-3">
+        <div class="card-header">Listado de Archivos</div>
+        <ul class="list-group list-group-flush">
+            <li *ngFor="let file of fileInfos | async" class="list-group-item">
+            <a href="{{ file.url }}">{{ file.name }}</a>
+            </li>
+        </ul>
+        </div>
+        <!-- LISTADO ARCHIVOS / FIN    -->
+        <!-- DOWNLOAD ZIP / INICIO -->
+        <hr>       
+        <div class="row" align="left">
+            <div class="col-12">
+                <button class="btn btn-success btn-sm" id="GetZIP" type="button" title="[OBTENER ZIP]" value="[OBTENER ZIP]">
+                    [Obtener ZIP]
+                </button>  
+                <a href="#" class="btn btn-success btn-sm" id="DownloadFile">[Descargar ZIP]</a>
+            </div>
+        </div>
+        <!-- DOWNLOAD ZIP / FIN    -->
+    </mat-tab>
+</mat-tab-group>            
