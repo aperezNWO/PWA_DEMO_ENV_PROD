@@ -1,7 +1,7 @@
-import { Injectable                        } from '@angular/core';
-import { LogEntry, SearchCriteria                          } from './log-info.model';
-import { HttpClient, HttpHeaders           } from '@angular/common/http';
-import { Observable                        } from 'rxjs';
+import { Injectable                                      } from '@angular/core';
+import { LogEntry, SearchCriteria                        } from './log-info.model';
+import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { Observable                                      } from 'rxjs';
 //
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { Observable                        } from 'rxjs';
 //
 export class MCSDService {
     //
-    private prefix : string = 'https://mcsd.somee.com/demos/';
+    private prefix  : string = 'https://mcsd.somee.com/demos/';
     //
     constructor(private http: HttpClient) { 
         //
@@ -92,4 +92,24 @@ export class MCSDService {
         //
         return this.http.post<string>(url,HTTPOptions);   
     }     
+    //-------------------------------------------------------------
+    // FILE UPLODAD METHODS
+    //-------------------------------------------------------------
+    upload(file: File): Observable<HttpEvent<any>> {
+      //
+      const formData: FormData = new FormData();
+      //
+      formData.append('file', file);
+      //
+      const req = new HttpRequest('POST', `${this.prefix}_ZipDemo`, formData, {
+        reportProgress: true,
+        responseType  : 'text' as 'json'
+      });
+      //
+      return this.http.request(req);
+    }
+    //
+    getFiles(): Observable<any> {
+      return this.http.get(`${this.prefix}/files`);
+    }
 }
