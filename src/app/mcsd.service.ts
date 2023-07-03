@@ -9,7 +9,8 @@ import { Observable                                      } from 'rxjs';
 //
 export class MCSDService {
     //
-    private prefix  : string = 'https://mcsd.somee.com/demos/';
+    //private prefix  : string = 'https://mcsd.somee.com/demos/';
+    private prefix    : string = 'http://localhost:81/demos/';
     //
     constructor(private http: HttpClient) { 
         //
@@ -85,9 +86,9 @@ export class MCSDService {
         //
         var HTTPOptions = {
           headers: new HttpHeaders({
-               'Content-Type' : 'application/json'
-          }),
-          'responseType': 'text' as 'json'
+                'Content-Type' : 'application/json'
+          })
+          ,'responseType' : 'text' as 'json'
         }; 
         //
         return this.http.post<string>(url,HTTPOptions);   
@@ -95,18 +96,28 @@ export class MCSDService {
     //-------------------------------------------------------------
     // FILE UPLODAD METHODS
     //-------------------------------------------------------------
-    upload(file: File): Observable<HttpEvent<any>> {
+    upload(file: File) /*: Observable<HttpEvent<any>> */{
       //
-      const formData: FormData = new FormData();
+      //const formData: FormData = new FormData();
       //
-      formData.append('file', file);
+      //formData.append('file', file);
       //
-      const req = new HttpRequest('POST', `${this.prefix}_ZipDemo`, formData, {
+      let url    = `${this.prefix}_ZipDemoGetFileName`;
+      //
+      /*const req = new HttpRequest('POST', url, formData, {
         reportProgress: true,
-        responseType  : 'text' as 'json'
-      });
+        responseType  : 'text'
+      });*/
       //
-      return this.http.request(req);
+      var HTTPOptions = {
+        headers: new HttpHeaders({
+             'Content-Type' : 'application/text; charset= UTF-8'
+        })
+        ,'responseType' : 'text'
+        /*,'enctype'      : 'multipart/form-data' */
+      }; 
+      //
+      return this.http.post<string>(url,HTTPOptions);
     }
     //
     getFiles(): Observable<any> {
