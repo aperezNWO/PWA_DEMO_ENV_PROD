@@ -25,12 +25,12 @@
         <hr>
         <div *ngIf="currentFile" class="progress my-3">
             <div
-            class="progress-bar progress-bar-info progress-bar-striped"
-            role="progressbar"
-            attr.aria-valuenow="{{ progress }}"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            [ngStyle]="{ width: progress + '%' }"
+                class="progress-bar progress-bar-info progress-bar-striped"
+                role="progressbar"
+                attr.aria-valuenow="{{ progress }}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                [ngStyle]="{ width: progress + '%' }"
             >
             {{ progress }}%
             </div>
@@ -41,8 +41,8 @@
         <hr>       
         <div class="row" align="left">
             <div class="col-12">
-                <button class="btn btn-success btn-sm" id="GetZIP" type="button" title="[GENERAR ZIP]" value="[GENERAR ZIP]">
-                    [Obtener ZIP]
+                <button class="btn btn-success btn-sm" id="GetZIP" type="button" title="[GENERAR ZIP]" value="[GENERAR ZIP]" (click)="this.SetZip()">
+                    [GENERAR ZIP]
                 </button>  
                 <a href="#" class="btn btn-success btn-sm" id="DownloadFile">[DESCARGAR ZIP]</a>
             </div>

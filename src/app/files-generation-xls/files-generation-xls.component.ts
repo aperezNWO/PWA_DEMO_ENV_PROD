@@ -1,13 +1,14 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild   } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild   } from '@angular/core';
 import { FormBuilder, Validators                       } from '@angular/forms';
 import { MatTableDataSource                            } from '@angular/material/table';
 import { MatPaginator                                  } from '@angular/material/paginator';
-import { Observable                                    } from 'rxjs';
-import { Chart, registerables                          } from 'chart.js';
-import jsPDF                                             from 'jspdf';
-import html2canvas                                       from 'html2canvas';
 import { LogEntry,SearchCriteria                       } from '../log-info.model';
 import { MCSDService                                   } from '../mcsd.service';
+import { Observable                                    } from 'rxjs';
+import { Chart, registerables                          } from 'chart.js';
+import   jsPDF                                           from 'jspdf';
+import   html2canvas                                     from 'html2canvas';
+
 //
 @Component({
   selector     : 'app-files-generation-xls',

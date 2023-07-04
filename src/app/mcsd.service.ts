@@ -83,16 +83,15 @@ export class MCSDService {
       //
       console.warn(" REQUESTING URL : " + url);
       //    
-        //
-        var HTTPOptions = {
-          headers: new HttpHeaders({
-                'Content-Type' : 'application/json'
-          })
-          ,'responseType' : 'text' as 'json'
-        }; 
-        //
-        return this.http.post<string>(url,HTTPOptions);   
-    }     
+      var HTTPOptions = {
+        headers: new HttpHeaders({
+              'Content-Type' : 'application/json'
+        })
+        ,'responseType' : 'text' as 'json'
+      }; 
+      //
+      return this.http.post<string>(url,HTTPOptions);   
+  }     
     //-------------------------------------------------------------
     // FILE UPLODAD METHODS
     //-------------------------------------------------------------
@@ -104,26 +103,37 @@ export class MCSDService {
       //
       let url    = `${this.prefix}_ZipDemoGetFileName`;
       //
-      console.log("url: " + url);
+      console.log("[GENERATE ZIP FILE] - (UPLOADING FILE) url: " + url);
       //
       const req = new HttpRequest('POST', url, formData, {
         reportProgress: true,
         responseType  : 'text',
       });
       //
-      /*
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-             'Content-Type' : 'application/text; charset= UTF-8'
-        })
-        ,'responseType' : 'text'
-      }; */
-      //
-      //return this.http.post<string>(url,HTTPOptions);
       return this.http.request<HttpEvent<any>>(req);
     }
-    //
-    getFiles(): Observable<any> {
-      return this.http.get(`${this.prefix}/files`);
+    //------------------------------------------------------------
+    // GET ZIP - METHODS
+    //------------------------------------------------------------
+    SetZip(p_fileName : string | undefined):Observable<string> {
+        //
+        let p_url   = `${this.prefix}_SetZip?p_fileName=${p_fileName}`;
+        //
+        console.log("[GENERATE ZIP FILE] - [GETTING ZIP] - fileName: " + p_fileName);
+        //
+        console.log("[GENERATE ZIP FILE] - [GETTING ZIP] - url     : " + p_url);
+        //
+        /*const body = {
+          p_fileName: p_fileName
+        };*/
+        //
+        var HTTPOptions = {
+          headers: new HttpHeaders({
+              'Content-Type' : 'application/text'
+          })
+          ,'responseType' : 'text' as 'json'
+        }; 
+        //
+        return this.http.get<string>(p_url,HTTPOptions);   
     }
 }
