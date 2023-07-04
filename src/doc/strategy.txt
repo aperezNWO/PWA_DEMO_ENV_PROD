@@ -1,8 +1,6 @@
 =====================================================================
 -- STRATEGY
 =====================================================================
--- [_] Backend como webapi service.
--- [_] Turn off .net core uix.
 -- [_] put uix on separated hosting.
 -- [_] copiar de "angularspaeconsultalog.loginfoiview".
 -- [_] [COMPONENTS]
@@ -105,4 +103,8 @@
                 -- [_] https://www.bezkoder.com/angular-15-file-upload/
 
 -- [_] mat tab.
+-- [_] Backend como webapi service.
+-- [_] Turn off .net core uix.
+-- [_] bootstrap menu navigation (from .NET CORE).
+
 =====================================================================
