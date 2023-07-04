@@ -14,6 +14,7 @@ export class FilesGenerationZIPComponent implements OnInit {
   // PROPIEDADES COMUNES
   //--------------------------------------------------------------------------
   pageTitle            : string = '[GENERAR ARCHIVO ZIP]';
+  //
   static pageTitle()   : string {
     return '[GENERAR ARCHIVOS ZIP]';
   }
@@ -30,7 +31,7 @@ export class FilesGenerationZIPComponent implements OnInit {
   currentFile?           : File;
   progress               : number  = 0;
   message                : string  = '';
-  //fileInfos?           : Observable<any>;
+  downloadLink           : string  = '';
   //--------------------------------------------------------------------------
   // EVENT HANDLERS / CONSTRUCTORS  
   //--------------------------------------------------------------------------
@@ -101,6 +102,8 @@ export class FilesGenerationZIPComponent implements OnInit {
     //  
     this.progress = 0;
     //
+    this.message  = "...cargando...";
+    //
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
       //
@@ -163,13 +166,21 @@ export class FilesGenerationZIPComponent implements OnInit {
            //
            next: (p_zipFile: string)     => { 
             //
-            console.log('p_zipFile : ' + p_zipFile);
+            let downloadLink_1 = (this.mcsdService.prefix + p_zipFile);
             //
+            while (downloadLink_1.indexOf("\"") > -1) 
+                downloadLink_1 = downloadLink_1.replace("\"", "");
+            //
+            this.downloadLink  = this.DebugHostingContent(downloadLink_1);
+            //
+            console.log('[Download link] : ' + this.downloadLink);
             // los botones se configuran en el evento "complete()".
           },
           error: (err: Error) => {
             //
             console.error('Observer got an error: ' + err);
+            //
+            this.downloadLink = "";
             //
           },       
           complete: ()        => {

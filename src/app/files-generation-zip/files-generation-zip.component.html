@@ -44,7 +44,7 @@
                 <button class="btn btn-success btn-sm" id="GetZIP" type="button" title="[GENERAR ZIP]" value="[GENERAR ZIP]" (click)="this.SetZip()">
                     [GENERAR ZIP]
                 </button>  
-                <a href="#" class="btn btn-success btn-sm" id="DownloadFile">[DESCARGAR ZIP]</a>
+                <a [href]="this.downloadLink" class="btn btn-success btn-sm" id="DownloadFile">[DESCARGAR ZIP]</a>
             </div>
         </div>
         <!-- DOWNLOAD ZIP / FIN    -->

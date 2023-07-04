@@ -9,8 +9,8 @@ import { Observable                                      } from 'rxjs';
 //
 export class MCSDService {
     //
-    //private prefix  : string = 'https://mcsd.somee.com/demos/';
-    private prefix    : string = 'http://localhost:81/demos/';
+    public prefix        : string = 'https://mcsd.somee.com/';
+    //public prefix      : string = 'http://localhost:81/';
     //
     constructor(private http: HttpClient) { 
         //
@@ -18,7 +18,7 @@ export class MCSDService {
     //
     getInformeRemotoCSV() {
         //
-        let p_url    = this.prefix + 'GenerarInformeCSVJson';
+        let p_url    = this.prefix + 'demos/GenerarInformeCSVJson';
         //
         console.warn(" REQUESTING URL : " + p_url);
         //
@@ -36,7 +36,7 @@ export class MCSDService {
     //
     getInformeRemotoCSV_STAT():Observable<string> {
           //
-          let p_url    = this.prefix + 'GenerarInformeCSVJsonSTAT';
+          let p_url    = this.prefix + 'demos/GenerarInformeCSVJsonSTAT';
           //
           console.warn(" REQUESTING URL : " + p_url);
           //
@@ -54,7 +54,7 @@ export class MCSDService {
     //
     getLogRemoto(_searchCriteria : SearchCriteria) {
         //
-        let url    = this.prefix + 'generarinformejson';
+        let url    = this.prefix + 'demos/generarinformejson';
         //
         console.warn(" REQUESTING URL : " + url);
         //    
@@ -63,7 +63,7 @@ export class MCSDService {
     //
     getInformeExcel(_searchCriteria : SearchCriteria){
         //
-        let p_url  = this.prefix + 'generarinformexls';
+        let p_url  = this.prefix + 'demos/generarinformexls';
         //
         var HTTPOptions = {
           headers: new HttpHeaders({
@@ -101,7 +101,7 @@ export class MCSDService {
       //
       formData.append('file', file);
       //
-      let url    = `${this.prefix}_ZipDemoGetFileName`;
+      let url    = `${this.prefix}demos/_ZipDemoGetFileName`;
       //
       console.log("[GENERATE ZIP FILE] - (UPLOADING FILE) url: " + url);
       //
@@ -117,15 +117,11 @@ export class MCSDService {
     //------------------------------------------------------------
     SetZip(p_fileName : string | undefined):Observable<string> {
         //
-        let p_url   = `${this.prefix}_SetZip?p_fileName=${p_fileName}`;
+        let p_url   = `${this.prefix}demos/_SetZip?p_fileName=${p_fileName}`;
         //
         console.log("[GENERATE ZIP FILE] - [GETTING ZIP] - fileName: " + p_fileName);
         //
         console.log("[GENERATE ZIP FILE] - [GETTING ZIP] - url     : " + p_url);
-        //
-        /*const body = {
-          p_fileName: p_fileName
-        };*/
         //
         var HTTPOptions = {
           headers: new HttpHeaders({
@@ -134,6 +130,8 @@ export class MCSDService {
           ,'responseType' : 'text' as 'json'
         }; 
         //
-        return this.http.get<string>(p_url,HTTPOptions);   
+        let returnUrl     : Observable<string> = this.http.get<string>(p_url,HTTPOptions); 
+        //
+        return returnUrl;   
     }
 }
