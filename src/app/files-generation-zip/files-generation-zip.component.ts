@@ -164,7 +164,7 @@ export class FilesGenerationZIPComponent implements OnInit {
       //
       const setZipObserver  = {
            //
-           next: (p_zipFile: string)     => { 
+           next: (p_zipFile: string) => { 
             //
             let downloadLink_1 = (this.mcsdService.prefix + p_zipFile);
             //

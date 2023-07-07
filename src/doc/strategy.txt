@@ -106,5 +106,7 @@
 -- [_] Backend como webapi service.
 -- [_] Turn off .net core uix.
 -- [_] bootstrap menu navigation (from .NET CORE).
+-- [_] DebugHostingContent as global/cdn.
+-- [_] csv download link.
 
 =====================================================================
