@@ -1,5 +1,7 @@
-<div class="content-body">
-    <p>[GENERAR ARCHIVO PDF]</p>
+<div id="content-body">
+    <div align="center" style="padding-top:10px;">
+        <h4>{{this.pageTitle}}</h4>
+    </div>
     <p>Ver referencia&nbsp;<a href="javascript: void window.open('https://www.nuget.org/packages/iTextSharp/')">[ITextSharp v5.5.13.2]</a></p>
     <hr>
     <div>
@@ -7,15 +9,27 @@
     </div>
     <hr>
     <input id="GetPdf" type="button" title="[OBTENER PDF]" value="[OBTENER PDF]" (click)="this.onSubmit()">
-    <hr>
-    <a [href]="this.DownloadLink" id="DownloadFile" target="_blank">Descargar PDF</a>
-    <hr>
-    <a href="../Demos/_DemosIndex?lang=1">Volver al Menú</a>
-    <!-- INICIO VENTANA MODAL TRANSCURSO OPERACION -->
-    <div id="statusWindow" class="modalStatus" style="display: none;">
-        <div class="modalStatus-content">
-            ... Procesando ...
+    <div *ngIf="this.DownloadLink">
+        <hr>
+        <!--STATUS / INICIO -->
+        <div *ngIf="GetPDFUrl" class="progress my-3">
+        <div
+            class="progress-bar progress-bar-info progress-bar-striped"
+            role="progressbar"
+            attr.aria-valuenow="{{ progress }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            [ngStyle]="{ width: progress + '%' }"
+        >
+        {{ progress }}%
         </div>
-    </div>
-    <!-- FIN VENTANA MODAL TRANSCURSO DE OPERACION -->
+        </div>
+        <hr>
+        <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+        <!-- STATUS / FIN   -->
+        <hr>
+        <a [href]="this.DownloadLink" id="DownloadFile" target="_blank">{{ this.downloadCaption }}</a>
+    </div>    
+    <hr>
+    <a href="/">Volver al Menú</a>
 </div>

@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { MCSDService          } from '../mcsd.service';
 import { Observable           } from 'rxjs';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-files-generation-pdf',
@@ -11,14 +12,17 @@ export class FilesGenerationPDFComponent {
   ////////////////////////////////////////////////////////////////
   // PROPERTIES
   ////////////////////////////////////////////////////////////////
-  pageTitle            : string = '[GENERAR ARCHIVO PDF]';
+  pageTitle              : string  = '[GENERAR ARCHIVO PDF]';
+  progress               : number  = 0;
+  message                : string  = '';
+  GetPDFUrl!             : any;
+  public downloadCaption : string  = '';
+  public values          : string  = '';
+  public DownloadLink    : string  = '';
   //
   static pageTitle()   : string {
     return '[GENERAR ARCHIVOS PDF]';
   }
-  //
-  public values       : string = '';
-  public DownloadLink : string = '';
   //
   @ViewChild('subjectName') subjectName             : any;
   ////////////////////////////////////////////////////////////////
@@ -32,50 +36,78 @@ export class FilesGenerationPDFComponent {
   public onSubmit()
   {
       //
+      this.progress             = 0;
+      this.message              = '...cargando...';
+      this.downloadCaption      = '...cargando...';
+      //
       let _subjectName : string = this.subjectName.nativeElement.value;
       //
-      let GetPDFUrl!   : Observable<string>;
-      //
-      GetPDFUrl        = this.mcsdService.GetPDF(_subjectName);
+      this.GetPDFUrl            = this.mcsdService.GetPDF(_subjectName);
       //
       const pdf_observer = {
-        next: (return_data: string)     => { 
-          //
-          var resultArray = return_data.split("|");
+        next: (event : any)     => 
+        { 
             //
-            if (resultArray.length > 0) {
-                //
-                var fileUrl        = this.mcsdService.prefix + '/output/uploadedfiles/pdf/' + resultArray[1];
-                var fileLocalPath  = resultArray[2];
-                var imagePath      = resultArray[3];
-                //
-                let downloadLink_1 = fileUrl;
-                //
-                while (downloadLink_1.indexOf("\"") > -1) 
-                    downloadLink_1 = downloadLink_1.replace("\"", "");
-                //
-                this.DownloadLink  = this.DebugHostingContent(downloadLink_1);
-                //
-                console.log("PDF FILENAME  : " + fileUrl);
-                //
-                console.log("PDF PATH      : " + fileLocalPath);
-                //
-                console.log("IMAGE PATH    : " + imagePath);
-                //
-                console.info('[GENERATE PDF FILE] - [Download link] : ' + this.DownloadLink);
-          }
-        },
+            if (event instanceof HttpResponse)
+            {
+              //
+              this.progress   = 100;
+              //
+              var resultArray = event.body.split("|");
+              //
+              if (resultArray.length > 0) {
+                  //
+                  var fileUrl        = this.mcsdService.prefix + '/output/uploadedfiles/pdf/' + resultArray[1];
+                  var fileLocalPath  = resultArray[2];
+                  var imagePath      = resultArray[3];
+                  //
+                  let downloadLink_1 = fileUrl;
+                  //
+                  while (downloadLink_1.indexOf("\"") > -1) 
+                      downloadLink_1 = downloadLink_1.replace("\"", "");
+                  //
+                  this.DownloadLink  = this.DebugHostingContent(downloadLink_1);
+                  //
+                  console.info("PDF FILENAME  : " + fileUrl);
+                  //
+                  console.info("PDF PATH      : " + fileLocalPath);
+                  //
+                  console.info("IMAGE PATH    : " + imagePath);
+                  //
+                  console.info('[GENERATE PDF FILE] - [Download link] : ' + this.DownloadLink);
+                  //
+                  this.message         = '[Se cargó correctamente el archivo]';
+                  //
+                  this.downloadCaption = '[DESCARGAR PDF]'
+                }
+            } 
+            else 
+            {
+              //
+              if (event.type === HttpEventType.Sent) 
+                this.progress = 25;
+              //
+              //if (event.type === HttpEventType.ResponseHeader) 
+              //  this.progress = 50;
+              //
+              if (event.type === HttpEventType.DownloadProgress) 
+                this.progress = 50;
+            }  // end if event instance 
+          },
         error           : (err: Error)      => {
+          //
+          this.message  = '[Ha ocurrido un error]';
           //
           console.error('[GENERATE PDF FILE] - Error :' + err);
         },
         complete        : ()                => {
           //
           console.warn('[GENERATE PDF FILE] - COMPLETED ');
+          //
         },
     }; 
     //
-    GetPDFUrl.subscribe(pdf_observer);
+    this.GetPDFUrl.subscribe(pdf_observer);
   }
   ////////////////////////////////////////////////////////////////
   // METODOS COMUNES
