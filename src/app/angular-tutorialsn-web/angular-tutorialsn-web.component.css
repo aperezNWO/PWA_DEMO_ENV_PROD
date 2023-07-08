@@ -28,3 +28,11 @@
         border: 1px solid black;
         border-collapse: collapse;
     }
+
+    a:link, a:active {
+        color: #000;      
+    }
+
+    a:visited {
+        color: #888;        
+    }

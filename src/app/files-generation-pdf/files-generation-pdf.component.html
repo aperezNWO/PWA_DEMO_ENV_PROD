@@ -1,1 +1,21 @@
-<p>files-generation-pdf works!</p>
+<div class="content-body">
+    <p>[GENERAR ARCHIVO PDF]</p>
+    <p>Ver referencia&nbsp;<a href="javascript: void window.open('https://www.nuget.org/packages/iTextSharp/')">[ITextSharp v5.5.13.2]</a></p>
+    <hr>
+    <div>
+        NOMBRE COMPLETO : <input type="text" class="inputPDF" id="subjectName" #subjectName>
+    </div>
+    <hr>
+    <input id="GetPdf" type="button" title="[OBTENER PDF]" value="[OBTENER PDF]" (click)="this.onSubmit()">
+    <hr>
+    <a [href]="this.DownloadLink" id="DownloadFile" target="_blank">Descargar PDF</a>
+    <hr>
+    <a href="../Demos/_DemosIndex?lang=1">Volver al Menú</a>
+    <!-- INICIO VENTANA MODAL TRANSCURSO OPERACION -->
+    <div id="statusWindow" class="modalStatus" style="display: none;">
+        <div class="modalStatus-content">
+            ... Procesando ...
+        </div>
+    </div>
+    <!-- FIN VENTANA MODAL TRANSCURSO DE OPERACION -->
+</div>

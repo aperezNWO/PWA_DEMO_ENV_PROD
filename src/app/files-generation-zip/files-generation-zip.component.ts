@@ -9,7 +9,7 @@ import { MCSDService                         } from '../mcsd.service';
   styleUrls: ['./files-generation-zip.component.css']
 })
 //
-export class FilesGenerationZIPComponent implements OnInit {
+export class FilesGenerationZIPComponent {
   //--------------------------------------------------------------------------
   // PROPIEDADES COMUNES
   //--------------------------------------------------------------------------
@@ -41,11 +41,6 @@ export class FilesGenerationZIPComponent implements OnInit {
   //--------------------------------------------------------------------------
   // METODOS COMUNES
   //--------------------------------------------------------------------------
-  //
-  ngOnInit(): void {
-    //
-    //this.fileInfos = this.mcsdService.getFiles();
-  }  
   //
   DebugHostingContent(msg : string) : string {
     //
