@@ -27,9 +27,13 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     //--------------------------------------------------------------------------
     // PROPIEDADES - LISTADO
     //--------------------------------------------------------------------------
-    csv_dataSource                                                 = new MatTableDataSource<PersonEntity>();
+    public csv_dataSource                          = new MatTableDataSource<PersonEntity>();
     // 
-    csv_displayedColumns                                           : string[] = ['id_Column', 'ciudad','nombreCompleto'];
+    public csv_displayedColumns                    : string[] = ['id_Column', 'ciudad','nombreCompleto'];
+    //
+    public downloadLink                            : string   = "";
+    //
+    public downloadCaption                         : string   = "[DESCARGAR CSV]";
     //
     @ViewChild("csv_paginator" ,{read:MatPaginator}) csv_paginator!:  MatPaginator;
     //--------------------------------------------------------------------------
@@ -54,7 +58,9 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
         //
         this.SetCSVData();
-        //¡
+        //
+        this.SetCSVLink();
+        //
         this.SetChart();
         //
         console.log(this.pageTitle);
@@ -97,97 +103,133 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
         }
         //
         csv_informeLogRemoto.subscribe(csv_observer);
-    }  
+    } 
+    //
+    SetCSVLink()
+    {
+        //
+        console.log(this.pageTitle + " - [SET CSV Link]");
+        //
+        let csv_link!                 : Observable<string>;
+        csv_link                      = this.mcsdService.getCSVLink();
+        //
+        const csv_link_observer = {
+          next: (p_csv_link: string)          => { 
+            //
+            let fileUrl        = this.mcsdService.prefix + p_csv_link;
+            //
+            let downloadLink_1 = fileUrl;
+            //
+            while (downloadLink_1.indexOf("\"") > -1) 
+                downloadLink_1 = downloadLink_1.replace("\"", "");
+            //
+            this.downloadLink = downloadLink_1;
+            //
+            console.log(this.pageTitle + " - [SET CSV LINK] - DOWNLOAD LINK : [" + this.downloadLink + "]");
+          },
+          error           : (err: Error)      => {
+            //
+            console.log(this.pageTitle + " - [SET CSV LINK] - Error : [" + err.message + "]");
+          },
+          complete        : ()                => {
+            //
+            console.log(this.pageTitle + " - [SET CSV LINK] - [Search end]");
+          },
+        }
+        //
+        csv_link.subscribe(csv_link_observer);
+    }
+    //
     SetChart():void
     {
-          //
-          console.log(this.pageTitle + " - [SET CHART]");
-          //
-          const statLabels          : string[]          = [];
-          const statData            : Number[]          = [];
-          const statBackgroundColor : string[]          = [];
-          //
-          let csv_informeLogRemoto!                 : Observable<string>;
-          csv_informeLogRemoto                      = this.mcsdService.getInformeRemotoCSV_STAT();
-          //
-          const csv_observer = {
-            next: (csv_data: string)     => { 
-              //
-              console.log(this.pageTitle + " - [SET CSV DATA] - Return Values : [" + csv_data + "]");
-              //
-              let jsondata     = JSON.parse(csv_data);
-              //
-              let recordNumber = jsondata.length;
-              //
-              console.log('ESTADISTICA - (return): ' + recordNumber);
-              //
-              jsondata.forEach((element: JSON, index : number) => {
-                //
-                console.log(index + " " + JSON.stringify(element));
-                //
-                console.log("[CSV DEMO] - SET CHART - RESULT : index [" + index + "] value={"
-                      + jsondata[index]["id_Column"]
-                + "-" + jsondata[index]["ciudad"] + "}");
-                //
-                statLabels.push(jsondata[index]["ciudad"]);
-                statData.push(Number(jsondata[index]["id_Column"]));
-                //
-                let randomNumber_1 = Math.floor(Math.random() * 100);
-                let randomNumber_2 = Math.floor(Math.random() * 100);
-                let randomNumber_3 = Math.floor(Math.random() * 100);
-                //
-                console.log('RANDOM NUMBERS : [' + randomNumber_1 + ',' + randomNumber_2 + ',' + randomNumber_3 + ']')
-                //
-                let rgbStr = 'rgb('
-                    + (Number(jsondata[index]["id_Column"]) + randomNumber_1) + ','
-                    + (Number(jsondata[index]["id_Column"]) + randomNumber_2) + ','
-                    + (Number(jsondata[index]["id_Column"]) + randomNumber_3) + ')';
-                //
-                console.log('RGB : ' + rgbStr);
-                //
-                statBackgroundColor.push(rgbStr);
-              });      
-            },
-            error           : (err: Error)      => {
-              //
-              console.log(this.pageTitle + " - [SET CSV DATA] - Error : [" + err.message + "]");
-            },
-            complete        : ()                => {
-              //
-              console.log(this.pageTitle + " - [SET CSV DATA] - [Search end]");
-              //
-              const data = {
-                labels: statLabels,
-                datasets: [{
-                    label: 'CIUDADES',
-                    data: statData,
-                    backgroundColor: statBackgroundColor,
-                    hoverOffset: 4
-                }]
-              };
-              //
-              let context = this.canvas_csv.nativeElement.getContext('2d');
-              //
-              this.pieChartVar = new Chart(context, {
-                    type: 'pie',
-                    data: data,
-                    options: {
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                            },
-                            title: {
-                                display: true,
-                                text: 'CIUDADES'
-                            }
-                        }
-                    }
-                });
-             },
-        };
         //
-        csv_informeLogRemoto.subscribe(csv_observer);
+        console.log(this.pageTitle + " - [SET CHART]");
+        //
+        const statLabels          : string[]          = [];
+        const statData            : Number[]          = [];
+        const statBackgroundColor : string[]          = [];
+        //
+        let csv_informeLogRemoto!                 : Observable<string>;
+        csv_informeLogRemoto                      = this.mcsdService.getInformeRemotoCSV_STAT();
+        //
+        const csv_observer = {
+          next: (csv_data: string)     => { 
+            //
+            console.log(this.pageTitle + " - [SET CSV DATA] - Return Values : [" + csv_data + "]");
+            //
+            let jsondata     = JSON.parse(csv_data);
+            //
+            let recordNumber = jsondata.length;
+            //
+            console.log('ESTADISTICA - (return): ' + recordNumber);
+            //
+            jsondata.forEach((element: JSON, index : number) => {
+              //
+              console.log(index + " " + JSON.stringify(element));
+              //
+              console.log("[CSV DEMO] - SET CHART - RESULT : index [" + index + "] value={"
+                    + jsondata[index]["id_Column"]
+              + "-" + jsondata[index]["ciudad"] + "}");
+              //
+              statLabels.push(jsondata[index]["ciudad"]);
+              statData.push(Number(jsondata[index]["id_Column"]));
+              //
+              let randomNumber_1 = Math.floor(Math.random() * 100);
+              let randomNumber_2 = Math.floor(Math.random() * 100);
+              let randomNumber_3 = Math.floor(Math.random() * 100);
+              //
+              console.log('RANDOM NUMBERS : [' + randomNumber_1 + ',' + randomNumber_2 + ',' + randomNumber_3 + ']')
+              //
+              let rgbStr = 'rgb('
+                  + (Number(jsondata[index]["id_Column"]) + randomNumber_1) + ','
+                  + (Number(jsondata[index]["id_Column"]) + randomNumber_2) + ','
+                  + (Number(jsondata[index]["id_Column"]) + randomNumber_3) + ')';
+              //
+              console.log('RGB : ' + rgbStr);
+              //
+              statBackgroundColor.push(rgbStr);
+            });      
+          },
+          error           : (err: Error)      => {
+            //
+            console.log(this.pageTitle + " - [SET CSV DATA] - Error : [" + err.message + "]");
+          },
+          complete        : ()                => {
+            //
+            console.log(this.pageTitle + " - [SET CSV DATA] - [Search end]");
+            //
+            const data = {
+              labels: statLabels,
+              datasets: [{
+                  label: 'CIUDADES',
+                  data: statData,
+                  backgroundColor: statBackgroundColor,
+                  hoverOffset: 4
+              }]
+            };
+            //
+            let context = this.canvas_csv.nativeElement.getContext('2d');
+            //
+            this.pieChartVar = new Chart(context, {
+                  type: 'pie',
+                  data: data,
+                  options: {
+                      responsive: true,
+                      plugins: {
+                          legend: {
+                              position: 'bottom',
+                          },
+                          title: {
+                              display: true,
+                              text: 'CIUDADES'
+                          }
+                      }
+                  }
+              });
+            },
+      };
+      //
+      csv_informeLogRemoto.subscribe(csv_observer);
     }   
     //--------------------------------------------------------------------------
     // METODOS - PDF
@@ -212,4 +254,52 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
           pdfDoc.save('sample-file.pdf');
       });
     }
+    //--------------------------------------------------------------------------
+    // METODOS COMUNES
+    //--------------------------------------------------------------------------
+    //
+    DebugHostingContent(msg : string) : string {
+      //
+      console.log("cadena a evaular : " + msg);
+      //
+      let regEx   = /(.*)(<!--SCRIPT GENERATED BY SERVER! PLEASE REMOVE-->)(.*\w+.*)(<!--SCRIPT GENERATED BY SERVER! PLEASE REMOVE-->)(.*)/;
+      //
+      var strMsg  = msg.replace(/(\r\n|\n|\r)/gm, "");
+      //
+      var matches = strMsg.match(regEx);
+      //
+      if (matches != null) {
+          //
+          for (var index = 1; index < matches.length; index++) {
+              //
+              var matchValue = matches[index];
+              //        
+              console.log("coincidencia : " + matchValue);
+
+              //
+              if ((matchValue.indexOf("<!--SCRIPT GENERATED BY SERVER! PLEASE REMOVE-->") != -1) && (matchValue.trim() != "")) {
+                  //
+                  strMsg = strMsg.replace(matchValue, "");
+                  //
+                  console.log("REEMPLAZANDO. NUEVA CADENA : " + strMsg);
+              }
+
+              //
+              if ((matchValue.indexOf("<center>") != -1) && (matchValue.trim() != "")) {
+                  //
+                  strMsg = strMsg.replace(matchValue, "");
+                  //
+                  console.log("REEMPLAZANDO. NUEVA CADENA : " + strMsg);
+              }
+          }
+        }
+        else
+            console.log("NO_HAY_COINCIDENCIAS");
+        //
+        console.log("CADENA DEPURADA : " + strMsg);
+        //
+        strMsg = strMsg.replace("unsafe:", "");
+        //
+        return strMsg;
+    };
 }

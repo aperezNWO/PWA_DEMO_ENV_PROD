@@ -33,8 +33,23 @@ export class FilesGenerationPDFComponent {
     //
   }  
   //
+  public onNewPdf()
+  {
+    //
+    this.progress     = 0;
+    this.message      = '';
+    this.DownloadLink = '';
+    this.subjectName.nativeElement.value = '';
+  }  
+  //
   public onSubmit()
   {
+      //
+      if (this.subjectName.nativeElement.value == '')
+      {
+        this.message            = 'Favor ingrese [NOMBRE COMPLETO]';
+        return;
+      }
       //
       this.progress             = 0;
       this.message              = '...cargando...';

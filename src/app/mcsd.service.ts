@@ -8,30 +8,52 @@ import { Observable                                      } from 'rxjs';
 })
 //
 export class MCSDService {
-    //
+    ////////////////////////////////////////////////////////////////  
+    // CAMPOS
+    ////////////////////////////////////////////////////////////////  
     public prefix        : string = 'https://mcsd.somee.com/';
     //public prefix      : string = 'http://localhost:81/';
     //
     constructor(private http: HttpClient) { 
         //
     }
-    //
-    getInformeRemotoCSV() {
-        //
-        let p_url    = this.prefix + 'demos/GenerarInformeCSVJson';
-        //
-        console.warn(" REQUESTING URL : " + p_url);
-        //
-        var HTTPOptions = {
-          headers: new HttpHeaders({
-            'Accept':'application/text'
-          }),
-          'responseType': 'text' as 'json'
-        };
-        //
-        let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
-        //
-        return jsonCSVData; 
+    ////////////////////////////////////////////////////////////////  
+    // METODOS - [GENERAR ARCHIVO CSV]
+    ////////////////////////////////////////////////////////////////  
+    getCSVLink(): Observable<string> {
+      //
+      let p_url    = this.prefix + 'demos/_GetCSVLinkJson';
+      //
+      console.warn(" REQUESTING URL : " + p_url);
+      //
+      var HTTPOptions = {
+        headers: new HttpHeaders({
+          'Accept':'application/text'
+        }),
+        'responseType': 'text' as 'json'
+      };
+      //
+      let csvLink : Observable<string> =  this.http.post<string>(p_url,HTTPOptions);
+      //
+      return csvLink; 
+    }
+    //    
+    getInformeRemotoCSV(): Observable<string> {
+      //
+      let p_url    = this.prefix + 'demos/GenerarInformeCSVJson';
+      //
+      console.warn(" REQUESTING URL : " + p_url);
+      //
+      var HTTPOptions = {
+        headers: new HttpHeaders({
+          'Accept':'application/text'
+        }),
+        'responseType': 'text' as 'json'
+      };
+      //
+      let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      //
+      return jsonCSVData; 
     }
     //
     getInformeRemotoCSV_STAT():Observable<string> {
@@ -51,6 +73,9 @@ export class MCSDService {
           //
           return jsonCSVData; 
     }
+    ////////////////////////////////////////////////////////////////  
+    // METODOS - [GENERAR ARCHIVO XLS]
+    ////////////////////////////////////////////////////////////////  
     //
     getLogRemoto(_searchCriteria : SearchCriteria) {
         //
@@ -91,7 +116,7 @@ export class MCSDService {
       }; 
       //
       return this.http.post<string>(url,HTTPOptions);   
-  }     
+    }     
     //-------------------------------------------------------------
     // FILE UPLODAD METHODS
     //-------------------------------------------------------------
@@ -152,5 +177,4 @@ export class MCSDService {
         //
         return this.http.request<HttpEvent<any>>(req);
     }
-
 }

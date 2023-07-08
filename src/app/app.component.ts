@@ -14,7 +14,7 @@ export class AppComponent {
     //
     title             : string = "[MCSD - CONSULTAS]"; 
     appName           : string = "[MCSD - CONSULTAS]";
-    appVersion        : string = '1.0.0.38';
+    appVersion        : string = '1.0.0.39';
     runtimeVersion    : string = VERSION.full;
     //
     readonly HomeWebComponent_pageTitle                   : string = HomeWebComponent.pageTitle();

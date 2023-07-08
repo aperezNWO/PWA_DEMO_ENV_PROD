@@ -9,9 +9,10 @@
     </div>
     <hr>
     <input id="GetPdf" type="button" title="[OBTENER PDF]" value="[OBTENER PDF]" (click)="this.onSubmit()">
+    <input id="NewPdf" type="button" title="[NUEVO PDF]"   value="[NUEVO PDF]"   (click)="this.onNewPdf()">
     <div *ngIf="this.DownloadLink">
-        <hr>
         <!--STATUS / INICIO -->
+        <hr>
         <div *ngIf="GetPDFUrl" class="progress my-3">
         <div
             class="progress-bar progress-bar-info progress-bar-striped"
@@ -24,12 +25,14 @@
         {{ progress }}%
         </div>
         </div>
-        <hr>
-        <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
         <!-- STATUS / FIN   -->
+        <!-- ENLACE DESCARGA / INICIO -->
         <hr>
         <a [href]="this.DownloadLink" id="DownloadFile" target="_blank">{{ this.downloadCaption }}</a>
-    </div>    
+        <!-- ENLACE DESCARGA FIN       -->
+    </div> 
+    <hr>
+    <div *ngIf="message" class="alert alert-secondary" role="alert">{{ this.message }}</div>
     <hr>
     <a href="/">Volver al Menú</a>
 </div>

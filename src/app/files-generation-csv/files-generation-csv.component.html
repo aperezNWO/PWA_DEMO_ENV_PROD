@@ -2,7 +2,7 @@
     <h4>{{pageTitle}}</h4>
 </div>
 <mat-tab-group>
-    <mat-tab label="[CONSULTA_1 (TEMPLATE DRIVEN)]">
+    <mat-tab label="[CONSULTA_1 (LISTADO)]">
         <div align="center" style="padding-top:10px;">
           <h5>[CONSULTA_1 (LISTADO)]</h5>
           <div class="mat-elevation-z8">
@@ -22,6 +22,7 @@
                 <tr mat-header-row *matHeaderRowDef="this.csv_displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: this.csv_displayedColumns"></tr>
               </table>
+              <!-- PAGINADOR / INICIO -->
               <hr>
               <mat-paginator #csv_paginator="matPaginator"
                   class="demo-paginator" 
@@ -29,6 +30,13 @@
                   [pageSize]="5"
                   [pageSizeOptions]="[5, 10, 25, 100]"
                   aria-label="csv_paginator"></mat-paginator>
+              <!-- PAGINADOR / FIN    -->                  
+              <!-- ENLACE DESCARGA / INICIO -->
+              <hr />
+              <div *ngIf="this.downloadLink">
+                  <a [href]="this.downloadLink" id="DownloadFile" target="_blank">{{ this.downloadCaption }}</a>
+              </div> 
+              <!-- ENLACE DESCARGA FIN       -->
           </div>
         </div>
     </mat-tab>
@@ -40,12 +48,14 @@
                 <canvas  id="canvas_csv" #canvas_csv style="background-color:bisque;padding:10px 10px 10px 10px;">{{ this.pieChartVar }}</canvas>
             </div>
             <!-- PANEL GRAFICO / FIN     -->
+            <!-- GENERAR PDF / INICIO -->
             <hr />
-            <!-- PANEL DESCARGA PDF / INICIO -->
             <div id="divdescargapdf" style="display: block" align="right">
                 <input id="GetPDF" type="button" title="[GENERAR PDF]" value="[GENERAR PDF]" (click)="GetPDF()">           
             </div>
-            <!-- PANEL DESCARGA PDF / FIN    -->
+            <!-- GENERAR PDF / FIN    -->
         </div>
     </mat-tab>               
-</mat-tab-group>      
+</mat-tab-group>
+<hr>
+<a href="/">Volver al Menú</a>      
