@@ -108,5 +108,5 @@
 -- [_] bootstrap menu navigation (from .NET CORE).
 -- [_] DebugHostingContent as global/cdn.
 -- [_] csv download link.
-
+-- [_] print type script version.
 =====================================================================

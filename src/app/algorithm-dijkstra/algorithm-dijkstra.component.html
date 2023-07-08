@@ -1,1 +1,58 @@
-<p>algorithm-dijkstra works!</p>
+<div class="main-container">
+    <div class="content">
+        <div class="content-body">
+            <div align="center" style="padding-top:10px;">
+                <h4>{{this.pageTitle}}</h4>
+            </div>
+            <p>Ver referencia&nbsp;<a href="javascript: void window.open('https://en.wikipedia.org/wiki/Dijkstra\'s_algorithm')">[Algoritmo Dijkstra]</a></p>
+            <p>Ver referencia&nbsp;<a href="javascript: void window.open('https://www.npmjs.com/package/jspdf')">[jsPDF]</a></p>
+        </div>
+        <hr />
+        <div>
+            <div id="tituloListadoDistancias">[Listado de Distancias]</div>
+            <select id="DistanceList">
+            </select>
+        </div>
+        <div>
+            <!-- PANEL GRAFICO / INICIO -->
+            <div id="divPieChart" style="display: block; box-sizing: border-box; height: 255px; width: 255px;padding:5px;" height="255" width="255">
+                <canvas id="c" width="250px" height="250px">
+                </canvas>
+            </div>
+            <!-- PANEL GRAFICO / FIN     -->
+        </div>
+        <hr />
+        <p>
+            Cantidad de Puntos:
+            <select id="vertexSizeList">
+            </select>
+        </p>
+        <hr />
+        <p>
+            Punto de Origen:
+            <select id="sourcePointList">
+            </select>
+        </p>
+        <hr />
+        <div>
+            <input id="GetGraph" type="button" title="[GENERAR]" value="[GENERAR]">
+            |
+            <input id="NewGraph" type="button" title="[REINICIAR]" value="[REINICIAR]" disabled="disabled">
+        </div>
+        <hr />
+            <input id="GetPDF" type="button" title="[GENERAR PDF]" value="[GENERAR PDF]">
+        <hr />
+        <input id="PointListHidden" type="hidden" />
+        <input id="MatrixListHidden" type="hidden" />
+        <a href="../Demos/_DemosIndex?lang=1">Volver al Menú</a>
+        <!-- INICIO VENTANA MODAL TRANSCURSO OPERACION -->
+        <div id="statusWindow" class="modalStatus" style="display:none">
+            <div class="modalStatus-content">
+                ... Procesando ...
+            </div>
+        </div>
+        <!-- FIN VENTANA MODAL TRANSCURSO DE OPERACION -->
+    </div>
+</div>
+
+
