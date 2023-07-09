@@ -109,4 +109,8 @@
 -- [_] DebugHostingContent as global/cdn.
 -- [_] csv download link.
 -- [_] print type script version.
+-- [_] TOPICS
+        -- [_] TYPESCRIPT.
+        -- [_] ANGULAR.
+        -- [_] IN THE REPLACE OF "TUTORIALS".
 =====================================================================
