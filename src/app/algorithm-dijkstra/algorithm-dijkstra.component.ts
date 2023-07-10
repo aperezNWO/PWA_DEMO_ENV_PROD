@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 //
 @Component({
   selector       : 'app-algorithm-dijkstra',
@@ -6,7 +8,7 @@ import { Component } from '@angular/core';
   styleUrls      : ['./algorithm-dijkstra.component.css']
 })
 //
-export class AlgorithmDijkstraComponent {
+export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   ////////////////////////////////////////////////////////////////
   // PROPERTIES //////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
@@ -15,19 +17,19 @@ export class AlgorithmDijkstraComponent {
   static pageTitle()   : string {
     return '[ALGORITMOS - DISTANCIA MAS CORTA]';
   }
-  /*
-    //------------------------------------------------------------------------------------------------
-    // DECLARACION DE VARIABLES
-    //------------------------------------------------------------------------------------------------
-    var vertexMax        = 9;
-    var rectSize         = 10;
-    var screenSize       = 250;
-    var c_canvas         = document.getElementById("c");
-    var context          = c_canvas.getContext("2d");
-    var strokeStyleCafe  = "#654321";
-    var strokeStyleVerde = "#006400";
-    var strokeStyleRed   = "#ff0000";
-  */
+  ////////////////////////////////////////////////////////////////
+  // VARIABLES ///////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////
+  protected vertexMax        : number = 9;
+  protected rectSize         : number = 10;
+  protected screenSize       : number = 250;
+  protected strokeStyleCafe  : string = "#654321";
+  protected strokeStyleVerde : string = "#006400";
+  protected strokeStyleRed   : string = "#ff0000";
+  //
+  @ViewChild('c_canvas')      c_canvas      : any;
+  @ViewChild('divCanvas_Pdf') divCanvas_Pdf : any;
+  //
   ////////////////////////////////////////////////////////////////
   // EVENT HANDLERS //////////////////////////////////////////////  
   ////////////////////////////////////////////////////////////////
@@ -35,6 +37,18 @@ export class AlgorithmDijkstraComponent {
   {
     //
   }
+  //
+  ngOnInit(): void {
+    //
+    console.log(this.pageTitle + " - [INGRESO]");
+  }
+  //
+  ngAfterViewInit():void { 
+    //
+    console.log(this.pageTitle + " - [INICIO VISUAL]");
+    //
+    this._ResetControls();
+  };
   ////////////////////////////////////////////////////////////////
   // METODOS BOTONES /////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
@@ -44,8 +58,6 @@ export class AlgorithmDijkstraComponent {
       //
       console.log(this.pageTitle + " - Resetting controls");
       //
-      //[x]
-      //_ShowProgressBar();
       //[_]
       //$('#tituloListadoDistancias').text('');
       //[_]
@@ -68,10 +80,8 @@ export class AlgorithmDijkstraComponent {
       //$('#PointListHidden').val('');
       //[_]
       //$('#MatrixListHidden').val('');
-      //[_]
-      //DrawGrid();
-      //[_]
-      //_HideProgressBar();
+      //[X]
+      this.DrawGrid();
   }
   // 
   //$("#GetGraph").click(function ()
@@ -80,10 +90,12 @@ export class AlgorithmDijkstraComponent {
       //
       console.log(this.pageTitle + " - getting graph");
       //[]
-      //var vertexSize  = $('#vertexSizeList').val();
-      //var sourcePoint = $('#sourcePointList').val();
+      //var vertexSize   = $('#vertexSizeList').val();
+      //var sourcePoint  = $('#sourcePointList').val();
       //[]
-      var p_url       = "GenerateRandomVertex";
+      let p_url : string = "GenerateRandomVertex";
+      //
+      //https://mcsd.somee.com/demos/GenerateRandomVertex?p_vertexSize=9&p_sourcePoint=0
       //
       //_ShowProgressBar();
       //
@@ -100,7 +112,6 @@ export class AlgorithmDijkstraComponent {
             //
             console.log('DIJKSTRA_DEMO. GET RANDOM VERTEX : ' + data);
             //
-
             //------------------------------------------------------------
             // OBTENER PUNTOS
             //------------------------------------------------------------
@@ -111,8 +122,10 @@ export class AlgorithmDijkstraComponent {
             console.log('POINTS : ' + pointsString);
             //
             var pointArray = pointsString.split('|');
+*/            
             //
-            DrawGrid();
+            this.DrawGrid();
+ /*           
             //
             DrawPoints(pointArray, strokeStyleCafe);
 
@@ -156,10 +169,35 @@ export class AlgorithmDijkstraComponent {
             $('#PointListHidden').val(pointsString);
             //
             $('#MatrixListHidden').val(matrixString);
-            //
-            _HideProgressBar();
         });
   */
+  }
+  ////////////////////////////////////////////////////////////////
+  // METODOS GRAFICOS/////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////
+  DrawGrid():void
+  {
+      //
+      console.log(this.pageTitle + ' - [DRAWING GRID]');
+      //
+      let _context = this.c_canvas.nativeElement.getContext('2d');
+      //
+      _context.clearRect(0, 0, this.c_canvas.width, this.c_canvas.height);
+      _context.beginPath();
+      //
+      for (var x = 0.5; x < 501; x += this.rectSize) {
+        _context.moveTo(x, 0);
+        _context.lineTo(x, 381);
+      }
+      //
+      for (var y = 0.5; y < 381; y += this.rectSize) {
+        _context.moveTo(0, y);
+        _context.lineTo(500, y);
+      }
+      //
+      _context.strokeStyle = "#cccccc";
+      _context.stroke();
+      //
   }
   // 
   ////////////////////////////////////////////////////////////////
@@ -171,11 +209,10 @@ export class AlgorithmDijkstraComponent {
     //
     console.log(this.pageTitle + " - getting pdf");
     //
-    /*
-    html2canvas(this.canvas_xls .nativeElement).then((_canvas) => {
+    html2canvas(this.c_canvas .nativeElement).then((_canvas) => {
         //
-        let w = this.divPieChart_xls.nativeElement.offsetWidth;
-        let h = this.divPieChart_xls.nativeElement.offsetHeight;
+        let w = this.divCanvas_Pdf.nativeElement.offsetWidth;
+        let h = this.divCanvas_Pdf.nativeElement.offsetHeight;
         //
         let imgData = _canvas.toDataURL('image/jpeg');
         //
@@ -185,7 +222,6 @@ export class AlgorithmDijkstraComponent {
         //
         pdfDoc.save('sample-file.pdf');
     });
-    */
   }
   //
   private DebugHostingContent(msg : string) : string {
@@ -238,26 +274,6 @@ export class AlgorithmDijkstraComponent {
 
 <script type="text/javascript">
     
-    function DrawGrid()
-    {
-        //
-        context.clearRect(0, 0, c_canvas.width, c_canvas.height);
-        context.beginPath();
-        //
-        for (var x = 0.5; x < 501; x += rectSize) {
-            context.moveTo(x, 0);
-            context.lineTo(x, 381);
-        }
-        //
-        for (var y = 0.5; y < 381; y += rectSize) {
-            context.moveTo(0, y);
-            context.lineTo(500, y);
-        }
-        //
-        context.strokeStyle = "#cccccc";
-        context.stroke();
-        //
-    }
     //
     function pythagorean(sideA, sideB) {
         return Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideB, 2)).toFixed(2);
