@@ -42,7 +42,7 @@ export class AlgorithmDijkstraComponent {
   _ResetControls():void
   {
       //
-      console.log(this.pageTitle + "- Resetting controls");
+      console.log(this.pageTitle + " - Resetting controls");
       //
       //[x]
       //_ShowProgressBar();
