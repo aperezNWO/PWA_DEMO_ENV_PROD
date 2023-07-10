@@ -103,14 +103,17 @@
                 -- [_] https://www.bezkoder.com/angular-15-file-upload/
 
 -- [_] mat tab.
+-- [_] editar lista de cumpleaños exnacato.
 -- [_] Backend como webapi service.
 -- [_] Turn off .net core uix.
 -- [_] bootstrap menu navigation (from .NET CORE).
 -- [_] DebugHostingContent as global/cdn.
 -- [_] csv download link.
 -- [_] print type script version.
+-- [_] Algorithm Service.
 -- [_] TOPICS
         -- [_] TYPESCRIPT.
         -- [_] ANGULAR.
         -- [_] IN THE REPLACE OF "TUTORIALS".
+
 =====================================================================
