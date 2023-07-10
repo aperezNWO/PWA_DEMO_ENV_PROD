@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
 //
 @Component({
-  selector: 'app-angular-tutorialsn-web',
+  selector   : 'app-angular-tutorialsn-web',
   templateUrl: './angular-tutorialsn-web.component.html',
-  styleUrls: ['./angular-tutorialsn-web.component.css']
+  styleUrls  : ['./angular-tutorialsn-web.component.css']
 })
 //
 export class AngularTutorialsnWebComponent {
   //
-  pageTitle            : string = '[TUTORIALES]';
+  pageTitle            : string = '[TEMAS]';
   //
   static pageTitle()   : string {
     //
-    return '[TUTORIALES]';
+    return '[TEMAS]';
   }
 }

@@ -72,9 +72,9 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       //[_]
       //$('#DistanceList').attr('style', 'width:250px;display:none;');
       //[_]
-      //DrawListItems();
+      this.DrawListItems();
       //[_]
-      //DrawDistanceList(true, "");
+      this.DrawDistanceList(true, "");
       //[_]
       //$("#vertexSizeList").attr('disabled', false);
       //[_]
@@ -85,9 +85,9 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       //$('#NewGraph').attr('disabled', true);
       //[_]
       //$('#GetGraph').attr('disabled', false);
-      //[_]
+      //[x]
       this.PointListHidden  = "";
-      //[_]
+      //[x]
       this.MatrixListHidden = "";
       //[X]
       this.DrawGrid();
@@ -163,7 +163,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 //
                 //$('#sourcePointList').attr('disabled', true);
                 //
-                //DrawDistanceList(false,vertexString);
+                this.DrawDistanceList(false,vertexString);
                 //
                 //$('#NewGraph').attr('disabled', false);
                 //
@@ -214,7 +214,6 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     //--------------------------
     x = x * this.rectSize;
     y = y * this.rectSize;
-
     //-------------------
     // Linea vertical
     //-------------------
@@ -271,7 +270,6 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     x2 = x2 * this.rectSize;
     y1 = y1 * this.rectSize;
     y2 = y2 * this.rectSize;
-
     //--------------------------
     // Ajustar coordenada y
     //--------------------------
@@ -375,6 +373,59 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     this._context.strokeStyle = strokeStyle;
     this._context.stroke();
   }
+  //
+  DrawDistanceList(clearItems : boolean, Items : string) : void {
+    //
+    //$('#DistanceList').children().remove().end();
+    //
+    if (clearItems == false)
+    {
+        //
+        let stringItems : string[] = Items.split("<br/>");
+        //
+        //$('#DistanceList').append($('<option>', { value: 0, text:"(SELECCIONE_DISTANCIA)"}));
+        //
+        for (var index = 0; index < stringItems.length; index++)
+        {
+            // EJEMPLO
+            // 01&lt;[14;2]&gt;-26-(0; 7)(7; 6)(6; 1)
+            // 01<[14;2]>;-26-(0; 7)(7; 6)(6; 1)
+            //
+            var stringItem = "";
+            //
+            stringItem = stringItems[index].replace("&lt;", "<").replace("&gt;", ">");
+            stringItem = this.DebugHostingContent(stringItem);
+            //
+            //$('#DistanceList').append($('<option>', { value: (index + 1), text: (stringItem) }));
+        }
+    }
+  }
+  //
+  DrawListItems():void
+  {
+    //-----------------------------------------------------------------------------
+    // TAMAÑO DE VERTICE
+    //-----------------------------------------------------------------------------
+    var vertexMaxString = new String(this.vertexMax);
+    //
+    //$('#vertexSizeList').children().remove().end();
+    //
+    for (var index = this.vertexMax; index >= 1; index--) {
+        //$('#vertexSizeList').append($('<option>', { value: (index), text: (new String(index)) }));
+    }
+    //
+    //$('#vertexSizeList').val(vertexMaxString);
+    //-----------------------------------------------------------------------------
+    // PUNTO DE ORIGEN
+    //-----------------------------------------------------------------------------
+    //$('#sourcePointList').children().remove().end();
+    //
+    for (var index = 0; index < this.vertexMax; index++) {
+        //$('#sourcePointList').append($('<option>', { value: (index), text: (new String(index)) }));
+    }
+    //        
+    //$('#sourcePointList').val("0");
+  }
   // 
   ////////////////////////////////////////////////////////////////
   // METODOS COMUNES /////////////////////////////////////////////
@@ -385,7 +436,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     //
     console.log(this.pageTitle + " - getting pdf");
     //
-    html2canvas(this.c_canvas .nativeElement).then((_canvas) => {
+    html2canvas(this.c_canvas.nativeElement).then((_canvas) => {
         //
         let w = this.divCanvas_Pdf.nativeElement.offsetWidth;
         let h = this.divCanvas_Pdf.nativeElement.offsetHeight;
@@ -447,65 +498,6 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
 }
 
 /**
-    //
-    function DrawListItems()
-    {
-        //-----------------------------------------------------------------------------
-        // TAMAÑO DE VERTICE
-        //-----------------------------------------------------------------------------
-        var vertexMaxString = new String(vertexMax);
-        //
-        $('#vertexSizeList').children().remove().end();
-        //
-        for (var index = vertexMax; index >= 1; index--) {
-            $('#vertexSizeList').append($('<option>', { value: (index), text: (new String(index)) }));
-        }
-        //
-        $('#vertexSizeList').val(vertexMaxString);
-
-        //-----------------------------------------------------------------------------
-        // PUNTO DE ORIGEN
-        //-----------------------------------------------------------------------------
-        $('#sourcePointList').children().remove().end();
-        //
-        for (var index = 0; index < vertexMax; index++) {
-            $('#sourcePointList').append($('<option>', { value: (index), text: (new String(index)) }));
-        }
-        //        
-        $('#sourcePointList').val("0");
-    }
-    //
-    function DrawDistanceList(clearItems, Items)
-    {
-        //
-        $('#DistanceList').children().remove().end();
-
-        //
-        if (clearItems == false)
-        {
-            //
-            var stringItems = Items.split("<br/>");
-
-            //
-            $('#DistanceList').append($('<option>', { value: 0, text:"(SELECCIONE_DISTANCIA)"}));
-            //
-            for (var index = 0; index < stringItems.length; index++)
-            {
-                // EJEMPLO
-                // 01&lt;[14;2]&gt;-26-(0; 7)(7; 6)(6; 1)
-                // 01<[14;2]>;-26-(0; 7)(7; 6)(6; 1)
-
-                //
-                var stringItem = "";
-                //
-                stringItem = stringItems[index].replace("&lt;", "<").replace("&gt;", ">");
-                stringItem = DebugHostingContent(stringItem);
-                
-                //
-                $('#DistanceList').append($('<option>', { value: (index + 1), text: (stringItem) }));
-            }
-        }
-    }
     //
     $("#vertexSizeList").change(function ()
     {

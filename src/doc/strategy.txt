@@ -114,6 +114,6 @@
 -- [_] TOPICS
         -- [_] TYPESCRIPT.
         -- [_] ANGULAR.
-        -- [_] IN THE REPLACE OF "TUTORIALS".
+        -- [_] IN THE REPLACE OF "TUTORIALS" / "MCSD CERT".
 
 =====================================================================
