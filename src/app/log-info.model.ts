@@ -10,7 +10,15 @@ export interface PersonEntity
     id_Column   :string;
     ciudad      :string;
 }
-
+//
+export class _vertexSize
+{
+    //
+    constructor(public _index : number, public _value : string)
+    {
+        //
+    }
+}
 //
 export class  SearchCriteria
 {

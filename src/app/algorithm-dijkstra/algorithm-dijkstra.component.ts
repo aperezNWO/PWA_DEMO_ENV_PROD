@@ -3,6 +3,7 @@ import { MCSDService                                 } from '../mcsd.service';
 import { Observable                                  } from 'rxjs';
 import html2canvas                                     from 'html2canvas';
 import jsPDF                                           from 'jspdf';
+import { _vertexSize }                                 from '../log-info.model';
 
 
 //
@@ -16,11 +17,14 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   ////////////////////////////////////////////////////////////////
   // PROPERTIES //////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
-  pageTitle            : string = '[ALGORITMOS - DISTANCIA MAS CORTA]';
+  pageTitle               : string = '[ALGORITMOS - DISTANCIA MAS CORTA]';
   //
-  static pageTitle()   : string {
+  static pageTitle()      : string {
     return '[ALGORITMOS - DISTANCIA MAS CORTA]';
   }
+  //
+  public __vertexSizeList  : any;
+  public __sourcePointList : any;
   ////////////////////////////////////////////////////////////////
   // VARIABLES ///////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
@@ -40,7 +44,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   ////////////////////////////////////////////////////////////////
   // EVENT HANDLERS //////////////////////////////////////////////  
   ////////////////////////////////////////////////////////////////
-  constructor(private mcsdService: MCSDService)
+  constructor(public mcsdService: MCSDService)
   {
     //
   }
@@ -48,6 +52,10 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     //
     console.log(this.pageTitle + " - [INGRESO]");
+    //[_]
+    this.DrawListItems();
+    //[_]
+    this.DrawDistanceList(true, "");
   }
   //
   ngAfterViewInit():void { 
@@ -149,10 +157,10 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       //$('#tituloListadoDistancias').text('');
       //[_]
       //$('#DistanceList').attr('style', 'width:250px;display:none;');
-      //[_]
-      this.DrawListItems();
-      //[_]
-      this.DrawDistanceList(true, "");
+      //[?]
+      //this.DrawListItems();
+      //[?]
+      //this.DrawDistanceList(true, "");
       //[_]
       //$("#vertexSizeList").attr('disabled', false);
       //[_]
@@ -487,9 +495,15 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     var vertexMaxString = new String(this.vertexMax);
     //
     //$('#vertexSizeList').children().remove().end();
+    this.__vertexSizeList = new Array();
     //
     for (var index = this.vertexMax; index >= 1; index--) {
+        //
         //$('#vertexSizeList').append($('<option>', { value: (index), text: (new String(index)) }));
+        //
+        let vertexSize : _vertexSize = new _vertexSize(index,index.toString());
+        //
+        this.__vertexSizeList.push(vertexSize);
     }
     //
     //$('#vertexSizeList').val(vertexMaxString);
@@ -497,9 +511,16 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     // PUNTO DE ORIGEN
     //-----------------------------------------------------------------------------
     //$('#sourcePointList').children().remove().end();
+    this.__sourcePointList = new Array();
     //
     for (var index = 0; index < this.vertexMax; index++) {
+        //
         //$('#sourcePointList').append($('<option>', { value: (index), text: (new String(index)) }));
+        //
+        //
+        let vertexSize : _vertexSize = new _vertexSize(index,index.toString());
+        //
+        this.__sourcePointList.push(vertexSize);        
     }
     //        
     //$('#sourcePointList').val("0");
@@ -509,19 +530,19 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   // METODOS COMUNES /////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
   //
-  GetPDF():void
+  public _GetPDF():void
   {
     //
-    console.log(this.pageTitle + " - getting pdf");
+    console.log(this.pageTitle + " - [getting pdf]");
     //
     html2canvas(this.c_canvas.nativeElement).then((_canvas) => {
         //
-        let w = this.divCanvas_Pdf.nativeElement.offsetWidth;
-        let h = this.divCanvas_Pdf.nativeElement.offsetHeight;
+        let w       : number  = this.divCanvas_Pdf.nativeElement.offsetWidth;
+        let h       : number  = this.divCanvas_Pdf.nativeElement.offsetHeight;
         //
-        let imgData = _canvas.toDataURL('image/jpeg');
+        let imgData : string  = _canvas.toDataURL('image/jpeg');
         //
-        let pdfDoc  = new jsPDF("landscape", "px", [w, h]);
+        let pdfDoc     = new jsPDF("landscape", "px", [w, h]);
         //
         pdfDoc.addImage(imgData, 0, 0, w, h);
         //

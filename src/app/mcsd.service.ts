@@ -2,6 +2,8 @@ import { Injectable                                      } from '@angular/core';
 import { LogEntry, SearchCriteria                        } from './log-info.model';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable                                      } from 'rxjs';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 //
 @Injectable({
   providedIn: 'root'
@@ -211,7 +213,7 @@ export class MCSDService {
     //------------------------------------------------------------
     // GET PDF - METHODS
     //------------------------------------------------------------
-    GetPDF(subjectName: string | undefined): Observable<HttpEvent<any>> {
+    public GetPDF(subjectName: string | undefined): Observable<HttpEvent<any>> {
         //
         let p_url   = `${this.prefix}demos/_GetPdf?subjectName=${subjectName}`;
         //
