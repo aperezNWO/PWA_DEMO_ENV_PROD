@@ -9,9 +9,12 @@
         </div>
         <hr />
         <p>
-            [Listado de Distancias]
             <br>
-            <select id="DistanceList">
+            <label for="DistanceList">[Listado de Distancias]</label>
+            <br>
+            &nbsp;<select id="DistanceList"
+                    name="DistanceList"
+                    (change)="this._distanceListChange()">
             </select>
         </p>
         <div>
@@ -27,7 +30,9 @@
         <P>
             <label for="_vertexSizeList">Cantidad de Puntos:</label>
             <select     id="_vertexSizeList"
-                        name="_vertexSizeList">                    
+                        name="_vertexSizeList"
+                        #_vertexSizeList
+                        (change)="this._vertexSizeListChange();">                    
             <option *ngFor="let _vertexSize of __vertexSizeList" [value]="_vertexSize._index">{{_vertexSize._value}}</option>
             </select>
         </P>
@@ -35,7 +40,8 @@
         <p>
             <label for="_sourcePointList">Punto de Origen:</label>
             <select     id="_sourcePointList"
-                        name="_sourcePointList">                    
+                        name="_sourcePointList"
+                        #_sourcePointList>                    
             <option *ngFor="let _vertexSize of __sourcePointList" [value]="_vertexSize._index">{{_vertexSize._value}}</option>
             </select>
         </p>
@@ -48,8 +54,6 @@
         <hr />
             <input id="GetPDF" type="button" title="[GENERAR PDF]" value="[GENERAR PDF]" (click)="this._GetPDF()">
         <hr />
-        <input id="PointListHidden" type="hidden" />
-        <input id="MatrixListHidden" type="hidden" />
         <a href="/">Volver al Menú</a>
     </div>
 </div>

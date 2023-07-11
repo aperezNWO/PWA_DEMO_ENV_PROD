@@ -4,8 +4,6 @@ import { Observable                                  } from 'rxjs';
 import html2canvas                                     from 'html2canvas';
 import jsPDF                                           from 'jspdf';
 import { _vertexSize }                                 from '../log-info.model';
-
-
 //
 @Component({
   selector       : 'app-algorithm-dijkstra',
@@ -38,6 +36,8 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   @ViewChild('c_canvas')      c_canvas      : any;
   @ViewChild('divCanvas_Pdf') divCanvas_Pdf : any;
   protected _context                        : any;
+  @ViewChild('_vertexSizeList')  _vertexSizeList     : any;
+  @ViewChild('_sourcePointList') _sourcePointList    : any;
   //
   protected PointListHidden   : string = "";
   protected MatrixListHidden  : string = "";
@@ -52,9 +52,9 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     //
     console.log(this.pageTitle + " - [INGRESO]");
-    //[_]
+    //
     this.DrawListItems();
-    //[_]
+    //
     this.DrawDistanceList(true, "");
   }
   //
@@ -63,12 +63,15 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     console.log(this.pageTitle + " - [INICIO VISUAL]");
     //
     this._context = this.c_canvas.nativeElement.getContext('2d');
-    //
+    //    
     this._ResetControls();
   };
   //
-  _vertexSizeListChange():void
+  public _vertexSizeListChange():void
   {
+      //
+      console.log(this.pageTitle + " - [VERTEX SIZE LIST CHANGE]");
+      //
       /*    
       var vertexSizeVal = $("#vertexSizeList").val();
 
@@ -83,7 +86,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       */
   };
   //
-  _DistanceListChange():void 
+  public _distanceListChange():void 
   {
     /*
     //
@@ -148,10 +151,10 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   // METODOS BOTONES /////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
   //
-  _ResetControls():void
+  public _ResetControls():void
   {
       //
-      console.log(this.pageTitle + " - Resetting controls");
+      console.log(this.pageTitle + " - [Resetting controls]");
       //
       //[_]
       //$('#tituloListadoDistancias').text('');
@@ -182,14 +185,18 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   _GetGraph():void
   {
         //
-        console.log(this.pageTitle + " - getting graph");
-        //[]
-        let vertexSize         : number = 9;/*$('#vertexSizeList').val();*/
-        let sourcePoint        : number = 0;/*$('#sourcePointList').val();*/
+        console.log(this.pageTitle + " - [getting graph]");
+        //
+        let _vertexSize         : number = Number.parseInt(this._vertexSizeList.nativeElement.value);
+        let _sourcePoint        : number = Number.parseInt(this._sourcePointList.nativeElement.value);
+        //
+        console.log(this.pageTitle + " - [vertex size : " + _vertexSize  + "]");
+        //
+        console.log(this.pageTitle + " - [source point: " + _sourcePoint + "]");
         //
         let randomVertexInfo!  : Observable<string>;
         //
-        randomVertexInfo       = this.mcsdService.getRandomVertex(vertexSize,sourcePoint);
+        randomVertexInfo       = this.mcsdService.getRandomVertex(_vertexSize,_sourcePoint);
         //
         let data               : any;
         //
@@ -213,7 +220,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 //
                 let pointArray      : string[] = pointsString.split('|');
                 //
-                this.DrawGrid();
+                //this.DrawGrid();
                 //
                 this.DrawPoints(pointArray, this.strokeStyleCafe);
                 //
