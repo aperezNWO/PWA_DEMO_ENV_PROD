@@ -94,27 +94,27 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     console.log(this.pageTitle + " - [DISTANCE LIST CHANGE]");
     //
     //var distanceListVal = $("#DistanceList option:selected").text();
-    let distanceListVal : number = this._distanceList.nativeElement.value;
+    let selectedIndex   : number = this._distanceList.nativeElement.options.selectedIndex;
+    let distanceListVal : string = this._distanceList.nativeElement.options[selectedIndex].text;
     //
-    console.log(this.pageTitle + " - [DISTANCE LIST CHANGE] - [Selected Value]: [" + distanceListVal + "]");
-    /*
+    console.log(this.pageTitle + " - [DISTANCE LIST CHANGE] - [Selected Text]: [" + distanceListVal + "]");
     //
-    if (distanceListVal != 0)
+    if (distanceListVal != "0")
     {
         //
-        var pointList         = $('#PointListHidden').val().split("|");
-        var matrixList        = $('#MatrixListHidden').val().split("|");
+        var pointList         = this.PointListHidden.split("|");
+        var matrixList        = this.MatrixListHidden.split("|");
 
         //
-        DrawGrid();
+        this.DrawGrid();
         //
-        DrawPoints(pointList, strokeStyleCafe);
+        this.DrawPoints(pointList, this.strokeStyleCafe);
         //
-        DrawLines(pointList, matrixList, strokeStyleVerde, false);
+        this.DrawLines(pointList, matrixList, this.strokeStyleVerde, false);
 
         //
-        var distenceListItems = distanceListVal.split("-");
-        var path              = distenceListItems[2];
+        let distenceListItems = distanceListVal.split("-");
+        let path              = distenceListItems[2];
 
         //
         if (path != "")
@@ -123,35 +123,37 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
             {
                 path = path.replace(";", ",");
             }
-            var selectedPoints  = path.split("≡");
-            var emptyPoints     = new Array(pointList.length);
+            let selectedPoints  = path.split("≡");
+            let emptyPoints     = new Array(pointList.length);
 
             //
-            for (index = 0; index < pointList.length; index++)
+            for (let index = 0; index < pointList.length; index++)
             {
                 emptyPoints[index] = "[0,0]";
             }
             //
-            for (index_y = 0; index_y < selectedPoints.length; index_y++)
+            for (let index_y = 0; index_y < selectedPoints.length; index_y++)
             { 
-                if  (selectedPointsVal != "")
+                if  (selectedPoints.length > 0)
                 {
                     //
-                    var selectedPointsVal = selectedPoints[index_y].replace("[", "").replace("]", "").split(",");
-                    var coordSource       = selectedPointsVal[0];
-                    var coordDest         = selectedPointsVal[1];
+                    let selectedPointsVal = selectedPoints[index_y].replace("[", "").replace("]", "").split(",");
 
-                    //
-                    emptyPoints[coordSource] = pointList[coordSource];
-                    emptyPoints[coordDest] = pointList[coordDest];
-
+                    if  (selectedPointsVal.length > 0)
+                    { 
+                      //
+                      let coordSource    : number   = Number.parseInt(selectedPointsVal[0]);
+                      var coordDest      : number   = Number.parseInt(selectedPointsVal[1]);
+                      //
+                      emptyPoints[coordSource] = pointList[coordSource];
+                      emptyPoints[coordDest]   = pointList[coordDest];
+                    }
                 }
             }
-
-            //
-            DrawLines(emptyPoints, matrixList, strokeStyleRed   , true);
+            // DRAW SHORTEST PATH
+            this.DrawLines(emptyPoints, matrixList, this.strokeStyleRed   , true);
         }
-    }*/
+    }
   };
   ////////////////////////////////////////////////////////////////
   // METODOS BOTONES /////////////////////////////////////////////
