@@ -9,12 +9,15 @@
         </div>
         <hr />
         <p>
+            <span id="tituloListadoDistancias"></span>
             <br>
-            <label for="DistanceList">[Listado de Distancias]</label>
+            <label for="DistanceList"></label>
             <br>
-            &nbsp;<select id="DistanceList"
-                    name="DistanceList"
-                    (change)="this._distanceListChange()">
+            &nbsp;<select   id="DistanceList"
+                            name="DistanceList"
+                            #_distanceList
+                            (change)="this._distanceListChange()">
+                            <option *ngFor="let _vertexSize of __distanceList" [value]="_vertexSize._index">{{_vertexSize._value}}</option>
             </select>
         </p>
         <div>

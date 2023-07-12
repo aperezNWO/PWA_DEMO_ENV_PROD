@@ -20,9 +20,6 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   static pageTitle()      : string {
     return '[ALGORITMOS - DISTANCIA MAS CORTA]';
   }
-  //
-  public __vertexSizeList  : any;
-  public __sourcePointList : any;
   ////////////////////////////////////////////////////////////////
   // VARIABLES ///////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
@@ -38,9 +35,14 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   protected _context                        : any;
   @ViewChild('_vertexSizeList')  _vertexSizeList     : any;
   @ViewChild('_sourcePointList') _sourcePointList    : any;
+  @ViewChild('_distanceList')    _distanceList       : any;
   //
   protected PointListHidden   : string = "";
   protected MatrixListHidden  : string = "";
+  //
+  public __vertexSizeList  : any;
+  public __sourcePointList : any;
+  public __distanceList    : any;
   ////////////////////////////////////////////////////////////////
   // EVENT HANDLERS //////////////////////////////////////////////  
   ////////////////////////////////////////////////////////////////
@@ -88,10 +90,14 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   //
   public _distanceListChange():void 
   {
-    /*
     //
-    var distanceListVal = $("#DistanceList option:selected").text();
-
+    console.log(this.pageTitle + " - [DISTANCE LIST CHANGE]");
+    //
+    //var distanceListVal = $("#DistanceList option:selected").text();
+    let distanceListVal : number = this._distanceList.nativeElement.value;
+    //
+    console.log(this.pageTitle + " - [DISTANCE LIST CHANGE] - [Selected Value]: [" + distanceListVal + "]");
+    /*
     //
     if (distanceListVal != 0)
     {
@@ -161,9 +167,9 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       //[_]
       //$('#DistanceList').attr('style', 'width:250px;display:none;');
       //[?]
-      //this.DrawListItems();
+      this.DrawListItems();
       //[?]
-      //this.DrawDistanceList(true, "");
+      this.DrawDistanceList(true, "");
       //[_]
       //$("#vertexSizeList").attr('disabled', false);
       //[_]
@@ -283,7 +289,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       //
       console.log(this.pageTitle + ' - [DRAWING GRID]');
       //
-      this._context.clearRect(0, 0, this.c_canvas.width, this.c_canvas.height);
+      this._context.clearRect(0, 0, this.c_canvas.nativeElement.width, this.c_canvas.nativeElement.height);
       this._context.beginPath();
       //
       for (var x = 0.5; x < 501; x += this.rectSize) {
@@ -470,13 +476,17 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   DrawDistanceList(clearItems : boolean, Items : string) : void {
     //
     //$('#DistanceList').children().remove().end();
+    this.__distanceList = new Array();
     //
     if (clearItems == false)
     {
         //
-        let stringItems : string[] = Items.split("<br/>");
+        let _vertexSizeInitial : _vertexSize = new _vertexSize(0,"(SELECCIONE DISTANCIA)");
+        this.__distanceList.push(_vertexSizeInitial);
         //
         //$('#DistanceList').append($('<option>', { value: 0, text:"(SELECCIONE_DISTANCIA)"}));
+        //
+        let stringItems : string[] = Items.split("<br/>");
         //
         for (var index = 0; index < stringItems.length; index++)
         {
@@ -484,12 +494,15 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
             // 01&lt;[14;2]&gt;-26-(0; 7)(7; 6)(6; 1)
             // 01<[14;2]>;-26-(0; 7)(7; 6)(6; 1)
             //
-            var stringItem = "";
+            let stringItem : string = "";
             //
-            stringItem = stringItems[index].replace("&lt;", "<").replace("&gt;", ">");
-            stringItem = this.mcsdService.DebugHostingContent(stringItem);
+            stringItem              = stringItems[index].replace("&lt;", "<").replace("&gt;", ">");
+            stringItem              = this.mcsdService.DebugHostingContent(stringItem);
             //
             //$('#DistanceList').append($('<option>', { value: (index + 1), text: (stringItem) }));
+            //
+            let _vertexBody : _vertexSize = new _vertexSize((index + 1),stringItem);
+            this.__distanceList.push(_vertexBody);
         }
     }
   }
@@ -501,7 +514,8 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     //-----------------------------------------------------------------------------
     var vertexMaxString = new String(this.vertexMax);
     //
-    //$('#vertexSizeList').children().remove().end();
+    //$('#vertexSizeList').val(vertexMaxString);
+    //
     this.__vertexSizeList = new Array();
     //
     for (var index = this.vertexMax; index >= 1; index--) {
@@ -512,18 +526,12 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
         //
         this.__vertexSizeList.push(vertexSize);
     }
-    //
-    //$('#vertexSizeList').val(vertexMaxString);
     //-----------------------------------------------------------------------------
     // PUNTO DE ORIGEN
     //-----------------------------------------------------------------------------
-    //$('#sourcePointList').children().remove().end();
     this.__sourcePointList = new Array();
     //
     for (var index = 0; index < this.vertexMax; index++) {
-        //
-        //$('#sourcePointList').append($('<option>', { value: (index), text: (new String(index)) }));
-        //
         //
         let vertexSize : _vertexSize = new _vertexSize(index,index.toString());
         //
