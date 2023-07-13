@@ -79,7 +79,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         let selectedIndex   : number = this.SortAlgorithmList.nativeElement.options.selectedIndex;
         let p_sortAlgorith  : number = this.SortAlgorithmList.nativeElement.options[selectedIndex].value;
         //
-        if (p_sortAlgorith = 0)
+        if (p_sortAlgorith == 0)
         {
             //
             this.lblStatus = ('FAVOR SELECCIONE UN ALGORITMO');
@@ -87,11 +87,17 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             return;
         }
         //
-        let p_unsoertedList   : string = this.mensajes.nativeElement.innerHTML;
+        let _p_unsortedList   : string = this.mensajes.nativeElement.innerHTML;
+        let __p_unsorttedList : string = "";
+        while (_p_unsortedList.indexOf("<br>") != -1)
+        {
+            _p_unsortedList = _p_unsortedList.replace("<br>","|");
+        }
+        let p_unsortedList    : string = _p_unsortedList;
         //
         let GetSortInfo!      : Observable<string>;
         //
-        GetSortInfo           = this.mcsdService.getSort(p_sortAlgorith, p_unsoertedList);
+        GetSortInfo           = this.mcsdService.getSort(p_sortAlgorith, p_unsortedList);
         //
         const GetSortInfoObserver   = {
             //
@@ -277,7 +283,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         this.indexDraw++;
         //
-        setTimeout(this.DrawStep,this.delayInMilliseconds);
+        setTimeout( () => {  this.DrawStep()   }, this.delayInMilliseconds);
     };
     //
     DrawStepMain():void
