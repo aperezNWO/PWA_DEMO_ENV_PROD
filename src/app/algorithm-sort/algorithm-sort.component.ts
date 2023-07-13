@@ -8,16 +8,28 @@ import { Observable } from 'rxjs';
   styleUrls: ['./algorithm-sort.component.css']
 })
 export class AlgorithmSortComponent implements OnInit, AfterViewInit {
+    ////////////////////////////////////////////////////////////////////////
+    // PROPIEDADES
+    ////////////////////////////////////////////////////////////////////////
     pageTitle               : string = '[ALGORITMOS - ORDENAMIENTO]';
     //
     static pageTitle()      : string {
       return '[ALGORITMOS - ORDENAMIENTO]';
     }
+    ////////////////////////////////////////////////////////////////////////
+    // VARIABLES
+    ////////////////////////////////////////////////////////////////////////
     private   rectSize                      : number = 10;
     public    lblStatus                     : string = "[STATUS]";
     public    context                       : any;
     @ViewChild('c_canvas') c_canvas         : any;
     @ViewChild('mensajes') mensajes         : any;
+    //
+    private screenSize          : number   = 250;
+    private delayInMilliseconds : number   = 1000;
+    private stringMatrix        : string[] = [];
+    private indexDraw           : number   = 0;
+    private sortedArrayDecoded  : string   = "";
     //
     constructor(public mcsdService: MCSDService)
     {
@@ -43,12 +55,12 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         this.context.clearRect(0, 0, this.c_canvas.nativeElement.width, this.c_canvas.nativeElement.height);
         //
-        for (var x = 0.5; x < 501; x += this.rectSize) {
+        for (let x = 0.5; x < 501; x += this.rectSize) {
             this.context.moveTo(x, 0);
             this.context.lineTo(x, 381);
         }
         //
-        for (var y = 0.5; y < 381; y += this.rectSize) {
+        for (let y = 0.5; y < 381; y += this.rectSize) {
             this.context.moveTo(0, y);
             this.context.lineTo(500, y);
         }
@@ -58,28 +70,124 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
     }
     //
+    public GetSort()
+    {
+        //
+        console.log(this.pageTitle + " - [GET SORT]" );
+        //
+        let p_sortAlgorith    : number = 1;
+        //
+        //var sortAlgoritm = $('#SortAlgorithmList').val();
+        //
+        if (p_sortAlgorith = 0)
+        {
+            //
+            this.lblStatus = ('FAVOR SELECCIONE UN ALGORITMO');
+            //
+            return;
+        }
+        //
+        let GetSortInfo!      : Observable<string>;
+        //
+        GetSortInfo           = this.mcsdService.getSort(p_sortAlgorith);
+        //
+        const GetSortInfoObserver   = {
+            //
+            next: (data: string)     => { 
+                //
+                console.info(this.pageTitle + ' - [GETTING SORT]  - RETURN VALUE : ' + data);
+                //
+                //-----------------------------------------------------------------------
+                // CORREGIR DATOS DE MATRIZ PARA VISUALIZAR EN CANVAS
+                //-----------------------------------------------------------------------
+                //
+                this.stringMatrix = data.split("■");
+                //
+                for (let index = 0; index < this.stringMatrix.length; index++)
+                {
+                    //
+                    this.stringMatrix[index] = this.stringMatrix[index].replace("<br/>", "");
+                    this.stringMatrix[index] = this.stringMatrix[index].replace("■"    , "");
+                    //
+                }
+                //
+                this.sortedArrayDecoded = this.stringMatrix[this.stringMatrix.length - 1]
+                //
+                for (let index = 0; index < this.stringMatrix.length; index++)
+                {
+                    //
+                    while (this.stringMatrix[index].indexOf("<br/>") != -1)
+                    {
+                        //
+                        this.stringMatrix[index] = this.stringMatrix[index].replace("<br/>", ",");
+                    }
+                    //
+                    console.log('SORT_BENCHMARK . SORTED ARRAY : ' + index + ' : ' + this.stringMatrix[index]);
+                }
+                //-----------------------------------------------------------------------
+                // REINICIAR CONTROLES
+                //-----------------------------------------------------------------------
+                //
+                //$('#SortAlgorithmList').prop('disabled', true);
+                //
+                //$("#GetSort").prop('disabled', true);
+                //
+                //$("#NewSort").prop('disabled', false);
+                //-----------------------------------------------------------------------
+                // DIBUJAR CUADRICULA
+                //-----------------------------------------------------------------------
+                //
+                this.DrawStepMain();
+                //
+                return true;
+                //
+            },
+            error: (err: Error) => {
+                //
+                console.error(this.pageTitle + ' - [GETTING SORT] - [error] : ' + err.message);
+                //
+                this.lblStatus  = "[ha ocurrido un error]";
+            },       
+            complete: ()        => {
+                //
+                console.warn(this.pageTitle  + ' - [GETTING SORT] - [Observer got a complete notification]');
+                //
+            },
+        };
+        //
+        GetSortInfo.subscribe(GetSortInfoObserver);
+    }    
+    //
     public GetNewSort():void
     {
         //
-        let randomVertexInfo!  : Observable<string>;
+        console.log(this.pageTitle + " - [NEW SORT]" );   
         //
-        randomVertexInfo       = this.mcsdService.getNewSort();
+        let randomVertexInfo!          : Observable<string>;
         //
-        const randomVertexObserver   = {
+        randomVertexInfo               = this.mcsdService.getNewSort();
+        //
+        const randomVertexObserver     = {
             //
             next: (sortInfo: string)     => { 
                 //
-                console.warn(this.pageTitle + ' - [GETTING NEW SORT]  - RETURN VALUE : ' + sortInfo);
+                console.info(this.pageTitle + ' - [GETTING NEW SORT]  - RETURN VALUE : ' + sortInfo);
                 //
                 //-------------------------------------------------------------
                 // CONFIGURA CONTROLES
                 //-------------------------------------------------------------
                 //
                 this.mensajes.nativeElement.innerHTML = sortInfo;
+                //
+                this._ResetControls();
+                //
+                this.lblStatus  = "[REINICIO EXITOSO]";
             },
             error: (err: Error) => {
                 //
                 console.error(this.pageTitle + ' - [GETTING NEW SORT] - [error] : ' + err.message);
+                //
+                this.lblStatus  = "[ha ocurrido un error]";
             },       
             complete: ()        => {
                 //
@@ -90,263 +198,94 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         randomVertexInfo.subscribe(randomVertexObserver);
     }
-}
-/*
-<script type="text/javascript">
-    //------------------------------------------------------------------------------------------------
-    // DECLARACION DE VARIABLES
-    //------------------------------------------------------------------------------------------------
-    var screenSize          = 250;
-    var delayInMilliseconds = 1000;
-    var stringMatrix        = "";
-    var indexDraw           = 0;
-    var sortedArrayDecoded  = "";
     //
-    //
-    function DrawRectangles(stringArray)
+    _ResetControls():void
     {
         //
-        context.fillStyle = "#ccc";
+        let stringArray =  this.mensajes.nativeElement.innerHTML.split("<br>");
         //
-        for (var index = 0; index < 25; index++)
+        console.log('ARREGLO : ' + stringArray);
+        //
+        //$('#SortAlgorithmList').val('0');
+        //
+        //$('#SortAlgorithmList').prop('disabled', false);
+        //
+        //$("#GetSort").prop('disabled', false);
+        //
+        //$("#NewSort").prop('disabled', true);
+        //
+        this.DrawGrid();
+        //
+        this.DrawRectangles(stringArray);
+        //
+        this.lblStatus = '[STATUS]';
+    }
+    //
+    DrawRectangles(stringArray : string[]):void
+    {
+        //
+        this.context.fillStyle = "#ccc";
+        //
+        for (let index = 0; index < 25; index++)
         {
             //
-            var x      = 0 + (rectSize * index);
-            var y      = screenSize - (stringArray[index] * rectSize);
-            var length = (rectSize);
-            var height = stringArray[index] * rectSize;
+            let x      : number = 0 + (this.rectSize * index);
+            let y      : number = this.screenSize - (Number.parseInt(stringArray[index]) * this.rectSize);
+            let length : number = (this.rectSize);
+            let height : number = Number.parseInt(stringArray[index]) * this.rectSize;
             //
-            context.fillRect(x, y, length, height);
+            this.context.fillRect(x, y, length, height);
         }
         //
     }
     //
-    function DrawStep()
+    DrawStep():void
     {
         //
-        console.log('SORT_BENCHMARK . DRAWING ARRAY : ' + indexDraw);
+        console.log('SORT_BENCHMARK . DRAWING ARRAY : ' + this.indexDraw);
         //
-        if (indexDraw >= stringMatrix.length)
+        if (this.indexDraw >= this.stringMatrix.length)
         {
             //
-            console.log('SORT_BENCHMARK . SORTED ARRAY : ' + sortedArrayDecoded);
+            console.log('SORT_BENCHMARK . SORTED ARRAY : ' + this.sortedArrayDecoded);
             //
-            $('#mensajes').html(sortedArrayDecoded);
+            this.mensajes.nativeElement.innerHTML = this.sortedArrayDecoded;
             //
-            alert('SE ORDENO CORRECTAMENTE EL LISTADO');
+            this.lblStatus                        = "[SE ORDENO CORRECTAMENTE EL LISTADO]";
             //
             return;
         }
         //
-        if ((stringMatrix[indexDraw] == null) || (stringMatrix[indexDraw] != ''))
+        if ((this.stringMatrix[this.indexDraw] == null) || (this.stringMatrix[this.indexDraw] != ''))
         {
             //
-            $('#lblstatus').text(' Paso ' + (indexDraw) + ' de ' + (stringMatrix.length-1));
+            this.lblStatus  = `Paso ${this.indexDraw} de ${this.stringMatrix.length-1}`;
             //
-            var stringArray = stringMatrix[indexDraw];
+            let stringArray = this.stringMatrix[this.indexDraw];
             //
-            var numberArray = stringArray.split(",");
+            let numberArray = stringArray.split(",");
             //
             console.log('NUMBER ARRAY : ' + numberArray);
             //
-            DrawGrid();
+            this.DrawGrid();
             //
-            DrawRectangles(numberArray);
+            this.DrawRectangles(numberArray);
             //
         }
         //
-        indexDraw++;
+        this.indexDraw++;
         //
-        setTimeout(DrawStep,500);
+        setTimeout(this.DrawStep,500);
     };
     //
-    function DrawStepMain()
+    DrawStepMain():void
     {
         //
-        indexDraw = 0;
+        this.indexDraw = 0;
         //
-        console.log('SORT_BENCHMARK . DRAWING ARRAY INITIAL. index: ' + indexDraw + ',matrix length : : ' + stringMatrix.length);
+        console.log('SORT_BENCHMARK . DRAWING ARRAY INITIAL. index: ' + this.indexDraw + ',matrix length : : ' + this.stringMatrix.length);
         //
-        DrawStep();
+        this.DrawStep();
         //
     }
-    //
-    function _ResetControls()
-    {
-        //
-        var stringArray = $('#mensajes').html().split("<br>");
-        //
-        console.log('ARREGLO : ' + stringArray);
-        //
-        $('#SortAlgorithmList').val('0');
-        //
-        $('#SortAlgorithmList').prop('disabled', false);
-        //
-        $("#GetSort").prop('disabled', false);
-        //
-        $("#NewSort").prop('disabled', true);
-        //
-        DrawGrid();
-        //
-        DrawRectangles(stringArray);
-        //
-        $('#lblstatus').text('[STATUS]');
-        //
-    }
-    //
-    $("#GetSort").click(function ()
-    {
-        try
-        {
-            //
-            var sortAlgoritm = $('#SortAlgorithmList').val();
-            //
-            if (sortAlgoritm == '0')
-            {
-                //
-                alert('FAVOR SELECCIONE UN ALGORITMO');
-                //
-                return;
-            }
-            //
-            var p_url = "_GetSort";
-            //
-            $.ajax(
-                {
-                    url: p_url,
-                    data:
-                    {
-                        p_sortAlgoritm: sortAlgoritm
-                    }
-                })
-                .done(function (data)
-                {
-                    //
-                    console.log('SORT_BENCHMARK . GET SORT : ' + data);
-                    //
-                    //-----------------------------------------------------------------------
-                    // CORREGIR DATOS DE MATRIZ PARA VISUALIZAR EN CANVAS
-                    //-----------------------------------------------------------------------
-                    //
-                    stringMatrix = data.split("■");
-                    //
-                    for (var index = 0; index < stringMatrix.length; index++)
-                    {
-                        //
-                        stringMatrix[index] = stringMatrix[index].replace("<br/>", "");
-                        stringMatrix[index] = stringMatrix[index].replace("■"    , "");
-                        //
-                    }
-                    //
-                    sortedArrayDecoded = stringMatrix[stringMatrix.length - 1]
-                    //
-                    for (var index = 0; index < stringMatrix.length; index++)
-                    {
-                        //
-                        while (stringMatrix[index].indexOf("<br/>") != -1)
-                        {
-                            //
-                            stringMatrix[index] = stringMatrix[index].replace("<br/>", ",");
-                        }
-                        //
-                        console.log('SORT_BENCHMARK . SORTED ARRAY : ' + index + ' : ' + stringMatrix[index]);
-                    }
-                    //-----------------------------------------------------------------------
-                    // REINICIAR CONTROLES
-                    //-----------------------------------------------------------------------
-                    //
-                    $('#SortAlgorithmList').prop('disabled', true);
-                    //
-                    $("#GetSort").prop('disabled', true);
-                    //
-                    $("#NewSort").prop('disabled', false);
-                    //-----------------------------------------------------------------------
-                    // DIBUJAR CUADRICULA
-                    //-----------------------------------------------------------------------
-                    //
-                    DrawStepMain();
-                    //
-                    return true;
-                    //
-                }).fail(function (jqXHR, textStatus, errorThrown)
-                {
-                    //
-                    _HideProgressBar();
-                    //
-                    console.log('ERROR EN GENERACION DE GRAFO : ' + textStatus);
-                    //
-                    console.log('ERROR EN GENERACION DE GRAFO : ' + errorThrown);
-                    //
-                    alert("ERROR EN GENERACÍON DE GRAFO");
-                    //
-                    return false;
-                });
-        }
-        catch (error)
-        {
-            //
-            alert("ERROR EN PROCEDIMIENTO");
-            //
-            console.error(error);
-            //
-            return false;
-        }
-        //
-    });
-    //
-    $("#NewSort").click(function ()
-    {
-        try
-        {
-            //
-            _ShowProgressBar();
-            //
-            var p_url = "_NewSort";
-            //
-            $.ajax(
-                {
-                    url: p_url
-                })
-                .done(function (msg)
-                {
-                    //
-                    console.log('SORT_BENCHMARK . NEW SORT : ' + msg);
-                    //
-                    _HideProgressBar();
-                    //
-                    $('#mensajes').html(msg);
-                    //
-                    _ResetControls();
-                    //
-                    alert('REINICIO EXITOSO');
-                    //
-                    return true;
-                })
-                .fail(function (jqXHR, textStatus, errorThrown)
-                {
-                    //
-                    _HideProgressBar();
-                    //
-                    console.log('ERROR EN GENERACION DE GRAFO : ' + textStatus);
-                    //
-                    console.log('ERROR EN GENERACION DE GRAFO : ' + errorThrown);
-                    //
-                    alert("ERROR EN GENERACÍON DE GRAFO");
-                    //
-                    return false;
-                });
-        }
-        catch (error)
-        {
-            //
-            alert("ERROR EN ARCHIVO ZIP");
-            //
-            console.error(error);
-            //
-            return false;
-        }
-        //
-    });
-    //
-</script>
-*/
+}
