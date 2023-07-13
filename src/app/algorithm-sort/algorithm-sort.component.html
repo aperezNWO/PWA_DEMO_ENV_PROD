@@ -1,1 +1,41 @@
-<p>algorithm-sort works!</p>
+<div class="content">
+    <div class="content-body">
+        <p>{{this.pageTitle}}</p>
+        <p>Ver referencia&nbsp;<a href="javascript: void window.open('https://en.wikipedia.org/wiki/Bubble_sort')">[BUBBLE SORT]</a></p>
+        <p>Ver referencia&nbsp;<a href="javascript: void window.open('https://en.wikipedia.org/wiki/Quicksort')">[QUICK SORT]</a></p>
+        <p>Ver referencia&nbsp;<a href="javascript: void window.open('https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle')">[FISHER/YATES SHUFFLE]</a></p>
+    </div>
+    <hr>
+    <p>Listado a Ordenar</p>
+    <div id="XmlContent">
+        <div id="global">
+            <div id="mensajes" #mensajes>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <canvas id="c_canvas" #c_canvas width="250px" height="250px"></canvas>
+    </div>
+    <hr>
+    <div>
+        <span id="lblstatus">{{this.lblStatus}}</span>
+    </div>
+    <hr>
+    <div>
+        ALGORITMO :
+        <select id="SortAlgorithmList">
+            <option value="0">[SELECCIONE_OPCION]</option>
+            <option value="1">BUBBLE SORT</option>
+            <option value="2">QUICK SORT</option>
+        </select>
+    </div>
+    <hr>
+    <div>
+        <input id="NewSort" type="button" title="[REINICIAR]" value="[REINICIAR]" (click)="this.GetNewSort()">
+        |
+        <input id="GetSort" type="button" title="[ORDENAR]" value="[ORDENAR]">
+    </div>
+    <hr>
+    <a href="/">Volver al Menú</a>
+</div>

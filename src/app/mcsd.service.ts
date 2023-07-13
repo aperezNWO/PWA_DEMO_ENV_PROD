@@ -249,5 +249,26 @@ export class MCSDService {
       //
       return dijkstraData; 
     }
-
+    ////////////////////////////////////////////////////////////////  
+    // METODOS - [ALGORITMOS - DISTANCIA MAS CORTA]
+    ////////////////////////////////////////////////////////////////  
+    //    
+    getNewSort()
+    {
+      //
+      let p_url    = `${this.prefix}demos/_NewSort`;
+      //
+      console.warn(" REQUESTING URL : " + p_url);
+      //
+      var HTTPOptions = {
+        headers: new HttpHeaders({
+          'Accept':'application/text'
+        }),
+        'responseType': 'text' as 'json'
+      };
+      //
+      let newSortData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      //
+      return newSortData; 
+    }
 }
