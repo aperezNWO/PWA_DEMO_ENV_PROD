@@ -2,8 +2,6 @@ import { Injectable                                      } from '@angular/core';
 import { LogEntry, SearchCriteria                        } from './log-info.model';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable                                      } from 'rxjs';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 //
 @Injectable({
   providedIn: 'root'
@@ -272,10 +270,10 @@ export class MCSDService {
       return newSortData; 
     }
     //    
-    getSort(p_sortAlgoritm: number)
+    getSort(p_sortAlgoritm: number, p_unsortedList: string)
     {
       //
-      let p_url    = `${this.prefix}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}`;
+      let p_url    = `${this.prefix}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
       //
       console.info(" REQUESTING URL : " + p_url);
       //

@@ -19,14 +19,15 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     ////////////////////////////////////////////////////////////////////////
     // VARIABLES
     ////////////////////////////////////////////////////////////////////////
-    private   rectSize                      : number = 10;
-    public    lblStatus                     : string = "[STATUS]";
-    public    context                       : any;
-    @ViewChild('c_canvas') c_canvas         : any;
-    @ViewChild('mensajes') mensajes         : any;
+    private   rectSize                                    : number = 10;
+    public    lblStatus                                   : string = "[STATUS]";
+    public    context                                     : any;
+    @ViewChild('c_canvas') c_canvas                       : any;
+    @ViewChild('mensajes') mensajes                       : any;
+    @ViewChild('SortAlgorithmList') SortAlgorithmList     : any;
     //
     private screenSize          : number   = 250;
-    private delayInMilliseconds : number   = 1000;
+    private delayInMilliseconds : number   = 500;
     private stringMatrix        : string[] = [];
     private indexDraw           : number   = 0;
     private sortedArrayDecoded  : string   = "";
@@ -75,9 +76,8 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         console.log(this.pageTitle + " - [GET SORT]" );
         //
-        let p_sortAlgorith    : number = 1;
-        //
-        //var sortAlgoritm = $('#SortAlgorithmList').val();
+        let selectedIndex   : number = this.SortAlgorithmList.nativeElement.options.selectedIndex;
+        let p_sortAlgorith  : number = this.SortAlgorithmList.nativeElement.options[selectedIndex].value;
         //
         if (p_sortAlgorith = 0)
         {
@@ -87,9 +87,11 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             return;
         }
         //
+        let p_unsoertedList   : string = this.mensajes.nativeElement.innerHTML;
+        //
         let GetSortInfo!      : Observable<string>;
         //
-        GetSortInfo           = this.mcsdService.getSort(p_sortAlgorith);
+        GetSortInfo           = this.mcsdService.getSort(p_sortAlgorith, p_unsoertedList);
         //
         const GetSortInfoObserver   = {
             //
@@ -275,7 +277,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         this.indexDraw++;
         //
-        setTimeout(this.DrawStep,500);
+        setTimeout(this.DrawStep,this.delayInMilliseconds);
     };
     //
     DrawStepMain():void

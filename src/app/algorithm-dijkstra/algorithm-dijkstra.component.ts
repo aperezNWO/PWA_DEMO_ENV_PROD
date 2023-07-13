@@ -93,7 +93,6 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     //
     console.log(this.pageTitle + " - [DISTANCE LIST CHANGE]");
     //
-    //var distanceListVal = $("#DistanceList option:selected").text();
     let selectedIndex   : number = this._distanceList.nativeElement.options.selectedIndex;
     let distanceListVal : string = this._distanceList.nativeElement.options[selectedIndex].text;
     //
@@ -104,28 +103,26 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
         //
         var pointList         = this.PointListHidden.split("|");
         var matrixList        = this.MatrixListHidden.split("|");
-
         //
         this.DrawGrid();
         //
         this.DrawPoints(pointList, this.strokeStyleCafe);
         //
         this.DrawLines(pointList, matrixList, this.strokeStyleVerde, false);
-
         //
         let distenceListItems = distanceListVal.split("-");
         let path              = distenceListItems[2];
-
         //
         if (path != "")
         { 
+            //
             while (path.indexOf(";") != -1)
             {
                 path = path.replace(";", ",");
             }
-            let selectedPoints  = path.split("≡");
-            let emptyPoints     = new Array(pointList.length);
-
+            //
+            let selectedPoints  : string[]  = path.split("≡");
+            let emptyPoints     : string[]  = new Array(pointList.length);
             //
             for (let index = 0; index < pointList.length; index++)
             {
@@ -137,7 +134,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 if  (selectedPoints.length > 0)
                 {
                     //
-                    let selectedPointsVal = selectedPoints[index_y].replace("[", "").replace("]", "").split(",");
+                    let selectedPointsVal : string[] = selectedPoints[index_y].replace("[", "").replace("]", "").split(",");
 
                     if  (selectedPointsVal.length > 0)
                     { 
