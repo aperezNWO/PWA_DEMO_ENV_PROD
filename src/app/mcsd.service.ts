@@ -11,8 +11,8 @@ export class MCSDService {
     ////////////////////////////////////////////////////////////////  
     // CAMPOS
     ////////////////////////////////////////////////////////////////  
-    public prefix        : string = 'https://mcsd.somee.com/';
-    //public prefix      : string = 'http://localhost:81/';
+    // public prefix        : string = 'https://mcsd.somee.com/';
+    public prefix      : string = 'http://localhost:81/';
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  
@@ -287,5 +287,27 @@ export class MCSDService {
       let newSortData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
       //
       return newSortData; 
+    }
+    ////////////////////////////////////////////////////////////////  
+    // METODOS - [ALGORITMOS - ORDENAMIENTO]
+    ////////////////////////////////////////////////////////////////  
+    //    
+    _GetXmlData()
+    {
+      //
+      let p_url    = `${this.prefix}demos/_GetXmlData`;
+      //
+      console.info(" REQUESTING URL : " + p_url);
+      //
+      var HTTPOptions = {
+        headers: new HttpHeaders({
+          'Accept':'application/text'
+        }),
+        'responseType': 'text' as 'json'
+      };
+      //
+      let xmlData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      //
+      return xmlData; 
     }
 }
