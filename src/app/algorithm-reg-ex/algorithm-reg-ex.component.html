@@ -15,7 +15,7 @@
             <fieldset>
                 <legend></legend>
                 <label for="tagSearch">ELEMENTO A BUSCAR : </label>
-                <select id="tagSearch" class="fieldSetRegex">
+                <select id="tagSearch" #tagSearch class="fieldSetRegex">
                     <option value="0">[SELECCIONE_OPCION]</option>
                     <option value="title">title</option>
                     <option value="artist">artist</option>
@@ -26,26 +26,23 @@
                 </select>
                 <br>
                 <label for="textSearch">CONTENIDO : </label>
-                <input type="text" id="textSearch" class="fieldSetRegex" value="">
+                <input type="text" id="textSearch"  #textSearch  class="fieldSetRegex" value="">
                 <br>
                 <label for="regExSearch">EXPRESION REGULAR : </label>
-                <input type="text" id="regExSearch" class="fieldSetRegex" style="background-color:#cccccc;" value="" readonly="readonly">
+                <input type="text" id="regExSearch" #regExSearch class="fieldSetRegex" value="{{this.pattern}}" style="background-color:#cccccc;" readonly="readonly">
                 <br>
             </fieldset>
-            <hr>
         </div>
+        <hr>
         <div>
-            <input id="GetRegex" type="button" title="[BUSCAR]" value="[BUSCAR]">
+            <span id="lblstatus">{{this.lblStatus}}</span>
+        </div>
+        <hr>
+        <div>
+            <input id="GetRegex"  type="button" title="[BUSCAR]"    value="[BUSCAR]"    (click)="this.GetRegex()">
             |
-            <input id="newSearch" type="button" title="[REINICIAR]" value="[REINICIAR]" disabled="disabled">
+            <input id="newSearch" type="button" title="[REINICIAR]" value="[REINICIAR]" (click)="this._GetXMLData()">
         </div>
         <hr>
         <a href="../Demos/_DemosIndex?lang=1">Volver al Menú</a>
-        <!-- INICIO VENTANA MODAL TRANSCURSO OPERACION -->
-        <div id="statusWindow" class="modalStatus" style="display:none">
-            <div class="modalStatus-content">
-                ... Procesando ...
-            </div>
-        </div>
-        <!-- FIN VENTANA MODAL TRANSCURSO DE OPERACION -->
 </div>

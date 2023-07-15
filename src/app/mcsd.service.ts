@@ -11,8 +11,8 @@ export class MCSDService {
     ////////////////////////////////////////////////////////////////  
     // CAMPOS
     ////////////////////////////////////////////////////////////////  
-    // public prefix        : string = 'https://mcsd.somee.com/';
-    public prefix      : string = 'http://localhost:81/';
+    public prefix        : string = 'https://mcsd.somee.com/';
+    //public prefix      : string = 'http://localhost:81/';
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  
@@ -251,7 +251,7 @@ export class MCSDService {
     // METODOS - [ALGORITMOS - DISTANCIA MAS CORTA]
     ////////////////////////////////////////////////////////////////  
     //    
-    getNewSort()
+    getNewSort():Observable<string>
     {
       //
       let p_url    = `${this.prefix}demos/_NewSort`;
@@ -270,7 +270,7 @@ export class MCSDService {
       return newSortData; 
     }
     //    
-    getSort(p_sortAlgoritm: number, p_unsortedList: string)
+    getSort(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
     {
       //
       let p_url    = `${this.prefix}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
@@ -292,10 +292,10 @@ export class MCSDService {
     // METODOS - [ALGORITMOS - ORDENAMIENTO]
     ////////////////////////////////////////////////////////////////  
     //    
-    _GetXmlData()
+    _GetXmlData():Observable<string>
     {
       //
-      let p_url    = `${this.prefix}demos/_GetXmlData`;
+      let p_url  : string  = `${this.prefix}demos/_GetXmlData`;
       //
       console.info(" REQUESTING URL : " + p_url);
       //
@@ -309,5 +309,24 @@ export class MCSDService {
       let xmlData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
       //
       return xmlData; 
+    }
+    //
+    public _RegExEval(tagSearchIndex: number, textSearchValue: string): Observable<string>
+    {
+      //
+      let p_url    : string = `${this.prefix}demos/_RegExEval?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
+      //
+      console.info(" REQUESTING URL : " + p_url);
+      //
+      var HTTPOptions = {
+        headers: new HttpHeaders({
+          'Accept':'application/text'
+        }),
+        'responseType': 'text' as 'json'
+      };
+      //
+      let regExData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      //
+      return regExData; 
     }
 }
