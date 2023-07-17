@@ -108,7 +108,6 @@
 -- [_] Bootstrap menu navigation (from .NET CORE).
 -- [_] DebugHostingContent as global/cdn.
 -- [_] CSV download link.
--- [_] Print type script version.
 -- [_] Algorithm Service.
 -- [_] TOPICS
         -- [_] TYPESCRIPT.
@@ -118,5 +117,5 @@
 -- [_] oauth.
     -- [_] seccion comentarios.
 -- [_] read config file.
-
+-- [_] Print type script version.
 =====================================================================
