@@ -95,13 +95,12 @@
                             //
                         });
 
--- [_] install bootstrap.
-
 -- [_] list of sources and articles.
 
         -- [_] file uplodad angular .net client core example.
                 -- [_] https://www.bezkoder.com/angular-15-file-upload/
-
+-- [_] install bootstrap
+       -- [_]implement menu.
 -- [_] DebugHostingContent as webapi.
 -- [_] Editar lista de cumpleaños exnacato.
 -- [_] Backend como webapi service.
