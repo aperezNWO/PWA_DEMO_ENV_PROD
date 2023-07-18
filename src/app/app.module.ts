@@ -9,6 +9,7 @@ import { BrowserAnimationsModule       } from '@angular/platform-browser/animati
 import { ReactiveFormsModule           } from '@angular/forms';
 import { HttpClientModule              } from '@angular/common/http';
 import { RouterModule                  } from '@angular/router';
+import { NgbModule                     } from '@ng-bootstrap/ng-bootstrap'
 import { AppComponent                  } from './app.component';
 import { HomeWebComponent              } from './home-web/home-web.component';
 import { FilesGenerationWebComponent   } from './files-generation-web/files-generation-web.component';
@@ -47,6 +48,7 @@ import { AngularTutorialsnWebComponent } from './angular-tutorialsn-web/angular-
     MatTableModule,
     MatPaginatorModule,
     MatTabsModule,
+    NgbModule,
     RouterModule,    
     RouterModule.forRoot([
       {  path: 'HomeWebComponent'                 , component: HomeWebComponent                     },

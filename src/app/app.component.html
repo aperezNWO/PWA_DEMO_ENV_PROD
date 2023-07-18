@@ -1,19 +1,39 @@
-<hr/>
-<div class="subtitle">
-    <h2>{{title}}</h2>
-</div>
-<hr/>
+<header>
 <div class="navigation">
-    <nav>
-            <a routerLink="/HomeWebComponent">{{HomeWebComponent_pageTitle}}</a>
-            |  
-            <a routerLink="/FilesGenerationWebComponent">{{FilesGenerationWebComponent_pageTitle}}</a>
-            |   
-            <a routerLink="/AlgorithmWebComponent">{{AlgorithmWebComponent_pageTitle}}</a>
-            |   
-            <a routerLink="/AngularTutorialsnWebComponent">{{AngularTutorialsnWebComponent_pageTitle}}</a>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <div class="subtitle">
+          <h2>{{title}}</h2>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"     
+      data-target="#navbarItems" aria-controls="navbarItems"                
+      aria-expanded="false" aria-label="Toggle navigation" 
+      (click)="navbarCollapsed = !navbarCollapsed">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+      <div class="collapse navbar-collapse" id="navbarItems" #navbarItems [ngbCollapse]="!navbarCollapsed">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/HomeWebComponent"><span class="sr-only">{{HomeWebComponent_pageTitle}}</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/FilesGenerationWebComponent"><span>{{FilesGenerationWebComponent_pageTitle}}</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/AlgorithmWebComponent"><span>{{AlgorithmWebComponent_pageTitle}}</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/AngularTutorialsnWebComponent"><span>{{AngularTutorialsnWebComponent_pageTitle}}</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">[Acerca de]</a>
+          </li>
+        </ul>
+      </div>
+  </nav>
 </div>
+</header>
 <hr/>
 <router-outlet></router-outlet>
 <hr/>

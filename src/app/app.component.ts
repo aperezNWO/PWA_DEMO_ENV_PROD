@@ -14,13 +14,15 @@ export class AppComponent {
     //
     title             : string = "[MCSD - CONSULTAS]"; 
     appName           : string = "[MCSD - CONSULTAS]";
-    appVersion        : string = '1.0.0.57';
+    appVersion        : string = '1.0.0.58';
     runtimeVersion    : string = VERSION.full;
     //
     readonly HomeWebComponent_pageTitle                   : string = HomeWebComponent.pageTitle();
     readonly AlgorithmWebComponent_pageTitle              : string = AlgorithmWebComponent.pageTitle();
     readonly FilesGenerationWebComponent_pageTitle        : string = FilesGenerationWebComponent.pageTitle();
     readonly AngularTutorialsnWebComponent_pageTitle      : string = AngularTutorialsnWebComponent.pageTitle();
+    //
+    navbarCollapsed      : boolean = true;
     //-----------------------------------------------------------------------------------------------------
     constructor() {
       //

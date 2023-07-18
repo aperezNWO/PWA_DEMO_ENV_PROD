@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HomeWebComponent {
   //
-  pageTitle            : string = '[INDICE]';
+  pageTitle            : string  = '[INDICE]';
   //
   static pageTitle()   : string {
     return '[INDICE]';
