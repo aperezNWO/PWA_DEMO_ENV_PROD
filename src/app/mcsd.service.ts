@@ -11,7 +11,7 @@ export class MCSDService {
     ////////////////////////////////////////////////////////////////  
     // CAMPOS
     ////////////////////////////////////////////////////////////////  
-    public prefix        : string = 'https://mcsd.somee.com/';
+    public prefix        : string = 'https://angulardemo.somee.com/';
     //public prefix      : string = 'http://localhost:81/';
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
@@ -153,7 +153,7 @@ export class MCSDService {
     //
     getLogStatPOST() {
       //
-      let url    = 'https://mcsd.somee.com/demos/GetConsultaLogStatPost';
+      let url    = `${this.prefix}demos/GetConsultaLogStatPost`;
       //
       console.warn(" REQUESTING URL : " + url);
       //    
