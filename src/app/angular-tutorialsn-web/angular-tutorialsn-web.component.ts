@@ -8,10 +8,10 @@ import { Component } from '@angular/core';
 //
 export class AngularTutorialsnWebComponent {
   //
-  pageTitle            : string = '[TEMAS]';
-  //
-  static pageTitle()   : string {
+  public static get PageTitle()   : string {
     //
     return '[TEMAS]';
   }
+  //
+  readonly pageTitle : string = AngularTutorialsnWebComponent.PageTitle;
 }

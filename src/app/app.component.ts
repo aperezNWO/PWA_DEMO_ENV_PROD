@@ -14,15 +14,25 @@ export class AppComponent {
     //
     title             : string = "[MCSD - CONSULTAS]"; 
     appName           : string = "[MCSD - CONSULTAS]";
-    appVersion        : string = '1.0.0.58';
+    appVersion        : string = '1.0.0.59';
     runtimeVersion    : string = VERSION.full;
     //
-    readonly HomeWebComponent_pageTitle                   : string = HomeWebComponent.pageTitle();
-    readonly AlgorithmWebComponent_pageTitle              : string = AlgorithmWebComponent.pageTitle();
-    readonly FilesGenerationWebComponent_pageTitle        : string = FilesGenerationWebComponent.pageTitle();
-    readonly AngularTutorialsnWebComponent_pageTitle      : string = AngularTutorialsnWebComponent.pageTitle();
+    readonly HomeWebComponent_pageTitle                   : string  = HomeWebComponent.PageTitle;
+    readonly AlgorithmWebComponent_pageTitle              : string  = AlgorithmWebComponent.PageTitle;
+    readonly FilesGenerationWebComponent_pageTitle        : string  = FilesGenerationWebComponent.PageTitle;
+    readonly AngularTutorialsnWebComponent_pageTitle      : string  = AngularTutorialsnWebComponent.PageTitle;
     //
-    navbarCollapsed      : boolean = true;
+    private  navbarCollapsed                              : boolean = true;
+    //
+    public get NavbarCollapsed() : boolean {
+      //
+      return this.navbarCollapsed;
+    }
+    //
+    public set NavbarCollapsed(p_navbarCollapsed: boolean) {
+        //
+        this.navbarCollapsed = p_navbarCollapsed;
+    }
     //-----------------------------------------------------------------------------------------------------
     constructor() {
       //

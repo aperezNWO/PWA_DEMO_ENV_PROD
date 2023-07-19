@@ -19,11 +19,11 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     //--------------------------------------------------------------------------
     // PROPIEDADES COMUNES
     //--------------------------------------------------------------------------
-    pageTitle            : string = '[GENERAR ARCHIVO CSV]';
     //
-    static pageTitle()   : string {
+    public static get PageTitle()   : string {
       return '[GENERAR ARCHIVOS CSV]';
     }
+    readonly pageTitle   : string = FilesGenerationCSVComponent.PageTitle;
     //--------------------------------------------------------------------------
     // PROPIEDADES - LISTADO
     //--------------------------------------------------------------------------
@@ -63,7 +63,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
         //
         this.SetChart();
         //
-        console.log(this.pageTitle);
+        console.log(FilesGenerationCSVComponent.PageTitle);
     }
     //
     ngAfterViewInit():void {
@@ -73,7 +73,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     SetCSVData():void
     {
         //
-        console.log(this.pageTitle + " - [SET CSV DATA]");
+        console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV DATA]");
         //
         let csv_informeLogRemoto!                 : Observable<string>;
         csv_informeLogRemoto                      = this.mcsdService.getInformeRemotoCSV();
@@ -81,7 +81,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
         const csv_observer = {
           next: (csv_data: string)     => { 
             //
-            console.log(this.pageTitle + " - [SET CSV DATA] - Return Values : [" + csv_data + "]");
+            console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV DATA] - Return Values : [" + csv_data + "]");
             //
             let jsondata     = JSON.parse(csv_data);
             //
@@ -94,11 +94,11 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
           },
           error           : (err: Error)      => {
             //
-            console.log(this.pageTitle + " - [SET CSV DATA] - Error : [" + err.message + "]");
+            console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV DATA] - Error : [" + err.message + "]");
           },
           complete        : ()                => {
             //
-            console.log(this.pageTitle + " - [SET CSV DATA] - [Search end]");
+            console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV DATA] - [Search end]");
           },
         }
         //
@@ -108,7 +108,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     SetCSVLink()
     {
         //
-        console.log(this.pageTitle + " - [SET CSV Link]");
+        console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV Link]");
         //
         let csv_link!                 : Observable<string>;
         csv_link                      = this.mcsdService.getCSVLink();
@@ -125,15 +125,15 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
             //
             this.downloadLink = downloadLink_1;
             //
-            console.log(this.pageTitle + " - [SET CSV LINK] - DOWNLOAD LINK : [" + this.downloadLink + "]");
+            console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV LINK] - DOWNLOAD LINK : [" + this.downloadLink + "]");
           },
           error           : (err: Error)      => {
             //
-            console.log(this.pageTitle + " - [SET CSV LINK] - Error : [" + err.message + "]");
+            console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV LINK] - Error : [" + err.message + "]");
           },
           complete        : ()                => {
             //
-            console.log(this.pageTitle + " - [SET CSV LINK] - [Search end]");
+            console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV LINK] - [Search end]");
           },
         }
         //
@@ -143,7 +143,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     SetChart():void
     {
         //
-        console.log(this.pageTitle + " - [SET CHART]");
+        console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CHART]");
         //
         const statLabels          : string[]          = [];
         const statData            : Number[]          = [];
@@ -155,7 +155,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
         const csv_observer = {
           next: (csv_data: string)     => { 
             //
-            console.log(this.pageTitle + " - [SET CSV DATA] - Return Values : [" + csv_data + "]");
+            console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV DATA] - Return Values : [" + csv_data + "]");
             //
             let jsondata     = JSON.parse(csv_data);
             //
@@ -192,11 +192,11 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
           },
           error           : (err: Error)      => {
             //
-            console.log(this.pageTitle + " - [SET CSV DATA] - Error : [" + err.message + "]");
+            console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV DATA] - Error : [" + err.message + "]");
           },
           complete        : ()                => {
             //
-            console.log(this.pageTitle + " - [SET CSV DATA] - [Search end]");
+            console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV DATA] - [Search end]");
             //
             const data = {
               labels: statLabels,

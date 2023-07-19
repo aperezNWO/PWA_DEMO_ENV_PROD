@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { AppComponent         } from '../app.component';
 
 @Component({
   selector    : 'app-home-web',
@@ -7,9 +8,15 @@ import { Component } from '@angular/core';
 })
 export class HomeWebComponent {
   //
-  pageTitle            : string  = '[INDICE]';
-  //
-  static pageTitle()   : string {
+  public  static get PageTitle()   : string {
     return '[INDICE]';
+  }
+  //
+  public readonly pageTitle        : string = HomeWebComponent.PageTitle;
+  //
+  constructor()
+  {
+      //
+      console.log(HomeWebComponent.PageTitle + " - [INGRESO]") ;
   }
 }

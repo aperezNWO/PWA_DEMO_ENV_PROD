@@ -1,25 +1,25 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MCSDService } from '../mcsd.service';
-import { Observable } from 'rxjs';
-
+import { Observable  } from 'rxjs';
+//
 @Component({
   selector: 'app-algorithm-sort',
   templateUrl: './algorithm-sort.component.html',
   styleUrls: ['./algorithm-sort.component.css']
 })
+//
 export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     ////////////////////////////////////////////////////////////////////////
     // PROPIEDADES
     ////////////////////////////////////////////////////////////////////////
-    pageTitle               : string = '[ALGORITMOS - ORDENAMIENTO]';
-    //
-    static pageTitle()      : string {
+    public static get PageTitle()      : string {
       return '[ALGORITMOS - ORDENAMIENTO]';
     }
     ////////////////////////////////////////////////////////////////////////
     // VARIABLES
     ////////////////////////////////////////////////////////////////////////
     private   rectSize                                    : number = 10;
+    readonly  pageTitle                                   : string = AlgorithmSortComponent.PageTitle;
     public    lblStatus                                   : string = "[STATUS]";
     public    context                                     : any;
     @ViewChild('c_canvas') c_canvas                       : any;
@@ -39,7 +39,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     //
     ngOnInit(): void {
         //
-        console.info(this.pageTitle + " - [INGRESO]");
+        console.info(AlgorithmSortComponent.PageTitle + " - [INGRESO]");
     }
     //
     ngAfterViewInit(): void {
@@ -74,7 +74,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     public GetSort()
     {
         //
-        console.log(this.pageTitle + " - [GET SORT]" );
+        console.log(AlgorithmSortComponent.PageTitle + " - [GET SORT]" );
         //
         let selectedIndex   : number = this.SortAlgorithmList.nativeElement.options.selectedIndex;
         let p_sortAlgorith  : number = this.SortAlgorithmList.nativeElement.options[selectedIndex].value;
@@ -103,7 +103,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             //
             next: (data: string)     => { 
                 //
-                console.info(this.pageTitle + ' - [GETTING SORT]  - RETURN VALUE : ' + data);
+                console.info(AlgorithmSortComponent.PageTitle + ' - [GETTING SORT]  - RETURN VALUE : ' + data);
                 //
                 //-----------------------------------------------------------------------
                 // CORREGIR DATOS DE MATRIZ PARA VISUALIZAR EN CANVAS
@@ -152,13 +152,13 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             },
             error: (err: Error) => {
                 //
-                console.error(this.pageTitle + ' - [GETTING SORT] - [error] : ' + err.message);
+                console.error(AlgorithmSortComponent.PageTitle + ' - [GETTING SORT] - [error] : ' + err.message);
                 //
                 this.lblStatus  = "[ha ocurrido un error]";
             },       
             complete: ()        => {
                 //
-                console.warn(this.pageTitle  + ' - [GETTING SORT] - [Observer got a complete notification]');
+                console.warn(AlgorithmSortComponent.PageTitle  + ' - [GETTING SORT] - [Observer got a complete notification]');
                 //
             },
         };
@@ -169,7 +169,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     public GetNewSort():void
     {
         //
-        console.log(this.pageTitle + " - [NEW SORT]" );   
+        console.log(AlgorithmSortComponent.PageTitle + " - [NEW SORT]" );   
         //
         let randomVertexInfo!          : Observable<string>;
         //
@@ -179,7 +179,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             //
             next: (sortInfo: string)     => { 
                 //
-                console.info(this.pageTitle + ' - [GETTING NEW SORT]  - RETURN VALUE : ' + sortInfo);
+                console.info(AlgorithmSortComponent.PageTitle + ' - [GETTING NEW SORT]  - RETURN VALUE : ' + sortInfo);
                 //
                 //-------------------------------------------------------------
                 // CONFIGURA CONTROLES
@@ -193,13 +193,13 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             },
             error: (err: Error) => {
                 //
-                console.error(this.pageTitle + ' - [GETTING NEW SORT] - [error] : ' + err.message);
+                console.error(AlgorithmSortComponent.PageTitle + ' - [GETTING NEW SORT] - [error] : ' + err.message);
                 //
                 this.lblStatus  = "[ha ocurrido un error]";
             },       
             complete: ()        => {
                 //
-                console.warn(this.pageTitle  + ' - [GETTING NEW SORT] - [Observer got a complete notification]');
+                console.warn(AlgorithmSortComponent.PageTitle  + ' - [GETTING NEW SORT] - [Observer got a complete notification]');
                 //
             },
         };

@@ -15,14 +15,14 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   ////////////////////////////////////////////////////////////////
   // PROPERTIES //////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
-  pageTitle               : string = '[ALGORITMOS - DISTANCIA MAS CORTA]';
   //
-  static pageTitle()      : string {
+  public static get PageTitle()      : string {
     return '[ALGORITMOS - DISTANCIA MAS CORTA]';
   }
   ////////////////////////////////////////////////////////////////
   // VARIABLES ///////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
+  readonly  pageTitle        : string = AlgorithmDijkstraComponent.PageTitle;
   protected vertexMax        : number = 9;
   protected rectSize         : number = 10;
   protected screenSize       : number = 250;
@@ -53,7 +53,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   //
   ngOnInit(): void {
     //
-    console.log(this.pageTitle + " - [INGRESO]");
+    console.log(AlgorithmDijkstraComponent.PageTitle + " - [INGRESO]");
     //
     this.DrawListItems();
     //
@@ -62,7 +62,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   //
   ngAfterViewInit():void { 
     //
-    console.log(this.pageTitle + " - [INICIO VISUAL]");
+    console.log(AlgorithmDijkstraComponent.PageTitle + " - [INICIO VISUAL]");
     //
     this._context = this.c_canvas.nativeElement.getContext('2d');
     //    
@@ -72,7 +72,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   public _vertexSizeListChange():void
   {
       //
-      console.log(this.pageTitle + " - [VERTEX SIZE LIST CHANGE]");
+      console.log(AlgorithmDijkstraComponent.PageTitle + " - [VERTEX SIZE LIST CHANGE]");
       //
       /*    
       var vertexSizeVal = $("#vertexSizeList").val();
@@ -91,12 +91,12 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   public _distanceListChange():void 
   {
     //
-    console.log(this.pageTitle + " - [DISTANCE LIST CHANGE]");
+    console.log(AlgorithmDijkstraComponent.PageTitle + " - [DISTANCE LIST CHANGE]");
     //
     let selectedIndex   : number = this._distanceList.nativeElement.options.selectedIndex;
     let distanceListVal : string = this._distanceList.nativeElement.options[selectedIndex].text;
     //
-    console.log(this.pageTitle + " - [DISTANCE LIST CHANGE] - [Selected Text]: [" + distanceListVal + "]");
+    console.log(AlgorithmDijkstraComponent.PageTitle + " - [DISTANCE LIST CHANGE] - [Selected Text]: [" + distanceListVal + "]");
     //
     if (distanceListVal != "0")
     {
@@ -159,7 +159,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   public _ResetControls():void
   {
       //
-      console.log(this.pageTitle + " - [Resetting controls]");
+      console.log(AlgorithmDijkstraComponent.PageTitle + " - [Resetting controls]");
       //
       //[_]
       //$('#tituloListadoDistancias').text('');
@@ -190,14 +190,14 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   _GetGraph():void
   {
         //
-        console.log(this.pageTitle + " - [getting graph]");
+        console.log(AlgorithmDijkstraComponent.PageTitle + " - [getting graph]");
         //
         let _vertexSize         : number = Number.parseInt(this._vertexSizeList.nativeElement.value);
         let _sourcePoint        : number = Number.parseInt(this._sourcePointList.nativeElement.value);
         //
-        console.log(this.pageTitle + " - [vertex size : " + _vertexSize  + "]");
+        console.log(AlgorithmDijkstraComponent.PageTitle + " - [vertex size : " + _vertexSize  + "]");
         //
-        console.log(this.pageTitle + " - [source point: " + _sourcePoint + "]");
+        console.log(AlgorithmDijkstraComponent.PageTitle + " - [source point: " + _sourcePoint + "]");
         //
         let randomVertexInfo!  : Observable<string>;
         //
@@ -209,7 +209,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
             //
             next: (randomVertexInfo: string)     => { 
                 //
-                console.warn(this.pageTitle + ' - [GETTING VERTEX VALUES]  - RETURN VALUE : ' + randomVertexInfo);
+                console.warn(AlgorithmDijkstraComponent.PageTitle + ' - [GETTING VERTEX VALUES]  - RETURN VALUE : ' + randomVertexInfo);
                 //
                 data = randomVertexInfo;
                 //------------------------------------------------------------
@@ -269,11 +269,11 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
             },
             error: (err: Error) => {
                 //
-                console.error(this.pageTitle + ' - [GETTING VERTEX VALUES] - [error] : ' + err.message);
+                console.error(AlgorithmDijkstraComponent.PageTitle + ' - [GETTING VERTEX VALUES] - [error] : ' + err.message);
             },       
             complete: ()        => {
                 //
-                console.warn(this.pageTitle + ' - [GETTING VERTEX VALUES] - [Observer got a complete notification]');
+                console.warn(AlgorithmDijkstraComponent.PageTitle + ' - [GETTING VERTEX VALUES] - [Observer got a complete notification]');
                 //
             },
         };
@@ -286,7 +286,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   DrawGrid():void
   {
       //
-      console.log(this.pageTitle + ' - [DRAWING GRID]');
+      console.log(AlgorithmDijkstraComponent.PageTitle + ' - [DRAWING GRID]');
       //
       this._context.clearRect(0, 0, this.c_canvas.nativeElement.width, this.c_canvas.nativeElement.height);
       this._context.beginPath();
@@ -547,7 +547,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   public _GetPDF():void
   {
     //
-    console.log(this.pageTitle + " - [getting pdf]");
+    console.log(AlgorithmDijkstraComponent.PageTitle + " - [getting pdf]");
     //
     html2canvas(this.c_canvas.nativeElement).then((_canvas) => {
         //
@@ -556,7 +556,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
         //
         let imgData : string  = _canvas.toDataURL('image/jpeg');
         //
-        let pdfDoc     = new jsPDF("landscape", "px", [w, h]);
+        let pdfDoc  : jsPDF   = new jsPDF("landscape", "px", [w, h]);
         //
         pdfDoc.addImage(imgData, 0, 0, w, h);
         //

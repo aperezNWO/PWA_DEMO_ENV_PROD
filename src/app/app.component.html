@@ -9,10 +9,10 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse"     
       data-target="#navbarItems" aria-controls="navbarItems"                
       aria-expanded="false" aria-label="Toggle navigation" 
-      (click)="navbarCollapsed = !navbarCollapsed">
+      (click)="this.NavbarCollapsed = !this.NavbarCollapsed">
         <span class="navbar-toggler-icon"></span>
     </button>
-      <div class="collapse navbar-collapse" id="navbarItems" #navbarItems [ngbCollapse]="navbarCollapsed">
+      <div class="collapse navbar-collapse" id="navbarItems" #navbarItems [ngbCollapse]="this.NavbarCollapsed">
         <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" routerLink="/HomeWebComponent"><span class="sr-only">{{HomeWebComponent_pageTitle}}</span></a>

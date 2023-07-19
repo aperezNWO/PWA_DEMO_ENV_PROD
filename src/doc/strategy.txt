@@ -118,4 +118,6 @@
     -- [_] seccion comentarios.
 -- [_] read config file.
 -- [_] Print type script version.
+-- [_] menu collapse on page entry.
+
 =====================================================================

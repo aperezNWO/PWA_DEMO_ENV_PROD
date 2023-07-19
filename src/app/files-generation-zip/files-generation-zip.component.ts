@@ -13,11 +13,12 @@ export class FilesGenerationZIPComponent {
   //--------------------------------------------------------------------------
   // PROPIEDADES COMUNES
   //--------------------------------------------------------------------------
-  pageTitle            : string = '[GENERAR ARCHIVO ZIP]';
   //
-  static pageTitle()   : string {
+  public static get PageTitle()   : string {
     return '[GENERAR ARCHIVOS ZIP]';
   }
+  //
+  readonly pageTitle              : string = FilesGenerationZIPComponent.PageTitle;
   //
   //--------------------------------------------------------------------------
   // PROPIEDADES - FILE UPLOAD - FORM SUBMIT
@@ -37,6 +38,7 @@ export class FilesGenerationZIPComponent {
   //--------------------------------------------------------------------------
   constructor(private mcsdService: MCSDService) {
     //
+    console.log(FilesGenerationZIPComponent.PageTitle + " - [INGRESO]");
   }
   //--------------------------------------------------------------------------
   // METODOS COMUNES

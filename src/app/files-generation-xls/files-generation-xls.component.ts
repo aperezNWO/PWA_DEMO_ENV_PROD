@@ -8,7 +8,6 @@ import { Observable                                    } from 'rxjs';
 import { Chart, registerables                          } from 'chart.js';
 import   jsPDF                                           from 'jspdf';
 import   html2canvas                                     from 'html2canvas';
-
 //
 @Component({
   selector     : 'app-files-generation-xls',
@@ -20,11 +19,10 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //--------------------------------------------------------------------------
     // PROPIEDADES COMUNES
     //--------------------------------------------------------------------------
-    pageTitle            : string = '[GENERAR ARCHIVO XLS]';
-    //
-    static pageTitle()   : string {
+    public static get PageTitle()   : string {
       return '[GENERAR ARCHIVOS XLS]';
     }
+    readonly pageTitle          : string = FilesGenerationXLSComponent.PageTitle;
     //--------------------------------------------------------------------------
     // PROPIEADES - REACTIVE FORMS
     //--------------------------------------------------------------------------
@@ -108,7 +106,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     ngOnInit(): void {
         //
-        console.log(this.pageTitle);
+        console.log(FilesGenerationXLSComponent.PageTitle);
         //
         this.rf_newSearch();
         this.td_newSearch();
@@ -487,7 +485,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     SetChart():void {
       //
-      console.log(this.pageTitle + " - [SET CHART]");
+      console.log(FilesGenerationXLSComponent.PageTitle + " - [SET CHART]");
       //
       const statLabels          : string[]          = [];
       const statData            : Number[]          = [];

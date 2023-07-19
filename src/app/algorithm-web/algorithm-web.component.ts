@@ -8,11 +8,11 @@ import { Component } from '@angular/core';
 //
 export class AlgorithmWebComponent {
   //
-  public _pageTitle: string = '[ALGORITMOS]';
-  //
-  public static  pageTitle(): string
+  public static get PageTitle(): string
   {
      return '[ALGORITMOS]'; 
   }
+  //
+  readonly pageTitle : string =  AlgorithmWebComponent.PageTitle;
   //
 }

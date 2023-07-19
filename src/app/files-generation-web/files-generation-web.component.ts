@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 //
 export class FilesGenerationWebComponent {
   //
-  pageTitle            : string = '[GENERAR ARCHIVOS]';
-  //
-  static pageTitle()   : string {
+  static get PageTitle()   : string {
     return '[GENERAR ARCHIVOS]';
   }
+  //
+  readonly  pageTitle      : string = FilesGenerationWebComponent.PageTitle;
 }

@@ -12,12 +12,12 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
     ////////////////////////////////////////////////////////////////
     // PROPERTIES //////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////
-    pageTitle               : string = '[ALGORITMOS - EXPRESIONES REGULARES]';
     //
-    static pageTitle()      : string {
+    public static get PageTitle()      : string {
       return '[ALGORITMOS - EXPRESIONES REGULARES]';
     }
     //
+    readonly  pageTitle             : string = AlgorithmRegExComponent.PageTitle;
     protected xmlData               : string = "";
     protected lblStatus             : string = "";
     protected pattern               : string = "";
@@ -34,13 +34,13 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
     //
     ngOnInit(): void {
         //
-        console.log(this.pageTitle + " - [INGRESANDO]");
+        console.log(AlgorithmRegExComponent.PageTitle + " - [INGRESANDO]");
         //
     }
     //
     ngAfterViewInit(): void {
       //
-      console.log(this.pageTitle + " - [INICIO VISUAL]");
+      console.log(AlgorithmRegExComponent.PageTitle + " - [INICIO VISUAL]");
       //
       this._GetXMLData();
     }
@@ -49,7 +49,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
     ////////////////////////////////////////////////////////////////
     _GetXMLData():void {
         //
-        console.log(this.pageTitle + " - [GET XML DATA]");
+        console.log(AlgorithmRegExComponent.PageTitle + " - [GET XML DATA]");
         //
         let xmlInfo!  : Observable<string>;
         //
@@ -64,7 +64,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
                 // OBTENER DATA
                 //------------------------------------------------------------
                 //
-                console.warn(this.pageTitle + ' - [GET XML DATA] - [RETURN VALUE] : ' + _xmlData);
+                console.warn(AlgorithmRegExComponent.PageTitle + ' - [GET XML DATA] - [RETURN VALUE] : ' + _xmlData);
                 //
                 this.xmlData = _xmlData;
                 //-------------------------------------------------------------
@@ -79,11 +79,11 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
             },
             error: (err: Error) => {
                 //
-                console.error(this.pageTitle + ' - [GET XML DATA]- [error] : ' + err.message);
+                console.error(AlgorithmRegExComponent.PageTitle + ' - [GET XML DATA]- [error] : ' + err.message);
             },       
             complete: ()        => {
                 //
-                console.info(this.pageTitle  + ' - [GET XML DATA]- [Observer got a complete notification]');
+                console.info(AlgorithmRegExComponent.PageTitle  + ' - [GET XML DATA]- [Observer got a complete notification]');
                 //
             },
         };
@@ -93,7 +93,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
     //
     GetRegex():void{
         //
-        console.log(this.pageTitle + " - [EVAL REGEX]");   
+        console.log(AlgorithmRegExComponent.PageTitle + " - [EVAL REGEX]");   
         //
         let selectedIndex   : number = this.tagSearch.nativeElement.options.selectedIndex;
         let tagSearchIndex  : number = this.tagSearch.nativeElement.options[selectedIndex].value;
@@ -127,7 +127,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
                 // OBTENER DATA
                 //------------------------------------------------------------
                 //
-                console.warn(this.pageTitle + ' - [EVAL REGEX] - [RETURN VALUE] : ' + data);
+                console.warn(AlgorithmRegExComponent.PageTitle + ' - [EVAL REGEX] - [RETURN VALUE] : ' + data);
                 //    
                 let resultArray : string[] = data.split("|");
                 //
@@ -161,11 +161,11 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
             },
             error: (err: Error) => {
                 //
-                console.error(this.pageTitle + ' - [EVAL REGEX] - [error] : ' + err.message);
+                console.error(AlgorithmRegExComponent.PageTitle + ' - [EVAL REGEX] - [error] : ' + err.message);
             },       
             complete: ()        => {
                 //
-                console.info(this.pageTitle  + ' - [EVAL REGEX] - [Observer got a complete notification]');
+                console.info(AlgorithmRegExComponent.PageTitle  + ' - [EVAL REGEX] - [Observer got a complete notification]');
                 //
             },
         };

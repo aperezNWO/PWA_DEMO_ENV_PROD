@@ -12,17 +12,17 @@ export class FilesGenerationPDFComponent {
   ////////////////////////////////////////////////////////////////
   // PROPERTIES
   ////////////////////////////////////////////////////////////////
-  pageTitle              : string  = '[GENERAR ARCHIVO PDF]';
-  progress               : number  = 0;
-  message                : string  = '';
-  GetPDFUrl!             : any;
-  public downloadCaption : string  = '';
-  public values          : string  = '';
-  public DownloadLink    : string  = '';
+  protected progress               : number  = 0;
+  protected message                : string  = '';
+  public    downloadCaption        : string  = '';
+  public    values                 : string  = '';
+  public    DownloadLink           : string  = '';
   //
-  static pageTitle()   : string {
+  public static get PageTitle()  : string {
     return '[GENERAR ARCHIVOS PDF]';
   }
+  protected GetPDFUrl!            : any;
+  readonly  pageTitle             : string = FilesGenerationPDFComponent.PageTitle;
   //
   @ViewChild('subjectName') subjectName             : any;
   ////////////////////////////////////////////////////////////////
@@ -31,6 +31,7 @@ export class FilesGenerationPDFComponent {
   constructor(private mcsdService: MCSDService)
   {
     //
+    console.log(FilesGenerationPDFComponent.PageTitle + "- [INGRESO]");
   }  
   //
   public onNewPdf()
