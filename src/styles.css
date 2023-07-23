@@ -1,15 +1,8 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 html, 
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }l, body 
-{ 
-   height: 100%; 
-}
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
 body { 
+   height: 100%;
    margin: 0; 
    font-family: Roboto, "Helvetica Neue", sans-serif; 
    font-size: x-small;

@@ -22,6 +22,7 @@ import { AlgorithmRegExComponent       } from './algorithm-reg-ex/algorithm-reg-
 import { AlgorithmSortComponent        } from './algorithm-sort/algorithm-sort.component';
 import { AlgorithmDijkstraComponent    } from './algorithm-dijkstra/algorithm-dijkstra.component';
 import { AngularTutorialsnWebComponent } from './angular-tutorialsn-web/angular-tutorialsn-web.component';
+import { AAboutWebComponent } from './a-about-web/a-about-web.component';
 //
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AngularTutorialsnWebComponent } from './angular-tutorialsn-web/angular-
     FilesGenerationPDFComponent,
     FilesGenerationZIPComponent,
     AngularTutorialsnWebComponent,
+    AAboutWebComponent,
   ],
   imports: [
     FormsModule,
@@ -62,7 +64,8 @@ import { AngularTutorialsnWebComponent } from './angular-tutorialsn-web/angular-
       {  path: 'FilesGenerationPDFComponent'      , component: FilesGenerationPDFComponent          },
       {  path: 'FilesGenerationZIPComponent'      , component: FilesGenerationZIPComponent          },         
       {  path: 'AngularTutorialsnWebComponent'    , component: AngularTutorialsnWebComponent        },
-    ]),
+      {  path: 'AAboutWebComponent'               , component: AAboutWebComponent                   },
+      ]),
   ], 
   providers: [],
   bootstrap: [AppComponent]
