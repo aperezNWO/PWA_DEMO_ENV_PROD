@@ -11,9 +11,13 @@ export class MCSDService {
     ////////////////////////////////////////////////////////////////  
     // CAMPOS
     ////////////////////////////////////////////////////////////////  
-    public prefix        : string = 'https://angulardemo.somee.com/';
-    //public prefix      : string = 'http://localhost:81/';
-    //public prefix        : string = 'https://mcsd.somee.com/';
+    public static get _prefix()   : string {
+      //public prefix      : string = 'http://localhost:81/';
+      //public prefix        : string = 'https://mcsd.somee.com/';
+      //
+      return 'https://angulardemo.somee.com/';
+    }
+    readonly prefix          : string = MCSDService._prefix;
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  

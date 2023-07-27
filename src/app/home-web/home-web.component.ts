@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { AppComponent         } from '../app.component';
 
 @Component({
   selector    : 'app-home-web',

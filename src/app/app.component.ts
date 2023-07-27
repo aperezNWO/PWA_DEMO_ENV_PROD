@@ -4,6 +4,7 @@ import { AlgorithmWebComponent         } from './algorithm-web/algorithm-web.com
 import { AngularTutorialsnWebComponent } from './angular-tutorialsn-web/angular-tutorialsn-web.component';
 import { FilesGenerationWebComponent   } from './files-generation-web/files-generation-web.component';
 import { AAboutWebComponent            } from './a-about-web/a-about-web.component';
+import { Router                        } from '@angular/router';
 //
 @Component({
   selector    : 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent {
     //
     title             : string = "[MCSD - CONSULTAS]"; 
     appName           : string = "[MCSD - CONSULTAS]";
-    appVersion        : string = '1.0.0.62';
+    appVersion        : string = '1.0.0.63';
     runtimeVersion    : string = VERSION.full;
     //
     readonly HomeWebComponent_pageTitle                   : string  = HomeWebComponent.PageTitle;
@@ -36,9 +37,13 @@ export class AppComponent {
         this.navbarCollapsed = p_navbarCollapsed;
     }
     //-----------------------------------------------------------------------------------------------------
-    constructor() {
+    constructor(router : Router) {
       //
-      console.log('AppComponent') ;
+      console.log(this.title + "- [INGRESO]") ;
+      //
+      debugger
+      //
+      router.navigateByUrl("/Home");
     }
     //-----------------------------------------------------------------------------------------------------
  }   
