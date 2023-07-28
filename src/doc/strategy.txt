@@ -119,5 +119,5 @@
 -- [_] read config file.
 -- [_] Print type script version.
 -- [_] menu collapse on page entry.
-
+-- [_] prevent dead links on angular.
 =====================================================================
