@@ -4,10 +4,12 @@ import { MatTableDataSource                            } from '@angular/material
 import { MatPaginator                                  } from '@angular/material/paginator';
 import { LogEntry,SearchCriteria                       } from '../log-info.model';
 import { MCSDService                                   } from '../mcsd.service';
+import { CustomErrorHandler                            } from '../app.module';
 import { Observable                                    } from 'rxjs';
 import { Chart, registerables                          } from 'chart.js';
 import   jsPDF                                           from 'jspdf';
 import   html2canvas                                     from 'html2canvas';
+
 //
 @Component({
   selector     : 'app-files-generation-xls',
@@ -98,7 +100,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
-    constructor(private mcsdService: MCSDService, private formBuilder: FormBuilder) {
+    constructor(private mcsdService: MCSDService, private formBuilder: FormBuilder, private customErrorHandler : CustomErrorHandler) {
       //
       Chart.register(...registerables);
       //

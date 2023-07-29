@@ -120,4 +120,5 @@
 -- [_] Print type script version.
 -- [_] menu collapse on page entry.
 -- [_] prevent dead links on angular.
+-- [_] cusotm error handling.
 =====================================================================

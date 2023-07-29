@@ -1,4 +1,4 @@
-import { NgModule                      } from '@angular/core';
+import { ErrorHandler, Injectable, Injector, NgModule                      } from '@angular/core';
 import { FormsModule                   } from '@angular/forms';
 import { MatListModule                 } from '@angular/material/list';
 import { MatTableModule                } from '@angular/material/table';
@@ -42,6 +42,44 @@ const routes = [
   {  path: '**'                    , component: AppComponent                          }, 
 ];
 //
+@Injectable({
+  providedIn: 'root'
+})
+export class CustomErrorHandler extends ErrorHandler {
+  constructor(private injector: Injector) {
+    super();
+  }
+
+  override handleError(error: any): void 
+  {
+    if (this.isBrokenLinkError(error)) 
+    {
+      debugger
+      //
+      console.log("HANDLING BROKEN LINK");
+
+      // Refresh the page when a broken link error occurs
+      window.location.reload();
+    }
+    else 
+    {
+      super.handleError(error);
+    }
+  }
+
+  private isBrokenLinkError(error: any): boolean {
+    // Customize this logic based on how you identify broken link errors.
+    // You might want to check the error status code, error message, or other properties.
+    // For example, you could check for a specific HTTP status code (e.g., 404).
+
+    //
+    console.log("BROKEN LINK");
+
+    //
+    return false;
+  }
+}
+//
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +111,18 @@ const routes = [
     RouterModule.forRoot( routes, { useHash: true }),
   ], 
   exports  : [RouterModule],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [
+                { provide: LocationStrategy   , useClass: HashLocationStrategy},
+                { provide: ErrorHandler       , useClass: CustomErrorHandler }
+             ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+//
+export class AppModule { 
+    //-----------------------------------------------------------------------------------------------------
+    constructor(private _customErrorHandler : CustomErrorHandler) {
+        //
+        console.log("AppModule");      
+    }  
+}
+
