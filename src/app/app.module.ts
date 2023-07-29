@@ -26,6 +26,22 @@ import { AlgorithmDijkstraComponent    } from './algorithm-dijkstra/algorithm-di
 import { AngularTutorialsnWebComponent } from './angular-tutorialsn-web/angular-tutorialsn-web.component';
 import { AAboutWebComponent            } from './a-about-web/a-about-web.component';
 //
+const routes = [
+  {  path: 'Home'                  , component: HomeWebComponent                      },
+  {  path: 'AlgorithmWeb'          , component: AlgorithmWebComponent                 },
+  {  path: 'AlgorithmRegEx'        , component: AlgorithmRegExComponent               },
+  {  path: 'AlgorithmSort'         , component: AlgorithmSortComponent                },
+  {  path: 'AlgorithmDijkstra'     , component: AlgorithmDijkstraComponent            },
+  {  path: 'FilesGenerationWeb'    , component: FilesGenerationWebComponent           },
+  {  path: 'FilesGenerationXLS'    , component: FilesGenerationXLSComponent           },
+  {  path: 'FilesGenerationCSV'    , component: FilesGenerationCSVComponent           },
+  {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
+  {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
+  {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent         },
+  {  path: 'AAboutWeb'             , component: AAboutWebComponent                    },
+  {  path: '**'                    , component: AppComponent                          }, 
+];
+//
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,21 +69,10 @@ import { AAboutWebComponent            } from './a-about-web/a-about-web.compone
     MatPaginatorModule,
     MatTabsModule,
     NgbModule,
-    RouterModule.forRoot([
-        {  path: 'Home'                  , component: HomeWebComponent                      },
-        {  path: 'AlgorithmWeb'          , component: AlgorithmWebComponent                 },
-        {  path: 'AlgorithmRegEx'        , component: AlgorithmRegExComponent               },
-        {  path: 'AlgorithmSort'         , component: AlgorithmSortComponent                },
-        {  path: 'AlgorithmDijkstra'     , component: AlgorithmDijkstraComponent            },
-        {  path: 'FilesGenerationWeb'    , component: FilesGenerationWebComponent           },
-        {  path: 'FilesGenerationXLS'    , component: FilesGenerationXLSComponent           },
-        {  path: 'FilesGenerationCSV'    , component: FilesGenerationCSVComponent           },
-        {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
-        {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
-        {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent         },
-        {  path: 'AAboutWeb'             , component: AAboutWebComponent                    },
-      ],{  useHash: true }),
+    RouterModule,
+    RouterModule.forRoot( routes, { useHash: true }),
   ], 
+  exports  : [RouterModule],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
