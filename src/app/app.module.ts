@@ -9,6 +9,8 @@ import { BrowserAnimationsModule       } from '@angular/platform-browser/animati
 import { ReactiveFormsModule           } from '@angular/forms';
 import { HttpClientModule              } from '@angular/common/http';
 import { RouterModule                  } from '@angular/router';
+import { HashLocationStrategy          } from '@angular/common';
+import { LocationStrategy              } from '@angular/common';
 import { NgbModule                     } from '@ng-bootstrap/ng-bootstrap'
 import { AppComponent                  } from './app.component';
 import { HomeWebComponent              } from './home-web/home-web.component';
@@ -22,7 +24,7 @@ import { AlgorithmRegExComponent       } from './algorithm-reg-ex/algorithm-reg-
 import { AlgorithmSortComponent        } from './algorithm-sort/algorithm-sort.component';
 import { AlgorithmDijkstraComponent    } from './algorithm-dijkstra/algorithm-dijkstra.component';
 import { AngularTutorialsnWebComponent } from './angular-tutorialsn-web/angular-tutorialsn-web.component';
-import { AAboutWebComponent } from './a-about-web/a-about-web.component';
+import { AAboutWebComponent            } from './a-about-web/a-about-web.component';
 //
 @NgModule({
   declarations: [
@@ -51,23 +53,22 @@ import { AAboutWebComponent } from './a-about-web/a-about-web.component';
     MatPaginatorModule,
     MatTabsModule,
     NgbModule,
-    RouterModule,    
     RouterModule.forRoot([
-      {  path: 'Home'                  , component: HomeWebComponent                      },
-      {  path: 'AlgorithmWeb'          , component: AlgorithmWebComponent                 },
-      {  path: 'AlgorithmRegEx'        , component: AlgorithmRegExComponent               },
-      {  path: 'AlgorithmSort'         , component: AlgorithmSortComponent                },
-      {  path: 'AlgorithmDijkstra'     , component: AlgorithmDijkstraComponent            },
-      {  path: 'FilesGenerationWeb'    , component: FilesGenerationWebComponent           },
-      {  path: 'FilesGenerationXLS'    , component: FilesGenerationXLSComponent           },
-      {  path: 'FilesGenerationCSV'    , component: FilesGenerationCSVComponent           },
-      {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
-      {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
-      {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent         },
-      {  path: 'AAboutWeb'             , component: AAboutWebComponent                    },
-      ]),
+        {  path: 'Home'                  , component: HomeWebComponent                      },
+        {  path: 'AlgorithmWeb'          , component: AlgorithmWebComponent                 },
+        {  path: 'AlgorithmRegEx'        , component: AlgorithmRegExComponent               },
+        {  path: 'AlgorithmSort'         , component: AlgorithmSortComponent                },
+        {  path: 'AlgorithmDijkstra'     , component: AlgorithmDijkstraComponent            },
+        {  path: 'FilesGenerationWeb'    , component: FilesGenerationWebComponent           },
+        {  path: 'FilesGenerationXLS'    , component: FilesGenerationXLSComponent           },
+        {  path: 'FilesGenerationCSV'    , component: FilesGenerationCSVComponent           },
+        {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
+        {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
+        {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent         },
+        {  path: 'AAboutWeb'             , component: AAboutWebComponent                    },
+      ],{  useHash: true }),
   ], 
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
