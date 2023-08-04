@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component          } from '@angular/core';
+import { CustomErrorHandler } from '../app.module';
 //
 @Component({
   selector: 'app-algorithm-web',
@@ -15,4 +16,9 @@ export class AlgorithmWebComponent {
   //
   readonly pageTitle : string =  AlgorithmWebComponent.PageTitle;
   //
+  constructor(private customErrorHandler : CustomErrorHandler)
+  {
+      //
+      console.log(AlgorithmWebComponent.PageTitle + " - [INGRESO]");
+  }
 }

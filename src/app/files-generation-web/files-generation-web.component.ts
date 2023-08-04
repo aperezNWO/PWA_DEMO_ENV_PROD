@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component          } from '@angular/core';
+import { CustomErrorHandler } from '../app.module';
 //
 @Component({
   selector: 'app-files-generation-web',
@@ -13,4 +14,10 @@ export class FilesGenerationWebComponent {
   }
   //
   readonly  pageTitle      : string = FilesGenerationWebComponent.PageTitle;
+  //
+  constructor(customErrorHandler : CustomErrorHandler)
+  {
+    //
+    console.log(this.pageTitle + " - [INGRESO]");
+  }
 }

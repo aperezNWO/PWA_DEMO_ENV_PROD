@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-
+import { Component          } from '@angular/core';
+import { CustomErrorHandler } from '../app.module';
+//
 @Component({
   selector: 'app-a-about-web',
   templateUrl: './a-about-web.component.html',
@@ -13,4 +14,10 @@ export class AAboutWebComponent {
   }
   //
   readonly pageTitle : string = AAboutWebComponent.PageTitle;
+  //
+  constructor(private customErrorHandler: CustomErrorHandler)
+  {
+      //
+      console.log(AAboutWebComponent + "- [INGRESO]");
+  }
 }

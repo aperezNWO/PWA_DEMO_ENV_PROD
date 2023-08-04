@@ -4,6 +4,7 @@ import { Observable                                  } from 'rxjs';
 import html2canvas                                     from 'html2canvas';
 import jsPDF                                           from 'jspdf';
 import { _vertexSize }                                 from '../log-info.model';
+import { CustomErrorHandler                          } from '../app.module';
 //
 @Component({
   selector       : 'app-algorithm-dijkstra',
@@ -46,9 +47,9 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   ////////////////////////////////////////////////////////////////
   // EVENT HANDLERS //////////////////////////////////////////////  
   ////////////////////////////////////////////////////////////////
-  constructor(public mcsdService: MCSDService)
+  constructor(public mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
   {
-    //
+     //
   }
   //
   ngOnInit(): void {

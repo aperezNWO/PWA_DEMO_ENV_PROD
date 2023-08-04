@@ -8,6 +8,7 @@ import jsPDF                                             from 'jspdf';
 import html2canvas                                       from 'html2canvas';
 import { PersonEntity                                  } from '../log-info.model';
 import { MCSDService                                   } from '../mcsd.service';
+import { CustomErrorHandler                            } from '../app.module';
 //
 @Component({
   selector: 'app-files-generation-csv',
@@ -49,7 +50,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
     //
-    constructor(private mcsdService: MCSDService, private formBuilder: FormBuilder) {
+    constructor(private mcsdService: MCSDService, private formBuilder: FormBuilder, private customErrorHandler : CustomErrorHandler) {
       //
       Chart.register(...registerables);
       //
@@ -63,7 +64,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
         //
         this.SetChart();
         //
-        console.log(FilesGenerationCSVComponent.PageTitle);
+        console.log(FilesGenerationCSVComponent.PageTitle + " - [INGRESO]");
     }
     //
     ngAfterViewInit():void {

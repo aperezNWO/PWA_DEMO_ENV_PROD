@@ -1,5 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
-
+import { Component            } from '@angular/core';
+import { CustomErrorHandler   } from '../app.module';
+import { throwError           } from "rxjs";
+//
 @Component({
   selector    : 'app-home-web',
   templateUrl : './home-web.component.html',
@@ -13,9 +15,10 @@ export class HomeWebComponent {
   //
   public readonly pageTitle        : string = HomeWebComponent.PageTitle;
   //
-  constructor()
+  constructor(customErrorHandler : CustomErrorHandler)
   {
       //
       console.log(HomeWebComponent.PageTitle + " - [INGRESO]") ;
+      //
   }
 }

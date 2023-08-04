@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MCSDService                                 } from '../mcsd.service';
 import { Observable                                  } from 'rxjs';
+import { CustomErrorHandler                          } from '../app.module';
 //
 @Component({
   selector: 'app-algorithm-reg-ex',
@@ -27,7 +28,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
     @ViewChild('textSearch')  textSearch  : any;
     @ViewChild('regExSearch') regExSearch : any;
     //
-    constructor(private mcsdService:MCSDService)
+    constructor(private mcsdService:MCSDService, private customErrorHandler : CustomErrorHandler)
     {
         //
     }

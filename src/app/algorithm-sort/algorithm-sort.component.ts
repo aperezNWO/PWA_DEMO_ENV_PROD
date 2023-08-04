@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MCSDService } from '../mcsd.service';
-import { Observable  } from 'rxjs';
+import { MCSDService                                 } from '../mcsd.service';
+import { Observable                                  } from 'rxjs';
+import { CustomErrorHandler                          } from '../app.module';
 //
 @Component({
   selector: 'app-algorithm-sort',
@@ -32,7 +33,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     private indexDraw           : number   = 0;
     private sortedArrayDecoded  : string   = "";
     //
-    constructor(public mcsdService: MCSDService)
+    constructor(public mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
     {
         //
     }

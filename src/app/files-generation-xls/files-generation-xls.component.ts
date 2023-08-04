@@ -108,7 +108,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     ngOnInit(): void {
         //
-        console.log(FilesGenerationXLSComponent.PageTitle);
+        console.log(this.pageTitle + "- [INGRESO]" );
         //
         this.rf_newSearch();
         this.td_newSearch();

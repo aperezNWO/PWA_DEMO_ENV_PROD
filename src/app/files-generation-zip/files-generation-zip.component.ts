@@ -2,6 +2,7 @@ import { Component, OnInit                   } from '@angular/core';
 import { HttpEventType, HttpResponse         } from '@angular/common/http';
 import { Observable                          } from 'rxjs';
 import { MCSDService                         } from '../mcsd.service';
+import { CustomErrorHandler                  } from '../app.module';
 //
 @Component({
   selector: 'app-files-generation-zip',
@@ -36,9 +37,9 @@ export class FilesGenerationZIPComponent {
   //--------------------------------------------------------------------------
   // EVENT HANDLERS / CONSTRUCTORS  
   //--------------------------------------------------------------------------
-  constructor(private mcsdService: MCSDService) {
+  constructor(private mcsdService: MCSDService, customErrorHandler: CustomErrorHandler) {
     //
-    console.log(FilesGenerationZIPComponent.PageTitle + " - [INGRESO]");
+    console.log(this.pageTitle + " - [INGRESO]");
   }
   //--------------------------------------------------------------------------
   // METODOS COMUNES

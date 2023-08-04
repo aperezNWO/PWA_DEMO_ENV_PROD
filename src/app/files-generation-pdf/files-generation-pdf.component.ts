@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
-import { MCSDService          } from '../mcsd.service';
-import { Observable           } from 'rxjs';
+import { Component, ViewChild        } from '@angular/core';
+import { MCSDService                 } from '../mcsd.service';
+import { CustomErrorHandler          } from '../app.module';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-files-generation-pdf',
@@ -28,7 +29,7 @@ export class FilesGenerationPDFComponent {
   ////////////////////////////////////////////////////////////////
   // EVENT HANDLERS
   ////////////////////////////////////////////////////////////////
-  constructor(private mcsdService: MCSDService)
+  constructor(private mcsdService: MCSDService, customErrorHandler : CustomErrorHandler)
   {
     //
     console.log(FilesGenerationPDFComponent.PageTitle + "- [INGRESO]");

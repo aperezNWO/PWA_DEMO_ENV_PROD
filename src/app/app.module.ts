@@ -45,39 +45,16 @@ const routes = [
 @Injectable({
   providedIn: 'root'
 })
-export class CustomErrorHandler extends ErrorHandler {
-  constructor(private injector: Injector) {
-    super();
-  }
-
-  override handleError(error: any): void 
-  {
-    if (this.isBrokenLinkError(error)) 
-    {
-      debugger
-      //
-      console.log("HANDLING BROKEN LINK");
-
-      // Refresh the page when a broken link error occurs
-      window.location.reload();
-    }
-    else 
-    {
-      super.handleError(error);
-    }
-  }
-
-  private isBrokenLinkError(error: any): boolean {
-    // Customize this logic based on how you identify broken link errors.
-    // You might want to check the error status code, error message, or other properties.
-    // For example, you could check for a specific HTTP status code (e.g., 404).
-
+//
+export class CustomErrorHandler implements ErrorHandler {
     //
-    console.log("BROKEN LINK");
-
+    constructor() { } 
     //
-    return false;
-  }
+    handleError(error: any): void 
+    { 
+      // 
+      console.warn("[CUSTOM ERROR HANDLING]:\n"); 
+    } 
 }
 //
 @NgModule({
