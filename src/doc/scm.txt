@@ -9,6 +9,9 @@
 /////////////////////////////////////////////////////////////////
 // SCM INFO
 /////////////////////////////////////////////////////////////////
+-- [x] disable chorome security.
+        -- [x] "C:\Program Files\Google\Chrome\Application\"
+        -- [x] chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
 
 -- [x] Set-ExecutionPolicy -Scope CurrentUser unrestricted
 

@@ -1,7 +1,6 @@
 =====================================================================
 -- STRATEGY
 =====================================================================
--- [_] put uix on separated hosting.
 -- [_] copiar de "angularspaeconsultalog.loginfoiview".
 -- [_] [COMPONENTS]
     -- [>] [GENERAR ARCHIVO]
@@ -15,113 +14,50 @@
         -- [_] [ALGORITMOS - ORDENAMIENTO]
         -- [_] [ALGORITMOS - EXPRESIONES REGULARES]
     -- [_] [TUTORIALES]
+    -- [_] TOPICS
+        -- [_] TYPESCRIPT.
+        -- [_] ANGULAR.
+        -- [_] IN THE REPLACE OF "TUTORIALS" / "MCSD CERT".
     -- [_] [HOME]
     -- [_] ANGULAR TOPICS.
         -- [_] TEMPLADE DRIVEN FORMS.
         -- [_] REACTIVE FORMS.
         -- [_] DYNAMIC FORMS. 
--- [_] disable chorome security.
-        -- [_] "C:\Program Files\Google\Chrome\Application\"
-        -- [_] chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
--- [_] implementar filtro de busqueda en WEBAPI remoto.
--- [_] https://mugan86.medium.com/exportar-pdfs-en-angular-con-jspdf-85c7a11a110f
--- [_] ERROR Error: Uncaught (in promise): Invalid element provided as first argument
+-- [x] implementar filtro de busqueda en WEBAPI remoto.
+-- [x] https://mugan86.medium.com/exportar-pdfs-en-angular-con-jspdf-85c7a11a110f
+-- [x] ERROR Error: Uncaught (in promise): Invalid element provided as first argument
     at resolvePromise (zone.js:1193:31)
 -- [x] Invalid argument passed to jsPDF.hpf.
--- [>] zip demo.
-
-        -- [_] download parsed html file.
-
-                        <form action="/Demos/_ZipDemo" enctype="multipart/form-data" method="post">            
-                                    <label for="UploadFileCtrl">Cargar Archivo a Comprimir:</label>
-                                    <!--<input type="file" name="UploadFileCtrl" id="UploadFileCtrl" />-->
-                                    <input type="file" name="postedFiles" multiple="">  
-                                    <br>
-                                    <input type="submit" value="[CARGAR ARCHIVO]">
-                                    <br>
-                                    <br>
-                                    <span> STATUS : []</span>
-                                    <br>
-                        </form>   
-
-                        <div>
-                            <input id="GetZIP" type="button" title="[OBTENER ZIP]" value="[OBTENER ZIP]"></input>
-                            <hr />
-                            <a href="#" id="DownloadFile">Descargar ZIP</a>
-                        </div>
-
-                        //
-                        $("#GetZIP").click(function ()
-                        {
-                            try {
-                                //
-                                _ShowProgressBar();
-                                //
-                                //var p_url = "SetZipAsync";
-                                let p_url   = "SetZip";
-                                //
-                                $.ajax({
-                                        url : p_url
-                                    ,method :'POST'
-                                })
-                                .done(function(msg) {
-                                    //
-                                    _HideProgressBar();
-                                    //
-                                    var filePath = DebugHostingContent(msg);
-                                    //
-                                    console.log("SET_ZIP_ASYNC. ZIP PATH : " + filePath);
-                                    //
-                                    $("#DownloadFile").attr("href", "javascript:void window.open('" + filePath + "');");
-                                    //
-                                    alert('SE GENERÓ CORRECTAMENTE EL ARCHIVO');
-                                    //
-                                }).fail(function(e) {
-                                    //
-                                    _HideProgressBar();
-                                    //
-                                    alert('ZIP ERROR : ' + e.statusText);
-                                    //
-                                    console.error(" error : " + e.statusText);
-                                });
-                            }
-                            catch (error)
-                            {
-                                //
-                                alert("ERROR EN ARCHIVO ZIP");
-                                //
-                                console.error(error);
-                            }
-                            //
-                        });
-
--- [_] list of sources and articles.
-
-        -- [_] file uplodad angular .net client core example.
-                -- [_] https://www.bezkoder.com/angular-15-file-upload/
+-- [x] zip demo.
+-- [x] default web page.
+-- [x] prevent dead links on angular.
+-- [x] list of sources and articles.
+-- [x] Print type script version.
+-- [x] CSV download link.
+-- [x] file uplodad angular .net client core example.
+                -- [x] https://www.bezkoder.com/angular-15-file-upload/
 -- [_] install bootstrap
-       -- [_]implement menu.
--- [_] DebugHostingContent as webapi.
--- [_] Editar lista de cumpleaños exnacato.
--- [_] Backend como webapi service.
--- [_] Turn off .net core uix.
--- [_] Bootstrap menu navigation (from .NET CORE).
--- [_] DebugHostingContent as global/cdn.
--- [_] CSV download link.
--- [_] Algorithm Service.
--- [_] TOPICS
-        -- [_] TYPESCRIPT.
-        -- [_] ANGULAR.
-        -- [_] IN THE REPLACE OF "TUTORIALS" / "MCSD CERT".
+        -- [_]implement menu.
+        -- [_] menu collapse on page entry.
+        -- [_] Bootstrap menu navigation (from .NET CORE).
+-- [_] architectural changes.
+    -- [_] Backend como webapi service.
+    -- [_] put uix on separated hosting.
+    -- [_] DebugHostingContent as webapi.
+    -- [_] DebugHostingContent as global/cdn.
+    -- [_] Turn off .net core uix.
+    -- [_] Algorithm Service.
 -- [_] scss.
 -- [_] oauth.
     -- [_] seccion comentarios.
--- [_] read config file.
+-- [_] configuration.
+    -- [_] read config file.
     -- [_] environments.
--- [_] Print type script version.
--- [_] menu collapse on page entry.
--- [_] prevent dead links on angular.
 -- [_] cusotm error handling.
--- [x] default web page.
+        -- [_] to interface.
+        -- [_] to log.
+-- [_] Editar lista de cumpleaños exnacato.
+-- [_] hosting.
+       -- [_] change somee.com account.
 
 =====================================================================
