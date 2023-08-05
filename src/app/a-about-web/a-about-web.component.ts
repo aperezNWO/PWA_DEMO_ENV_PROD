@@ -18,6 +18,6 @@ export class AAboutWebComponent {
   constructor(private customErrorHandler: CustomErrorHandler)
   {
       //
-      console.log(AAboutWebComponent + "- [INGRESO]");
+      console.log(this.pageTitle + "- [INGRESO]");
   }
 }

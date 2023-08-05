@@ -1,5 +1,6 @@
-import { Component            } from '@angular/core';
-import { CustomErrorHandler   } from '../app.module';
+import { Component               } from '@angular/core';
+import { CustomErrorHandler      } from '../app.module';
+import { Observable,  throwError } from 'rxjs';
 //
 @Component({
   selector   : 'app-angular-tutorialsn-web',
@@ -26,12 +27,8 @@ export class AngularTutorialsnWebComponent {
   TestError():void
   {
       //
-      debugger      
-      //
-      // @ts-ignore 
-      //test = test+1;    
-      //
-      let obs : Oberver<any> = throwError("[ERROR THROWN TEST]");
+      let obs! : Observable<any>;
+      obs      = throwError("[ERROR THROWN TEST]");
       //
       obs.subscribe(
         (        el: string) => {
@@ -42,6 +39,9 @@ export class AngularTutorialsnWebComponent {
         },
         () => console.log("Processing Complete")
       );
+      // CAUSAR ERROR
+      // @ts-ignore 
+      test = test+1;  
   }
 }
 
