@@ -2,7 +2,8 @@ import { Injectable                                      } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { LogEntry, SearchCriteria                        } from './log-info.model';
 import { Observable                                      } from 'rxjs';
-import { environment                                     } from 'src/environments/environment.development';
+import { environment                                     } from 'src/environments/environment';
+
 //
 @Injectable({
   providedIn: 'root'
