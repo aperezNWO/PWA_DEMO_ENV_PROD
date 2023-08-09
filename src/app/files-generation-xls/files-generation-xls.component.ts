@@ -496,7 +496,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       const statBackgroundColor : string[]          = [];
       // 
       let td_informeLogStat!                 : Observable<string>;
-      td_informeLogStat                      = this.mcsdService.getLogStatPOST();
+      td_informeLogStat                      = this.mcsdService.getLogStatGET();
       //
       const td_observer = {
         next: (td_logEntry: string)     => { 

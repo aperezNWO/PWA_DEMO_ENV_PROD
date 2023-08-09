@@ -48,6 +48,7 @@
     -- [_] Algorithm Service.
 -- [_] implementar filtro de busqueda en WEBAPI remoto.
         -- [_] cambiar invocacion de webapi a get (post genera CORS).
+        -- [_] https://mcsd.somee.com/demos/GetConsultaLogStatPost
 -- [_] scss.
 -- [_] Editar lista de cumpleaños exnacato.
     -- [_] oauth.

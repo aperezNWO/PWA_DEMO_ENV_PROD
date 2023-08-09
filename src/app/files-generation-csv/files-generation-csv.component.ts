@@ -112,7 +112,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
         console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV Link]");
         //
         let csv_link!                 : Observable<string>;
-        csv_link                      = this.mcsdService.getCSVLink();
+        csv_link                      = this.mcsdService.getCSVLinkGET();
         //
         const csv_link_observer = {
           next: (p_csv_link: string)          => { 

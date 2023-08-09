@@ -74,6 +74,24 @@ export class MCSDService {
     ////////////////////////////////////////////////////////////////  
     // METODOS - [GENERAR ARCHIVO CSV]
     ////////////////////////////////////////////////////////////////  
+    getCSVLinkGET(): Observable<string> {
+      //
+      let p_url    = this.prefix + 'demos/_GetCSVLinkJsonGET';
+      //
+      console.warn(" REQUESTING URL : " + p_url);
+      //
+      var HTTPOptions = {
+        headers: new HttpHeaders({
+          'Accept':'application/text'
+        }),
+        'responseType': 'text' as 'json'
+      };
+      //
+      let csvLink : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      //
+      return csvLink; 
+    }
+    //
     getCSVLink(): Observable<string> {
       //
       let p_url    = this.prefix + 'demos/_GetCSVLinkJson';
@@ -170,6 +188,22 @@ export class MCSDService {
       }; 
       //
       return this.http.post<string>(url,HTTPOptions);   
+    }    
+    //
+    getLogStatGET() {
+      //
+      let url    = `${this.prefix}demos/GetConsultaLogStatGet`;
+      //
+      console.warn(" REQUESTING URL : " + url);
+      //    
+      var HTTPOptions = {
+        headers: new HttpHeaders({
+              'Content-Type' : 'application/json'
+        })
+        ,'responseType' : 'text' as 'json'
+      }; 
+      //
+      return this.http.get<string>(url,HTTPOptions);   
     }     
     //-------------------------------------------------------------
     // FILE UPLODAD METHODS
