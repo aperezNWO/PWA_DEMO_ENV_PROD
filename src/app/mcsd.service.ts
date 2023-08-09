@@ -80,14 +80,7 @@ export class MCSDService {
       //
       console.warn(" REQUESTING URL : " + p_url);
       //
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-          'Accept':'application/text'
-        }),
-        'responseType': 'text' as 'json'
-      };
-      //
-      let csvLink : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      let csvLink : Observable<string> =  this.http.get<string>(p_url);
       //
       return csvLink; 
     }
