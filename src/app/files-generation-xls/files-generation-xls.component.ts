@@ -495,19 +495,17 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       const statData            : Number[]          = [];
       const statBackgroundColor : string[]          = [];
       // 
-      let td_informeLogStat!                 : Observable<string>;
+      let td_informeLogStat!                 : Observable<LogEntry[]>;
       td_informeLogStat                      = this.mcsdService.getLogStatGET();
       //
       const td_observer = {
-        next: (td_logEntry: string)     => { 
-          //
-          let jsondata     = JSON.parse(JSON.stringify(td_logEntry));
+        next: (jsondata: LogEntry[])     => { 
           //
           let recordNumber = jsondata.length;
           //
           console.log('ESTADISTICA - (return): ' + recordNumber);
           //
-          jsondata.forEach((element: JSON, index : number) => {
+          jsondata.forEach((element: LogEntry, index : number) => {
               //
               console.log(index + " " + JSON.stringify(element));
               //

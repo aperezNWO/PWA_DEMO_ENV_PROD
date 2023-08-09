@@ -195,15 +195,8 @@ export class MCSDService {
       let url    = `${this.prefix}demos/GetConsultaLogStatGet`;
       //
       console.warn(" REQUESTING URL : " + url);
-      //    
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-              'Content-Type' : 'application/json'
-        })
-        ,'responseType' : 'text' as 'json'
-      }; 
       //
-      return this.http.get<string>(url,HTTPOptions);   
+      return this.http.get<LogEntry[]>(url);   
     }     
     //-------------------------------------------------------------
     // FILE UPLODAD METHODS
