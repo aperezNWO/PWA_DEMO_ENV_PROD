@@ -18,7 +18,7 @@ export class AppComponent {
     //
     title             : string = "[MCSD - CONSULTAS]"; 
     appName           : string = "[MCSD - CONSULTAS]";
-    appVersion        : string = '1.0.0.71';
+    appVersion        : string = '1.0.0.72';
     runtimeVersion    : string = VERSION.full;
     //
     readonly HomeWebComponent_pageTitle                   : string  = HomeWebComponent.PageTitle;
@@ -26,7 +26,7 @@ export class AppComponent {
     readonly FilesGenerationWebComponent_pageTitle        : string  = FilesGenerationWebComponent.PageTitle;
     readonly AngularTutorialsnWebComponent_pageTitle      : string  = AngularTutorialsnWebComponent.PageTitle;
     readonly AAboutWebComponent_pageTitle                 : string  = AAboutWebComponent.PageTitle
-        //
+    //
     private  navbarCollapsed                              : boolean = true;
     //
     public get NavbarCollapsed() : boolean {

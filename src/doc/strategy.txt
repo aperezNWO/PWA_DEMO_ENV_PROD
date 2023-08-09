@@ -1,29 +1,28 @@
 =====================================================================
 -- STRATEGY
 =====================================================================
--- [_] copiar de "angularspaeconsultalog.loginfoiview".
--- [_] [COMPONENTS]
-    -- [>] [GENERAR ARCHIVO]
-        -- [>] [GENERAR ARCHIVO XLS]
+-- [x] copiar de "angularspaeconsultalog.loginfoiview".
+-- [x] [COMPONENTS]
+    -- [x] [GENERAR ARCHIVO]
+        -- [x] [GENERAR ARCHIVO XLS]
                 -- [>] TABS
-        -- [_] [GENERAR ARCHIVO ZIP]
-        -- [_] [GENERAR ARCHIVO PDF] 
-        -- [_] [GENERAR ARCHIVO CSV]
-    -- [_] [ALGORITMOS]
-        -- [_] [ALGORITMOS - DISTANCIA MAS CORTA]
-        -- [_] [ALGORITMOS - ORDENAMIENTO]
-        -- [_] [ALGORITMOS - EXPRESIONES REGULARES]
-    -- [_] [TUTORIALES]
-    -- [_] TOPICS
-        -- [_] TYPESCRIPT.
-        -- [_] ANGULAR.
-        -- [_] IN THE REPLACE OF "TUTORIALS" / "MCSD CERT".
-    -- [_] [HOME]
-    -- [_] ANGULAR TOPICS.
-        -- [_] TEMPLADE DRIVEN FORMS.
-        -- [_] REACTIVE FORMS.
-        -- [_] DYNAMIC FORMS. 
--- [x] implementar filtro de busqueda en WEBAPI remoto.
+        -- [x] [GENERAR ARCHIVO ZIP]
+        -- [x] [GENERAR ARCHIVO PDF] 
+        -- [x] [GENERAR ARCHIVO CSV]
+    -- [x] [ALGORITMOS]
+        -- [x] [ALGORITMOS - DISTANCIA MAS CORTA]
+        -- [x] [ALGORITMOS - ORDENAMIENTO]
+        -- [x] [ALGORITMOS - EXPRESIONES REGULARES]
+    -- [x] [TUTORIALES]
+        -- [x] IN THE REPLACE OF "TUTORIALS" / "MCSD CERT".
+    -- [x] TOPICS
+        -- [x] TYPESCRIPT.
+        -- [x] ANGULAR.
+    -- [x] [HOME]
+    -- [x] ANGULAR TOPICS.
+        -- [x] TEMPLADE DRIVEN FORMS.
+        -- [x] REACTIVE FORMS.
+        -- [x] DYNAMIC FORMS. 
 -- [x] https://mugan86.medium.com/exportar-pdfs-en-angular-con-jspdf-85c7a11a110f
 -- [x] ERROR Error: Uncaught (in promise): Invalid element provided as first argument
     at resolvePromise (zone.js:1193:31)
@@ -47,17 +46,20 @@
     -- [_] DebugHostingContent as global/cdn.
     -- [_] Turn off .net core uix.
     -- [_] Algorithm Service.
+-- [_] implementar filtro de busqueda en WEBAPI remoto.
+        -- [_] cambiar invocacion de webapi a get (post genera CORS).
 -- [_] scss.
--- [_] oauth.
+-- [_] Editar lista de cumpleaños exnacato.
+    -- [_] oauth.
     -- [_] seccion comentarios.
--- [_] configuration.
-    -- [_] read config file.
-    -- [_] environments.
+-- [_] hosting.
+       -- [_] change somee.com account.
 -- [_] cusotm error handling.
         -- [_] to interface.
         -- [_] to log.
--- [_] Editar lista de cumpleaños exnacato.
--- [_] hosting.
-       -- [_] change somee.com account.
+-- [_] configuration.
+    -- [_] https://angular.io/guide/build
+    -- [_] read config file.
+    -- [_] environments.
 
 =====================================================================

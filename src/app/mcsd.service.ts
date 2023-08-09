@@ -1,7 +1,8 @@
 import { Injectable                                      } from '@angular/core';
-import { LogEntry, SearchCriteria                        } from './log-info.model';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { LogEntry, SearchCriteria                        } from './log-info.model';
 import { Observable                                      } from 'rxjs';
+import { environment                                     } from 'src/environments/environment.development';
 //
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,8 @@ export class MCSDService {
     // CAMPOS
     ////////////////////////////////////////////////////////////////  
     public static get _prefix()   : string {
-      //public prefix      : string = 'http://localhost:81/';
-      //public prefix        : string = 'https://mcsd.somee.com/';
       //
-      return 'https://angulardemo.somee.com/';
+      return environment._prefix;
     }
     readonly prefix          : string = MCSDService._prefix;
     ////////////////////////////////////////////////////////////////  
