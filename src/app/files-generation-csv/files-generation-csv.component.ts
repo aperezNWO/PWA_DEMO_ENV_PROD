@@ -54,6 +54,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
       //
       Chart.register(...registerables);
       //
+      mcsdService.SetLog(this.pageTitle,"PAGE_CSV_ASYNC_DEMO");
     }
     //
     ngOnInit(): void {

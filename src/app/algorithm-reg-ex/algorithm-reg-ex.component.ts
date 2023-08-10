@@ -31,6 +31,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
     constructor(private mcsdService:MCSDService, private customErrorHandler : CustomErrorHandler)
     {
         //
+        mcsdService.SetLog(this.pageTitle,"PAGE_REGEX_DEMO");
     }
     //
     ngOnInit(): void {

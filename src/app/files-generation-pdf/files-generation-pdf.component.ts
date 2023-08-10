@@ -33,6 +33,8 @@ export class FilesGenerationPDFComponent {
   {
     //
     console.log(FilesGenerationPDFComponent.PageTitle + "- [INGRESO]");
+    //
+    mcsdService.SetLog(this.pageTitle,"PAGE_PDF_DEMO");
   }  
   //
   public onNewPdf()

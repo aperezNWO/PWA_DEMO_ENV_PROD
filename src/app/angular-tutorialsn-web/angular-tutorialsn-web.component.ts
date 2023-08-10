@@ -1,5 +1,6 @@
 import { Component               } from '@angular/core';
 import { CustomErrorHandler      } from '../app.module';
+import { MCSDService             } from '../mcsd.service';
 import { Observable,  throwError } from 'rxjs';
 //
 @Component({
@@ -17,11 +18,12 @@ export class AngularTutorialsnWebComponent {
   //
   readonly pageTitle : string = AngularTutorialsnWebComponent.PageTitle;
   //
-  constructor(private customErrorHandler : CustomErrorHandler)
+  constructor(private mcsdService : MCSDService, private customErrorHandler : CustomErrorHandler)
   {
       //
       console.log(AngularTutorialsnWebComponent.PageTitle + " - [INGRESO]") ;
       //
+      mcsdService.SetLog(this.pageTitle,"PAGE_TOPIC_INDEX");
   }
   //
   TestError():void

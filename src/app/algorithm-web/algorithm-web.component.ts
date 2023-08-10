@@ -1,5 +1,6 @@
 import { Component          } from '@angular/core';
 import { CustomErrorHandler } from '../app.module';
+import { MCSDService } from '../mcsd.service';
 //
 @Component({
   selector: 'app-algorithm-web',
@@ -16,9 +17,11 @@ export class AlgorithmWebComponent {
   //
   readonly pageTitle : string =  AlgorithmWebComponent.PageTitle;
   //
-  constructor(private customErrorHandler : CustomErrorHandler)
+  constructor(private mcsdService : MCSDService, private customErrorHandler : CustomErrorHandler)
   {
       //
       console.log(AlgorithmWebComponent.PageTitle + " - [INGRESO]");
+      //
+      mcsdService.SetLog(this.pageTitle,"PAGE_ALGORITHM_INDEX");
   }
 }

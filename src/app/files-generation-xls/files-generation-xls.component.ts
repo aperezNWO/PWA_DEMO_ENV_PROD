@@ -104,6 +104,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       Chart.register(...registerables);
       //
+      mcsdService.SetLog(this.pageTitle,"PAGE_ACCESS_LOG_DEMO");
     }
     //
     ngOnInit(): void {

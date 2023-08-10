@@ -24,7 +24,6 @@ export class FilesGenerationZIPComponent {
   //--------------------------------------------------------------------------
   // PROPIEDADES - FILE UPLOAD - FORM SUBMIT
   //--------------------------------------------------------------------------
-  public urlPost       : string='https://mcsd.somee.com/Demos/_ZipDemo';
   //
   //--------------------------------------------------------------------------
   // PROPIEDADES - FILE UPLOAD  - BYTESTREAM
@@ -40,6 +39,8 @@ export class FilesGenerationZIPComponent {
   constructor(private mcsdService: MCSDService, customErrorHandler: CustomErrorHandler) {
     //
     console.log(this.pageTitle + " - [INGRESO]");
+    //
+    mcsdService.SetLog(this.pageTitle,"PAGE_ZIP_DEMO");
   }
   //--------------------------------------------------------------------------
   // METODOS COMUNES

@@ -354,4 +354,44 @@ export class MCSDService {
       //
       return regExData; 
     }
+    ////////////////////////////////////////////////////////////////  
+    // METODOS - [LOG]
+    ////////////////////////////////////////////////////////////////  
+    //
+    public  SetLog(p_PageTitle : string ,p_logMsg : string):void
+    {
+      //
+      let logInfo!  : Observable<string>;
+      //
+      let p_url    = `${this.prefix}demos/_SetLog?p_logMsg=${p_logMsg}`;
+      //
+      let HTTPOptions = {
+        headers: new HttpHeaders({
+            'Content-Type' : 'application/text'
+        })
+        ,'responseType' : 'text' as 'json'
+      }; 
+      //
+      console.info(" REQUESTING URL : " + p_url);
+      //
+      logInfo       = this.http.get<string>(p_url,HTTPOptions);
+      //
+      const logInfoObserver   = {
+            //
+            next: (logResult: string)     => { 
+                  //
+                  console.warn(p_PageTitle +  ' - [LOG] - [RESULT] : ' + logResult);
+            },
+            error: (err: Error) => {
+                  //
+                  console.error(p_PageTitle + ' - [LOG] - [ERROR]  : ' + err);
+            },       
+            complete: ()        => {
+                  //
+                  console.info(p_PageTitle  + ' - [LOG] - [COMPLETE]');
+            },
+        };
+        //
+        logInfo.subscribe(logInfoObserver);
+    };
 }

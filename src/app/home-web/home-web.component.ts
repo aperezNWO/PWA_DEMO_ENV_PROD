@@ -1,6 +1,7 @@
 import { Component            } from '@angular/core';
 import { CustomErrorHandler   } from '../app.module';
 import { throwError           } from "rxjs";
+import { MCSDService } from '../mcsd.service';
 //
 @Component({
   selector    : 'app-home-web',
@@ -15,10 +16,11 @@ export class HomeWebComponent {
   //
   public readonly pageTitle        : string = HomeWebComponent.PageTitle;
   //
-  constructor(customErrorHandler : CustomErrorHandler)
+  constructor(mcsdService : MCSDService, customErrorHandler : CustomErrorHandler)
   {
       //
       console.log(HomeWebComponent.PageTitle + " - [INGRESO]") ;
       //
+      mcsdService.SetLog(this.pageTitle,"PAGE_ANGULAR_DEMO_INDEX");
   }
 }

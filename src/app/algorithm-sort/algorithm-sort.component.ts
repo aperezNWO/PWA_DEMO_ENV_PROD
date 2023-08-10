@@ -33,9 +33,10 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     private indexDraw           : number   = 0;
     private sortedArrayDecoded  : string   = "";
     //
-    constructor(public mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
+    constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
     {
         //
+        mcsdService.SetLog(this.pageTitle,"PAGE_SORT_BENCHAMRK_DEMO");
     }
     //
     ngOnInit(): void {

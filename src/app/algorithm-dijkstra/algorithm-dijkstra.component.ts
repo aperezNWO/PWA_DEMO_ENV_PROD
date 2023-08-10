@@ -50,6 +50,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   constructor(public mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
   {
      //
+     mcsdService.SetLog(this.pageTitle,"PAGE_DIJKSTRA_DEMO");
   }
   //
   ngOnInit(): void {
