@@ -121,7 +121,7 @@ export class FilesGenerationZIPComponent {
            //
            next: (p_zipFile: string) => { 
             //
-            let downloadLink_1 = (this.mcsdService.prefix + p_zipFile);
+            let downloadLink_1 = (this.mcsdService._prefix + p_zipFile);
             //
             while (downloadLink_1.indexOf("\"") > -1) 
                 downloadLink_1 = downloadLink_1.replace("\"", "");

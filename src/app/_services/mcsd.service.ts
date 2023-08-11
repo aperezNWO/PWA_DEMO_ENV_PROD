@@ -3,7 +3,7 @@ import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common
 import { LogEntry, SearchCriteria                        } from '../_models/log-info.model';
 import { Observable                                      } from 'rxjs';
 import { environment                                     } from 'src/environments/environment';
-
+import { ConfigService, SomeSharedService } from './config-service.service';
 //
 @Injectable({
   providedIn: 'root'
@@ -13,16 +13,18 @@ export class MCSDService {
     ////////////////////////////////////////////////////////////////  
     // CAMPOS
     ////////////////////////////////////////////////////////////////  
-    public static get _prefix()   : string {
+    //
+    public get _prefix()   : string | undefined {
       //
-      return environment._prefix;
+      debugger;
+      //            
+      return environment.baseUrl;
     }
-    readonly prefix          : string = MCSDService._prefix;
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  
     //
-    constructor(private http: HttpClient) { 
+    constructor(public http: HttpClient, public someSharedService : SomeSharedService) { 
         //
     }
     ////////////////////////////////////////////////////////////////  
@@ -76,7 +78,7 @@ export class MCSDService {
     ////////////////////////////////////////////////////////////////  
     getCSVLinkGET(): Observable<string> {
       //
-      let p_url    = this.prefix + 'demos/_GetCSVLinkJsonGET';
+      let p_url    = this._prefix + 'demos/_GetCSVLinkJsonGET';
       //
       console.warn(" REQUESTING URL : " + p_url);
       //
@@ -87,7 +89,7 @@ export class MCSDService {
     //
     getCSVLink(): Observable<string> {
       //
-      let p_url    = this.prefix + 'demos/_GetCSVLinkJson';
+      let p_url    = this._prefix + 'demos/_GetCSVLinkJson';
       //
       console.warn(" REQUESTING URL : " + p_url);
       //
@@ -105,7 +107,7 @@ export class MCSDService {
     //    
     getInformeRemotoCSV(): Observable<string> {
       //
-      let p_url    = this.prefix + 'demos/GenerarInformeCSVJson';
+      let p_url    = this._prefix + 'demos/GenerarInformeCSVJson';
       //
       console.warn(" REQUESTING URL : " + p_url);
       //
@@ -123,7 +125,7 @@ export class MCSDService {
     //
     getInformeRemotoCSV_STAT():Observable<string> {
           //
-          let p_url    = this.prefix + 'demos/GenerarInformeCSVJsonSTAT';
+          let p_url    = this._prefix + 'demos/GenerarInformeCSVJsonSTAT';
           //
           console.warn(" REQUESTING URL : " + p_url);
           //
@@ -144,7 +146,7 @@ export class MCSDService {
     //
     getLogRemoto(_searchCriteria : SearchCriteria) {
         //
-        let url    = this.prefix + 'demos/generarinformejson';
+        let url    = this._prefix + 'demos/generarinformejson';
         //
         console.warn(" REQUESTING URL : " + url);
         //    
@@ -153,7 +155,7 @@ export class MCSDService {
     //
     getInformeExcel(_searchCriteria : SearchCriteria){
         //
-        let p_url  = this.prefix + 'demos/generarinformexls';
+        let p_url  = this._prefix + 'demos/generarinformexls';
         //
         var HTTPOptions = {
           headers: new HttpHeaders({
@@ -169,7 +171,7 @@ export class MCSDService {
     //
     getLogStatPOST() {
       //
-      let url    = `${this.prefix}demos/GetConsultaLogStatPost`;
+      let url    = `${this._prefix}demos/GetConsultaLogStatPost`;
       //
       console.warn(" REQUESTING URL : " + url);
       //    
@@ -185,7 +187,7 @@ export class MCSDService {
     //
     getLogStatGET() {
       //
-      let url    = `${this.prefix}demos/GetConsultaLogStatGet`;
+      let url    = `${this._prefix}demos/GetConsultaLogStatGet`;
       //
       console.warn(" REQUESTING URL : " + url);
       //
@@ -200,7 +202,7 @@ export class MCSDService {
       //
       formData.append('file', file);
       //
-      let url    = `${this.prefix}demos/_ZipDemoGetFileName`;
+      let url    = `${this._prefix}demos/_ZipDemoGetFileName`;
       //
       console.log("[GENERATE ZIP FILE] - (UPLOADING FILE) url: " + url);
       //
@@ -216,7 +218,7 @@ export class MCSDService {
     //------------------------------------------------------------
     SetZip(p_fileName : string | undefined):Observable<string> {
         //
-        let p_url   = `${this.prefix}demos/_SetZip?p_fileName=${p_fileName}`;
+        let p_url   = `${this._prefix}demos/_SetZip?p_fileName=${p_fileName}`;
         //
         console.log("[GENERATE ZIP FILE] - [GETTING ZIP] - fileName: " + p_fileName);
         //
@@ -238,7 +240,7 @@ export class MCSDService {
     //------------------------------------------------------------
     public GetPDF(subjectName: string | undefined): Observable<HttpEvent<any>> {
         //
-        let p_url   = `${this.prefix}demos/_GetPdf?subjectName=${subjectName}`;
+        let p_url   = `${this._prefix}demos/_GetPdf?subjectName=${subjectName}`;
         //
         console.log("[GENERATE PDF FILE] - [GETTING ZIP] - subjectName  : " + subjectName);
         //
@@ -257,7 +259,7 @@ export class MCSDService {
     //    
     getRandomVertex(vertexSize : Number,sourcePoint : Number): Observable<string> {
       //
-      let p_url    = `${this.prefix}demos/GenerateRandomVertex?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
+      let p_url    = `${this._prefix}demos/GenerateRandomVertex?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
       //
       console.info(" REQUESTING URL : " + p_url);
       //
@@ -279,7 +281,7 @@ export class MCSDService {
     getNewSort():Observable<string>
     {
       //
-      let p_url    = `${this.prefix}demos/_NewSort`;
+      let p_url    = `${this._prefix}demos/_NewSort`;
       //
       console.info(" REQUESTING URL : " + p_url);
       //
@@ -298,7 +300,7 @@ export class MCSDService {
     getSort(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
     {
       //
-      let p_url    = `${this.prefix}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
+      let p_url    = `${this._prefix}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
       //
       console.info(" REQUESTING URL : " + p_url);
       //
@@ -320,7 +322,7 @@ export class MCSDService {
     _GetXmlData():Observable<string>
     {
       //
-      let p_url  : string  = `${this.prefix}demos/_GetXmlData`;
+      let p_url  : string  = `${this._prefix}demos/_GetXmlData`;
       //
       console.info(" REQUESTING URL : " + p_url);
       //
@@ -339,7 +341,7 @@ export class MCSDService {
     public _RegExEval(tagSearchIndex: number, textSearchValue: string): Observable<string>
     {
       //
-      let p_url    : string = `${this.prefix}demos/_RegExEval?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
+      let p_url    : string = `${this._prefix}demos/_RegExEval?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
       //
       console.info(" REQUESTING URL : " + p_url);
       //
@@ -361,9 +363,11 @@ export class MCSDService {
     public  SetLog(p_PageTitle : string ,p_logMsg : string):void
     {
       //
+      debugger;
+      //
       let logInfo!  : Observable<string>;
       //
-      let p_url    = `${this.prefix}demos/_SetLog?p_logMsg=${p_logMsg}`;
+      let p_url    = `${this._prefix}demos/_SetLog?p_logMsg=${p_logMsg}`;
       //
       let HTTPOptions = {
         headers: new HttpHeaders({

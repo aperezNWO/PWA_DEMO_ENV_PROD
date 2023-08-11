@@ -1,5 +1,5 @@
-export const environment = {
-     _prefix : 'https://angulardemo.somee.com/'
-    //public prefix        : string = 'http://localhost:81/';
-    //public prefix        : string = 'https://mcsd.somee.com/';
+export class environment {
+    //static baseUrl : string | undefined = 'https://angulardemo.somee.com/'
+    //static baseUrl       : string = 'http://localhost:81/';
+    static baseUrl         : string = 'https://mcsd.somee.com/';
 };

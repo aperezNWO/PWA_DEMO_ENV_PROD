@@ -118,7 +118,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
         const csv_link_observer = {
           next: (p_csv_link: string)          => { 
             //
-            let fileUrl        = this.mcsdService.prefix + p_csv_link;
+            let fileUrl        = this.mcsdService._prefix + p_csv_link;
             //
             let downloadLink_1 = fileUrl;
             //

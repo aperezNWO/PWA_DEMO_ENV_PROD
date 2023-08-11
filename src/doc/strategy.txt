@@ -54,6 +54,9 @@
         -- [_] [ALGORITMOS - EXPRESIONES REGULARES]
             -- [_] [ELIMINAR USO DE VARIABLE TEMPORAL EN .net core]
             -- [_] [ELIMINAR entrada log Getxml]
+    -- [_] [acarca de]
+        -- [_] [contacto]
+        -- [_] [comentarios]
 -- [_] scss.
 -- [_] Editar lista de cumpleaños exnacato.
     -- [_] oauth.
@@ -68,6 +71,8 @@
 -- [_] configuration.
     -- [_] https://angular.io/guide/build
     -- [_] read config file.
+           -- [_] https://stackoverflow.com/questions/36158848/how-can-i-declare-a-global-variable-in-angular-2-and-up-typescript
+           -- [x] https://tutswiki.com/read-write-config-files-in-angular/
     -- [_] environments.
         -- [_] LOCAL_IIS.
 -- [_] ANGULAR TOPICS.
