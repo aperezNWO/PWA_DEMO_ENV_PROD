@@ -1,11 +1,11 @@
 import { Component, VERSION            } from '@angular/core';
+import { Router                        } from '@angular/router';
+import { CustomErrorHandler            } from './app.module';
 import { HomeWebComponent              } from './home/home-web/home-web.component';
 import { AlgorithmWebComponent         } from './algorithm/algorithm-web/algorithm-web.component';
 import { AngularTutorialsnWebComponent } from './topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
 import { FilesGenerationWebComponent   } from './files-generation/files-generation-web/files-generation-web.component';
 import { AAboutWebComponent            } from './contact/a-about-web/a-about-web.component';
-import { Router                        } from '@angular/router';
-import { CustomErrorHandler            } from './app.module';
 //
 @Component({
   selector    : 'app-root',
