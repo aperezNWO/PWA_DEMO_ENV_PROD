@@ -14,15 +14,15 @@ import { LocationStrategy              } from '@angular/common';
 import { NgbModule                     } from '@ng-bootstrap/ng-bootstrap'
 import { AppComponent                  } from './app.component';
 import { HomeWebComponent              } from './home-web/home-web.component';
-import { FilesGenerationWebComponent   } from './files-generation-web/files-generation-web.component';
-import { FilesGenerationXLSComponent   } from './files-generation-xls/files-generation-xls.component';
-import { FilesGenerationCSVComponent   } from './files-generation-csv/files-generation-csv.component';
-import { FilesGenerationPDFComponent   } from './files-generation-pdf/files-generation-pdf.component';
-import { FilesGenerationZIPComponent   } from './files-generation-zip/files-generation-zip.component';
-import { AlgorithmWebComponent         } from './algorithm-web/algorithm-web.component';
-import { AlgorithmRegExComponent       } from './algorithm-reg-ex/algorithm-reg-ex.component';
-import { AlgorithmSortComponent        } from './algorithm-sort/algorithm-sort.component';
-import { AlgorithmDijkstraComponent    } from './algorithm-dijkstra/algorithm-dijkstra.component';
+import { FilesGenerationWebComponent   } from './files-generation/files-generation-web/files-generation-web.component';
+import { FilesGenerationXLSComponent   } from './files-generation/files-generation-xls/files-generation-xls.component';
+import { FilesGenerationCSVComponent   } from './files-generation/files-generation-csv/files-generation-csv.component';
+import { FilesGenerationPDFComponent   } from './files-generation/files-generation-pdf/files-generation-pdf.component';
+import { FilesGenerationZIPComponent   } from './files-generation/files-generation-zip/files-generation-zip.component';
+import { AlgorithmWebComponent         } from './_algorithm/algorithm-web/algorithm-web.component';
+import { AlgorithmRegExComponent       } from './_algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
+import { AlgorithmSortComponent        } from './_algorithm/algorithm-sort/algorithm-sort.component';
+import { AlgorithmDijkstraComponent    } from './_algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
 import { AngularTutorialsnWebComponent } from './angular-tutorialsn-web/angular-tutorialsn-web.component';
 import { AAboutWebComponent            } from './a-about-web/a-about-web.component';
 //

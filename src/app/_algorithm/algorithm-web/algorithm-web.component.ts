@@ -1,6 +1,6 @@
 import { Component          } from '@angular/core';
-import { CustomErrorHandler } from '../app.module';
-import { MCSDService } from '../mcsd.service';
+import { CustomErrorHandler } from '../../app.module';
+import { MCSDService } from '../../mcsd.service';
 //
 @Component({
   selector: 'app-algorithm-web',

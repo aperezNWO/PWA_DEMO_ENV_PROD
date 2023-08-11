@@ -42,9 +42,9 @@
     -- [_] DebugHostingContent as global/cdn.
     -- [_] Turn off .net core uix.
 -- [_] revisar UIX.
-    -- [x] [GENERAR ARCHIVO]
+    -- [_] [GENERAR ARCHIVO]
         -- [_] [GENERAR ARCHIVO XLS]
-                -- [_] .
+                -- [_] CORREGIR DATOS ESTADISTICAS.
         -- [_] [GENERAR ARCHIVO ZIP]
         -- [_] [GENERAR ARCHIVO PDF] 
         -- [_] [GENERAR ARCHIVO CSV]
@@ -57,17 +57,22 @@
 -- [_] scss.
 -- [_] Editar lista de cumpleaños exnacato.
     -- [_] oauth.
-    -- [_] seccion comentarios.
+-- [_] seccion comentarios.
+    -- [_] oauth.
 -- [_] hosting.
        -- [_] [mcsd/angulardemo/webapidemo] -> somee.com account contingency on web disabled.
-       -- [x] [mcsd]        -> github.com "mcsd_public".
+       -- [x] [mcsd]        --> github.com "mcsd_public".
 -- [_] cusotm error handling.
-        -- [_] to interface.
+        -- [_] to interface --> [standard label status].
         -- [_] to log.
 -- [_] configuration.
     -- [_] https://angular.io/guide/build
     -- [_] read config file.
     -- [_] environments.
         -- [_] LOCAL_IIS.
-
+-- [_] ANGULAR TOPICS.
+    -- [_] https://angular.io/docs
+        -- [_] MODULES.
+        -- [_] TOPIC_2.
+        -- [_] TOPIC_3.
 =====================================================================

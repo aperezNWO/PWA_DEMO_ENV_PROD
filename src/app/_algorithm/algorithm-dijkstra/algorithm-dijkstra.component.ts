@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MCSDService                                 } from '../mcsd.service';
+import { MCSDService                                 } from '../../mcsd.service';
 import { Observable                                  } from 'rxjs';
 import html2canvas                                     from 'html2canvas';
 import jsPDF                                           from 'jspdf';
-import { _vertexSize }                                 from '../log-info.model';
-import { CustomErrorHandler                          } from '../app.module';
+import { _vertexSize }                                 from '../../log-info.model';
+import { CustomErrorHandler                          } from '../../app.module';
 //
 @Component({
   selector       : 'app-algorithm-dijkstra',

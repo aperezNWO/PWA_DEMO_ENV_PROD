@@ -1,8 +1,8 @@
 import { Component, OnInit                   } from '@angular/core';
 import { HttpEventType, HttpResponse         } from '@angular/common/http';
 import { Observable                          } from 'rxjs';
-import { MCSDService                         } from '../mcsd.service';
-import { CustomErrorHandler                  } from '../app.module';
+import { MCSDService                         } from '../../mcsd.service';
+import { CustomErrorHandler                  } from '../../app.module';
 //
 @Component({
   selector: 'app-files-generation-zip',

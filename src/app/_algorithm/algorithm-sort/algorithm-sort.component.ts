@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MCSDService                                 } from '../mcsd.service';
+import { MCSDService                                 } from '../../mcsd.service';
 import { Observable                                  } from 'rxjs';
-import { CustomErrorHandler                          } from '../app.module';
+import { CustomErrorHandler                          } from '../../app.module';
 //
 @Component({
   selector: 'app-algorithm-sort',
