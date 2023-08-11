@@ -1,3 +1,3 @@
 export const environment = {
-    _prefix : 'https://angulardemo.somee.com/'
+    _prefix : 'https://mcsd.somee.com/'
 };
