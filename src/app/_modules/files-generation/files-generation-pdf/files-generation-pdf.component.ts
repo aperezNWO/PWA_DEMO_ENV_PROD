@@ -1,6 +1,6 @@
 import { Component, ViewChild        } from '@angular/core';
-import { MCSDService                 } from '../../_services/mcsd.service';
-import { CustomErrorHandler          } from '../../app.module';
+import { MCSDService                 } from '../../../_services/mcsd.service';
+import { CustomErrorHandler          } from '../../../app.module';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 
 

@@ -1,6 +1,6 @@
 import { Component          } from '@angular/core';
-import { MCSDService        } from '../../_services/mcsd.service';
-import { CustomErrorHandler } from '../../app.module';
+import { MCSDService        } from '../../../_services/mcsd.service';
+import { CustomErrorHandler } from '../../../app.module';
 //
 @Component({
   selector: 'app-files-generation-web',

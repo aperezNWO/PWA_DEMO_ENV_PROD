@@ -6,9 +6,9 @@ import { Observable                                    } from 'rxjs';
 import { Chart, registerables                          } from 'chart.js';
 import jsPDF                                             from 'jspdf';
 import html2canvas                                       from 'html2canvas';
-import { PersonEntity                                  } from '../../_models/log-info.model';
-import { MCSDService                                   } from '../../_services/mcsd.service';
-import { CustomErrorHandler                            } from '../../app.module';
+import { PersonEntity                                  } from '../../../_models/log-info.model';
+import { MCSDService                                   } from '../../../_services/mcsd.service';
+import { CustomErrorHandler                            } from '../../../app.module';
 //
 @Component({
   selector: 'app-files-generation-csv',

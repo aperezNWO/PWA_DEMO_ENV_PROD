@@ -13,18 +13,18 @@ import { HashLocationStrategy          } from '@angular/common';
 import { LocationStrategy              } from '@angular/common';
 import { NgbModule                     } from '@ng-bootstrap/ng-bootstrap'
 import { AppComponent                  } from './app.component';
-import { HomeWebComponent              } from './home/home-web/home-web.component';
-import { FilesGenerationWebComponent   } from './files-generation/files-generation-web/files-generation-web.component';
-import { FilesGenerationXLSComponent   } from './files-generation/files-generation-xls/files-generation-xls.component';
-import { FilesGenerationCSVComponent   } from './files-generation/files-generation-csv/files-generation-csv.component';
-import { FilesGenerationPDFComponent   } from './files-generation/files-generation-pdf/files-generation-pdf.component';
-import { FilesGenerationZIPComponent   } from './files-generation/files-generation-zip/files-generation-zip.component';
-import { AlgorithmWebComponent         } from './algorithm/algorithm-web/algorithm-web.component';
-import { AlgorithmRegExComponent       } from './algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
-import { AlgorithmSortComponent        } from './algorithm/algorithm-sort/algorithm-sort.component';
-import { AlgorithmDijkstraComponent    } from './algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
-import { AngularTutorialsnWebComponent } from './topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
-import { AAboutWebComponent            } from './contact/a-about-web/a-about-web.component';
+import { HomeWebComponent              } from './_modules/home/home-web/home-web.component';
+import { FilesGenerationWebComponent   } from './_modules/files-generation/files-generation-web/files-generation-web.component';
+import { FilesGenerationXLSComponent   } from './_modules/files-generation/files-generation-xls/files-generation-xls.component';
+import { FilesGenerationCSVComponent   } from './_modules/files-generation/files-generation-csv/files-generation-csv.component';
+import { FilesGenerationPDFComponent   } from './_modules/files-generation/files-generation-pdf/files-generation-pdf.component';
+import { FilesGenerationZIPComponent   } from './_modules/files-generation/files-generation-zip/files-generation-zip.component';
+import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-web/algorithm-web.component';
+import { AlgorithmRegExComponent       } from './_modules/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
+import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-sort/algorithm-sort.component';
+import { AlgorithmDijkstraComponent    } from './_modules/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
+import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
+import { AAboutWebComponent            } from './_modules/contact/a-about-web/a-about-web.component';
 //
 const routes = [
   {  path: 'Home'                  , component: HomeWebComponent                      },
@@ -42,6 +42,7 @@ const routes = [
   {  path: '**'                    , component: AppComponent                          }, 
 ];
 //
+
 @Injectable({
   providedIn: 'root'
 })
