@@ -1,6 +1,6 @@
 import { Component          } from '@angular/core';
-import { CustomErrorHandler } from '../app.module';
-import { MCSDService } from '../mcsd.service';
+import { CustomErrorHandler } from '../../app.module';
+import { MCSDService } from '../../_services/mcsd.service';
 //
 @Component({
   selector: 'app-a-about-web',

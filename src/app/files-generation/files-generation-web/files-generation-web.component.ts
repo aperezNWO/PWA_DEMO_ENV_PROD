@@ -1,5 +1,5 @@
 import { Component          } from '@angular/core';
-import { MCSDService        } from '../../mcsd.service';
+import { MCSDService        } from '../../_services/mcsd.service';
 import { CustomErrorHandler } from '../../app.module';
 //
 @Component({

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MCSDService                                 } from '../../mcsd.service';
+import { MCSDService                                 } from '../../_services/mcsd.service';
 import { Observable                                  } from 'rxjs';
 import { CustomErrorHandler                          } from '../../app.module';
 //

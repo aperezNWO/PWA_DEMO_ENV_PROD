@@ -1,7 +1,7 @@
 import { Component            } from '@angular/core';
-import { CustomErrorHandler   } from '../app.module';
+import { CustomErrorHandler   } from '../../app.module';
 import { throwError           } from "rxjs";
-import { MCSDService } from '../mcsd.service';
+import { MCSDService } from '../../_services/mcsd.service';
 //
 @Component({
   selector    : 'app-home-web',

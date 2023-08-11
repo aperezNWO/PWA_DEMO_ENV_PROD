@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MCSDService                                 } from '../../mcsd.service';
+import { MCSDService                                 } from '../../_services/mcsd.service';
 import { Observable                                  } from 'rxjs';
 import html2canvas                                     from 'html2canvas';
 import jsPDF                                           from 'jspdf';
-import { _vertexSize }                                 from '../../log-info.model';
+import { _vertexSize }                                 from '../../_models/log-info.model';
 import { CustomErrorHandler                          } from '../../app.module';
 //
 @Component({

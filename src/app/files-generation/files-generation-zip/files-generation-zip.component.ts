@@ -1,7 +1,7 @@
 import { Component, OnInit                   } from '@angular/core';
 import { HttpEventType, HttpResponse         } from '@angular/common/http';
 import { Observable                          } from 'rxjs';
-import { MCSDService                         } from '../../mcsd.service';
+import { MCSDService                         } from '../../_services/mcsd.service';
 import { CustomErrorHandler                  } from '../../app.module';
 //
 @Component({

@@ -6,8 +6,8 @@ import { Observable                                    } from 'rxjs';
 import { Chart, registerables                          } from 'chart.js';
 import jsPDF                                             from 'jspdf';
 import html2canvas                                       from 'html2canvas';
-import { PersonEntity                                  } from '../../log-info.model';
-import { MCSDService                                   } from '../../mcsd.service';
+import { PersonEntity                                  } from '../../_models/log-info.model';
+import { MCSDService                                   } from '../../_services/mcsd.service';
 import { CustomErrorHandler                            } from '../../app.module';
 //
 @Component({

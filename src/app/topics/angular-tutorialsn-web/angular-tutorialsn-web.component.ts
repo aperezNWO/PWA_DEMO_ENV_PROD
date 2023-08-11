@@ -1,6 +1,6 @@
 import { Component               } from '@angular/core';
-import { CustomErrorHandler      } from '../app.module';
-import { MCSDService             } from '../mcsd.service';
+import { CustomErrorHandler      } from '../../app.module';
+import { MCSDService             } from '../../_services/mcsd.service';
 import { Observable,  throwError } from 'rxjs';
 //
 @Component({
