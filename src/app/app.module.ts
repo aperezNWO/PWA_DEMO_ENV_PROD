@@ -144,9 +144,9 @@ function initialize(http: HttpClient, _config: ConfigService, someSharedService:
 //
 export class AppModule { 
     //-----------------------------------------------------------------------------------------------------
-    constructor(private _customErrorHandler : CustomErrorHandler, someSharedService: SomeSharedService) {
+    constructor(private http: HttpClient, private customErrorHandler : CustomErrorHandler, private someSharedService : SomeSharedService) 
+    {
         //
-        console.log("AppModule : globalVar : " + someSharedService.globalVar );      
-    } 
+    }
 }
 

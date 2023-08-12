@@ -1,4 +1,4 @@
-import { Injectable                                      } from '@angular/core';
+import { Injectable, OnInit                                      } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { LogEntry, SearchCriteria                        } from '../_models/log-info.model';
 import { Observable                                      } from 'rxjs';
@@ -9,23 +9,27 @@ import { ConfigService, SomeSharedService } from './config-service.service';
   providedIn: 'root'
 })
 //
-export class MCSDService {
+export class MCSDService implements OnInit {
     ////////////////////////////////////////////////////////////////  
     // CAMPOS
     ////////////////////////////////////////////////////////////////  
     //
     public get _prefix()   : string | undefined {
       //
-      debugger;
+      console.warn("AppModule : globalVar : " + this.someSharedService.globalVar );      
       //            
-      return environment.baseUrl;
+      //return environment.baseUrl;
+      return this.someSharedService.globalVar;
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  
     //
-    constructor(public http: HttpClient, public someSharedService : SomeSharedService) { 
-        //
+    ngOnInit(): void {
+      //
+    }
+    //
+    constructor(public http: HttpClient,public someSharedService : SomeSharedService) { 
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [COMUNES]
@@ -362,8 +366,6 @@ export class MCSDService {
     //
     public  SetLog(p_PageTitle : string ,p_logMsg : string):void
     {
-      //
-      debugger;
       //
       let logInfo!  : Observable<string>;
       //
