@@ -32,15 +32,16 @@
         -- [x] Bootstrap menu navigation (from .NET CORE).
         -- [_]implement menu.
         -- [_] menu collapse on page entry.
+        -- [_] scss.
 -- [_] architectural changes.
     -- [_] Backend como webapi service.
             -- [_] Algorithm Service.
             -- [_] CDN.
             -- [_] revisar error (post genera CORS).
     -- [_] put uix on separated hosting.
+    -- [_] Turn off .net core uix.
     -- [_] DebugHostingContent as webapi.
     -- [_] DebugHostingContent as global/cdn.
-    -- [_] Turn off .net core uix.
 -- [_] revisar UIX.
     -- [_] [GENERAR ARCHIVO]
         -- [_] [GENERAR ARCHIVO XLS]
@@ -48,6 +49,8 @@
         -- [_] [GENERAR ARCHIVO ZIP]
         -- [_] [GENERAR ARCHIVO PDF] 
         -- [_] [GENERAR ARCHIVO CSV]
+                    -- [_] Editar lista de cumpleaños exnacato.
+                    -- [_] oauth.
     -- [_] [ALGORITMOS]
         -- [_] [ALGORITMOS - DISTANCIA MAS CORTA]
         -- [_] [ALGORITMOS - ORDENAMIENTO]
@@ -56,12 +59,8 @@
             -- [_] [ELIMINAR entrada log Getxml]
     -- [_] [acarca de]
         -- [_] [contacto]
-        -- [_] [comentarios]
--- [_] scss.
--- [_] Editar lista de cumpleaños exnacato.
-    -- [_] oauth.
--- [_] seccion comentarios.
-    -- [_] oauth.
+        -- [_] seccion comentarios.
+            -- [_] oauth.
 -- [_] hosting.
        -- [_] [mcsd/angulardemo/webapidemo] -> somee.com account contingency on web disabled.
        -- [x] [mcsd]        --> github.com "mcsd_public".
@@ -69,9 +68,9 @@
         -- [_] to interface --> [standard label status].
         -- [_] to log.
 -- [_] configuration.
-    -- [_] https://angular.io/guide/build
-    -- [_] read config file.
-           -- [_] https://stackoverflow.com/questions/36158848/how-can-i-declare-a-global-variable-in-angular-2-and-up-typescript
+    -- [x] https://angular.io/guide/build
+    -- [x] read config file.
+           -- [x] https://stackoverflow.com/questions/36158848/how-can-i-declare-a-global-variable-in-angular-2-and-up-typescript
            -- [x] https://tutswiki.com/read-write-config-files-in-angular/
     -- [_] environments.
         -- [_] LOCAL_IIS.
