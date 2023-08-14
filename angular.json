@@ -47,7 +47,7 @@
               ],
               "outputHashing": "all"
             },
-            "development": {
+            "angulardemo": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -57,7 +57,7 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
+                  "with": "src/environments/environment.angulardemo.ts"
                 }
               ]
             },
@@ -68,9 +68,17 @@
                   "with": "src/environments/environment.IIS_LOCAL.ts"
                 }
               ]             
+            },
+            "mcsd": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.mcsd.ts"
+                }
+              ]             
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "mcsd"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -78,14 +86,17 @@
             "production": {
               "browserTarget": "AngularDijkstra:build:production"
             },
-            "development": {
-              "browserTarget": "AngularDijkstra:build:development"
+            "angulardemo": {
+              "browserTarget": "AngularDijkstra:build:angulardemo"
             },
             "IIS_LOCAL": {
               "browserTarget": "AngularDijkstra:build:IIS_LOCAL"
+            },
+            "mcsd": {
+              "browserTarget": "AngularDijkstra:build:mcsd"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "mcsd"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

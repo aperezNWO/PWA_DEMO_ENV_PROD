@@ -9,6 +9,7 @@ import { AAboutWebComponent            } from './_modules/contact/a-about-web/a-
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SomeSharedService, ConfigService } from './_services/config-service.service';
+import { environment } from 'src/environments/environment';
 //
 @Component({
   selector    : 'app-root',
@@ -21,7 +22,7 @@ export class AppComponent {
     //
     title             : string = "[MCSD - CONSULTAS]"; 
     appName           : string = "[MCSD - CONSULTAS]";
-    appVersion        : string = '1.0.0.76';
+    appVersion        : string = '1.0.0.77';
     runtimeVersion    : string = VERSION.full;
     //
     readonly HomeWebComponent_pageTitle                   : string  = HomeWebComponent.PageTitle;
@@ -45,6 +46,8 @@ export class AppComponent {
     constructor(private http : HttpClient, private router : Router, private _customErrorHandler : CustomErrorHandler) {
       //
       console.log(this.title + "- [INGRESO]") ;
+      //
+      console.log(this.title + "- [ENV_NAME] : " + environment.serviceName) ;      
       //
       router.navigateByUrl("/Home");
     }

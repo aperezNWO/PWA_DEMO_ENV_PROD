@@ -2,6 +2,6 @@ export class environment {
    //static baseUrl : string | undefined = 'https://angulardemo.somee.com/'
    //static baseUrl : string | undefined = 'http://localhost:81/';
    //static baseUrl : string | undefined = 'https://mcsd.somee.com/';
-   static baseUrl         : string | undefined   = '';
-   static serviceName     : string | undefined   = '[DEVELOPMENT]';
+   static baseUrl        : string | undefined   = 'https://mcsd.somee.com/';
+   static serviceName    : string | undefined   = '[mcsd]';
 };

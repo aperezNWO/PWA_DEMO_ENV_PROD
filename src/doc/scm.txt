@@ -26,6 +26,8 @@
   }
 }
 
+ng build
+
 ng build --configuration=IIS_LOCAL
 
 "serve": {
