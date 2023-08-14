@@ -58,6 +58,9 @@
             -- [_] [ELIMINAR USO DE VARIABLE TEMPORAL EN .net core]
             -- [_] [ELIMINAR entrada log Getxml]
     -- [_] [acarca de]
+        -- [_] [technical specs]
+        -- [_] [job search]  
+               -- [_] oauth.        
         -- [_] [contacto]
         -- [_] seccion comentarios.
             -- [_] oauth.
