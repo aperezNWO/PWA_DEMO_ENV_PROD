@@ -46,14 +46,17 @@
     -- [_] [GENERAR ARCHIVO]
         -- [_] [GENERAR ARCHIVO XLS]
                 -- [_] CORREGIR DATOS ESTADISTICAS.
+                -- [_] Referencia Template Driven/Reactive.
         -- [_] [GENERAR ARCHIVO ZIP]
         -- [_] [GENERAR ARCHIVO PDF] 
         -- [_] [GENERAR ARCHIVO CSV]
                     -- [_] Editar lista de cumpleaños exnacato.
                     -- [_] oauth.
+                    -- [_] Dynamic forms.
     -- [_] [ALGORITMOS]
+        -- [x] [ALGORITMOS - ORDENAMIENTO]
         -- [_] [ALGORITMOS - DISTANCIA MAS CORTA]
-        -- [_] [ALGORITMOS - ORDENAMIENTO]
+                    -- [_] Corregir uix.
         -- [_] [ALGORITMOS - EXPRESIONES REGULARES]
             -- [_] [ELIMINAR USO DE VARIABLE TEMPORAL EN .net core]
             -- [_] [ELIMINAR entrada log Getxml]

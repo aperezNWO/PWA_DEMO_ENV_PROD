@@ -11,6 +11,42 @@
 /////////////////////////////////////////////////////////////////
 // environments
 /////////////////////////////////////////////////////////////////
+-- [_] https://angular.io/guide/build
+-- [_] angular.json
+"configurations": {
+  "development": { … },
+  "production": { … },
+  "staging": {
+    "fileReplacements": [
+      {
+        "replace": "src/environments/environment.ts",
+        "with": "src/environments/environment.staging.ts"
+      }
+    ]
+  }
+}
+
+ng build --configuration=IIS_LOCAL
+
+"serve": {
+  "builder": "@angular-devkit/build-angular:dev-server",
+  "options": {
+    "browserTarget": "your-project-name:build"
+  },
+  "configurations": {
+    "development": {
+      "browserTarget": "your-project-name:build:development"
+    },
+    "production": {
+      "browserTarget": "your-project-name:build:production"
+    },
+    "staging": {
+      "browserTarget": "your-project-name:build:staging"
+    }
+  }
+},
+
+ng serve --configuration=IIS_LOCAL
 
 
 /////////////////////////////////////////////////////////////////
