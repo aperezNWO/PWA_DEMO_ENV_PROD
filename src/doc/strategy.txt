@@ -40,8 +40,8 @@
             -- [_] revisar error (post genera CORS).
     -- [_] put uix on separated hosting.
     -- [_] Turn off .net core uix.
-    -- [_] DebugHostingContent as webapi.
-    -- [_] DebugHostingContent as global/cdn.
+    -- [_] DebugHostingContent as webapi/global/cdn.
+    -- [_] backend version     as webapi/global/cdn.
 -- [_] revisar UIX.
     -- [_] [GENERAR ARCHIVO]
         -- [_] [GENERAR ARCHIVO XLS]
