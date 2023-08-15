@@ -54,6 +54,11 @@
     -- [_] Turn off .net core uix.
     -- [_] DebugHostingContent as webapi/global/cdn.
     -- [_] backend version     as webapi/global/cdn.
+    -- [_] OAUTH.
+        -- [_] Use provisional login.
+        -- [_] https://www.positronx.io/angular-facebook-oauth-social-login-tutorial/
+        -- [_] https://medium.com/@danilrabizo/google-authentication-in-the-angular-application-e86df69be58a
+        -- [_] https://learn.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-angular-auth-code
 -- [_] cusotm error handling.
         -- [_] to interface --> [standard label status].
         -- [_] to log.
@@ -83,10 +88,14 @@
             -- [_] [ELIMINAR USO DE VARIABLE TEMPORAL EN .net core]
             -- [_] [ELIMINAR entrada log Getxml]
     -- [_] [ACERCA DE]
+        -- [_] [contacto]
         -- [_] [technical specs]
         -- [_] [job search]  
             -- [_] oauth.        
-        -- [_] [contacto]
         -- [_] [seccion comentarios]
             -- [_] oauth.
+    -- [_] [LOGIN]            
+            -- [_] CUSTOM.
+            -- [_] oauth.
+            -- [_] DYNAMIC FORM.
 =====================================================================
