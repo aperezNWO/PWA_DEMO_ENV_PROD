@@ -55,7 +55,12 @@
     -- [_] DebugHostingContent as webapi/global/cdn.
     -- [_] backend version     as webapi/global/cdn.
     -- [_] OAUTH.
-        -- [_] Use provisional login.
+        -- [_] Use custom login.
+        -- [_] https://codingpotions.com/angular-login-sesion/
+        -- [_] https://auth0.com/docs/quickstart/spa/angular/01-login
+        -- [_] https://auth0.com/blog/complete-guide-to-angular-user-authentication/
+        -- [_] https://dev.to/ricardochl/angular-login-with-auth0-4d8l
+        -- [_] https://medium.com/@michaszala/2-authentication-guide-angular-14-simple-login-and-register-app-4d7c01a69546
         -- [_] https://www.positronx.io/angular-facebook-oauth-social-login-tutorial/
         -- [_] https://medium.com/@danilrabizo/google-authentication-in-the-angular-application-e86df69be58a
         -- [_] https://learn.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-angular-auth-code
