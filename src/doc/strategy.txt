@@ -33,13 +33,18 @@
     -- [x] read config file.
            -- [x] https://stackoverflow.com/questions/36158848/how-can-i-declare-a-global-variable-in-angular-2-and-up-typescript
            -- [x] https://tutswiki.com/read-write-config-files-in-angular/
--- [_] uix 
-        -- [x] install bootstrap.
-        -- [x] Bootstrap menu navigation (from .NET CORE).
-        -- [x] implement menu.
-        -- [_] check uix color/usability.
-        -- [_] menu collapse on page entry.
-        -- [_] scss.
+-- [_] ANGULAR TOPICS.
+    -- [_] https://angular.io/docs
+        -- [_] MODULES.
+        -- [_] @Input.
+        -- [_] TOPIC_1.        
+        -- [_] TOPIC_2.
+        -- [_] TOPIC_3.
+-- [_] hosting.
+       -- [x] [mcsd]        --> github.com "mcsd_public".
+       -- [x] environments.
+           -- [x] LOCAL_IIS.
+       -- [_] [mcsd/angulardemo/webapidemo] -> somee.com --> check disabled accounts.
 -- [_] architectural changes.
     -- [_] Backend como webapi service.
             -- [_] Algorithm Service.
@@ -49,7 +54,17 @@
     -- [_] Turn off .net core uix.
     -- [_] DebugHostingContent as webapi/global/cdn.
     -- [_] backend version     as webapi/global/cdn.
--- [_] revisar UIX.
+-- [_] cusotm error handling.
+        -- [_] to interface --> [standard label status].
+        -- [_] to log.
+-- [_] uix --> general.
+        -- [x] install bootstrap.
+        -- [x] Bootstrap menu navigation (from .NET CORE).
+        -- [x] implement menu.
+        -- [_] check uix color/usability.
+        -- [_] menu collapse on page entry.
+        -- [_] scss.
+-- [_] UIX --> check.
     -- [_] [GENERAR ARCHIVO]
         -- [_] [GENERAR ARCHIVO XLS]
                 -- [_] CORREGIR DATOS ESTADISTICAS.
@@ -74,19 +89,4 @@
         -- [_] [contacto]
         -- [_] seccion comentarios.
             -- [_] oauth.
--- [_] hosting.
-       -- [x] [mcsd]        --> github.com "mcsd_public".
-       -- [_] [mcsd/angulardemo/webapidemo] -> somee.com --> check disabled accounts.
-       -- [_] environments.
-           -- [_] LOCAL_IIS.
--- [_] cusotm error handling.
-        -- [_] to interface --> [standard label status].
-        -- [_] to log.
--- [_] ANGULAR TOPICS.
-    -- [_] https://angular.io/docs
-        -- [_] MODULES.
-        -- [_] @Input.
-        -- [_] TOPIC_1.        
-        -- [_] TOPIC_2.
-        -- [_] TOPIC_3.
 =====================================================================
