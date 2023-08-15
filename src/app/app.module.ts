@@ -25,10 +25,11 @@ import { AlgorithmRegExComponent       } from './_modules/algorithm/algorithm-re
 import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-sort/algorithm-sort.component';
 import { AlgorithmDijkstraComponent    } from './_modules/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
 import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
-import { AAboutWebComponent            } from './_modules/contact/a-about-web/a-about-web.component';
-import { ConfigService, SomeSharedService                 } from './_services/config-service.service';
-import { Observable                    } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { AAboutWebComponent            } from './_modules/about/a-about-web/a-about-web.component';
+import { ContactComponent              } from './_modules/about/contact/contact.component';
+import { ConfigService, SomeSharedService } from './_services/config-service.service';
+import { Observable                       } from 'rxjs';
+
 //
 const routes = [
   {  path: 'Home'                  , component: HomeWebComponent                      },
@@ -114,6 +115,7 @@ function initialize(http: HttpClient, _config: ConfigService, someSharedService:
     FilesGenerationZIPComponent,
     AngularTutorialsnWebComponent,
     AAboutWebComponent,
+    ContactComponent,
   ],
   imports: [
     FormsModule,
@@ -144,9 +146,10 @@ function initialize(http: HttpClient, _config: ConfigService, someSharedService:
 //
 export class AppModule { 
     //-----------------------------------------------------------------------------------------------------
-    constructor(private http: HttpClient, private customErrorHandler : CustomErrorHandler, private someSharedService : SomeSharedService) 
+    constructor(private customErrorHandler : CustomErrorHandler) 
     {
         //
+        console.log("AppModule");
     }
 }
 
