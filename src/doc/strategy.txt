@@ -28,9 +28,16 @@
                 -- [x] https://www.bezkoder.com/angular-15-file-upload/
 -- [x] log visit.
         -- [x] service methods.
--- [_] install bootstrap
+-- [x] configuration.
+    -- [x] https://angular.io/guide/build
+    -- [x] read config file.
+           -- [x] https://stackoverflow.com/questions/36158848/how-can-i-declare-a-global-variable-in-angular-2-and-up-typescript
+           -- [x] https://tutswiki.com/read-write-config-files-in-angular/
+-- [_] uix 
+        -- [x] install bootstrap.
         -- [x] Bootstrap menu navigation (from .NET CORE).
-        -- [_]implement menu.
+        -- [x] implement menu.
+        -- [_] check uix color/usability.
         -- [_] menu collapse on page entry.
         -- [_] scss.
 -- [_] architectural changes.
@@ -68,22 +75,18 @@
         -- [_] seccion comentarios.
             -- [_] oauth.
 -- [_] hosting.
-       -- [_] [mcsd/angulardemo/webapidemo] -> somee.com account contingency on web disabled.
        -- [x] [mcsd]        --> github.com "mcsd_public".
+       -- [_] [mcsd/angulardemo/webapidemo] -> somee.com --> check disabled accounts.
+       -- [_] environments.
+           -- [_] LOCAL_IIS.
 -- [_] cusotm error handling.
         -- [_] to interface --> [standard label status].
         -- [_] to log.
--- [_] configuration.
-    -- [x] https://angular.io/guide/build
-    -- [x] read config file.
-           -- [x] https://stackoverflow.com/questions/36158848/how-can-i-declare-a-global-variable-in-angular-2-and-up-typescript
-           -- [x] https://tutswiki.com/read-write-config-files-in-angular/
-    -- [_] environments.
-        -- [_] LOCAL_IIS.
 -- [_] ANGULAR TOPICS.
     -- [_] https://angular.io/docs
         -- [_] MODULES.
         -- [_] @Input.
+        -- [_] TOPIC_1.        
         -- [_] TOPIC_2.
         -- [_] TOPIC_3.
 =====================================================================
