@@ -30,6 +30,8 @@ ng build
 
 ng build --configuration=IIS_LOCAL
 
+ng build --configuration=mcsd
+
 "serve": {
   "builder": "@angular-devkit/build-angular:dev-server",
   "options": {
