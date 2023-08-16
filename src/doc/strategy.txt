@@ -56,6 +56,8 @@
     -- [_] backend version     as webapi/global/cdn.
     -- [_] OAUTH.
         -- [_] Use custom login.
+                  -- [_] DYNAMIC FORM.
+                  -- [_] DB MODEL.
         -- [_] https://codingpotions.com/angular-login-sesion/
         -- [_] https://auth0.com/docs/quickstart/spa/angular/01-login
         -- [_] https://auth0.com/blog/complete-guide-to-angular-user-authentication/
