@@ -18,8 +18,8 @@ export class MCSDService implements OnInit {
       //
       console.warn("AppModule : globalVar : " + this.someSharedService.globalVar );      
       //            
-      return environment.baseUrl;
-      //return this.someSharedService.globalVar;
+      // return environment.baseUrl;
+      return this.someSharedService.globalVar;
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
