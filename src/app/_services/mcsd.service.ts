@@ -1,9 +1,8 @@
-import { Injectable, OnInit                                      } from '@angular/core';
+import { Injectable, OnInit                              } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { LogEntry, SearchCriteria                        } from '../_models/log-info.model';
+import { SharedService                                   } from './shared.service';
 import { Observable                                      } from 'rxjs';
-import { environment                                     } from 'src/environments/environment';
-import { ConfigService, SomeSharedService } from './config-service.service';
 //
 @Injectable({
   providedIn: 'root'
@@ -16,10 +15,10 @@ export class MCSDService implements OnInit {
     //
     public get _prefix()   : string | undefined {
       //
-      console.warn("AppModule : globalVar : " + this.someSharedService.globalVar );      
+      console.warn("AppModule : globalVar : " + this.sharedService.globalVar );      
       //            
       // return environment.baseUrl;
-      return this.someSharedService.globalVar;
+      return this.sharedService.globalVar;
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
@@ -29,7 +28,7 @@ export class MCSDService implements OnInit {
       //
     }
     //
-    constructor(public http: HttpClient,public someSharedService : SomeSharedService) { 
+    constructor(public http: HttpClient,public sharedService : SharedService) { 
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [COMUNES]

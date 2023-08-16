@@ -1,9 +1,6 @@
 import { Component            } from '@angular/core';
 import { CustomErrorHandler   } from '../../../app.module';
-import { MCSDService } from '../../../_services/mcsd.service';
-import { ConfigService, SomeSharedService } from 'src/app/_services/config-service.service';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { MCSDService          } from '../../../_services/mcsd.service';
 //
 @Component({
   selector    : 'app-home-web',
@@ -23,6 +20,10 @@ export class HomeWebComponent {
       //
       console.log(HomeWebComponent.PageTitle + " - [INGRESO]") ;
       //
-      //mcsdService.SetLog(this.pageTitle,"PAGE_ANGULAR_DEMO_INDEX");
+      if (mcsdService._prefix != "")
+      {
+        //
+        mcsdService.SetLog(this.pageTitle,"PAGE_ANGULAR_DEMO_INDEX");
+      }
   }
 }

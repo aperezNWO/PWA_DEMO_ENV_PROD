@@ -24,14 +24,11 @@ import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-we
 import { AlgorithmRegExComponent       } from './_modules/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
 import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-sort/algorithm-sort.component';
 import { AlgorithmDijkstraComponent    } from './_modules/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
-import { TopicsModule                  } from './_modules/topics/topics.module';
 import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
-import { AboutModule                   } from './_modules/about/about.module';
 import { AAboutWebComponent            } from './_modules/about/a-about-web/a-about-web.component';
 import { ContactComponent              } from './_modules/about/contact/contact.component';
-import { ConfigService, SomeSharedService } from './_services/config-service.service';
-import { Observable                       } from 'rxjs';
-
+import { SharedService ,ConfigService  } from './_services/shared.service';
+import { Observable                    } from 'rxjs';
 //
 const routes = [
   {  path: 'Home'                  , component: HomeWebComponent                      },
@@ -65,7 +62,7 @@ export class CustomErrorHandler implements ErrorHandler {
     } 
 }
 //
-function initialize(http: HttpClient, _config: ConfigService, someSharedService: SomeSharedService): (() => Promise<boolean>) {
+function initialize(http: HttpClient, sharedService: SharedService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {
     return new Promise<boolean>((resolve: (a: boolean) => void): void => 
     {
@@ -82,9 +79,9 @@ function initialize(http: HttpClient, _config: ConfigService, someSharedService:
                       //
                       console.warn(' -  [CONFIG INFO] - [RESULT] : ' + configService.baseUrl);
                       //
-                      someSharedService.globalVar = configService.baseUrl;
+                      sharedService.globalVar = configService.baseUrl;
                       //
-                      console.warn(' -  [CONFIG INFO] - [RESULT] : ' + someSharedService.globalVar );
+                      console.warn(' -  [CONFIG INFO] - [RESULT] : ' + sharedService.globalVar );
                 },
                 error: (err: Error) => {
                       //
@@ -140,8 +137,8 @@ function initialize(http: HttpClient, _config: ConfigService, someSharedService:
                 { provide: ErrorHandler       , useClass   :  CustomErrorHandler       },
                 { provide: APP_INITIALIZER    , useFactory :  initialize, deps: [
                    HttpClient,
+                   SharedService, 
                    ConfigService,
-                   SomeSharedService 
                  ],multi: true   },
              ],
   bootstrap: [AppComponent]
