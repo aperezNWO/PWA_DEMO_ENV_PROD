@@ -24,7 +24,9 @@ import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-we
 import { AlgorithmRegExComponent       } from './_modules/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
 import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-sort/algorithm-sort.component';
 import { AlgorithmDijkstraComponent    } from './_modules/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
+import { TopicsModule                  } from './_modules/topics/topics.module';
 import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
+import { AboutModule                   } from './_modules/about/about.module';
 import { AAboutWebComponent            } from './_modules/about/a-about-web/a-about-web.component';
 import { ContactComponent              } from './_modules/about/contact/contact.component';
 import { ConfigService, SomeSharedService } from './_services/config-service.service';
@@ -42,9 +44,10 @@ const routes = [
   {  path: 'FilesGenerationCSV'    , component: FilesGenerationCSVComponent           },
   {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
   {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
-  {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent         },
-  {  path: 'AAboutWeb'             , component: AAboutWebComponent                    },
-  {  path: '**'                    , component: AppComponent                          }, 
+  {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent  },
+  {  path: 'AAboutWeb'             , component: AAboutWebComponent             },
+  {  path: 'Contact'               , component: ContactComponent               },
+  {  path: '**'                    , component: AppComponent                                             }, 
 ];
 //  
 @Injectable({
@@ -113,9 +116,9 @@ function initialize(http: HttpClient, _config: ConfigService, someSharedService:
     FilesGenerationCSVComponent,
     FilesGenerationPDFComponent,
     FilesGenerationZIPComponent,
-    AngularTutorialsnWebComponent,
     AAboutWebComponent,
     ContactComponent,
+    AngularTutorialsnWebComponent,
   ],
   imports: [
     FormsModule,

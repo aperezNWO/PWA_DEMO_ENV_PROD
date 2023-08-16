@@ -6,10 +6,8 @@ import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-we
 import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
 import { FilesGenerationWebComponent   } from './_modules/files-generation/files-generation-web/files-generation-web.component';
 import { AAboutWebComponent            } from './_modules/about/a-about-web/a-about-web.component';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { SomeSharedService, ConfigService } from './_services/config-service.service';
-import { environment } from 'src/environments/environment';
+import { HttpClient                    } from '@angular/common/http';
+import { environment                   } from 'src/environments/environment';
 //
 @Component({
   selector    : 'app-root',
@@ -22,7 +20,7 @@ export class AppComponent {
     //
     title             : string = "[MCSD - CONSULTAS]"; 
     appName           : string = "[MCSD - CONSULTAS]";
-    appVersion        : string = '1.0.0.78';
+    appVersion        : string = '1.0.0.79';
     runtimeVersion    : string = VERSION.full;
     //
     readonly HomeWebComponent_pageTitle                   : string  = HomeWebComponent.PageTitle;
