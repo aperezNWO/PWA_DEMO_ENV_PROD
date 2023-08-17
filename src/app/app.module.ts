@@ -41,10 +41,9 @@ const routes = [
   {  path: 'FilesGenerationCSV'    , component: FilesGenerationCSVComponent           },
   {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
   {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
-  {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent  },
-  {  path: 'AAboutWeb'             , component: AAboutWebComponent             },
-  {  path: 'Contact'               , component: ContactComponent               },
-  {  path: '**'                    , component: AppComponent                                             }, 
+  {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent         },
+  {  path: 'AAboutWeb'             , component: AAboutWebComponent                    },
+  {  path: 'Contact'               , component: ContactComponent                      },
 ];
 //  
 @Injectable({
