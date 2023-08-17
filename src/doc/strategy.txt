@@ -40,12 +40,9 @@
         -- [_] TOPIC_1.        
         -- [_] TOPIC_2.
         -- [_] TOPIC_3.
--- [_] hosting.
-       -- [x] [mcsd]        --> github.com "mcsd_public".
-       -- [x] environments.
-           -- [x] LOCAL_IIS.
-       -- [_] [mcsd/angulardemo/webapidemo] -> somee.com --> check disabled accounts.
 -- [_] architectural changes.
+    -- [_] paquete de idiomas/localizacion (en/us).
+           -- [_] angular i18n.
     -- [_] Backend como webapi service.
             -- [_] Algorithm Service.
             -- [_] CDN.
@@ -69,6 +66,7 @@
 -- [_] cusotm error handling.
         -- [_] to interface --> [standard label status].
         -- [_] to log.
+        -- [_] debug console messages.
 -- [_] uix --> general.
         -- [x] install bootstrap.
         -- [x] Bootstrap menu navigation (from .NET CORE).
@@ -79,6 +77,7 @@
 -- [_] UIX --> check.
     -- [_] [GENERAR ARCHIVO]
         -- [_] [GENERAR ARCHIVO XLS]
+                -- [_] corregir consulta y rango de fechas.
                 -- [_] CORREGIR DATOS ESTADISTICAS.
                 -- [_] Referencia Template Driven/Reactive.
         -- [_] [GENERAR ARCHIVO ZIP]
@@ -114,12 +113,16 @@
         -- [_] ANGULAR COMMUNITY
 -- [_] DIRECT EMAIL
         -- [_] JOB SEARCH MODULE
--- [_] TWITTER
--- [_] INSTAGRAM
--- [_] TIKTOK
+-- [_] TWITTER /
+-- [_] INSTAGRAM / TK.
 
 =====================================================================
 -- STRATEGY - SCM
 =====================================================================
--- [_] REDUCE FILE SIZE.
+-- [_] hosting.
+        -- [_] REDUCE FILE SIZE.
+        -- [x] [mcsd]        --> github.com "mcsd_public".
+        -- [x] environments.
+           -- [x] LOCAL_IIS.
+        -- [_] [mcsd/angulardemo/webapidemo] -> somee.com --> check disabled accounts.
 =====================================================================

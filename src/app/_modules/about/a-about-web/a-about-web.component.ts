@@ -21,6 +21,6 @@ export class AAboutWebComponent {
       //
       console.log(this.pageTitle + "- [INGRESO]");
       //
-      mcsdServiCe.SetLog(this.pageTitle,"PAGE_CONTACT");
+      mcsdServiCe.SetLog(this.pageTitle,"PAGE_ABOUT");
   }
 }

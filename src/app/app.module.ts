@@ -15,23 +15,26 @@ import { LocationStrategy              } from '@angular/common';
 import { NgbModule                     } from '@ng-bootstrap/ng-bootstrap'
 import { AppComponent                  } from './app.component';
 import { HomeWebComponent              } from './_modules/home/home-web/home-web.component';
+import { ContactComponent              } from './_modules/about/contact/contact.component';
+import { AAboutWebComponent            } from './_modules/about/a-about-web/a-about-web.component';
+import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
 import { FilesGenerationWebComponent   } from './_modules/files-generation/files-generation-web/files-generation-web.component';
 import { FilesGenerationXLSComponent   } from './_modules/files-generation/files-generation-xls/files-generation-xls.component';
 import { FilesGenerationCSVComponent   } from './_modules/files-generation/files-generation-csv/files-generation-csv.component';
 import { FilesGenerationPDFComponent   } from './_modules/files-generation/files-generation-pdf/files-generation-pdf.component';
 import { FilesGenerationZIPComponent   } from './_modules/files-generation/files-generation-zip/files-generation-zip.component';
+import { AlgorithmDijkstraComponent    } from './_modules/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
 import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-web/algorithm-web.component';
 import { AlgorithmRegExComponent       } from './_modules/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
 import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-sort/algorithm-sort.component';
-import { AlgorithmDijkstraComponent    } from './_modules/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
-import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
-import { AAboutWebComponent            } from './_modules/about/a-about-web/a-about-web.component';
-import { ContactComponent              } from './_modules/about/contact/contact.component';
 import { SharedService ,ConfigService  } from './_services/shared.service';
 import { Observable                    } from 'rxjs';
 //
 const routes = [
   {  path: 'Home'                  , component: HomeWebComponent                      },
+  {  path: 'Contact'               , component: ContactComponent                      },
+  {  path: 'AAboutWeb'             , component: AAboutWebComponent                    },
+  {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent         },
   {  path: 'AlgorithmWeb'          , component: AlgorithmWebComponent                 },
   {  path: 'AlgorithmRegEx'        , component: AlgorithmRegExComponent               },
   {  path: 'AlgorithmSort'         , component: AlgorithmSortComponent                },
@@ -41,9 +44,6 @@ const routes = [
   {  path: 'FilesGenerationCSV'    , component: FilesGenerationCSVComponent           },
   {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
   {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
-  {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent         },
-  {  path: 'AAboutWeb'             , component: AAboutWebComponent                    },
-  {  path: 'Contact'               , component: ContactComponent                      },
 ];
 //  
 @Injectable({
@@ -103,6 +103,9 @@ function initialize(http: HttpClient, sharedService: SharedService): (() => Prom
   declarations: [
     AppComponent,
     HomeWebComponent,  
+    ContactComponent,
+    AAboutWebComponent,
+    AngularTutorialsnWebComponent,
     AlgorithmWebComponent,
     AlgorithmRegExComponent,
     AlgorithmSortComponent,
@@ -112,9 +115,6 @@ function initialize(http: HttpClient, sharedService: SharedService): (() => Prom
     FilesGenerationCSVComponent,
     FilesGenerationPDFComponent,
     FilesGenerationZIPComponent,
-    AAboutWebComponent,
-    ContactComponent,
-    AngularTutorialsnWebComponent,
   ],
   imports: [
     FormsModule,
@@ -138,7 +138,7 @@ function initialize(http: HttpClient, sharedService: SharedService): (() => Prom
                    HttpClient,
                    SharedService, 
                    ConfigService,
-                 ],multi: true   },
+                 ], multi: true   },
              ],
   bootstrap: [AppComponent]
 })

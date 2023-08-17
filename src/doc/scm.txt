@@ -2,35 +2,49 @@
 // SCM STRATEGY
 /////////////////////////////////////////////////////////////////
 
--- [x] https://mcsd.somee.com
+-- [_] staring url:
 
--- [x] https://angulardemo.somee.com
+      -- [x] https://mcsd.somee.com
 
--- [x] http://webapidemo.somee.com
+      -- [x] https://angulardemo.somee.com
+
+      -- [x] http://webapidemo.somee.com
 
 /////////////////////////////////////////////////////////////////
 // environments
 /////////////////////////////////////////////////////////////////
+
 -- [_] https://angular.io/guide/build
+
+-- [_] env list
+        -- [_] serve       port 4200
+        -- [_] serve/build port 83
+        -- [_]       build mcsd
+        -- [_]       build angulardemo
+
+
 -- [_] angular.json
+
 "configurations": {
   "development": { … },
   "production": { … },
-  "staging": {
+  "<env_name>": {
     "fileReplacements": [
       {
         "replace": "src/environments/environment.ts",
-        "with": "src/environments/environment.staging.ts"
+        "with": "src/environments/environment.<env_name>.ts"
       }
     ]
   }
 }
 
-ng build --configuration=angulardemo
+-- [_] ng build
 
 ng build --configuration=IIS_LOCAL
 
 ng build --configuration=mcsd
+
+ng build --configuration=angulardemo
 
 "serve": {
   "builder": "@angular-devkit/build-angular:dev-server",
@@ -44,17 +58,39 @@ ng build --configuration=mcsd
     "production": {
       "browserTarget": "your-project-name:build:production"
     },
-    "staging": {
-      "browserTarget": "your-project-name:build:staging"
+    "<env_name>": {
+      "browserTarget": "your-project-name:build:<env_name>"
     }
   }
 },
 
+-- [_] ng serve
+
 ng serve --configuration=IIS_LOCAL
+
+ng serve --configuration=mcsd
+
+ng serve --configuration=angulardemo
+
+
+-- [_] config.json
+
+{
+    "baseUrl": "<ENV_URL>"
+}
+
+-- [_] environment.<ENV_NAME>.ts
+
+export class environment {
+   static baseUrl        : string | undefined   = '<ENV_URL>';
+   static serviceName    : string | undefined   = '<ENV_MAME>';
+};
+
 
 /////////////////////////////////////////////////////////////////
 // SCM INFO
 /////////////////////////////////////////////////////////////////
+
 -- [x] disable chorome security.
         -- [x] "C:\Program Files\Google\Chrome\Application\"
         -- [x] chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
@@ -103,3 +139,4 @@ ng serve --configuration=IIS_LOCAL
 ├── @angular/platform-browser-dynamic@16.1.2
 ├── @angular/platform-browser@16.1.2
 ├── @angular/router@16.1.2 
+
