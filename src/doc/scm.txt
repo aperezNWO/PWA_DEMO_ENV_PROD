@@ -11,6 +11,17 @@
       -- [x] http://webapidemo.somee.com
 
 /////////////////////////////////////////////////////////////////
+// VSTUDIO SETUP / BROWSER
+/////////////////////////////////////////////////////////////////
+
+-- [x] disable chorome security.
+        -- [x] "C:\Program Files\Google\Chrome\Application\"
+        -- [x] chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
+
+-- [x] VISUAL STUDIO POWER SHELL SETUP 
+        -- [_] Set-ExecutionPolicy -Scope CurrentUser unrestricted
+
+/////////////////////////////////////////////////////////////////
 // environments
 /////////////////////////////////////////////////////////////////
 
@@ -88,14 +99,8 @@ export class environment {
 
 
 /////////////////////////////////////////////////////////////////
-// SCM INFO
+// SCM PACKAGES
 /////////////////////////////////////////////////////////////////
-
--- [x] disable chorome security.
-        -- [x] "C:\Program Files\Google\Chrome\Application\"
-        -- [x] chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
-
--- [x] Set-ExecutionPolicy -Scope CurrentUser unrestricted
 
 -- [x] npm packages
 
@@ -140,3 +145,4 @@ export class environment {
 ├── @angular/platform-browser@16.1.2
 ├── @angular/router@16.1.2 
 
+/////////////////////////////////////////////////////////////////
