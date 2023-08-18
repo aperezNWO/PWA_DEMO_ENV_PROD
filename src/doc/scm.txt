@@ -10,6 +10,10 @@
 
       -- [x] http://webapidemo.somee.com
 
+      -- [x] https://angulardemo.somee.com/wwwroot/_angular/_angularMCSD/#/Home
+
+      -- [x] https://mcsd.somee.com/wwwroot/_angular/_angularMCSD/#/Home
+
 /////////////////////////////////////////////////////////////////
 // VSTUDIO SETUP / BROWSER
 /////////////////////////////////////////////////////////////////
