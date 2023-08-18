@@ -17,6 +17,7 @@ import { AppComponent                  } from './app.component';
 import { HomeWebComponent              } from './_modules/home/home-web/home-web.component';
 import { ContactComponent              } from './_modules/about/contact/contact.component';
 import { AAboutWebComponent            } from './_modules/about/a-about-web/a-about-web.component';
+import { TechnicalSpecsComponent       } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
 import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
 import { FilesGenerationWebComponent   } from './_modules/files-generation/files-generation-web/files-generation-web.component';
 import { FilesGenerationXLSComponent   } from './_modules/files-generation/files-generation-xls/files-generation-xls.component';
@@ -32,8 +33,9 @@ import { Observable                    } from 'rxjs';
 //
 const routes = [
   {  path: 'Home'                  , component: HomeWebComponent                      },
-  {  path: 'Contact'               , component: ContactComponent                      },
   {  path: 'AAboutWeb'             , component: AAboutWebComponent                    },
+  {  path: 'Contact'               , component: ContactComponent                      },
+  {  path: 'TechnicalSpecs'        , component: TechnicalSpecsComponent               },
   {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent         },
   {  path: 'AlgorithmWeb'          , component: AlgorithmWebComponent                 },
   {  path: 'AlgorithmRegEx'        , component: AlgorithmRegExComponent               },
@@ -57,7 +59,7 @@ export class CustomErrorHandler implements ErrorHandler {
     handleError(_error: any): void 
     { 
       // 
-      console.warn("[CUSTOM ERROR HANDLING]:\n"); 
+      console.warn("[CUSTOM ERROR HANDLING]:\n" + _error); 
     } 
 }
 //
@@ -115,6 +117,7 @@ function initialize(http: HttpClient, sharedService: SharedService): (() => Prom
     FilesGenerationCSVComponent,
     FilesGenerationPDFComponent,
     FilesGenerationZIPComponent,
+    TechnicalSpecsComponent,
   ],
   imports: [
     FormsModule,

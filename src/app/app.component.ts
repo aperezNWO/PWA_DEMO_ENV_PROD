@@ -17,17 +17,19 @@ import { environment                   } from 'src/environments/environment';
 
 //
 export class AppComponent {
-    //
-    title             : string = "[MCSD - CONSULTAS]"; 
-    appName           : string = "[MCSD - CONSULTAS]";
-    appVersion        : string = '1.0.0.81';
-    runtimeVersion    : string = VERSION.full;
-    //
-    readonly HomeWebComponent_pageTitle                   : string  = HomeWebComponent.PageTitle;
-    readonly AlgorithmWebComponent_pageTitle              : string  = AlgorithmWebComponent.PageTitle;
-    readonly FilesGenerationWebComponent_pageTitle        : string  = FilesGenerationWebComponent.PageTitle;
-    readonly AngularTutorialsnWebComponent_pageTitle      : string  = AngularTutorialsnWebComponent.PageTitle;
-    readonly AAboutWebComponent_pageTitle                 : string  = AAboutWebComponent.PageTitle
+    // miembros
+    public title                    : string = "[MCSD - CONSULTAS]"; 
+    // propiedades internas
+    public static appName           : string = "[MCSD - CONSULTAS]";
+    public static appVersion        : string = '1.0.0.81';
+    // propiedades publicas
+    public readonly _appName                                     : string  = AppComponent.appName;
+    public readonly _appVersion                                  : string  = AppComponent.appVersion;
+    public readonly HomeWebComponent_pageTitle                   : string  = HomeWebComponent.PageTitle;
+    public readonly AlgorithmWebComponent_pageTitle              : string  = AlgorithmWebComponent.PageTitle;
+    public readonly FilesGenerationWebComponent_pageTitle        : string  = FilesGenerationWebComponent.PageTitle;
+    public readonly AngularTutorialsnWebComponent_pageTitle      : string  = AngularTutorialsnWebComponent.PageTitle;
+    public readonly AAboutWebComponent_pageTitle                 : string  = AAboutWebComponent.PageTitle
     //
     private  navbarCollapsed                              : boolean = true;
     //
@@ -51,4 +53,7 @@ export class AppComponent {
     }
     //-----------------------------------------------------------------------------------------------------
  }   
+
+
+export { CustomErrorHandler };
 

@@ -9,4 +9,7 @@ import { ContactComponent              } from './contact/contact.component';
   ],
 })
 //
-export class AboutModule { }
+export class AboutModule {
+
+
+}

@@ -33,6 +33,9 @@
     -- [x] read config file.
            -- [x] https://stackoverflow.com/questions/36158848/how-can-i-declare-a-global-variable-in-angular-2-and-up-typescript
            -- [x] https://tutswiki.com/read-write-config-files-in-angular/
+
+-- [_] CHAT GTP.
+    -- [_]  https://www.businessinsider.es/chatgpt-codigos-impresionantes-prompts-debes-usar-expertos-1288236
 -- [_] ANGULAR TOPICS.
     -- [_] https://angular.io/docs
         -- [_] MODULES.
