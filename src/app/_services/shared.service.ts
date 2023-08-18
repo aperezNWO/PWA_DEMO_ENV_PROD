@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 //
 export class SharedService {
   //
-  public globalVar : string | undefined = '';
+  public baseUrl : string | undefined = '';
   //
   constructor() { }
 }
@@ -14,10 +14,10 @@ export class SharedService {
 @Injectable({
   providedIn: 'root'
 })
-//
+// estructura archivo "./assets/config.json"
 export class ConfigService {
   //
-  public baseUrl : string | undefined;
+  public baseUrl : string | undefined = '';
   //
   constructor() { }
 }

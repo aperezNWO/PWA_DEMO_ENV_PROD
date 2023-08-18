@@ -80,9 +80,9 @@ function initialize(http: HttpClient, sharedService: SharedService): (() => Prom
                       //
                       console.warn(' -  [CONFIG INFO] - [RESULT] : ' + configService.baseUrl);
                       //
-                      sharedService.globalVar = configService.baseUrl;
+                      sharedService.baseUrl = configService.baseUrl;
                       //
-                      console.warn(' -  [CONFIG INFO] - [RESULT] : ' + sharedService.globalVar );
+                      console.warn(' -  [CONFIG INFO] - [RESULT] : ' + sharedService.baseUrl );
                 },
                 error: (err: Error) => {
                       //

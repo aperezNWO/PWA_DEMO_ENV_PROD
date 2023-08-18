@@ -108,8 +108,22 @@
             -- [_] oauth.
             -- [_] DYNAMIC FORM.
 =====================================================================
+-- STRATEGY - SCM
+=====================================================================
+-- [_] hosting.
+        -- [_] REDUCE FILE SIZE.
+        -- [x] [mcsd]        --> github.com "mcsd_public".
+        -- [x] environments.
+           -- [x] LOCAL_IIS.
+        -- [_] [mcsd/angulardemo/webapidemo] -> somee.com --> check disabled accounts.
+
+=====================================================================
 -- STRATEGY - DIFUSION
 =====================================================================
+-- [_] FREELANCE WEB SITES
+                -- [_] WORKANA.
+                -- [_] FIVERR.
+                -- [_] UPWORK.
 -- [_] LINKEDIN
 -- [_] facebook
         -- [_] .NET COMMUNITY
@@ -119,13 +133,4 @@
 -- [_] TWITTER /
 -- [_] INSTAGRAM / TK.
 
-=====================================================================
--- STRATEGY - SCM
-=====================================================================
--- [_] hosting.
-        -- [_] REDUCE FILE SIZE.
-        -- [x] [mcsd]        --> github.com "mcsd_public".
-        -- [x] environments.
-           -- [x] LOCAL_IIS.
-        -- [_] [mcsd/angulardemo/webapidemo] -> somee.com --> check disabled accounts.
 =====================================================================

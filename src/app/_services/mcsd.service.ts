@@ -15,10 +15,10 @@ export class MCSDService implements OnInit {
     //
     public get _prefix()   : string | undefined {
       //
-      console.warn("AppModule : globalVar : " + this.sharedService.globalVar );      
+      console.warn("AppModule : BaseUrl : " + this.sharedService.baseUrl );      
       //            
       // return environment.baseUrl;
-      return this.sharedService.globalVar;
+      return this.sharedService.baseUrl;
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
