@@ -110,15 +110,21 @@
             -- [_] DYNAMIC FORM.
     -- [_] Remove SharedService.
 =====================================================================
--- STRATEGY - SCM
+-- SCM - HOSTING
 =====================================================================
--- [_] hosting.
-        -- [_] REDUCE FILE SIZE.
-        -- [x] [mcsd]        --> github.com "mcsd_public".
         -- [x] environments.
-           -- [x] LOCAL_IIS.
-        -- [_] [mcsd/angulardemo/webapidemo] -> somee.com --> check disabled accounts.
-
+               -- [x] LOCAL_IIS.
+        -- [_] REDUCE FILE SIZE.
+               -- [x] BACKUP /DELETE BOOK "DELORME".
+        -- [x] SOURCE github.com        
+               -- [_] PUBLIC.                        
+                  -- [x] [mcsd]         -->  "mcsd_public".
+                  -- [x] [AngularMCSD]  -->  "AngularMCSD_public".
+        -- [_] HOSTING  
+               -- [_] [somee.com]
+                  -- [_] [mcsd/angulardemo/webapidemo]
+                  -- [_] check disabled accounts.
+                  -- [_] check unused accounts.
 =====================================================================
 -- STRATEGY - DIFUSION
 =====================================================================
