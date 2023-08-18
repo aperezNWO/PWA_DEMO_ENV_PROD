@@ -369,16 +369,16 @@ export class MCSDService implements OnInit {
       //
       let p_url    = `${this._prefix}demos/_SetLog?p_logMsg=${p_logMsg}`;
       //
-      let HTTPOptions = {
-        headers: new HttpHeaders({
-            'Content-Type' : 'application/text'
-        })
-        ,'responseType' : 'text' as 'json'
-      }; 
-      //
       console.info(" REQUESTING URL : " + p_url);
       //
-      logInfo       = this.http.get<string>(p_url,HTTPOptions);
+      var HTTPOptions = {
+        headers: new HttpHeaders({
+          'Accept':'application/text'
+        }),
+        'responseType': 'text' as 'json'
+      };
+      //
+      logInfo       = this.http.get<string>(p_url, HTTPOptions);
       //
       const logInfoObserver   = {
             //
