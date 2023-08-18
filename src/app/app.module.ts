@@ -28,7 +28,7 @@ import { AlgorithmDijkstraComponent    } from './_modules/algorithm/algorithm-di
 import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-web/algorithm-web.component';
 import { AlgorithmRegExComponent       } from './_modules/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
 import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-sort/algorithm-sort.component';
-import { SharedService ,ConfigService  } from './_services/shared.service';
+import { ConfigService                 } from './_services/config.service';
 import { Observable                    } from 'rxjs';
 //
 const routes = [
@@ -63,7 +63,7 @@ export class CustomErrorHandler implements ErrorHandler {
     } 
 }
 //
-function initialize(http: HttpClient, sharedService: SharedService): (() => Promise<boolean>) {
+function initialize(http: HttpClient, globalConfigService: ConfigService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {
     return new Promise<boolean>((resolve: (a: boolean) => void): void => 
     {
@@ -76,21 +76,21 @@ function initialize(http: HttpClient, sharedService: SharedService): (() => Prom
           //
           const configInfoObserver   = {
                 //
-                next: (configService: ConfigService)     => { 
+                next: (localConfigService: ConfigService)     => { 
                       //
-                      console.warn(' -  [CONFIG INFO] - [RESULT] : ' + configService.baseUrl);
+                      console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + localConfigService.baseUrl);
                       //
-                      sharedService.baseUrl = configService.baseUrl;
+                      globalConfigService.baseUrl = localConfigService.baseUrl;
                       //
-                      console.warn(' -  [CONFIG INFO] - [RESULT] : ' + sharedService.baseUrl );
+                      console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + globalConfigService.baseUrl );
                 },
                 error: (err: Error) => {
                       //
-                      console.error(' - [CONFIG INFO] - [ERROR]  : ' + err);
+                      console.error('[AppModule] - [CONFIG_SERVICE] - [ERROR]  : ' + err);
                 },       
                 complete: ()        => {
                       //
-                      console.info(' -  [CONFIG INFO] - [COMPLETE]');
+                      console.info('[AppModule] -  [CONFIG INFO] - [COMPLETE]');
                 },
           };
           //
@@ -137,9 +137,9 @@ function initialize(http: HttpClient, sharedService: SharedService): (() => Prom
   providers: [
                 { provide: LocationStrategy   , useClass   :  HashLocationStrategy     },
                 { provide: ErrorHandler       , useClass   :  CustomErrorHandler       },
-                { provide: APP_INITIALIZER    , useFactory :  initialize, deps: [
+                { provide: APP_INITIALIZER    , useFactory :  initialize, deps:
+                 [
                    HttpClient,
-                   SharedService, 
                    ConfigService,
                  ], multi: true   },
              ],
@@ -151,7 +151,7 @@ export class AppModule {
     constructor(private customErrorHandler : CustomErrorHandler) 
     {
         //
-        console.log("AppModule");
+        console.log("[AppModule]");
     }
 }
 

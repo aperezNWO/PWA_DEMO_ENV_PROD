@@ -1,7 +1,7 @@
 import { Injectable, OnInit                              } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { LogEntry, SearchCriteria                        } from '../_models/log-info.model';
-import { SharedService                                   } from './shared.service';
+import { ConfigService                                   } from './config.service';
 import { Observable                                      } from 'rxjs';
 //
 @Injectable({
@@ -15,10 +15,9 @@ export class MCSDService implements OnInit {
     //
     public get _prefix()   : string | undefined {
       //
-      console.warn("AppModule : BaseUrl : " + this.sharedService.baseUrl );      
+      console.warn("[CONFIG_SERVICE] : BaseUrl : " + this.configService.baseUrl );      
       //            
-      // return environment.baseUrl;
-      return this.sharedService.baseUrl;
+      return this.configService.baseUrl;
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
@@ -28,7 +27,7 @@ export class MCSDService implements OnInit {
       //
     }
     //
-    constructor(public http: HttpClient,public sharedService : SharedService) { 
+    constructor(public http: HttpClient,public configService : ConfigService) { 
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [COMUNES]
