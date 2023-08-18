@@ -52,7 +52,9 @@
             -- [_] Algorithm Service.
             -- [_] CDN.
             -- [_] revisar error (post genera CORS).
-    -- [_] put uix on separated hosting.
+    -- [_] Service Project.
+            -- [_] put uix on separated hosting.
+            -- [_] Swagger.            
     -- [_] Turn off .net core uix.
     -- [_] DebugHostingContent as webapi/global/cdn.
     -- [_] backend version     as webapi/global/cdn.

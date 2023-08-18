@@ -20,7 +20,7 @@ export class AppComponent {
     public title                    : string = "[MCSD - CONSULTAS]"; 
     // propiedades internas
     public static appName           : string = "[MCSD - CONSULTAS]";
-    public static appVersion        : string = '1.0.0.82';
+    public static appVersion        : string = '1.0.0.83';
     // propiedades publicas
     public readonly _appName                                     : string  = AppComponent.appName;
     public readonly _appVersion                                  : string  = AppComponent.appVersion;
