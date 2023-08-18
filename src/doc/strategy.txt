@@ -28,6 +28,7 @@
                 -- [x] https://www.bezkoder.com/angular-15-file-upload/
 -- [x] log visit.
         -- [x] service methods.
+        -- [x] Remove SharedService.        
 -- [x] configuration.
     -- [x] https://angular.io/guide/build
     -- [x] read config file.
@@ -40,6 +41,7 @@
     -- [_] https://angular.io/docs
         -- [_] MODULES.
         -- [_] @Input.
+        -- [_] i18n.
         -- [_] TOPIC_1.        
         -- [_] TOPIC_2.
         -- [_] TOPIC_3.
@@ -108,7 +110,6 @@
             -- [_] CUSTOM.
             -- [_] oauth.
             -- [_] DYNAMIC FORM.
-    -- [_] Remove SharedService.
 =====================================================================
 -- SCM - HOSTING
 =====================================================================
@@ -129,6 +130,7 @@
 =====================================================================
 -- STRATEGY - DIFUSION
 =====================================================================
+
 -- [_] FREELANCE WEB SITES
                 -- [_] WORKANA.
                 -- [_] FIVERR.

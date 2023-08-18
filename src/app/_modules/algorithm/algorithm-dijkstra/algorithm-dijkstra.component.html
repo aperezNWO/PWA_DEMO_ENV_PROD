@@ -9,14 +9,15 @@
         </div>
         <hr />
         <p>
-            <span id="tituloListadoDistancias"></span>
+            <span id="tituloListadoDistancias">{{this.tituloListadoDistancias}}</span>
             <br>
             <label for="DistanceList"></label>
             <br>
             &nbsp;<select   id="DistanceList"
                             name="DistanceList"
                             #_distanceList
-                            (change)="this._distanceListChange()">
+                            (change)="this._distanceListChange()"
+                            [hidden]="((this.PointListHidden.length == 0) && (this.MatrixListHidden.length == 0))">
                             <option *ngFor="let _vertexSize of __distanceList" [value]="_vertexSize._index">{{_vertexSize._value}}</option>
             </select>
         </p>

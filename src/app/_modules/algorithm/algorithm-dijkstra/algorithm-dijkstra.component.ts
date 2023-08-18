@@ -30,6 +30,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   protected strokeStyleCafe  : string = "#654321";
   protected strokeStyleVerde : string = "#006400";
   protected strokeStyleRed   : string = "#ff0000";
+  protected tituloListadoDistancias: string = "";
   //
   @ViewChild('c_canvas')      c_canvas      : any;
   @ViewChild('divCanvas_Pdf') divCanvas_Pdf : any;
@@ -163,13 +164,13 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       //
       console.log(AlgorithmDijkstraComponent.PageTitle + " - [Resetting controls]");
       //
-      //[_]
-      //$('#tituloListadoDistancias').text('');
+      //[x]
+      this.tituloListadoDistancias = "";
       //[_]
       //$('#DistanceList').attr('style', 'width:250px;display:none;');
-      //[?]
+      //[x]
       this.DrawListItems();
-      //[?]
+      //[x]
       this.DrawDistanceList(true, "");
       //[_]
       //$("#vertexSizeList").attr('disabled', false);
@@ -255,7 +256,8 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 // CONFIGURA CONTROLES
                 //-------------------------------------------------------------
                 //
-                //$('#tituloListadoDistancias').text('Listado de Distancies desde (' + sourcePoint + ')');
+                let _sourcePoint        : number = Number.parseInt(this._sourcePointList.nativeElement.value);
+                this.tituloListadoDistancias = "Listado de Distancies desde [" + _sourcePoint.toString() + "]";
                 //
                 //$('#DistanceList').attr('style', 'width:250px;display:inline');
                 //
