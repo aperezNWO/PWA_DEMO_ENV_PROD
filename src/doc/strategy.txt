@@ -115,20 +115,25 @@
 =====================================================================
 -- SCM - HOSTING
 =====================================================================
-        -- [x] environments.
-               -- [x] LOCAL_IIS.
+-- [x] environments.
+        -- [x] LOCAL_IIS.
+-- [x] SOURCE github.com        
+        -- [_] PUBLIC.                        
+                -- [x] [mcsd]         -->  "mcsd_public".
+                -- [x] [AngularMCSD]  -->  "AngularMCSD_public".
+-- [_] HOSTING  
+        -- [_] [somee.com]
+                -- [_] [mcsd/angulardemo/webapidemo]
+                -- [_] [webapidemo/db] on same hosting.
+                -- [_] check disabled accounts.
+                -- [_] check unused accounts.
+ -- [_] angular/netcore app 
+        -- [x] BACKUP /DELETE BOOK "DELORME".  
+        -- [x] BACKUP /DELETE folder "_angular".  
+        -- [x] remove demo views/controllers.
+
         -- [_] REDUCE FILE SIZE.
-               -- [x] BACKUP /DELETE BOOK "DELORME".
-        -- [x] SOURCE github.com        
-               -- [_] PUBLIC.                        
-                  -- [x] [mcsd]         -->  "mcsd_public".
-                  -- [x] [AngularMCSD]  -->  "AngularMCSD_public".
-        -- [_] HOSTING  
-               -- [_] [somee.com]
-                  -- [_] [mcsd/angulardemo/webapidemo]
-                  -- [_] [webapidemo/db] on same hosting.
-                  -- [_] check disabled accounts.
-                  -- [_] check unused accounts.
+              
 =====================================================================
 -- STRATEGY - DIFUSION
 =====================================================================
