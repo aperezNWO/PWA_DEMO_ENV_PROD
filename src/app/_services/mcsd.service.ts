@@ -237,9 +237,9 @@ export class MCSDService implements OnInit {
         //
         return returnUrl;   
     }
-    //------------------------------------------------------------
-    // GET PDF - METHODS
-    //------------------------------------------------------------
+    ////////////////////////////////////////////////////////////////  
+    // METODOS - [GENERAR ARCHIVOS  - PDF]
+    ////////////////////////////////////////////////////////////////
     public GetPDF(subjectName: string | undefined): Observable<HttpEvent<any>> {
         //
         let p_url   = `${this._prefix}demos/_GetPdf?subjectName=${subjectName}`;
@@ -276,9 +276,6 @@ export class MCSDService implements OnInit {
       //
       return dijkstraData; 
     }
-    ////////////////////////////////////////////////////////////////  
-    // METODOS - [ALGORITMOS - DISTANCIA MAS CORTA]
-    ////////////////////////////////////////////////////////////////  
     //    
     getNewSort():Observable<string>
     {

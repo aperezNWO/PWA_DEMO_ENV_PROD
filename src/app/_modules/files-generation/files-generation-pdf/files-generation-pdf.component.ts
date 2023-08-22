@@ -76,7 +76,7 @@ export class FilesGenerationPDFComponent {
               //
               if (resultArray.length > 0) {
                   //
-                  var fileUrl        = this.mcsdService._prefix + '/output/uploadedfiles/pdf/' + resultArray[1];
+                  var fileUrl        = this.mcsdService._prefix + '/wwroot/output/uploadedfiles/pdf/' + resultArray[1];
                   var fileLocalPath  = resultArray[2];
                   var imagePath      = resultArray[3];
                   //

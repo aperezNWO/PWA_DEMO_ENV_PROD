@@ -90,10 +90,19 @@
                 -- [_] Referencia Template Driven/Reactive.
         -- [_] [GENERAR ARCHIVO ZIP]
         -- [_] [GENERAR ARCHIVO PDF] 
+               -- [_] https://mcsd.somee.com/output/uploadedfiles/pdf/92c332e2-2cef-4a4e-bbd3-777598af6d6f20230822041909.pdf
+               -- [_] https://mcsd.somee.com/wwwroot/output/uploadedfiles/pdf/92c332e2-2cef-4a4e-bbd3-777598af6d6f20230822041909.pdf
+               -- [_] https://mcsd.somee.com/demos/_GetPdf?subjectName=camila
+                - [_] public GetPDF(subjectName: string | undefined): Observable<HttpEvent<any>> {
         -- [_] [GENERAR ARCHIVO CSV]
                     -- [_] Editar lista de cumpleaños exnacato.
                     -- [_] oauth.
                     -- [_] Dynamic forms.
+                    -- [_] Corregir ruta:
+                           -- [x]   https://mcsd.somee.com//csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
+                           -- [x]   https://mcsd.somee.com/wwroot/csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
+                           -- [x]   SetCSVLink /  getCSVLinkGET / let p_url    = this._prefix + 'demos/_GetCSVLinkJsonGET';
+
     -- [_] [ALGORITMOS]
         -- [x] [ALGORITMOS - ORDENAMIENTO]
         -- [_] [ALGORITMOS - DISTANCIA MAS CORTA]
