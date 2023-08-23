@@ -276,7 +276,9 @@ export class MCSDService implements OnInit {
       //
       return dijkstraData; 
     }
-    //    
+    ////////////////////////////////////////////////////////////////  
+    // METODOS - [ALGORITMOS - ORDENAMIENTO]
+    ////////////////////////////////////////////////////////////////     
     getNewSort():Observable<string>
     {
       //
@@ -315,7 +317,7 @@ export class MCSDService implements OnInit {
       return newSortData; 
     }
     ////////////////////////////////////////////////////////////////  
-    // METODOS - [ALGORITMOS - ORDENAMIENTO]
+    // METODOS - [ALGORITMOS - EXPRESIONES REGULARES]
     ////////////////////////////////////////////////////////////////  
     //    
     _GetXmlData():Observable<string>
