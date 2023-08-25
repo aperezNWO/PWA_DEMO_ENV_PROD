@@ -92,9 +92,12 @@
         -- [_] https://learn.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-angular-auth-code
 
 -- [_] cusotm error handling.
+
         -- [_] to interface --> [standard label status].
         -- [_] to log.
         -- [_] debug console messages.
+        -- [_] enable trace.
+
 -- [_] uix --> general.
         -- [x] install bootstrap.
         -- [x] Bootstrap menu navigation (from .NET CORE).
@@ -117,6 +120,7 @@
                 -- [_] CORREGIR DATOS ESTADISTICAS.
                 -- [_] Referencia Template Driven/Reactive.
                 -- [_] depurar entradas log.
+                -- [_] angular interceptors.
 
         -- [_] [GENERAR ARCHIVO ZIP]
 
@@ -146,10 +150,12 @@
 
             -- [_] [revisar USO DE sesion EN .net core]
                     -- [_] [web.config]
-                    -- [_] angualar and .net core backend preserve session.
+                    -- [_] angular and .net core backend preserve session.
                            -- [_] https://stackoverflow.com/questions/71768653/storing-data-per-session-in-asp-net-core-with-angular-front-end-web-app
                            -- [_] https://learn.microsoft.com/en-us/answers/questions/1164151/state-management-in-net-core
                            -- [_] "Angular HttpClient Interceptors: If you're using Angular's HttpClient to make API requests, consider using interceptors. Interceptors can be used to modify requests and responses. Make sure that an interceptor isn't inadvertently modifying or removing session-related headers."
+                           -- [_] "asp.net core session state management not working on cross origin"
+
 
     -- [_] [ACERCA DE]
     
