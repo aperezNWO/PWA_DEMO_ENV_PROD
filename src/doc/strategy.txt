@@ -146,7 +146,10 @@
 
             -- [_] [revisar USO DE sesion EN .net core]
                     -- [_] [web.config]
-
+                    -- [_] angualar and .net core backend preserve session.
+                           -- [_] https://stackoverflow.com/questions/71768653/storing-data-per-session-in-asp-net-core-with-angular-front-end-web-app
+                           -- [_] https://learn.microsoft.com/en-us/answers/questions/1164151/state-management-in-net-core
+                           -- [_] "Angular HttpClient Interceptors: If you're using Angular's HttpClient to make API requests, consider using interceptors. Interceptors can be used to modify requests and responses. Make sure that an interceptor isn't inadvertently modifying or removing session-related headers."
 
     -- [_] [ACERCA DE]
     
