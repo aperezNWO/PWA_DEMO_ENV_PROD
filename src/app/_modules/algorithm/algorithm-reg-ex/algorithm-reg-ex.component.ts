@@ -67,7 +67,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
                 // OBTENER DATA
                 //------------------------------------------------------------
                 //
-                console.warn(AlgorithmRegExComponent.PageTitle + ' - [GET XML DATA] - [RETURN VALUE] : ' + _xmlData);
+                console.warn(AlgorithmRegExComponent.PageTitle + ' - [GET XML DATA] - [RETURN VALUE] : ' + _xmlData.length);
                 //
                 this.xmlData = _xmlData;
                 //-------------------------------------------------------------
@@ -130,7 +130,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
                 // OBTENER DATA
                 //------------------------------------------------------------
                 //
-                console.warn(AlgorithmRegExComponent.PageTitle + ' - [EVAL REGEX] - [RETURN VALUE] : ' + data);
+                console.warn(AlgorithmRegExComponent.PageTitle + ' - [EVAL REGEX] - [RETURN VALUE] : ' + data.length);
                 //    
                 let resultArray : string[] = data.split("|");
                 //

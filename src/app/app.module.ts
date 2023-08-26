@@ -9,6 +9,9 @@ import { BrowserModule                 } from '@angular/platform-browser';
 import { BrowserAnimationsModule       } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule           } from '@angular/forms';
 import { HttpClient, HttpClientModule  } from '@angular/common/http';
+import { HttpHandler, HttpInterceptor  } from '@angular/common/http';
+import { HttpRequest, HttpResponse     } from '@angular/common/http';
+import { HTTP_INTERCEPTORS             } from '@angular/common/http';
 import { RouterModule                  } from '@angular/router';
 import { HashLocationStrategy          } from '@angular/common';
 import { LocationStrategy              } from '@angular/common';
@@ -29,7 +32,7 @@ import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-we
 import { AlgorithmRegExComponent       } from './_modules/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
 import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-sort/algorithm-sort.component';
 import { ConfigService                 } from './_services/config.service';
-import { Observable                    } from 'rxjs';
+import { Observable, finalize, tap     } from 'rxjs';
 //
 const routes = [
   {  path: 'Home'                  , component: HomeWebComponent                      },
@@ -47,6 +50,35 @@ const routes = [
   {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
   {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
 ];
+//
+@Injectable({
+  providedIn: 'root'
+})
+export class LoggingInterceptor implements HttpInterceptor {
+  constructor() {}
+
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const started = Date.now();
+    let ok: string;
+
+    // extend server response observable with logging
+    return next.handle(req)
+      .pipe(
+        tap({
+          // Succeeds when there is a response; ignore other events
+          next: (event) => (ok = event instanceof HttpResponse ? 'succeeded' : ''),
+          // Operation failed; error is an HttpErrorResponse
+          error: (error) => (ok = 'failed')
+        }),
+        // Log when response observable either completes or errors
+        finalize(() => {
+          const elapsed = Date.now() - started;
+          const msg = `${req.method} "${req.urlWithParams}" ${ok} in ${elapsed} ms.`;
+          console.warn(' [REQUESTIN URL (INTERCEPT)] : ' + msg);
+        })
+      );
+  }
+}
 //  
 @Injectable({
   providedIn: 'root'
@@ -120,6 +152,7 @@ function initialize(http: HttpClient, globalConfigService: ConfigService): (() =
     TechnicalSpecsComponent,
   ],
   imports: [
+    HttpClientModule,
     FormsModule,
     BrowserModule,
     BrowserAnimationsModule,
@@ -135,9 +168,10 @@ function initialize(http: HttpClient, globalConfigService: ConfigService): (() =
   ], 
   exports  : [RouterModule],
   providers: [
-                { provide: LocationStrategy   , useClass   :  HashLocationStrategy     },
-                { provide: ErrorHandler       , useClass   :  CustomErrorHandler       },
-                { provide: APP_INITIALIZER    , useFactory :  initialize, deps:
+                { provide : HTTP_INTERCEPTORS  , useClass   :  LoggingInterceptor   , multi: true    },
+                { provide : LocationStrategy   , useClass   :  HashLocationStrategy                  },
+                { provide : ErrorHandler       , useClass   :  CustomErrorHandler                    },
+                { provide : APP_INITIALIZER    , useFactory :  initialize, deps:
                  [
                    HttpClient,
                    ConfigService,
@@ -148,7 +182,7 @@ function initialize(http: HttpClient, globalConfigService: ConfigService): (() =
 //
 export class AppModule { 
     //-----------------------------------------------------------------------------------------------------
-    constructor(private customErrorHandler : CustomErrorHandler) 
+    constructor(public customErrorHandler : CustomErrorHandler, public loggingInterceptor : LoggingInterceptor ) 
     {
         //
         console.log("[AppModule]");

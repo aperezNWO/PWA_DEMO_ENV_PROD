@@ -1,8 +1,10 @@
-import { Injectable, OnInit                              } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
-import { LogEntry, SearchCriteria                        } from '../_models/log-info.model';
-import { ConfigService                                   } from './config.service';
-import { Observable                                      } from 'rxjs';
+import { Injectable, OnInit                                      } from '@angular/core';
+import { HttpClient, HttpEvent, HttpHandler, HttpHeaders         } from '@angular/common/http';
+import { HttpRequest, HttpResponse  , HttpInterceptor            } from '@angular/common/http';
+import { Observable                                              } from 'rxjs';
+import { LogEntry, SearchCriteria                                } from '../_models/log-info.model';
+import { ConfigService                                           } from './config.service';
+
 //
 @Injectable({
   providedIn: 'root'
@@ -82,8 +84,6 @@ export class MCSDService implements OnInit {
       //
       let p_url    = this._prefix + 'demos/_GetCSVLinkJsonGET';
       //
-      console.warn(" REQUESTING URL : " + p_url);
-      //
       let csvLink : Observable<string> =  this.http.get<string>(p_url);
       //
       return csvLink; 
@@ -92,8 +92,6 @@ export class MCSDService implements OnInit {
     getCSVLink(): Observable<string> {
       //
       let p_url    = this._prefix + 'demos/_GetCSVLinkJson';
-      //
-      console.warn(" REQUESTING URL : " + p_url);
       //
       var HTTPOptions = {
         headers: new HttpHeaders({
@@ -111,8 +109,6 @@ export class MCSDService implements OnInit {
       //
       let p_url    = this._prefix + 'demos/GenerarInformeCSVJson';
       //
-      console.warn(" REQUESTING URL : " + p_url);
-      //
       var HTTPOptions = {
         headers: new HttpHeaders({
           'Accept':'application/text'
@@ -128,8 +124,6 @@ export class MCSDService implements OnInit {
     getInformeRemotoCSV_STAT():Observable<string> {
           //
           let p_url    = this._prefix + 'demos/GenerarInformeCSVJsonSTAT';
-          //
-          console.warn(" REQUESTING URL : " + p_url);
           //
           var HTTPOptions = {
             headers: new HttpHeaders({
@@ -149,8 +143,6 @@ export class MCSDService implements OnInit {
     getLogRemoto(_searchCriteria : SearchCriteria) {
         //
         let url    = this._prefix + 'demos/generarinformejson';
-        //
-        console.warn(" REQUESTING URL : " + url);
         //    
         return this.http.get<LogEntry[]>(url);
     }
@@ -174,8 +166,6 @@ export class MCSDService implements OnInit {
     getLogStatPOST() {
       //
       let url    = `${this._prefix}demos/GetConsultaLogStatPost`;
-      //
-      console.warn(" REQUESTING URL : " + url);
       //    
       var HTTPOptions = {
         headers: new HttpHeaders({
@@ -190,8 +180,6 @@ export class MCSDService implements OnInit {
     getLogStatGET() {
       //
       let url    = `${this._prefix}demos/GetConsultaLogStatGet`;
-      //
-      console.warn(" REQUESTING URL : " + url);
       //
       return this.http.get<LogEntry[]>(url);   
     }     
@@ -263,8 +251,6 @@ export class MCSDService implements OnInit {
       //
       let p_url    = `${this._prefix}demos/GenerateRandomVertex?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
       //
-      console.info(" REQUESTING URL : " + p_url);
-      //
       var HTTPOptions = {
         headers: new HttpHeaders({
           'Accept':'application/text'
@@ -284,8 +270,6 @@ export class MCSDService implements OnInit {
       //
       let p_url    = `${this._prefix}demos/_NewSort`;
       //
-      console.info(" REQUESTING URL : " + p_url);
-      //
       var HTTPOptions = {
         headers: new HttpHeaders({
           'Accept':'application/text'
@@ -302,8 +286,6 @@ export class MCSDService implements OnInit {
     {
       //
       let p_url    = `${this._prefix}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
-      //
-      console.info(" REQUESTING URL : " + p_url);
       //
       var HTTPOptions = {
         headers: new HttpHeaders({
@@ -325,8 +307,6 @@ export class MCSDService implements OnInit {
       //
       let p_url  : string  = `${this._prefix}demos/_GetXmlData`;
       //
-      console.info(" REQUESTING URL : " + p_url);
-      //
       var HTTPOptions = {
         headers: new HttpHeaders({
           'Accept':'application/text'
@@ -343,8 +323,6 @@ export class MCSDService implements OnInit {
     {
       //
       let p_url    : string = `${this._prefix}demos/_RegExEval?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
-      //
-      console.info(" REQUESTING URL : " + p_url);
       //
       var HTTPOptions = {
         headers: new HttpHeaders({
@@ -367,8 +345,6 @@ export class MCSDService implements OnInit {
       let logInfo!  : Observable<string>;
       //
       let p_url    = `${this._prefix}demos/_SetLog?p_logMsg=${p_logMsg}`;
-      //
-      console.info(" REQUESTING URL : " + p_url);
       //
       var HTTPOptions = {
         headers: new HttpHeaders({
