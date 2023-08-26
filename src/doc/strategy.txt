@@ -50,6 +50,7 @@
     -- [_]  https://www.businessinsider.es/chatgpt-codigos-impresionantes-prompts-debes-usar-expertos-1288236
 
 -- [_] ANGULAR TOPICS.
+
     -- [_] https://angular.io/docs
 
         -- [_] MODULES.
@@ -62,26 +63,36 @@
 
 -- [_] architectural changes.
 
+    -- [x] Turn off .net core uix.
+
     -- [_] paquete de idiomas/localizacion (en/us).
+           
            -- [_] angular i18n.
+
     -- [_] Backend como webapi service.
+
             -- [_] Algorithm Service.
-            -- [_] CDN.
-            -- [_] revisar error (post genera CORS).
+            -- [_] Angular CDN.
+            -- [x] revisar error (post genera CORS).
+
     -- [_] Service Project.
-            -- [_] put uix on separated hosting.
+
+            -- [x] put uix on separated hosting.
             -- [_] Swagger.            
+
     -- [_] Domain : webapidemo (replace mcsdbackend).
-    -- [_] Turn off .net core uix.
     -- [_] DebugHostingContent as webapi/global/cdn.
     -- [_] backend version     as webapi/global/cdn.
     -- [_] config info.
+
             -- [_] appName.
             -- [_] baseUrl.
+
     -- [_] OAUTH.
-        -- [_] Use custom login.
-                  -- [_] DYNAMIC FORM.
-                  -- [_] DB MODEL.
+    -- [_] Use custom login.
+
+        -- [_] DYNAMIC FORM.
+        -- [_] DB MODEL.
         -- [_] https://codingpotions.com/angular-login-sesion/
         -- [_] https://auth0.com/docs/quickstart/spa/angular/01-login
         -- [_] https://auth0.com/blog/complete-guide-to-angular-user-authentication/
@@ -96,9 +107,10 @@
         -- [_] to interface --> [standard label status].
         -- [_] to log.
         -- [_] debug console messages.
-        -- [_] enable trace.
+        -- [_] asp.net core enable trace.
 
 -- [_] uix --> general.
+
         -- [x] install bootstrap.
         -- [x] Bootstrap menu navigation (from .NET CORE).
         -- [x] implement menu.
@@ -106,9 +118,13 @@
         -- [_] menu collapse on page entry.
         -- [_] scss.
                 -- [daniel sevilla]         https://primeng.org/installation.
+
 -- [_] UIX --> check.
+
     -- [_] [GENERAR ARCHIVO]
+
         -- [x] [GENERAR ARCHIVO PDF] 
+
                -- [x] https://mcsd.somee.com/output/uploadedfiles/pdf/92c332e2-2cef-4a4e-bbd3-777598af6d6f20230822041909.pdf
                -- [x] https://mcsd.somee.com/wwwroot/output/uploadedfiles/pdf/92c332e2-2cef-4a4e-bbd3-777598af6d6f20230822041909.pdf
                -- [x] https://mcsd.somee.com/demos/_GetPdf?subjectName=camila
@@ -116,11 +132,11 @@
 
         -- [_] [GENERAR ARCHIVO XLS]
 
+                -- [x] angular interceptors.
                 -- [_] corregir consulta y rango de fechas.
                 -- [_] CORREGIR DATOS ESTADISTICAS.
                 -- [_] Referencia Template Driven/Reactive.
                 -- [_] depurar entradas log.
-                -- [_] angular interceptors.
 
         -- [_] [GENERAR ARCHIVO ZIP]
 
@@ -146,15 +162,15 @@
 
                     -- [_] Corregir uix.
 
-        -- [_] [ALGORITMOS - EXPRESIONES REGULARES]
+        -- [>] [ALGORITMOS - EXPRESIONES REGULARES]
 
-            -- [_] [revisar USO DE sesion EN .net core]
-                    -- [_] [web.config]
-                    -- [_] angular and .net core backend preserve session.
-                           -- [_] https://stackoverflow.com/questions/71768653/storing-data-per-session-in-asp-net-core-with-angular-front-end-web-app
-                           -- [_] https://learn.microsoft.com/en-us/answers/questions/1164151/state-management-in-net-core
-                           -- [_] "Angular HttpClient Interceptors: If you're using Angular's HttpClient to make API requests, consider using interceptors. Interceptors can be used to modify requests and responses. Make sure that an interceptor isn't inadvertently modifying or removing session-related headers."
-                           -- [_] "asp.net core session state management not working on cross origin"
+            -- [>] [revisar USO DE sesion EN .net core]
+                    -- [>] [web.config]
+                    -- [>] angular and .net core backend preserve session.
+                           -- [x] "Angular HttpClient Interceptors: If you're using Angular's HttpClient to make API requests, consider using interceptors. Interceptors can be used to modify requests and responses. Make sure that an interceptor isn't inadvertently modifying or removing session-related headers."
+                           -- [>] https://stackoverflow.com/questions/71768653/storing-data-per-session-in-asp-net-core-with-angular-front-end-web-app
+                           -- [>] https://learn.microsoft.com/en-us/answers/questions/1164151/state-management-in-net-core
+                           -- [>] "asp.net core session state management not working on cross origin"
 
 
     -- [_] [ACERCA DE]
@@ -174,6 +190,7 @@
     -- [_] [CPP DEMO]
     
     -- [_] [AI/ NEURAL NETWORK DEMO]
+
 =====================================================================
 -- SCM - HOSTING
 =====================================================================
@@ -188,24 +205,31 @@
         -- [_] LOCAL_IIS.
         -- [_] WebApi.
         -- [_] mcsd.
+        -- [_] angulardemo.
 
 -- [x] SOURCE github.com        
 
         -- [_] PUBLIC.                        
-                -- [x] [mcsd]         -->  "mcsd_public".
-                -- [x] [AngularMCSD]  -->  "AngularMCSD_public".
+                -- [x] [mcsd/webapidemo]  -->  "mcsd_public".
+                -- [x] [AngularMCSD]      -->  "AngularMCSD_public".
 
 -- [_] HOSTING  
 
         -- [_] [somee.com]
                 -- [_] [mcsd/angulardemo/webapidemo]
                 -- [_] [webapidemo/db] on same hosting.
+                       -- [_] reset log db.
                 -- [_] check disabled accounts.
                 -- [_] check unused accounts.
 
- -- [_] angular/netcore app 
 
-        -- [_] mcsdBackup.
+-- [_] webapidemo / service.
+
+       -- [_] mcsdWebApíTFS.
+       -- [_] cambiar dominio "mcsd" por "webapidemo"
+       -- [_] config.info ==> appName.
+       -- [_] use swagger in prod.
+       -- [_] mcsdBackup.
 
                 -- [x] BACKUP /DELETE BOOK "DELORME".  
                 -- [x] BACKUP /DELETE folder "_angular".  
@@ -217,24 +241,27 @@
         -- [_] REDUCE FILE SIZE.
                 -- [_] check disable email from "somee.com".
 
--- [_] webapidemo.
-
-        -- [_] use swagger in prod.
-
 =====================================================================
 -- STRATEGY - DIFUSION
 =====================================================================
 
 -- [_] FREELANCE WEB SITES
+
                 -- [_] WORKANA.
                 -- [_] FIVERR.
                 -- [_] UPWORK.
+
 -- [_] LINKEDIN
+
 -- [_] facebook
+
         -- [_] .NET COMMUNITY
         -- [_] ANGULAR COMMUNITY
+
 -- [_] DIRECT EMAIL
+
         -- [_] JOB SEARCH MODULE
+
 -- [_] TWITTER /
 -- [_] INSTAGRAM / TK.
 
