@@ -14,6 +14,19 @@ export class MCSDService implements OnInit {
     ////////////////////////////////////////////////////////////////  
     // CAMPOS
     ////////////////////////////////////////////////////////////////  
+    public HTTPOptions_Text = {
+      headers: new HttpHeaders({
+        'Accept':'application/text'
+      }),
+      'responseType'  : 'text' as 'json'
+    };
+    //    
+    public HTTPOptions_JSON = {
+      headers: new HttpHeaders({
+       'Content-Type' : 'application/json'
+      })
+      ,'responseType' : 'text' as 'json'
+    }; 
     //
     public get _prefix()   : string | undefined {
       //
@@ -21,6 +34,7 @@ export class MCSDService implements OnInit {
       //            
       return this.configService.baseUrl;
     }
+    //
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  
@@ -93,14 +107,7 @@ export class MCSDService implements OnInit {
       //
       let p_url    = this._prefix + 'demos/_GetCSVLinkJson';
       //
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-          'Accept':'application/text'
-        }),
-        'responseType': 'text' as 'json'
-      };
-      //
-      let csvLink : Observable<string> =  this.http.post<string>(p_url,HTTPOptions);
+      let csvLink : Observable<string> =  this.http.post<string>(p_url,this.HTTPOptions_Text);
       //
       return csvLink; 
     }
@@ -109,32 +116,18 @@ export class MCSDService implements OnInit {
       //
       let p_url    = this._prefix + 'demos/GenerarInformeCSVJson';
       //
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-          'Accept':'application/text'
-        }),
-        'responseType': 'text' as 'json'
-      };
-      //
-      let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       return jsonCSVData; 
     }
     //
     getInformeRemotoCSV_STAT():Observable<string> {
-          //
-          let p_url    = this._prefix + 'demos/GenerarInformeCSVJsonSTAT';
-          //
-          var HTTPOptions = {
-            headers: new HttpHeaders({
-              'Accept':'application/text'
-            }),
-            'responseType': 'text' as 'json'
-          };
-          //
-          let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
-          //
-          return jsonCSVData; 
+        //
+        let p_url    = this._prefix + 'demos/GenerarInformeCSVJsonSTAT';
+        //
+        let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+        //
+        return jsonCSVData; 
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [GENERAR ARCHIVO XLS]
@@ -151,14 +144,7 @@ export class MCSDService implements OnInit {
         //
         let p_url  = this._prefix + 'demos/generarinformexls';
         //
-        var HTTPOptions = {
-          headers: new HttpHeaders({
-            'Accept':'application/text'
-          }),
-          'responseType': 'text' as 'json'
-        };
-        //
-        let excelFileName : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+        let excelFileName : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
         //
         return excelFileName; 
     }
@@ -166,15 +152,8 @@ export class MCSDService implements OnInit {
     getLogStatPOST() {
       //
       let url    = `${this._prefix}demos/GetConsultaLogStatPost`;
-      //    
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-              'Content-Type' : 'application/json'
-        })
-        ,'responseType' : 'text' as 'json'
-      }; 
       //
-      return this.http.post<string>(url,HTTPOptions);   
+      return this.http.post<string>(url,this.HTTPOptions_JSON);   
     }    
     //
     getLogStatGET() {
@@ -195,7 +174,7 @@ export class MCSDService implements OnInit {
       let url    = `${this._prefix}demos/_ZipDemoGetFileName`;
       //
       console.log("[GENERATE ZIP FILE] - (UPLOADING FILE) url: " + url);
-      //
+      // USAR REQUEST PARA OBTENER PORCENTAJE DE STATUS
       const req = new HttpRequest('POST', url, formData, {
         reportProgress: true,
         responseType  : 'text',
@@ -214,14 +193,7 @@ export class MCSDService implements OnInit {
         //
         console.log("[GENERATE ZIP FILE] - [GETTING ZIP] - url     : " + p_url);
         //
-        var HTTPOptions = {
-          headers: new HttpHeaders({
-              'Content-Type' : 'application/text'
-          })
-          ,'responseType' : 'text' as 'json'
-        }; 
-        //
-        let returnUrl     : Observable<string> = this.http.get<string>(p_url,HTTPOptions); 
+        let returnUrl     : Observable<string> = this.http.get<string>(p_url,this.HTTPOptions_JSON); 
         //
         return returnUrl;   
     }
@@ -235,7 +207,7 @@ export class MCSDService implements OnInit {
         console.log("[GENERATE PDF FILE] - [GETTING ZIP] - subjectName  : " + subjectName);
         //
         console.log("[GENERATE PDF FILE] - [GETTING ZIP] - url          : " + p_url);
-        //
+        // USAR REQUEST PARA OBTENER PORCENTAJE DE STATUS
         const req = new HttpRequest('GET', p_url, {
           reportProgress: true,
           responseType  : 'text',
@@ -251,14 +223,7 @@ export class MCSDService implements OnInit {
       //
       let p_url    = `${this._prefix}demos/GenerateRandomVertex?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
       //
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-          'Accept':'application/text'
-        }),
-        'responseType': 'text' as 'json'
-      };
-      //
-      let dijkstraData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       return dijkstraData; 
     }
@@ -270,14 +235,7 @@ export class MCSDService implements OnInit {
       //
       let p_url    = `${this._prefix}demos/_NewSort`;
       //
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-          'Accept':'application/text'
-        }),
-        'responseType': 'text' as 'json'
-      };
-      //
-      let newSortData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       return newSortData; 
     }
@@ -287,14 +245,7 @@ export class MCSDService implements OnInit {
       //
       let p_url    = `${this._prefix}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
       //
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-          'Accept':'application/text'
-        }),
-        'responseType': 'text' as 'json'
-      };
-      //
-      let newSortData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       return newSortData; 
     }
@@ -307,14 +258,7 @@ export class MCSDService implements OnInit {
       //
       let p_url  : string  = `${this._prefix}demos/_GetXmlData`;
       //
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-          'Accept':'application/text'
-        }),
-        'responseType': 'text' as 'json'
-      };
-      //
-      let xmlData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      let xmlData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       return xmlData; 
     }
@@ -324,14 +268,7 @@ export class MCSDService implements OnInit {
       //
       let p_url    : string = `${this._prefix}demos/_RegExEval?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
       //
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-          'Accept':'application/text'
-        }),
-        'responseType': 'text' as 'json'
-      };
-      //
-      let regExData : Observable<string> =  this.http.get<string>(p_url,HTTPOptions);
+      let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       return regExData; 
     }
@@ -346,14 +283,7 @@ export class MCSDService implements OnInit {
       //
       let p_url    = `${this._prefix}demos/_SetLog?p_logMsg=${p_logMsg}`;
       //
-      var HTTPOptions = {
-        headers: new HttpHeaders({
-          'Accept':'application/text'
-        }),
-        'responseType': 'text' as 'json'
-      };
-      //
-      logInfo       = this.http.get<string>(p_url, HTTPOptions);
+      logInfo       = this.http.get<string>(p_url, this.HTTPOptions_Text);
       //
       const logInfoObserver   = {
             //
