@@ -44,6 +44,7 @@ export class MCSDService implements OnInit {
     }
     //
     constructor(public http: HttpClient,public configService : ConfigService) { 
+      //
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [COMUNES]

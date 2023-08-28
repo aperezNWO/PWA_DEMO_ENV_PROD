@@ -171,7 +171,7 @@
                            -- [>] https://stackoverflow.com/questions/71768653/storing-data-per-session-in-asp-net-core-with-angular-front-end-web-app
                            -- [>] https://learn.microsoft.com/en-us/answers/questions/1164151/state-management-in-net-core
                            -- [>] "asp.net core session state management not working on cross origin"
-
+                    -- [>] use cookies instead of session.
 
     -- [_] [ACERCA DE]
     
