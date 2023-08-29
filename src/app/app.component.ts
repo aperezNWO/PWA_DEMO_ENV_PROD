@@ -54,7 +54,3 @@ export class AppComponent {
  }   
 
 
-
-
-export { CustomErrorHandler };
-

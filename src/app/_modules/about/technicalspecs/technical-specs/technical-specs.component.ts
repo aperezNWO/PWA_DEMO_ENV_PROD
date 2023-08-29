@@ -1,7 +1,8 @@
 import { Component, VERSION                } from '@angular/core';
-import { MCSDService                       } from '../../../../_services/mcsd.service';
-import { AppComponent, CustomErrorHandler  } from '../../../../app.component';
+import { CustomErrorHandler                } from 'src/app/app.module';
 import { Observable,  throwError           } from 'rxjs';
+import { MCSDService                       } from '../../../../_services/mcsd.service';
+import { AppComponent                      } from '../../../../app.component';
 //
 @Component({
   selector: 'app-technical-specs',
