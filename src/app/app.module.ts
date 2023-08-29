@@ -32,7 +32,9 @@ import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-we
 import { AlgorithmRegExComponent       } from './_modules/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
 import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-sort/algorithm-sort.component';
 import { ConfigService                 } from './_services/config.service';
+import { MCSDService                   } from './_services/mcsd.service';
 import { Observable, finalize, tap     } from 'rxjs';
+
 //
 const routes = [
   {  path: 'Home'                  , component: HomeWebComponent                      },
@@ -95,38 +97,57 @@ export class CustomErrorHandler implements ErrorHandler {
     } 
 }
 //
-function initialize(http: HttpClient, globalConfigService: ConfigService): (() => Promise<boolean>) {
+function ReadConfigFile(http : HttpClient, globalConfigService : ConfigService)
+{
+  let configInfo!  : Observable<ConfigService>;
+  //
+  let p_url        : string = "./assets/config.json";
+  //
+  configInfo    = http.get<ConfigService>(p_url);
+  //
+  const configInfoObserver   = {
+        //
+        next: (localConfigService: ConfigService)     => { 
+              //
+              console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + localConfigService.baseUrl);
+              //
+              globalConfigService.baseUrl = localConfigService.baseUrl;
+              //
+              console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + globalConfigService.baseUrl );
+        },
+        error: (err: Error) => {
+              //
+              console.error('[AppModule] - [CONFIG_SERVICE] - [ERROR]  : ' + err);
+        },       
+        complete: ()        => {
+              //
+              console.info('[AppModule] -  [CONFIG INFO] - [COMPLETE]');
+        },
+  };
+  //
+  configInfo.subscribe(configInfoObserver);
+}
+//
+function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdService : MCSDService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {
     return new Promise<boolean>((resolve: (a: boolean) => void): void => 
     {
-          //
-          let configInfo!  : Observable<ConfigService>;
-          //
-          let p_url        : string = "./assets/config.json";
-          //
-          configInfo    = http.get<ConfigService>(p_url);
-          //
-          const configInfoObserver   = {
-                //
-                next: (localConfigService: ConfigService)     => { 
-                      //
-                      console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + localConfigService.baseUrl);
-                      //
-                      globalConfigService.baseUrl = localConfigService.baseUrl;
-                      //
-                      console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + globalConfigService.baseUrl );
-                },
-                error: (err: Error) => {
-                      //
-                      console.error('[AppModule] - [CONFIG_SERVICE] - [ERROR]  : ' + err);
-                },       
-                complete: ()        => {
-                      //
-                      console.info('[AppModule] -  [CONFIG INFO] - [COMPLETE]');
-                },
-          };
-          //
-          configInfo.subscribe(configInfoObserver);
+          ///////////////////////////////////////////////////////
+          // LEER ARCHIVO CONFIG
+          ///////////////////////////////////////////////////////
+          ReadConfigFile(http, globalConfigService);
+          ///////////////////////////////////////////////////////
+          // CACHE PARA XML
+          ///////////////////////////////////////////////////////
+          mcsdService._SetXmlDataToCache();
+          ///////////////////////////////////////////////////////
+          // CACHE PARA PIE CHART
+          ///////////////////////////////////////////////////////
+          mcsdService._SetSTATPieCache();
+          ///////////////////////////////////////////////////////
+          // CACHE PARA BARCHART
+          ///////////////////////////////////////////////////////
+          mcsdService._SetSTATBarCache();
           //
           resolve(true);
     });
@@ -175,6 +196,7 @@ function initialize(http: HttpClient, globalConfigService: ConfigService): (() =
                  [
                    HttpClient,
                    ConfigService,
+                   MCSDService,
                  ], multi: true   },
              ],
   bootstrap: [AppComponent]
@@ -188,4 +210,6 @@ export class AppModule {
         console.log("[AppModule]");
     }
 }
+
+
 

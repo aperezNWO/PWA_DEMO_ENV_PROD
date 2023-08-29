@@ -130,6 +130,17 @@ export class MCSDService implements OnInit {
         //
         return jsonCSVData; 
     }
+    //
+    _SetSTATPieCache():Observable<string> {
+      //
+      let p_url    = this._prefix + 'demos/_SetSTATPieCache';
+      //
+      console.warn("[REQUESTING URL] " + p_url);
+      //
+      let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      //
+      return jsonCSVData; 
+    }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [GENERAR ARCHIVO XLS]
     ////////////////////////////////////////////////////////////////  
@@ -162,6 +173,15 @@ export class MCSDService implements OnInit {
       let url    = `${this._prefix}demos/GetConsultaLogStatGet`;
       //
       return this.http.get<LogEntry[]>(url);   
+    } 
+    //
+    _SetSTATBarCache() {
+      //
+      let url    = `${this._prefix}demos/_SetSTATBarCache`;
+      //
+      console.warn("[REQUESTING URL] " + url);
+      //
+      return this.http.get<string>(url);   
     }     
     //-------------------------------------------------------------
     // FILE UPLODAD METHODS
@@ -258,6 +278,18 @@ export class MCSDService implements OnInit {
     {
       //
       let p_url  : string  = `${this._prefix}demos/_GetXmlData`;
+      //
+      let xmlData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      //
+      return xmlData; 
+    }
+    //
+    _SetXmlDataToCache():Observable<string>
+    {
+      //
+      let p_url  : string  = `${this._prefix}demos/_SetXmlDataToCache`;
+      //
+      console.warn("[REQUESTING URL] " + p_url);
       //
       let xmlData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
