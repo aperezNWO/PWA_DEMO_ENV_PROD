@@ -58,7 +58,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
         //
         xmlInfo       = this.mcsdService._GetXmlData();
         //
-        let data      : any;
+        this.lblStatus = "[..CARGANDO POR FAVOR ESPERERE...]"
         //
         const xmlInfoObserver   = {
             //
@@ -81,6 +81,10 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
                 this.pattern   = "";
             },
             error: (err: Error) => {
+                //
+                this.lblStatus = "[HA OCURRIDO UN ERROR]"
+                //
+                this.pattern   = "";
                 //
                 console.error(AlgorithmRegExComponent.PageTitle + ' - [GET XML DATA]- [error] : ' + err.message);
             },       
