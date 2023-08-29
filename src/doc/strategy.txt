@@ -89,10 +89,7 @@
             -- [_] baseUrl.
 
     -- [_] OAUTH.
-    -- [_] Use custom login.
 
-        -- [_] DYNAMIC FORM.
-        -- [_] DB MODEL.
         -- [_] https://codingpotions.com/angular-login-sesion/
         -- [_] https://auth0.com/docs/quickstart/spa/angular/01-login
         -- [_] https://auth0.com/blog/complete-guide-to-angular-user-authentication/
@@ -101,6 +98,11 @@
         -- [_] https://www.positronx.io/angular-facebook-oauth-social-login-tutorial/
         -- [_] https://medium.com/@danilrabizo/google-authentication-in-the-angular-application-e86df69be58a
         -- [_] https://learn.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-angular-auth-code
+
+    -- [_] Use custom login.
+
+        -- [_] DYNAMIC FORM.
+        -- [_] DB MODEL.
 
 -- [_] cusotm error handling.
 
@@ -165,13 +167,14 @@
         -- [>] [ALGORITMOS - EXPRESIONES REGULARES]
 
             -- [>] [revisar USO DE sesion EN .net core]
-                    -- [>] [web.config]
-                    -- [>] angular and .net core backend preserve session.
+                    -- [x] [web.config]
+                    -- [x] angular and .net core backend preserve session.
                            -- [x] "Angular HttpClient Interceptors: If you're using Angular's HttpClient to make API requests, consider using interceptors. Interceptors can be used to modify requests and responses. Make sure that an interceptor isn't inadvertently modifying or removing session-related headers."
                            -- [>] https://stackoverflow.com/questions/71768653/storing-data-per-session-in-asp-net-core-with-angular-front-end-web-app
                            -- [>] https://learn.microsoft.com/en-us/answers/questions/1164151/state-management-in-net-core
                            -- [>] "asp.net core session state management not working on cross origin"
-                    -- [>] use cookies instead of session.
+                    -- [x] use cookies instead of session.
+                    -- [x] asp.net core CACHE.
 
     -- [_] [ACERCA DE]
     
