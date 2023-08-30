@@ -194,6 +194,24 @@
     
     -- [_] [AI/ NEURAL NETWORK DEMO]
 
+    -- [_] [ERRORS]
+
+        -- [_] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GetConsultaLogStatGet' 
+               from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy:
+               No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+        -- [_] Access to XMLHttpRequest at 'https://mcsdbackup.somee.com/demos/GetConsultaLogStatGet' 
+               from origin 'https://mcsd.somee.com' has been blocked by CORS policy: 
+               No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+        -- [_] Access to XMLHttpRequest at 'https://mcsdbackup.somee.com/demos/GenerarInformeCSVJsonSTAT' 
+               from origin 'https://mcsd.somee.com' has been blocked by CORS policy: 
+               No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+        -- [_] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GenerarInformeCSVJsonSTAT' 
+               from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy: 
+               No 'Access-Control-Allow-Origin' header is present on the requested resource.
+               
 =====================================================================
 -- SCM - HOSTING
 =====================================================================

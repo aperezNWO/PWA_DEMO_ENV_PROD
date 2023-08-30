@@ -131,15 +131,28 @@ export class MCSDService implements OnInit {
         return jsonCSVData; 
     }
     //
-    _SetSTATPieCache(_prefix : string | undefined):Observable<string> {
+    _SetSTATPieCache(_prefix : string | undefined):void{
       //
       let p_url    =  `${_prefix}demos/_SetSTATPieCache`;
       //
-      console.warn("[REQUESTING URL] " + p_url);
-      //
       let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
-      return jsonCSVData; 
+      const jsonCSVDataObserver = {
+        next: (jsondata: string)     => { 
+          //
+          console.log('_SetSTATPieCache - (return): ' + jsondata);
+        },
+        error           : (err: Error)      => {
+          //
+          console.error('_SetSTATPieCache- (ERROR) : ' + JSON.stringify(err.message));
+        },
+        complete        : ()                => {
+          //
+          console.log('_SetSTATPieCache -  (COMPLETE)');
+        },
+      };
+      //
+      jsonCSVData.subscribe(jsonCSVDataObserver); 
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [GENERAR ARCHIVO XLS]
@@ -175,13 +188,29 @@ export class MCSDService implements OnInit {
       return this.http.get<LogEntry[]>(url);   
     } 
     //
-    _SetSTATBarCache(_prefix : string | undefined) {
+    _SetSTATBarCache(_prefix : string | undefined) : void {
       //
       let url    = `${_prefix}demos/_SetSTATBarCache`;
       //
-      console.warn("[REQUESTING URL] " + url);
+      let jsonDataObservable : Observable<string> = this.http.get<string>(url,this.HTTPOptions_Text);   
       //
-      return this.http.get<string>(url,this.HTTPOptions_Text);   
+      const jsonDataOberver = {
+        next: (jsondata: string)     => { 
+          //
+          console.log('_SetSTATBarCache - (return): ' + jsondata);
+        },
+        error           : (err: Error)      => {
+          //
+          console.error('_SetSTATBarCache- (ERROR) : ' + JSON.stringify(err.message));
+          //
+        },
+        complete        : ()                => {
+          //
+          console.log('_SetSTATBarCache -  (COMPLETE)');
+        },
+      };
+      //
+      jsonDataObservable.subscribe(jsonDataOberver);
     }     
     //-------------------------------------------------------------
     // FILE UPLODAD METHODS
@@ -284,16 +313,30 @@ export class MCSDService implements OnInit {
       return xmlData; 
     }
     //
-    _SetXmlDataToCache(_prefix : string | undefined):Observable<string>
+    _SetXmlDataToCache(_prefix : string | undefined):void
     {
       //
-      let p_url  : string  = `${_prefix}demos/_SetXmlDataToCache`;
-      //
-      console.warn("[REQUESTING URL] " + p_url);
+      let p_url   : string  = `${_prefix}demos/_SetXmlDataToCache`;
       //
       let xmlData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
-      return xmlData; 
+      const td_observer = {
+        next: (jsondata: string)     => { 
+          //
+          console.log('_SetXmlDataToCache - (return): ' + jsondata);
+        },
+        error           : (err: Error)      => {
+          //
+          console.error('_SetXmlDataToCache- (ERROR) : ' + JSON.stringify(err.message));
+          //
+        },
+        complete        : ()                => {
+          //
+          console.log('_SetXmlDataToCache -  (COMPLETE)');
+        },
+      };
+      //
+      xmlData.subscribe(td_observer);
     }
     //
     public _RegExEval(tagSearchIndex: number, textSearchValue: string): Observable<string>
