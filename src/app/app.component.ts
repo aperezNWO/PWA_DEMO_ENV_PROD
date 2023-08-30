@@ -7,6 +7,8 @@ import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-we
 import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
 import { FilesGenerationWebComponent   } from './_modules/files-generation/files-generation-web/files-generation-web.component';
 import { AAboutWebComponent            } from './_modules/about/a-about-web/a-about-web.component';
+import { MCSDService                   } from './_services/mcsd.service';
+import { ConfigService } from './_services/config.service';
 //
 @Component({
   selector    : 'app-root',
@@ -42,15 +44,13 @@ export class AppComponent {
         this.navbarCollapsed = p_navbarCollapsed;
     }
     //-----------------------------------------------------------------------------------------------------
-    constructor(private router : Router, private _customErrorHandler : CustomErrorHandler) {
+    constructor(private router : Router, private _customErrorHandler : CustomErrorHandler, mcsdService : MCSDService, configService : ConfigService) {
       //
       console.log('[AppComponent] - ' + this.title + " - [INGRESO]") ;
       //
       console.log('[AppComponent] - ' + this.title + " - [ENV_NAME] : " + environment.serviceName) ;      
       //
       router.navigateByUrl("/Home");
-    }
     //-----------------------------------------------------------------------------------------------------
- }   
-
-
+    }   
+  }   

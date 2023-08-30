@@ -97,7 +97,7 @@ export class CustomErrorHandler implements ErrorHandler {
     } 
 }
 //
-function ReadConfigFile(http : HttpClient, globalConfigService : ConfigService)
+function ReadConfigFile(http : HttpClient, globalConfigService : ConfigService, mcsdService : MCSDService)
 {
   let configInfo!  : Observable<ConfigService>;
   //
@@ -114,6 +114,19 @@ function ReadConfigFile(http : HttpClient, globalConfigService : ConfigService)
               globalConfigService.baseUrl = localConfigService.baseUrl;
               //
               console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + globalConfigService.baseUrl );
+              //////////////////////////////////////////////////////
+              // CACHE PARA XML
+              ///////////////////////////////////////////////////////
+              mcsdService._SetXmlDataToCache(globalConfigService.baseUrl);
+              ///////////////////////////////////////////////////////
+              // CACHE PARA PIE CHART
+              ///////////////////////////////////////////////////////
+              mcsdService._SetSTATPieCache(globalConfigService.baseUrl);
+              ///////////////////////////////////////////////////////
+              // CACHE PARA BARCHART
+              ///////////////////////////////////////////////////////
+              mcsdService._SetSTATBarCache(globalConfigService.baseUrl);
+
         },
         error: (err: Error) => {
               //
@@ -135,19 +148,7 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
           ///////////////////////////////////////////////////////
           // LEER ARCHIVO CONFIG
           ///////////////////////////////////////////////////////
-          ReadConfigFile(http, globalConfigService);
-          ///////////////////////////////////////////////////////
-          // CACHE PARA XML
-          ///////////////////////////////////////////////////////
-          mcsdService._SetXmlDataToCache();
-          ///////////////////////////////////////////////////////
-          // CACHE PARA PIE CHART
-          ///////////////////////////////////////////////////////
-          mcsdService._SetSTATPieCache();
-          ///////////////////////////////////////////////////////
-          // CACHE PARA BARCHART
-          ///////////////////////////////////////////////////////
-          mcsdService._SetSTATBarCache();
+          ReadConfigFile(http, globalConfigService, mcsdService);
           //
           resolve(true);
     });
@@ -204,7 +205,7 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
 //
 export class AppModule { 
     //-----------------------------------------------------------------------------------------------------
-    constructor(public customErrorHandler : CustomErrorHandler, public loggingInterceptor : LoggingInterceptor ) 
+    constructor(public customErrorHandler : CustomErrorHandler, public loggingInterceptor : LoggingInterceptor) 
     {
         //
         console.log("[AppModule]");

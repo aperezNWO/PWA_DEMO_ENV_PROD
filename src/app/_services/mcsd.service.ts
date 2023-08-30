@@ -131,9 +131,9 @@ export class MCSDService implements OnInit {
         return jsonCSVData; 
     }
     //
-    _SetSTATPieCache():Observable<string> {
+    _SetSTATPieCache(_prefix : string | undefined):Observable<string> {
       //
-      let p_url    = this._prefix + 'demos/_SetSTATPieCache';
+      let p_url    =  `${_prefix}demos/_SetSTATPieCache`;
       //
       console.warn("[REQUESTING URL] " + p_url);
       //
@@ -175,13 +175,13 @@ export class MCSDService implements OnInit {
       return this.http.get<LogEntry[]>(url);   
     } 
     //
-    _SetSTATBarCache() {
+    _SetSTATBarCache(_prefix : string | undefined) {
       //
-      let url    = `${this._prefix}demos/_SetSTATBarCache`;
+      let url    = `${_prefix}demos/_SetSTATBarCache`;
       //
       console.warn("[REQUESTING URL] " + url);
       //
-      return this.http.get<string>(url);   
+      return this.http.get<string>(url,this.HTTPOptions_Text);   
     }     
     //-------------------------------------------------------------
     // FILE UPLODAD METHODS
@@ -284,10 +284,10 @@ export class MCSDService implements OnInit {
       return xmlData; 
     }
     //
-    _SetXmlDataToCache():Observable<string>
+    _SetXmlDataToCache(_prefix : string | undefined):Observable<string>
     {
       //
-      let p_url  : string  = `${this._prefix}demos/_SetXmlDataToCache`;
+      let p_url  : string  = `${_prefix}demos/_SetXmlDataToCache`;
       //
       console.warn("[REQUESTING URL] " + p_url);
       //
