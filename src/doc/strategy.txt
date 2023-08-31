@@ -147,6 +147,8 @@
         -- [_] [GENERAR ARCHIVO CSV]
 
                     -- [_] Editar lista de cumpleaños exnacato.
+                           -- [_] ANGULA CRUD.
+                           -- [_] METRONIC.
                     -- [_] oauth.
                     -- [_] Dynamic forms.
                     -- [x] Corregir ruta:
