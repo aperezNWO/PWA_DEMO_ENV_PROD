@@ -118,6 +118,7 @@
         -- [x] implement menu.
         -- [_] check uix color/usability.
         -- [_] menu collapse on page entry.
+        -- [_] metronic.
         -- [_] scss.
                 -- [daniel sevilla]         https://primeng.org/installation.
 
@@ -192,11 +193,7 @@
             -- [_] oauth.
             -- [_] DYNAMIC FORM.
 
-    -- [_] [CPP DEMO]
-    
-    -- [_] [AI/ NEURAL NETWORK DEMO]
-
-    -- [_] [ERRORS]
+    -- [>] [ERRORS]
 
         -- [x] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GetConsultaLogStatGet' 
                from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy:
@@ -213,7 +210,11 @@
         -- [x] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GenerarInformeCSVJsonSTAT' 
                from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy: 
                No 'Access-Control-Allow-Origin' header is present on the requested resource.
-               
+
+    -- [_] [CPP DEMO]
+    
+    -- [_] [AI/ NEURAL NETWORK DEMO]
+
 =====================================================================
 -- SCM - HOSTING
 =====================================================================
