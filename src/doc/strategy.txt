@@ -213,8 +213,16 @@
 
     -- [_] [CPP DEMO]
     
+        -- [_] performance benchmark [c# / typescript / c++]
+
     -- [_] [AI/ NEURAL NETWORK DEMO]
 
+           -- [_] https://www.geeksforgeeks.org/implementation-of-tic-tac-toe-game/
+
+    -- [_] UDEMY 
+        
+        -- [_] ANGULAR.
+        
 =====================================================================
 -- SCM - HOSTING
 =====================================================================
