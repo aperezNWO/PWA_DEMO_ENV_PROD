@@ -25,6 +25,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     public    context                                     : any;
     @ViewChild('c_canvas') c_canvas                       : any;
     @ViewChild('mensajes') mensajes                       : any;
+    @ViewChild('mensajes_1') mensajes_1                   : any;
     @ViewChild('SortAlgorithmList') SortAlgorithmList     : any;
     //
     private screenSize          : number   = 250;
@@ -90,7 +91,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         }
         //
         let _p_unsortedList   : string = this.mensajes.nativeElement.innerHTML;
-        let __p_unsorttedList : string = "";
+        //
         while (_p_unsortedList.indexOf("<br>") != -1)
         {
             _p_unsortedList = _p_unsortedList.replace("<br>","|");
@@ -150,13 +151,14 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                 this.DrawStepMain();
                 //
                 return true;
-                //
             },
             error: (err: Error) => {
                 //
                 console.error(AlgorithmSortComponent.PageTitle + ' - [GETTING SORT] - [error] : ' + err.message);
                 //
                 this.lblStatus  = "[ha ocurrido un error]";
+                //
+                return false;
             },       
             complete: ()        => {
                 //
@@ -187,7 +189,17 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                 // CONFIGURA CONTROLES
                 //-------------------------------------------------------------
                 //
-                this.mensajes.nativeElement.innerHTML = sortInfo;
+                this.mensajes.nativeElement.innerHTML   = sortInfo;
+                //
+                let sortInfo_1 : string = sortInfo;
+                //
+                while (sortInfo_1.indexOf("<br/>") != -1)
+                {
+                    //
+                    sortInfo_1= sortInfo_1.replace("<br/>", "&nbsp;,");
+                }
+                //
+                this.mensajes_1.nativeElement.innerHTML = sortInfo_1;
                 //
                 this._ResetControls();
                 //
@@ -259,7 +271,15 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             //
             console.log('SORT_BENCHMARK . SORTED ARRAY : ' + this.sortedArrayDecoded);
             //
-            this.mensajes.nativeElement.innerHTML = this.sortedArrayDecoded;
+            let _sortedArrayDecoded : string = this.sortedArrayDecoded;
+            //
+            while (_sortedArrayDecoded.indexOf("<br/>") != -1)
+            {
+                //
+                _sortedArrayDecoded= _sortedArrayDecoded.replace("<br/>", "&nbsp;,");
+            }
+            //
+            this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded;
             //
             this.lblStatus                        = "[SE ORDENO CORRECTAMENTE EL LISTADO]";
             //
@@ -281,6 +301,15 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             //
             this.DrawRectangles(numberArray);
             //
+            let _sortedArrayDecoded : string = this.stringMatrix[this.indexDraw];
+            //
+            while (_sortedArrayDecoded.indexOf("<br/>") != -1)
+            {
+                //
+                _sortedArrayDecoded= _sortedArrayDecoded.replace("<br/>", "&nbsp;,");
+            }
+            //
+            this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded;
         }
         //
         this.indexDraw++;

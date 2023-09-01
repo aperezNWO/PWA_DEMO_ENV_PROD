@@ -28,16 +28,17 @@
     /*------------------------------------------------*/
     /* ESTILO PARA LISTADO                            */
     /*------------------------------------------------*/
-    #global {
-        height: 100px;
+    .global {
+        height: auto;
         width: 100%;
-        border: 1px solid #ddd;
+        border: 5px solid #ddd;
         background: #cccccc;
         color: #0000ff;
         overflow-y: scroll;
+        padding : 20px;
     }
 
-    #mensajes {
+    .mensajes {
         height: auto;
     }
     /*------------------------------------------------*/
