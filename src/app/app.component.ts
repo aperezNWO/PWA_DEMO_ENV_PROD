@@ -19,10 +19,10 @@ import { ConfigService } from './_services/config.service';
 //
 export class AppComponent {
     // miembros
-    public title                    : string = "[MCSD - CONSULTAS]"; 
+    public title                    : string = "[WEBAPI/ANGULAR - DEMO]"; 
     // propiedades internas
-    public static appName           : string = "[MCSD - CONSULTAS]";
-    public static appVersion        : string = '1.0.0.89';
+    public static appName           : string = "[WEBAPI/ANGULAR - DEMO]";
+    public static appVersion        : string = '1.0.0.90';
     // propiedades publicas
     public readonly _appName                                     : string  = AppComponent.appName;
     public readonly _appVersion                                  : string  = AppComponent.appVersion;

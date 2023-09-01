@@ -15,6 +15,7 @@ export class TechnicalSpecsComponent {
   appName           : string = AppComponent.appName;
   appVersion        : string = AppComponent.appVersion;
   runtimeVersion    : string = VERSION.full;
+  webApiAppVersion  : string = "";
   //
   public static get PageTitle()   : string {
     //
@@ -23,12 +24,40 @@ export class TechnicalSpecsComponent {
   //
   readonly pageTitle : string = TechnicalSpecsComponent.PageTitle;
   //
-  constructor(private mcsdServiCe: MCSDService, private customErrorHandler: CustomErrorHandler)
+  constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
   {
       //
       console.log(this.pageTitle + "- [INGRESO]");
       //
-      mcsdServiCe.SetLog(this.pageTitle,"PAGE_TECH_SPECS");
+      mcsdService.SetLog(this.pageTitle,"PAGE_TECH_SPECS");
+      //
+      this._GetWebApiAppVersion();
+  }
+  //
+  private _GetWebApiAppVersion() {
+    //
+    let appVersion : Observable<string> = this.mcsdService._GetWebApiAppVersion();
+    //
+    const appVersionObserver = {
+      next: (jsondata: string)     => { 
+        //
+        console.log('_GetAppVersion - (return): ' + jsondata);
+        //
+        this.webApiAppVersion = jsondata;
+        //
+        console.log(this.pageTitle + "- [webApiVersion] - " + this.webApiAppVersion);
+      },
+      error           : (err: Error)      => {
+        //
+        console.error('_GetAppVersion- (ERROR) : ' + JSON.stringify(err.message));
+      },
+      complete        : ()                => {
+        //
+        console.log('_GetAppVersion -  (COMPLETE)');
+      },
+    };
+    //
+    appVersion.subscribe(appVersionObserver);
   }
   //
   TestError():void

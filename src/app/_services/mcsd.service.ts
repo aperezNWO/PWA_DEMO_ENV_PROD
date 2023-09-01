@@ -92,6 +92,16 @@ export class MCSDService implements OnInit {
         //
         return strMsg;
     };
+    //
+    _GetWebApiAppVersion(): Observable<string>
+    {
+      //
+      let p_url         : string  = `${this._prefix}demos/_GetAppVersion`;
+      //
+      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      //
+      return appVersion;
+    }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [GENERAR ARCHIVO CSV]
     ////////////////////////////////////////////////////////////////  
