@@ -45,6 +45,10 @@
            -- [x] https://stackoverflow.com/questions/36158848/how-can-i-declare-a-global-variable-in-angular-2-and-up-typescript
            -- [x] https://tutswiki.com/read-write-config-files-in-angular/
 
+-- [x] [APP NAME FROM CONFIG]
+
+-- [x] SERVICE VERSION METHOD.
+
 -- [_] CHAT GTP.
 
     -- [_]  https://www.businessinsider.es/chatgpt-codigos-impresionantes-prompts-debes-usar-expertos-1288236
@@ -145,6 +149,8 @@
 
                     -- [_] revisar uix.
 
+                    -- [_] orden de botones.
+
         -- [_] [GENERAR ARCHIVO CSV]
 
                     -- [_] Editar lista de cumpleaños exnacato.
@@ -162,6 +168,8 @@
         -- [x] [ALGORITMOS - ORDENAMIENTO]
 
                     -- [_] revisar uix.
+
+                    -- [_] fila horizontal de numeros aleatorios con estilos.
 
         -- [_] [ALGORITMOS - DISTANCIA MAS CORTA]
 
@@ -193,7 +201,21 @@
             -- [_] oauth.
             -- [_] DYNAMIC FORM.
 
-    -- [>] [ERRORS]
+    -- [_] [CPP DEMO]
+    
+        -- [_] performance benchmark [c# / typescript / c++]
+
+    -- [_] [AI/ NEURAL NETWORK DEMO]
+
+           -- [_] https://www.geeksforgeeks.org/implementation-of-tic-tac-toe-game/
+
+    -- [_] UDEMY / ANGULAR.
+        
+        -- [_] https://www.udemy.com/topic/angular/free/
+
+=====================================================================
+-- ERRORS
+=====================================================================
 
         -- [x] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GetConsultaLogStatGet' 
                from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy:
@@ -210,23 +232,7 @@
         -- [x] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GenerarInformeCSVJsonSTAT' 
                from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy: 
                No 'Access-Control-Allow-Origin' header is present on the requested resource.
-
-    -- [_] [CPP DEMO]
-    
-        -- [_] performance benchmark [c# / typescript / c++]
-
-    -- [_] [AI/ NEURAL NETWORK DEMO]
-
-           -- [_] https://www.geeksforgeeks.org/implementation-of-tic-tac-toe-game/
-
-    -- [_] [APP NAME FROM CONFIG]
-
-    -- [_] SERVICE VERSION METHOD.
-
-    -- [_] UDEMY 
-        
-        -- [_] ANGULAR.
-        
+              
 =====================================================================
 -- SCM - HOSTING
 =====================================================================
@@ -277,6 +283,25 @@
         -- [_] REDUCE FILE SIZE.
                 -- [_] check disable email from "somee.com".
 
+/*
+
+Your website 'angulardemo.somee.com' was disabled for the following reason: 
+
+Website's average, per request bandwidth has exceeded a limit that is set for the website hosted with a free hosting package! 
+Although we do not limit the file size that can be uploaded or downloaded from your website, 
+we set a limit of [150KByte] on average file size that can be downloaded from the website hosted with free package. 
+
+The average is calculated every several hours for all files together, including *.html, *.asp, *.aspx, *.jpg, *.png, *.gif, *.mpg 
+and other text and media files. 
+
+Your website is scheduled to start again in about 12 hours, or you can start it manually from our control panel any time. 
+
+But if you will not take actions to decrease the average file size that is sent from your website it will be stopped again 
+and you are allowed to start it 5 times only. 
+
+You can also switch to any other hosting package where such maintenance is not performed.
+
+*/
 =====================================================================
 -- STRATEGY - DIFUSION
 =====================================================================
