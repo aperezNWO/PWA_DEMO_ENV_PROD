@@ -28,12 +28,14 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     @ViewChild('mensajes_1') mensajes_1                   : any;
     @ViewChild('SortAlgorithmList') SortAlgorithmList     : any;
     //
-    private screenSize          : number   = 250;
-    private delayInMilliseconds : number   = 500;
-    private stringMatrix        : string[] = [];
-    private indexDraw           : number   = 0;
-    private sortedArrayDecoded  : string   = "";
-    private arraySeparator      : string   = "|";
+    private   screenSize          : number   = 250;
+    private   delayInMilliseconds : number   = 500;
+    public    stringMatrix        : string[] = [];
+    private   indexDraw           : number   = 0;
+    public    sortedArrayDecoded  : string   = "";
+    private   arraySeparator      : string   = "|";
+    public    GetSortLabel        : string   = "[ORDENAR]"; 
+
     //
     constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
     {
@@ -164,7 +166,6 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             complete: ()        => {
                 //
                 console.warn(AlgorithmSortComponent.PageTitle  + ' - [GETTING SORT] - [Observer got a complete notification]');
-                //
             },
         };
         //
@@ -174,7 +175,11 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     public GetNewSort():void
     {
         //
-        console.log(AlgorithmSortComponent.PageTitle + " - [NEW SORT]" );   
+        console.log(AlgorithmSortComponent.PageTitle + " - [NEW SORT]" );  
+        //
+        this.SortAlgorithmList.nativeElement.options.selectedIndex = 0;
+        //
+        this.stringMatrix              = [];
         //
         let randomVertexInfo!          : Observable<string>;
         //
@@ -205,6 +210,8 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                 this._ResetControls();
                 //
                 this.lblStatus  = "[REINICIO EXITOSO]";
+                //
+                this.GetSortLabel              = "[ORDENAR]";
             },
             error: (err: Error) => {
                 //
@@ -282,7 +289,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             //
             this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded.trim();
             //
-            this.lblStatus                        = "[SE ORDENO CORRECTAMENTE EL LISTADO]";
+            this.lblStatus    = "[SE ORDENO CORRECTAMENTE EL LISTADO]";
             //
             return;
         }
@@ -324,6 +331,8 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     {
         //
         this.indexDraw = 0;
+        //
+        this.GetSortLabel     = "[...ordenando...]";
         //
         console.log('SORT_BENCHMARK . DRAWING ARRAY INITIAL. index: ' + this.indexDraw + ',matrix length : : ' + this.stringMatrix.length);
         //
