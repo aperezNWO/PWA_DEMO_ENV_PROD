@@ -173,7 +173,7 @@
 
         -- [_] [ALGORITMOS - DISTANCIA MAS CORTA]
 
-                    -- [_] Corregir uix.
+                    -- [x] Corregir uix.
 
         -- [>] [ALGORITMOS - EXPRESIONES REGULARES]
 

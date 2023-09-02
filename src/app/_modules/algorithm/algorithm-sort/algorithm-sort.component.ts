@@ -33,7 +33,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     private stringMatrix        : string[] = [];
     private indexDraw           : number   = 0;
     private sortedArrayDecoded  : string   = "";
-    private arraySeparator      : string   = " | ";
+    private arraySeparator      : string   = "|";
     //
     constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
     {
