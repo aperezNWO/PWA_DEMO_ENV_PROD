@@ -196,10 +196,10 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                 while (sortInfo_1.indexOf("<br/>") != -1)
                 {
                     //
-                    sortInfo_1= sortInfo_1.replace("<br/>", "&nbsp;,");
+                    sortInfo_1= sortInfo_1.replace("<br/>", " -|- ");
                 }
                 //
-                this.mensajes_1.nativeElement.innerHTML = sortInfo_1;
+                this.mensajes_1.nativeElement.innerHTML = sortInfo_1.trim();
                 //
                 this._ResetControls();
                 //
@@ -276,10 +276,10 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             while (_sortedArrayDecoded.indexOf("<br/>") != -1)
             {
                 //
-                _sortedArrayDecoded= _sortedArrayDecoded.replace("<br/>", "&nbsp;,");
+                _sortedArrayDecoded= _sortedArrayDecoded.replace("<br/>", " -|- ");
             }
             //
-            this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded;
+            this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded.trim();
             //
             this.lblStatus                        = "[SE ORDENO CORRECTAMENTE EL LISTADO]";
             //
@@ -303,13 +303,15 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             //
             let _sortedArrayDecoded : string = this.stringMatrix[this.indexDraw];
             //
-            while (_sortedArrayDecoded.indexOf("<br/>") != -1)
+            console.log('NUMBER ARRAY [MATRIX] : ' + this.stringMatrix[this.indexDraw]);
+            //
+            while (_sortedArrayDecoded.indexOf(",") != -1)
             {
                 //
-                _sortedArrayDecoded= _sortedArrayDecoded.replace("<br/>", "&nbsp;,");
+                _sortedArrayDecoded= _sortedArrayDecoded.replace(",", " -|- ");
             }
             //
-            this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded;
+            this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded.trim();
         }
         //
         this.indexDraw++;
