@@ -30,6 +30,7 @@
     /*------------------------------------------------*/
     .mensajes {
         border: 5px solid #ddd;
+        padding : 10px;
         background: #cccccc;
         color: #0000ff;
         font-size:xx-small;
