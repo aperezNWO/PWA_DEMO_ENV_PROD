@@ -33,6 +33,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     private stringMatrix        : string[] = [];
     private indexDraw           : number   = 0;
     private sortedArrayDecoded  : string   = "";
+    private arraySeparator      : string   = " | ";
     //
     constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
     {
@@ -196,7 +197,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                 while (sortInfo_1.indexOf("<br/>") != -1)
                 {
                     //
-                    sortInfo_1= sortInfo_1.replace("<br/>", " -|- ");
+                    sortInfo_1= sortInfo_1.replace("<br/>", this.arraySeparator);
                 }
                 //
                 this.mensajes_1.nativeElement.innerHTML = sortInfo_1.trim();
@@ -276,7 +277,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             while (_sortedArrayDecoded.indexOf("<br/>") != -1)
             {
                 //
-                _sortedArrayDecoded= _sortedArrayDecoded.replace("<br/>", " -|- ");
+                _sortedArrayDecoded= _sortedArrayDecoded.replace("<br/>", this.arraySeparator);
             }
             //
             this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded.trim();
@@ -308,7 +309,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             while (_sortedArrayDecoded.indexOf(",") != -1)
             {
                 //
-                _sortedArrayDecoded= _sortedArrayDecoded.replace(",", " -|- ");
+                _sortedArrayDecoded= _sortedArrayDecoded.replace(",", this.arraySeparator);
             }
             //
             this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded.trim();
