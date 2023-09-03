@@ -169,6 +169,10 @@
 
                     -- [_] revisar uix.
 
+                    -- [_] preservar arreglo original.
+
+                    -- [_] marcar 2 posiciones de intercambio (swap).
+
                     -- [_] fila horizontal de numeros aleatorios con estilos.
 
         -- [_] [ALGORITMOS - DISTANCIA MAS CORTA]

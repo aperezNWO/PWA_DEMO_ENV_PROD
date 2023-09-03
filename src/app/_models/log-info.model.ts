@@ -36,3 +36,14 @@ export class  SearchCriteria
         //
     }
 }
+//
+export class SortInfo 
+{
+    constructor (
+         public value    :string
+        ,public swap     :boolean
+    )
+    {
+        //
+    }
+}

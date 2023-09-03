@@ -22,7 +22,7 @@ export class AppComponent {
     public title                    : string = "[WEBAPI/ANGULAR - DEMO]"; 
     // propiedades internas
     public static appName           : string = "[WEBAPI/ANGULAR - DEMO]";
-    public static appVersion        : string = '1.0.0.93';
+    public static appVersion        : string = '1.0.0.95';
     // propiedades publicas
     public readonly _appName                                     : string  = AppComponent.appName;
     public readonly _appVersion                                  : string  = AppComponent.appVersion;
@@ -32,7 +32,7 @@ export class AppComponent {
     public readonly AngularTutorialsnWebComponent_pageTitle      : string  = AngularTutorialsnWebComponent.PageTitle;
     public readonly AAboutWebComponent_pageTitle                 : string  = AAboutWebComponent.PageTitle
     //
-    private  navbarCollapsed                              : boolean = true;
+    private  navbarCollapsed                                     : boolean = true;
     //
     public get NavbarCollapsed() : boolean {
       //

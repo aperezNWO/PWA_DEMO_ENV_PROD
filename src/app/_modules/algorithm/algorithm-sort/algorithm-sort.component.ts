@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MCSDService                                 } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                          } from '../../../app.module';
+import { SortInfo                                    } from '../../../_models/log-info.model'; 
 import { Observable                                  } from 'rxjs';
 //
 @Component({
@@ -26,6 +27,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     @ViewChild('c_canvas') c_canvas                       : any;
     @ViewChild('mensajes') mensajes                       : any;
     @ViewChild('mensajes_1') mensajes_1                   : any;
+    @ViewChild('mensajes_2') mensajes_2                   : any;
     @ViewChild('SortAlgorithmList') SortAlgorithmList     : any;
     //
     private   screenSize          : number   = 250;
@@ -139,15 +141,6 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                     console.log('SORT_BENCHMARK . SORTED ARRAY : ' + index + ' : ' + this.stringMatrix[index]);
                 }
                 //-----------------------------------------------------------------------
-                // REINICIAR CONTROLES
-                //-----------------------------------------------------------------------
-                //
-                //$('#SortAlgorithmList').prop('disabled', true);
-                //
-                //$("#GetSort").prop('disabled', true);
-                //
-                //$("#NewSort").prop('disabled', false);
-                //-----------------------------------------------------------------------
                 // DIBUJAR CUADRICULA
                 //-----------------------------------------------------------------------
                 //
@@ -181,9 +174,11 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         this.stringMatrix              = [];
         //
-        this.mensajes.nativeElement.innerHTML   = "...obteniendo arreglo...";
+        this.mensajes_1.nativeElement.innerHTML   = "...obteniendo arreglo...";
         //
-        this.lblStatus                          = "...obteniendo arreglo...";                                    
+        this.mensajes_2.nativeElement.innerHTML   = "...obteniendo arreglo...";
+        //
+        this.lblStatus                            = "...obteniendo arreglo...";                                    
         //
         let randomVertexInfo!          : Observable<string>;
         //
@@ -209,7 +204,11 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                     sortInfo_1= sortInfo_1.replace("<br/>", this.arraySeparator);
                 }
                 //
-                this.mensajes_1.nativeElement.innerHTML = sortInfo_1.trim();
+                sortInfo_1 = sortInfo_1.trim();
+                //
+                this.mensajes_1.nativeElement.innerHTML = sortInfo_1;
+                //
+                this.mensajes_2.nativeElement.innerHTML = sortInfo_1;
                 //
                 this._ResetControls();
             },
@@ -234,35 +233,47 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         console.log(this.pageTitle   + ' [RESET CONTROLS] ');
         //
-        let stringArray =  this.mensajes.nativeElement.innerHTML.split("<br>");
+        let stringArray_ : string[]   = this.mensajes.nativeElement.innerHTML.split("<br>");
         //
-        console.log('ARREGLO : ' + stringArray);
+        console.log('NUMBER ARRAY [CURRENT] : ' + stringArray_);
+        //
+        let numberArray  : SortInfo[] = []; 
+        //
+        stringArray_.forEach((element: string, index : number) => {    
+            //
+            let sortInfo  : SortInfo = new SortInfo(element, false);
+            //
+            numberArray.push(sortInfo);  
+        });   
         //
         this.DrawGrid();
         //
-        this.DrawRectangles(stringArray);
+        this.DrawRectangles(numberArray);
         //
         this.lblStatus       = "[REINICIO EXITOSO]";
         //
         this.GetSortLabel    = "[ORDENAR]";
     }
     //
-    DrawRectangles(stringArray : string[]):void
+    DrawRectangles(stringArray : SortInfo[]):void
     {
         //
-        this.context.fillStyle = "#ccc";
+        let defaultFillStyle : string = "#ccc";
+        //
+        let swapFillStyle    : string = "#FFA500";
         //
         for (let index = 0; index < 25; index++)
         {
             //
             let x      : number = 0 + (this.rectSize * index);
-            let y      : number = this.screenSize - (Number.parseInt(stringArray[index]) * this.rectSize);
+            let y      : number = this.screenSize - (Number.parseInt(stringArray[index].value) * this.rectSize);
             let length : number = (this.rectSize);
-            let height : number = Number.parseInt(stringArray[index]) * this.rectSize;
+            let height : number = Number.parseInt(stringArray[index].value) * this.rectSize;
+            //
+            this.context.fillStyle = (stringArray[index].swap == true)? swapFillStyle : defaultFillStyle;
             //
             this.context.fillRect(x, y, length, height);
         }
-        //
     }
     //
     DrawStep():void
@@ -273,8 +284,6 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         if (this.indexDraw >= this.stringMatrix.length)
         {
             //
-            console.log('SORT_BENCHMARK . SORTED ARRAY : ' + this.sortedArrayDecoded);
-            //
             let _sortedArrayDecoded : string = this.sortedArrayDecoded;
             //
             while (_sortedArrayDecoded.indexOf("<br/>") != -1)
@@ -283,11 +292,15 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                 _sortedArrayDecoded= _sortedArrayDecoded.replace("<br/>", this.arraySeparator);
             }
             //
-            this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded.trim();
+            _sortedArrayDecoded                     = _sortedArrayDecoded.trim()
+            //
+            this.mensajes_2.nativeElement.innerHTML = _sortedArrayDecoded;
             //
             this.lblStatus        = "[SE ORDENO CORRECTAMENTE EL LISTADO]";
             //
             this.GetSortLabel     = "[...ordenado...]";
+            //
+            console.log('SORT_BENCHMARK . SORTED ARRAY : ' + _sortedArrayDecoded);
             //
             return;
         }
@@ -297,27 +310,30 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             //
             this.lblStatus  = `Paso ${this.indexDraw} de ${this.stringMatrix.length-1}`;
             //
-            let stringArray = this.stringMatrix[this.indexDraw];
+            let stringArray_past    : string[]   = (this.indexDraw > 1) ? this.stringMatrix[this.indexDraw - 1].split(",") : [] ;
             //
-            let numberArray = stringArray.split(",");
+            console.log('NUMBER ARRAY [PAST]    : ' + stringArray_past);
             //
-            console.log('NUMBER ARRAY : ' + numberArray);
+            let stringArray_current : string[]   = this.stringMatrix[this.indexDraw].split(",");
+            //
+            console.log('NUMBER ARRAY [CURRENT] : ' + stringArray_current);
+            //
+            let numberArray : SortInfo[] = []; 
+            //
+            stringArray_current.forEach((element: string, index : number) => {  
+              //
+              let swapStyle : boolean  = (this.indexDraw == 1) ? false : (stringArray_current[index] != stringArray_past[index]);  
+              //
+              let sortInfo  : SortInfo = new SortInfo(element, swapStyle);
+              //
+              numberArray.push(sortInfo);  
+            });        
             //
             this.DrawGrid();
             //
             this.DrawRectangles(numberArray);
             //
-            let _sortedArrayDecoded : string = this.stringMatrix[this.indexDraw];
-            //
-            console.log('NUMBER ARRAY [MATRIX] : ' + this.stringMatrix[this.indexDraw]);
-            //
-            while (_sortedArrayDecoded.indexOf(",") != -1)
-            {
-                //
-                _sortedArrayDecoded= _sortedArrayDecoded.replace(",", this.arraySeparator);
-            }
-            //
-            this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded.trim();
+            this.DrawArray();    
         }
         //
         this.indexDraw++;
@@ -335,5 +351,18 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         console.log('SORT_BENCHMARK . DRAWING ARRAY INITIAL. index: ' + this.indexDraw + ',matrix length : : ' + this.stringMatrix.length);
         //
         this.DrawStep();
+    }
+    //
+    DrawArray():void
+    {
+        let _sortedArrayDecoded : string = this.stringMatrix[this.indexDraw];
+        //
+        while (_sortedArrayDecoded.indexOf(",") != -1)
+        {
+            //
+            _sortedArrayDecoded= _sortedArrayDecoded.replace(",", this.arraySeparator);
+        }
+        //
+        this.mensajes_2.nativeElement.innerHTML = _sortedArrayDecoded.trim();
     }
 }
