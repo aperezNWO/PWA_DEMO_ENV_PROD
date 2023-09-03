@@ -181,6 +181,10 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         this.stringMatrix              = [];
         //
+        this.mensajes.nativeElement.innerHTML   = "...obteniendo arreglo...";
+        //
+        this.lblStatus                          = "...obteniendo arreglo...";                                    
+        //
         let randomVertexInfo!          : Observable<string>;
         //
         randomVertexInfo               = this.mcsdService.getNewSort();
@@ -208,10 +212,6 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                 this.mensajes_1.nativeElement.innerHTML = sortInfo_1.trim();
                 //
                 this._ResetControls();
-                //
-                this.lblStatus  = "[REINICIO EXITOSO]";
-                //
-                this.GetSortLabel              = "[ORDENAR]";
             },
             error: (err: Error) => {
                 //
@@ -232,23 +232,19 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     _ResetControls():void
     {
         //
+        console.log(this.pageTitle   + ' [RESET CONTROLS] ');
+        //
         let stringArray =  this.mensajes.nativeElement.innerHTML.split("<br>");
         //
         console.log('ARREGLO : ' + stringArray);
-        //
-        //$('#SortAlgorithmList').val('0');
-        //
-        //$('#SortAlgorithmList').prop('disabled', false);
-        //
-        //$("#GetSort").prop('disabled', false);
-        //
-        //$("#NewSort").prop('disabled', true);
         //
         this.DrawGrid();
         //
         this.DrawRectangles(stringArray);
         //
-        this.lblStatus = '[STATUS]';
+        this.lblStatus       = "[REINICIO EXITOSO]";
+        //
+        this.GetSortLabel    = "[ORDENAR]";
     }
     //
     DrawRectangles(stringArray : string[]):void
@@ -289,7 +285,9 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             //
             this.mensajes_1.nativeElement.innerHTML = _sortedArrayDecoded.trim();
             //
-            this.lblStatus    = "[SE ORDENO CORRECTAMENTE EL LISTADO]";
+            this.lblStatus        = "[SE ORDENO CORRECTAMENTE EL LISTADO]";
+            //
+            this.GetSortLabel     = "[...ordenado...]";
             //
             return;
         }
@@ -337,6 +335,5 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         console.log('SORT_BENCHMARK . DRAWING ARRAY INITIAL. index: ' + this.indexDraw + ',matrix length : : ' + this.stringMatrix.length);
         //
         this.DrawStep();
-        //
     }
 }
