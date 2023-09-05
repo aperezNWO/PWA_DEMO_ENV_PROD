@@ -147,4 +147,10 @@ export class FilesGenerationZIPComponent {
       //
       fileName.subscribe(setZipObserver);
   }
+  //--------------------------------------------------------------------------
+  NewZip():void{
+      //
+      console.log(this.pageTitle + ' - [NEW PDF] ');      
+  }  
+  //--------------------------------------------------------------------------  
 }

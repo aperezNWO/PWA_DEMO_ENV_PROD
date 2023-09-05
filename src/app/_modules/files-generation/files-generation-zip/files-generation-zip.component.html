@@ -34,19 +34,32 @@
             {{ progress }}%
             </div>
         </div>
-        <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
         <!-- STATUS / FIN   -->
-        <!-- DOWNLOAD ZIP / INICIO -->
         <hr>       
         <div class="row" align="left">
             <div class="col-12">
-                <button class="btn btn-success btn-sm" id="GetZIP" type="button" title="[GENERAR ZIP]" value="[GENERAR ZIP]" (click)="this.SetZip()">
+                <button class="btn btn-success btn-sm" id="GetZIP" type="button" title="[GENERAR ZIP]" value="[GENERAR ZIP]" 
+                (click)="this.SetZip()"
+                [hidden]="!(this.progress == 100) && !(this.downloadLink == '')">
                     [GENERAR ZIP]
                 </button>  
-                <a [href]="this.downloadLink" class="btn btn-success btn-sm" id="DownloadFile">[DESCARGAR ZIP]</a>
+                &nbsp;
+                <button class="btn btn-success btn-sm" id="NewZIP" type="button" title="[NUEVO ZIP]" value="[NUEVO ZIP]" 
+                (click) ="this.NewZip()"
+                [hidden]="(this.downloadLink == '')">
+                    [NUEVO ZIP]
+                </button>  
+                &nbsp;
+                <!-- DOWNLOAD ZIP / FIN    -->
+                <a [href]="this.downloadLink" class="btn btn-success btn-sm" id="DownloadFile"
+                [hidden]="(this.downloadLink == '')">
+                    [DESCARGAR ZIP]
+                </a>
+                <!-- DOWNLOAD ZIP / INICIO -->
             </div>
         </div>
-        <!-- DOWNLOAD ZIP / FIN    -->
+        <hr>
+        <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
 </div>
 <hr>
 <a routerLink="/FilesGenerationWeb">Volver al Menú</a>   
