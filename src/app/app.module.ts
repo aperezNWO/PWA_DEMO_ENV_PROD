@@ -111,7 +111,9 @@ function ReadConfigFile(http : HttpClient, globalConfigService : ConfigService, 
               //
               console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + localConfigService );
               //
-              globalConfigService = localConfigService;
+              globalConfigService.baseUrl    = localConfigService.baseUrl;
+              globalConfigService.appName    = localConfigService.appName;
+              globalConfigService.appVersion = localConfigService.appVersion;
               //
               console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + globalConfigService );
               //

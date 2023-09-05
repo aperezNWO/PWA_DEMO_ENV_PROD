@@ -82,7 +82,9 @@
     -- [_] Service Project.
 
             -- [x] put uix on separated hosting.
-            -- [_] Swagger.            
+            -- [_] Swagger. 
+                    -- [_]  https://localhost:44355/swagger/index.html          
+                    -- [_]  http://localhost:83/swagger/index.html
 
     -- [_] Domain : webapidemo (replace mcsdbackend).
     -- [_] DebugHostingContent as webapi/global/cdn.
