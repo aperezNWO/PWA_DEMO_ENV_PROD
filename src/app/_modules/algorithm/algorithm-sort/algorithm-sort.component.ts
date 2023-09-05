@@ -37,6 +37,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     public    sortedArrayDecoded  : string   = "";
     private   arraySeparator      : string   = "|";
     public    GetSortLabel        : string   = "[ORDENAR]"; 
+    public    stringArray_        : string[] = [];
 
     //
     constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
@@ -233,13 +234,13 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         console.log(this.pageTitle   + ' [RESET CONTROLS] ');
         //
-        let stringArray_ : string[]   = this.mensajes.nativeElement.innerHTML.split("<br>");
+        this.stringArray_            = this.mensajes.nativeElement.innerHTML.split("<br>");
         //
-        console.log('NUMBER ARRAY [CURRENT] : ' + stringArray_);
+        console.log('NUMBER ARRAY [CURRENT] : ' + this.stringArray_);
         //
         let numberArray  : SortInfo[] = []; 
         //
-        stringArray_.forEach((element: string, index : number) => {    
+        this.stringArray_.forEach((element: string, index : number) => {    
             //
             let sortInfo  : SortInfo = new SortInfo(element, false);
             //
@@ -310,7 +311,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             //
             this.lblStatus  = `Paso ${this.indexDraw} de ${this.stringMatrix.length-1}`;
             //
-            let stringArray_past    : string[]   = (this.indexDraw > 1) ? this.stringMatrix[this.indexDraw - 1].split(",") : [] ;
+            let stringArray_past    : string[]   = (this.indexDraw == 1) ? this.stringArray_ : this.stringMatrix[this.indexDraw - 1].split(",") ;
             //
             console.log('NUMBER ARRAY [PAST]    : ' + stringArray_past);
             //
@@ -322,7 +323,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             //
             stringArray_current.forEach((element: string, index : number) => {  
               //
-              let swapStyle : boolean  = (this.indexDraw == 1) ? false : (stringArray_current[index] != stringArray_past[index]);  
+              let swapStyle : boolean  = (stringArray_current[index] != stringArray_past[index]);  
               //
               let sortInfo  : SortInfo = new SortInfo(element, swapStyle);
               //
