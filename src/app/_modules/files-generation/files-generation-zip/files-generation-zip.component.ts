@@ -78,7 +78,7 @@ export class FilesGenerationZIPComponent {
               //
               console.log("RESPONSE : " + event.body);
               //
-              this.message = event.body;
+              this.message = "[SE CARGO CORRECTAMENTE EL ARCHIVO]";
             }
           },
           error: (err: any) => {
@@ -129,7 +129,8 @@ export class FilesGenerationZIPComponent {
             this.downloadLink  = this.mcsdService.DebugHostingContent(downloadLink_1);
             //
             console.log('[Download link] : ' + this.downloadLink);
-            // los botones se configuran en el evento "complete()".
+            //
+            this.message = "[SE GENERO CORRECTAMENTE ARCHIVO ZIP]";
           },
           error: (err: Error) => {
             //
@@ -150,7 +151,17 @@ export class FilesGenerationZIPComponent {
   //--------------------------------------------------------------------------
   NewZip():void{
       //
-      console.log(this.pageTitle + ' - [NEW PDF] ');      
+      console.log(this.pageTitle + ' - [NEW PDF] ');  
+      //
+      this.selectedFiles = undefined;
+      //
+      this.currentFile   = undefined;
+      //
+      this.progress      = 0;
+      //
+      this.message       = "";
+      //
+      this.downloadLink  = "";
   }  
   //--------------------------------------------------------------------------  
 }
