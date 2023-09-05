@@ -109,11 +109,15 @@ function ReadConfigFile(http : HttpClient, globalConfigService : ConfigService, 
         //
         next: (localConfigService: ConfigService)     => { 
               //
-              console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + localConfigService.baseUrl);
+              console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + localConfigService );
               //
-              globalConfigService.baseUrl = localConfigService.baseUrl;
+              globalConfigService = localConfigService;
               //
-              console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + globalConfigService.baseUrl );
+              console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + globalConfigService );
+              //
+              AppComponent.appName    = globalConfigService.appName;
+              AppComponent.appVersion = globalConfigService.appVersion;
+              AppComponent.title      = globalConfigService.appName;
               //////////////////////////////////////////////////////
               // CACHE PARA XML
               ///////////////////////////////////////////////////////

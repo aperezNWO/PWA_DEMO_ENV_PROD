@@ -12,8 +12,8 @@ import { AppComponent                      } from '../../../../app.component';
 //
 export class TechnicalSpecsComponent {
   //
-  appName           : string = AppComponent.appName;
-  appVersion        : string = AppComponent.appVersion;
+  appName           : string | undefined = AppComponent.appName;
+  appVersion        : string | undefined = AppComponent.appVersion;
   runtimeVersion    : string = VERSION.full;
   webApiAppVersion  : string = "";
   //

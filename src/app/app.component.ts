@@ -8,7 +8,7 @@ import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutoria
 import { FilesGenerationWebComponent   } from './_modules/files-generation/files-generation-web/files-generation-web.component';
 import { AAboutWebComponent            } from './_modules/about/a-about-web/a-about-web.component';
 import { MCSDService                   } from './_services/mcsd.service';
-import { ConfigService } from './_services/config.service';
+import { ConfigService                 } from './_services/config.service';
 //
 @Component({
   selector    : 'app-root',
@@ -19,13 +19,14 @@ import { ConfigService } from './_services/config.service';
 //
 export class AppComponent {
     // miembros
-    public title                    : string = "[WEBAPI/ANGULAR - DEMO]"; 
+    public static title             : string | undefined = "[WEB API DEMO]"; 
     // propiedades internas
-    public static appName           : string = "[WEBAPI/ANGULAR - DEMO]";
-    public static appVersion        : string = '1.0.0.99';
+    public static appName           : string | undefined = "[WEB API DEMO]";
+    public static appVersion        : string | undefined = "[1.0.1.0]";
     // propiedades publicas
-    public readonly _appName                                     : string  = AppComponent.appName;
-    public readonly _appVersion                                  : string  = AppComponent.appVersion;
+    public readonly _title                                       : string | undefined  = AppComponent.title;
+    public readonly _appName                                     : string | undefined  = AppComponent.appName;
+    public readonly _appVersion                                  : string | undefined  = AppComponent.appVersion;
     public readonly HomeWebComponent_pageTitle                   : string  = HomeWebComponent.PageTitle;
     public readonly AlgorithmWebComponent_pageTitle              : string  = AlgorithmWebComponent.PageTitle;
     public readonly FilesGenerationWebComponent_pageTitle        : string  = FilesGenerationWebComponent.PageTitle;
@@ -46,11 +47,14 @@ export class AppComponent {
     //-----------------------------------------------------------------------------------------------------
     constructor(private router : Router, private _customErrorHandler : CustomErrorHandler, mcsdService : MCSDService, configService : ConfigService) {
       //
-      console.log('[AppComponent] - ' + this.title + " - [INGRESO]") ;
+      console.log('[AppComponent] - [title] : ' + AppComponent.title) ;      
       //
-      console.log('[AppComponent] - ' + this.title + " - [ENV_NAME] : " + environment.serviceName) ;      
+      console.log('[AppComponent] - ' + AppComponent.title + " - [INGRESO]") ;
+      //
+      console.log('[AppComponent] - ' + AppComponent.title + " - [ENV_NAME] : " + environment.serviceName) ;      
       //
       router.navigateByUrl("/Home");
+
     //-----------------------------------------------------------------------------------------------------
     }   
   }   
