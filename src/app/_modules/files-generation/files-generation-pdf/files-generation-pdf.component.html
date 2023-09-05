@@ -8,11 +8,16 @@
         NOMBRE COMPLETO : <input type="text" class="inputPDF" id="subjectName" #subjectName>
     </div>
     <hr>
-    <input id="GetPdf" type="button" title="[OBTENER PDF]" value="[OBTENER PDF]" (click)="this.onSubmit()">
-    <input id="NewPdf" type="button" title="[NUEVO PDF]"   value="[NUEVO PDF]"   (click)="this.onNewPdf()">
+    <input id="GetPdf" type="button" title="[OBTENER PDF]" value="[OBTENER PDF]" (click)="this.onSubmit()" [hidden]="(this.DownloadLink != '')">
+    &nbsp;
+    <input id="NewPdf" type="button" title="[NUEVO PDF]"   value="[NUEVO PDF]"   (click)="this.onNewPdf()" [hidden]="(this.DownloadLink == '')">
+    &nbsp;
+    <!-- ENLACE DESCARGA / INICIO -->
+    <a [href]="this.DownloadLink" id="DownloadFile" [hidden]="(this.DownloadLink == '')" target="_blank">{{ this.downloadCaption }}</a>
+    <!-- ENLACE DESCARGA FIN       -->
+    <hr>
     <div *ngIf="this.DownloadLink">
         <!--STATUS / INICIO -->
-        <hr>
         <div *ngIf="GetPDFUrl" class="progress my-3">
         <div
             class="progress-bar progress-bar-info progress-bar-striped"
@@ -26,10 +31,6 @@
         </div>
         </div>
         <!-- STATUS / FIN   -->
-        <!-- ENLACE DESCARGA / INICIO -->
-        <hr>
-        <a [href]="this.DownloadLink" id="DownloadFile" target="_blank">{{ this.downloadCaption }}</a>
-        <!-- ENLACE DESCARGA FIN       -->
     </div> 
     <hr>
     <div *ngIf="message" class="alert alert-secondary" role="alert">{{ this.message }}</div>
