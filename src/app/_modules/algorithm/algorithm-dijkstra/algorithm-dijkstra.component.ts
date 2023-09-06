@@ -45,6 +45,8 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   public __vertexSizeList  : any;
   public __sourcePointList : any;
   public __distanceList    : any;
+  // 
+  public selectedIndex     : number = 0;
   ////////////////////////////////////////////////////////////////
   // EVENT HANDLERS //////////////////////////////////////////////  
   ////////////////////////////////////////////////////////////////
@@ -96,8 +98,10 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     //
     console.log(AlgorithmDijkstraComponent.PageTitle + " - [DISTANCE LIST CHANGE]");
     //
-    let selectedIndex   : number = this._distanceList.nativeElement.options.selectedIndex;
-    let distanceListVal : string = this._distanceList.nativeElement.options[selectedIndex].text;
+    this.selectedIndex           = this._distanceList.nativeElement.options.selectedIndex;
+    let distanceListVal : string = this._distanceList.nativeElement.options[this.selectedIndex].text;
+    //
+    console.log(AlgorithmDijkstraComponent.PageTitle + " - [DISTANCE LIST CHANGE] - [Selected Index]: [" + this.selectedIndex + "]");
     //
     console.log(AlgorithmDijkstraComponent.PageTitle + " - [DISTANCE LIST CHANGE] - [Selected Text]: [" + distanceListVal + "]");
     //
