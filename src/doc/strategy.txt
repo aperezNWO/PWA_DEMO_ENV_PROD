@@ -61,38 +61,34 @@
         -- [_] @Input.
         -- [_] i18n.
         -- [_] Dynamic Forms.
+        -- [_] Angular CDN.
         -- [_] TOPIC_1.        
         -- [_] TOPIC_2.
         -- [_] TOPIC_3.
 
 -- [_] architectural changes.
 
+    -- [x] backend version     as webapi/global/cdn.
+    -- [x] Domain : webapidemo (replace mcsdbackend).
     -- [x] Turn off .net core uix.
+    -- [x] Service Project.
+
+            -- [x] put uix on separated hosting.
+            -- [x] Swagger. 
+                    -- [x]  https://localhost:44355/swagger/index.html          
+                    -- [x]  http://localhost:83/swagger/index.html
+                    -- [x]  https://mcsd.somee.com/swagger/index.html
+
+    -- [x] Backend como webapi service.
+
+            -- [x] Algorithm Service.
+            -- [x] revisar error (post genera CORS).
 
     -- [_] paquete de idiomas/localizacion (en/us).
            
            -- [_] angular i18n.
 
-    -- [_] Backend como webapi service.
-
-            -- [_] Algorithm Service.
-            -- [_] Angular CDN.
-            -- [x] revisar error (post genera CORS).
-
-    -- [_] Service Project.
-
-            -- [x] put uix on separated hosting.
-            -- [_] Swagger. 
-                    -- [_]  https://localhost:44355/swagger/index.html          
-                    -- [_]  http://localhost:83/swagger/index.html
-
-    -- [_] Domain : webapidemo (replace mcsdbackend).
     -- [_] DebugHostingContent as webapi/global/cdn.
-    -- [_] backend version     as webapi/global/cdn.
-    -- [_] config info.
-
-            -- [_] appName.
-            -- [_] baseUrl.
 
     -- [_] OAUTH.
 
@@ -130,7 +126,40 @@
 
 -- [_] UIX --> check.
 
+    -- [x] [ALGORITMOS]
+
+        -- [x] [ALGORITMOS - ORDENAMIENTO]
+
+                    -- [x] revisar uix.
+
+                    -- [x] preservar arreglo original.
+
+                    -- [x] marcar 2 posiciones de intercambio (swap).
+
+                    -- [x] fila horizontal de numeros aleatorios con estilos.
+
+        -- [x] [ALGORITMOS - DISTANCIA MAS CORTA]
+
+                    -- [x] Corregir uix.
+
+        -- [>] [ALGORITMOS - EXPRESIONES REGULARES]
+
+            -- [>] [revisar USO DE sesion EN .net core]
+                    -- [x] [web.config]
+                    -- [x] angular and .net core backend preserve session.
+                           -- [x] "Angular HttpClient Interceptors: If you're using Angular's HttpClient to make API requests, consider using interceptors. Interceptors can be used to modify requests and responses. Make sure that an interceptor isn't inadvertently modifying or removing session-related headers."
+                           -- [>] https://stackoverflow.com/questions/71768653/storing-data-per-session-in-asp-net-core-with-angular-front-end-web-app
+                           -- [>] https://learn.microsoft.com/en-us/answers/questions/1164151/state-management-in-net-core
+                           -- [>] "asp.net core session state management not working on cross origin"
+                    -- [x] use cookies instead of session.
+                    -- [x] asp.net core CACHE.
+
     -- [_] [GENERAR ARCHIVO]
+
+        -- [x] [GENERAR ARCHIVO ZIP]
+
+                    -- [x] revisar uix.
+                    -- [x] orden de botones.
 
         -- [x] [GENERAR ARCHIVO PDF] 
 
@@ -147,51 +176,18 @@
                 -- [_] Referencia Template Driven/Reactive.
                 -- [_] depurar entradas log.
 
-        -- [_] [GENERAR ARCHIVO ZIP]
-
-                    -- [_] revisar uix.
-
-                    -- [_] orden de botones.
-
         -- [_] [GENERAR ARCHIVO CSV]
+
+                    -- [x] Corregir ruta:
+                           -- [x]   https://mcsd.somee.com//csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
+                           -- [x]   https://mcsd.somee.com/wwroot/csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
+                           -- [x]   SetCSVLink /  getCSVLinkGET / let p_url    = this._prefix + 'demos/_GetCSVLinkJsonGET';
 
                     -- [_] Editar lista de cumpleaños exnacato.
                            -- [_] ANGULA CRUD.
                            -- [_] METRONIC.
                     -- [_] oauth.
                     -- [_] Dynamic forms.
-                    -- [x] Corregir ruta:
-                           -- [x]   https://mcsd.somee.com//csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
-                           -- [x]   https://mcsd.somee.com/wwroot/csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
-                           -- [x]   SetCSVLink /  getCSVLinkGET / let p_url    = this._prefix + 'demos/_GetCSVLinkJsonGET';
-
-    -- [_] [ALGORITMOS]
-
-        -- [x] [ALGORITMOS - ORDENAMIENTO]
-
-                    -- [_] revisar uix.
-
-                    -- [_] preservar arreglo original.
-
-                    -- [_] marcar 2 posiciones de intercambio (swap).
-
-                    -- [_] fila horizontal de numeros aleatorios con estilos.
-
-        -- [_] [ALGORITMOS - DISTANCIA MAS CORTA]
-
-                    -- [x] Corregir uix.
-
-        -- [>] [ALGORITMOS - EXPRESIONES REGULARES]
-
-            -- [>] [revisar USO DE sesion EN .net core]
-                    -- [x] [web.config]
-                    -- [x] angular and .net core backend preserve session.
-                           -- [x] "Angular HttpClient Interceptors: If you're using Angular's HttpClient to make API requests, consider using interceptors. Interceptors can be used to modify requests and responses. Make sure that an interceptor isn't inadvertently modifying or removing session-related headers."
-                           -- [>] https://stackoverflow.com/questions/71768653/storing-data-per-session-in-asp-net-core-with-angular-front-end-web-app
-                           -- [>] https://learn.microsoft.com/en-us/answers/questions/1164151/state-management-in-net-core
-                           -- [>] "asp.net core session state management not working on cross origin"
-                    -- [x] use cookies instead of session.
-                    -- [x] asp.net core CACHE.
 
     -- [_] [ACERCA DE]
     
@@ -219,26 +215,7 @@
         
         -- [_] https://www.udemy.com/topic/angular/free/
 
-=====================================================================
--- ERRORS
-=====================================================================
-
-        -- [x] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GetConsultaLogStatGet' 
-               from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy:
-               No 'Access-Control-Allow-Origin' header is present on the requested resource.
-
-        -- [x] Access to XMLHttpRequest at 'https://mcsdbackup.somee.com/demos/GetConsultaLogStatGet' 
-               from origin 'https://mcsd.somee.com' has been blocked by CORS policy: 
-               No 'Access-Control-Allow-Origin' header is present on the requested resource.
-
-        -- [x] Access to XMLHttpRequest at 'https://mcsdbackup.somee.com/demos/GenerarInformeCSVJsonSTAT' 
-               from origin 'https://mcsd.somee.com' has been blocked by CORS policy: 
-               No 'Access-Control-Allow-Origin' header is present on the requested resource.
-
-        -- [x] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GenerarInformeCSVJsonSTAT' 
-               from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy: 
-               No 'Access-Control-Allow-Origin' header is present on the requested resource.
-              
+             
 =====================================================================
 -- SCM - HOSTING
 =====================================================================
@@ -247,6 +224,7 @@
 
         -- [_] baseUrl.
         -- [_] appName.
+        -- [_] appVersion.
 
 -- [x] environments.
 
@@ -273,19 +251,16 @@
 
 -- [_] webapidemo / service.
 
+       -- [x] remove demo views/controllers.
+       -- [x] enable domain "WebApiDemo".
        -- [_] mcsdWebApíTFS.
-       -- [_] cambiar dominio "mcsd" por "webapidemo"
-       -- [_] config.info ==> appName.
-       -- [_] use swagger in prod.
        -- [_] mcsdBackup.
 
+                -- [_] change tfs/github name "mcsdNet48TFS" / "mcsdNet48GitHub".
                 -- [x] BACKUP /DELETE BOOK "DELORME".  
                 -- [x] BACKUP /DELETE folder "_angular".  
-                -- [_] change tfs/github name "mcsdNet48TFS" / "mcsdNet48GitHub".
-                -- [_] turn off domain "mcsdBackup".
+                -- [x] turn off domain "mcsdBackup".
 
-        -- [x] remove demo views/controllers.
-        -- [_] enable domain "WebApiDemo".
         -- [_] REDUCE FILE SIZE.
                 -- [_] check disable email from "somee.com".
 
@@ -331,5 +306,25 @@ You can also switch to any other hosting package where such maintenance is not p
 
 -- [_] TWITTER /
 -- [_] INSTAGRAM / TK.
+
+=====================================================================
+-- ERRORS
+=====================================================================
+
+        -- [x] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GetConsultaLogStatGet' 
+               from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy:
+               No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+        -- [x] Access to XMLHttpRequest at 'https://mcsdbackup.somee.com/demos/GetConsultaLogStatGet' 
+               from origin 'https://mcsd.somee.com' has been blocked by CORS policy: 
+               No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+        -- [x] Access to XMLHttpRequest at 'https://mcsdbackup.somee.com/demos/GenerarInformeCSVJsonSTAT' 
+               from origin 'https://mcsd.somee.com' has been blocked by CORS policy: 
+               No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
+        -- [x] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GenerarInformeCSVJsonSTAT' 
+               from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy: 
+               No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
 =====================================================================
