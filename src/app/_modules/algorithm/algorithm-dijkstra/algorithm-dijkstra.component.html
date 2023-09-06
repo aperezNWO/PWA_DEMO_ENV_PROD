@@ -57,7 +57,8 @@
             [disabled]="((this.PointListHidden.length == 0) && (this.MatrixListHidden.length == 0))">
         </div>
         <hr />
-            <input id="GetPDF" type="button" title="[GENERAR PDF]" value="[GENERAR PDF]" (click)="this._GetPDF()">
+            <input id="GetPDF" type="button" title="[GENERAR PDF]" value="[GENERAR PDF]" (click)="this._GetPDF()"
+            [disabled]="((this.PointListHidden.length == 0) && (this.MatrixListHidden.length == 0))">
         <hr />
         <a routerLink="/AlgorithmWeb">Volver al Menú</a>
     </div>
