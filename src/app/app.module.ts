@@ -34,6 +34,7 @@ import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-so
 import { ConfigService                 } from './_services/config.service';
 import { MCSDService                   } from './_services/mcsd.service';
 import { Observable, finalize, tap     } from 'rxjs';
+import { LogType } from './_models/log-info.model';
 
 //
 const routes = [
@@ -88,12 +89,16 @@ export class LoggingInterceptor implements HttpInterceptor {
 //
 export class CustomErrorHandler implements ErrorHandler {
     //
-    constructor() { } 
+    constructor(public mcsdService : MCSDService) { } 
     //
     handleError(_error: any): void 
     { 
       // 
       console.warn("[CUSTOM ERROR HANDLING]:\n" + _error); 
+      //
+      let logType : LogType = LogType.Error
+      //
+      this.mcsdService.SetLog("[CUSTOM ERROR HANDLING]",_error.message,logType);
     } 
 }
 //

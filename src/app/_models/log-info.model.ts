@@ -1,3 +1,9 @@
+export enum LogType {
+      Info  = 1
+    , Debug = 2
+    , Error = 3
+};
+//
 export interface LogEntry {
   id_Column   :string;
   pageName    :string;

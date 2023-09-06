@@ -2,9 +2,8 @@ import { Injectable, OnInit                                      } from '@angula
 import { HttpClient, HttpEvent, HttpHandler, HttpHeaders         } from '@angular/common/http';
 import { HttpRequest, HttpResponse  , HttpInterceptor            } from '@angular/common/http';
 import { Observable                                              } from 'rxjs';
-import { LogEntry, SearchCriteria                                } from '../_models/log-info.model';
+import { LogEntry, LogType, SearchCriteria                                                 } from '../_models/log-info.model';
 import { ConfigService                                           } from './config.service';
-
 //
 @Injectable({
   providedIn: 'root'
@@ -362,12 +361,12 @@ export class MCSDService implements OnInit {
     // METODOS - [LOG]
     ////////////////////////////////////////////////////////////////  
     //
-    public  SetLog(p_PageTitle : string ,p_logMsg : string):void
+    public SetLog(p_PageTitle : string ,p_logMsg : string, logType : LogType = LogType.Info):void
     {
       //
       let logInfo!  : Observable<string>;
       //
-      let p_url    = `${this._prefix}demos/_SetLog?p_logMsg=${p_logMsg}`;
+      let p_url     = `${this._prefix}demos/_SetLog?p_logMsg=${p_logMsg}&logType=${logType.toString()}`;
       //
       logInfo       = this.http.get<string>(p_url, this.HTTPOptions_Text);
       //
@@ -390,3 +389,4 @@ export class MCSDService implements OnInit {
         logInfo.subscribe(logInfoObserver);
     };
 }
+  
