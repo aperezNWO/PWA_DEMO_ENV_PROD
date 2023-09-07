@@ -221,12 +221,6 @@
 -- SCM - HOSTING
 =====================================================================
 
--- [_] config.
-
-        -- [_] baseUrl.
-        -- [_] appName.
-        -- [_] appVersion.
-
 -- [x] environments.
 
         -- [_] LOCAL_IIS.
@@ -234,13 +228,22 @@
         -- [_] mcsd.
         -- [_] angulardemo.
 
--- [x] SOURCE github.com        
+-- [_] config file.
+
+        -- [_] read values from .config file.
+                -- [_] baseUrl.
+                -- [_] appName.
+                -- [_] appVersion.
+
+
+-- [>] SOURCE github.com        
 
         -- [_] PUBLIC.                        
                 -- [x] [mcsd/webapidemo]  -->  "mcsd_public".
                 -- [x] [AngularMCSD]      -->  "AngularMCSD_public".
+                -- [>] Update sources.
 
--- [_] HOSTING  
+-- [>] HOSTING  
 
         -- [_] [somee.com]
 
@@ -251,7 +254,7 @@
                 -- [_] check disabled accounts.
                 -- [_] check unused accounts.
 
--- [_] webapidemo / service.
+-- [>] webapidemo / service.
 
        -- [x] remove demo views/controllers.
        -- [x] enable domain "WebApiDemo".
