@@ -188,7 +188,7 @@
         
         -- [_] https://www.udemy.com/topic/angular/free/
 
- 
+
 -- [_] cusotm error handling.
 
         -- [_] to interface --> [standard label status].
@@ -212,17 +212,24 @@
 
 -- [_] [GENERAR ARCHIVO CSV]
 
-                -- [x] Corregir ruta:
-                        -- [x]   https://mcsd.somee.com//csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
-                        -- [x]   https://mcsd.somee.com/wwroot/csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
-                        -- [x]   SetCSVLink /  getCSVLinkGET / let p_url    = this._prefix + 'demos/_GetCSVLinkJsonGET';
+        -- [x] Corregir ruta:
+                -- [x]   https://mcsd.somee.com//csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
+                -- [x]   https://mcsd.somee.com/wwroot/csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
+                -- [x]   SetCSVLink /  getCSVLinkGET / let p_url    = this._prefix + 'demos/_GetCSVLinkJsonGET';
 
-                -- [_] Editar lista de cumpleaños exnacato.
-                        -- [_] ANGULA CRUD.
-                        -- [_] METRONIC.
-                -- [_] oauth.
-                -- [_] Dynamic forms.
+        -- [_] Editar lista de cumpleaños exnacato.
+                -- [_] ANGULA CRUD.
+                -- [_] METRONIC.
+        -- [_] oauth.
+        -- [_] Dynamic forms.
 
+-- [_] config file.
+
+        -- [_] read values from .config file.
+                -- [_] baseUrl.
+                -- [_] appName.
+                -- [_] appVersion.
+                
 =====================================================================
 -- SCM - HOSTING
 =====================================================================
@@ -234,16 +241,9 @@
         -- [_] mcsd.
         -- [_] angulardemo.
 
--- [_] config file.
-
-        -- [_] read values from .config file.
-                -- [_] baseUrl.
-                -- [_] appName.
-                -- [_] appVersion.
-
 -- [>] SOURCE github.com        
 
-        -- [_] PUBLIC.                        
+        -- [_] PUBLIC SOURCES.                        
                 -- [x] [mcsdWebApíTFS] (tff)      -->  (github) "mcsd_public".
                 -- [x] [AngularMCSD]   (github)   -->  (github) "AngularMCSD_public".
                 -- [>] Update sources.
