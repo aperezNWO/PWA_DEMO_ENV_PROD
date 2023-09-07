@@ -243,12 +243,13 @@
 -- [_] HOSTING  
 
         -- [_] [somee.com]
+
                 -- [_] [mcsd/angulardemo/webapidemo]
                 -- [_] [webapidemo/db] on same hosting.
                        -- [_] reset log db.
+                       -- [_] enbable db #2.
                 -- [_] check disabled accounts.
                 -- [_] check unused accounts.
-
 
 -- [_] webapidemo / service.
 
@@ -257,10 +258,10 @@
        -- [_] mcsdWebApíTFS.
        -- [_] mcsdBackup.
 
-                -- [_] change tfs/github name "mcsdNet48TFS" / "mcsdNet48GitHub".
                 -- [x] BACKUP /DELETE BOOK "DELORME".  
                 -- [x] BACKUP /DELETE folder "_angular".  
                 -- [x] turn off domain "mcsdBackup".
+                -- [_] change tfs/github name "mcsdNet48TFS" / "mcsdNet48GitHub".
 
         -- [_] REDUCE FILE SIZE.
                 -- [_] check disable email from "somee.com".

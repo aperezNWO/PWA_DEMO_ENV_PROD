@@ -220,10 +220,10 @@ export class MCSDService implements OnInit {
       };
       //
       jsonDataObservable.subscribe(jsonDataOberver);
-    }     
-    //-------------------------------------------------------------
-    // FILE UPLODAD METHODS
-    //-------------------------------------------------------------
+    } 
+    //////////////////////////////////////////////////////////////
+    // GET ZIP / FILE UPLODAD METHODS
+    //////////////////////////////////////////////////////////////
     upload(file: File) : Observable<HttpEvent<any>> {
       //
       const formData: FormData = new FormData();
@@ -241,9 +241,7 @@ export class MCSDService implements OnInit {
       //
       return this.http.request<HttpEvent<any>>(req);
     }
-    //------------------------------------------------------------
-    // GET ZIP - METHODS
-    //------------------------------------------------------------
+    //
     SetZip(p_fileName : string | undefined):Observable<string> {
         //
         let p_url   = `${this._prefix}demos/_SetZip?p_fileName=${p_fileName}`;
