@@ -91,7 +91,7 @@ export class CustomErrorHandler implements ErrorHandler {
     //
     constructor(public mcsdService : MCSDService) { } 
     //
-    handleError(_error: any): void 
+    handleError(_error: Error): void 
     { 
       // 
       console.warn("[CUSTOM ERROR HANDLING]:\n" + _error); 
