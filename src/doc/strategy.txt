@@ -241,7 +241,6 @@
                 -- [_] appName.
                 -- [_] appVersion.
 
-
 -- [>] SOURCE github.com        
 
         -- [_] PUBLIC.                        
@@ -254,9 +253,9 @@
         -- [_] [somee.com]
 
                 -- [_] [mcsd/angulardemo/webapidemo]
-                -- [_] [webapidemo/db] on same hosting.
-                       -- [_] reset log db.
-                       -- [_] enbable db #2.
+                -- [_] [db].
+                       -- [_] reset log db #1 / debug content.
+                       -- [_] enbable   db #2 / (CSV DEMO).
                 -- [_] check disabled accounts.
                        -- [_] https://www.angulardemo.somee.com.
 
@@ -335,5 +334,12 @@
            E:\pablo.perez\dev\AngularMCSD\AngularMCSD\src\app\_modules\files-generation\files-generation-xls\files-generation-xls.component.ts depends on 'html2canvas'. 
            CommonJS or AMD dependencies can cause optimization bailouts.
            For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+=====================================================================
+-- OBSERVACIONES / REDES SOCIALES
+=====================================================================
+-- [daniel sevilla]         
+
+    -- [_]              https://primeng.org/installation.
 
 =====================================================================
