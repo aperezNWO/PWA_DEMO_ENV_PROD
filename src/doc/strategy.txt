@@ -19,8 +19,7 @@
         -- [x] REPLACED BT "TUTORIALS" / "MCSD CERT".
 
 -- [x] https://mugan86.medium.com/exportar-pdfs-en-angular-con-jspdf-85c7a11a110f
--- [x] ERROR Error: Uncaught (in promise): Invalid element provided as first argument
-    at resolvePromise (zone.js:1193:31)
+-- [x] ERROR Error: Uncaught (in promise): Invalid element provided as first argument at resolvePromise (zone.js:1193:31)
 -- [x] Invalid argument passed to jsPDF.hpf.
 -- [x] zip demo.
 -- [x] default web page.
@@ -62,6 +61,7 @@
         -- [_] i18n.
         -- [_] Dynamic Forms.
         -- [_] Angular CDN.
+                -- [_] DebugHostingContent as webapi/global/cdn.
         -- [_] TOPIC_1.        
         -- [_] TOPIC_2.
         -- [_] TOPIC_3.
@@ -84,6 +84,10 @@
             -- [x] Algorithm Service.
             -- [x] revisar error (post genera CORS).
 
+    -- [_] Service Architecture.
+
+        -- [_] uv_apidigitacion / [nuevo ruv].
+
     -- [_] paquete de idiomas/localizacion (en/us).
            
            -- [_] angular i18n.
@@ -100,19 +104,6 @@
         -- [_] https://www.positronx.io/angular-facebook-oauth-social-login-tutorial/
         -- [_] https://medium.com/@danilrabizo/google-authentication-in-the-angular-application-e86df69be58a
         -- [_] https://learn.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-angular-auth-code
-
- 
--- [_] cusotm error handling.
-
-        -- [_] to interface --> [standard label status].
-        -- [_] to log.
-        -- [_] debug console messages.
-        -- [_] asp.net core enable trace.
-
--- [_] Use custom login.
-
-        -- [_] DYNAMIC FORM.
-        -- [_] DB MODEL.
 
 -- [_] uix --> general.
 
@@ -169,28 +160,6 @@
                -- [x] https://mcsd.somee.com/demos/_GetPdf?subjectName=camila
                 - [x] public GetPDF(subjectName: string | undefined): Observable<HttpEvent<any>> {
 
-        -- [_] [GENERAR ARCHIVO XLS]
-
-                -- [x] angular interceptors.
-                -- [_] filtro por tipo de log.
-                -- [_] corregir consulta y rango de fechas.
-                -- [_] CORREGIR DATOS ESTADISTICAS.
-                -- [_] Referencia Template Driven/Reactive.
-                -- [_] depurar entradas log.
-
-        -- [_] [GENERAR ARCHIVO CSV]
-
-                    -- [x] Corregir ruta:
-                           -- [x]   https://mcsd.somee.com//csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
-                           -- [x]   https://mcsd.somee.com/wwroot/csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
-                           -- [x]   SetCSVLink /  getCSVLinkGET / let p_url    = this._prefix + 'demos/_GetCSVLinkJsonGET';
-
-                    -- [_] Editar lista de cumpleaños exnacato.
-                           -- [_] ANGULA CRUD.
-                           -- [_] METRONIC.
-                    -- [_] oauth.
-                    -- [_] Dynamic forms.
-
     -- [_] [ACERCA DE]
     
         -- [_] [contacto]
@@ -211,11 +180,48 @@
 
     -- [_] [AI/ NEURAL NETWORK DEMO]
 
-           -- [_] https://www.geeksforgeeks.org/implementation-of-tic-tac-toe-game/
+           -- [_] [TIC/TAC/TOE] --> [min/max algorthm].
+
+                  -- [_] https://www.geeksforgeeks.org/implementation-of-tic-tac-toe-game/
 
     -- [_] UDEMY / ANGULAR.
         
         -- [_] https://www.udemy.com/topic/angular/free/
+
+ 
+-- [_] cusotm error handling.
+
+        -- [_] to interface --> [standard label status].
+        -- [_] to log.
+        -- [_] debug console messages.
+        -- [_] asp.net core enable trace.
+
+-- [_] Use custom login.
+
+        -- [_] DYNAMIC FORM.
+        -- [_] DB MODEL.
+
+-- [_] [GENERAR ARCHIVO XLS]
+
+        -- [x] angular interceptors.
+        -- [_] filtro por tipo de log.
+        -- [_] corregir consulta y rango de fechas.
+        -- [_] CORREGIR DATOS ESTADISTICAS.
+        -- [_] Referencia Template Driven/Reactive.
+        -- [_] depurar entradas log.
+
+-- [_] [GENERAR ARCHIVO CSV]
+
+                -- [x] Corregir ruta:
+                        -- [x]   https://mcsd.somee.com//csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
+                        -- [x]   https://mcsd.somee.com/wwroot/csv/3e0632b0-c7a7-4387-a014-00ae9ab3e86320230821091025.csv
+                        -- [x]   SetCSVLink /  getCSVLinkGET / let p_url    = this._prefix + 'demos/_GetCSVLinkJsonGET';
+
+                -- [_] Editar lista de cumpleaños exnacato.
+                        -- [_] ANGULA CRUD.
+                        -- [_] METRONIC.
+                -- [_] oauth.
+                -- [_] Dynamic forms.
 
 =====================================================================
 -- SCM - HOSTING
@@ -239,8 +245,8 @@
 -- [>] SOURCE github.com        
 
         -- [_] PUBLIC.                        
-                -- [x] [mcsd/webapidemo]  -->  "mcsd_public".
-                -- [x] [AngularMCSD]      -->  "AngularMCSD_public".
+                -- [x] [mcsdWebApíTFS] (tff)      -->  (github) "mcsd_public".
+                -- [x] [AngularMCSD]   (github)   -->  (github) "AngularMCSD_public".
                 -- [>] Update sources.
 
 -- [>] HOSTING  
@@ -252,40 +258,41 @@
                        -- [_] reset log db.
                        -- [_] enbable db #2.
                 -- [_] check disabled accounts.
-                -- [_] check unused accounts.
+                       -- [_] https://www.angulardemo.somee.com.
 
 -- [>] webapidemo / service.
 
        -- [x] remove demo views/controllers.
        -- [x] enable domain "WebApiDemo".
-       -- [_] mcsdWebApíTFS.
-       -- [_] mcsdBackup.
+       -- [x] mcsdWebApíTFS.
+       -- [x] mcsdBackup.
 
                 -- [x] BACKUP /DELETE BOOK "DELORME".  
                 -- [x] BACKUP /DELETE folder "_angular".  
                 -- [x] turn off domain "mcsdBackup".
-                -- [_] change tfs/github name "mcsdNet48TFS" / "mcsdNet48GitHub".
+                -- [x] change tfs/github name "mcsdNet48TFS" / "mcsdNet48GitHub".
+                -- [x] change tfs/github name "mcsd" por "mcsdNetCoreBackup".
 
         -- [_] REDUCE FILE SIZE.
                 -- [_] check disable email from "somee.com".
 
 /*
 
-Your website 'angulardemo.somee.com' was disabled for the following reason: 
+        Your website 'angulardemo.somee.com' was disabled for the following reason: 
 
-Website's average, per request bandwidth has exceeded a limit that is set for the website hosted with a free hosting package! 
-Although we do not limit the file size that can be uploaded or downloaded from your website, 
-we set a limit of [150KByte] on average file size that can be downloaded from the website hosted with free package. 
+        Website's average, per request bandwidth has exceeded a limit that is set for the website hosted with a free hosting package! 
+        Although we do not limit the file size that can be uploaded or downloaded from your website, 
+        we set a limit of [150KByte] on average file size that can be downloaded from the website hosted with free package. 
 
-The average is calculated every several hours for all files together, including *.html, *.asp, *.aspx, *.jpg, *.png, *.gif, *.mpg 
-and other text and media files. 
+        The average is calculated every several hours for all files together, including *.html, *.asp, *.aspx, *.jpg, *.png, *.gif, *.mpg 
+        and other text and media files. 
 
-Your website is scheduled to start again in about 12 hours, or you can start it manually from our control panel any time. 
+        Your website is scheduled to start again in about 12 hours, or you can start it manually from our control panel any time. 
 
-But if you will not take actions to decrease the average file size that is sent from your website it will be stopped again 
-and you are allowed to start it 5 times only. 
+        But if you will not take actions to decrease the average file size that is sent from your website it will be stopped again 
+        and you are allowed to start it 5 times only. 
 
-You can also switch to any other hosting package where such maintenance is not performed.
+        You can also switch to any other hosting package where such maintenance is not performed.
 
 */
 =====================================================================
@@ -316,20 +323,17 @@ You can also switch to any other hosting package where such maintenance is not p
 -- ERRORS
 =====================================================================
 
-        -- [x] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GetConsultaLogStatGet' 
-               from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy:
-               No 'Access-Control-Allow-Origin' header is present on the requested resource.
+   -- [x]  Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GetConsultaLogStatGet' 
+           from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy:
+           No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
-        -- [x] Access to XMLHttpRequest at 'https://mcsdbackup.somee.com/demos/GetConsultaLogStatGet' 
-               from origin 'https://mcsd.somee.com' has been blocked by CORS policy: 
-               No 'Access-Control-Allow-Origin' header is present on the requested resource.
+   -- [x]  Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GenerarInformeCSVJsonSTAT' 
+           from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy: 
+           No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
-        -- [x] Access to XMLHttpRequest at 'https://mcsdbackup.somee.com/demos/GenerarInformeCSVJsonSTAT' 
-               from origin 'https://mcsd.somee.com' has been blocked by CORS policy: 
-               No 'Access-Control-Allow-Origin' header is present on the requested resource.
-
-        -- [x] Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GenerarInformeCSVJsonSTAT' 
-               from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy: 
-               No 'Access-Control-Allow-Origin' header is present on the requested resource.
+   -- [_]  index.js:489 [webpack-dev-server] WARNING
+           E:\pablo.perez\dev\AngularMCSD\AngularMCSD\src\app\_modules\files-generation\files-generation-xls\files-generation-xls.component.ts depends on 'html2canvas'. 
+           CommonJS or AMD dependencies can cause optimization bailouts.
+           For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
 
 =====================================================================
