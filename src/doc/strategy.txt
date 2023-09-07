@@ -101,17 +101,18 @@
         -- [_] https://medium.com/@danilrabizo/google-authentication-in-the-angular-application-e86df69be58a
         -- [_] https://learn.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-angular-auth-code
 
-    -- [_] Use custom login.
-
-        -- [_] DYNAMIC FORM.
-        -- [_] DB MODEL.
-
+ 
 -- [_] cusotm error handling.
 
         -- [_] to interface --> [standard label status].
         -- [_] to log.
         -- [_] debug console messages.
         -- [_] asp.net core enable trace.
+
+-- [_] Use custom login.
+
+        -- [_] DYNAMIC FORM.
+        -- [_] DB MODEL.
 
 -- [_] uix --> general.
 
@@ -171,6 +172,7 @@
         -- [_] [GENERAR ARCHIVO XLS]
 
                 -- [x] angular interceptors.
+                -- [_] filtro por tipo de log.
                 -- [_] corregir consulta y rango de fechas.
                 -- [_] CORREGIR DATOS ESTADISTICAS.
                 -- [_] Referencia Template Driven/Reactive.
@@ -215,7 +217,6 @@
         
         -- [_] https://www.udemy.com/topic/angular/free/
 
-             
 =====================================================================
 -- SCM - HOSTING
 =====================================================================
