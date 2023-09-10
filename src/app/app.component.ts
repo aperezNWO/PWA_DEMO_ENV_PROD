@@ -25,7 +25,7 @@ export class AppComponent {
     public static appVersion        : string | undefined = "[1.0.1.1]";
     // propiedades publicas
     public readonly _title                                       : string | undefined  = AppComponent.title;
-    public readonly _appName                                     : string | undefined  = AppComponent.appName;
+    public readonly _appName                                     : string | undefined  = appName;
     public readonly _appVersion                                  : string | undefined  = AppComponent.appVersion;
     public readonly HomeWebComponent_pageTitle                   : string  = HomeWebComponent.PageTitle;
     public readonly AlgorithmWebComponent_pageTitle              : string  = AlgorithmWebComponent.PageTitle;
@@ -46,6 +46,8 @@ export class AppComponent {
     }
     //-----------------------------------------------------------------------------------------------------
     constructor(private router : Router, private _customErrorHandler : CustomErrorHandler, mcsdService : MCSDService, configService : ConfigService) {
+      //
+      console.log("[AppComponent] - [appName]  : " + AppComponent.appName);
       //
       console.log('[AppComponent] - [title] : ' + AppComponent.title) ;      
       //

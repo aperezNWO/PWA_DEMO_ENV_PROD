@@ -84,9 +84,12 @@
             -- [x] Algorithm Service.
             -- [x] revisar error (post genera CORS).
 
+    -- [_] General Error Handling.
+
     -- [_] Service Architecture.
 
-        -- [_] uv_apidigitacion / [nuevo ruv].
+        -- 
+        [_] uv_apidigitacion / [nuevo ruv].
 
     -- [_] paquete de idiomas/localizacion (en/us).
            
@@ -250,7 +253,14 @@
 
 -- [>] HOSTING  
 
+        -- [_] [alternativas]
+
+                -- [_] https://xranks.com/es/somee.com
+
         -- [_] [somee.com]
+         
+                -- [_] [HELP]
+                        https://somee.com/doka/Help/Article/106/How_to_deploy_Web_project_from_Visual_Studio
 
                 -- [_] [mcsd/angulardemo/webapidemo]
                 -- [_] [db].

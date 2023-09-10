@@ -219,7 +219,7 @@ export class AppModule {
     constructor(public customErrorHandler : CustomErrorHandler, public loggingInterceptor : LoggingInterceptor) 
     {
         //
-        console.log("[AppModule]");
+        console.log("[AppModule] - [appName]" + AppComponent.appName);
     }
 }
 
