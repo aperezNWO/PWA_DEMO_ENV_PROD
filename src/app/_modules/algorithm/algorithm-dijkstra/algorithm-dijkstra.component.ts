@@ -78,19 +78,6 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   {
       //
       console.log(AlgorithmDijkstraComponent.PageTitle + " - [VERTEX SIZE LIST CHANGE]");
-      //
-      /*    
-      var vertexSizeVal = $("#vertexSizeList").val();
-
-      $('#sourcePointList').children().remove().end();
-      //
-      for (var index = 0; index < vertexSizeVal; index++)
-      {
-          $('#sourcePointList').append($('<option>', { value: (index), text: (new String(index)) }));
-      }
-      //        
-      $('#sourcePointList').val("0");
-      */
   };
   //
   public _distanceListChange():void 
@@ -168,24 +155,11 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       //
       console.log(AlgorithmDijkstraComponent.PageTitle + " - [Resetting controls]");
       //
-      //[x]
       this.tituloListadoDistancias = "";
-      //[_]
-      //$('#DistanceList').attr('style', 'width:250px;display:none;');
       //[x]
       this.DrawListItems();
       //[x]
       this.DrawDistanceList(true, "");
-      //[_]
-      //$("#vertexSizeList").attr('disabled', false);
-      //[_]
-      //$('#sourcePointList').attr('disabled', false);
-      //[_]
-      //$('#mensajes').html('[PENDIENTE_GENERAR]');
-      //[_]
-      //$('#NewGraph').attr('disabled', true);
-      //[_]
-      //$('#GetGraph').attr('disabled', false);
       //[x]
       this.PointListHidden  = "";
       //[x]
@@ -228,11 +202,9 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 //
                 this.PointListHidden    = pointsString;
                 //
-                console.log('POINTS : ' + pointsString);
+                //console.log('POINTS : ' + pointsString);
                 //
                 let pointArray      : string[] = pointsString.split('|');
-                //
-                //this.DrawGrid();
                 //
                 this.DrawPoints(pointArray, this.strokeStyleCafe);
                 //
@@ -242,7 +214,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 //
                 let matrixString = dataArray[1];
                 //
-                console.log('MATRIX : ' + matrixString);
+                //console.log('MATRIX : ' + matrixString);
                 //
                 let matrixArray  = matrixString.split('|');
                 //
@@ -255,7 +227,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 //-------------------------------------------------------------
                 var vertexString = dataArray[2];
                 //
-                console.log('VERTEX : ' + vertexString);
+                // console.log('VERTEX : ' + vertexString);
                 //-------------------------------------------------------------
                 // CONFIGURA CONTROLES
                 //-------------------------------------------------------------
@@ -263,17 +235,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 let _sourcePoint        : number = Number.parseInt(this._sourcePointList.nativeElement.value);
                 this.tituloListadoDistancias = "Listado de Distancies desde [" + _sourcePoint.toString() + "]";
                 //
-                //$('#DistanceList').attr('style', 'width:250px;display:inline');
-                //
-                //$("#vertexSizeList").attr('disabled', true);
-                //
-                //$('#sourcePointList').attr('disabled', true);
-                //
                 this.DrawDistanceList(false,vertexString);
-                //
-                //$('#NewGraph').attr('disabled', false);
-                //
-                //$('#GetGraph').attr('disabled', true);
             },
             error: (err: Error) => {
                 //
@@ -362,7 +324,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
         let coordinate_x    : number = Number.parseInt(coordinateArray[0]);
         let coordinate_y    : number = Number.parseInt(coordinateArray[1]);
         //
-        console.log("coordinate [" + index + "] : " + points[index] + " ");
+        //console.log("coordinate [" + index + "] : " + points[index] + " ");
         //
         this.DrawPoint(index.toString(), coordinate_x, coordinate_y, strokeStyle);
     }
@@ -390,7 +352,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   //
   DrawLines(pointArray : string[], matrixArray : string[], strokeStyle : string, drawingSubSet : Boolean) : void {
     //
-    console.log("DRAWING_LINES");
+    //console.log("DRAWING_LINES");
     //--------------------------------------------------------------------------
     // CREAR MATRIZ
     //--------------------------------------------------------------------------
@@ -413,7 +375,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
         //
         var matrixLine = matrixArray[_index_x].replace("{", "").replace("}", "").split(",");
         //
-        console.log("MATRIX ROW " + matrixLine);
+        //console.log("MATRIX ROW " + matrixLine);
         //
         for (_index_y = 0; _index_y < matrixLine.length; _index_y++) {
             //
@@ -439,7 +401,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
             //
             let pointValue = matrix[index_x][index_y];
             //
-            console.log("_MATRIX (" + index_x + "," + index_y + ") = " + pointValue);
+            //console.log("_MATRIX (" + index_x + "," + index_y + ") = " + pointValue);
             //
             // POINTS  : [11,7]|[3,21]|[22,11]|[13,19]|[8,0]|[15,18]|[12,14]|[6,3]|[4,4]
             //
@@ -448,7 +410,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 var pointSource = pointArray[index_x].replace("[", "").replace("]", "").split(",");
                 var pointDest   = pointArray[index_y].replace("[", "").replace("]", "").split(",");;
                 //
-                console.log("_DRAWING LINE FOR (" + pointValue + " )");
+                //console.log("_DRAWING LINE FOR (" + pointValue + " )");
                 //
                 var x1 = parseInt(pointSource[0]);
                 var y1 = parseInt(pointSource[1]);
