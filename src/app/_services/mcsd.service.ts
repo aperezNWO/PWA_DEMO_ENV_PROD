@@ -286,6 +286,15 @@ export class MCSDService implements OnInit {
       //
       return dijkstraData; 
     }
+    //
+    getRandomVertexCpp(vertexSize : Number,sourcePoint : Number): Observable<string> {
+      //
+      let p_url    = `${this._prefix}demos/GenerateRandomVertex_CPP?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
+      //
+      let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      //
+      return dijkstraData; 
+    }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [ALGORITMOS - ORDENAMIENTO]
     ////////////////////////////////////////////////////////////////     

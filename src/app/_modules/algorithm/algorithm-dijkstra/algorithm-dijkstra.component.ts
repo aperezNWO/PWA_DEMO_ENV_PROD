@@ -3,7 +3,7 @@ import { MCSDService                                 } from '../../../_services/
 import { Observable                                  } from 'rxjs';
 import html2canvas                                     from 'html2canvas';
 import jsPDF                                           from 'jspdf';
-import { _vertexSize }                                 from '../../../_models/log-info.model';
+import { _languageName, _vertexSize }                                 from '../../../_models/log-info.model';
 import { CustomErrorHandler                          } from '../../../app.module';
 //
 @Component({
@@ -31,6 +31,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   protected strokeStyleVerde : string = "#006400";
   protected strokeStyleRed   : string = "#ff0000";
   protected tituloListadoDistancias: string = "";
+  protected tituloListadoLenguajes : string = "Seleccione Lenguaje";
   //
   @ViewChild('c_canvas')      c_canvas      : any;
   @ViewChild('divCanvas_Pdf') divCanvas_Pdf : any;
@@ -38,6 +39,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   @ViewChild('_vertexSizeList')  _vertexSizeList     : any;
   @ViewChild('_sourcePointList') _sourcePointList    : any;
   @ViewChild('_distanceList')    _distanceList       : any;
+  @ViewChild('_languajeList')    _languajeList       : any;
   //
   protected PointListHidden   : string = "";
   protected MatrixListHidden  : string = "";
@@ -45,8 +47,11 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   public __vertexSizeList  : any;
   public __sourcePointList : any;
   public __distanceList    : any;
+  public __languajeList    : any;
   // 
-  public selectedIndex     : number = 0;
+  public selectedIndex          : number  = 0;
+  public selectedIndexLanguage  : number  = 0;
+  public _cppSourceDivHidden    : boolean = true;
   ////////////////////////////////////////////////////////////////
   // EVENT HANDLERS //////////////////////////////////////////////  
   ////////////////////////////////////////////////////////////////
@@ -73,6 +78,15 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     //    
     this._ResetControls();
   };
+  //
+  public _cppSourceDivHiddenChaged():void  
+  {
+    //
+    console.log(AlgorithmDijkstraComponent.PageTitle + " - [DIV CPP SOURCE CHANGED]");
+    //
+    let _selectedIndex       : number  = this._languajeList.nativeElement.options.selectedIndex;
+    this._cppSourceDivHidden = (_selectedIndex != 2) // item 2 = "c++"
+  }
   //
   public _vertexSizeListChange():void
   {
@@ -164,6 +178,8 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       this.PointListHidden  = "";
       //[x]
       this.MatrixListHidden = "";
+      //
+      this._cppSourceDivHidden = true;
       //[X]
       this.DrawGrid();
   };
@@ -182,7 +198,20 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
         //
         let randomVertexInfo!  : Observable<string>;
         //
-        randomVertexInfo       = this.mcsdService.getRandomVertex(_vertexSize,_sourcePoint);
+        let _progLangId        : number = Number.parseInt(this._languajeList.nativeElement.value);
+        //
+        switch(_progLangId)    
+        {
+            case 0:
+                  return;
+            break;
+            case 1 : 
+              randomVertexInfo       = this.mcsdService.getRandomVertex(_vertexSize,_sourcePoint);
+            break;
+            case 2:
+              randomVertexInfo       = this.mcsdService.getRandomVertexCpp(_vertexSize,_sourcePoint);
+            break;
+        }
         //
         let data               : any;
         //
@@ -508,6 +537,14 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     }
     //        
     //$('#sourcePointList').val("0");
+    //-----------------------------------------------------------------------------
+    // LENGUAJES DE PROGRAMACION
+    //-----------------------------------------------------------------------------
+    this.__languajeList = new Array();
+    //
+    this.__languajeList.push( new _languageName(0,"(SELECCIONE OPCION..)"));        
+    this.__languajeList.push( new _languageName(1,"C#"));        
+    this.__languajeList.push( new _languageName(2,"C++"));        
   }
   // 
   ////////////////////////////////////////////////////////////////
