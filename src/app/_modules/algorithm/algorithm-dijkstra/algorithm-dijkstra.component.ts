@@ -202,13 +202,13 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
         //
         switch(_progLangId)    
         {
-            case 0:
+            case 0:   // (SELECT LANGUAGE...)
                   return;
             break;
-            case 1 : 
+            case 1 :  // c#
               randomVertexInfo       = this.mcsdService.getRandomVertex(_vertexSize,_sourcePoint);
             break;
-            case 2:
+            case 2:   // c++
               randomVertexInfo       = this.mcsdService.getRandomVertexCpp(_vertexSize,_sourcePoint);
             break;
         }

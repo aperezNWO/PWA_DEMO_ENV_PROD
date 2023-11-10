@@ -317,6 +317,16 @@ export class MCSDService implements OnInit {
       //
       return newSortData; 
     }
+    //    
+    getSort_CPP(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
+    {
+      //
+      let p_url    = `${this._prefix}demos/_GetSort_CPP?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
+      //
+      let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      //
+      return newSortData; 
+    }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [ALGORITMOS - EXPRESIONES REGULARES]
     ////////////////////////////////////////////////////////////////  

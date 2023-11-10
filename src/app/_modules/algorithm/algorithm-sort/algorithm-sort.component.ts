@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MCSDService                                 } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                          } from '../../../app.module';
-import { SortInfo                                    } from '../../../_models/log-info.model'; 
+import { SortInfo, _languageName                                    } from '../../../_models/log-info.model'; 
 import { Observable                                  } from 'rxjs';
 //
 @Component({
@@ -23,12 +23,14 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     private   rectSize                                    : number = 10;
     readonly  pageTitle                                   : string = AlgorithmSortComponent.PageTitle;
     public    lblStatus                                   : string = "[STATUS]";
+    public    tituloListadoLenguajes                      : string = "Seleccione Lenguaje";
     public    context                                     : any;
     @ViewChild('c_canvas') c_canvas                       : any;
     @ViewChild('mensajes') mensajes                       : any;
     @ViewChild('mensajes_1') mensajes_1                   : any;
     @ViewChild('mensajes_2') mensajes_2                   : any;
     @ViewChild('SortAlgorithmList') SortAlgorithmList     : any;
+    @ViewChild('_languajeList')    _languajeList          : any;
     //
     private   screenSize          : number   = 250;
     private   delayInMilliseconds : number   = 500;
@@ -38,7 +40,8 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     private   arraySeparator      : string   = "|";
     public    GetSortLabel        : string   = "[ORDENAR]"; 
     public    stringArray_        : string[] = [];
-
+    public _cppSourceDivHidden    : boolean = true;
+    public __languajeList         : any;
     //
     constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
     {
@@ -49,6 +52,15 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
         //
         console.info(AlgorithmSortComponent.PageTitle + " - [INGRESO]");
+
+        //-----------------------------------------------------------------------------
+        // LENGUAJES DE PROGRAMACION
+        //-----------------------------------------------------------------------------
+        this.__languajeList = new Array();
+        //
+        this.__languajeList.push( new _languageName(0,"(SELECCIONE OPCION..)"));        
+        this.__languajeList.push( new _languageName(1,"C#"));        
+        this.__languajeList.push( new _languageName(2,"C++"));    
     }
     //
     ngAfterViewInit(): void {
@@ -106,7 +118,22 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         let GetSortInfo!      : Observable<string>;
         //
-        GetSortInfo           = this.mcsdService.getSort(p_sortAlgorith, p_unsortedList);
+        let _progLangId        : number = Number.parseInt(this._languajeList.nativeElement.value);
+        //
+        switch(_progLangId)    
+        {
+            case 0:  // (seleccione lenguaje...)
+                  return;
+            break;
+            case 1 : // C#
+                //
+                GetSortInfo           = this.mcsdService.getSort(p_sortAlgorith, p_unsortedList);            
+            break;
+            case 2: // C++
+                //
+                GetSortInfo           = this.mcsdService.getSort_CPP(p_sortAlgorith, p_unsortedList);            
+            break;
+        }
         //
         const GetSortInfoObserver   = {
             //
@@ -365,5 +392,14 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         }
         //
         this.mensajes_2.nativeElement.innerHTML = _sortedArrayDecoded.trim();
+    }
+    //
+    public _cppSourceDivHiddenChaged():void  
+    {
+        //
+        console.log(AlgorithmSortComponent.PageTitle + " - [DIV CPP SOURCE CHANGED]");
+        //
+        let _selectedIndex       : number  = this._languajeList.nativeElement.options.selectedIndex;
+        this._cppSourceDivHidden = (_selectedIndex != 2) // item 2 = "c++"
     }
 }
