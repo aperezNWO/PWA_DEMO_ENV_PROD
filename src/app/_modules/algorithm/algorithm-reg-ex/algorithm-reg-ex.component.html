@@ -38,6 +38,23 @@
             <span id="lblstatus">{{this.lblStatus}}</span>
         </div>
         <hr>
+        <div id="LangListDiv">
+            <span id="tituloListadoLenguajes">{{this.tituloListadoLenguajes}}</span>
+            <br>
+            <label for="LangList"></label>
+            <br>
+            &nbsp;<select   id="LanguageList"
+                            name="LanguajeList"
+                            #_languajeList
+                            (change)="this._cppSourceDivHiddenChaged()">
+                            <option *ngFor="let _languageName of __languajeList" [value]="_languageName._index">{{_languageName._value}}</option>
+            </select>
+            &nbsp;&nbsp;
+            <span id="cppSoureDiv" [hidden]="this._cppSourceDivHidden">
+               <a href="javascript: void window.open('https://github.com/aperezNWO/CppBuilder01/blob/master/Project2/RegExManager.cpp')">[View Source]</a>
+            </span>
+        </div>
+        <hr>
         <div>
             <input id="GetRegex"  type="button" title="[BUSCAR]"    value="[BUSCAR]"    (click)="this.GetRegex()">
             |

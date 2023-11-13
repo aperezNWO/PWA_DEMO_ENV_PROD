@@ -376,6 +376,16 @@ export class MCSDService implements OnInit {
       //
       return regExData; 
     }
+    //
+    public _RegExEval_CPP(tagSearchIndex: number, textSearchValue: string): Observable<string>
+    {
+      //
+      let p_url    : string = `${this._prefix}demos/_RegExEval_CPP?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
+      //
+      let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      //
+      return regExData; 
+    }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [LOG]
     ////////////////////////////////////////////////////////////////  

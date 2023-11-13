@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MCSDService                                 } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                          } from '../../../app.module';
 import { Observable                                  } from 'rxjs';
+import { _languageName                               } from 'src/app/_models/log-info.model';
 
 //
 @Component({
@@ -19,15 +20,19 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
       return '[ALGORITMOS - EXPRESIONES REGULARES]';
     }
     //
-    readonly  pageTitle             : string = AlgorithmRegExComponent.PageTitle;
-    protected xmlData               : string = "";
-    protected lblStatus             : string = "";
-    protected pattern               : string = "";
+    readonly  pageTitle              : string = AlgorithmRegExComponent.PageTitle;
+    protected xmlData                : string = "";
+    protected lblStatus              : string = "";
+    protected pattern                : string = "";
+    public    __languajeList         : any;
+    public    _cppSourceDivHidden    : boolean = true;
+    public    tituloListadoLenguajes : string = "Seleccione Lenguaje";
     //
-    @ViewChild('mensajes')    mensajes    : any;
-    @ViewChild('tagSearch')   tagSearch   : any;
-    @ViewChild('textSearch')  textSearch  : any;
-    @ViewChild('regExSearch') regExSearch : any;
+    @ViewChild('mensajes')        mensajes       : any;
+    @ViewChild('tagSearch')       tagSearch      : any;
+    @ViewChild('textSearch')      textSearch     : any;
+    @ViewChild('regExSearch')     regExSearch    : any;
+    @ViewChild('_languajeList')   _languajeList  : any;
     //
     constructor(private mcsdService:MCSDService, private customErrorHandler : CustomErrorHandler)
     {
@@ -39,6 +44,14 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
         //
         console.log(AlgorithmRegExComponent.PageTitle + " - [INGRESANDO]");
         //
+        //-----------------------------------------------------------------------------
+        // LENGUAJES DE PROGRAMACION
+        //-----------------------------------------------------------------------------
+        this.__languajeList = new Array();
+        //
+        this.__languajeList.push( new _languageName(0,"(SELECCIONE OPCION..)"));        
+        this.__languajeList.push( new _languageName(1,"C#"));        
+        this.__languajeList.push( new _languageName(2,"C++"));  
     }
     //
     ngAfterViewInit(): void {
@@ -121,9 +134,24 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
             return;
         }
         //
-        let regExInfo!  : Observable<string>;
+        let regExInfo!         : Observable<string>;
         //
-        regExInfo       = this.mcsdService._RegExEval(tagSearchIndex,textSearchValue);
+        let _progLangId        : number = Number.parseInt(this._languajeList.nativeElement.value);
+        //
+        switch(_progLangId)    
+        {
+            case 0:  // (seleccione lenguaje...)
+                  return;
+            break;
+            case 1 : // C#
+                //
+                regExInfo       = this.mcsdService._RegExEval(tagSearchIndex,textSearchValue);
+            break;
+            case 2: // C++
+                //
+                regExInfo       = this.mcsdService._RegExEval_CPP(tagSearchIndex,textSearchValue);
+            break;
+        }
         //
         let data      : any;
         //
@@ -178,5 +206,14 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
         };
         //
         regExInfo.subscribe(regExInfoObserver);
+    }
+    //
+    public _cppSourceDivHiddenChaged():void  
+    {
+        //
+        console.log(AlgorithmRegExComponent.PageTitle + " - [DIV CPP SOURCE CHANGED]");
+        //
+        let _selectedIndex       : number  = this._languajeList.nativeElement.options.selectedIndex;
+        this._cppSourceDivHidden = (_selectedIndex != 2) // item 2 = "c++"
     }
 }

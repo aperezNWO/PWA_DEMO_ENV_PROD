@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MCSDService                                 } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                          } from '../../../app.module';
-import { SortInfo, _languageName                                    } from '../../../_models/log-info.model'; 
+import { SortInfo, _languageName                     } from '../../../_models/log-info.model'; 
 import { Observable                                  } from 'rxjs';
 //
 @Component({
@@ -40,8 +40,8 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     private   arraySeparator      : string   = "|";
     public    GetSortLabel        : string   = "[ORDENAR]"; 
     public    stringArray_        : string[] = [];
-    public _cppSourceDivHidden    : boolean = true;
-    public __languajeList         : any;
+    public    _cppSourceDivHidden : boolean = true;
+    public    __languajeList      : any;
     //
     constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
     {
