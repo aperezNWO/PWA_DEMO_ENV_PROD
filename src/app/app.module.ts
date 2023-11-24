@@ -34,8 +34,8 @@ import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-so
 import { ConfigService                 } from './_services/config.service';
 import { MCSDService                   } from './_services/mcsd.service';
 import { Observable, finalize, tap     } from 'rxjs';
-import { LogType } from './_models/log-info.model';
-import { UnitTestingComponent } from './unit-testing/unit-testing.component';
+import { LogType                       } from './_models/log-info.model';
+import { UnitTestingComponent          }  from './unit-testing/unit-testing.component';
 
 //
 const routes = [
