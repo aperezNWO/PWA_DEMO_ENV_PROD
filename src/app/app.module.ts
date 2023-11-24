@@ -35,6 +35,7 @@ import { ConfigService                 } from './_services/config.service';
 import { MCSDService                   } from './_services/mcsd.service';
 import { Observable, finalize, tap     } from 'rxjs';
 import { LogType } from './_models/log-info.model';
+import { UnitTestingComponent } from './unit-testing/unit-testing.component';
 
 //
 const routes = [
@@ -183,6 +184,7 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
     FilesGenerationPDFComponent,
     FilesGenerationZIPComponent,
     TechnicalSpecsComponent,
+    UnitTestingComponent,
   ],
   imports: [
     HttpClientModule,
