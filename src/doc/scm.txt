@@ -150,3 +150,31 @@ export class environment {
 ├── @angular/router@16.1.2 
 
 /////////////////////////////////////////////////////////////////
+// GIT HUB CODESPACES / PAGES
+/////////////////////////////////////////////////////////////////
+
+-- [_] Build your Angular application: 
+
+-- Create a production build of your Angular application using the Angular CLI:
+
+   ng build --prod
+
+-- Deploy to GitHub Pages: You can create a GitHub Pages branch or use the gh-pages package to automate the deployment process. 
+
+  Here's an example using the angular-cli-ghpages package:
+
+  # Install the angular-cli-ghpages package globally
+  npm install -g angular-cli-ghpages
+
+  # Deploy the built application to GitHub Pages
+  npx ngh --dir=dist/your-angular-app
+
+-- Replace your-angular-app with the name of your Angular app's directory where the build artifacts are located.
+
+-- Configure GitHub Pages: Go to your GitHub repository settings, navigate to the GitHub Pages section, 
+   and set the source branch to the one you used for deployment (e.g., gh-pages). GitHub will provide you with a URL where your Angular application will be hosted.
+
+-- Remember, this method will make your Angular application available at a URL like https://username.github.io/repository-name. 
+
+   This URL will be accessible publicly,  providing a permanent link to your deployed application.
+   https://apereznwo.github.io/angularMCSD/
