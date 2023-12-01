@@ -59,24 +59,4 @@ export class TechnicalSpecsComponent {
     //
     appVersion.subscribe(appVersionObserver);
   }
-  //
-  TestError():void
-  {
-      //
-      let obs! : Observable<any>;
-      obs      = throwError("[ERROR THROWN TEST]");
-      //
-      obs.subscribe(
-        (        el: string) => {
-          console.log("Value Received :" + el);
-        },
-        (        err: string) => {
-          console.log("[ERROR CAUGTH TEST ] : " + err);
-        },
-        () => console.log("Processing Complete")
-      );
-      // CAUSAR ERROR
-      // @ts-ignore 
-      test = test+1;  
-  }
 }
