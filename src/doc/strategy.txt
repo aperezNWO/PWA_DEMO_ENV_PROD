@@ -356,5 +356,35 @@
 -- [daniel sevilla]         
 
     -- [_]              https://primeng.org/installation.
-
 =====================================================================
+
+
+////////////////////////////////////////////////////////////////////////////////
+-- [_] TODO GENERAL
+////////////////////////////////////////////////////////////////////////////////
+
+-- [_] Algorithms
+
+        -- [_] [TAOCP]
+
+-- [_] Games
+        -- [_] tic tac toe
+        -- [_] hanoi towers
+        -- [_] sudoku
+-- [_] A.I. Apps
+        -- [_] C# Accord
+        -- [_] C++ OpenCV
+        -- [_] Neural Networks
+        -- [_] Machine Learning
+
+-- [_] Backend
+        -- [_] C#
+        -- [_] C++
+        -- [_] Node Js
+        -- [_] Python
+-- [_] Environments
+        -- [_] CodeSandbox
+        -- [_] Git Hub CodeSpaces
+        -- [_] Docker
+
+////////////////////////////////////////////////////////////////////////////////
