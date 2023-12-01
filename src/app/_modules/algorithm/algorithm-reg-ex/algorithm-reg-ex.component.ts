@@ -25,7 +25,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
     protected lblStatus              : string = "";
     protected pattern                : string = "";
     public    __languajeList         : any;
-    public    _cppSourceDivHidden    : boolean = true;
+    public    _cppSourceDivHidden    : boolean = false;
     public    tituloListadoLenguajes : string = "Seleccione Lenguaje";
     //
     @ViewChild('mensajes')        mensajes       : any;

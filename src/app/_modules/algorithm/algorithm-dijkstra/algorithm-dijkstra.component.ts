@@ -51,7 +51,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   // 
   public selectedIndex          : number  = 0;
   public selectedIndexLanguage  : number  = 0;
-  public _cppSourceDivHidden    : boolean = true;
+  public _cppSourceDivHidden    : boolean = false;
   ////////////////////////////////////////////////////////////////
   // EVENT HANDLERS //////////////////////////////////////////////  
   ////////////////////////////////////////////////////////////////
@@ -178,8 +178,6 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       this.PointListHidden  = "";
       //[x]
       this.MatrixListHidden = "";
-      //
-      this._cppSourceDivHidden = true;
       //[X]
       this.DrawGrid();
   };

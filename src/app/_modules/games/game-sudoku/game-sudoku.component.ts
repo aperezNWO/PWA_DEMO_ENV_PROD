@@ -32,7 +32,7 @@ export class GamesSudokuComponent implements OnInit {
   //
   public __languajeList                              : any;
   //
-  public _cppSourceDivHidden                         : boolean = true;
+  public _cppSourceDivHidden                         : boolean = false;
   //
   public sudokuSolved                                : boolean = false;
   //
@@ -55,8 +55,6 @@ export class GamesSudokuComponent implements OnInit {
       this.__languajeList.push( new _languageName(1,"C++",true));  
       this.__languajeList.push( new _languageName(2,"C#",false));        
       this.__languajeList.push( new _languageName(3,"Typescript (Node.js)",false));     
-      //
-      this._cppSourceDivHidden = false; 
       //
       this._GetSudoku();  
    }

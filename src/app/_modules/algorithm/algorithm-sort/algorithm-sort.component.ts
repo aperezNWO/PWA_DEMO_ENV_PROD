@@ -40,7 +40,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     private   arraySeparator      : string   = "|";
     public    GetSortLabel        : string   = "[ORDENAR]"; 
     public    stringArray_        : string[] = [];
-    public    _cppSourceDivHidden : boolean = true;
+    public    _cppSourceDivHidden : boolean = false;
     public    __languajeList      : any;
     //
     constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)

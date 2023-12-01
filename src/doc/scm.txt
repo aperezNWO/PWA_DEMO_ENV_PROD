@@ -177,4 +177,4 @@ export class environment {
 -- Remember, this method will make your Angular application available at a URL like https://username.github.io/repository-name. 
 
    This URL will be accessible publicly,  providing a permanent link to your deployed application.
-   https://apereznwo.github.io/angularMCSD/
+   https://apereznwo.github.io/AngularMCSD/
