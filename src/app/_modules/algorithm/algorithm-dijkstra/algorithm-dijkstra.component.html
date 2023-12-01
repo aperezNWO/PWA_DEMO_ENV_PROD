@@ -17,7 +17,9 @@
                             name="LanguajeList"
                             #_languajeList
                             (change)="this._cppSourceDivHiddenChaged()">
-                            <option *ngFor="let _languageName of __languajeList" [value]="_languageName._index">{{_languageName._value}}</option>
+                            <option *ngFor="let _languageName of __languajeList" 
+                            [value]="_languageName._index"
+                            [selected]="_languageName._selected">{{_languageName._value}}</option>
             </select>
             &nbsp;&nbsp;
             <span id="cppSoureDiv" [hidden]="this._cppSourceDivHidden">

@@ -54,10 +54,11 @@ export class SortInfo
     }
 }
 
+//
 export class _languageName
 {
     //
-    constructor(public _index : number, public _value : string)
+    constructor(public _index : number, public _value : string, public _selected : boolean)
     {
         //
     }

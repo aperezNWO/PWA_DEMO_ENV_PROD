@@ -1,0 +1,52 @@
+<h1>SUDOKU BOARD</h1>
+<hr/>
+    <div id="LangListDiv" align="left">
+        <span id="tituloListadoLenguajes">{{this.tituloListadoLenguajes}}</span>
+        <label for="LangList"></label>
+        &nbsp;&nbsp;
+        <select   id="LanguageList"
+                        name="LanguajeList"
+                        #_languajeList
+                        (change)="this._cppSourceDivHiddenChaged()">
+                        <option *ngFor="let _languageName of __languajeList" 
+                               [value]   ="_languageName._index"
+                               [selected]="_languageName._selected">{{_languageName._value}}
+                        </option>
+        </select>
+        &nbsp;&nbsp;
+        <span id="cppSoureDiv" [hidden]="this._cppSourceDivHidden">
+            <a href="javascript: void window.open('https://github.com/aperezNWO/CppBuilder01/blob/master/Project2/Sudoku.cpp')">[View Source]</a>
+        </span>
+    </div>
+<hr/>
+<div class="sudoku-board">
+  <table>
+    <tbody>
+    <tr *ngFor="let col of board; let rowIndex = index">
+      <td *ngFor="let cell of col; let cellIndex = index">
+        <div [className]="( 
+                             ( (cellIndex>=3) && (cellIndex<=5) ) && ((rowIndex>= 0) && (rowIndex <  3)   ) ||
+                            !( (cellIndex>=3) && (cellIndex<=5) ) && ((rowIndex>= 3) && (rowIndex <= 5)   ) ||
+                             ( (cellIndex>=3) && (cellIndex<=5) ) && ((rowIndex>  5) && (rowIndex <= 8)   ) 
+                          ) ?('sudoku-cell_bright'):('sudoku-cell_dark')">{{ cell }}</div>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+  </div>
+<hr/>
+<div align="left">
+    <input id="GetSudoku"   type="button" [value]="this.btnGenerateCaption"   (click)="this._GetSudoku()" 
+    [disabled]="(this.btnGenerateCaption == '[...generando...]') ||
+                (this.btnSolveCaption    == '[...resolviendo...]')">
+    |
+    <input id="SolveSudoku" type="button" [value]="this.btnSolveCaption"  (click)="this._SolveSudoku()"
+    [disabled]="(this.btnSolveCaption    == '[...resolviendo...]') ||
+                (this.btnGenerateCaption == '[...generando...]')   ||
+                (this.sudokuSolved       == true)">
+</div>
+<hr />
+<a routerLink="/Home">[Home]</a>      
+
+
+

@@ -1,0 +1,25 @@
+.sudoku-board {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    height: auto;
+    border: 1px solid black;
+  }
+  
+  .sudoku-cell_bright {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 20px;
+    background-color: #ffffff;
+  }
+
+  .sudoku-cell_dark {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 20px;
+    background-color: #cccccc;
+  }

@@ -35,7 +35,8 @@ import { ConfigService                 } from './_services/config.service';
 import { MCSDService                   } from './_services/mcsd.service';
 import { Observable, finalize, tap     } from 'rxjs';
 import { LogType                       } from './_models/log-info.model';
-import { UnitTestingComponent          }  from './unit-testing/unit-testing.component';
+import { UnitTestingComponent          } from './unit-testing/unit-testing.component';
+import { GamesSudokuComponent          } from './_modules/games/game-sudoku/game-sudoku.component';
 
 //
 const routes = [
@@ -53,6 +54,8 @@ const routes = [
   {  path: 'FilesGenerationCSV'    , component: FilesGenerationCSVComponent           },
   {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
   {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
+  {  path: 'GamesSudoku'           , component: GamesSudokuComponent                  },
+  {  path: '**'                    , component: AppComponent                          },
 ];
 //
 @Injectable({
@@ -185,6 +188,7 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
     FilesGenerationZIPComponent,
     TechnicalSpecsComponent,
     UnitTestingComponent,
+    GamesSudokuComponent,
   ],
   imports: [
     HttpClientModule,
