@@ -332,6 +332,7 @@
 
 -- [_] TWITTER /
 -- [_] INSTAGRAM / TK.
+-- [_] NON IT COMPANIES / DIRECT OFFER.
 
 =====================================================================
 -- ERRORS
