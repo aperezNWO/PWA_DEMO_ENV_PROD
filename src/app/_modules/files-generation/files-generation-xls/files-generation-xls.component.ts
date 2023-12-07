@@ -2,9 +2,9 @@ import { AfterViewInit, Component, OnInit, ViewChild   } from '@angular/core';
 import { FormBuilder, Validators                       } from '@angular/forms';
 import { MatTableDataSource                            } from '@angular/material/table';
 import { MatPaginator                                  } from '@angular/material/paginator';
-import { LogEntry,SearchCriteria                       } from '../../../_models/log-info.model';
+import { LogEntry,SearchCriteria, _languageName        } from '../../../_models/log-info.model';
 import { MCSDService                                   } from '../../../_services/mcsd.service';
-import { CustomErrorHandler                            } from '../../../app.module';
+import { CustomErrorHandler                            } from '../../../app.component';
 import { Observable                                    } from 'rxjs';
 import { Chart, registerables                          } from 'chart.js';
 import   jsPDF                                           from 'jspdf';
@@ -88,6 +88,11 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
      ,"");
     //
     @ViewChild("td_paginator" ,{read:MatPaginator}) td_paginator!:  MatPaginator;
+    //
+    @ViewChild('_languajeList')    _languajeList       : any;
+    //
+    public __languajeList                              : any;
+    protected tituloListadoLenguajes                   : string = "Seleccione Backend";
     //--------------------------------------------------------------------------
     // PROPIEDADES - ESTADISTICA
     //--------------------------------------------------------------------------
@@ -104,7 +109,6 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       Chart.register(...registerables);
       //
-      mcsdService.SetLog(this.pageTitle,"PAGE_ACCESS_LOG_DEMO");
     }
     //
     ngOnInit(): void {
@@ -118,7 +122,17 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     }
     //
     ngAfterViewInit():void {
-      //
+        //-----------------------------------------------------------------------------
+        // LENGUAJES DE PROGRAMACION
+        //-----------------------------------------------------------------------------
+        this.__languajeList = new Array();
+        //
+        this.__languajeList.push(
+          new _languageName(0, '(SELECCIONE OPCION..)', false),
+        );
+        //
+        this.__languajeList.push(new _languageName(1, '(.Net Core)'   , true  ));
+        this.__languajeList.push(new _languageName(2, '(Node.js)'     , false ));
     }
     //--------------------------------------------------------------------------
     // METODOS COMUNES 
@@ -383,10 +397,6 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     td_update(td_searchCriteria : SearchCriteria):void {
       //
-      this.td_buttonCaption = "[Favor espere...]";
-      //
-      this.td_textStatus    = "";
-      //
       td_searchCriteria.P_FECHA_INICIO_STR = this.GetFormattedDate(td_searchCriteria.P_FECHA_INICIO,0);
       td_searchCriteria.P_FECHA_FIN_STR    = this.GetFormattedDate(td_searchCriteria.P_FECHA_FIN   ,0); 
       //
@@ -397,40 +407,99 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       console.log("(FROM PARAM) : P_FECHA_INICIO (valid : 01/09/2022)  : " + td_searchCriteria.P_FECHA_INICIO_STR);
       console.log("(FROM PARAM) : P_FECHA_FIN    (valid : 30/09/2022)  : " + td_searchCriteria.P_FECHA_FIN_STR);
       console.log("(SEARCH INIT)");
-      // 
-      let td_informeLogRemoto!                 : Observable<LogEntry[]>;
-      td_informeLogRemoto                      = this.mcsdService.getLogRemoto(td_searchCriteria);
       //
-      const td_observer = {
-        next: (td_logEntry: LogEntry[])     => { 
-          //
-          console.log('TEMPLATE DRIVEN - RETURN VALUES (Record Count): ' + td_logEntry.length);
-          //
-          this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry);
-          this.td_dataSource.paginator = this.td_paginator;
-          //
-          this.td_textStatus           = "Se encontraron [" + td_logEntry.length + "] registros ";
-          this.td_formSubmit           = false;
-        },
-        error           : (err: Error)      => {
-          //
-          console.error('TEMPLATE DRIVEN - (ERROR) : ' + JSON.stringify(err.message));
-          //
-          this.td_textStatus           = "Ha ocurrido un error. Favor intente de nuevo";
-          this.td_formSubmit           = false;
-          this.td_buttonCaption        = "[Buscar]";
-          //
-        },
-        complete        : ()                => {
-          //
-          console.log('TEMPLATE DRIVEN -  (SEARCH END)');
-          //
-          this.td_formSubmit           = false;
-          this.td_buttonCaption        = "[Buscar]";
-        },
-    }; 
-    //
-    td_informeLogRemoto.subscribe(td_observer);
+      let selectedIndex: number = this._languajeList.nativeElement.options.selectedIndex; // c++ by default
+      //
+      switch (selectedIndex) {
+        case 1: // C#
+              //
+              this.td_buttonCaption = "[Favor espere...]";
+              //
+              this.td_textStatus    = "";
+              // 
+              let td_informeLogRemoto!                 : Observable<LogEntry[]>;
+              //      
+              td_informeLogRemoto                      = this.mcsdService.getLogRemoto(td_searchCriteria);
+              //
+              const td_observer = {
+                next: (td_logEntry: LogEntry[])     => { 
+                  //
+                  console.log('TEMPLATE DRIVEN - RETURN VALUES (Record Count): ' + td_logEntry.length);
+                  //
+                  this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry);
+                  this.td_dataSource.paginator = this.td_paginator;
+                  //
+                  this.td_textStatus           = "Se encontraron [" + td_logEntry.length + "] registros ";
+                  this.td_formSubmit           = false;
+                },
+                error           : (err: Error)      => {
+                  //
+                  console.error('TEMPLATE DRIVEN - (ERROR) : ' + JSON.stringify(err.message));
+                  //
+                  this.td_textStatus           = "Ha ocurrido un error. Favor intente de nuevo";
+                  this.td_formSubmit           = false;
+                  this.td_buttonCaption        = "[Buscar]";
+                  //
+                },
+                complete        : ()                => {
+                  //
+                  console.log('TEMPLATE DRIVEN -  (SEARCH END)');
+                  //
+                  this.td_formSubmit           = false;
+                  this.td_buttonCaption        = "[Buscar]";
+                },
+              }; 
+              //
+              td_informeLogRemoto.subscribe(td_observer);
+          break;
+        case 2: // NODE.JS
+              //
+              this.td_buttonCaption = "[Favor espere...]";
+              //
+              this.td_textStatus    = "";
+              // 
+              let td_informeLogRemoto_NodeJs!   : Observable<string>;
+              // 
+              td_informeLogRemoto_NodeJs        = this.mcsdService.getLogRemotoNodeJS(td_searchCriteria);
+              //
+              const td_observer_node_js = {
+                next: (td_logEntry_node_js: string)     => { 
+                  //
+                  console.log('TEMPLATE DRIVEN - NODE.JS - RETURN VALUES  : ' + td_logEntry_node_js);
+                  //
+                  let td_logEntry_node_js_json = JSON.parse(td_logEntry_node_js)['recordsets'][0];
+                  //
+                  console.log('TEMPLATE DRIVEN - NODE.JS - RETURN VALUE   : ' + td_logEntry_node_js_json);
+                  //
+                  this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_node_js_json);
+                  this.td_dataSource.paginator = this.td_paginator;
+                  //
+                  this.td_textStatus           = "Se encontraron [" + td_logEntry_node_js_json.length + "] registros ";
+                  this.td_formSubmit           = false;
+                },
+                error           : (err: Error)      => {
+                  //
+                  console.error('TEMPLATE DRIVEN - NODE.JS - (ERROR) : ' + JSON.stringify(err.message));
+                  //
+                  this.td_textStatus           = "Ha ocurrido un error. Favor intente de nuevo";
+                  this.td_formSubmit           = false;
+                  this.td_buttonCaption        = "[Buscar]";
+                  //
+                },
+                complete        : ()                => {
+                  //
+                  console.log('TEMPLATE DRIVEN - NODE.JS -  (SEARCH END)');
+                  //
+                  this.td_formSubmit           = false;
+                  this.td_buttonCaption        = "[Buscar]";
+                },
+              }; 
+              //
+              td_informeLogRemoto_NodeJs.subscribe(td_observer_node_js);
+          break;
+        default:
+          return;
+      }
     };
     //
     td_GenerarInformeXLSValidate():void
@@ -496,17 +565,19 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       const statData            : Number[]          = [];
       const statBackgroundColor : string[]          = [];
       // 
-      let td_informeLogStat!                 : Observable<LogEntry[]>;
-      td_informeLogStat                      = this.mcsdService.getLogStatGET();
+      let td_informeLogStat!                 : Observable<string>;
+      td_informeLogStat                      = this.mcsdService.getLogStatPOST();
       //
       const td_observer = {
-        next: (jsondata: LogEntry[])     => { 
+        next: (td_logEntry: string)     => { 
+          //
+          let jsondata     = JSON.parse(JSON.stringify(td_logEntry));
           //
           let recordNumber = jsondata.length;
           //
           console.log('ESTADISTICA - (return): ' + recordNumber);
           //
-          jsondata.forEach((element: LogEntry, index : number) => {
+          jsondata.forEach((element: JSON, index : number) => {
               //
               console.log(index + " " + JSON.stringify(element));
               //

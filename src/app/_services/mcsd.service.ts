@@ -176,6 +176,20 @@ export class MCSDService implements OnInit {
         return this.http.get<LogEntry[]>(url);
     }
     //
+    getLogRemotoNodeJS(_searchCriteria : SearchCriteria) : Observable<string>{
+      //
+      let p_url       : string = `https://ms7tks-4000.csb.app/generarinformejson`;
+      //
+      let nodeJsOutput: Observable<string> = this.http.get<string>(
+        p_url,
+        this.HTTPOptions_JSON,
+      );
+      //
+      console.log('getLogRemotoNodeJS : ' + p_url);
+      //
+      return nodeJsOutput;
+    }
+    //
     getInformeExcel(_searchCriteria : SearchCriteria){
         //
         let p_url  = this._prefix + 'demos/generarinformexls';
