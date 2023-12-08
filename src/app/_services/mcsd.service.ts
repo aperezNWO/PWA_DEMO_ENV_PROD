@@ -433,7 +433,19 @@ export class MCSDService implements OnInit {
     };
     ////////////////////////////////////////////////////////////////  
     // GAMES
-    ////////////////////////////////////////////////////////////////  
+    //////////////////////////////////////////////////////////////// 
+     //
+     _GetSudoku_NodeJS(): Observable<string> {
+      //
+      let p_url: string = 'https://ms7tks-4000.csb.app/Sudoku_Generate_NodeJS';
+      //
+      let sudokuGenerated: Observable<string> = this.http.get<string>(
+        p_url,
+        this.HTTPOptions_JSON,
+      );
+      //
+      return sudokuGenerated;
+    } 
     //
     _GetSudoku(): Observable<string>
     {

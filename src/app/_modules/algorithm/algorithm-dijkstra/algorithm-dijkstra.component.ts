@@ -3,7 +3,7 @@ import { MCSDService                                 } from '../../../_services/
 import { Observable                                  } from 'rxjs';
 import html2canvas                                     from 'html2canvas';
 import jsPDF                                           from 'jspdf';
-import { _languageName, _vertexSize }                                 from '../../../_models/log-info.model';
+import { _languageName, _vertexSize                  } from '../../../_models/log-info.model';
 import { CustomErrorHandler                          } from '../../../app.module';
 //
 @Component({
