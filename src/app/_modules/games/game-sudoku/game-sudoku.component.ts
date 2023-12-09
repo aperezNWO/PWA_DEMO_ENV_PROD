@@ -23,7 +23,7 @@ board: number[][] = [];
   [0, 0, 0, 0, 8, 0, 0, 7, 9]
 */
 //
-protected tituloListadoLenguajes                   : string = "Seleccione Lenguaje";
+protected tituloListadoLenguajes                   : string = "Seleccione Backend";
 protected btnGenerateCaption                       : string = "[GENERAR]";
 protected btnSolveCaption                          : string = "[RESOLVER]";
 //
@@ -55,7 +55,6 @@ ngOnInit(): void {
   //
   this.__languajeList.push(new _languageName(1, 'C++', true));
   this.__languajeList.push(new _languageName(2, '(Node.js)', false));
-  this.__languajeList.push(new _languageName(3, 'C#', false));
   //
   this._cppSourceDivHidden = false;
   //

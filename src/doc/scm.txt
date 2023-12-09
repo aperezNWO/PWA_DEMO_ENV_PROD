@@ -157,7 +157,7 @@ export class environment {
 
 -- Create a production build of your Angular application using the Angular CLI:
 
-   ng build 
+   $ ng build --c=production
 
 -- Corregir <base href="/"> en archivo "dist\<your-angular-app>\index.html":   
 

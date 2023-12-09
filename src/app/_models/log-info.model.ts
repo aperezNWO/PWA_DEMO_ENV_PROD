@@ -13,8 +13,10 @@ export interface LogEntry {
 //
 export interface PersonEntity 
 {
-    id_Column   :string;
-    ciudad      :string;
+    id_Column       : string;
+    ciudad          : string;
+    nombreCompleto  : string;
+    profesionOficio : string;
 }
 //
 export class _vertexSize
