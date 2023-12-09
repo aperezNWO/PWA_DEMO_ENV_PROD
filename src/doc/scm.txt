@@ -171,7 +171,7 @@ export class environment {
   npm install -g angular-cli-ghpages
 
   # Deploy the built application to GitHub Pages
-  npx ngh --dir=dist/your-angular-app
+  npx ngh --dir=dist/angular-dijkstra
 
 -- Replace your-angular-app with the name of your Angular app's directory where the build artifacts are located.
 
