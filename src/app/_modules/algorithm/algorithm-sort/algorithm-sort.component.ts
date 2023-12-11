@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MCSDService                                 } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                          } from '../../../app.module';
-import { SortInfo, _languageName                     } from '../../../_models/log-info.model'; 
 import { Observable                                  } from 'rxjs';
+import { SortInfo, _languageName } from 'src/app/_models/log-info.model';
 //
 @Component({
   selector: 'app-algorithm-sort',
@@ -23,7 +23,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     private   rectSize                                    : number = 10;
     readonly  pageTitle                                   : string = AlgorithmSortComponent.PageTitle;
     public    lblStatus                                   : string = "[STATUS]";
-    public    tituloListadoLenguajes                      : string = "Seleccione Lenguaje";
+    public    tituloListadoLenguajes                      : string = "Seleccione Backend";
     public    context                                     : any;
     @ViewChild('c_canvas') c_canvas                       : any;
     @ViewChild('mensajes') mensajes                       : any;
@@ -59,8 +59,8 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         this.__languajeList = new Array();
         //
         this.__languajeList.push( new _languageName(0,"(SELECCIONE OPCION..)",false));        
-        this.__languajeList.push( new _languageName(1,"C#",false));        
-        this.__languajeList.push( new _languageName(2,"C++",true));    
+        this.__languajeList.push( new _languageName(1,"(.NET Core/C#)"       ,false));        
+        this.__languajeList.push( new _languageName(2,"(.NET Core/C++)"      ,true));    
     }
     //
     ngAfterViewInit(): void {

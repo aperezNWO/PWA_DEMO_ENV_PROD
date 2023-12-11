@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MCSDService                                 } from '../../../_services/mcsd.service';
 import { Observable                                  } from 'rxjs';
 import html2canvas                                     from 'html2canvas';
 import jsPDF                                           from 'jspdf';
-import { _languageName, _vertexSize                  } from '../../../_models/log-info.model';
+import { MCSDService                                 } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                          } from '../../../app.module';
+import { _languageName, _vertexSize                  } from '../../../_models/log-info.model';
 //
 @Component({
   selector       : 'app-algorithm-dijkstra',
@@ -31,7 +31,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   protected strokeStyleVerde : string = "#006400";
   protected strokeStyleRed   : string = "#ff0000";
   protected tituloListadoDistancias: string = "";
-  protected tituloListadoLenguajes : string = "Seleccione Lenguaje";
+  protected tituloListadoLenguajes : string = "Seleccione Backend";
   //
   @ViewChild('c_canvas')      c_canvas      : any;
   @ViewChild('divCanvas_Pdf') divCanvas_Pdf : any;
@@ -541,8 +541,8 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     this.__languajeList = new Array();
     //
     this.__languajeList.push( new _languageName(0,"(SELECCIONE OPCION..)",false));        
-    this.__languajeList.push( new _languageName(1,"C#",false));        
-    this.__languajeList.push( new _languageName(2,"C++",true));        
+    this.__languajeList.push( new _languageName(1,"(.NET CORE/C#)",false));        
+    this.__languajeList.push( new _languageName(2,"(.NET CORE/C++)",true));        
   }
   // 
   ////////////////////////////////////////////////////////////////
@@ -569,4 +569,3 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     });
   }
 };
-

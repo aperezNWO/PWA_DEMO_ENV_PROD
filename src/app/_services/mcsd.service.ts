@@ -484,5 +484,27 @@ export class MCSDService implements OnInit {
       //
       return sudokuSolved;
     };
+       //
+   _SolveSudoku(p_matrix : string): Observable<string>
+   {
+     // 
+     let p_url               : string  = `https://webapiangulardemo.somee.com/Demos/Sudoku_Solve_CPP?p_matrix=${p_matrix}`
+     //
+     let sudokuSolved        : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+     //
+     return sudokuSolved;
+   };
+    //
+    _SolveSudoku_NodeJS(p_matrix: string): Observable<string> {
+      //
+      let p_url: string = `https://ms7tks-4000.csb.app/Sudoku_Solve_NodeJS?p_matrix=${p_matrix}`;
+      //
+      let sudokuSolved: Observable<string> = this.http.get<string>(
+        p_url,
+        this.HTTPOptions_Text,
+      );
+      //
+      return sudokuSolved;
+    }
 }
   
