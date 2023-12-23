@@ -496,5 +496,26 @@ export class MCSDService implements OnInit {
       //
       return sudokuSolved;
     }
+         //-------------------------------------------------------------
+  // FILE UPLODAD METHODS
+  //-------------------------------------------------------------
+  uploadSudoku(file: File): Observable<HttpEvent<any>> {
+    //
+    const formData: FormData = new FormData();
+    //
+    formData.append('file', file);
+    //
+    let url = `${this._prefix}demos/Sudoku_Upload_File`;
+    //
+    console.log('[SUDOKU] - (UPLOADING FILE) url: ' + url);
+    //
+    const req = new HttpRequest('POST', url, formData, {
+      reportProgress: true,
+      responseType: 'text',
+    });
+    //
+    return this.http.request<HttpEvent<any>>(req);
+  }
+
 }
   

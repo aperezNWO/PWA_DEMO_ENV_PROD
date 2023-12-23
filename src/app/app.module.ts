@@ -36,7 +36,7 @@ import { MCSDService                   } from './_services/mcsd.service';
 import { Observable, finalize, tap     } from 'rxjs';
 import { LogType                       } from './_models/log-info.model';
 import { UnitTestingComponent          } from './unit-testing/unit-testing.component';
-import { GamesSudokuComponent          } from './_modules/games/game-sudoku/game-sudoku.component';
+import { SudokuComponent               } from './_modules/games/game-sudoku/game-sudoku.component';
 
 //
 const routes = [
@@ -54,7 +54,7 @@ const routes = [
   {  path: 'FilesGenerationCSV'    , component: FilesGenerationCSVComponent           },
   {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
   {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
-  {  path: 'GamesSudoku'           , component: GamesSudokuComponent                  },
+  {  path: 'GamesSudoku'           , component: SudokuComponent                       },
   {  path: '**'                    , component: AppComponent                          },
 ];
 //
@@ -188,7 +188,7 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
     FilesGenerationZIPComponent,
     TechnicalSpecsComponent,
     UnitTestingComponent,
-    GamesSudokuComponent,
+    SudokuComponent,
   ],
   imports: [
     HttpClientModule,

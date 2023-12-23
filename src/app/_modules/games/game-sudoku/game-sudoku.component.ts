@@ -1,137 +1,291 @@
-import { Component, OnInit, ViewChild  }  from '@angular/core';
-import { Observable                    }  from 'rxjs';
-import { MCSDService                   } from '../../../_services/mcsd.service';
-import { _languageName                 } from '../../../_models/log-info.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpEventType, HttpResponse  } from '@angular/common/http';
+import { Observable                   } from 'rxjs';
+import { MCSDService                  } from 'src/app/_services/mcsd.service';
+import { ListItem                     } from 'src/app/_models/log-info.model';
+import { FormBuilder, Validators      } from '@angular/forms';
 //
 @Component({
-  selector: 'app-games-sudoku',
+  selector: 'app-sudoku',
   templateUrl: './game-sudoku.component.html',
-  styleUrls: ['./game-sudoku.component.css']
+  styleUrls: ['./game-sudoku.component.css'],
 })
-export class GamesSudokuComponent implements OnInit {
+//
+export class SudokuComponent implements OnInit {
+  //
+  board: number[][] = [];
+  //
+  protected tituloListadoLenguajes : string = 'Seleccione Backend';
+  protected btnGenerateCaption     : string = '[GENERAR]';
+  protected btnSolveCaption        : string = '[RESOLVER]';
+  //
+  protected tituloGenerarDesde    : string = 'Generar Desde';
+  //
+  @ViewChild('_languajeList') _languajeList: any;
+  @ViewChild('_SourceList')   _sourceList: any;
+  @ViewChild('_fileUpload')   _fileUpload: any;
     //
-    board: number[][] = [];
+  public __languajeList: any;
+  //
+  public __generateSourceList : any;
+  //
+  public _cppSourceDivHidden: boolean = true;
+  public _fileUploadDivHidden:boolean = true;
+  //
+  public sudokuSolved: boolean = true;
+  //
+  public _sudokuGenerated: string = '';
+  //-------------------------------------------------
+  // file upload
+  //-------------------------------------------------
+  selectedFiles?   : FileList;
+  currentFile?     : File;
+  progress         : number = 0;
+  message          : string = '';
+  downloadLink     : string = '';
+  //
+  rf_searchForm   = this.formBuilder.group({
+    _fileUpload          : ["", Validators.required],
+  });
+  //
+  constructor(private mcsdService: MCSDService,private formBuilder: FormBuilder,) {
     //
-    protected tituloListadoLenguajes                   : string = "Seleccione Backend";
-    protected btnGenerateCaption                       : string = "[GENERAR]";
-    protected btnSolveCaption                          : string = "[RESOLVER]";
+    console.log('[SUDOKU - INGRESO]');
+  }
+  //
+  ngOnInit(): void {
+    //-----------------------------------------------------------------------------
+    // LENGUAJES DE PROGRAMACION
+    //-----------------------------------------------------------------------------
+    this.__languajeList = new Array();
+    this.__languajeList.push(new ListItem(0, '(SELECCIONE OPCION..)', false));
+    this.__languajeList.push(new ListItem(1, '(.NET Core/C++)', true));
+    this.__languajeList.push(new ListItem(2, '(Node.js)'      , false));
     //
-    @ViewChild('_languajeList')    _languajeList       : any;
+    this._cppSourceDivHidden = false;
     //
-    public __languajeList                              : any;
+    this.__generateSourceList = new Array();
+    this.__generateSourceList.push(new ListItem(0, '(SELECCIONE OPCION..)', false));
+    this.__generateSourceList.push(new ListItem(1, '[Desde Archivo]'      , false));
+    this.__generateSourceList.push(new ListItem(2, '[Desde Backend]'      , true));
+  }
+  //
+  public _cppSourceDivHiddenChanged(): void {
     //
-    public _cppSourceDivHidden                         : boolean = true;
+    console.log('SUDOKU - [DIV CPP SOURCE CHANGED]');
     //
-    public sudokuSolved                                : boolean = false;
+    let _selectedIndex: number =
+      this._languajeList.nativeElement.options.selectedIndex;
+    this._cppSourceDivHidden = _selectedIndex != 1; // item 1 = "c++"
     //
-    public _sudokuGenerated                            : string = "";
+    this.message = "";
+  }
+  //
+  public _fileUploadDivHiddenChanged(): void {
     //
-    constructor(private mcsdService: MCSDService)
+    console.log('SUDOKU - [DIV FILEUPLOAD CHANGED]');
+    //
+    let _selectedIndex: number =
+      this._sourceList.nativeElement.options.selectedIndex;
+    this._fileUploadDivHidden = _selectedIndex != 1; // item 1 = "Desde Archivo"
+    //
+    this.message = "";
+  }
+  //
+  public GenerateFromBackend():void {
+        //
+        console.log('[SUDOKU - GENERATE FROM BACKEND]');
+        //
+        let generatedSudoku: Observable<string>;
+        let selectedIndex  : number = this._languajeList.nativeElement.options.selectedIndex; // c++ by default
+        //
+        switch (selectedIndex) {
+          case 1: // c++
+            generatedSudoku = this.mcsdService._GetSudoku();
+            break;
+          case 2: // Typescript
+            generatedSudoku = this.mcsdService._GetSudoku_NodeJS();
+            break;
+          default:
+            return;
+        }
+        //
+        this.sudokuSolved = false;
+        //
+        this.btnGenerateCaption = '[...generando...]';
+        //
+        const generatedSudokuObserver = {
+          next: (jsondata: string) => {
+            //
+            console.log('[SUDOKU - GENERATE] - (return): ' + jsondata);
+            //
+            this._sudokuGenerated = jsondata;
+            //
+            jsondata = jsondata.replaceAll('[', '');
+            jsondata = jsondata.replaceAll(']', '');
+            jsondata = jsondata.replaceAll('},', '|');
+            jsondata = jsondata.replaceAll('{', '');
+            jsondata = jsondata.replaceAll('}', '');
+            let jsonDataArray: string[] = jsondata.split('|');
+            //
+            this.board = [];
+            //
+            for (let i = 0; i < 9; i++) {
+              const row: number[] = [];
+              console.log(jsonDataArray[i]);
+              const rowString: string[] = jsonDataArray[i].split(',');
+              for (let j = 0; j < 9; j++) {
+                row.push(parseInt(rowString[j]));
+              }
+              this.board.push(row);
+            }
+          },
+          error: (err: Error) => {
+            //
+            console.error(
+              '[SUDOKU - GENERATE] - (ERROR) : ' + JSON.stringify(err.message),
+            );
+            //
+            this.btnGenerateCaption = '[GENERAR]';
+          },
+          complete: () => {
+            //
+            console.log('[SUDOKU - GENERATE] -  (COMPLETE)');
+            //
+            this.btnGenerateCaption = '[GENERAR]';
+            //
+            this.message            =  "[Se generó correctamente]";
+          },
+        };
+        //
+        generatedSudoku.subscribe(generatedSudokuObserver);
+  };
+  //------------------------------------------------------
+  // FILE UPLOAD METHODS / EVEND HANDLERS
+  //------------------------------------------------------
+  //
+  selectFile(event: any): void {
+    this.selectedFiles = event.target.files;
+  }
+  //
+  upload(): void {
+    //
+    console.log('[SUDOKU - GENERATE  FROM FILE]');
+    //
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
+      //
+      if (file) {
+        //
+        this.progress = 0;
+        //
+        this.message = '...cargando...';
+        //
+        this.sudokuSolved = false;
+        //
+        this.btnGenerateCaption = '[...generando...]';       
+        //
+        this.currentFile = file;
+        //
+        this.mcsdService.uploadSudoku(this.currentFile).subscribe({
+          next: (event: any) => {
+            if (event.type === HttpEventType.UploadProgress) {
+              //
+              this.progress = Math.round((100 * event.loaded) / event.total);
+            } else if (event instanceof HttpResponse) {
+              //
+              console.log('RESPONSE : ' + event.body);
+              //
+              let  jsondata  = event.body;
+              //
+              jsondata = jsondata.replaceAll('\"', '');
+              jsondata = jsondata.replace(/\\r/g, '');
+              jsondata = jsondata.replace(/\\n/g, '');
+              //
+              this._sudokuGenerated = jsondata;
+              //  
+              jsondata = jsondata.replaceAll('[', '');
+              jsondata = jsondata.replaceAll(']', '');
+              jsondata = jsondata.replaceAll('},', '|');
+              jsondata = jsondata.replaceAll('{', '');
+              jsondata = jsondata.replaceAll('}', '');
+              let jsonDataArray: string[] = jsondata.split('|');
+              //
+              this.board = [];
+              //
+              for (let i = 0; i < 9; i++) {
+                const row: number[] = [];
+                console.log(jsonDataArray[i]);
+                const rowString: string[] = jsonDataArray[i].split(',');
+                for (let j = 0; j < 9; j++) {
+                  row.push(parseInt(rowString[j]));
+                }
+                this.board.push(row);
+              }
+            }
+          },
+          error: (err: any) => {
+            //
+            console.error('[SUDOKU - GENERATE  FROM FILE] -  (ERROR)');
+            //
+            console.error(err);
+            //
+            this.progress = 0;
+            //
+            if (err.error && err.error.message) {
+              //
+              this.message = err.error.message;
+            } else {
+              //
+              this.message = '[Could not upload the file!]';
+            }
+            //
+            this.currentFile = undefined;
+            //
+            this.btnGenerateCaption = '[GENERAR]';
+          },
+          complete: () => {
+            //
+            console.log('[SUDOKU - GENERATE  FROM FILE] -  (COMPLETE)');
+            //
+            this.btnGenerateCaption = '[GENERAR]';
+            //
+            this.message          = "[Se generó correctamente]";
+            //
+            this.selectedFiles = undefined;
+            //
+            this.currentFile   = undefined;
+          },
+        });
+      }
+    }
+    else 
     {
         //
-        console.log("[SUDOKU - INGRESO]");
+        this.message          = "[Favor seleccione archivo...]";
     }
-    //
-    ngOnInit(): void {
-      //-----------------------------------------------------------------------------
-      // LENGUAJES DE PROGRAMACION
-      //-----------------------------------------------------------------------------
-      this.__languajeList = new Array();
+  }
+  //
+  public _GetSudoku(): void {
       //
-      this.__languajeList.push(
-        new _languageName(0, '(SELECCIONE OPCION..)', false),
-      );
+      console.log('[SUDOKU - GENERATE - MAIN MENU]');
       //
-      this.__languajeList.push(new _languageName(1, '(.Net Core/C++)', true ));
-      this.__languajeList.push(new _languageName(2, '(Node.js)'      , false));
-      //
-      this._cppSourceDivHidden = false;
-      //
-      this._GetSudoku(true);
-    }
-    //
-    public _cppSourceDivHiddenChaged(): void {
-      //
-      console.log('SUDOKU - [DIV CPP SOURCE CHANGED]');
-      //
-      let _selectedIndex: number =
-        this._languajeList.nativeElement.options.selectedIndex;
-      this._cppSourceDivHidden = _selectedIndex != 1; // item 1 = "c++"
-    }
-    //
-    public _GetSudoku(onLoad: boolean): void {
-      //
-      console.log('[SUDOKU - GENERATE]');
-      //
-      let generatedSudoku: Observable<string>;
-      let selectedIndex: number = onLoad
-        ? 1
-        : this._languajeList.nativeElement.options.selectedIndex; // c++ by default
+      let selectedIndex  : number = this._sourceList.nativeElement.options.selectedIndex; // "FROM ARCHIVE" by default
       //
       switch (selectedIndex) {
-        case 1: // c++
-          generatedSudoku = this.mcsdService._GetSudoku();
+        case 1: // FROM ARCHIVE
+          this.upload();
           break;
-        case 2: // Typescript
-          generatedSudoku = this.mcsdService._GetSudoku_NodeJS();
+        case 2: // FROM BACKEND
+          this.GenerateFromBackend();
           break;
         default:
           return;
       }
-      //
-      this.sudokuSolved = false;
-      //
-      this.btnGenerateCaption = '[...generando...]';
-      //
-      const generatedSudokuObserver = {
-        next: (jsondata: string) => {
-          //
-          console.log('[SUDOKU - GENERATE] - (return): ' + jsondata);
-          //
-          this._sudokuGenerated = jsondata;
-          //
-          jsondata = jsondata.replaceAll('[', '');
-          jsondata = jsondata.replaceAll(']', '');
-          jsondata = jsondata.replaceAll('},', '|');
-          jsondata = jsondata.replaceAll('{', '');
-          jsondata = jsondata.replaceAll('}', '');
-          let jsonDataArray: string[] = jsondata.split('|');
-          //
-          this.board = [];
-          //
-          for (let i = 0; i < 9; i++) {
-            const row: number[] = [];
-            console.log(jsonDataArray[i]);
-            const rowString: string[] = jsonDataArray[i].split(',');
-            for (let j = 0; j < 9; j++) {
-              //row.push(i * 3 + j);
-              row.push(parseInt(rowString[j]));
-            }
-            this.board.push(row);
-          }
-        },
-        error: (err: Error) => {
-          //
-          console.error(
-            '[SUDOKU - GENERATE] - (ERROR) : ' + JSON.stringify(err.message),
-          );
-          //
-          this.sudokuSolved = false;
-          //
-          this.btnGenerateCaption = '[GENERAR]';
-        },
-        complete: () => {
-          //
-          console.log('[SUDOKU - GENERATE] -  (COMPLETE)');
-          //
-          this.btnGenerateCaption = '[GENERAR]';
-        },
-      };
-      //
-      generatedSudoku.subscribe(generatedSudokuObserver);
-    }
-    //
-    public _SolveSudoku(): void {
+      
+  }
+  //
+  public _SolveSudoku(): void {
     //
     console.log('[SUDOKU - SOLVE] \n' + this._sudokuGenerated);
     //
@@ -141,14 +295,17 @@ export class GamesSudokuComponent implements OnInit {
     //
     let solveSudoku: Observable<string>;
     //
-    let selectedIndex: number = this._languajeList.nativeElement.options.selectedIndex; // c++ by default
+    let selectedIndex: number =
+      this._languajeList.nativeElement.options.selectedIndex; // c++ by default
     //
     switch (selectedIndex) {
       case 1: // c++
-        solveSudoku  = this.mcsdService._SolveSudoku(this._sudokuGenerated  );
+        solveSudoku = this.mcsdService._SolveSudoku(this._sudokuGenerated);
         break;
       case 2: // Typescript
-        solveSudoku  = this.mcsdService._SolveSudoku_NodeJS(this._sudokuGenerated  );
+        solveSudoku = this.mcsdService._SolveSudoku_NodeJS(
+          this._sudokuGenerated,
+        );
         break;
       default:
         return;
@@ -171,16 +328,12 @@ export class GamesSudokuComponent implements OnInit {
         this.board = [];
         //
         for (let i = 0; i < 9; i++) {
-          //
           const row: number[] = [];
           console.log(jsonDataArray[i]);
           const rowString: string[] = jsonDataArray[i].split(',');
-          //
           for (let j = 0; j < 9; j++) {
-            //
             row.push(parseInt(rowString[j]));
           }
-          //
           this.board.push(row);
         }
       },
@@ -189,40 +342,25 @@ export class GamesSudokuComponent implements OnInit {
         console.error(
           '[SUDOKU - SOLVE] - (ERROR) : ' + JSON.stringify(err.message),
         );
+        //
+        this.message = "[Ha ocurrido un error]";
       },
       complete: () => {
         //
         console.log('[SUDOKU - SOLVE] -  (COMPLETE)');
         //
         this.btnSolveCaption = '[RESOLVER]';
+        //
+        this.message = "[Se resolvió correctamente]";
+        //
+        this.selectedFiles = undefined;
+        //
+        this.currentFile   = undefined;
+        //
+        this.rf_searchForm.reset();
       },
     };
     //
     solveSudoku.subscribe(solveSudokuObserver);
-    }
+  }
 }
-
-/*
-{5, 3, 0, 0, 7, 0, 0, 0, 0},
-{6, 0, 0, 1, 9, 5, 0, 0, 0},
-{0, 9, 8, 0, 0, 0, 0, 6, 0},
-{8, 0, 0, 0, 6, 0, 0, 0, 3},
-{4, 0, 0, 8, 0, 3, 0, 0, 1},
-{7, 0, 0, 0, 2, 0, 0, 0, 6},
-{0, 6, 0, 0, 0, 0, 2, 8, 0},
-{0, 0, 0, 4, 1, 9, 0, 0, 5},
-{0, 0, 0, 0, 8, 0, 0, 7, 9}
-
-Sudoku solved:
-
-5 3 4 6 7 8 9 1 2 
-6 7 2 1 9 5 3 4 8 
-1 9 8 3 4 2 5 6 7 
-8 5 9 7 6 1 4 2 3 
-4 2 6 8 5 3 7 9 1 
-7 1 3 9 2 4 8 5 6 
-9 6 1 5 3 7 2 8 4 
-2 8 7 4 1 9 6 3 5 
-3 4 5 2 8 6 1 7 9
-
-*/
