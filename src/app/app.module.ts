@@ -31,12 +31,16 @@ import { AlgorithmDijkstraComponent    } from './_modules/algorithm/algorithm-di
 import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-web/algorithm-web.component';
 import { AlgorithmRegExComponent       } from './_modules/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
 import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-sort/algorithm-sort.component';
+import { SudokuComponent               } from './_modules/games/game-sudoku/game-sudoku.component';
+import { GameTictactoeComponent        } from './_modules/games/game-tictactoe/game-tictactoe.component';
+import { BoardComponent                } from './_modules/games/game-tictactoe/board/board.component';
+import { SquareComponent               } from './_modules/games/game-tictactoe/square/square.component';
+import { GameWebComponent              } from './_modules/games/game-web/game-web.component';
 import { ConfigService                 } from './_services/config.service';
 import { MCSDService                   } from './_services/mcsd.service';
 import { Observable, finalize, tap     } from 'rxjs';
 import { LogType                       } from './_models/log-info.model';
 import { UnitTestingComponent          } from './unit-testing/unit-testing.component';
-import { SudokuComponent               } from './_modules/games/game-sudoku/game-sudoku.component';
 
 //
 const routes = [
@@ -55,6 +59,8 @@ const routes = [
   {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
   {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
   {  path: 'GamesSudoku'           , component: SudokuComponent                       },
+  {  path: 'GamesTicTacToe'        , component: GameTictactoeComponent                },
+  {  path: 'GamesWeb'              , component: GameWebComponent                      },
   {  path: '**'                    , component: AppComponent                          },
 ];
 //
@@ -171,53 +177,57 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
 }
 //
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeWebComponent,  
-    ContactComponent,
-    AAboutWebComponent,
-    AngularTutorialsnWebComponent,
-    AlgorithmWebComponent,
-    AlgorithmRegExComponent,
-    AlgorithmSortComponent,
-    AlgorithmDijkstraComponent,
-    FilesGenerationWebComponent,
-    FilesGenerationXLSComponent,
-    FilesGenerationCSVComponent,
-    FilesGenerationPDFComponent,
-    FilesGenerationZIPComponent,
-    TechnicalSpecsComponent,
-    UnitTestingComponent,
-    SudokuComponent,
-  ],
-  imports: [
-    HttpClientModule,
-    FormsModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatListModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatTabsModule,
-    NgbModule,
-    RouterModule,
-    RouterModule.forRoot( routes, { useHash: true }),
-  ], 
-  exports  : [RouterModule],
-  providers: [
-                { provide : HTTP_INTERCEPTORS  , useClass   :  LoggingInterceptor   , multi: true    },
-                { provide : LocationStrategy   , useClass   :  HashLocationStrategy                  },
-                { provide : ErrorHandler       , useClass   :  CustomErrorHandler                    },
-                { provide : APP_INITIALIZER    , useFactory :  initialize, deps:
-                 [
-                   HttpClient,
-                   ConfigService,
-                   MCSDService,
-                 ], multi: true   },
-             ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeWebComponent,
+        ContactComponent,
+        AAboutWebComponent,
+        AngularTutorialsnWebComponent,
+        AlgorithmWebComponent,
+        AlgorithmRegExComponent,
+        AlgorithmSortComponent,
+        AlgorithmDijkstraComponent,
+        FilesGenerationWebComponent,
+        FilesGenerationXLSComponent,
+        FilesGenerationCSVComponent,
+        FilesGenerationPDFComponent,
+        FilesGenerationZIPComponent,
+        TechnicalSpecsComponent,
+        UnitTestingComponent,
+        SudokuComponent,
+        GameTictactoeComponent,
+        GameWebComponent,
+    ],
+    exports: [RouterModule],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        { provide: ErrorHandler, useClass: CustomErrorHandler },
+        { provide: APP_INITIALIZER, useFactory: initialize, deps: [
+                HttpClient,
+                ConfigService,
+                MCSDService,
+            ], multi: true },
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        HttpClientModule,
+        FormsModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatListModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatTabsModule,
+        NgbModule,
+        BoardComponent,
+        SquareComponent,
+        RouterModule,
+        RouterModule.forRoot(routes, { useHash: true }),
+
+    ]
 })
 //
 export class AppModule { 
