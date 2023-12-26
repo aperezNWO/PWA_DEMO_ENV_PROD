@@ -1,5 +1,5 @@
-import { Component           } from '@angular/core';
-import { DiskInfo, HanoiStep } from 'src/app/_models/log-info.model';
+import { Component, ViewChild           } from '@angular/core';
+import { DiskInfo, HanoiStep, ListItem } from 'src/app/_models/log-info.model';
 //
 @Component({
   selector: 'app-games-hanoi',
@@ -9,20 +9,27 @@ import { DiskInfo, HanoiStep } from 'src/app/_models/log-info.model';
 //
 export class HanoiTowersComponent {
   //
-  public    towerA              : Map<number,( DiskInfo | undefined)> = new Map<number,( DiskInfo | undefined)>();
-  public    towerB              : Map<number,( DiskInfo | undefined)> = new Map<number,( DiskInfo | undefined)>();
-  public    towerC              : Map<number,( DiskInfo | undefined)> = new Map<number,( DiskInfo | undefined)>();
-  protected steps               : string[]       = [];
-  protected _steps              : HanoiStep[]    = [];
-  protected _stepsIndex         : number     = 0;
-  protected _startGame          : boolean    = true;
-  private   delayInMilliseconds : number     = 1500;
-  protected _stepsAmt           : number     = 0;
-  protected N                   : number     = 4;
-
+  public    towerA               : Map<number,( DiskInfo | undefined)> = new Map<number,( DiskInfo | undefined)>();
+  public    towerB               : Map<number,( DiskInfo | undefined)> = new Map<number,( DiskInfo | undefined)>();
+  public    towerC               : Map<number,( DiskInfo | undefined)> = new Map<number,( DiskInfo | undefined)>();
+  protected steps                : string[]       = [];
+  protected _steps               : HanoiStep[]    = [];
+  protected _stepsIndex          : number     = 0;
+  protected _startGame           : boolean    = true;
+  private   _delayInMilliseconds : number     = 1500;
+  protected _stepsAmt            : number     = 0;
+  protected _diskAmt             : number     = 0;
+  protected _timeoutId           : any;
+  protected _diskAmtList         : any;
+  protected tituloDiskAmtList    : string          = "Cantidad de Discos";
+  @ViewChild('__diskAmtList') __diskAmtList: any;
   //
   constructor(){
       //
+      this._diskAmtList = new Array();
+      this._diskAmtList.push(new ListItem(0,"(seleccione opcion...)",false));
+      this._diskAmtList.push(new ListItem(3,"3",true));
+      this._diskAmtList.push(new ListItem(4,"4",false));
   }
   //
   printSteps()
@@ -30,14 +37,26 @@ export class HanoiTowersComponent {
     // END RECURSION
     if (this._stepsIndex > this._stepsAmt)
     {
+      //
+      clearTimeout(this._timeoutId); 
+      //
       return;
     }
     //
     if (this._stepsIndex == 0)
+    {
+      //
       this.steps.push("[BEGIN STEPS]");
+    }
     //
     if (this._steps[this._stepsIndex])
     {
+      //
+      let scrollableElement = document.querySelector('.steps-container');
+      //
+      if (scrollableElement)
+          scrollableElement.scrollTop = scrollableElement.scrollHeight;
+      //      
       let hanoiStep   : HanoiStep = this._steps[this._stepsIndex];
       let n           : number    = hanoiStep.n;
       let from        : string    = hanoiStep.from;
@@ -54,12 +73,17 @@ export class HanoiTowersComponent {
     //
     if ((this._stepsIndex) == this._stepsAmt)
     {
+      //
       this.steps.push("[END STEPS]");
+      //
     }
     //
-    setTimeout(() => {
-      this.printSteps();
-    }, this.delayInMilliseconds); // Delay each move by 1 second        
+    this._timeoutId = setTimeout(() => {
+        
+        //
+        this.printSteps();  
+
+    }, this._delayInMilliseconds); // Delay each move by 1 second        
   }
   //
   makeMove(hanoiStep: HanoiStep) {
@@ -120,20 +144,25 @@ export class HanoiTowersComponent {
     //
     console.log("[HANOI TOWERS] - [NEW GAME]")
     //
+    this._diskAmt   = parseInt(this.__diskAmtList.nativeElement.options[this.__diskAmtList.nativeElement.options.selectedIndex].value);
+    //
+    if (this._diskAmt === 0)
+        return;
+    //
     this.towerA      =  new Map<number,( DiskInfo | undefined)>();
     let  graph      : string = "";
-    for (let i= 1; i <= this.N; i++) {
+    for (let i= 1; i <= this._diskAmt; i++) {
       graph = graph + "*";
       this.towerA.set(i,new DiskInfo(i,graph));
     }  
     //
     this.towerB    =  new Map<number,( DiskInfo | undefined)>();
-    for (let i= 1; i <= this.N; i++) {
+    for (let i= 1; i <= this._diskAmt; i++) {
       this.towerB.set(i,new DiskInfo(i,"-"));
     }  
     //
     this.towerC    =  new Map<number,( DiskInfo | undefined)>();
-    for (let i= 1; i <= this.N; i++) {
+    for (let i= 1; i <= this._diskAmt; i++) {
       this.towerC.set(i,new DiskInfo(i,"-"));
     }  
     //
@@ -149,9 +178,12 @@ export class HanoiTowersComponent {
     //
     console.log("[HANOI TOWERS] - [START GAME]")
     //
+    if (this._diskAmt === 0)
+      return;
+    //
     this._startGame = true;
 		// A, B and C are names of rods
-    this.towerOfHanoi(this.N, 'A', 'C', 'B');
+    this.towerOfHanoi(this._diskAmt, 'A', 'C', 'B');
     //
     this.printSteps();
   }

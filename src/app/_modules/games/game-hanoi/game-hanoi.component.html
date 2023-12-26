@@ -19,10 +19,25 @@
 <!--RODS / FIN    -->
 <!--STATUS / INICIO -->
 <hr/>
-<div align="left"class="steps-container" *ngFor="let step of this.steps">
-    <span>{{step}}</span>
+<div align="left" class="steps-container">
+    <div align="left" class="steps-content" *ngFor="let step of this.steps">
+        <span>{{step}}</span>
+    </div>
 </div>
-  <!-- STATUS / FIN   -->
+<!-- STATUS / FIN   -->
+<hr/>
+    <div id="diskAmtListDiv" align="left">
+        <label for="diskAmtList">{{this.tituloDiskAmtList}}</label>
+        &nbsp;&nbsp;
+        <select id="diskAmtList"
+                name="diskAmtList"
+                #__diskAmtList>
+                <option *ngFor="let _diskItem of this._diskAmtList" 
+                        [value]   ="_diskItem._index"
+                        [selected]="_diskItem._selected">{{_diskItem._value}}
+                </option>
+        </select>
+    </div>
 <!-- BUTTONS / INICIO -->
 <hr/>
 <div align="left">
