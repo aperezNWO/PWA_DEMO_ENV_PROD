@@ -1,0 +1,27 @@
+.game-container
+{
+    width           : "100%";
+    padding         : 1em;
+    background-color: #cccccc;
+}
+
+.steps-container
+{
+    width           : "100%";
+    padding         : 0.1em;
+    background-color: #cccccc;
+}
+
+table {
+    width:150px;
+    height:auto;
+    border: 2px solid black; 
+}
+
+thead td {
+    color: bisque;
+}
+
+td {
+   border: 1px dashed #ccc;  
+}

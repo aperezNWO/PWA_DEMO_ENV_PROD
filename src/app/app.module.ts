@@ -41,6 +41,8 @@ import { MCSDService                   } from './_services/mcsd.service';
 import { Observable, finalize, tap     } from 'rxjs';
 import { LogType                       } from './_models/log-info.model';
 import { UnitTestingComponent          } from './unit-testing/unit-testing.component';
+import { HanoiTowersComponent          } from './_modules/games/game-hanoi/game-hanoi.component';
+import { TowerComponent                } from './_modules/games/game-hanoi/tower/tower.component';
 
 //
 const routes = [
@@ -60,6 +62,7 @@ const routes = [
   {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
   {  path: 'GamesSudoku'           , component: SudokuComponent                       },
   {  path: 'GamesTicTacToe'        , component: GameTictactoeComponent                },
+  {  path: 'GamesHanoi'            , component: HanoiTowersComponent                  },
   {  path: 'GamesWeb'              , component: GameWebComponent                      },
   {  path: '**'                    , component: AppComponent                          },
 ];
@@ -196,6 +199,7 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
         UnitTestingComponent,
         SudokuComponent,
         GameTictactoeComponent,
+        HanoiTowersComponent,
         GameWebComponent,
     ],
     exports: [RouterModule],
@@ -224,10 +228,10 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
         NgbModule,
         BoardComponent,
         SquareComponent,
+        TowerComponent,
         RouterModule,
         RouterModule.forRoot(routes, { useHash: true }),
-
-    ]
+   ]
 })
 //
 export class AppModule { 

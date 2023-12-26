@@ -73,3 +73,19 @@ export class ListItem
         //
     }
 }
+//
+export class DiskInfo
+{
+    //
+    constructor(public value : number, public graph : string)
+    {
+        //
+    }
+}
+export class HanoiStep
+{
+    constructor(public n: number, public from: string, public to: string)
+    {
+        
+    }
+}
