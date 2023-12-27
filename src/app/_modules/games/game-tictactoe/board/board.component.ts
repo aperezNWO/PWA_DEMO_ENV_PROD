@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit , ViewChild } from '@angular/core';
-import { ListItem                                     } from 'src/app/_models/log-info.model';
 import { SquareComponent } from "../square/square.component";
 import { CommonModule    } from '@angular/common';
+import { ListItem        } from 'src/app/_models/log-info.model';
 //
 @Component({
     selector: 'app-board',
@@ -13,6 +13,7 @@ import { CommonModule    } from '@angular/common';
 export class BoardComponent implements OnInit, AfterViewInit {
   //
   private   readonly SIDE         : number = 3;
+  private   boardSurface          : number  = (this.SIDE*this.SIDE);
   private            board        : ('X' | 'O' | null)[][] = [];
   private   readonly COMPUTER     : number = 1;
   private   readonly HUMAN        : number = 2;
@@ -20,8 +21,7 @@ export class BoardComponent implements OnInit, AfterViewInit {
   private   readonly HUMANMOVE    : ('X' | 'O' | null) = 'X';  // and human with 'X'
   //
   squares: ('X' | 'O' | null)[] = Array(9).fill(null);
-  xIsNext = true;
-  winner: 'X' | 'O' | null = null;
+  winner:  ('X' | 'O' | null)   = null;
   //
   whoseTurn : number = this.HUMAN;
   moveIndex : number = 0;
@@ -31,6 +31,9 @@ export class BoardComponent implements OnInit, AfterViewInit {
   protected __SourceList                   : any;
   @ViewChild('_SourceList')   _sourceList  : any;
   protected message                        : string = '';
+  //
+  protected IsNewGame                      : boolean = false;
+  protected showBoard                      : boolean = false;
   //
   constructor() {
     //
@@ -109,11 +112,11 @@ export class BoardComponent implements OnInit, AfterViewInit {
       return true;
     return false;
   }
-
+  //
   gameOver(board : ('X' | 'O' | null)[][]) {
     return (
-      this.rowCrossed(board) ||
-      this.columnCrossed(board) ||
+      this.rowCrossed(board)      ||
+      this.columnCrossed(board)   ||
       this.diagonalCrossed(board)
     );
   }
@@ -200,18 +203,56 @@ export class BoardComponent implements OnInit, AfterViewInit {
     return ((x * 3) + y);
   }
   //
-  playComputer():void
+  doPlay(p_whoseTurn : number, p_Move : ('X' | 'O' | null), p_n : number):void
   {
        //  
-       this.whoseTurn = this.COMPUTER;
+       this.whoseTurn = p_whoseTurn; 
        //
-       let n : number = Math.abs(this.bestMove(this.board, this.moveIndex));
+       let n : number = 0;
+       switch(p_whoseTurn)
+       {
+        case this.COMPUTER :
+          n = Math.abs(this.bestMove(this.board, this.moveIndex));
+        break;
+        case this.HUMAN    :
+          n = p_n;
+        break;
+       }
+       //
        let x : number = Math.floor(n / this.SIDE);
        let y : number = Math.floor(n % this.SIDE);
        //
-       this.board[x][y] = this.COMPUTERMOVE;
-       this.squares[n]  = this.COMPUTERMOVE;
+       this.board[x][y] = p_Move;
+       this.squares[n]  = p_Move;
        this.moveIndex++;
+  }
+  //
+  _declareWinner():boolean
+  {
+    let gameRunning  : boolean = (this.gameOver(this.board) == false); 
+    //
+    console.log(`[TIC-TAC-TOE] - [Declare Winner] `);
+    //
+    if ((gameRunning && (this.moveIndex != this.boardSurface)) == false )
+    {
+      //
+      if (gameRunning && this.moveIndex == this.boardSurface){
+          //
+          this.message = "It's a draw";
+          this.winner  = null;
+      }
+		  else
+		  {
+  			this.declareWinner(this.whoseTurn);
+	  	}
+      //
+      return true;
+    } 
+    else 
+    {
+      //
+      return false;
+    }
   }
   //
   makeMove(n: number): void {
@@ -222,29 +263,14 @@ export class BoardComponent implements OnInit, AfterViewInit {
       return;
     }
     //
-    let x         : number = 0;
-    let y         : number = 0;
-
+    this.doPlay(this.HUMAN   ,this.HUMANMOVE   ,n);
     //
-    this.whoseTurn = this.HUMAN;
-    //
-    x = Math.floor(n / this.SIDE);
-    y = Math.floor(n % this.SIDE);
-    //
-    this.board[x][y] = this.HUMANMOVE;
-    this.squares[n]  = this.HUMANMOVE;
-    this.moveIndex++;
-    //
-    this.playComputer();
-    //
-    if (((this.gameOver(this.board) == false) && (this.moveIndex != (this.SIDE*this.SIDE))) == false )
+    if (this._declareWinner()==false)
     {
-      if (this.gameOver(this.board) == false && this.moveIndex == this.SIDE * this.SIDE)
-		    	this.message = "It's a draw";
-		  else
-		  {
-  			this.declareWinner(this.whoseTurn);
-	  	}
+      //
+      this.doPlay(this.COMPUTER,this.COMPUTERMOVE,0);  
+      //
+      this._declareWinner()
     }
   }
   //
@@ -274,11 +300,23 @@ export class BoardComponent implements OnInit, AfterViewInit {
     //
     this.initialise();
     //
+    this.IsNewGame = true;
+    //
+    this.showBoard = false;
+  }
+  //
+  startGame():void {
+    //
     let selectedIndex : number = this._sourceList.nativeElement.options.selectedIndex;
+    //
     switch(selectedIndex) {
         case 2:
-          this.playComputer();
+          this.doPlay(this.COMPUTER,this.COMPUTERMOVE,0);
         break
     }
+    //
+    this.IsNewGame = false;
+    //
+    this.showBoard = true;
   }
 };

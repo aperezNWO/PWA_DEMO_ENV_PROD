@@ -1,6 +1,6 @@
 <h1>[TIC-TAC-TOE BOARD]</h1>
 <hr>
-<div class="board" align="center">
+<span *ngIf="this.showBoard"  class="board" align="center">
     <div class="board-row" *ngFor="let i of [0, 1, 2]">
       <app-square
         *ngFor="let j of [0, 1, 2]"
@@ -8,7 +8,7 @@
         (clickEvent)="makeMove(i * 3 + j)"
       ></app-square>
     </div>
-</div>
+</span>
 <!--LISTADO INICIO -->
 <hr>
 <div id="SourceListDiv" align="left">
@@ -18,7 +18,8 @@
     <select id="_SourceList"
             name="_SourceList"
             #_SourceList
-            (change)="this._tituloSourceChanged()">
+            (change)="this._tituloSourceChanged()"
+            [disabled]="(this.IsNewGame == false)">
             <option *ngFor="let _SourceName of __SourceList" 
                     [value]   ="_SourceName._index"
                     [selected]="_SourceName._selected">{{_SourceName._value}}
@@ -28,7 +29,8 @@
 <!--LISTADO FIN    -->
 <!--BOTONES INICIO -->
 <hr>
-<input type="button" value="[NUEVO]" (click)="this.newGame();">
+<input type="button" value="[NUEVO]"   (click)="this.newGame();"   [disabled]="(this.IsNewGame == true)">
+<input type="button" value="[INICIAR]" (click)="this.startGame();" [disabled]="(this.IsNewGame == false)">
 <!--BOTONES FIN    -->
 <hr>
 <!--STATUS / INICIO -->
