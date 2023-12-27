@@ -1,14 +1,14 @@
 import { Component, OnInit, AfterViewInit , ViewChild } from '@angular/core';
-import { CommonModule                                 } from '@angular/common';
-import { SquareComponent                              } from "../square/square.component";
 import { ListItem                                     } from 'src/app/_models/log-info.model';
+import { SquareComponent } from "../square/square.component";
+import { CommonModule    } from '@angular/common';
 //
 @Component({
     selector: 'app-board',
     standalone: true,
     templateUrl: './board.component.html',
-    styleUrls: ['./board.component.css'] ,
-    imports: [CommonModule, SquareComponent]
+    styleUrls: ['./board.component.css'],
+    imports: [SquareComponent, CommonModule]
 })
 export class BoardComponent implements OnInit, AfterViewInit {
   //
@@ -57,26 +57,6 @@ export class BoardComponent implements OnInit, AfterViewInit {
     //
   }
   //
-  initialise():void{
-    //
-    this.squares = [];
-    this.squares = Array(9).fill(null);
-    //
-    this.board   = [];
-    //
-    for (let i = 0; i < this.SIDE; i++) {
-      const row: ('X' | 'O' | null)[] = [];
-      for (let j = 0; j < this.SIDE; j++) {
-        row.push(null);
-      }
-      this.board.push(row);
-    }
-    //
-    this.moveIndex = 0;
-    this.winner    = null;
-    this.message   = '';
-  }
-  //
   declareWinner(whoseTurn: number): void 
   {
     if (whoseTurn == this.COMPUTER) 
@@ -95,7 +75,6 @@ export class BoardComponent implements OnInit, AfterViewInit {
       if (
         board[i][0] == board[i][1] &&
         board[i][1] == board[i][2] &&
-        //board[i][0] != " "
         board[i][0] != null
       )
         return true;
@@ -108,7 +87,6 @@ export class BoardComponent implements OnInit, AfterViewInit {
       if (
         board[0][i] == board[1][i] &&
         board[1][i] == board[2][i] &&
-        //board[0][i] != " "
         board[0][i] != null
       )
         return true;
@@ -120,14 +98,12 @@ export class BoardComponent implements OnInit, AfterViewInit {
     if (
       board[0][0] == board[1][1] &&
       board[1][1] == board[2][2] &&
-      //board[0][0] != " "
       board[0][0] != null
     )
       return true;
     if (
       board[0][2] == board[1][1] &&
       board[1][1] == board[2][0] &&
-      //board[0][2] != " "
       board[0][2] != null
     )
       return true;
@@ -152,53 +128,50 @@ export class BoardComponent implements OnInit, AfterViewInit {
       if (isAI == true) return -1;
       if (isAI == false) return +1;
     } 
-    
-    //else {
-      //
-      if (depth < 9) {
-        if (isAI == true) {
-          //
-          bestScore = -999;
-          //
-          for (let i = 0; i < this.SIDE; i++) {
-            for (let j = 0; j < this.SIDE; j++) {
-              //if (board[i][j] == " ") {
-              if (board[i][j] == null) {
-                //
-                board[i][j] = this.COMPUTERMOVE;
-                score = this.minimax(board, depth + 1, false);
-                //board[i][j] = " ";
-                board[i][j] = null;
-                if (score! > bestScore!) {
-                  bestScore = score;
-                }
+    //
+    if (depth < 9) {
+      if (isAI == true) {
+        //
+        bestScore = -999;
+        //
+        for (let i = 0; i < this.SIDE; i++) {
+          for (let j = 0; j < this.SIDE; j++) {
+            //
+            if (board[i][j] == null) {
+              //
+              board[i][j] = this.COMPUTERMOVE;
+              score = this.minimax(board, depth + 1, false);
+              //
+              board[i][j] = null;
+              if (score! > bestScore!) {
+                bestScore = score;
               }
             }
           }
-          //
-          return bestScore;
-        } else {
-          bestScore = 999;
-          for (let i = 0; i < this.SIDE; i++) {
-            for (let j = 0; j < this.SIDE; j++) {
-              //if (board[i][j] == " ") {
-              if (board[i][j] == null) {
-                board[i][j] = this.HUMANMOVE;
-                score = this.minimax(board, depth + 1, true);
-                //board[i][j] = " ";
-                board[i][j] = null;
-                if (score! < bestScore!) {
-                  bestScore = score;
-                }
-              }
-            }
-          }
-          return bestScore;
         }
+        //
+        return bestScore;
       } else {
-        return 0;
+        bestScore = 999;
+        for (let i = 0; i < this.SIDE; i++) {
+          for (let j = 0; j < this.SIDE; j++) {
+            //
+            if (board[i][j] == null) {
+              board[i][j] = this.HUMANMOVE;
+              score = this.minimax(board, depth + 1, true);
+              //
+              board[i][j] = null;
+              if (score! < bestScore!) {
+                bestScore = score;
+              }
+            }
+          }
+        }
+        return bestScore;
       }
-    //}
+    } else {
+      return 0;
+    }
   }
   //
   bestMove(board : ('X' | 'O' | null)[][], moveIndex : number) : number{
@@ -210,11 +183,11 @@ export class BoardComponent implements OnInit, AfterViewInit {
     //
     for (let i = 0; i < this.SIDE; i++) {
       for (let j = 0; j < this.SIDE; j++) {
-        //if (board[i][j] == " ") {
+        //
         if (board[i][j] == null) {
           board[i][j] = this.COMPUTERMOVE;
           score = this.minimax(board, moveIndex + 1, false);
-          //board[i][j] = " ";
+          //
           board[i][j] = null;
           if (score! > bestScore!) {
             bestScore = score;
@@ -224,7 +197,21 @@ export class BoardComponent implements OnInit, AfterViewInit {
         }
       }
     }
-    return x * 3 + y;
+    return ((x * 3) + y);
+  }
+  //
+  playComputer():void
+  {
+       //  
+       this.whoseTurn = this.COMPUTER;
+       //
+       let n : number = Math.abs(this.bestMove(this.board, this.moveIndex));
+       let x : number = Math.floor(n / this.SIDE);
+       let y : number = Math.floor(n % this.SIDE);
+       //
+       this.board[x][y] = this.COMPUTERMOVE;
+       this.squares[n]  = this.COMPUTERMOVE;
+       this.moveIndex++;
   }
   //
   makeMove(n: number): void {
@@ -247,18 +234,9 @@ export class BoardComponent implements OnInit, AfterViewInit {
     this.board[x][y] = this.HUMANMOVE;
     this.squares[n]  = this.HUMANMOVE;
     this.moveIndex++;
-
-    //  
-    this.whoseTurn = this.COMPUTER;
     //
-    n = Math.abs(this.bestMove(this.board, this.moveIndex));
-    x = Math.floor(n / this.SIDE);
-    y = Math.floor(n % this.SIDE);
+    this.playComputer();
     //
-    this.board[x][y] = this.COMPUTERMOVE;
-    this.squares[n]  = this.COMPUTERMOVE;
-    this.moveIndex++;
-
     if (((this.gameOver(this.board) == false) && (this.moveIndex != (this.SIDE*this.SIDE))) == false )
     {
       if (this.gameOver(this.board) == false && this.moveIndex == this.SIDE * this.SIDE)
@@ -270,13 +248,37 @@ export class BoardComponent implements OnInit, AfterViewInit {
     }
   }
   //
+  initialise():void{
+    //
+    this.squares = [];
+    this.squares = Array(9).fill(null);
+    //
+    this.board   = [];
+    //
+    for (let i = 0; i < this.SIDE; i++) {
+      const row: ('X' | 'O' | null)[] = [];
+      for (let j = 0; j < this.SIDE; j++) {
+        row.push(null);
+      }
+      this.board.push(row);
+    }
+    //
+    this.moveIndex = 0;
+    this.winner    = null;
+    this.message   = '';
+  }
+  //
   newGame():void{
     //
     console.log("[GAME - TIC-TAC-TOE] - [NEW GAME]")
     //
     this.initialise();
     //
-    this._sourceList.nativeElement.options.selectedIndex = 1;
+    let selectedIndex : number = this._sourceList.nativeElement.options.selectedIndex;
+    switch(selectedIndex) {
+        case 2:
+          this.playComputer();
+        break
+    }
   }
 };
-
