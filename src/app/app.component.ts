@@ -22,7 +22,7 @@ export class AppComponent {
     public static title             : string | undefined = "[WEB API DEMO]"; 
     // propiedades internas
     public static appName           : string | undefined = "[WEB API DEMO]";
-    public static appVersion        : string | undefined = "[1.0.1.12]";
+    public static appVersion        : string | undefined = "[1.0.1.13]";
     // propiedades publicas
     public readonly _title                                       : string | undefined  = AppComponent.title;
     public readonly _appName                                     : string | undefined  = AppComponent.appName;

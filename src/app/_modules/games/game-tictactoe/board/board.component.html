@@ -4,7 +4,7 @@
     <div class="board-row" *ngFor="let i of [0, 1, 2]">
       <app-square
         *ngFor="let j of [0, 1, 2]"
-        [value]="squares[i * 3 + j]"
+        [value]="ticTacToeEngine.squares[i * 3 + j]"
         (clickEvent)="makeMove(i * 3 + j)"
       ></app-square>
     </div>
@@ -35,6 +35,6 @@
 <hr>
 <!--STATUS / INICIO -->
 <div align="left">
-  <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+  <div *ngIf="this.ticTacToeEngine.message" class="alert alert-secondary" role="alert"><b>{{ this.ticTacToeEngine.message }}</b></div>
 </div>
 <!-- STATUS / FIN   -->
