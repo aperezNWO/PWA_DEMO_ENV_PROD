@@ -29,7 +29,6 @@ export class SudokuComponent implements OnInit {
   //
   public __generateSourceList : any;
   //
-  public _cppSourceDivHidden: boolean = true;
   public _fileUploadDivHidden:boolean = true;
   //
   public sudokuSolved: boolean = true;
@@ -62,23 +61,10 @@ export class SudokuComponent implements OnInit {
     this.__languajeList.push(new ListItem(1, '(.NET Core/C++)', true));
     this.__languajeList.push(new ListItem(2, '(Node.js)'      , false));
     //
-    this._cppSourceDivHidden = false;
-    //
     this.__generateSourceList = new Array();
     this.__generateSourceList.push(new ListItem(0, '(SELECCIONE OPCION..)', false));
     this.__generateSourceList.push(new ListItem(1, '[Desde Archivo]'      , false));
     this.__generateSourceList.push(new ListItem(2, '[Desde Backend]'      , true));
-  }
-  //
-  public _cppSourceDivHiddenChanged(): void {
-    //
-    console.log('SUDOKU - [DIV CPP SOURCE CHANGED]');
-    //
-    let _selectedIndex: number =
-      this._languajeList.nativeElement.options.selectedIndex;
-    this._cppSourceDivHidden = _selectedIndex != 1; // item 1 = "c++"
-    //
-    this.message = "";
   }
   //
   public _fileUploadDivHiddenChanged(): void {

@@ -51,7 +51,6 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   // 
   public selectedIndex          : number  = 0;
   public selectedIndexLanguage  : number  = 0;
-  public _cppSourceDivHidden    : boolean = false;
   ////////////////////////////////////////////////////////////////
   // EVENT HANDLERS //////////////////////////////////////////////  
   ////////////////////////////////////////////////////////////////
@@ -78,15 +77,6 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     //    
     this._ResetControls();
   };
-  //
-  public _cppSourceDivHiddenChaged():void  
-  {
-    //
-    console.log(AlgorithmDijkstraComponent.PageTitle + " - [DIV CPP SOURCE CHANGED]");
-    //
-    let _selectedIndex       : number  = this._languajeList.nativeElement.options.selectedIndex;
-    this._cppSourceDivHidden = (_selectedIndex != 2) // item 2 = "c++"
-  }
   //
   public _vertexSizeListChange():void
   {

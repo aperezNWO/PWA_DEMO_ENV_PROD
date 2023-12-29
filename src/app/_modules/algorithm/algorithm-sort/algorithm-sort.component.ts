@@ -40,7 +40,6 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     private   arraySeparator      : string   = "|";
     public    GetSortLabel        : string   = "[ORDENAR]"; 
     public    stringArray_        : string[] = [];
-    public    _cppSourceDivHidden : boolean = false;
     public    __languajeList      : any;
     //
     constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
@@ -392,14 +391,5 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         }
         //
         this.mensajes_2.nativeElement.innerHTML = _sortedArrayDecoded.trim();
-    }
-    //
-    public _cppSourceDivHiddenChaged():void  
-    {
-        //
-        console.log(AlgorithmSortComponent.PageTitle + " - [DIV CPP SOURCE CHANGED]");
-        //
-        let _selectedIndex       : number  = this._languajeList.nativeElement.options.selectedIndex;
-        this._cppSourceDivHidden = (_selectedIndex != 2) // item 2 = "c++"
     }
 }

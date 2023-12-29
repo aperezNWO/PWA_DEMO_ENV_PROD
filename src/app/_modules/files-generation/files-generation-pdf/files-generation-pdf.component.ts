@@ -18,6 +18,7 @@ export class FilesGenerationPDFComponent {
   public    downloadCaption        : string  = '';
   public    values                 : string  = '';
   public    DownloadLink           : string  = '';
+  protected pdfFileName            : string  = '';
   //
   public static get PageTitle()  : string {
     return '[GENERAR ARCHIVOS PDF]';
@@ -43,6 +44,7 @@ export class FilesGenerationPDFComponent {
     this.progress     = 0;
     this.message      = '';
     this.DownloadLink = '';
+    this.pdfFileName  = "";
     this.subjectName.nativeElement.value = '';
   }  
   //
@@ -76,7 +78,8 @@ export class FilesGenerationPDFComponent {
               //
               if (resultArray.length > 0) {
                   //
-                  var fileUrl        = this.mcsdService._prefix + '/wwwroot/output/uploadedfiles/pdf/' + resultArray[1];
+                  this.pdfFileName   = resultArray[1];
+                  var fileUrl        = this.mcsdService._prefix + '/wwwroot/output/uploadedfiles/pdf/' + this.pdfFileName;
                   var fileLocalPath  = resultArray[2];
                   var imagePath      = resultArray[3];
                   //
@@ -85,7 +88,7 @@ export class FilesGenerationPDFComponent {
                   while (downloadLink_1.indexOf("\"") > -1) 
                       downloadLink_1 = downloadLink_1.replace("\"", "");
                   //
-                  this.DownloadLink  = this.mcsdService.DebugHostingContent(downloadLink_1);
+                  this.DownloadLink = `${this.mcsdService.DebugHostingContent(downloadLink_1)}`; 
                   //
                   console.info("PDF FILENAME  : " + fileUrl);
                   //

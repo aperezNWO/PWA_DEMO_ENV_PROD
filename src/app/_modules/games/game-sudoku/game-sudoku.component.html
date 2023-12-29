@@ -25,17 +25,12 @@
         &nbsp;&nbsp;
         <select id="LanguageList"
                 name="LanguajeList"
-                #_languajeList
-                (change)="this._cppSourceDivHiddenChanged()">
+                #_languajeList>
                 <option *ngFor="let _languageName of __languajeList" 
                         [value]   ="_languageName._index"
                         [selected]="_languageName._selected">{{_languageName._value}}
                 </option>
         </select>
-        &nbsp;&nbsp;
-        <span id="cppSoureDiv" [hidden]="this._cppSourceDivHidden">
-            <a href="javascript: void window.open('https://github.com/aperezNWO/CppBuilder01/blob/master/Project2/Sudoku.cpp')">[View Source]</a>
-        </span>
 </div>
 <!-- GENERERAR DESDE ... / INICIO -->
 <hr/>
@@ -106,4 +101,3 @@
 <!--- BUTTONS / FIN -->
 <hr />
 <a routerLink="/GamesWeb">[Volver al Menú]</a>  
-

@@ -25,7 +25,6 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
     protected lblStatus              : string = "";
     protected pattern                : string = "";
     public    __languajeList         : any;
-    public    _cppSourceDivHidden    : boolean = false;
     public    tituloListadoLenguajes : string = "Seleccione Backend";
     //
     @ViewChild('mensajes')        mensajes       : any;
@@ -206,14 +205,5 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
         };
         //
         regExInfo.subscribe(regExInfoObserver);
-    }
-    //
-    public _cppSourceDivHiddenChaged():void  
-    {
-        //
-        console.log(AlgorithmRegExComponent.PageTitle + " - [DIV CPP SOURCE CHANGED]");
-        //
-        let _selectedIndex       : number  = this._languajeList.nativeElement.options.selectedIndex;
-        this._cppSourceDivHidden = (_selectedIndex != 2) // item 2 = "c++"
     }
 }
