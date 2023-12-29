@@ -108,7 +108,7 @@
             </ng-container>
             <ng-container matColumnDef="accessDate">
               <th mat-header-cell *matHeaderCellDef>accessDate</th>
-              <td mat-cell *matCellDef="let element">{{ element.accessDate }}</td>
+              <td mat-cell *matCellDef="let element">{{ element.accessDate | date: 'dd/MM/yyyy HH:mm a' }}</td>
             </ng-container>
             <ng-container matColumnDef="ipValue">
               <th mat-header-cell *matHeaderCellDef>ipValue</th>
