@@ -331,22 +331,6 @@ export class TicTacToeEngine
     }
   }
   //
-  makeMove(n: number) {
-    if (this.squares[n] || this.winner) {
-        return;
-      }
-      //
-      this.makeHumanMove(n);
-      //
-      if (this._declareWinner()==false)
-      {
-        //
-        this.makeComputerMove();
-        //
-        this._declareWinner()
-      }
-  }
-  //
   makeHumanMove(n: number) {
     //
     this.doPlay(this.HUMAN   ,this.HUMANMOVE    ,n);
@@ -356,6 +340,23 @@ export class TicTacToeEngine
   {
     //
     this.doPlay(this.COMPUTER,this.COMPUTERMOVE,0);  
+  }
+  //
+  makeMove(n: number) {
+    //
+    if (this.squares[n] || this.winner) {
+        return;
+    }
+    //
+    this.makeHumanMove(n);
+    //
+    if (this._declareWinner()==false)
+    {
+        //
+        this.makeComputerMove();
+        //
+        this._declareWinner()
+    }
   }
 }
 
