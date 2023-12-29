@@ -19,10 +19,10 @@ import { ConfigService                 } from './_services/config.service';
 //
 export class AppComponent {
     // miembros
-    public static title             : string | undefined = "[WEB API DEMO]"; 
+    public static title             : string | undefined = "[PWA DEMO]"; 
     // propiedades internas
-    public static appName           : string | undefined = "[WEB API DEMO]";
-    public static appVersion        : string | undefined = "[1.0.1.15]";
+    public static appName           : string | undefined = "[PWA DEMO]";
+    public static appVersion        : string | undefined = "[1.0.2.0]";
     // propiedades publicas
     public readonly _title                                       : string | undefined  = AppComponent.title;
     public readonly _appName                                     : string | undefined  = AppComponent.appName;

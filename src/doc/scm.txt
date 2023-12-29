@@ -188,3 +188,11 @@ export class environment {
 -- (confirmation) Configure GitHub Actions:    
 
    See workflow : "pages build and deployment". 
+
+   
+/////////////////////////////////////////////////////////////////
+// PWD
+/////////////////////////////////////////////////////////////////
+-- [_] npm update --legacy-per-deps 
+-- [_] npm install @angular/pwa 
+-- [_] ng add @angular/pwa --project=AngularDijkstra 

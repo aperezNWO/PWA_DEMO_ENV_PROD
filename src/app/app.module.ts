@@ -1,5 +1,5 @@
+import { APP_INITIALIZER,ErrorHandler, isDevMode  } from '@angular/core';
 import { Injectable, NgModule          } from '@angular/core';
-import { APP_INITIALIZER,ErrorHandler  } from '@angular/core';
 import { FormsModule                   } from '@angular/forms';
 import { MatListModule                 } from '@angular/material/list';
 import { MatTableModule                } from '@angular/material/table';
@@ -43,6 +43,7 @@ import { LogType                       } from './_models/log-info.model';
 import { UnitTestingComponent          } from './unit-testing/unit-testing.component';
 import { HanoiTowersComponent          } from './_modules/games/game-hanoi/game-hanoi.component';
 import { TowerComponent                } from './_modules/games/game-hanoi/tower/tower.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 //
 const routes = [
@@ -231,6 +232,12 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
         TowerComponent,
         RouterModule,
         RouterModule.forRoot(routes, { useHash: true }),
+        ServiceWorkerModule.register('ngsw-worker.js', {
+          enabled: !isDevMode(),
+          // Register the ServiceWorker as soon as the application is stable
+          // or after 30 seconds (whichever comes first).
+          registrationStrategy: 'registerWhenStable:30000'
+        }),
    ]
 })
 //
