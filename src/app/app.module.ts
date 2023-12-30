@@ -1,49 +1,49 @@
-import { APP_INITIALIZER,ErrorHandler, isDevMode  } from '@angular/core';
-import { Injectable, NgModule          } from '@angular/core';
-import { FormsModule                   } from '@angular/forms';
-import { MatListModule                 } from '@angular/material/list';
-import { MatTableModule                } from '@angular/material/table';
-import { MatPaginatorModule            } from '@angular/material/paginator';
-import { MatTabsModule                 } from '@angular/material/tabs';
-import { BrowserModule                 } from '@angular/platform-browser';
-import { BrowserAnimationsModule       } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule           } from '@angular/forms';
-import { HttpClient, HttpClientModule  } from '@angular/common/http';
-import { HttpHandler, HttpInterceptor  } from '@angular/common/http';
-import { HttpRequest, HttpResponse     } from '@angular/common/http';
-import { HTTP_INTERCEPTORS             } from '@angular/common/http';
-import { RouterModule                  } from '@angular/router';
-import { HashLocationStrategy          } from '@angular/common';
-import { LocationStrategy              } from '@angular/common';
-import { NgbModule                     } from '@ng-bootstrap/ng-bootstrap'
-import { AppComponent                  } from './app.component';
-import { HomeWebComponent              } from './_modules/home/home-web/home-web.component';
-import { ContactComponent              } from './_modules/about/contact/contact.component';
-import { AAboutWebComponent            } from './_modules/about/a-about-web/a-about-web.component';
-import { TechnicalSpecsComponent       } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
-import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
-import { FilesGenerationWebComponent   } from './_modules/files-generation/files-generation-web/files-generation-web.component';
-import { FilesGenerationXLSComponent   } from './_modules/files-generation/files-generation-xls/files-generation-xls.component';
-import { FilesGenerationCSVComponent   } from './_modules/files-generation/files-generation-csv/files-generation-csv.component';
-import { FilesGenerationPDFComponent   } from './_modules/files-generation/files-generation-pdf/files-generation-pdf.component';
-import { FilesGenerationZIPComponent   } from './_modules/files-generation/files-generation-zip/files-generation-zip.component';
-import { AlgorithmDijkstraComponent    } from './_modules/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
-import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-web/algorithm-web.component';
-import { AlgorithmRegExComponent       } from './_modules/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
-import { AlgorithmSortComponent        } from './_modules/algorithm/algorithm-sort/algorithm-sort.component';
-import { SudokuComponent               } from './_modules/games/game-sudoku/game-sudoku.component';
-import { GameTictactoeComponent        } from './_modules/games/game-tictactoe/game-tictactoe.component';
-import { BoardComponent                } from './_modules/games/game-tictactoe/board/board.component';
-import { SquareComponent               } from './_modules/games/game-tictactoe/square/square.component';
-import { GameWebComponent              } from './_modules/games/game-web/game-web.component';
-import { ConfigService                 } from './_services/config.service';
-import { MCSDService                   } from './_services/mcsd.service';
-import { Observable, finalize, tap     } from 'rxjs';
-import { LogType                       } from './_models/log-info.model';
-import { UnitTestingComponent          } from './unit-testing/unit-testing.component';
-import { HanoiTowersComponent          } from './_modules/games/game-hanoi/game-hanoi.component';
-import { TowerComponent                } from './_modules/games/game-hanoi/tower/tower.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { Injectable, NgModule, LOCALE_ID } from '@angular/core';
+import { APP_INITIALIZER,ErrorHandler, isDevMode    } from '@angular/core';
+import { ServiceWorkerModule             } from '@angular/service-worker';
+import { FormsModule                     } from '@angular/forms';
+import { MatListModule                   } from '@angular/material/list';
+import { MatTableModule                  } from '@angular/material/table';
+import { MatPaginatorModule              } from '@angular/material/paginator';
+import { MatTabsModule                   } from '@angular/material/tabs';
+import { BrowserModule                   } from '@angular/platform-browser';
+import { BrowserAnimationsModule         } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule             } from '@angular/forms';
+import { HttpClient, HttpClientModule    } from '@angular/common/http';
+import { HttpHandler, HttpInterceptor    } from '@angular/common/http';
+import { HttpRequest, HttpResponse       } from '@angular/common/http';
+import { HTTP_INTERCEPTORS               } from '@angular/common/http';
+import { RouterModule                    } from '@angular/router';
+import { HashLocationStrategy            } from '@angular/common';
+import { LocationStrategy                } from '@angular/common';
+import { NgbModule                       } from '@ng-bootstrap/ng-bootstrap'
+import { AppComponent                    } from './app.component';
+import { HomeWebComponent                } from './_modules/home/home-web/home-web.component';
+import { ContactComponent                } from './_modules/about/contact/contact.component';
+import { AAboutWebComponent              } from './_modules/about/a-about-web/a-about-web.component';
+import { TechnicalSpecsComponent         } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
+import { AngularTutorialsnWebComponent   } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
+import { FilesGenerationWebComponent     } from './_modules/files-generation/files-generation-web/files-generation-web.component';
+import { FilesGenerationXLSComponent     } from './_modules/files-generation/files-generation-xls/files-generation-xls.component';
+import { FilesGenerationCSVComponent     } from './_modules/files-generation/files-generation-csv/files-generation-csv.component';
+import { FilesGenerationPDFComponent     } from './_modules/files-generation/files-generation-pdf/files-generation-pdf.component';
+import { FilesGenerationZIPComponent     } from './_modules/files-generation/files-generation-zip/files-generation-zip.component';
+import { AlgorithmDijkstraComponent      } from './_modules/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
+import { AlgorithmWebComponent           } from './_modules/algorithm/algorithm-web/algorithm-web.component';
+import { AlgorithmRegExComponent         } from './_modules/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
+import { AlgorithmSortComponent          } from './_modules/algorithm/algorithm-sort/algorithm-sort.component';
+import { SudokuComponent                 } from './_modules/games/game-sudoku/game-sudoku.component';
+import { GameTictactoeComponent          } from './_modules/games/game-tictactoe/game-tictactoe.component';
+import { BoardComponent                  } from './_modules/games/game-tictactoe/board/board.component';
+import { SquareComponent                 } from './_modules/games/game-tictactoe/square/square.component';
+import { GameWebComponent                } from './_modules/games/game-web/game-web.component';
+import { HanoiTowersComponent            } from './_modules/games/game-hanoi/game-hanoi.component';
+import { TowerComponent                  } from './_modules/games/game-hanoi/tower/tower.component';
+import { LogType                         } from './_models/entityInfo.model';
+import { ConfigService                   } from './_services/config.service';
+import { MCSDService                     } from './_services/mcsd.service';
+import { UnitTestingComponent            } from './unit-testing/unit-testing.component';
+import { Observable, finalize, tap       } from 'rxjs';
 
 //
 const routes = [
@@ -205,10 +205,10 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
     ],
     exports: [RouterModule],
     providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        { provide: ErrorHandler, useClass: CustomErrorHandler },
-        { provide: APP_INITIALIZER, useFactory: initialize, deps: [
+        {  provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
+        {  provide: LocationStrategy, useClass: HashLocationStrategy },
+        {  provide: ErrorHandler, useClass: CustomErrorHandler },
+        {  provide: APP_INITIALIZER, useFactory: initialize, deps: [
                 HttpClient,
                 ConfigService,
                 MCSDService,

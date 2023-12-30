@@ -19,10 +19,10 @@ import { ConfigService                 } from './_services/config.service';
 //
 export class AppComponent {
     // miembros
-    public static title             : string | undefined = "[PWA DEMO]"; 
+    public static title             : ( string | undefined ) = "[PWA DEMO - DEV_ENV]"; 
     // propiedades internas
-    public static appName           : string | undefined = "[PWA DEMO]";
-    public static appVersion        : string | undefined = "[1.0.2.0]";
+    public static appName           : ( string | undefined ) = "[PWA DEMO - DEV_ENV]";
+    public static appVersion        : ( string | undefined ) = "[1.0.2.3]";
     // propiedades publicas
     public readonly _title                                       : string | undefined  = AppComponent.title;
     public readonly _appName                                     : string | undefined  = AppComponent.appName;
@@ -56,10 +56,8 @@ export class AppComponent {
       console.log('[AppComponent] - ' + AppComponent.title + " - [ENV_NAME] : " + environment.serviceName) ;      
       //
       router.navigateByUrl("/Home");
-
-    //-----------------------------------------------------------------------------------------------------
     }   
   }   
-
-
+//-----------------------------------------------------------------------------------------------------
 export { CustomErrorHandler };
+//-----------------------------------------------------------------------------------------------------

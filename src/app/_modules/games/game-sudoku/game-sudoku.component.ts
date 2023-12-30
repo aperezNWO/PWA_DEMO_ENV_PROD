@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpEventType, HttpResponse  } from '@angular/common/http';
 import { Observable                   } from 'rxjs';
 import { MCSDService                  } from 'src/app/_services/mcsd.service';
-import { ListItem                     } from 'src/app/_models/log-info.model';
+import { ListItem                     } from 'src/app/_models/entityInfo.model';
 import { FormBuilder, Validators      } from '@angular/forms';
 //
 @Component({

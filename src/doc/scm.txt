@@ -157,21 +157,27 @@ export class environment {
 
 -- Create a production build of your Angular application using the Angular CLI:
 
-   $ ng build --c=production
+   (skip) ng build --c=production
 
--- Corregir <base href="/"> en archivo "dist\<your-angular-app>\index.html":   
+   (skip) ng build --c=production --base-href="https://apereznwo.github.io/AngularMCSD_Public/"
 
-   https://apereznwo.github.io/AngularMCSD/
+   npm run deploy
+
+-- (skip) Corregir <base href="/"> en archivo "dist\<your-angular-app>\index.html":   
+
+   https://apereznwo.github.io/AngularMCSD_Public/
 
 -- Deploy to GitHub Pages: You can create a GitHub Pages branch or use the gh-pages package to automate the deployment process. 
 
   Here's an example using the angular-cli-ghpages package:
 
-  # Install the angular-cli-ghpages package globally
-  npm install -g angular-cli-ghpages
+  # (skip) Install the angular-cli-ghpages package globally
+  (skip) npm install -g angular-cli-ghpages
 
   # Deploy the built application to GitHub Pages
-  npx ngh --dir=dist/angular-dijkstra
+  (skip) npx ngh --dir=dist/angular-dijkstra
+  (skip) ngh --dir=dist/angular-dijkstra
+  (skip) npm run publish
 
 -- Replace your-angular-app with the name of your Angular app's directory where the build artifacts are located.
 
@@ -182,17 +188,18 @@ export class environment {
 
 -- Remember, this method will make your Angular application available at a URL like https://username.github.io/repository-name. 
 
+   npm run build-and-deploy
+
    This URL will be accessible publicly,  providing a permanent link to your deployed application.
-   https://apereznwo.github.io/AngularMCSD/
+   https://apereznwo.github.io/AngularMCSD_Public/
 
 -- (confirmation) Configure GitHub Actions:    
 
    See workflow : "pages build and deployment". 
 
-   
 /////////////////////////////////////////////////////////////////
 // PWD
 /////////////////////////////////////////////////////////////////
--- [_] npm update --legacy-per-deps 
+-- [_] npm update --force 
 -- [_] npm install @angular/pwa 
 -- [_] ng add @angular/pwa --project=AngularDijkstra 

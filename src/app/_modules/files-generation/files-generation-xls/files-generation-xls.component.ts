@@ -2,13 +2,15 @@ import { AfterViewInit, Component, OnInit, ViewChild   } from '@angular/core';
 import { FormBuilder, Validators                       } from '@angular/forms';
 import { MatTableDataSource                            } from '@angular/material/table';
 import { MatPaginator                                  } from '@angular/material/paginator';
-import { LogEntry,SearchCriteria, _languageName        } from '../../../_models/log-info.model';
+import { LogEntry,SearchCriteria, _languageName        } from '../../../_models/entityInfo.model';
 import { MCSDService                                   } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                            } from '../../../app.component';
 import { Observable                                    } from 'rxjs';
 import { Chart, registerables                          } from 'chart.js';
 import   jsPDF                                           from 'jspdf';
 import   html2canvas                                     from 'html2canvas';
+import { UtilManager } from 'src/app/_models/util-manager.model';
+import { PdfEngine } from 'src/app/_models/pdf-engine.model';
 
 //
 @Component({
@@ -309,9 +311,9 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           //
           console.log('Observer got a next value: ' + _excelFileName);
           //
-          let urlFile                = this.mcsdService.DebugHostingContent(_excelFileName);
+          let urlFile                = UtilManager.DebugHostingContent(_excelFileName);
           //
-          this.rf_ExcelDownloadLink = `${this.mcsdService._prefix}/wwwroot/xlsx/${urlFile}`;
+          this.rf_ExcelDownloadLink  = `${this.mcsdService._prefix}/wwwroot/xlsx/${urlFile}`;
           //
           this.rf_textStatus_xls     = "[Descargar Excel]";
         },
@@ -527,7 +529,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           //
           console.log('Observer got a next value: ' + _excelFileName);
           //
-          let urlFile                = this.mcsdService.DebugHostingContent(_excelFileName); 
+          let urlFile                = UtilManager.DebugHostingContent(_excelFileName); 
           //
           this.td_ExcelDownloadLink  = `${this.mcsdService._prefix}/wwwroot/xlsx/${urlFile}`;
           //
@@ -642,22 +644,14 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     GetPDF():void
     {
-      //
-      console.log("getting pdf");
-      //
-      html2canvas(this.canvas_xls .nativeElement).then((_canvas) => {
-          //
-          let w = this.divPieChart_xls.nativeElement.offsetWidth;
-          let h = this.divPieChart_xls.nativeElement.offsetHeight;
-          //
-          let imgData = _canvas.toDataURL('image/jpeg');
-          //
-          let pdfDoc  = new jsPDF("landscape", "px", [w, h]);
-          //
-          pdfDoc.addImage(imgData, 0, 0, w, h);
-          //
-          pdfDoc.save('sample-file.pdf');
-      });
+        //
+        let pdfEngine = new PdfEngine(
+          FilesGenerationXLSComponent.PageTitle,
+          this.canvas_xls,
+          this.divPieChart_xls,
+        )
+        //  
+        pdfEngine._GetPDF();
     }
 }
 

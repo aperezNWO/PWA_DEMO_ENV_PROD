@@ -2,7 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MCSDService                                 } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                          } from '../../../app.module';
 import { Observable                                  } from 'rxjs';
-import { SortInfo, _languageName } from 'src/app/_models/log-info.model';
+import { SortInfo, _languageName                     } from 'src/app/_models/entityInfo.model';
+import { DrawEngine } from 'src/app/_models/draw-engine.model';
 //
 @Component({
   selector: 'app-algorithm-sort',
@@ -15,7 +16,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     // PROPIEDADES
     ////////////////////////////////////////////////////////////////////////
     public static get PageTitle()      : string {
-      return '[ALGORITMOS - ORDENAMIENTO]';
+      return '[ - ORDENAMIENTO]';
     }
     ////////////////////////////////////////////////////////////////////////
     // VARIABLES
@@ -41,6 +42,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     public    GetSortLabel        : string   = "[ORDENAR]"; 
     public    stringArray_        : string[] = [];
     public    __languajeList      : any;
+    protected   drawEngine        : DrawEngine | undefined;
     //
     constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
     {
@@ -66,29 +68,11 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         this.context = this.c_canvas.nativeElement.getContext("2d");
         //
-        this.DrawGrid();
+        this.drawEngine = new DrawEngine(this.context,this.c_canvas,this.rectSize, this.screenSize)
+        //
+        this.drawEngine.DrawGrid();
         //
         this.GetNewSort();
-    }
-    //
-    DrawGrid():void
-    {
-        //
-        this.context.clearRect(0, 0, this.c_canvas.nativeElement.width, this.c_canvas.nativeElement.height);
-        //
-        for (let x = 0.5; x < 501; x += this.rectSize) {
-            this.context.moveTo(x, 0);
-            this.context.lineTo(x, 381);
-        }
-        //
-        for (let y = 0.5; y < 381; y += this.rectSize) {
-            this.context.moveTo(0, y);
-            this.context.lineTo(500, y);
-        }
-        //
-        this.context.strokeStyle = "#cccccc";
-        this.context.stroke();
-        //
     }
     //
     public GetSort()
@@ -273,34 +257,13 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             numberArray.push(sortInfo);  
         });   
         //
-        this.DrawGrid();
+        this.drawEngine?.DrawGrid();
         //
-        this.DrawRectangles(numberArray);
+        this.drawEngine?.DrawRectangles(numberArray);
         //
         this.lblStatus       = "[REINICIO EXITOSO]";
         //
         this.GetSortLabel    = "[ORDENAR]";
-    }
-    //
-    DrawRectangles(stringArray : SortInfo[]):void
-    {
-        //
-        let defaultFillStyle : string = "#ccc";
-        //
-        let swapFillStyle    : string = "#FFA500";
-        //
-        for (let index = 0; index < 25; index++)
-        {
-            //
-            let x      : number = 0 + (this.rectSize * index);
-            let y      : number = this.screenSize - (Number.parseInt(stringArray[index].value) * this.rectSize);
-            let length : number = (this.rectSize);
-            let height : number = Number.parseInt(stringArray[index].value) * this.rectSize;
-            //
-            this.context.fillStyle = (stringArray[index].swap == true)? swapFillStyle : defaultFillStyle;
-            //
-            this.context.fillRect(x, y, length, height);
-        }
     }
     //
     DrawStep():void
@@ -356,9 +319,9 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
               numberArray.push(sortInfo);  
             });        
             //
-            this.DrawGrid();
+            this.drawEngine?.DrawGrid();
             //
-            this.DrawRectangles(numberArray);
+            this.drawEngine?.DrawRectangles(numberArray);
             //
             this.DrawArray();    
         }

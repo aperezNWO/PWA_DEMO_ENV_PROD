@@ -2,7 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MCSDService                                 } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                          } from '../../../app.module';
 import { Observable                                  } from 'rxjs';
-import { _languageName                               } from 'src/app/_models/log-info.model';
+import { _languageName                               } from 'src/app/_models/entityInfo.model';
+import { UtilManager                                 } from 'src/app/_models/util-manager.model';
 
 //
 @Component({
@@ -173,7 +174,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
                     //
                     let xmlHighlighted : string = resultArray[1];
                     //
-                    this.pattern       = this.mcsdService.DebugHostingContent(resultArray[2]);
+                    this.pattern       = UtilManager.DebugHostingContent(resultArray[2]);
                     //
                     console.log("REGEX. AMT OF MATCHES   : " + matchAmt);
                     //

@@ -1,5 +1,5 @@
 import { Component, ViewChild           } from '@angular/core';
-import { DiskInfo, HanoiStep, ListItem } from 'src/app/_models/log-info.model';
+import { DiskInfo, HanoiStep, ListItem  } from 'src/app/_models/entityInfo.model';
 //
 @Component({
   selector: 'app-games-hanoi',
@@ -12,16 +12,16 @@ export class HanoiTowersComponent {
   public    towerA               : Map<number,( DiskInfo | undefined)> = new Map<number,( DiskInfo | undefined)>();
   public    towerB               : Map<number,( DiskInfo | undefined)> = new Map<number,( DiskInfo | undefined)>();
   public    towerC               : Map<number,( DiskInfo | undefined)> = new Map<number,( DiskInfo | undefined)>();
-  protected steps                : string[]    = [];
-  protected _steps               : HanoiStep[] = [];
-  protected _stepsIndex          : number      = 0;
-  protected _startGame           : boolean     = true;
-  private   _delayInMilliseconds : number      = 1500;
-  protected _stepsAmt            : number      = 0;
-  protected _diskAmt             : number      = 0;
+  protected steps                : string[]       = [];
+  protected _steps               : HanoiStep[]    = [];
+  protected _stepsIndex          : number     = 0;
+  protected _startGame           : boolean    = true;
+  private   _delayInMilliseconds : number     = 1500;
+  protected _stepsAmt            : number     = 0;
+  protected _diskAmt             : number     = 0;
   protected _timeoutId           : any;
   protected _diskAmtList         : any;
-  protected tituloDiskAmtList    : string      = "Cantidad de Discos";
+  protected tituloDiskAmtList    : string          = "Cantidad de Discos";
   @ViewChild('__diskAmtList') __diskAmtList: any;
   //
   constructor(){
@@ -123,7 +123,7 @@ export class HanoiTowersComponent {
   //
   saveStep(n: number, from: string, to: string) {
     // Implement logic to move a single disk from 'from' tower to 'to' tower
-    let hanoiStep : HanoiStep = new HanoiStep(n,from,to);
+    let hanoiStep : HanoiStep = {n,from,to};
     //
     this._steps.push(hanoiStep);
     //

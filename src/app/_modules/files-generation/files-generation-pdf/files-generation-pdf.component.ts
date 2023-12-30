@@ -2,6 +2,7 @@ import { Component, ViewChild        } from '@angular/core';
 import { MCSDService                 } from '../../../_services/mcsd.service';
 import { CustomErrorHandler          } from '../../../app.module';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { UtilManager                 } from 'src/app/_models/util-manager.model';
 
 
 @Component({
@@ -88,7 +89,7 @@ export class FilesGenerationPDFComponent {
                   while (downloadLink_1.indexOf("\"") > -1) 
                       downloadLink_1 = downloadLink_1.replace("\"", "");
                   //
-                  this.DownloadLink = `${this.mcsdService.DebugHostingContent(downloadLink_1)}`; 
+                  this.DownloadLink = `${UtilManager.DebugHostingContent(downloadLink_1)}`; 
                   //
                   console.info("PDF FILENAME  : " + fileUrl);
                   //

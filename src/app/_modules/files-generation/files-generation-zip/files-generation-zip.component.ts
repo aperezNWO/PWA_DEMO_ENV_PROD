@@ -3,6 +3,7 @@ import { HttpEventType, HttpResponse         } from '@angular/common/http';
 import { Observable                          } from 'rxjs';
 import { MCSDService                         } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                  } from '../../../app.module';
+import { UtilManager                         } from 'src/app/_models/util-manager.model';
 //
 @Component({
   selector: 'app-files-generation-zip',
@@ -126,7 +127,7 @@ export class FilesGenerationZIPComponent {
             while (downloadLink_1.indexOf("\"") > -1) 
                 downloadLink_1 = downloadLink_1.replace("\"", "");
             //
-            this.downloadLink  = this.mcsdService.DebugHostingContent(downloadLink_1);
+            this.downloadLink  = UtilManager.DebugHostingContent(downloadLink_1);
             //
             console.log('[Download link] : ' + this.downloadLink);
             //
