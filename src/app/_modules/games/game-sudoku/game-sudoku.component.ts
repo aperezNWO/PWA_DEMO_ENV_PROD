@@ -10,7 +10,7 @@ import { ListItem                     } from 'src/app/_models/entityInfo.model';
 @Component({
   selector: 'app-sudoku',
   templateUrl: './game-sudoku.component.html',
-  styleUrl: './game-sudoku.component.css',
+  styleUrls: ['./game-sudoku.component.css'],
 })
 //
 export class SudokuComponent implements OnInit, AfterViewInit {
