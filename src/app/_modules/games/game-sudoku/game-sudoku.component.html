@@ -1,22 +1,23 @@
 <h1>SUDOKU BOARD</h1>
 <!-- TABLERO / INICIO -->    
 <hr/>
-<div class="sudoku-board">
-  <table>
+<!-- TABLERO / INICIO           --> 
+<div class="sudoku-board" #_sudoku_board>
+<table>
     <tbody>
     <tr *ngFor="let col of board; let rowIndex = index">
-      <td *ngFor="let cell of col; let cellIndex = index">
+    <td *ngFor="let cell of col; let cellIndex = index">
         <div [className]="( 
-                             ( (cellIndex>=3) && (cellIndex<=5) ) && ((rowIndex>= 0) && (rowIndex <  3)   ) ||
+                            ( (cellIndex>=3) && (cellIndex<=5) ) && ((rowIndex>= 0) && (rowIndex <  3)   ) ||
                             !( (cellIndex>=3) && (cellIndex<=5) ) && ((rowIndex>= 3) && (rowIndex <= 5)   ) ||
-                             ( (cellIndex>=3) && (cellIndex<=5) ) && ((rowIndex>  5) && (rowIndex <= 8)   ) 
-                          ) ?('sudoku-cell_bright'):('sudoku-cell_dark')">{{ cell }}</div>
-      </td>
+                            ( (cellIndex>=3) && (cellIndex<=5) ) && ((rowIndex>  5) && (rowIndex <= 8)   ) 
+                        ) ?('sudoku-cell_bright'):('sudoku-cell_dark')">{{ cell }}</div>
+    </td>
     </tr>
-  </tbody>
-  </table>
+</tbody>
+</table>
 </div>
-<!-- TABLERO / FIN              -->      
+<!-- TABLERO / FIN              --> 
 <!-- LISTADO LENGUAJE / INICIO  -->    
 <hr/>
     <div id="LangListDiv" align="left">
@@ -25,12 +26,17 @@
         &nbsp;&nbsp;
         <select id="LanguageList"
                 name="LanguajeList"
-                #_languajeList>
+                #_languajeList
+                (change)="this._cppSourceDivHiddenChanged()">
                 <option *ngFor="let _languageName of __languajeList" 
                         [value]   ="_languageName._index"
                         [selected]="_languageName._selected">{{_languageName._value}}
                 </option>
         </select>
+        &nbsp;&nbsp;
+        <span id="cppSoureDiv" [hidden]="this._cppSourceDivHidden">
+            <a href="javascript: void window.open('https://github.com/aperezNWO/CppBuilder01/blob/master/Project2/Sudoku.cpp')">[View Source]</a>
+        </span>
 </div>
 <!-- GENERERAR DESDE ... / INICIO -->
 <hr/>
@@ -49,7 +55,7 @@
         </select>
     </div>
 <!-- GENERERAR DESDE ... / FIN    -->
-<!-- LISTADO LENGUAJE / FIN -->    
+<!-- LISTADO LENGUAJE    / FIN -->    
 <hr>
 <form [formGroup]="rf_searchForm" (ngSubmit)="this._SolveSudoku()">
     <div class="fileUpload" align="left" [hidden]="this._fileUploadDivHidden">
@@ -98,7 +104,10 @@
                     (this.sudokuSolved       == true)">
     </div>
 </form>
+<hr/>
+<div *ngIf="(this.board.length>0)" align="left">
+    <input type="button" name="btnGeneratePdf" value="[GENERAR PDF]" (click)="this._GetPdf()" [disabled]="(this.message == '[...Generando PDF...]')">
+</div>
 <!--- BUTTONS / FIN -->
 <hr />
-<a routerLink="/GamesWeb">[Volver al Menú]</a>  
-
+<a routerLink="/Home">[Home]</a>      

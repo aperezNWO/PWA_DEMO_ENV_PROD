@@ -5,13 +5,10 @@ import { MatPaginator                                  } from '@angular/material
 import { LogEntry,SearchCriteria, _languageName        } from '../../../_models/entityInfo.model';
 import { MCSDService                                   } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                            } from '../../../app.component';
+import { UtilManager                                   } from 'src/app/_models/util-manager.model';
+import { PdfService                                    } from 'src/app/_services/pdf-service.service';
 import { Observable                                    } from 'rxjs';
 import { Chart, registerables                          } from 'chart.js';
-import   jsPDF                                           from 'jspdf';
-import   html2canvas                                     from 'html2canvas';
-import { UtilManager } from 'src/app/_models/util-manager.model';
-import { PdfEngine } from 'src/app/_models/pdf-engine.model';
-
 //
 @Component({
   selector     : 'app-files-generation-xls',
@@ -30,6 +27,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //--------------------------------------------------------------------------
     // PROPIEADES - REACTIVE FORMS
     //--------------------------------------------------------------------------
+    //
+    pdf_message                        : string = '';
     //
     rf_textStatus                      : string = "";
     //
@@ -107,7 +106,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
-    constructor(private mcsdService: MCSDService, private formBuilder: FormBuilder, private customErrorHandler : CustomErrorHandler) {
+    constructor(private mcsdService: MCSDService, private formBuilder: FormBuilder, private customErrorHandler : CustomErrorHandler, public pdfService: PdfService) {
       //
       Chart.register(...registerables);
       //
@@ -642,17 +641,36 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     // METODOS - PDF
     //--------------------------------------------------------------------------
     //
+    //
     GetPDF():void
     {
         //
-        let pdfEngine = new PdfEngine(
-          FilesGenerationXLSComponent.PageTitle,
+        let fileName        = 'BAR CHART';
+        let fileName_Output = '';
+        //
+        this.pdfService._GetPDF(
+          this.pageTitle,
           this.canvas_xls,
           this.divPieChart_xls,
-        )
-        //  
-        pdfEngine._GetPDF();
+          fileName,
+        ).subscribe(
+        {
+            next: (fileName:string) =>{
+                //
+                fileName_Output = fileName
+            },
+            error: (error : Error) => {
+                //
+                this.pdf_message   = 'ha ocurrido un error : ' + error.message;
+            },
+            complete: () => {
+                //
+                this.pdf_message   = `Se ha generado el archivo [${fileName_Output}]`;
+            }
+          }
+        );
     }
+
 }
 
 

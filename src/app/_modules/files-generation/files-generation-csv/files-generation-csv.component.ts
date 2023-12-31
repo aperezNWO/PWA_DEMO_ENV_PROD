@@ -4,12 +4,10 @@ import { MatTableDataSource                            } from '@angular/material
 import { MatPaginator                                  } from '@angular/material/paginator';
 import { Observable                                    } from 'rxjs';
 import { Chart, registerables                          } from 'chart.js';
-import jsPDF                                             from 'jspdf';
-import html2canvas                                       from 'html2canvas';
 import { MCSDService                                   } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                            } from '../../../app.module';
 import { PersonEntity, SearchCriteria, _languageName   } from '../../../_models/entityInfo.model';
-import { PdfEngine                                     } from 'src/app/_models/pdf-engine.model';
+import { PdfService                                    } from 'src/app/_services/pdf-service.service';
 //
 @Component({
   selector: 'app-files-generation-csv',
@@ -47,9 +45,11 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     @ViewChild('divPieChart_CSV') divPieChart_CSV   : any;
     //
     public pieChartVar                              : any;
-       //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------
     // PROPIEADES - REACTIVE FORMS
     //--------------------------------------------------------------------------
+    //
+    pdf_message                        : string = '';
     //
     rf_textStatus                      : string = "";
     //
@@ -86,7 +86,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
     //
-    constructor(private mcsdService: MCSDService, private formBuilder: FormBuilder, private customErrorHandler : CustomErrorHandler) {
+    constructor(public mcsdService: MCSDService, public formBuilder: FormBuilder, public customErrorHandler : CustomErrorHandler, public pdfService : PdfService,) {
       //
       Chart.register(...registerables);
       //
@@ -344,13 +344,32 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     GetPDF():void
     {
         //
-        let pdfEngine = new PdfEngine(
-          FilesGenerationCSVComponent.PageTitle,
+        this.pdf_message = '[...Generando PDF...]'
+        //
+        let fileName         : string     = "PIE CHART";
+        let fileName_output  : string     = '';
+        //
+        this.pdfService._GetPDF(
+          this.pageTitle,
           this.canvas_csv,
           this.divPieChart_CSV,
-        )
-        //  
-        pdfEngine._GetPDF();
+          fileName,
+        ).subscribe(
+        {
+            next: (fileName: string) =>{
+                //
+                fileName_output = fileName;
+            },
+            error: (error: Error) => {
+                //
+                this.pdf_message   = 'ha ocurrido un error : ' + error.message;
+            },
+            complete: () => {
+                //
+                this.pdf_message   = `Se ha generado el asrchivo [${fileName_output}]`;
+            }
+          }
+        );
     }
     //--------------------------------------------------------------------------
     // METODOS REACTIVE FORMS 

@@ -63,6 +63,12 @@
             <option *ngFor="let _vertexSize of __sourcePointList" [value]="_vertexSize._index">{{_vertexSize._value}}</option>
             </select>
         </p>
+        <!--STATUS / INICIO -->
+        <hr/>
+        <div align="left">
+            <div *ngIf="this.pdf_message" class="alert alert-secondary" role="alert">{{ this.pdf_message }}</div>
+        </div>
+        <!-- STATUS / FIN   -->
         <hr />
         <div>
             <input id="GetGraph" type="button" title="[GENERAR]"   value="[GENERAR]"   (click)="this._GetGraph()" 

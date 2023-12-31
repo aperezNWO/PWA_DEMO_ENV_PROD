@@ -19,10 +19,10 @@ import { ConfigService                 } from './_services/config.service';
 //
 export class AppComponent {
     // miembros
-    public static title             : ( string | undefined ) = "[PWA DEMO - PROD_ENV]"; 
+    public static title             : ( string | undefined ) = "[PWA DEMO - DEV_PROD]"; 
     // propiedades internas
-    public static appName           : ( string | undefined ) = "[PWA DEMO - PROD_ENV]";
-    public static appVersion        : ( string | undefined ) = "[1.0.2.3]";
+    public static appName           : ( string | undefined ) = "[PWA DEMO - DEV_PROD]";
+    public static appVersion        : ( string | undefined ) = "[1.0.2.6]";
     // propiedades publicas
     public readonly _title                                       : string | undefined  = AppComponent.title;
     public readonly _appName                                     : string | undefined  = AppComponent.appName;
