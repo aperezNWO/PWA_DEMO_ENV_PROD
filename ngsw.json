@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1703915773609,
+  "timestamp": 1704044259636,
   "index": "https://apereznwo.github.io/AngularMCSD/index.html",
   "assetGroups": [
     {
@@ -15,7 +15,7 @@
         "https://apereznwo.github.io/AngularMCSD/896.4519226224848d4d.js",
         "https://apereznwo.github.io/AngularMCSD/favicon.ico",
         "https://apereznwo.github.io/AngularMCSD/index.html",
-        "https://apereznwo.github.io/AngularMCSD/main.9c4cd8fa7262cfa2.js",
+        "https://apereznwo.github.io/AngularMCSD/main.643cb2f06a99000c.js",
         "https://apereznwo.github.io/AngularMCSD/manifest.webmanifest",
         "https://apereznwo.github.io/AngularMCSD/polyfills.63032001bd7f37e9.js",
         "https://apereznwo.github.io/AngularMCSD/runtime.947e379f65689285.js",
@@ -48,7 +48,7 @@
   "hashTable": {
     "https://apereznwo.github.io/AngularMCSD/153.189ea5b20031849a.js": "b982203461956e7dd66d30d1ce5f69e989b7205d",
     "https://apereznwo.github.io/AngularMCSD/896.4519226224848d4d.js": "b78fb0b014bc156bc77299cc45560d056ef29bac",
-    "https://apereznwo.github.io/AngularMCSD/assets/config.json": "641091053b737ab479bf411642130ac717be6741",
+    "https://apereznwo.github.io/AngularMCSD/assets/config.json": "14abb9f2663718b701fc1078ec5c7c6269ffbc5b",
     "https://apereznwo.github.io/AngularMCSD/assets/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
     "https://apereznwo.github.io/AngularMCSD/assets/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
     "https://apereznwo.github.io/AngularMCSD/assets/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
@@ -58,8 +58,8 @@
     "https://apereznwo.github.io/AngularMCSD/assets/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
     "https://apereznwo.github.io/AngularMCSD/assets/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
     "https://apereznwo.github.io/AngularMCSD/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "https://apereznwo.github.io/AngularMCSD/index.html": "15336108edb67735bb0d5d87c2a3734025ec90bf",
-    "https://apereznwo.github.io/AngularMCSD/main.9c4cd8fa7262cfa2.js": "bf83ab083bcb28b49929e55d476e26a1e2d5bd38",
+    "https://apereznwo.github.io/AngularMCSD/index.html": "e63b43750c693be5292dc6d9b160b9d3693d7d21",
+    "https://apereznwo.github.io/AngularMCSD/main.643cb2f06a99000c.js": "9a9dd70c8596c8df0d4a995d264927cd634cc4f6",
     "https://apereznwo.github.io/AngularMCSD/manifest.webmanifest": "6d6f8a7b8be921b9450e4ea234cc5349f6f104a1",
     "https://apereznwo.github.io/AngularMCSD/polyfills.63032001bd7f37e9.js": "e343a8cb68038939d14570b9ac45a71ae10e27a3",
     "https://apereznwo.github.io/AngularMCSD/runtime.947e379f65689285.js": "d43a46318814b24e350fc834aeb182b1f23a4761",
