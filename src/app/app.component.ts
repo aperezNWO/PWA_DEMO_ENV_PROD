@@ -22,7 +22,7 @@ export class AppComponent {
     public static title             : ( string | undefined ) = "[PWA DEMO - ENV_PROD]"; 
     // propiedades internas
     public static appName           : ( string | undefined ) = "[PWA DEMO - ENV_PROD]";
-    public static appVersion        : ( string | undefined ) = "[1.0.2.6]";
+    public static appVersion        : ( string | undefined ) = "[1.0.2.7]";
     // propiedades publicas
     public readonly _title                                       : string | undefined  = AppComponent.title;
     public readonly _appName                                     : string | undefined  = AppComponent.appName;
