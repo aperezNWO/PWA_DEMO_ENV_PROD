@@ -442,7 +442,7 @@ export class MCSDService implements OnInit {
     //
     _SolveSudoku_NodeJS(p_matrix: string): Observable<string> {
       //
-      let p_url: string = `https://ms7tks-4000.csb.app/Sudoku_Solve_NodeJS?p_matrix=${p_matrix}`;
+      let p_url: string = `https://jh6mc8-4000.csb.app/Sudoku_Solve_NodeJS?p_matrix=${p_matrix}`;
       //
       let sudokuSolved: Observable<string> = this.http.get<string>(
         p_url,
