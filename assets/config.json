@@ -1,5 +1,5 @@
 {
      "baseUrl"     : "https://webapiangulardemo.somee.com/"
-    ,"appName"     : "[PWA DEMO DEV_PROD]"
-    ,"appVersion"  : "1.0.2.6"
+    ,"appName"     : "[PWA DEMO ENV_PROD]"
+    ,"appVersion"  : "1.0.2.7"
 }
