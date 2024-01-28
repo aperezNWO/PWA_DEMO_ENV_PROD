@@ -20,7 +20,7 @@ export class HomeWebComponent {
       //
       console.log(HomeWebComponent.PageTitle + " - [INGRESO]") ;
       //
-      if (mcsdService._prefix != "")
+      if (mcsdService._baseUrlNetCore != null)
       {
         //
         mcsdService.SetLog(this.pageTitle,"PAGE_ANGULAR_DEMO_INDEX");

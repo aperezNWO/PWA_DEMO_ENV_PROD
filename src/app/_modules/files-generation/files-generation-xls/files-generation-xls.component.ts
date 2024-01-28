@@ -312,7 +312,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           //
           let urlFile                = UtilManager.DebugHostingContent(_excelFileName);
           //
-          this.rf_ExcelDownloadLink  = `${this.mcsdService._prefix}/wwwroot/xlsx/${urlFile}`;
+          this.rf_ExcelDownloadLink  = `${this.mcsdService._baseUrlNetCore}/wwwroot/xlsx/${urlFile}`;
           //
           this.rf_textStatus_xls     = "[Descargar Excel]";
         },
@@ -530,7 +530,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           //
           let urlFile                = UtilManager.DebugHostingContent(_excelFileName); 
           //
-          this.td_ExcelDownloadLink  = `${this.mcsdService._prefix}/wwwroot/xlsx/${urlFile}`;
+          this.td_ExcelDownloadLink  = `${this.mcsdService._baseUrlNetCore}/wwwroot/xlsx/${urlFile}`;
           //
           this.td_textStatus_xls     = "[Descargar Excel]";
         },

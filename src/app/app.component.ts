@@ -1,6 +1,6 @@
-import { Component, VERSION            } from '@angular/core';
+import { Component, OnInit, VERSION    } from '@angular/core';
 import { Router                        } from '@angular/router';
-import { environment                   } from 'src/environments/environment';
+import { Title                         } from '@angular/platform-browser';
 import { CustomErrorHandler            } from './app.module';
 import { HomeWebComponent              } from './_modules/home/home-web/home-web.component';
 import { AlgorithmWebComponent         } from './_modules/algorithm/algorithm-web/algorithm-web.component';
@@ -8,7 +8,7 @@ import { AngularTutorialsnWebComponent } from './_modules/topics/angular-tutoria
 import { FilesGenerationWebComponent   } from './_modules/files-generation/files-generation-web/files-generation-web.component';
 import { AAboutWebComponent            } from './_modules/about/a-about-web/a-about-web.component';
 import { MCSDService                   } from './_services/mcsd.service';
-import { ConfigService                 } from './_services/config.service';
+import { _ConfigService                } from './_services/-config.service';
 //
 @Component({
   selector    : 'app-root',
@@ -17,16 +17,11 @@ import { ConfigService                 } from './_services/config.service';
 })
 
 //
-export class AppComponent {
-    // miembros
-    public static title             : ( string | undefined ) = "[PWA DEMO - ENV_PROD]"; 
-    // propiedades internas
-    public static appName           : ( string | undefined ) = "[PWA DEMO - ENV_PROD]";
-    public static appVersion        : ( string | undefined ) = "[1.0.2.7]";
+export class AppComponent implements OnInit {
     // propiedades publicas
-    public readonly _title                                       : string | undefined  = AppComponent.title;
-    public readonly _appName                                     : string | undefined  = AppComponent.appName;
-    public readonly _appVersion                                  : string | undefined  = AppComponent.appVersion;
+    public readonly _title                                       : string | undefined  = "";
+    public readonly _appName                                     : string | undefined  = "";
+    public readonly _appVersion                                  : string | undefined  = "";
     public readonly HomeWebComponent_pageTitle                   : string  = HomeWebComponent.PageTitle;
     public readonly AlgorithmWebComponent_pageTitle              : string  = AlgorithmWebComponent.PageTitle;
     public readonly FilesGenerationWebComponent_pageTitle        : string  = FilesGenerationWebComponent.PageTitle;
@@ -45,18 +40,67 @@ export class AppComponent {
         this.navbarCollapsed = p_navbarCollapsed;
     }
     //-----------------------------------------------------------------------------------------------------
-    constructor(private router : Router, private _customErrorHandler : CustomErrorHandler, mcsdService : MCSDService, configService : ConfigService) {
+    constructor(
+                private router              : Router, 
+                private _customErrorHandler : CustomErrorHandler, 
+                private mcsdService         : MCSDService, 
+                private _configService      : _ConfigService,
+                private titleService        : Title
+               ) 
+    {
       //
-      console.log("[AppComponent] - [appName]  : " + AppComponent.appName);
+      console.log("Loading AppComponent...");
+      // IMPLEMENT AS MAP AND ITERATE
+      let keyName  : string = '';
+      let keyValue : string = '';
       //
-      console.log('[AppComponent] - [title] : ' + AppComponent.title) ;      
+      keyName  = 'appName';
+      keyValue = this._configService.getConfigValue(keyName);
       //
-      console.log('[AppComponent] - ' + AppComponent.title + " - [INGRESO]") ;
+      this._appName = keyValue;
       //
-      console.log('[AppComponent] - ' + AppComponent.title + " - [ENV_NAME] : " + environment.serviceName) ;      
+      keyName          = 'appVersion';
+      keyValue         = this._configService.getConfigValue(keyName);
+      this._appVersion = keyValue;
+      //
+      let __baseUrlNetCore = this._configService.getConfigValue('baseUrlNetCore');
+      let __baseUrlNodeJs  = this._configService.getConfigValue('baseUrlNodeJs');
+      //
+      this.mcsdService._baseUrlNetCore = __baseUrlNetCore;
+      this.mcsdService._baseUrlNodeJs  = __baseUrlNodeJs;
+      //
+      //////////////////////////////////////////////////////
+      // CACHE PARA XML
+      ///////////////////////////////////////////////////////
+      //
+      this.mcsdService._SetXmlDataToCache(__baseUrlNetCore);
+      ///////////////////////////////////////////////////////
+      // CACHE PARA PIE CHART
+      ///////////////////////////////////////////////////////
+      this.mcsdService._SetSTATPieCache(__baseUrlNetCore);
+      ///////////////////////////////////////////////////////
+      // CACHE PARA BARCHART
+      ///////////////////////////////////////////////////////
+      this.mcsdService._SetSTATBarCache(__baseUrlNetCore);
+      //
+      let title : string = `${this._appName} - ${this._appVersion}`;
+      //
+      console.log("Setting Title : " + title);
+      //
+      this._title = `${this._appName}`;
+      //
+      this.titleService.setTitle(title);
       //
       router.navigateByUrl("/Home");
     }   
+    //-----------------------------------------------------------------------------------------------------
+    ngOnInit() {
+        //
+    }
+    //
+    getValueFromConfig(key: string) {
+      return this._configService.getConfigValue(key);
+    }
   }   
 //-----------------------------------------------------------------------------------------------------
 export { CustomErrorHandler };

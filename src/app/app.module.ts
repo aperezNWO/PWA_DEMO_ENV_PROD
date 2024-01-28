@@ -1,4 +1,4 @@
-import { Injectable, NgModule, LOCALE_ID } from '@angular/core';
+import { Injectable, NgModule                       } from '@angular/core';
 import { APP_INITIALIZER,ErrorHandler, isDevMode    } from '@angular/core';
 import { ServiceWorkerModule             } from '@angular/service-worker';
 import { FormsModule                     } from '@angular/forms';
@@ -40,10 +40,10 @@ import { GameWebComponent                } from './_modules/games/game-web/game-
 import { HanoiTowersComponent            } from './_modules/games/game-hanoi/game-hanoi.component';
 import { TowerComponent                  } from './_modules/games/game-hanoi/tower/tower.component';
 import { LogType                         } from './_models/entityInfo.model';
-import { ConfigService                   } from './_services/config.service';
 import { MCSDService                     } from './_services/mcsd.service';
+import { _ConfigService                  } from './_services/-config.service';
 import { UnitTestingComponent            } from './unit-testing/unit-testing.component';
-import { Observable, finalize, tap       } from 'rxjs';
+import { finalize, tap                   } from 'rxjs';
 
 //
 const routes = [
@@ -67,6 +67,11 @@ const routes = [
   {  path: 'GamesWeb'              , component: GameWebComponent                      },
   {  path: '**'                    , component: AppComponent                          },
 ];
+//
+export function initialize(_configService: _ConfigService) {
+  // 
+  return () => _configService.loadConfig();
+}
 //
 @Injectable({
   providedIn: 'root'
@@ -116,70 +121,6 @@ export class CustomErrorHandler implements ErrorHandler {
     } 
 }
 //
-function ReadConfigFile(http : HttpClient, globalConfigService : ConfigService, mcsdService : MCSDService)
-{
-  let configInfo!  : Observable<ConfigService>;
-  //
-  let p_url        : string = "./assets/config.json";
-  //
-  configInfo    = http.get<ConfigService>(p_url);
-  //
-  const configInfoObserver   = {
-        //
-        next: (localConfigService: ConfigService)     => { 
-              //
-              console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + localConfigService );
-              //
-              globalConfigService.baseUrl    = localConfigService.baseUrl;
-              globalConfigService.appName    = localConfigService.appName;
-              globalConfigService.appVersion = localConfigService.appVersion;
-              //
-              console.warn('[AppModule] -  [CONFIG_SERVICE] - [RESULT] : ' + globalConfigService );
-              //
-              AppComponent.appName    = globalConfigService.appName;
-              AppComponent.appVersion = globalConfigService.appVersion;
-              AppComponent.title      = globalConfigService.appName;
-              //////////////////////////////////////////////////////
-              // CACHE PARA XML
-              ///////////////////////////////////////////////////////
-              mcsdService._SetXmlDataToCache(globalConfigService.baseUrl);
-              ///////////////////////////////////////////////////////
-              // CACHE PARA PIE CHART
-              ///////////////////////////////////////////////////////
-              mcsdService._SetSTATPieCache(globalConfigService.baseUrl);
-              ///////////////////////////////////////////////////////
-              // CACHE PARA BARCHART
-              ///////////////////////////////////////////////////////
-              mcsdService._SetSTATBarCache(globalConfigService.baseUrl);
-
-        },
-        error: (err: Error) => {
-              //
-              console.error('[AppModule] - [CONFIG_SERVICE] - [ERROR]  : ' + err);
-        },       
-        complete: ()        => {
-              //
-              console.info('[AppModule] -  [CONFIG INFO] - [COMPLETE]');
-        },
-  };
-  //
-  configInfo.subscribe(configInfoObserver);
-}
-//
-function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdService : MCSDService): (() => Promise<boolean>) {
-  return (): Promise<boolean> => {
-    return new Promise<boolean>((resolve: (a: boolean) => void): void => 
-    {
-          ///////////////////////////////////////////////////////
-          // LEER ARCHIVO CONFIG
-          ///////////////////////////////////////////////////////
-          ReadConfigFile(http, globalConfigService, mcsdService);
-          //
-          resolve(true);
-    });
-  };
-}
-//
 @NgModule({
     declarations: [
         AppComponent,
@@ -208,11 +149,15 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
         {  provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
         {  provide: LocationStrategy, useClass: HashLocationStrategy },
         {  provide: ErrorHandler, useClass: CustomErrorHandler },
-        {  provide: APP_INITIALIZER, useFactory: initialize, deps: [
-                HttpClient,
-                ConfigService,
-                MCSDService,
-            ], multi: true },
+        [
+          _ConfigService,
+          {
+            provide   : APP_INITIALIZER,
+            useFactory: initialize,
+            deps      : [_ConfigService,MCSDService,HttpClient],
+            multi     : true
+          }
+        ],
     ],
     bootstrap: [AppComponent],
     imports: [
@@ -243,10 +188,11 @@ function initialize(http: HttpClient, globalConfigService: ConfigService, mcsdSe
 //
 export class AppModule { 
     //-----------------------------------------------------------------------------------------------------
-    constructor(public customErrorHandler : CustomErrorHandler, public loggingInterceptor : LoggingInterceptor) 
+    constructor(public customErrorHandler : CustomErrorHandler, 
+                public loggingInterceptor : LoggingInterceptor,
+                public mcsdService : MCSDService,) 
     {
-        //
-        console.log("[AppModule] - [appName]" + AppComponent.appName);
+      //
     }
 }
 

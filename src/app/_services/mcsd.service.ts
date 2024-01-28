@@ -3,7 +3,7 @@ import { HttpClient, HttpEvent, HttpHandler, HttpHeaders         } from '@angula
 import { HttpRequest, HttpResponse  , HttpInterceptor            } from '@angular/common/http';
 import { Observable                                              } from 'rxjs';
 import { LogEntry, LogType, SearchCriteria                       } from '../_models/entityInfo.model';
-import { ConfigService                                           } from './config.service';
+import { _ConfigService                                          } from './-config.service';
 //
 @Injectable({
   providedIn: 'root'
@@ -27,12 +27,28 @@ export class MCSDService implements OnInit {
       ,'responseType' : 'text' as 'json'
     }; 
     //
-    public get _prefix()   : string | undefined {
+    public get _baseUrlNetCore(): string {
       //
-      console.warn("[CONFIG_SERVICE] : BaseUrl : " + this.configService.baseUrl );      
-      //            
-      return this.configService.baseUrl;
+      return this.__baseUrlNetCore;
     }
+    //
+    public set _baseUrlNetCore(value: string) {
+      //
+      this.__baseUrlNetCore = value;
+    }
+    //
+    public get _baseUrlNodeJs(): string {
+      //
+      return this.__baseUrlNodeJs;
+    }
+    //
+    public set _baseUrlNodeJs(value: string) {
+      //
+      this.__baseUrlNodeJs = value;
+    }
+    //
+    protected __baseUrlNetCore        : string = '';
+    protected __baseUrlNodeJs         : string = '';
     //
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
@@ -40,10 +56,19 @@ export class MCSDService implements OnInit {
     //
     ngOnInit(): void {
       //
-    }
-    //
-    constructor(public http: HttpClient,public configService : ConfigService) { 
+      console.log("Calling MCSDService initialization...");
       //
+    }
+    constructor(public http: HttpClient, public _configService : _ConfigService) {
+      //
+      console.log("Calling MCSDService constructor...");
+      //
+      this.__baseUrlNetCore = this._configService.getConfigValue('baseUrlNetCore');
+      this.__baseUrlNodeJs  = this._configService.getConfigValue('baseUrlNodeJs');
+      //
+      console.log("baseUrlNetCore : " + this.__baseUrlNetCore);
+      console.log("baseUrlNodeJs  : " + this.__baseUrlNodeJs);
+      
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [COMUNES]
@@ -52,7 +77,7 @@ export class MCSDService implements OnInit {
     _GetWebApiAppVersion(): Observable<string>
     {
       //
-      let p_url         : string  = `${this._prefix}demos/_GetAppVersion`;
+      let p_url         : string  = `${this._baseUrlNetCore}demos/_GetAppVersion`;
       //
       let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -63,7 +88,7 @@ export class MCSDService implements OnInit {
     ////////////////////////////////////////////////////////////////  
     getCSVLinkGET(): Observable<string> {
       //
-      let p_url    = this._prefix + 'demos/_GetCSVLinkJsonGET';
+      let p_url    = this._baseUrlNetCore + 'demos/_GetCSVLinkJsonGET';
       //
       let csvLink : Observable<string> =  this.http.get<string>(p_url);
       //
@@ -72,7 +97,7 @@ export class MCSDService implements OnInit {
     //
     getCSVLink(): Observable<string> {
       //
-      let p_url    = this._prefix + 'demos/_GetCSVLinkJson';
+      let p_url    = this._baseUrlNetCore + 'demos/_GetCSVLinkJson';
       //
       let csvLink : Observable<string> =  this.http.post<string>(p_url,this.HTTPOptions_Text);
       //
@@ -81,7 +106,7 @@ export class MCSDService implements OnInit {
     //    
     getInformeRemotoCSV(): Observable<string> {
       //
-      let p_url    = this._prefix + 'demos/GenerarInformeCSVJson';
+      let p_url    = this._baseUrlNetCore + 'demos/GenerarInformeCSVJson';
       //
       let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -90,7 +115,7 @@ export class MCSDService implements OnInit {
     //
     getInformeRemotoCSV_STAT():Observable<string> {
         //
-        let p_url    = this._prefix + 'demos/GenerarInformeCSVJsonSTAT';
+        let p_url    = this._baseUrlNetCore + 'demos/GenerarInformeCSVJsonSTAT';
         //
         let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
         //
@@ -100,6 +125,8 @@ export class MCSDService implements OnInit {
     _SetSTATPieCache(_prefix : string | undefined):void{
       //
       let p_url    =  `${_prefix}demos/_SetSTATPieCache`;
+      //
+      console.log("Setting STAT Pie data to cache :  " + p_url);
       //
       let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -123,7 +150,7 @@ export class MCSDService implements OnInit {
     //    
     getInformeRemotoCSV_NodeJS(): Observable<string> {
     //
-    let p_url    = 'https://jh6mc8-4000.csb.app/GenerarInformeCSVJson';
+    let p_url: string = `${this._baseUrlNodeJs}GenerarInformeCSVJson`;
     //
     console.warn(" REQUESTING URL : " + p_url);
     //
@@ -144,7 +171,7 @@ export class MCSDService implements OnInit {
     //
     getLogRemoto(_searchCriteria : SearchCriteria) {
         //
-        let url    = this._prefix + 'demos/generarinformejson';
+        let url    = this._baseUrlNetCore + 'demos/generarinformejson';
         //    
         return this.http.get<LogEntry[]>(url);
     }
@@ -165,7 +192,7 @@ export class MCSDService implements OnInit {
     //
     getInformeExcel(_searchCriteria : SearchCriteria){
         //
-        let p_url  = this._prefix + 'demos/generarinformexls';
+        let p_url  = this._baseUrlNetCore + 'demos/generarinformexls';
         //
         let excelFileName : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
         //
@@ -174,23 +201,25 @@ export class MCSDService implements OnInit {
     //
     getLogStatPOST() {
       //
-      let url    = `${this._prefix}demos/GetConsultaLogStatPost`;
+      let url    = `${this._baseUrlNetCore}demos/GetConsultaLogStatPost`;
       //
       return this.http.post<string>(url,this.HTTPOptions_JSON);   
     }    
     //
     getLogStatGET() {
       //
-      let url    = `${this._prefix}demos/GetConsultaLogStatGet`;
+      let url    = `${this._baseUrlNetCore}demos/GetConsultaLogStatGet`;
       //
       return this.http.get<LogEntry[]>(url);   
     } 
     //
     _SetSTATBarCache(_prefix : string | undefined) : void {
       //
-      let url    = `${_prefix}demos/_SetSTATBarCache`;
+      let p_url    = `${_prefix}demos/_SetSTATBarCache`;
       //
-      let jsonDataObservable : Observable<string> = this.http.get<string>(url,this.HTTPOptions_Text);   
+      console.log("Setting STAT Bar data to cache :  " + p_url);
+      //
+      let jsonDataObservable : Observable<string> = this.http.get<string>(p_url,this.HTTPOptions_Text);   
       //
       const jsonDataOberver = {
         next: (jsondata: string)     => { 
@@ -219,7 +248,7 @@ export class MCSDService implements OnInit {
       //
       formData.append('file', file);
       //
-      let url    = `${this._prefix}demos/_ZipDemoGetFileName`;
+      let url    = `${this._baseUrlNetCore}demos/_ZipDemoGetFileName`;
       //
       console.log("[GENERATE ZIP FILE] - (UPLOADING FILE) url: " + url);
       // USAR REQUEST PARA OBTENER PORCENTAJE DE STATUS
@@ -233,7 +262,7 @@ export class MCSDService implements OnInit {
     //
     SetZip(p_fileName : string | undefined):Observable<string> {
         //
-        let p_url   = `${this._prefix}demos/_SetZip?p_fileName=${p_fileName}`;
+        let p_url   = `${this._baseUrlNetCore}demos/_SetZip?p_fileName=${p_fileName}`;
         //
         console.log("[GENERATE ZIP FILE] - [GETTING ZIP] - fileName: " + p_fileName);
         //
@@ -248,7 +277,7 @@ export class MCSDService implements OnInit {
     ////////////////////////////////////////////////////////////////
     public GetPDF(subjectName: string | undefined): Observable<HttpEvent<any>> {
         //
-        let p_url   = `${this._prefix}demos/_GetPdf?subjectName=${subjectName}`;
+        let p_url   = `${this._baseUrlNetCore}demos/_GetPdf?subjectName=${subjectName}`;
         //
         console.log("[GENERATE PDF FILE] - [GETTING ZIP] - subjectName  : " + subjectName);
         //
@@ -267,7 +296,7 @@ export class MCSDService implements OnInit {
     //    
     getRandomVertex(vertexSize : Number,sourcePoint : Number): Observable<string> {
       //
-      let p_url    = `${this._prefix}demos/GenerateRandomVertex?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
+      let p_url    = `${this._baseUrlNetCore}demos/GenerateRandomVertex?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -276,7 +305,7 @@ export class MCSDService implements OnInit {
     //
     getRandomVertexCpp(vertexSize : Number,sourcePoint : Number): Observable<string> {
       //
-      let p_url    = `${this._prefix}demos/GenerateRandomVertex_CPP?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
+      let p_url    = `${this._baseUrlNetCore}demos/GenerateRandomVertex_CPP?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -288,7 +317,7 @@ export class MCSDService implements OnInit {
     getNewSort():Observable<string>
     {
       //
-      let p_url    = `${this._prefix}demos/_NewSort`;
+      let p_url    = `${this._baseUrlNetCore}demos/_NewSort`;
       //
       let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -298,7 +327,7 @@ export class MCSDService implements OnInit {
     getSort(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
     {
       //
-      let p_url    = `${this._prefix}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
+      let p_url    = `${this._baseUrlNetCore}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
       //
       let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -308,7 +337,7 @@ export class MCSDService implements OnInit {
     getSort_CPP(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
     {
       //
-      let p_url    = `${this._prefix}demos/_GetSort_CPP?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
+      let p_url    = `${this._baseUrlNetCore}demos/_GetSort_CPP?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
       //
       let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -321,7 +350,7 @@ export class MCSDService implements OnInit {
     _GetXmlData():Observable<string>
     {
       //
-      let p_url  : string  = `${this._prefix}demos/_GetXmlData`;
+      let p_url  : string  = `${this._baseUrlNetCore}demos/_GetXmlData`;
       //
       let xmlData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -332,6 +361,8 @@ export class MCSDService implements OnInit {
     {
       //
       let p_url   : string  = `${_prefix}demos/_SetXmlDataToCache`;
+      //
+      console.log("Setting XML data to cache :  " + p_url)
       //
       let xmlData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -357,7 +388,7 @@ export class MCSDService implements OnInit {
     public _RegExEval(tagSearchIndex: number, textSearchValue: string): Observable<string>
     {
       //
-      let p_url    : string = `${this._prefix}demos/_RegExEval?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
+      let p_url    : string = `${this._baseUrlNetCore}demos/_RegExEval?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
       //
       let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -367,7 +398,7 @@ export class MCSDService implements OnInit {
     public _RegExEval_CPP(tagSearchIndex: number, textSearchValue: string): Observable<string>
     {
       //
-      let p_url    : string = `${this._prefix}demos/_RegExEval_CPP?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
+      let p_url    : string = `${this._baseUrlNetCore}demos/_RegExEval_CPP?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
       //
       let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -382,7 +413,7 @@ export class MCSDService implements OnInit {
       //
       let logInfo!  : Observable<string>;
       //
-      let p_url     = `${this._prefix}demos/_SetLog?p_logMsg=${p_logMsg}&logType=${logType.toString()}`;
+      let p_url     = `${this._baseUrlNetCore}demos/_SetLog?p_logMsg=${p_logMsg}&logType=${logType.toString()}`;
       //
       logInfo       = this.http.get<string>(p_url, this.HTTPOptions_Text);
       //
@@ -410,7 +441,7 @@ export class MCSDService implements OnInit {
      //
      _GetSudoku_NodeJS(): Observable<string> {
       //
-      let p_url: string = 'https://jh6mc8-4000.csb.app/Sudoku_Generate_NodeJS';
+      let p_url: string = `${this._baseUrlNodeJs}Sudoku_Generate_NodeJS`;
       //
       let sudokuGenerated: Observable<string> = this.http.get<string>(
         p_url,
@@ -423,7 +454,7 @@ export class MCSDService implements OnInit {
     _GetSudoku(): Observable<string>
     {
       // 
-      let p_url              : string  = `${this._prefix}Demos/Sudoku_Generate_CPP`;
+      let p_url              : string  = `${this._baseUrlNetCore}Demos/Sudoku_Generate_CPP`;
       //
       let sudokuGenerated    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -433,7 +464,7 @@ export class MCSDService implements OnInit {
    _SolveSudoku(p_matrix : string): Observable<string>
    {
      // 
-     let p_url               : string  = `https://webapiangulardemo.somee.com/Demos/Sudoku_Solve_CPP?p_matrix=${p_matrix}`
+     let p_url               : string  = `${this._baseUrlNetCore}Demos/Sudoku_Solve_CPP?p_matrix=${p_matrix}`
      //
      let sudokuSolved        : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
      //
@@ -442,7 +473,7 @@ export class MCSDService implements OnInit {
     //
     _SolveSudoku_NodeJS(p_matrix: string): Observable<string> {
       //
-      let p_url: string = `https://jh6mc8-4000.csb.app/Sudoku_Solve_NodeJS?p_matrix=${p_matrix}`;
+      let p_url: string = `${this.__baseUrlNodeJs}Sudoku_Solve_NodeJS?p_matrix=${p_matrix}`;
       //
       let sudokuSolved: Observable<string> = this.http.get<string>(
         p_url,
@@ -460,7 +491,7 @@ export class MCSDService implements OnInit {
     //
     formData.append('file', file);
     //
-    let url = `${this._prefix}demos/Sudoku_Upload_File`;
+    let url = `${this._baseUrlNetCore}demos/Sudoku_Upload_File`;
     //
     console.log('[SUDOKU] - (UPLOADING FILE) url: ' + url);
     //

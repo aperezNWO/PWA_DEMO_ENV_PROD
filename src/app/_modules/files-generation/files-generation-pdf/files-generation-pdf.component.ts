@@ -80,7 +80,7 @@ export class FilesGenerationPDFComponent {
               if (resultArray.length > 0) {
                   //
                   this.pdfFileName   = resultArray[1];
-                  var fileUrl        = this.mcsdService._prefix + '/wwwroot/output/uploadedfiles/pdf/' + this.pdfFileName;
+                  var fileUrl        = this.mcsdService._baseUrlNetCore + '/wwwroot/output/uploadedfiles/pdf/' + this.pdfFileName;
                   var fileLocalPath  = resultArray[2];
                   var imagePath      = resultArray[3];
                   //

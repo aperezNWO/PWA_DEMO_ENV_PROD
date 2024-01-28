@@ -24,6 +24,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.webmanifest",
+              "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
             "styles": [
@@ -51,50 +52,16 @@
               ],
               "outputHashing": "all"
             },
-            "angulardemo": {
+            "development": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.angulardemo.ts"
-                }
-              ]
-            },
-            "IIS_LOCAL": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.IIS_LOCAL.ts"
-                }
-              ]             
-            },
-            "mcsd": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.mcsd.ts"
-                }
-              ]             
+              "namedChunks": true
             }
           },
-          "defaultConfiguration": "mcsd"
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -102,17 +69,11 @@
             "production": {
               "browserTarget": "AngularDijkstra:build:production"
             },
-            "angulardemo": {
-              "browserTarget": "AngularDijkstra:build:angulardemo"
-            },
-            "IIS_LOCAL": {
-              "browserTarget": "AngularDijkstra:build:IIS_LOCAL"
-            },
-            "mcsd": {
-              "browserTarget": "AngularDijkstra:build:mcsd"
+            "development": {
+              "browserTarget": "AngularDijkstra:build:development"
             }
           },
-          "defaultConfiguration": "mcsd"
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -131,6 +92,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/manifest.webmanifest",
               "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
