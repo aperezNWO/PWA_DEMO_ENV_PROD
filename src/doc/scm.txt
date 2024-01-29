@@ -159,13 +159,13 @@ export class environment {
 
    (skip) ng build --c=production
 
-   (skip) ng build --c=production --base-href="https://apereznwo.github.io/AngularMCSD_Public/"
+   (skip) ng build --c=production --base-href="https://apereznwo.github.io/AngularMCSD/"
 
    npm run deploy
 
 -- (skip) Corregir <base href="/"> en archivo "dist\<your-angular-app>\index.html":   
 
-   https://apereznwo.github.io/AngularMCSD_Public/
+   https://apereznwo.github.io/AngularMCSD/
 
 -- Deploy to GitHub Pages: You can create a GitHub Pages branch or use the gh-pages package to automate the deployment process. 
 
@@ -191,7 +191,7 @@ export class environment {
    npm run build-and-deploy
 
    This URL will be accessible publicly,  providing a permanent link to your deployed application.
-   https://apereznwo.github.io/AngularMCSD_Public/
+   https://apereznwo.github.io/AngularMCSD/
 
 -- (confirmation) Configure GitHub Actions:    
 
