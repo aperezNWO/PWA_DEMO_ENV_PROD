@@ -502,6 +502,10 @@ export class MCSDService implements OnInit {
     //
     return this.http.request<HttpEvent<any>>(req);
   }
-
+  //
+  uploadBase64Image(base64Image: string) {
+    let url = 'https://cqxd3m-3000.csb.app/upload';
+    return this.http.post(url, { base64Image });
+  }
 }
   

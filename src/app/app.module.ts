@@ -20,6 +20,7 @@ import { LocationStrategy                } from '@angular/common';
 import { NgbModule                       } from '@ng-bootstrap/ng-bootstrap'
 import { AppComponent                    } from './app.component';
 import { HomeWebComponent                } from './_modules/home/home-web/home-web.component';
+import { NotFoundPageComponent           } from './_modules/home/not-found-page/not-found-page.component';
 import { ContactComponent                } from './_modules/about/contact/contact.component';
 import { AAboutWebComponent              } from './_modules/about/a-about-web/a-about-web.component';
 import { TechnicalSpecsComponent         } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
@@ -47,10 +48,12 @@ import { LogType                         } from './_models/entityInfo.model';
 import { MCSDService                     } from './_services/mcsd.service';
 import { _ConfigService                  } from './_services/-config.service';
 import { UnitTestingComponent            } from './unit-testing/unit-testing.component';
+import { NgxSignaturePadModule           } from '@eve-sama/ngx-signature-pad';
 import { finalize, tap                   } from 'rxjs';
 //
 const routes = [
   {  path: 'Home'                  , component: HomeWebComponent                      },
+  {  path: ''                      , component: HomeWebComponent                      },
   {  path: 'AAboutWeb'             , component: AAboutWebComponent                    },
   {  path: 'Contact'               , component: ContactComponent                      },
   {  path: 'TechnicalSpecs'        , component: TechnicalSpecsComponent               },
@@ -69,8 +72,9 @@ const routes = [
   {  path: 'GamesHanoi'            , component: HanoiTowersComponent                  },
   {  path: 'GamesWeb'              , component: GameWebComponent                      },
   {  path: 'Chat'                  , component: ChatComponent                         },
+  {  path: 'Ocr'                   , component: OcrComponent                          },
   {  path: 'Miscelaneous'          , component: MiscelaneousComponent                 },
-  {  path: '**'                    , component: AppComponent                          },
+  {  path: '**'                    , component: NotFoundPageComponent                 },
 ];
 //
 export function initialize(_configService: _ConfigService) {
@@ -151,6 +155,7 @@ export class CustomErrorHandler implements ErrorHandler {
         OcrComponent,
         ChatComponent,
         MiscelaneousComponent,
+        NotFoundPageComponent,
     ],
     exports: [RouterModule],
     providers: [
@@ -181,6 +186,7 @@ export class CustomErrorHandler implements ErrorHandler {
         MatPaginatorModule,
         MatTabsModule,
         NgbModule,
+        NgxSignaturePadModule,
         BoardComponent,
         SquareComponent,
         TowerComponent,
