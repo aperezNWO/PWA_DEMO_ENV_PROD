@@ -153,6 +153,13 @@ export class environment {
 // GIT HUB CODESPACES / PAGES
 /////////////////////////////////////////////////////////////////
 
+-- [_] CLONE PROJECT.
+
+-- [_] ANGULAR CLI INSTALL.
+
+      -- [_] npm install --force.
+
+
 -- [_] Build your Angular application: 
 
 -- Create a production build of your Angular application using the Angular CLI:
