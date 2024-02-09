@@ -169,6 +169,8 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       this.PointListHidden  = "";
       //[x]
       this.MatrixListHidden = "";
+      //
+      this.pdf_message      = '';
       //[X]
       this.DrawGrid();
   };
@@ -251,7 +253,9 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 //-------------------------------------------------------------
                 //
                 let _sourcePoint        : number = Number.parseInt(this._sourcePointList.nativeElement.value);
-                this.tituloListadoDistancias = "Listado de Distancies desde [" + _sourcePoint.toString() + "]";
+                this.tituloListadoDistancias     = "Listado de Distancies desde [" + _sourcePoint.toString() + "]";
+                //
+                this.pdf_message                 = '[Se generó el gráfico correctamente]';
                 //
                 this.DrawDistanceList(false,vertexString);
             },
