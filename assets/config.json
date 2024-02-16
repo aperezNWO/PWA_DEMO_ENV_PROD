@@ -1,6 +1,6 @@
 {
     "appName"            : "[PWA DEMO - ENV_PROD]",
-    "appVersion"         : "1.0.2.13",
+    "appVersion"         : "1.0.2.14",
     "baseUrlNetCore"     : "https://angularwebapidemo.somee.com/",
     "baseUrlNodeJs"      : "https://jh6mc8-4000.csb.app/",
     "baseUrlNodeJsChat"  : "https://2ylppr-3000.csb.app/",
