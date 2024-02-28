@@ -3,7 +3,7 @@ import { MCSDService                                 } from '../../../_services/
 import { CustomErrorHandler                          } from '../../../app.module';
 import { Observable                                  } from 'rxjs';
 import { _languageName                               } from 'src/app/_models/entityInfo.model';
-import { UtilManager                                 } from 'src/app/_models/util-manager.model';
+import { UtilManager                                 } from 'src/app/_engines/util.engine';
 
 //
 @Component({
@@ -26,7 +26,7 @@ export class AlgorithmRegExComponent implements OnInit, AfterViewInit {
     protected lblStatus              : string = "";
     protected pattern                : string = "";
     public    __languajeList         : any;
-    public    tituloListadoLenguajes : string = "Seleccione Backend";
+    public    tituloListadoLenguajes : string = "BACKEND";
     //
     @ViewChild('mensajes')        mensajes       : any;
     @ViewChild('tagSearch')       tagSearch      : any;

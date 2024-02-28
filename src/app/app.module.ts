@@ -1,6 +1,6 @@
 import { Injectable, NgModule                       } from '@angular/core';
 import { APP_INITIALIZER,ErrorHandler, isDevMode    } from '@angular/core';
-import { CommonModule, DatePipe                     } from '@angular/common';
+import { DatePipe                        } from '@angular/common';
 import { ServiceWorkerModule             } from '@angular/service-worker';
 import { FormsModule                     } from '@angular/forms';
 import { MatListModule                   } from '@angular/material/list';
@@ -14,17 +14,18 @@ import { HttpClient, HttpClientModule    } from '@angular/common/http';
 import { HttpHandler, HttpInterceptor    } from '@angular/common/http';
 import { HttpRequest, HttpResponse       } from '@angular/common/http';
 import { HTTP_INTERCEPTORS               } from '@angular/common/http';
-import { RouterModule                    } from '@angular/router';
+import { RouterModule, Routes            } from '@angular/router';
 import { HashLocationStrategy            } from '@angular/common';
 import { LocationStrategy                } from '@angular/common';
 import { NgbModule                       } from '@ng-bootstrap/ng-bootstrap'
 import { AppComponent                    } from './app.component';
 import { HomeWebComponent                } from './_modules/home/home-web/home-web.component';
-import { NotFoundPageComponent           } from './_modules/home/not-found-page/not-found-page.component';
+import { PageNotFoundComponent           } from './_modules/home/page-not-found/page-not-found.component';
+import { NavComponent                    } from './_modules/home/nav/nav.component';
 import { ContactComponent                } from './_modules/about/contact/contact.component';
 import { AAboutWebComponent              } from './_modules/about/a-about-web/a-about-web.component';
+import { TopicsComponent                 } from './_modules/about/topics/topics.component';
 import { TechnicalSpecsComponent         } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
-import { AngularTutorialsnWebComponent   } from './_modules/topics/angular-tutorialsn-web/angular-tutorialsn-web.component';
 import { FilesGenerationWebComponent     } from './_modules/files-generation/files-generation-web/files-generation-web.component';
 import { FilesGenerationXLSComponent     } from './_modules/files-generation/files-generation-xls/files-generation-xls.component';
 import { FilesGenerationCSVComponent     } from './_modules/files-generation/files-generation-csv/files-generation-csv.component';
@@ -43,38 +44,18 @@ import { HanoiTowersComponent            } from './_modules/games/game-hanoi/gam
 import { TowerComponent                  } from './_modules/games/game-hanoi/tower/tower.component';
 import { OcrComponent                    } from './_modules/miscelaneous/ocr/ocr.component';
 import { ChatComponent                   } from './_modules/miscelaneous/chat/chat/chat.component';
+import { ChartComponent                  } from './_modules/miscelaneous/chart/chart.component';
 import { MiscelaneousComponent           } from './_modules/miscelaneous/miscelaneous/miscelaneous.component';
+import { UnitTestingComponent            } from './_modules/_unitttesting/unit-testing.component';
+import { AppRoutingModule                } from './app-routing.module';
 import { LogType                         } from './_models/entityInfo.model';
 import { MCSDService                     } from './_services/mcsd.service';
 import { _ConfigService                  } from './_services/-config.service';
-import { UnitTestingComponent            } from './unit-testing/unit-testing.component';
-import { NgxSignaturePadModule           } from '@eve-sama/ngx-signature-pad';
 import { finalize, tap                   } from 'rxjs';
+import { NgxSignaturePadModule           } from '@eve-sama/ngx-signature-pad';
 //
-const routes = [
-  {  path: 'Home'                  , component: HomeWebComponent                      },
-  {  path: ''                      , component: HomeWebComponent                      },
-  {  path: 'AAboutWeb'             , component: AAboutWebComponent                    },
-  {  path: 'Contact'               , component: ContactComponent                      },
-  {  path: 'TechnicalSpecs'        , component: TechnicalSpecsComponent               },
-  {  path: 'AngularTutorialsnWeb'  , component: AngularTutorialsnWebComponent         },
-  {  path: 'AlgorithmWeb'          , component: AlgorithmWebComponent                 },
-  {  path: 'AlgorithmRegEx'        , component: AlgorithmRegExComponent               },
-  {  path: 'AlgorithmSort'         , component: AlgorithmSortComponent                },
-  {  path: 'AlgorithmDijkstra'     , component: AlgorithmDijkstraComponent            },
-  {  path: 'FilesGenerationWeb'    , component: FilesGenerationWebComponent           },
-  {  path: 'FilesGenerationXLS'    , component: FilesGenerationXLSComponent           },
-  {  path: 'FilesGenerationCSV'    , component: FilesGenerationCSVComponent           },
-  {  path: 'FilesGenerationPDF'    , component: FilesGenerationPDFComponent           },
-  {  path: 'FilesGenerationZIP'    , component: FilesGenerationZIPComponent           },         
-  {  path: 'GamesSudoku'           , component: SudokuComponent                       },
-  {  path: 'GamesTicTacToe'        , component: GameTictactoeComponent                },
-  {  path: 'GamesHanoi'            , component: HanoiTowersComponent                  },
-  {  path: 'GamesWeb'              , component: GameWebComponent                      },
-  {  path: 'Chat'                  , component: ChatComponent                         },
-  {  path: 'Ocr'                   , component: OcrComponent                          },
-  {  path: 'Miscelaneous'          , component: MiscelaneousComponent                 },
-  {  path: '**'                    , component: NotFoundPageComponent                 },
+const routes : Routes = [
+ 
 ];
 //
 export function initialize(_configService: _ConfigService) {
@@ -105,7 +86,7 @@ export class LoggingInterceptor implements HttpInterceptor {
         finalize(() => {
           const elapsed = Date.now() - started;
           const msg = `${req.method} "${req.urlWithParams}" ${ok} in ${elapsed} ms.`;
-          console.warn(' [REQUESTIN URL (INTERCEPT)] : ' + msg);
+          console.warn(' [REQUESTING URL (INTERCEPT)] : ' + msg);
         })
       );
   }
@@ -136,7 +117,6 @@ export class CustomErrorHandler implements ErrorHandler {
         HomeWebComponent,
         ContactComponent,
         AAboutWebComponent,
-        AngularTutorialsnWebComponent,
         AlgorithmWebComponent,
         AlgorithmRegExComponent,
         AlgorithmSortComponent,
@@ -154,8 +134,11 @@ export class CustomErrorHandler implements ErrorHandler {
         GameWebComponent,
         OcrComponent,
         ChatComponent,
+        ChartComponent,
         MiscelaneousComponent,
-        NotFoundPageComponent,
+        NavComponent,
+        PageNotFoundComponent,
+        TopicsComponent,
     ],
     exports: [RouterModule],
     providers: [
@@ -190,8 +173,9 @@ export class CustomErrorHandler implements ErrorHandler {
         BoardComponent,
         SquareComponent,
         TowerComponent,
-        RouterModule,
-        RouterModule.forRoot(routes, { useHash: true }),
+        AppRoutingModule,
+        //RouterModule,
+        //RouterModule.forRoot(routes, { useHash: true }),
         ServiceWorkerModule.register('ngsw-worker.js', {
           enabled: !isDevMode(),
           // Register the ServiceWorker as soon as the application is stable
@@ -205,7 +189,7 @@ export class AppModule {
     //-----------------------------------------------------------------------------------------------------
     constructor(public customErrorHandler : CustomErrorHandler, 
                 public loggingInterceptor : LoggingInterceptor,
-                public mcsdService : MCSDService,) 
+                public mcsdService        : MCSDService,) 
     {
       //
     }

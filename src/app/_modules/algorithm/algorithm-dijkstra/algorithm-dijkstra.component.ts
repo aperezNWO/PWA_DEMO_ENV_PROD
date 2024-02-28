@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Observable                                  } from 'rxjs';
 import { _languageName, _vertexSize                  } from 'src/app/_models/entityInfo.model';
-import { PdfService                                  } from 'src/app/_services/pdf-service.service';
-import { UtilManager                                 } from 'src/app/_models/util-manager.model';
+import { PdfService                                  } from 'src/app/_engines/pdf.engine';
+import { UtilManager                                 } from 'src/app/_engines/util.engine';
 import { MCSDService                                 } from '../../../_services/mcsd.service';
 import { CustomErrorHandler                          } from '../../../app.module';
 //
@@ -23,7 +23,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   ////////////////////////////////////////////////////////////////
   // VARIABLES ///////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
-  protected pdf_message      : string = "";
+  protected status_message      : string = "";
   readonly  pageTitle        : string = AlgorithmDijkstraComponent.PageTitle;
   protected vertexMax        : number = 9;
   protected rectSize         : number = 10;
@@ -32,7 +32,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   protected strokeStyleVerde : string = "#006400";
   protected strokeStyleRed   : string = "#ff0000";
   protected tituloListadoDistancias: string = "";
-  protected tituloListadoLenguajes : string = "Seleccione Backend";
+  protected tituloListadoLenguajes : string = "[BACKEND] :";
   //
   @ViewChild('c_canvas')      c_canvas      : any;
   @ViewChild('divCanvas_Pdf') divCanvas_Pdf : any;
@@ -170,7 +170,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       //[x]
       this.MatrixListHidden = "";
       //
-      this.pdf_message      = '';
+      this.status_message      = "";
       //[X]
       this.DrawGrid();
   };
@@ -253,9 +253,9 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 //-------------------------------------------------------------
                 //
                 let _sourcePoint        : number = Number.parseInt(this._sourcePointList.nativeElement.value);
-                this.tituloListadoDistancias     = "Listado de Distancies desde [" + _sourcePoint.toString() + "]";
+                this.tituloListadoDistancias     = "DISTANCIAS DESDE [" + _sourcePoint.toString() + "]:";
                 //
-                this.pdf_message                 = '[Se generó el gráfico correctamente]';
+                this.status_message              = "[Se generó correctamente el gráfico]";
                 //
                 this.DrawDistanceList(false,vertexString);
             },
@@ -547,7 +547,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   _GetPDF():void
   {
       //
-      this.pdf_message = '[...Generando PDF...]'
+      this.status_message = '[...Generando PDF...]'
       //
       let fileName         : string     = "DIJKSTRA";
       let fileName_output  : string     = '';
@@ -565,11 +565,11 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
           },
           error: (error: Error) => {
               //
-              this.pdf_message   = 'ha ocurrido un error : ' + error.message;
+              this.status_message   = 'ha ocurrido un error : ' + error.message;
           },
           complete: () => {
               //
-              this.pdf_message   = `Se ha generado el archivo [${fileName_output}]`;
+              this.status_message   = `Se ha generado el archivo [${fileName_output}]`;
           }
         }
       );

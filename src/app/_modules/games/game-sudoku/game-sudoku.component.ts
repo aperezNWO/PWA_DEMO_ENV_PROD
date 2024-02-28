@@ -1,10 +1,10 @@
 import { Component, OnInit            } from '@angular/core';
 import { ViewChild, AfterViewInit     } from '@angular/core';
-import { FormBuilder, Validators      } from '@angular/forms';
+import { FormBuilder, NgForm, Validators      } from '@angular/forms';
 import { HttpEventType, HttpResponse  } from '@angular/common/http';
 import { Observable                   } from 'rxjs';
 import { MCSDService                  } from 'src/app/_services/mcsd.service';
-import { PdfService                   } from 'src/app/_services/pdf-service.service';
+import { PdfService                   } from 'src/app/_engines/pdf.engine';
 import { ListItem                     } from 'src/app/_models/entityInfo.model';
 //
 @Component({
@@ -48,7 +48,7 @@ export class SudokuComponent implements OnInit, AfterViewInit {
   downloadLink     : string = '';
   //
   rf_searchForm   = this.formBuilder.group({
-    _fileUpload   : ["", Validators.required],
+    //_fileUpload   : ["", Validators.required],
   });
   pageTitle       : string = '[SUDOKU]';
   //
@@ -74,8 +74,8 @@ export class SudokuComponent implements OnInit, AfterViewInit {
     //
     this.__generateSourceList = new Array();
     this.__generateSourceList.push(new ListItem(0, '(SELECCIONE OPCION..)', false));
-    this.__generateSourceList.push(new ListItem(1, '[Desde Archivo]'      , false));
-    this.__generateSourceList.push(new ListItem(2, '[Desde Backend]'      , true));
+    this.__generateSourceList.push(new ListItem(1, '[Archivo]'      , false));
+    this.__generateSourceList.push(new ListItem(2, '[Backend]'      , true));
   }
   //
   public _cppSourceDivHiddenChanged(): void {
@@ -405,4 +405,16 @@ export class SudokuComponent implements OnInit, AfterViewInit {
       }
     );
   }
+  //
+  submitForm(form: NgForm) {
+    if (form.valid) {
+      // Handle form submission logic
+      console.log(form.value); // Access form values
+      //
+      let name    = form.value['txtName'];
+      let message = form.value['txtMessage'];
+      //
+      //this.sendMessage(name,message);
+    }
+    }
 }

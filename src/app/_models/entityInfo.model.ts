@@ -86,7 +86,7 @@ export class DiskInfo
 export interface HanoiStep
 {
     //
-    n: number;
-    from: string;
-    to: string;
+    n    : number;
+    from : string;
+    to   : string;
 }

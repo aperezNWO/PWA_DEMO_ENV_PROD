@@ -153,12 +153,11 @@ export class environment {
 // GIT HUB CODESPACES / PAGES
 /////////////////////////////////////////////////////////////////
 
--- [_] CLONE PROJECT.
+-- [_] clone repository
 
--- [_] ANGULAR CLI INSTALL.
+-- [_] instal angular CLI 
 
-      -- [_] npm install --force.
-
+      -- [_] npm install  --force 
 
 -- [_] Build your Angular application: 
 
@@ -166,13 +165,13 @@ export class environment {
 
    (skip) ng build --c=production
 
-   (skip) ng build --c=production --base-href="https://apereznwo.github.io/AngularMCSD/"
+   (skip) ng build --c=production --base-href="https://apereznwo.github.io/AngularMCSD_Public/"
 
    npm run deploy
 
 -- (skip) Corregir <base href="/"> en archivo "dist\<your-angular-app>\index.html":   
 
-   https://apereznwo.github.io/AngularMCSD/
+   https://apereznwo.github.io/AngularMCSD_Public/
 
 -- Deploy to GitHub Pages: You can create a GitHub Pages branch or use the gh-pages package to automate the deployment process. 
 
@@ -198,7 +197,7 @@ export class environment {
    npm run build-and-deploy
 
    This URL will be accessible publicly,  providing a permanent link to your deployed application.
-   https://apereznwo.github.io/AngularMCSD/
+   https://apereznwo.github.io/AngularMCSD_Public/
 
 -- (confirmation) Configure GitHub Actions:    
 
@@ -216,3 +215,5 @@ npm install @eve-sama/ngx-signature-pad --force
 -- [_] npm update --force 
 -- [_] npm install @angular/pwa 
 -- [_] ng add @angular/pwa --project=AngularDijkstra 
+
+/////////////////////////////////////////////////////////////////

@@ -1,10 +1,9 @@
 import { Component, VERSION                } from '@angular/core';
 import { CustomErrorHandler                } from 'src/app/app.module';
-import { Observable,  throwError           } from 'rxjs';
+import { HttpClient                        } from '@angular/common/http';
 import { MCSDService                       } from '../../../../_services/mcsd.service';
-import { AppComponent                      } from '../../../../app.component';
-import { HttpClient } from '@angular/common/http';
-import { _ConfigService } from 'src/app/_services/-config.service';
+import { _ConfigService                    } from 'src/app/_services/-config.service';
+import { Observable                        } from 'rxjs';
 //
 @Component({
   selector: 'app-technical-specs',
@@ -14,7 +13,7 @@ import { _ConfigService } from 'src/app/_services/-config.service';
 //
 export class TechnicalSpecsComponent {
     //
-    _appName           : string | undefined;
+    _appBrand          : string | undefined;
     _appVersion        : string | undefined;
     _runtimeVersion    : string = VERSION.full;
     _webApiAppVersion  : string = "";
@@ -35,9 +34,20 @@ export class TechnicalSpecsComponent {
       //
       return this.__baseUrlNodeJs;
     }
+    public get _baseUrlNodeJsOcr(): string {
+      //
+      return this.__baseUrlNodeJsOcr;
+    }
+    //
+    public get _baseUrlNodeJsChat(): string
+    {
+      return this.__baseUrlNodeJsChat;
+    }
     //
     protected __baseUrlNetCore        : string = '';
     protected __baseUrlNodeJs         : string = '';
+    protected __baseUrlNodeJsChat     : string = '';
+    protected __baseUrlNodeJsOcr      : string = '';
     //
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
@@ -55,10 +65,13 @@ export class TechnicalSpecsComponent {
     ) 
     {
       ////
-      this._appName         = this._configService.getConfigValue('appName');
-      this._appVersion      = this._configService.getConfigValue('appVersion');
-      this.__baseUrlNetCore = this._configService.getConfigValue('baseUrlNetCore');
-      this.__baseUrlNodeJs  = this._configService.getConfigValue('baseUrlNodeJs');
+      this._appBrand           = this._configService.getConfigValue('appBrand');
+      this._appVersion         = this._configService.getConfigValue('appVersion');
+      this.__baseUrlNetCore    = this._configService.getConfigValue('baseUrlNetCore');
+      this.__baseUrlNodeJs     = this._configService.getConfigValue('baseUrlNodeJs');
+      this.__baseUrlNodeJsChat = this._configService.getConfigValue('baseUrlNodeJsChat');
+      this.__baseUrlNodeJsOcr  = this._configService.getConfigValue('baseUrlNodeJsOcr');
+
       //
       console.log("baseUrlNetCore : " + this.__baseUrlNetCore);
       console.log("baseUrlNodeJs  : " + this.__baseUrlNodeJs);

@@ -3,7 +3,7 @@ import { MCSDService                                 } from '../../../_services/
 import { CustomErrorHandler                          } from '../../../app.module';
 import { Observable                                  } from 'rxjs';
 import { SortInfo, _languageName                     } from 'src/app/_models/entityInfo.model';
-import { DrawEngine } from 'src/app/_models/draw-engine.model';
+import { DrawEngine } from 'src/app/_engines/draw.engine';
 //
 @Component({
   selector: 'app-algorithm-sort',
@@ -16,7 +16,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     // PROPIEDADES
     ////////////////////////////////////////////////////////////////////////
     public static get PageTitle()      : string {
-      return '[ - ORDENAMIENTO]';
+      return '[ALGORITMOS - ORDENAMIENTO]';
     }
     ////////////////////////////////////////////////////////////////////////
     // VARIABLES
@@ -24,7 +24,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     private   rectSize                                    : number = 10;
     readonly  pageTitle                                   : string = AlgorithmSortComponent.PageTitle;
     public    lblStatus                                   : string = "[STATUS]";
-    public    tituloListadoLenguajes                      : string = "Seleccione Backend";
+    public    tituloListadoLenguajes                      : string = "[BACKEND] : ";
     public    context                                     : any;
     @ViewChild('c_canvas') c_canvas                       : any;
     @ViewChild('mensajes') mensajes                       : any;
