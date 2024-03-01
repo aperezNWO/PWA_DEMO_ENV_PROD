@@ -171,7 +171,7 @@ export class environment {
 
 -- (skip) Corregir <base href="/"> en archivo "dist\<your-angular-app>\index.html":   
 
-   https://apereznwo.github.io/PWA_DEMO_ENV_PROD/
+   https://apereznwo.github.io/AngularMCSD_Public/
 
 -- Deploy to GitHub Pages: You can create a GitHub Pages branch or use the gh-pages package to automate the deployment process. 
 
@@ -197,7 +197,7 @@ export class environment {
    npm run build-and-deploy
 
    This URL will be accessible publicly,  providing a permanent link to your deployed application.
-   https://apereznwo.github.io/PWA_DEMO_ENV_PROD/
+   https://apereznwo.github.io/AngularMCSD_Public/
 
 -- (confirmation) Configure GitHub Actions:    
 

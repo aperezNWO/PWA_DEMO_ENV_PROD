@@ -8,9 +8,9 @@ import { NavComponent                         } from '../../home/nav/nav.compone
 })
 export class MiscelaneousComponent implements  OnInit {
   //
-  @ViewChild('nav') nav!      : NavComponent;
+  //@ViewChild('nav') nav!      : NavComponent;
   //
   ngOnInit(): void {
-    this.nav._NavbarCollapsed = true;
+    //this.nav._NavbarCollapsed = true;
   }
 }

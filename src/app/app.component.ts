@@ -44,15 +44,19 @@ export class AppComponent implements OnInit {
     {
       //
       console.log("Loading AppComponent...");
-      
-      // IMPLEMENT AS MAP AND ITERATE
-      this._appBrand      = this._configService.getConfigValue('appBrand');
-      this._appVersion    = this._configService.getConfigValue('appVersion');
-      let __baseUrlNetCore = this._configService.getConfigValue('baseUrlNetCore');
-      let __baseUrlNodeJs  = this._configService.getConfigValue('baseUrlNodeJs');
       //
-      this.mcsdService._baseUrlNetCore = __baseUrlNetCore;
-      this.mcsdService._baseUrlNodeJs  = __baseUrlNodeJs;
+      console.log("[SETTING CONFIG VALUES (not working on service constructor)]...");
+      // IMPLEMENT AS MAP AND ITERATE
+      this._appBrand          = this._configService.getConfigValue('appBrand');
+      this._appVersion        = this._configService.getConfigValue('appVersion');
+      let __baseUrlNetCore    = this._configService.getConfigValue('baseUrlNetCore');
+      let __baseUrlNodeJs     = this._configService.getConfigValue('baseUrlNodeJs');
+      let __baseUrlNodeJsOcr  = this._configService.getConfigValue('baseUrlNodeJsOcr');
+      //
+      this.mcsdService._baseUrlNetCore    = __baseUrlNetCore;
+      this.mcsdService._baseUrlNodeJs     = __baseUrlNodeJs;
+      this.mcsdService._baseUrlNodeJs     = __baseUrlNodeJs;
+      this.mcsdService._baseUrlNodeJsOcr  = __baseUrlNodeJsOcr;
       //
       //////////////////////////////////////////////////////
       // CACHE PARA XML
