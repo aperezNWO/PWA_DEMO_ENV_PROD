@@ -3,7 +3,7 @@ import { Observable                                  } from 'rxjs';
 import { _languageName, _vertexSize                  } from 'src/app/_models/entityInfo.model';
 import { PdfService                                  } from 'src/app/_engines/pdf.engine';
 import { UtilManager                                 } from 'src/app/_engines/util.engine';
-import { MCSDService                                 } from '../../../_services/mcsd.service';
+import { BackendService                                 } from '../../../_services/BackendService/backend.service';
 import { CustomErrorHandler                          } from '../../../app.module';
 //
 @Component({
@@ -52,13 +52,15 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
   // 
   public selectedIndex          : number  = 0;
   public selectedIndexLanguage  : number  = 0;
+  //
+  public getGraphIdle           : boolean = false;
   ////////////////////////////////////////////////////////////////
   // EVENT HANDLERS //////////////////////////////////////////////  
   ////////////////////////////////////////////////////////////////
-  constructor(public mcsdService: MCSDService, public customErrorHandler: CustomErrorHandler, public pdfService : PdfService)
+  constructor(public backendService: BackendService, public customErrorHandler: CustomErrorHandler, public pdfService : PdfService)
   {
      //
-     mcsdService.SetLog(this.pageTitle,"PAGE_DIJKSTRA_DEMO");
+     backendService.SetLog(this.pageTitle,"PAGE_DIJKSTRA_DEMO");
   }
   //
   ngOnInit(): void {
@@ -160,6 +162,8 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
       //
       console.log(AlgorithmDijkstraComponent.PageTitle + " - [Resetting controls]");
       //
+      this.getGraphIdle            = false;
+      //
       this.tituloListadoDistancias = "";
       //[x]
       this.DrawListItems();
@@ -182,6 +186,7 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
         //
         let _vertexSize         : number = Number.parseInt(this._vertexSizeList.nativeElement.value);
         let _sourcePoint        : number = Number.parseInt(this._sourcePointList.nativeElement.value);
+        this.getGraphIdle                = true;
         //
         console.log(AlgorithmDijkstraComponent.PageTitle + " - [vertex size : " + _vertexSize  + "]");
         //
@@ -197,26 +202,36 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                   return;
             break;
             case 1 :  // c#
-              randomVertexInfo       = this.mcsdService.getRandomVertex(_vertexSize,_sourcePoint);
+              randomVertexInfo       = this.backendService.getRandomVertex(_vertexSize,_sourcePoint);
             break;
             case 2:   // c++
-              randomVertexInfo       = this.mcsdService.getRandomVertexCpp(_vertexSize,_sourcePoint);
+              randomVertexInfo       = this.backendService.getRandomVertexCpp(_vertexSize,_sourcePoint);
+            break;
+            case 3:   // springboot
+              randomVertexInfo       = this.backendService.getRandomVertexSpringBoot(_vertexSize,_sourcePoint);
             break;
         }
-        //
-        let data               : any;
         //
         const randomVertexObserver   = {
             //
             next: (randomVertexInfo: string)     => { 
                 //
-                console.warn(AlgorithmDijkstraComponent.PageTitle + ' - [GETTING VERTEX VALUES]  - RETURN VALUE : ' + randomVertexInfo);
+                const regex_1 = /&#x25A0;/g;
                 //
-                data = randomVertexInfo;
+                const regex_2 = /&#x2261;/g;
+                //
+                let data_1    = randomVertexInfo;
+                //
+                let data_2    = data_1.replace(regex_1, "■");
+                //
+                let data_3    = data_2.replace(regex_2, "≡");
+                //
+                console.warn(AlgorithmDijkstraComponent.PageTitle + ' - [GETTING VERTEX VALUES]  - RETURN VALUE : ' + data_3);
                 //------------------------------------------------------------
                 // OBTENER PUNTOS
                 //------------------------------------------------------------
-                let dataArray = data.split("■");
+                //
+                let dataArray = data_3.split("■");
                 //
                 var pointsString = dataArray[0];
                 //
@@ -257,16 +272,25 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
                 //
                 this.status_message              = "[Se generó correctamente el gráfico]";
                 //
+                const utterance = new SpeechSynthesisUtterance( this.status_message);
+                speechSynthesis.speak(utterance); 
+                //
                 this.DrawDistanceList(false,vertexString);
             },
             error: (err: Error) => {
                 //
                 console.error(AlgorithmDijkstraComponent.PageTitle + ' - [GETTING VERTEX VALUES] - [error] : ' + err.message);
+                //
+                this._ResetControls();
+                //
+                this.status_message = '[Ha ocurrido un error favor intente de nuevo]'
+                //
+                const utterance = new SpeechSynthesisUtterance( this.status_message);
+                speechSynthesis.speak(utterance); 
             },       
             complete: ()        => {
                 //
                 console.warn(AlgorithmDijkstraComponent.PageTitle + ' - [GETTING VERTEX VALUES] - [Observer got a complete notification]');
-                //
             },
         };
         //
@@ -536,8 +560,9 @@ export class AlgorithmDijkstraComponent implements OnInit, AfterViewInit {
     this.__languajeList = new Array();
     //
     this.__languajeList.push( new _languageName(0,"(SELECCIONE OPCION..)",false));        
-    this.__languajeList.push( new _languageName(1,"(.NET CORE/C#)",false));        
-    this.__languajeList.push( new _languageName(2,"(.NET CORE/C++)",true));        
+    this.__languajeList.push( new _languageName(1,"(.NET CORE/C#)"       ,false));        
+    this.__languajeList.push( new _languageName(2,"(.NET CORE/C++)"      ,true));        
+    this.__languajeList.push( new _languageName(3,"(.SPRINGBOOT/JAVA)"   ,false));        
   }
   // 
   ////////////////////////////////////////////////////////////////

@@ -1,8 +1,8 @@
 import { Component, VERSION                } from '@angular/core';
 import { CustomErrorHandler                } from 'src/app/app.module';
 import { HttpClient                        } from '@angular/common/http';
-import { MCSDService                       } from '../../../../_services/mcsd.service';
-import { _ConfigService                    } from 'src/app/_services/-config.service';
+import { BackendService                       } from '../../../../_services/BackendService/backend.service';
+import { ConfigService                    } from 'src/app/_services/ConfigService/config.service';
 import { Observable                        } from 'rxjs';
 //
 @Component({
@@ -44,10 +44,17 @@ export class TechnicalSpecsComponent {
       return this.__baseUrlNodeJsChat;
     }
     //
+    public get _baseUrlSpringBootJava(): string
+    {
+      return this.__baseUrlSprinbBootJava;
+    }
+    //
     protected __baseUrlNetCore        : string = '';
     protected __baseUrlNodeJs         : string = '';
     protected __baseUrlNodeJsChat     : string = '';
     protected __baseUrlNodeJsOcr      : string = '';
+    protected __baseUrlSprinbBootJava : string = '';
+
     //
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
@@ -59,18 +66,19 @@ export class TechnicalSpecsComponent {
     //
     constructor(
           public http               : HttpClient, 
-          public _configService     : _ConfigService,
-          private mcsdService       : MCSDService, 
+          public _configService     : ConfigService,
+          private backendService       : BackendService, 
           private customErrorHandler: CustomErrorHandler
     ) 
     {
       ////
-      this._appBrand           = this._configService.getConfigValue('appBrand');
-      this._appVersion         = this._configService.getConfigValue('appVersion');
-      this.__baseUrlNetCore    = this._configService.getConfigValue('baseUrlNetCore');
-      this.__baseUrlNodeJs     = this._configService.getConfigValue('baseUrlNodeJs');
-      this.__baseUrlNodeJsChat = this._configService.getConfigValue('baseUrlNodeJsChat');
-      this.__baseUrlNodeJsOcr  = this._configService.getConfigValue('baseUrlNodeJsOcr');
+      this._appBrand                = this._configService.getConfigValue('appBrand');
+      this._appVersion              = this._configService.getConfigValue('appVersion');
+      this.__baseUrlNetCore         = this._configService.getConfigValue('baseUrlNetCore');
+      this.__baseUrlNodeJs          = this._configService.getConfigValue('baseUrlNodeJs');
+      this.__baseUrlNodeJsChat      = this._configService.getConfigValue('baseUrlNodeJsChat');
+      this.__baseUrlNodeJsOcr       = this._configService.getConfigValue('baseUrlNodeJsOcr');
+      this.__baseUrlSprinbBootJava  = this._configService.getConfigValue('baseUrlSpringBootJava');
 
       //
       console.log("baseUrlNetCore : " + this.__baseUrlNetCore);
@@ -78,14 +86,14 @@ export class TechnicalSpecsComponent {
       //
       console.log(this.pageTitle + "- [INGRESO]");
       //
-      mcsdService.SetLog(this.pageTitle,"PAGE_TECH_SPECS");
+      backendService.SetLog(this.pageTitle,"PAGE_TECH_SPECS");
       //
       this._GetWebApiAppVersion();
     }
     //
     private _GetWebApiAppVersion() {
       //
-      let appVersion : Observable<string> = this.mcsdService._GetWebApiAppVersion();
+      let appVersion : Observable<string> = this.backendService._GetWebApiAppVersion();
       //
       const appVersionObserver = {
         next: (jsondata: string)     => { 

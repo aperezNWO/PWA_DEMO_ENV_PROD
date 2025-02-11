@@ -2,8 +2,8 @@ import { AfterViewInit, Component, OnInit, ViewChild   } from '@angular/core';
 import { FormBuilder, Validators                       } from '@angular/forms';
 import { MatTableDataSource                            } from '@angular/material/table';
 import { MatPaginator                                  } from '@angular/material/paginator';
-import { Observable                                    } from 'rxjs';
-import { MCSDService                                   } from '../../../_services/mcsd.service';
+import { BehaviorSubject, delay, Observable, tap       } from 'rxjs';
+import { BackendService                                   } from '../../../_services/BackendService/backend.service';
 import { CustomErrorHandler                            } from '../../../app.module';
 import { PersonEntity, SearchCriteria, _languageName   } from '../../../_models/entityInfo.model';
 //
@@ -46,7 +46,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     //
     rf_buttonCaption_csv               : string  = "";
     //
-    rf_dataSource                      = new MatTableDataSource<PersonEntity>();
+    //rf_dataSource                      = new MatTableDataSource<PersonEntity>();
     // 
     rf_displayedColumns                : string[] = ['id_Column', 'ciudad', 'nombreCompleto'];
     //
@@ -61,7 +61,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
     public __languajeList                              : any;
     protected tituloListadoLenguajes                   : string = "[Backend]:";
     //
-    @ViewChild("rf_paginator" ,{read:MatPaginator}) rf_paginator!:  MatPaginator;
+    // @ViewChild("rf_paginator" ,{read:MatPaginator}) rf_paginator!:  MatPaginator;
     @ViewChild('_languajeList')    _languajeList                 : any;
     //
     rf_searchForm   = this.formBuilder.group({
@@ -69,11 +69,13 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
       _P_FECHA_INICIO     : ["2023-01-01"  , Validators.required],
       _P_FECHA_FIN        : ["2022-12-31"  , Validators.required],
     });
+    //
+    public _loading               = new BehaviorSubject<boolean>(false);
     //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
     //
-    constructor(public mcsdService: MCSDService, public formBuilder: FormBuilder, public customErrorHandler : CustomErrorHandler) {
+    constructor(public backendService: BackendService, public formBuilder: FormBuilder, public customErrorHandler : CustomErrorHandler) {
       //
     }
     //
@@ -95,8 +97,10 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
           new _languageName(0, '(SELECCIONE OPCION..)', false),
         );
         //
-        this.__languajeList.push(new _languageName(1, '(.Net Core)'      , true));
-        this.__languajeList.push(new _languageName(2, '(Node.js)'        , false));
+        this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , true));
+        this.__languajeList.push(new _languageName(2, '(Node.js     / JavaScript)'     , false));
+        this.__languajeList.push(new _languageName(2, '(SpringBoot  / Java)'           , false ));
+        this.__languajeList.push(new _languageName(2, '(Django      / Python)'         , false ));
     }
     //
     SetCSVData():void
@@ -111,7 +115,7 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
             case 1: // (.NET CORE)
                 //
                 let csv_informeLogRemoto!                 : Observable<string>;
-                csv_informeLogRemoto                      = this.mcsdService.getInformeRemotoCSV();
+                csv_informeLogRemoto                      = this.backendService.getInformeRemotoCSV();
                 //
                 const csv_observer = {
                   next: (csv_data: string)     => { 
@@ -128,6 +132,9 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
                     //
                     this.csv_dataSource           = new MatTableDataSource<PersonEntity>(jsondata);
                     this.csv_dataSource.paginator = this.csv_paginator;
+                    //
+                    const utterance = new SpeechSynthesisUtterance( this.rf_textStatus );
+                    speechSynthesis.speak(utterance);  
                   },
                   error           : (err: Error)      => {
                     //
@@ -136,6 +143,9 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
                     this.rf_textStatus    = "[Ha ocurrido un error]";
                     //
                     this.rf_buttonCaption = "[Buscar]";
+                    //
+                    const utterance = new SpeechSynthesisUtterance( this.rf_textStatus );
+                    speechSynthesis.speak(utterance);  
                   },
                   complete        : ()                => {
                     //
@@ -145,12 +155,13 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
                   },
                 }
                 //
-                csv_informeLogRemoto.subscribe(csv_observer);
+                csv_informeLogRemoto
+                .subscribe(csv_observer);
             break;
             case 2: // NODE.JS
                 //
                 let csv_informeLogRemoto_NodeJS!                 : Observable<string>;
-                csv_informeLogRemoto_NodeJS                      = this.mcsdService.getInformeRemotoCSV_NodeJS();
+                csv_informeLogRemoto_NodeJS                      = this.backendService.getInformeRemotoCSV_NodeJS();
                 //
                 const csv_observer_node_js = {
                   next: (csv_data_node_js: string)     => { 
@@ -167,7 +178,9 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
                     //
                     this.csv_dataSource           = new MatTableDataSource<PersonEntity>(csv_data_node_js_json);
                     this.csv_dataSource.paginator = this.csv_paginator;
-
+                    //
+                    const utterance = new SpeechSynthesisUtterance( this.rf_textStatus );
+                    speechSynthesis.speak(utterance);     
                   },
                   error           : (err: Error)      => {
                     //
@@ -176,6 +189,9 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
                     this.rf_textStatus    = "[Ha ocurrido un error]";
                     //
                     this.rf_buttonCaption = "[Buscar]";
+                    //
+                    const utterance = new SpeechSynthesisUtterance( this.rf_textStatus );
+                    speechSynthesis.speak(utterance);  
                   },
                   complete        : ()                => {
                     //
@@ -185,9 +201,100 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
                   },
                 };      
                 //
-                csv_informeLogRemoto_NodeJS.subscribe(csv_observer_node_js);
+                csv_informeLogRemoto_NodeJS
+                .subscribe(csv_observer_node_js);
             break;          
-        };
+            case 3: // SPRINGBOOT / JAVA
+                // 
+                let td_informeLogRemoto_SprinbBootJava!   : Observable<string>;
+                td_informeLogRemoto_SprinbBootJava        = this.backendService.getPersonsSprinbBootJava();
+                //
+                const td_observer_sprinbbootjava = {
+                  next: (td_persons_sprinbboot_java: string)     => { 
+                    //
+                    console.log('TEMPLATE DRIVEN - SPRINGBOOT / JAVA - RETURN VALUES  : ' + td_persons_sprinbboot_java);
+                    //
+                    let td_persons_springboot_java_json   = JSON.parse(td_persons_sprinbboot_java);
+                    //
+                    this.rf_textStatus            = "Se encontraron [" + td_persons_springboot_java_json.length + "] registros ";
+                    this.rf_formSubmit            = false;
+                    //
+                    this.csv_dataSource           = new MatTableDataSource<PersonEntity>(td_persons_springboot_java_json);
+                    this.csv_dataSource.paginator = this.csv_paginator;
+                    //
+                    const utterance = new SpeechSynthesisUtterance( this.rf_textStatus );
+                    speechSynthesis.speak(utterance);  
+                  },
+                  error           : (err: Error)      => {
+                    //
+                    console.error('TEMPLATE DRIVEN - sprigboot/Java - (ERROR) : ' + JSON.stringify(err.message));
+                    //
+                    this.rf_textStatus           = "Ha ocurrido un error. Favor intente de nuevo";
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Buscar]";
+                    //
+                    const utterance = new SpeechSynthesisUtterance( this.rf_textStatus );
+                    speechSynthesis.speak(utterance);  
+                  },
+                  complete        : ()                => {
+                    //
+                    console.log('TEMPLATE DRIVEN - sprinbboot/java -  (SEARCH END)');
+                    //
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Buscar]";
+                  },
+                }; 
+                //
+                td_informeLogRemoto_SprinbBootJava
+                .subscribe(td_observer_sprinbbootjava);
+            break;
+            case 4: // DJANGO / PYTHON
+                // 
+                let td_Persons_DjangoPython!   : Observable<string>;
+                td_Persons_DjangoPython        = this.backendService.getPersonsDjangoPython();
+                //
+                const td_observer_pythondjango = {
+                  next: (td_persons_python_django: string)     => { 
+                    //
+                    console.log('TEMPLATE DRIVEN - PYTHON / DJANGO - RETURN VALUES  : ' + td_persons_python_django);
+                    //
+                    let td_persons_django_pytnon_json   = JSON.parse(td_persons_python_django);
+                    //
+                    this.rf_textStatus            = "Se encontraron [" + td_persons_django_pytnon_json.length + "] registros ";
+                    this.rf_formSubmit            = false;
+                    //
+                    this.csv_dataSource           = new MatTableDataSource<PersonEntity>(td_persons_django_pytnon_json);
+                    this.csv_dataSource.paginator = this.csv_paginator;
+                    //
+                    const utterance = new SpeechSynthesisUtterance( this.rf_textStatus );
+                    speechSynthesis.speak(utterance);  
+                  },
+                  error           : (err: Error)      => {
+                    //
+                    console.error('TEMPLATE DRIVEN - python/django - (ERROR) : ' + JSON.stringify(err.message));
+                    //
+                    this.rf_textStatus           = "Ha ocurrido un error. Favor intente de nuevo";
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Buscar]";
+                    //
+                    const utterance = new SpeechSynthesisUtterance( this.rf_textStatus );
+                    speechSynthesis.speak(utterance);  
+                  },
+                  complete        : ()                => {
+                    //
+                    console.log('TEMPLATE DRIVEN - python/django -  (SEARCH END)');
+                    //
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Buscar]";
+                  },
+                }; 
+                //
+                td_Persons_DjangoPython
+                .subscribe(td_observer_pythondjango);
+            break;
+            default:
+            return;
+       };
     } 
     //
     SetCSVLink()
@@ -196,12 +303,12 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
         console.log(FilesGenerationCSVComponent.PageTitle + " - [SET CSV Link]");
         //
         let csv_link!                 : Observable<string>;
-        csv_link                      = this.mcsdService.getCSVLink();
+        csv_link                      = this.backendService.getCSVLink();
         //
         const csv_link_observer = {
           next: (p_csv_link: string)          => { 
             //
-            let fileUrl        = this.mcsdService._baseUrlNetCore + p_csv_link;
+            let fileUrl        = this.backendService._baseUrlNetCore + p_csv_link;
             //
             let downloadLink_1 = fileUrl;
             //
@@ -226,7 +333,8 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
           },
         }
         //
-        csv_link.subscribe(csv_link_observer);
+        csv_link
+        .subscribe(csv_link_observer);
     }
     //--------------------------------------------------------------------------
     // METODOS REACTIVE FORMS 
@@ -237,8 +345,8 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
         //
         console.warn("(NEW SEARCH RF)");
         //
-        this.rf_dataSource           = new MatTableDataSource<PersonEntity>();
-        this.rf_dataSource.paginator = this.rf_paginator;
+        //this.rf_dataSource           = new MatTableDataSource<PersonEntity>();
+        //this.rf_dataSource.paginator = this.rf_paginator;
         //
         this.rf_searchForm   = this.formBuilder.group({
           //_P_DATA_SOURCE_ID   : ["1"           , Validators.required],
@@ -266,7 +374,9 @@ export class FilesGenerationCSVComponent implements OnInit, AfterViewInit {
         //
         this.downloadLink           = "";
         //
-        this.csv_dataSource           = new MatTableDataSource<PersonEntity>();
+        this.csv_dataSource            = new MatTableDataSource<PersonEntity>();
+        //
+        this.csv_dataSource.paginator  = this.csv_paginator
     }
     //
     rf_onSubmit() 

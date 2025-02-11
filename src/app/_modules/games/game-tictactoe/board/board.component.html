@@ -14,7 +14,7 @@
 <hr>
 <form>
     <!-- LISTADO JUGADOR INICIAL / INICIO -->
-    <div class="form-group" id="SourceListDiv" align="left">
+    <div class="form-group" id="SourceListDiv" align="center">
         <span id="tituloSource">{{this.tituloSource}}</span>
         <label for="_SourceList"></label>
         |
@@ -32,10 +32,10 @@
     <!--LISTADO JUGADOR INICIAL / FIN    -->
     <!--BOTONES INICIO -->
     <hr>
-    <div class="form-group">
-    <input type="button" value="[NUEVO]"   (click)="this.newGame();"   [disabled]="(this.IsNewGame == true)">
-    |
-    <input type="button" value="[INICIAR]" (click)="this.startGame();" [disabled]="(this.IsNewGame == false)">
+    <div class="form-group" align="center">
+      <input class="btn btn-primary"   type="button" value="[NUEVO]"   (click)="this.newGame();"   [disabled]="(this.IsNewGame == true)">
+      |
+      <input class="btn btn-success"   type="button" value="[INICIAR]" (click)="this.startGame();" [disabled]="(this.IsNewGame == false)">
     </div>
     <!--BOTONES FIN    -->
     <hr>

@@ -1,12 +1,14 @@
-import { Injectable, NgModule                       } from '@angular/core';
-import { APP_INITIALIZER,ErrorHandler, isDevMode    } from '@angular/core';
-import { DatePipe                        } from '@angular/common';
+import { MatTableModule                               } from '@angular/material/table';
+import { MatInputModule                               } from '@angular/material/input';
+import { Injectable, NgModule                         } from '@angular/core';
+import { APP_INITIALIZER,ErrorHandler, isDevMode      } from '@angular/core';
+import { DatePipe, DecimalPipe                        } from '@angular/common';
 import { ServiceWorkerModule             } from '@angular/service-worker';
 import { FormsModule                     } from '@angular/forms';
 import { MatListModule                   } from '@angular/material/list';
-import { MatTableModule                  } from '@angular/material/table';
 import { MatPaginatorModule              } from '@angular/material/paginator';
 import { MatTabsModule                   } from '@angular/material/tabs';
+import { MatFormFieldModule              } from '@angular/material/form-field';
 import { BrowserModule                   } from '@angular/platform-browser';
 import { BrowserAnimationsModule         } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule             } from '@angular/forms';
@@ -17,12 +19,10 @@ import { HTTP_INTERCEPTORS               } from '@angular/common/http';
 import { RouterModule, Routes            } from '@angular/router';
 import { HashLocationStrategy            } from '@angular/common';
 import { LocationStrategy                } from '@angular/common';
-import { NgbModule                       } from '@ng-bootstrap/ng-bootstrap'
 import { AppComponent                    } from './app.component';
 import { HomeWebComponent                } from './_modules/home/home-web/home-web.component';
 import { PageNotFoundComponent           } from './_modules/home/page-not-found/page-not-found.component';
 import { NavComponent                    } from './_modules/home/nav/nav.component';
-import { ContactComponent                } from './_modules/about/contact/contact.component';
 import { AAboutWebComponent              } from './_modules/about/a-about-web/a-about-web.component';
 import { TopicsComponent                 } from './_modules/about/topics/topics.component';
 import { TechnicalSpecsComponent         } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
@@ -31,6 +31,7 @@ import { FilesGenerationXLSComponent     } from './_modules/files-generation/fil
 import { FilesGenerationCSVComponent     } from './_modules/files-generation/files-generation-csv/files-generation-csv.component';
 import { FilesGenerationPDFComponent     } from './_modules/files-generation/files-generation-pdf/files-generation-pdf.component';
 import { FilesGenerationZIPComponent     } from './_modules/files-generation/files-generation-zip/files-generation-zip.component';
+import { ChartComponent                  } from './_modules/files-generation/chart/chart.component';
 import { AlgorithmDijkstraComponent      } from './_modules/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
 import { AlgorithmWebComponent           } from './_modules/algorithm/algorithm-web/algorithm-web.component';
 import { AlgorithmRegExComponent         } from './_modules/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
@@ -40,27 +41,46 @@ import { GameTictactoeComponent          } from './_modules/games/game-tictactoe
 import { BoardComponent                  } from './_modules/games/game-tictactoe/board/board.component';
 import { SquareComponent                 } from './_modules/games/game-tictactoe/square/square.component';
 import { GameWebComponent                } from './_modules/games/game-web/game-web.component';
-import { HanoiTowersComponent            } from './_modules/games/game-hanoi/game-hanoi.component';
-import { TowerComponent                  } from './_modules/games/game-hanoi/tower/tower.component';
-import { OcrComponent                    } from './_modules/miscelaneous/ocr/ocr.component';
+import { GameHanoiAutoComponent          } from './_modules/games/game-hanoi-auto/game-hanoi-auto.component';
+import { ComputerVisionComponent         } from './_modules/miscelaneous/computer-vision/computer-vision.component';
 import { ChatComponent                   } from './_modules/miscelaneous/chat/chat/chat.component';
-import { ChartComponent                  } from './_modules/miscelaneous/chart/chart.component';
 import { MiscelaneousComponent           } from './_modules/miscelaneous/miscelaneous/miscelaneous.component';
+import { OcrPhotoCaptureComponent        } from './_modules/miscelaneous/ocr-photo-capture/ocr-photo-capture.component';
 import { UnitTestingComponent            } from './_modules/_unitttesting/unit-testing.component';
-import { AppRoutingModule                } from './app-routing.module';
 import { LogType                         } from './_models/entityInfo.model';
-import { MCSDService                     } from './_services/mcsd.service';
-import { _ConfigService                  } from './_services/-config.service';
+import { BackendService                  } from './_services/BackendService/backend.service';
+import { ConfigService                   } from './_services/ConfigService/config.service';
+import { AppRoutingModule                } from './app-routing.module';
 import { finalize, tap                   } from 'rxjs';
 import { NgxSignaturePadModule           } from '@eve-sama/ngx-signature-pad';
+import { NgbHighlight, NgbModule                } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbAlertModule    } from '@ng-bootstrap/ng-bootstrap';
+import { IndexComponent                         } from './_modules/home/index/index.component';
+import { FireworksComponent                     } from './_modules/home/fireworks/fireworks.component';
+import { GameHanoi3dComponent                   } from './_modules/games/game-hanoi3d/game-hanoi3d.component';
+import { MathParsingComponent                   } from './_modules/miscelaneous/math-parsing/math-parsing.component';
+import { GameTetrisComponent                    } from './_modules/games/game-tetris/game-tetris.component';
+import { AlgorithmCollisionComponent            } from './_modules/algorithm/algorithm-collision/algorithm-collision.component';
+import { SCMComponent                           } from './_modules/about/scm/scm.component';
+import { LLMListComponent                       } from './_modules/about/llmlist/llmlist.component';
+import { CurriculumComponent                    } from './_modules/about/curriculum/curriculum.component';
+import { FeaturePagesComponent                  } from './_modules/about/feature-pages/feature-pages.component';
 //
-const routes : Routes = [
- 
-];
-//
-export function initialize(_configService: _ConfigService) {
+export function initialize(_configService: ConfigService) {
+  //
+  _configService.loadJsonist().then(()=> {
+      //
+      _configService.loadPagesInfoData();
+      //
+      _configService.loadUsersData();
+      //
+      _configService.loadLLMList();
+      //
+      _configService.loadSCMList();
+  });
   // 
-  return () => _configService.loadConfig();
+  return () =>  _configService.loadConfig();
+
 }
 //
 @Injectable({
@@ -98,7 +118,7 @@ export class LoggingInterceptor implements HttpInterceptor {
 //
 export class CustomErrorHandler implements ErrorHandler {
     //
-    constructor(public mcsdService : MCSDService) { } 
+    constructor(public backendService : BackendService) { } 
     //
     handleError(_error: Error): void 
     { 
@@ -107,7 +127,7 @@ export class CustomErrorHandler implements ErrorHandler {
       //
       let logType : LogType = LogType.Error
       //
-      this.mcsdService.SetLog("[CUSTOM ERROR HANDLING]",_error.message,logType);
+      this.backendService.SetLog("[CUSTOM ERROR HANDLING]",_error.message,logType);
     } 
 }
 //
@@ -115,12 +135,14 @@ export class CustomErrorHandler implements ErrorHandler {
     declarations: [
         AppComponent,
         HomeWebComponent,
-        ContactComponent,
+        SCMComponent,
+        LLMListComponent,
         AAboutWebComponent,
         AlgorithmWebComponent,
         AlgorithmRegExComponent,
         AlgorithmSortComponent,
         AlgorithmDijkstraComponent,
+        AlgorithmCollisionComponent,
         FilesGenerationWebComponent,
         FilesGenerationXLSComponent,
         FilesGenerationCSVComponent,
@@ -130,15 +152,23 @@ export class CustomErrorHandler implements ErrorHandler {
         UnitTestingComponent,
         SudokuComponent,
         GameTictactoeComponent,
-        HanoiTowersComponent,
+        GameHanoiAutoComponent,
         GameWebComponent,
-        OcrComponent,
+        OcrPhotoCaptureComponent,
         ChatComponent,
         ChartComponent,
         MiscelaneousComponent,
         NavComponent,
         PageNotFoundComponent,
         TopicsComponent,
+        IndexComponent,
+        ComputerVisionComponent,
+        FireworksComponent,
+        GameHanoi3dComponent,
+        MathParsingComponent,
+        GameTetrisComponent,
+        CurriculumComponent,
+        FeaturePagesComponent
     ],
     exports: [RouterModule],
     providers: [
@@ -146,15 +176,15 @@ export class CustomErrorHandler implements ErrorHandler {
         {  provide: LocationStrategy, useClass: HashLocationStrategy },
         {  provide: ErrorHandler, useClass: CustomErrorHandler },
         [
-          _ConfigService,
+          ConfigService,
           {
             provide   : APP_INITIALIZER,
             useFactory: initialize,
-            deps      : [_ConfigService,MCSDService,HttpClient],
+            deps      : [ConfigService,BackendService,HttpClient],
             multi     : true
           }
         ],
-        DatePipe,
+        DatePipe,DecimalPipe
     ],
     bootstrap: [AppComponent],
     imports: [
@@ -164,15 +194,19 @@ export class CustomErrorHandler implements ErrorHandler {
         BrowserAnimationsModule,
         ReactiveFormsModule,
         HttpClientModule,
+        MatInputModule,
         MatListModule,
         MatTableModule,
         MatPaginatorModule,
         MatTabsModule,
+        MatFormFieldModule,
         NgbModule,
+        NgbHighlight,
+        NgbPaginationModule, 
+        NgbAlertModule,     
         NgxSignaturePadModule,
         BoardComponent,
         SquareComponent,
-        TowerComponent,
         AppRoutingModule,
         //RouterModule,
         //RouterModule.forRoot(routes, { useHash: true }),
@@ -189,7 +223,7 @@ export class AppModule {
     //-----------------------------------------------------------------------------------------------------
     constructor(public customErrorHandler : CustomErrorHandler, 
                 public loggingInterceptor : LoggingInterceptor,
-                public mcsdService        : MCSDService,) 
+                public backendService     : BackendService,) 
     {
       //
     }

@@ -6,14 +6,12 @@
 
         -- [_] LOCAL_IIS.
         -- [_] WebApi.
-        -- [_] mcsd.
         -- [_] angulardemo.
 
 -- [>] SOURCE github.com        
 
         -- [_] PUBLIC SOURCES.                        
                 -- [x] [mcsdWebApíTFS] (tff)      -->  (github) "mcsd_public".
-                -- [x] [AngularMCSD]   (github)   -->  (github) "AngularMCSD_public".
                 -- [>] Update sources.
 
 -- [>] HOSTING  
@@ -98,18 +96,7 @@
 -- ERRORS
 =====================================================================
 
-   -- [x]  Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GetConsultaLogStatGet' 
-           from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy:
-           No 'Access-Control-Allow-Origin' header is present on the requested resource.
-
-   -- [x]  Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GenerarInformeCSVJsonSTAT' 
-           from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy: 
-           No 'Access-Control-Allow-Origin' header is present on the requested resource.
-
-   -- [_]  index.js:489 [webpack-dev-server] WARNING
-           E:\pablo.perez\dev\AngularMCSD\AngularMCSD\src\app\_modules\files-generation\files-generation-xls\files-generation-xls.component.ts depends on 'html2canvas'. 
-           CommonJS or AMD dependencies can cause optimization bailouts.
-           For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+-- [_]
 
 =====================================================================
 -- OBSERVACIONES / REDES SOCIALES
@@ -151,6 +138,11 @@
 =====================================================================
 -- STRATEGY - dev
 =====================================================================
+
+
+-- [x] CORREGIR UIX.
+
+       -- [x] uncontrasted font colors.
 
 -- [x] [CPP DEMO]
 
@@ -286,5 +278,285 @@
        -- [_] Linkedon Job Alerts "Angular".
        -- [_] List of previous job alerts ".NET".
        -- [_] UIX FIX.
+
+-- [_] OBSERVABLE.
+
+       -- [_] https://v17.angular.io/guide/observables.
+       -- [_] "Loading component" (from ngbgrid).
+       -- [_] Curruculum entry.
+
+-- [x] ngb grids.
+
+////////////////////////////////////////////////////////////////////////////////
+
+-- [x] spring boot menu entry.
+
+-- [x] MENSAJE DE ESPERA EN BOTON DE ALGORITMO DE DISTANCIA CORTA.
+
+-- [X] OCR PHOTO CAPTURE.
+
+-- [x] material grid theme.
+
+-- [x] delete word mcsd.
+
+-- [x] opencv.js basic shape recognition.
+
+-- [x] miscelaneous file genration - chart.
+
+-- [x] ngb pad instructions.
+
+-- [x] Agular / Features.       
+
+-- [x] angular pensum.
+
+-- [_] home menu items.
+
+        -- [_] programming languages / backend.
+
+        -- [_] uix libraries.
+
+               -- [_] 2d / 3d.
+
+               -- [_] material.
+
+               -- [_] ng bootstrap.
+               
+        -- [_] export  libraries
+
+               -- [_] epp plus.
+
+               -- [_] jsPdf / iTextSharp.
+
+               -- [_] char js.
+
+        -- [_] miscelaneous
+
+               -- [_] math parsing.
+
+               -- [_] ngb pad.
+ 
+        -- [_] computer visions / machine learning
+
+                -- [_] tesseract.
+
+                -- [_] tensorflow.
+   
+                -- [_] opencv.
+                
+    -- [_] scm             
+
+        -- [_] row detail grid.
+
+        -- [_] ngb grid component.
+
+        -- [_] AI_PROMPTS.
+
+        -- [_] AI_DEV.
+
+        -- [_] DEV_ENVS.
+
+        -- [_] HOSTINGS.
+
+        -- [_] DB.
+
+-- [_] hosting files cleanup service.
+
+-- [_] SSR.
+
+-- [_] PWA / SPA.
+
+-- [_] modules / engines.
+
+-- [_] CONTACT FORM.
+
+        -- [_] oAuth.
+
+        -- [_] dynamic form.
+
+-- [_] computer vision
+
+       -- [_] https://opencv.org/
+
+       -- [_] https://www.tensorflow.org/?hl=es-419
+
+-       -- [_] COMPUTER VISION.
+
+        -- [_] OPEN CV / JAVASCRIPT.   
+
+        -- [_] OPEN CV / c++ builder.
+
+        -- [_] TENSORFLOW / JAVASCRIPT.   
+
+-- [_] MACHINE LEARNING.
+
+        -- [_] OPEN CV / JAVASCRIPT.   
+
+        -- [_] OPEN CV / c++ builder.
+
+        -- [_] TENSORFLOW / JAVASCRIPT.  
+        
+-- [_] TOPICS.        
+
+        -- [_] index aditional fields.
+
+        -- [_] ngb grid.
+
+                -- [_] voice search.
+
+        -- [_] angular - topics.
+
+                        -- [_] route attribute.
+
+        -- [_] angular - features.
+
+                        -- [_] route attribute.        
+
+-- [_] speech service.
+
+-- [_] read config from database.
+
+-- [_] revisión general.
+
+        -- [x] sudoku button.
+        
+        -- [x] routers caption text correction.
+
+        -- [X] menu items.
+
+                -- [X] computer vision.
+
+                -- [X] amigo secreto.
+
+        -- [_] techical specs revision.
+
+               -- [_] iterate from list.
+
+               -- [_] iterate from DATABASE.
+
+               -- [_] swagger links.
+
+               -- [_] ngb grid.
+
+               -- [_] ngb grid hover detail.
+
+        -- [_] navigation menu display error.
+
+        -- [_] replace topics with index.
+
+                -- [_] router fields : id, source code, topic, feature. 
+
+                -- [_] router from external file. 
+
+                -- [_] master detail field. 
+
+        -- [_] main page menu.
+
+                -- [_] PWA_DEMO / ANGULAR LINK.
+
+                -- [_] menu items.
+
+                -- [_] hover animation.
+
+                -- [_] programming languages links to index.
+
+                        -- [_] query url.
+
+-- [_] dynamic title from page _Route.caption.
+
+-- [_] fancy home background.
+
+        -- [_] corregir fireworks.
+
+-- [_] download csv / xls /pdf file as zip.
+
+-- [_] complete header references.
+
+-- [_] CORRECT HANOI 3D POSITION.
+
+-- [_] join chart / xls / csv.
+               
+-- [_] scmlist, llmlist to new ngbgrid schema.
+
+-- [_] merghe math demo with collision demo.
+
+-- [_] fix ngbgrid sort.
+
+-- [_] ngbgrid with voice search.
+
+-- [_] opencv.
+
+      -- [_] opencv.js typescript.
+
+      -- [_] python.
+
+      -- [_] c++.
+
+      -- [_] java.      
+
+-- [_] tensorflow.
+
+      -- [_] django python backend.
+
+              -- [_] https://code.visualstudio.com/docs/python/tutorial-django
+
+      -- [_]  https://www.freecodecamp.org/learn/machine-learning-with-python/#machine-learning-with-python-projects
+      
+      -- [_] tensorflow.js typescript.
+
+      -- [_] python.
+
+      -- [_] c++.
+
+      -- [_] java.
+  
+
+-- [_] sites destination.
+
+        -- [_] env_landing -> marketing.
+
+        -- [_] env_public  -> programming demo.
+
+        -- [_] env_dev     -> tensorflow.
+
+        -- [_] env_prod    -> contact form.
+
+                -- [_]  https://developers.facebook.com/apps
+
+        -- [_] fb account "adam heispaupt" -> Dev / OAutn Accont.
+
+-- [_] djanto setup windows  : listado xls / csv
+        https://codesandbox.io/p/github/aperezNWO/django_setup_windows/main
+
+
+-- [_] djanto setup linux    : freecode camp curso de ciencia de datos.
+        https://codesandbox.io/p/github/aperezNWO/django_setup_linux/main
+
+-- [_] contact form.
+
+        -- [_] https://developers.facebook.com/apps/creation/
+
+        -- [_]  https://developers.facebook.com/apps
+
+        -- [_] dynamic form.
+
+        -- [_] oAuth.
+
+        -- [_] email notification.
+
+        -- [_] log entry.
+
+        -- [_] llm secure tips.
+         
+        -- [_] isolated url / ENV_LANDING.
+ 
+        -- [_] Microsoft Forms.
+
+-- [_] git hub source.        
+
+      -- [_] aperezNWO      -> PRIVATE.        
+
+      -- [_] aperezNWOGmail -> PUBLIC.        
+
+      -- [_] EXAM486        -> PUBLIC.              
 
 ////////////////////////////////////////////////////////////////////////////////

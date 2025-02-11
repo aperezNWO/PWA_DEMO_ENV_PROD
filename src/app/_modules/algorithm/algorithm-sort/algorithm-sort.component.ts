@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MCSDService                                 } from '../../../_services/mcsd.service';
+import { BackendService                                 } from '../../../_services/BackendService/backend.service';
 import { CustomErrorHandler                          } from '../../../app.module';
 import { Observable                                  } from 'rxjs';
 import { SortInfo, _languageName                     } from 'src/app/_models/entityInfo.model';
@@ -44,10 +44,10 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     public    __languajeList      : any;
     protected   drawEngine        : DrawEngine | undefined;
     //
-    constructor(private mcsdService: MCSDService, private customErrorHandler: CustomErrorHandler)
+    constructor(private backendService: BackendService, private customErrorHandler: CustomErrorHandler)
     {
         //
-        mcsdService.SetLog(this.pageTitle,"PAGE_SORT_BENCHAMRK_DEMO");
+        backendService.SetLog(this.pageTitle,"PAGE_SORT_BENCHAMRK_DEMO");
     }
     //
     ngOnInit(): void {
@@ -110,11 +110,11 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             break;
             case 1 : // C#
                 //
-                GetSortInfo           = this.mcsdService.getSort(p_sortAlgorith, p_unsortedList);            
+                GetSortInfo           = this.backendService.getSort(p_sortAlgorith, p_unsortedList);            
             break;
             case 2: // C++
                 //
-                GetSortInfo           = this.mcsdService.getSort_CPP(p_sortAlgorith, p_unsortedList);            
+                GetSortInfo           = this.backendService.getSort_CPP(p_sortAlgorith, p_unsortedList);            
             break;
         }
         //
@@ -165,6 +165,9 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                 //
                 this.lblStatus  = "[ha ocurrido un error]";
                 //
+                const utterance = new SpeechSynthesisUtterance( this.lblStatus );
+                speechSynthesis.speak(utterance);  
+                //
                 return false;
             },       
             complete: ()        => {
@@ -193,7 +196,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         let randomVertexInfo!          : Observable<string>;
         //
-        randomVertexInfo               = this.mcsdService.getNewSort();
+        randomVertexInfo               = this.backendService.getNewSort();
         //
         const randomVertexObserver     = {
             //
@@ -228,6 +231,9 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                 console.error(AlgorithmSortComponent.PageTitle + ' - [GETTING NEW SORT] - [error] : ' + err.message);
                 //
                 this.lblStatus  = "[ha ocurrido un error]";
+                //
+                const utterance = new SpeechSynthesisUtterance( this.lblStatus );
+                speechSynthesis.speak(utterance);  
             },       
             complete: ()        => {
                 //
@@ -291,6 +297,9 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             this.GetSortLabel     = "[...ordenado...]";
             //
             console.log('SORT_BENCHMARK . SORTED ARRAY : ' + _sortedArrayDecoded);
+            //
+            const utterance = new SpeechSynthesisUtterance( this.lblStatus );
+            speechSynthesis.speak(utterance); 
             //
             return;
         }

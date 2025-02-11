@@ -3,10 +3,10 @@ import { FormBuilder, Validators                       } from '@angular/forms';
 import { MatTableDataSource                            } from '@angular/material/table';
 import { MatPaginator                                  } from '@angular/material/paginator';
 import { LogEntry,SearchCriteria, _languageName        } from '../../../_models/entityInfo.model';
-import { MCSDService                                   } from '../../../_services/mcsd.service';
+import { BackendService                                } from '../../../_services/BackendService/backend.service';
 import { CustomErrorHandler                            } from '../../../app.component';
 import { UtilManager                                   } from 'src/app/_engines/util.engine';
-import { Observable                                    } from 'rxjs';
+import { BehaviorSubject, delay, Observable, tap       } from 'rxjs';
 //
 @Component({
   selector     : 'app-files-generation-xls',
@@ -90,10 +90,12 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
     //
     public __languajeList                              : any;
     protected tituloListadoLenguajes                   : string = "[Backend] :";
+    //
+    public _loading               = new BehaviorSubject<boolean>(false);
     //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
-    constructor(private mcsdService: MCSDService, private formBuilder: FormBuilder, private customErrorHandler : CustomErrorHandler) {
+    constructor(private backendService: BackendService, private formBuilder: FormBuilder, private customErrorHandler : CustomErrorHandler) {
       //
     }
     //
@@ -115,8 +117,10 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           new _languageName(0, '(SELECCIONE OPCION..)', false),
         );
         //
-        this.__languajeList.push(new _languageName(1, '(.Net Core)'   , true  ));
-        this.__languajeList.push(new _languageName(2, '(Node.js)'     , false ));
+        this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , true  ));
+        this.__languajeList.push(new _languageName(2, '(Node.js     / JavaScript)'     , false ));
+        this.__languajeList.push(new _languageName(2, '(SpringBoot  / Java)'           , false ));
+        this.__languajeList.push(new _languageName(2, '(Django      / Pytnon)'         , false ));
     }
     //--------------------------------------------------------------------------
     // METODOS COMUNES 
@@ -228,7 +232,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       let rf_informeLogRemoto!  : Observable<LogEntry[]>;
       //
-      rf_informeLogRemoto       = this.mcsdService.getLogRemoto(_searchCriteria);
+      rf_informeLogRemoto       = this.backendService.getLogRemoto(_searchCriteria);
       //
       const logSearchObserver   = {
         //
@@ -244,6 +248,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           this.rf_dataSource.paginator = this.rf_paginator;
           //
           // los botones se configuran en el evento "complete()".
+          const utterance = new SpeechSynthesisUtterance( this.rf_textStatus   );
+          speechSynthesis.speak(utterance);  
         },
         error: (err: Error) => {
           //
@@ -254,6 +260,9 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           this.rf_buttonCaption     = "[Buscar]";
           //
           this.rf_formSubmit        = false;
+          //
+          const utterance = new SpeechSynthesisUtterance( this.rf_textStatus   );
+          speechSynthesis.speak(utterance);  
         },       
         complete: ()        => {
           //
@@ -265,7 +274,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
         },
       };
       //
-      rf_informeLogRemoto.subscribe(logSearchObserver);
+      rf_informeLogRemoto
+      .subscribe(logSearchObserver);
     }
     //
     rf_GenerarInformeXLSValidate():void{
@@ -279,13 +289,16 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       let rf_excelFileName!                   : Observable<string>;
       //
-      rf_excelFileName                        = this.mcsdService.getInformeExcel(this.rf_model);
+      rf_excelFileName                        = this.backendService.getInformeExcel(this.rf_model);
       //
       this.rf_ExcelDownloadLink               = "#";
       //
       this.rf_buttonCaption_xls               = "[Generando por favor espere...]";
       //
       this.rf_textStatus_xls                  = "[Generando por favor espere...]";
+      //
+      const utterance = new SpeechSynthesisUtterance( this.rf_textStatus_xls   );
+      speechSynthesis.speak(utterance);   
       //
       const xlsObserver                       = {
         //
@@ -295,7 +308,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           //
           let urlFile                = UtilManager.DebugHostingContent(_excelFileName);
           //
-          this.rf_ExcelDownloadLink  = `${this.mcsdService._baseUrlNetCore}/wwwroot/xlsx/${urlFile}`;
+          this.rf_ExcelDownloadLink  = `${this.backendService._baseUrlNetCore}/wwwroot/xlsx/${urlFile}`;
           //
           this.rf_textStatus_xls     = "[Descargar Excel]";
         },
@@ -308,6 +321,9 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           this.rf_buttonCaption_xls  = "[Ha ocurrido un error]";
           //
           this.rf_textStatus_xls     = "[Ha ocurrido un error]";
+          //
+          const utterance = new SpeechSynthesisUtterance( this.rf_textStatus_xls   );
+          speechSynthesis.speak(utterance);  
         },
         complete: () => {
           //
@@ -317,7 +333,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
         },
       };
       //
-      rf_excelFileName.subscribe(xlsObserver);
+      rf_excelFileName
+      .subscribe(xlsObserver);
     }
     //--------------------------------------------------------------------------
     // METODOS REACTIVE FORMS 
@@ -403,18 +420,23 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
               // 
               let td_informeLogRemoto!                 : Observable<LogEntry[]>;
               //      
-              td_informeLogRemoto                      = this.mcsdService.getLogRemoto(td_searchCriteria);
+              td_informeLogRemoto                      = this.backendService.getLogRemoto(td_searchCriteria);
               //
               const td_observer = {
                 next: (td_logEntry: LogEntry[])     => { 
                   //
                   console.log('TEMPLATE DRIVEN - RETURN VALUES (Record Count): ' + td_logEntry.length);
                   //
+                  //console.log('TEMPLATE DRIVEN - RETURN VALUES '                 + td_logEntry);
+                  //
                   this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry);
                   this.td_dataSource.paginator = this.td_paginator;
                   //
                   this.td_textStatus           = "Se encontraron [" + td_logEntry.length + "] registros ";
                   this.td_formSubmit           = false;
+                  //
+                  const utterance = new SpeechSynthesisUtterance( this.td_textStatus  );
+                  speechSynthesis.speak(utterance);  
                 },
                 error           : (err: Error)      => {
                   //
@@ -424,6 +446,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
                   this.td_formSubmit           = false;
                   this.td_buttonCaption        = "[Buscar]";
                   //
+                  const utterance = new SpeechSynthesisUtterance( this.td_textStatus  );
+                  speechSynthesis.speak(utterance);  
                 },
                 complete        : ()                => {
                   //
@@ -434,7 +458,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
                 },
               }; 
               //
-              td_informeLogRemoto.subscribe(td_observer);
+              td_informeLogRemoto
+              .subscribe(td_observer);
           break;
         case 2: // NODE.JS
               //
@@ -444,22 +469,23 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
               // 
               let td_informeLogRemoto_NodeJs!   : Observable<string>;
               // 
-              td_informeLogRemoto_NodeJs        = this.mcsdService.getLogRemotoNodeJS(td_searchCriteria);
+              td_informeLogRemoto_NodeJs        = this.backendService.getLogRemotoNodeJS(td_searchCriteria);
               //
               const td_observer_node_js = {
                 next: (td_logEntry_node_js: string)     => { 
                   //
-                  console.log('TEMPLATE DRIVEN - NODE.JS - RETURN VALUES  : ' + td_logEntry_node_js);
-                  //
                   let td_logEntry_node_js_json = JSON.parse(td_logEntry_node_js)['recordsets'][0];
-                  //
-                  console.log('TEMPLATE DRIVEN - NODE.JS - RETURN VALUE   : ' + td_logEntry_node_js_json);
                   //
                   this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_node_js_json);
                   this.td_dataSource.paginator = this.td_paginator;
                   //
                   this.td_textStatus           = "Se encontraron [" + td_logEntry_node_js_json.length + "] registros ";
                   this.td_formSubmit           = false;
+                  //
+                  console.log('TEMPLATE DRIVEN - NODE.JS - RETURN VALUE (count)   : ' + td_logEntry_node_js_json.length);
+                  //
+                  const utterance = new SpeechSynthesisUtterance( this.td_textStatus  );
+                  speechSynthesis.speak(utterance);  
                 },
                 error           : (err: Error)      => {
                   //
@@ -469,6 +495,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
                   this.td_formSubmit           = false;
                   this.td_buttonCaption        = "[Buscar]";
                   //
+                  const utterance = new SpeechSynthesisUtterance( this.td_textStatus  );
+                  speechSynthesis.speak(utterance);  
                 },
                 complete        : ()                => {
                   //
@@ -479,8 +507,107 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
                 },
               }; 
               //
-              td_informeLogRemoto_NodeJs.subscribe(td_observer_node_js);
+              td_informeLogRemoto_NodeJs
+              .subscribe(td_observer_node_js);
           break;
+        case 3: // SPRINGBOOT / JAVA
+              //
+              this.td_buttonCaption = "[Favor espere...]";
+              //
+              this.td_textStatus    = "";
+              // 
+              let td_informeLogRemoto_SprinbBootJava!   : Observable<string>;
+              // 
+              td_informeLogRemoto_SprinbBootJava        = this.backendService.getLogRemotoSprinbBootJava(td_searchCriteria);
+              //
+              const td_observer_sprinbbootjava = {
+                next: (td_logEntry_sprinbboot_java: string)     => { 
+                  //
+                  console.log('TEMPLATE DRIVEN - SPRINGBOOT / JAVA - RETURN VALUES  : ' + td_logEntry_sprinbboot_java);
+                  //
+                  let td_logEntry_springboot_java_json   = JSON.parse(td_logEntry_sprinbboot_java);
+                  //
+                  this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_springboot_java_json);
+                  this.td_dataSource.paginator = this.td_paginator;
+                  //
+                  this.td_textStatus           = "Se encontraron [" + td_logEntry_springboot_java_json.length + "] registros ";
+                  this.td_formSubmit           = false;
+                  //
+                  const utterance = new SpeechSynthesisUtterance( this.td_textStatus  );
+                  speechSynthesis.speak(utterance);  
+                },
+                error           : (err: Error)      => {
+                  //
+                  console.error('TEMPLATE DRIVEN - sprigboot/Java - (ERROR) : ' + JSON.stringify(err.message));
+                  //
+                  this.td_textStatus           = "Ha ocurrido un error. Favor intente de nuevo";
+                  this.td_formSubmit           = false;
+                  this.td_buttonCaption        = "[Buscar]";
+                  //
+                  const utterance = new SpeechSynthesisUtterance( this.td_textStatus_xls  );
+                  speechSynthesis.speak(utterance);  
+                },
+                complete        : ()                => {
+                  //
+                  console.log('TEMPLATE DRIVEN - sprinbboot/java -  (SEARCH END)');
+                  //
+                  this.td_formSubmit           = false;
+                  this.td_buttonCaption        = "[Buscar]";
+                },
+              }; 
+              //
+              td_informeLogRemoto_SprinbBootJava
+              .subscribe(td_observer_sprinbbootjava);
+          break;
+        case 4: // DJANGO     / PYTHON
+          //
+          this.td_buttonCaption = "[Favor espere...]";
+          //
+          this.td_textStatus    = "";
+          // 
+          let td_informeLogRemoto_PythonDjango!   : Observable<string>;
+          // 
+          td_informeLogRemoto_PythonDjango        = this.backendService.getLogRemotoDjangoPython(td_searchCriteria);
+          //
+          const td_observer_pythondjango = {
+            next: (td_logEntry_python_django: string)     => { 
+              //
+              console.log('TEMPLATE DRIVEN - PYTHON / DJANGO - RETURN VALUES  : ' + td_logEntry_python_django);
+              //
+              let td_logEntry_python_django_json   = JSON.parse(td_logEntry_python_django);
+              //
+              this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_python_django_json);
+              this.td_dataSource.paginator = this.td_paginator;
+              //
+              this.td_textStatus           = "Se encontraron [" + td_logEntry_python_django_json.length + "] registros ";
+              this.td_formSubmit           = false;
+              //
+              const utterance = new SpeechSynthesisUtterance( this.td_textStatus  );
+              speechSynthesis.speak(utterance);  
+            },
+            error           : (err: Error)      => {
+              //
+              console.error('TEMPLATE DRIVEN - python/django - (ERROR) : ' + JSON.stringify(err.message));
+              //
+              this.td_textStatus           = "Ha ocurrido un error. Favor intente de nuevo";
+              this.td_formSubmit           = false;
+              this.td_buttonCaption        = "[Buscar]";
+              //
+              const utterance = new SpeechSynthesisUtterance( this.td_textStatus_xls  );
+              speechSynthesis.speak(utterance);  
+            },
+            complete        : ()                => {
+              //
+              console.log('TEMPLATE DRIVEN - sprinbboot/java -  (SEARCH END)');
+              //
+              this.td_formSubmit           = false;
+              this.td_buttonCaption        = "[Buscar]";
+            },
+          }; 
+          //
+          td_informeLogRemoto_PythonDjango
+          .subscribe(td_observer_pythondjango);
+      break;
         default:
           return;
       }
@@ -497,13 +624,16 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
       //
       let td_excelFileName!                   : Observable<string>;
       //
-      td_excelFileName                        = this.mcsdService.getInformeExcel(this.rf_model);
+      td_excelFileName                        = this.backendService.getInformeExcel(this.rf_model);
       //
       this.td_ExcelDownloadLink               = "#";
       //
       this.td_buttonCaption_xls               = "[Generando por favor espere...]";
       //
       this.td_textStatus_xls                  = "[Generando por favor espere...]";
+      //
+      const utterance = new SpeechSynthesisUtterance( this.td_textStatus_xls  );
+      speechSynthesis.speak(utterance);  
       //
       const xlsObserver                       = {
         //
@@ -513,7 +643,7 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           //
           let urlFile                = UtilManager.DebugHostingContent(_excelFileName); 
           //
-          this.td_ExcelDownloadLink  = `${this.mcsdService._baseUrlNetCore}/wwwroot/xlsx/${urlFile}`;
+          this.td_ExcelDownloadLink  = `${this.backendService._baseUrlNetCore}/wwwroot/xlsx/${urlFile}`;
           //
           this.td_textStatus_xls     = "[Descargar Excel]";
         },
@@ -526,6 +656,9 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
           this.td_buttonCaption_xls  = "[Ha ocurrido un error]";
           //
           this.td_textStatus_xls     = "[Ha ocurrido un error]";
+          //
+          const utterance = new SpeechSynthesisUtterance( this.td_textStatus_xls  );
+          speechSynthesis.speak(utterance);  
         },
         complete: () => {
           //
@@ -535,7 +668,8 @@ export class FilesGenerationXLSComponent implements OnInit, AfterViewInit {
         },
       };
       //
-      td_excelFileName.subscribe(xlsObserver);
+      td_excelFileName
+      .subscribe(xlsObserver);
     }
 }
 
