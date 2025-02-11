@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1710304991906,
+  "timestamp": 1739241621377,
   "index": "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -15,11 +15,11 @@
         "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/896.4519226224848d4d.js",
         "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/favicon.ico",
         "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/index.html",
-        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/main.d7ed98db2ea06a88.js",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/main.94bacb8592dd67c0.js",
         "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/manifest.webmanifest",
         "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/polyfills.77586c43fe67260d.js",
-        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/runtime.6e18956a09ef4bed.js",
-        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/styles.6325d7331f7d6dce.css"
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/runtime.513bb11c4dc7e0ae.js",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/styles.be039cb2bdfb4e52.css"
       ],
       "patterns": []
     },
@@ -31,7 +31,12 @@
         "ignoreVary": true
       },
       "urls": [
-        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config.json",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/angularDemo/angular_Curriculum_base.json",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/angularDemo/angular_Demos_base.json",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/_PagesInfo.json",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/_UsersInfo.json",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/_config.json",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/_jsonList.json",
         "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-128x128.png",
         "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-144x144.png",
         "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-152x152.png",
@@ -39,7 +44,15 @@
         "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-384x384.png",
         "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-512x512.png",
         "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-72x72.png",
-        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-96x96.png"
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-96x96.png",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/images/clearForm.gif",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/images/mic_off.gif",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/images/mic_on.gif",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/images/speaker_on.gif",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/json/llm.json",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/json/scm.json",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/opencv.js",
+        "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/sudoku.txt"
       ],
       "patterns": []
     }
@@ -48,7 +61,12 @@
   "hashTable": {
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/484.8cdd85cefc5a3b51.js": "5917412f8e7d284347e02b3e88949a4901e355de",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/896.4519226224848d4d.js": "b78fb0b014bc156bc77299cc45560d056ef29bac",
-    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config.json": "824c8499f59ad96493b6be2fb0e5fc05bf8e5cdc",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/angularDemo/angular_Curriculum_base.json": "eb99c28f2f312027b64119b165bdf312a6afb518",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/angularDemo/angular_Demos_base.json": "7f1c8fe27a063a01f729864807192d2503fe7885",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/_PagesInfo.json": "515fe80292083315b0d131954cfc06dcc26eacbe",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/_UsersInfo.json": "9e061019143f4316b306d77d6f9241fbbcae4d9a",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/_config.json": "31875d8e7c3cabcaae1fc60174fa4b80cd6601af",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/_jsonList.json": "574f94f4428e4f3eeebee983fbb6b037fc2a77b9",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
@@ -57,13 +75,21 @@
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-512x512.png": "1de182f76f7329dfa8f9fcdd1fdcdd695bea6a99",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-72x72.png": "aa88a6096bd973be7f6d7a5489bfa6bc2463f8c4",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/icons/icon-96x96.png": "7fb8f59c30ce2ff12c700321a0b39e14b3dc8f95",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/images/clearForm.gif": "202cbb76fce98a2785e5464e979ca33e6d7f6b16",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/images/mic_off.gif": "58fb904614ab65925c51edf315b70c46d6687410",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/images/mic_on.gif": "48778af047c17ee65a307eb0517907af8b333e89",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/images/speaker_on.gif": "52d373e9a336356e1f15b3a84d3b3cb611ab2ee0",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/json/llm.json": "542f4742aa96a49cbe71961ba2360921f8619035",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/json/scm.json": "993bcc9f89ab5d829632df1a24bfc6a72fb0f1a2",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/opencv.js": "8462bd311b721a2206185194a5e2e462626483d1",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/sudoku.txt": "a11677cdf143c6ab92080e8a4247c50083c14e71",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/index.html": "3719f8e8fc9ca6e42314d5e2d1a4f7ad4cd1d35b",
-    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/main.d7ed98db2ea06a88.js": "d017105c44519ed0a8356c10c6d4204056e6a99c",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/index.html": "6aca8c9b6efb984c2074b8efa3d070d060903030",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/main.94bacb8592dd67c0.js": "f2c69624198fed303112d014505c06c93bf48b13",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/manifest.webmanifest": "4c4fda145c554fe9a7ed086f63fa914267022e67",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/polyfills.77586c43fe67260d.js": "9e2a9f992517e511f5c0d93f45b293a46678cb36",
-    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/runtime.6e18956a09ef4bed.js": "8c77a60df282c9aa55bb61a253f6e5d16f6f5cf0",
-    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/styles.6325d7331f7d6dce.css": "69191f0e81e5519c7bb0577b859762fc684b2624"
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/runtime.513bb11c4dc7e0ae.js": "0d34af7dafc44c339f542dfaf83972a20ab6c1d7",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/styles.be039cb2bdfb4e52.css": "f03df8dc319b1114a29c975c319a23ac2776ed33"
   },
   "navigationUrls": [
     {

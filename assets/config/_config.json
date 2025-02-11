@@ -1,0 +1,16 @@
+{
+    "appBrand"                : "[ANGULAR DEMO]",
+    "appEnv"                  : "[ENV_PROD]",
+    "appVersion"              : "1.3.46",
+    "baseUrlNetCore"          : "https://angularwebapidemo.somee.com/",
+    "baseUrlNodeJs_"          : "http://localhost:8080/",
+    "baseUrlNodeJs"           : "https://9rfn3t-4000.csb.app/",
+    "baseUrlNodeJsChat_"      : "http://localhost:8080/",
+    "baseUrlNodeJsChat"       : "https://v3mf3v-3000.csb.app/",
+    "baseUrlNodeJsOcr_"       : "http://localhost:3000/upload",
+    "baseUrlNodeJsOcr"        : "https://9tvpj7-3000.csb.app/upload",
+    "baseUrlSpringBootJava"   : "https://r9ls6q-8080.csb.app/",
+    "baseUrlSpringBootJava_"  : "http://localhost:8080/",
+    "baseUrlDjangoPython"     : "https://n96q4t-8000.csb.app/"
+}
+  
