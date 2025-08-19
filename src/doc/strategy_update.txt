@@ -324,8 +324,10 @@
 
 --  [_] component.
 
-        -- [_] ngb grid master detail.
+        -- [_] Landing Page (PageUrlList).
 
+               --  [_] back url param.       
+ 
         -- [_] image capture component.
 
         -- [_] dynamic form. 
@@ -336,11 +338,17 @@
 
                 --  [_] REFERENCES AS JSON FILES.
 
-        --  [_] voice search component - ask A.I.      
+        --  [_] voice search component    
+
+                --  [_] app-speech-panel.
+
+                --  [_] ask A.I.   
         
         --  [_] <app-search></app-search>.
 
         --  [_] grid component.
+
+                -- [_] ngb grid master detail.
 
                 --  [_] grid curriculum.
 
@@ -351,5 +359,6 @@
                         --  [_] back url param.
 
                         --  [_] go to curriculum -> go to demos , dynamic link.           
-                        
+
+
 ////////////////////////////////////////////////////////////////////////////////
