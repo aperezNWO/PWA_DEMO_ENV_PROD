@@ -360,5 +360,10 @@
 
                         --  [_] go to curriculum -> go to demos , dynamic link.           
 
+--  [_] scm .
+
+        --  [_] git landing doc as onedrive doc.
+
+        --  [_] angular entry types : TYPE_FORM, TYPE_COMPONENT, TYPE_LIBRARY.
 
 ////////////////////////////////////////////////////////////////////////////////
