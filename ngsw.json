@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1755916967356,
+  "timestamp": 1756259472027,
   "index": "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -74,9 +74,9 @@
   "hashTable": {
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/484.8cdd85cefc5a3b51.js": "5917412f8e7d284347e02b3e88949a4901e355de",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/896.4519226224848d4d.js": "b78fb0b014bc156bc77299cc45560d056ef29bac",
-    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/_config.json": "9a5258f5e498d19a5c85af25d028355bbcd03978",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/_config.json": "d7da520fedceee6dd03a742f0af2cf57ae7fc4bd",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/_mainPages.json": "215104062c5cce8f1256ee3ffd481a8a0c1773f3",
-    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/scm.json": "82f8bd24819cc4a60247b753afb33830f59ea2ff",
+    "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/config/scm.json": "213347aa6eed79751a08ab13a103aa830b93d40f",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "28387cc2d7828d175bb533fff80a2ad1cfd8fc4d",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Demos_base.json": "1f03b80709aaadaab8a45df8647eb7cf55c6a905",
     "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Curriculum_base.json": "16aa49d2f75671cb57281d160f1adb018ed7d300",
