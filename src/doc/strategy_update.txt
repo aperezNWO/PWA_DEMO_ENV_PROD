@@ -82,6 +82,8 @@
 
                 -- [_]  EXPLORE API.
 
+                -- [_]  https://www.freecodecamp.org/news/tag/tensorflow/
+
                 -- [_]  WORD CLASIFICATION
 
                         -- [_] https://chat.qwen.ai/c/c70ffaa5-78dc-4eeb-87db-3b8f7879fd77
