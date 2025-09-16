@@ -1,4 +1,4 @@
- [
+[
       {
         "log_name"   : "PAGE_ANGULAR_DEMO_INDEX",
         "page_name"  : "Welcome to [Angular Demo]",
@@ -368,11 +368,6 @@
         ]
       },
       {
-        "log_name"   : "PAGE_ALGORITMOS_COLISION",
-        "page_name"  : "[ALGORITMOS - COLISIÓN]",
-        "pages"      : []
-      },
-      {
         "log_name"   : "PAGE_ALGORITMOS_DIJKSTRA",
         "page_name"  : "[ALGORITMOS - DIJKSTRA]",
         "pages"      : []
@@ -380,6 +375,11 @@
       {
         "log_name"   : "PAGE_ALGORITMOS_REGEX",
         "page_name"  : "[ALGORITMOS - EXPRESIONES REGULARES]",
+        "pages"      : []
+      },
+      {
+        "log_name"   : "PAGE_ALGORITMOS_COLISION",
+        "page_name"  : "[ALGORITMOS - COLISIÓN]",
         "pages"      : []
       },
       {
@@ -455,4 +455,4 @@
         "page_name"  : "",
         "pages"      : []
       }
-  ]
+]
