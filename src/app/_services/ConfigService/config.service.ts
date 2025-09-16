@@ -50,7 +50,7 @@ export class ConfigService {
     return new Promise((resolve) => 
     {
         //
-        this.http.get('./assets/config/_mainPages.json').toPromise()
+        this.http.get('./assets/config/__mainPages.json').toPromise()
         .then((data: any) => {
             //
             _environment.mainPageList = data; // Assign loaded data to environment variable
