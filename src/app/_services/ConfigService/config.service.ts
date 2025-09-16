@@ -36,8 +36,6 @@ export class ConfigService {
     return this.http.get('./assets/config/_config.json').toPromise()
       .then((data: any) => {
           //
-          ////console.log("loading configuration...");
-          //
           _environment.externalConfig = data; // Assign loaded data to environment variable
       })
       .catch(error => {
@@ -50,7 +48,7 @@ export class ConfigService {
     return new Promise((resolve) => 
     {
         //
-        this.http.get('./assets/config/__mainPages.json').toPromise()
+        this.http.get('./assets/config/_mainPages.json').toPromise()
         .then((data: any) => {
             //
             _environment.mainPageList = data; // Assign loaded data to environment variable
