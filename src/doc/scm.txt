@@ -126,6 +126,7 @@ git commit -m"Application [ANGULAR DEMO - ENV_PROD] v[2.3.5]" -m"1) LLM LIS UPDA
 git push 
 git pull
 
+npm run package-and-publish 
 
 /////////////////////////////////////////////////////////////////
 // GIT HUB PAGES
