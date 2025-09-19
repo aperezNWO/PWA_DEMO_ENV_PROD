@@ -1,7 +1,7 @@
 {
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "2.3.7",
+    "appVersion"                                   : "2.3.8",
     "baseUrlNetCoreCPPEntry_local"                 : "http://localhost:83/",
     "baseUrlNetCoreCPPEntry"                       : "https://tensorflownetcore64.tryasp.net/",
     "baseUrlNetCore"                               : "https://angularwebapidemo.somee.com/",
@@ -19,6 +19,6 @@
     "baseUrlSpringBootJava"                        : "https://3ghmjk-8080.csb.app/",
     "baseUrlDjangoPython_local"                    : "",
     "baseUrlDjangoPython_aperezNWO"                : "https://sp223k-8000.csb.app/",
-    "baseUrlDjangoPython"                          : ""
+    "baseUrlDjangoPython"                          : "https://n96q4t-8000.csb.app/"
 }
   
