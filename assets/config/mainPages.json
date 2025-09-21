@@ -103,7 +103,12 @@
                   "id"   : 14,
                   "url"  : "https://stackoverflow.ai/",
                   "text" : "Stack Overflow"
-              }   
+              },
+              {
+                  "id"   : 15,
+                  "url"  : "https://algorithm-visualizer.org/",
+                  "text" : "Algorithm Visualizer"
+              }      
         ]
       },
       {
@@ -179,6 +184,11 @@
                   "id"  : 13,
                   "url" : "https://w3.org/",
                   "name": "w3c"
+              },
+              {
+                  "id"  : 14,
+                  "url" : "https://algorithm-visualizer.org/",
+                  "name" : "Algorithm Visualizer"
               }
          ]
       },
