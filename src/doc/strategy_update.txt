@@ -385,6 +385,11 @@
         --  [_] Solve the curent games/algos/challenges same way.
  
               --  [_] Major version v[x.x.x].
-        
+         
+              --  [_] Machine against machiine.
+
+              --  [_] Tetris.
+
+              --  [_] Chess.
 
 ////////////////////////////////////////////////////////////////////////////////
