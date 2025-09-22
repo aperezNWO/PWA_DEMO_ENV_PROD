@@ -388,11 +388,15 @@
          
               --  [_] Machine against machine.
 
-              --  [_] apps.
+              --  [_] load save textplain N.N. model.
 
-                --  [_] sudoku.
+              --  [_] load save tensorflow model.
+
+        -- [_] APPS : 
 
                 --  [_] tictactoe.
+
+                --  [_] sudoku.
 
                 --  [_] haoni.
 
