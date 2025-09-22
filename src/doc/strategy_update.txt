@@ -394,8 +394,6 @@
 
         -- [_] APPS : 
 
-                --  [_] tictactoe.
-
                 --  [_] sudoku.
 
                 --  [_] haoni.
@@ -405,5 +403,9 @@
                 --  [_] Tetris.
 
                 --  [_] Chess.
+
+                --  [_] tictactoe.
+
+                        --  [_] c++ neural network which learns to play tictactoe against itself.
 
 ////////////////////////////////////////////////////////////////////////////////
