@@ -368,7 +368,7 @@
 
         --  [_] git landing doc as onedrive doc.
 
-        --  [_] angular curriculum entry types : TYPE_FORM, TYPE_COMPONENT, TYPE_LIBRARY.
+        --  [_] angular features grid entry types : TYPE_FORM (current), TYPE_COMPONENT (pending), TYPE_LIBRARY (pending).
 
 --  [_] Machine Learning and A.I.
 
