@@ -386,10 +386,23 @@
  
               --  [_] Major version v[x.x.x].
          
-              --  [_] Machine against machiine.
+              --  [_] Machine against machine.
 
-              --  [_] Tetris.
+              --  [_] apps.
 
-              --  [_] Chess.
+                --  [_] sudoku.
+
+                --  [_] tictactoe.
+
+                --  [_] haoni.
+
+                --  [_] shortest path.
+
+                --  [_] Tetris.
+
+                --  [_] Chess.
+
+                --  [_] OCR?.
+
 
 ////////////////////////////////////////////////////////////////////////////////
