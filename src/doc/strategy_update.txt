@@ -406,6 +406,10 @@
 
                 --  [_] tictactoe.
 
-                        --  [_] c++ neural network which learns to play tictactoe against itself.
+ -- TIC-TAC-TOE DEMO.
+ 
+        --  [_] c++ neural network which learns to play tictactoe against itself.
+
+                --  [_] https://chat.qwen.ai/c/7d46d2ce-70a5-4c9f-ba4c-d7ce475527ed
 
 ////////////////////////////////////////////////////////////////////////////////
