@@ -1,0 +1,44 @@
+.game-container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  grid-gap: 6px;
+  margin: 20px auto;
+  width: fit-content;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  font-size:x-large;
+  font-weight: bold;
+  background: #f8f8f8;
+  border: 1px solid #ccc;
+  cursor: default;
+}
+
+.result {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #006600;
+  margin: 10px 0;
+}
+
+.play-btn {
+  padding: 2px 2px;
+  font-size: x-small;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.play-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}

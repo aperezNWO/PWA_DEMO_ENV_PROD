@@ -122,7 +122,7 @@
 /////////////////////////////////////////////////////////////////
 
 git add * 
-git commit -m"Application [ANGULAR DEMO - ENV_PROD] v[2.3.10]" -m"1) JSON CONFIG UPDATE. " -a
+git commit -m"Application [ANGULAR DEMO - ENV_PROD] v[2.3.11]" -m"1) TIC TAC TOE A.I. " -a
 git push 
 git pull
 

@@ -54,6 +54,8 @@ export const PAGE_DEMOS_FILE_GENERATION_ZIP     = "PAGE_DEMOS_FILE_GENERATION_ZI
 
 export const PAGE_GAMES_TIC_TAC_TOE             = "PAGE_GAMES_TIC_TAC_TOE";
 
+export const PAGE_GAMES_TIC_TAC_TOE_AI          = "PAGE_GAMES_TIC_TAC_TOE_AI";
+
 export const PAGE_GAMES_SUDOKU                  = "PAGE_GAMES_SUDOKU";
 
 export const PAGE_GAMES_TETRIS                  = "PAGE_GAMES_TETRIS";
