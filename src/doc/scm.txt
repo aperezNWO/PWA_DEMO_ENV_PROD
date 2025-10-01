@@ -121,6 +121,8 @@
 // GIT COMMANDS
 /////////////////////////////////////////////////////////////////
 
+git add * && git commit -m"Application ASP_NET_CORE_CPP_ENTRY v[1.0.11]" -m"1) TIC TAC TOE A.I. Entry Points " -a && git push && git pull
+
 git add * 
 git commit -m"Application [ANGULAR DEMO - ENV_PROD] v[2.3.11]" -m"1) TIC TAC TOE A.I. " -a
 git push 
