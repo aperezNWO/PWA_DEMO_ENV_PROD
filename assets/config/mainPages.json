@@ -305,11 +305,12 @@
         "log_name"   : "PAGE_DEMOS_GAMES_INDEX",
         "page_name"  : "[DEMOS - GAMES]",
         "pages"      : [
-          { "id": 1, "url" : "/GamesSudoku"            , "text": "[GAMES - SUDOKU]"      },
-          { "id": 2, "url" : "/GamesTicTacToe"         , "text": "[GAMES - TICTACTOE]"   },
-          { "id": 3, "url" : "/GamesHanoiAuto"         , "text": "[GAMES - HANOI 2d]"    },
-          { "id": 4, "url" : "/GamesHanoi3d"           , "text": "[GAMES - HANOI 3d]"    },
-          { "id": 5, "url" : "/GamesTetris"            , "text": "[GAMES - TETRIS]"      }
+          { "id": 1, "url" : "/GamesSudoku"            , "text": "[GAMES - SUDOKU]"           },
+          { "id": 2, "url" : "/GamesTicTacToe"         , "text": "[GAMES - TICTACTOE]"        },
+          { "id": 3, "url" : "/GamesTicTacToeAI"       , "text": "[GAMES - TICTACTOE - AI]"   },
+          { "id": 4, "url" : "/GamesHanoiAuto"         , "text": "[GAMES - HANOI 2d]"         },
+          { "id": 5, "url" : "/GamesHanoi3d"           , "text": "[GAMES - HANOI 3d]"         },
+          { "id": 6, "url" : "/GamesTetris"            , "text": "[GAMES - TETRIS]"           }
         ]
       },
       {
@@ -320,6 +321,11 @@
       {
         "log_name"   : "PAGE_GAMES_TIC_TAC_TOE",
         "page_name"  : "[GAMES - TIC TAC TOE]",
+        "pages"      : []
+      },
+            {
+        "log_name"   : "PAGE_GAMES_TIC_TAC_TOE_AI",
+        "page_name"  : "[GAMES - TIC TAC TOE - AI]",
         "pages"      : []
       },
       {
