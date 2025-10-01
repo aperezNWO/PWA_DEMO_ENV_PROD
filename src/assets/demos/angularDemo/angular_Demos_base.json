@@ -138,7 +138,7 @@
         "description"      : "Neural Networks",
         "field_1"          : "v17, Neural Networks, Tic Tac Toe, A.I.",
         "field_2"          : "./#/GamesTicTacToeAI",
-        "field_3"          : "",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/games/tic-tac-toe-board-ai/tic-tac-toe-board-ai.component.ts",
         "field_4"          : "./#/GamesTGamesTicTacToeAI",
         "field_6"          : "https://en.wikipedia.org/wiki/Neural_network_(machine_learning)"  ,
         "field_10"         : "e9ee9d64-65ad-49a3-8595-5479300b4264"
