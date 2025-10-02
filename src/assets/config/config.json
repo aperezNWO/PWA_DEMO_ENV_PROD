@@ -25,6 +25,6 @@
     "baseUrlDjangoPython_local"                    : "http://localhost:8080/",
     "baseUrlDjangoPython_aperezNWO"                : "https://sp223k-8000.csb.app/",
     "baseUrlDjangoPython_aperezNWOGmail"           : "https://n96q4t-8000.csb.app/",
-    "baseUrlDjangoPython"                          : "https://n96q4t-8000.csb.app/"
+    "baseUrlDjangoPython"                          : "https://sp223k-8000.csb.app/"
 }
   
