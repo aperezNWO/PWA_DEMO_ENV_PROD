@@ -1,7 +1,7 @@
 {
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "2.3.15",
+    "appVersion"                                   : "2.3.16",
     "baseUrlNetCoreCPPEntry_local"                 : "http://localhost:83/",
     "baseUrlNetCoreCPPEntry_remote"                : "https://tensorflownetcore64.tryasp.net/",
     "baseUrlNetCoreCPPEntry"                       : "https://tensorflownetcore64.tryasp.net/",
@@ -29,7 +29,7 @@
     "baseUrlDjangoPython_aperezNWOGmail"           : "https://n96q4t-8000.csb.app/",
     "baseUrlDjangoPython"                          : "https://n96q4t-8000.csb.app/",
     "baseUrlDjangoPythonTF_aperezNWO"              : "https://rmtdsl-8000.csb.app/",
-    "baseUrlDjangoPythonTF_aperezNWOGmail"         : "",
-    "baseUrlDjangoPythonTF"                        : ""
+    "baseUrlDjangoPythonTF_aperezNWOGmail"         : "https://x2yzhk-8000.csb.app",
+    "baseUrlDjangoPythonTF"                        : "https://x2yzhk-8000.csb.app"
 }
   
