@@ -80,10 +80,9 @@
             <p><strong>Step {{ currentStep }} / {{ gameHistory.length - 1 }}</strong></p>
             <p>Winner: <strong>{{ getCurrentWinner() }}</strong></p>
         </div>
-
       <!-- TABLERO / FIN    -->
-      <hr />
       </div>
+      <hr />
       <div align="right">
           <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_GAMES_INDEX'}" >[Volver al Menu]</a>
       </div>
