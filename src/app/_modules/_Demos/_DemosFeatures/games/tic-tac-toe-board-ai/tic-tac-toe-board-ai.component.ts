@@ -5,7 +5,16 @@ import { PAGE_GAMES_TIC_TAC_TOE_AI } from 'src/app/_models/common';
 import { BackendService            } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService             } from 'src/app/_services/ConfigService/config.service';
 import { SpeechService             } from 'src/app/_services/speechService/speech.service';
-import { TicTacToeResult, TicTacToeService          } from 'src/app/_services/tictactoe/services/tic-tac-toe.service';
+import { _environment              } from 'src/environments/environment';
+
+export interface TicTacToeResponse {
+  finalBoard: number[];
+  moves: number[];
+  winner: string;
+  moveCount: number;
+  historyCount: number;
+  history: number[][];
+}
 
 @Component({
   selector: 'app-tic-tac-toe-board-ai',
@@ -14,16 +23,20 @@ import { TicTacToeResult, TicTacToeService          } from 'src/app/_services/ti
 })
 export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
   //
-  board: number[] = Array(9).fill(0);
-  winner: number | null = null;
-  isAnimating = false;
+  gameHistory: number[][] = [];
+  currentStep = 0;
+  loading = true;
+  error = '';
+  aiMode = 1; // Creative AI
+  temperature = 1.5;
+
+  private animationInterval: any;
   //
   constructor(
                   public  override configService    : ConfigService,
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
-                  public  override backendService   : BackendService,
-                  private          gameService      : TicTacToeService) 
+                  public  override backendService   : BackendService) 
   {  
       //
       super(configService,
@@ -37,55 +50,104 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
   }
   //
   ngOnInit(): void {
-    this.playGame();
+    this.loadGame();
   }
   //
-  get playButtonLabel(): string {
-    if (this.isAnimating) return 'AI is thinking...';
-    return this.board.every(cell => cell === 0) ? 'Play' : 'Play Again';
-  }
+  getConfigValue(key: string) {
+    //
+    let jsonData : string = JSON.parse(JSON.stringify(_environment.externalConfig))[key];
+    //
+    return jsonData;
+    }
   //
-  playGame(): void {
-    this.isAnimating = true;
-    this.winner = null;
-    this.board = Array(9).fill(0); // Reset board
-
-    this.gameService.playGame().subscribe({
-      next: (result: TicTacToeResult) => {
-        this.animateGame(result.history, result.winner);
-      },
-      error: (err) => {
-        console.error('Failed to load game', err);
-        alert('Error: Could not fetch game from server.');
-        this.isAnimating = false;
-      }
-    });
-  }
-
-  private animateGame(history: number[][], winner: number): void {
-    this.board = [...history[0]]; // Start with empty board
-
-    const delayMs = 600; // Animation speed
-
-    history.forEach((state, index) => {
-      setTimeout(() => {
-        this.board = [...state];
-        if (index === history.length - 1) {
-          this.winner = winner;
-          this.isAnimating = false;
+  loadGame() {
+    //
+    this.loading = true;
+    this.error = '';
+    this.currentStep = 0;
+    //
+    if (this.animationInterval) clearInterval(this.animationInterval);
+    //
+    const url    = `${this.getConfigValue('baseUrlNetCoreCPPEntry')}api/tictactoe/play?aiMode=${this.aiMode}&temperature=${this.temperature}`;
+    //
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      }, index * delayMs);
-    });
+        return response.json();
+      })
+      .then((data: TicTacToeResponse) => {
+        this.gameHistory = data.history;
+        this.loading = false;
+        this.animateGame();
+      })
+      .catch(err => {
+        this.error = 'Failed to load game: ' + err.message;
+        this.loading = false;
+        console.error('Fetch error:', err);
+      });
+  }
+
+  animateGame() {
+    this.currentStep = 0;
+    this.animationInterval = setInterval(() => {
+      if (this.currentStep < this.gameHistory.length - 1) {
+        this.currentStep++;
+      } else {
+        clearInterval(this.animationInterval);
+      }
+    }, 800); // 0.8 seconds per move
   }
 
   getCellSymbol(cell: number): string {
     return cell === 1 ? 'X' : cell === -1 ? 'O' : '';
   }
 
-  getWinnerText(): string {
-    if (this.winner === 1) return '🎉 X wins!';
-    if (this.winner === -1) return '🎉 O wins!';
-    return '🤝 It\'s a draw!';
+  getCellClass(cell: number, index: number): string {
+    let base = 'cell ';
+    if (cell === 1) base += 'x-cell';
+    if (cell === -1) base += 'o-cell';
+    if (cell === 0) base += 'empty-cell';
+    return base;
+  }
+
+  onReplay() {
+    this.loadGame();
+  }
+
+onAiModeChange(event: Event): void {
+  const target = event.target;
+  if (target instanceof HTMLSelectElement) {
+    this.aiMode = Number(target.value);
+  }
+}
+
+onTempChange(event: Event): void {
+  const input = event.target as HTMLInputElement;
+  if (input) {
+    this.temperature = parseFloat(input.value);
+  }
+}
+
+  getCurrentWinner(): string {
+    const board = this.gameHistory[this.currentStep];
+    const wins = [
+      [0,1,2], [3,4,5], [6,7,8],
+      [0,3,6], [1,4,7], [2,5,8],
+      [0,4,8], [2,4,6]
+    ];
+
+    for (const [a,b,c] of wins) {
+      if (board[a] !== 0 && board[a] === board[b] && board[b] === board[c]) {
+        return board[a] === 1 ? 'X' : 'O';
+      }
+    }
+
+    // Draw?
+    if (board.every(cell => cell !== 0)) return 'Draw';
+
+    return 'In Progress';
   }
 }
 
