@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1761365453695,
+  "timestamp": 1761365671445,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -74,15 +74,15 @@
   "hashTable": {
     "/PWA_DEMO_ENV_PROD/484.8cdd85cefc5a3b51.js": "5917412f8e7d284347e02b3e88949a4901e355de",
     "/PWA_DEMO_ENV_PROD/896.4519226224848d4d.js": "b78fb0b014bc156bc77299cc45560d056ef29bac",
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "c869743e1f5caae9407eec182db5201bb4cf278f",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "99eff7221eb8e52bea0de2ccc38e06a37be9e691",
     "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "be95c66fb929a4cb335181e1a62ae46227acf477",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "213347aa6eed79751a08ab13a103aa830b93d40f",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "28387cc2d7828d175bb533fff80a2ad1cfd8fc4d",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Demos_base.json": "119dd7963630c763a9124c6acb187a0bebee17a0",
     "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Curriculum_base.json": "16aa49d2f75671cb57281d160f1adb018ed7d300",
-    "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Demos_base.json": "8e0c3105ad2923b46d8edb7230b40ed9ebdbe1cc",
+    "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Demos_base.json": "84129b3273b875008c4ed29f46e3e47461b62797",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json": "16aa49d2f75671cb57281d160f1adb018ed7d300",
-    "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "844c7c0512ebd10001a4fc517c9b36a31b3108a7",
+    "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "22169285d35b540adefe7a28addfc85ace2af81b",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_Curriculum_base.json": "16aa49d2f75671cb57281d160f1adb018ed7d300",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "235258df4d7c27e1bf0e51e917391c595fe195a3",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Curriculum_base.json": "16aa49d2f75671cb57281d160f1adb018ed7d300",
