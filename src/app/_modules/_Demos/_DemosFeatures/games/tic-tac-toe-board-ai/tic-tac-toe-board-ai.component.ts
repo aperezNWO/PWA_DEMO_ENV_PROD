@@ -2,6 +2,7 @@ import { Component, OnInit         } from '@angular/core';
 import { ActivatedRoute            } from '@angular/router';
 import { BaseComponent             } from 'src/app/_components/base/base.component';
 import { PAGE_GAMES_TIC_TAC_TOE_AI } from 'src/app/_models/common';
+import { _languageName } from 'src/app/_models/entity.model';
 import { BackendService            } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService             } from 'src/app/_services/ConfigService/config.service';
 import { SpeechService             } from 'src/app/_services/speechService/speech.service';
@@ -24,13 +25,17 @@ export interface TicTacToeResponse {
 export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
   //
   gameHistory: number[][] = [];
-  currentStep = 0;
-  loading = true;
-  error = '';
-  aiMode = 1; // Creative AI
-  temperature = 1.5;
-
+  currentStep  = 0;
+  loading      = true;
+  error        = '';
+  aiMode       = 1; // Creative AI
+  temperature  = 1.5;
+  //
   private animationInterval: any;
+  //
+  public __languajeList: any; 
+  //
+  public __generateSourceList : any;
   //
   constructor(
                   public  override configService    : ConfigService,
@@ -45,12 +50,51 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
             speechService,
             PAGE_GAMES_TIC_TAC_TOE_AI,
       )
-
-      
   }
   //
   ngOnInit(): void {
+    //
+    this.queryParams();
+    //
     this.loadGame();
+  }
+  //
+  queryParams():void{
+    //
+    this.route.queryParams.subscribe(params => {
+        //-----------------------------------------------------------------------------
+        // LENGUAJES DE PROGRAMACION
+        //-----------------------------------------------------------------------------
+        this.__languajeList = new Array();
+        this.__languajeList.push(new _languageName(0, '(.NET Core/C++ -> Expert   A.I.)'  , false ,"CPP"  ));
+        this.__languajeList.push(new _languageName(1, '(.NET Core/C++ -> Creative A.I.)'  , true,  "CPP"   ));
+        this.__languajeList.push(new _languageName(3, '(.NET Core/C++ -> Random Player)'  , false, "CPP"  ));
+        this.__languajeList.push(new _languageName(4, '(Python        -> Tensorflow)   '  , false, "PY"   ));
+        //
+        let langName = params['langName'] ? params['langName'] : "" ;
+        //
+        if (langName !== '')
+        {
+            //
+            console.log(` LangName : ${langName}`);  
+            //
+            for (var index = 0; index < this.__languajeList.length; index++) {
+              //
+              if (this.__languajeList[index]._shortName  == langName)
+                {
+                  this.__languajeList[index]._selected = true;     
+                  this.aiMode                          = (index + 1);
+                  
+                  break;
+          
+                }
+            }
+        } 
+        else 
+        {
+            this.aiMode = 1;
+        }
+    });
   }
   //
   getConfigValue(key: string) {
@@ -62,13 +106,18 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
   //
   loadGame() {
     //
-    this.loading = true;
-    this.error = '';
+    this.loading     = true;
+    this.error       = '';
     this.currentStep = 0;
     //
     if (this.animationInterval) clearInterval(this.animationInterval);
     //
     const url    = `${this.getConfigValue('baseUrlNetCoreCPPEntry')}api/tictactoe/play?aiMode=${this.aiMode}&temperature=${this.temperature}`;
+    //
+    console.log(` aiMode : ${this.aiMode}`);  
+    //
+    //
+    console.log(` url    : ${url}`);  
     //
     fetch(url)
       .then(response => {
