@@ -52,6 +52,7 @@ import { GameHanoiAutoComponent      } from './_modules/_Demos/_DemosFeatures/ga
 import { GameHanoi3dComponent        } from './_modules/_Demos/_DemosFeatures/games/game-hanoi3d/game-hanoi3d.component';
 import { SudokuComponent             } from './_modules/_Demos/_DemosFeatures/games/game-sudoku/game-sudoku.component';
 import { GameTetrisComponent         } from './_modules/_Demos/_DemosFeatures/games/game-tetris/game-tetris.component';
+import { GameTetrisAIComponent       } from './_modules/_Demos/_DemosFeatures/games/game-tetris-ai/game-tetris-ai.component';
 import { BoardComponent              } from './_modules/_Demos/_DemosFeatures/games/game-tictactoe/board/board.component';
 import { GameTictactoeComponent      } from './_modules/_Demos/_DemosFeatures/games/game-tictactoe/game-tictactoe.component';
 import { TicTacToeBoardAiComponent   } from './_modules/_Demos/_DemosFeatures/games/tic-tac-toe-board-ai/tic-tac-toe-board-ai.component';
@@ -157,6 +158,7 @@ export class CustomErrorHandler implements ErrorHandler {
         GameHanoi3dComponent,
         MathParsingComponent,
         GameTetrisComponent,
+        GameTetrisAIComponent,
         CurriculumAngularComponent,
         CurriculumNodeJsComponent,
         CurriculumDjangoPythonComponent,

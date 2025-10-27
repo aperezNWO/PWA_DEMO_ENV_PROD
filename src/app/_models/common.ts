@@ -60,6 +60,8 @@ export const PAGE_GAMES_SUDOKU                  = "PAGE_GAMES_SUDOKU";
 
 export const PAGE_GAMES_TETRIS                  = "PAGE_GAMES_TETRIS";
 
+export const PAGE_GAMES_TETRIS_AI               = "PAGE_GAMES_TETRIS_AI";
+
 export const PAGES_GAMES_HANOI_3D               = "PAGES_GAMES_HANOI_3D";
 
 export const PAGES_GAMES_HANOI_2D               = "PAGES_GAMES_HANOI_2D";
