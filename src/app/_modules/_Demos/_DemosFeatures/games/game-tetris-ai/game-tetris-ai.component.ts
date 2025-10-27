@@ -83,13 +83,14 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     this.http.post<{ action: number }>(this.apiUrl, body, { headers }).subscribe({
       next: (response) => {
         const action = response.action;
-
+        // 
+        console.log(JSON.stringify(response));
         // ✅ Safe array access
         if (action >= 0 && action < this.actionStats.length) {
           this.actionStats[action]++;
         }
         console.log('Action:', action, 'Stats:', this.actionStats);
-
+        console.log('Before applyMove:', { action, board: JSON.stringify(this.board.slice(0, 2)) });
         this.applyMove(action);
 
         // 🔻 Gravity fallback
@@ -160,6 +161,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
 
     this.currentPiece = { shape: newShape, position: [newX, newY] };
     this.drawPieceOnBoard();
+    console.log('After draw:', { position: this.currentPiece?.position, boardTop: this.board[0].slice(0, 5) });
     this.lastActionWasDown = action === 3;
   }
 
