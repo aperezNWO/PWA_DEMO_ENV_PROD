@@ -29,7 +29,7 @@ interface TetrisState {
   styleUrl: './game-tetris-ai.component.css'
 })
 export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
-  board: number[][] = [];
+    board: number[][] = [];
   score = 0;
   gameOver = false;
   currentPiece: { shape: number[][], position: [number, number] } | null = null;
@@ -39,9 +39,8 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
   private gravityCounter = 0;
   private readonly MAX_GRAVITY = 3; // Force down every 3 AI steps
 
-   // For debugging
-  actionStats: number[] = [0, 0, 0, 0, 0]; // Index 0-4 for actions 0-4
-  //
+  // For debugging
+  actionStats: number[] = [0, 0, 0, 0, 0]; // Index 0-4 for actions 0-4//
   constructor(    private http: HttpClient, 
                   private cd: ChangeDetectorRef,
                   public  override configService    : ConfigService,
@@ -56,7 +55,8 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
             speechService,
             PAGE_GAMES_TETRIS_AI
       )
-    }
+  }
+  //
     ngOnInit(): void {
     this.resetGame();
   }
@@ -88,12 +88,13 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
           this.actionStats[action]++;
         }
         console.log('Action:', action, 'Stats:', this.actionStats);
-        console.log('Before applyMove:', { action, board: JSON.stringify(this.board.slice(0, 2)) });
+
         this.applyMove(action);
 
         // 🔻 AUTOMATIC GRAVITY
         this.gravityCounter++;
         if (!this.lastActionWasDown && this.gravityCounter >= this.MAX_GRAVITY) {
+          console.log('Before applyMove:', { action, board: JSON.stringify(this.board.slice(0, 2)) });
           this.applyMove(3); // Force down
           this.gravityCounter = 0;
         }
@@ -165,7 +166,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
           moved = true;
         }
         break;
-      case 4: // no_action (from your log)
+      case 4: // no_action
         // Do nothing, but still check for locking
         break;
       default:
@@ -186,6 +187,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     this.currentPiece = { shape: newShape, position: [newX, newY] };
     this.drawPieceOnBoard();
     console.log('After draw:', { position: this.currentPiece?.position, boardTop: this.board[0].slice(0, 5) });
+
     this.lastActionWasDown = (action === 3);
   }
 

@@ -28,21 +28,23 @@
     <hr>
     <!-- TABLERO INICIO -->
   <div class="tetris-container">
+  
     <div class="game-info">
-      <span>Score: {{ score }}</span>
-      <button (click)="resetGame()" [disabled]="!gameOver">🔄 Restart</button>
+    <span>Score: {{ score }}</span>
+    <button (click)="resetGame()" [disabled]="!gameOver">🔄 Restart</button>
+  </div>
+
+  <div class="board">
+    <div *ngFor="let row of board" class="row">
+      <div *ngFor="let cell of row" class="cell" [class.filled]="cell === 1"></div>
     </div>
-    <div class="board">
-      <div *ngFor="let row of board" class="row">
-        <div *ngFor="let cell of row" class="cell" [class.filled]="cell === 1"></div>
-      </div>
-    </div>
-    <div *ngIf="gameOver" class="game-over-overlay">
-      <div class="overlay-content">
-        <h3>💥 Game Over!</h3>
-        <p>Final Score: {{ score }}</p>
-        <button (click)="resetGame()">Play Again</button>
-      </div>
+  </div>
+
+  <div *ngIf="gameOver" class="game-over-overlay">
+    <div class="overlay-content">
+      <h3>💥 Game Over!</h3>
+      <p>Final Score: {{ score }}</p>
+      <button (click)="resetGame()">Play Again</button>
     </div>
   </div>
     <!-- TABLERO FIN    -->
