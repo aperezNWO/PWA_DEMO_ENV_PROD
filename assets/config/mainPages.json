@@ -310,12 +310,18 @@
           { "id": 3, "url" : "/GamesTicTacToeAI"       , "text": "[GAMES - TICTACTOE - AI]"   },
           { "id": 4, "url" : "/GamesHanoiAuto"         , "text": "[GAMES - HANOI 2d]"         },
           { "id": 5, "url" : "/GamesHanoi3d"           , "text": "[GAMES - HANOI 3d]"         },
-          { "id": 6, "url" : "/GamesTetris"            , "text": "[GAMES - TETRIS]"           }
+          { "id": 6, "url" : "/GamesTetris"            , "text": "[GAMES - TETRIS]"           },
+          { "id": 7, "url" : "/GamesTetrisAI"          , "text": "[GAMES - TETRIS - AI]"      }   
         ]
       },
       {
         "log_name"   : "PAGE_GAMES_TETRIS",
         "page_name"  : "[GAMES - TETRIS]",
+        "pages"      : []
+      },
+      {
+        "log_name"   : "PAGE_GAMES_TETRIS_AI",
+        "page_name"  : "[GAMES - TETRIS - A.I.]",
         "pages"      : []
       },
       {
