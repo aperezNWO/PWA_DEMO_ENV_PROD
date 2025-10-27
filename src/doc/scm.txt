@@ -86,7 +86,7 @@ npm list  --depth=0
 git add * && git commit -m"Application ASP_NET_CORE_CPP_ENTRY v[1.0.11]" -m"1) TIC TAC TOE A.I. Entry Points " -a && git push && git pull
 
 git add * 
-git commit -m"Application [ANGULAR DEMO - ENV_PROD] v[2.4.3]" -m"1) TETRIS A.I." -a
+git commit -m"Application [ANGULAR DEMO - ENV_PROD] v[2.4.14]" -m"1) TETRIS A.I." -a
 git push 
 git pull
 

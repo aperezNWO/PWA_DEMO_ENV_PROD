@@ -27,57 +27,24 @@
     <!-- ENCABEZADO / FIN -->  
     <hr>
     <!-- TABLERO INICIO -->
- <div class="tetris-container">
-    <!-- Tablero 20x10 -->
+  <div class="tetris-container">
+    <div class="game-info">
+      <span>Score: {{ score }}</span>
+      <button (click)="resetGame()" [disabled]="!gameOver">🔄 Restart</button>
+    </div>
     <div class="board">
-        <div *ngFor="let row of board; let y = index" class="row">
-        <div *ngFor="let cell of row; let x = index"
-            [class.cell]="true"
-            [class.filled]="cell === 1">
-        </div>
-        </div>
+      <div *ngFor="let row of board" class="row">
+        <div *ngFor="let cell of row" class="cell" [class.filled]="cell === 1"></div>
+      </div>
     </div>
-
-    <!-- Controles manuales -->
-    <div class="controls">
-        <button (click)="moveLeft()" [disabled]="isAutoPlaying || gameOver">← Izquierda</button>
-        <button (click)="moveRight()" [disabled]="isAutoPlaying || gameOver">→ Derecha</button>
-        <button (click)="rotate()" [disabled]="isAutoPlaying || gameOver">↻ Rotar</button>
-        <button (click)="hardDrop()" [disabled]="isAutoPlaying || gameOver">↓ Bajar</button>
-        <button (click)="getAISuggestion()" [disabled]="isAutoPlaying || gameOver">🧠 Sugerencia</button>
+    <div *ngIf="gameOver" class="game-over-overlay">
+      <div class="overlay-content">
+        <h3>💥 Game Over!</h3>
+        <p>Final Score: {{ score }}</p>
+        <button (click)="resetGame()">Play Again</button>
+      </div>
     </div>
-
-    <!-- Modo Autoplay -->
-    <div class="ai-section">
-        <button *ngIf="!isAutoPlaying" (click)="startAutoPlay()" class="auto-btn play">
-        ▶️ Iniciar Autoplay
-        </button>
-        <button *ngIf="isAutoPlaying" (click)="stopAutoPlay()" class="auto-btn stop">
-        ⏹️ Detener Autoplay
-        </button>
-
-        <!-- Sugerencia de IA -->
-        <div *ngIf="aiSuggestion" class="suggestion-box">
-        <strong>IA:</strong> {{ ACTIONS[aiSuggestion.action] }}
-        <br>
-        <small>Q-values: [{{ qValuesFormatted }}]</small>
-        </div>
-    </div>
-
-    <!-- Estado del juego -->
-    <div class="status">
-        <p><strong>Puntuación:</strong> {{ score }}</p>
-        <p *ngIf="gameOver" class="game-over">💥 ¡Juego terminado!</p>
-    </div>
-
-    <!-- Reinicio -->
-    <button (click)="resetGame()" class="reset-btn">🔄 Reiniciar</button>
-
-    <!-- Instrucciones -->
-    <div class="instructions">
-        <p> Usa flechas o botones. ESPACIO para sugerencia. Autoplay: IA juega sola.</p>
-    </div>
-    </div>
+  </div>
     <!-- TABLERO FIN    -->
     <hr />
      <!-- RETURN TO HOME PAGE - INIT -->

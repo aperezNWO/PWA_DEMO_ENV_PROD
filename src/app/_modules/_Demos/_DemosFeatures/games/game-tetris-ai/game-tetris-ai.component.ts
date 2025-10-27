@@ -1,12 +1,27 @@
-import { Component, ElementRef, OnInit, ViewChild                         } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, signal, ViewChild                         } from '@angular/core';
 import { ActivatedRoute                            } from '@angular/router';
 import { BaseComponent                             } from 'src/app/_components/base/base.component';
 import { BackendService                            } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                             } from 'src/app/_services/ConfigService/config.service';
 import { SpeechService                             } from 'src/app/_services/speechService/speech.service';
-import { AIMove, TetrisService                     } from 'src/app/_services/tetris.service';
 import { PAGE_GAMES_TETRIS_AI                      } from 'src/app/_models/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
 
+// Global variables provided by the Canvas environment for authentication and app configuration
+declare const __app_id: string;
+declare const __firebase_config: string;
+declare const __initial_auth_token: string;
+
+/**
+ * Interface representing the expected response structure from the Python backend API.
+ * Assuming the backend returns the full grid, the current score, and the game over status.
+ */
+interface TetrisState {
+  board: number[][]; // 20 rows x 10 columns. 0 for empty, >0 for block type/color.
+  score: number;
+  game_over: boolean;
+}
 
 @Component({
   selector: 'app-game-tetris-ai',
@@ -14,25 +29,21 @@ import { PAGE_GAMES_TETRIS_AI                      } from 'src/app/_models/commo
   styleUrl: './game-tetris-ai.component.css'
 })
 export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
-  //
-  BOARD_HEIGHT = 20;
-  BOARD_WIDTH = 10;
-
-  board: number[][] = [];
-  gameOver = false;
+ board: number[][] = [];
   score = 0;
-  isAutoPlaying = false;
-  autoPlayInterval: any = null;
+  gameOver = false;
+  currentPiece: { shape: number[][], position: [number, number] } | null = null;
 
-  aiSuggestion: AIMove | null = null;
-  aiLoading = false;
+  private apiUrl = 'https://nkg7t7-8000.csb.app/api/tetris/move/';
+  private lastActionWasDown = false;
+  private gravityCounter = 0;
+  private readonly MAX_GRAVITY = 3;
 
-  readonly ACTIONS = ['← Izquierda', '→ Derecha', '↻ Rotar', '↓ Bajar', 'No hacer nada'];
+  // ✅ FIXED: Use array instead of object to avoid TS indexing error
+  actionStats: number[] = [0, 0, 0, 0]; // [left, right, rotate, down]
 
-  @ViewChild('gameCanvas', { static: true }) canvasRef!: ElementRef<HTMLDivElement>;
-  //
-  constructor(
-                  private tetrisService             : TetrisService,
+  constructor(    private http: HttpClient, 
+                  private cd: ChangeDetectorRef,
                   public  override configService    : ConfigService,
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
@@ -45,114 +56,182 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
             speechService,
             PAGE_GAMES_TETRIS_AI
       )
-  }
-  //
+
+ }
   ngOnInit(): void {
-    this.initBoard();
-    this.setupKeyboardControls();
+    this.resetGame();
   }
 
-  initBoard(): void {
-    this.board = Array(this.BOARD_HEIGHT).fill(0).map(() => Array(this.BOARD_WIDTH).fill(0));
-  }
-
-  setupKeyboardControls(): void {
-    document.addEventListener('keydown', (e) => {
-      if (this.isAutoPlaying) return;
-
-      switch (e.key) {
-        case 'ArrowLeft':  this.moveLeft();  break;
-        case 'ArrowRight': this.moveRight(); break;
-        case 'ArrowUp':    this.rotate();    break;
-        case 'ArrowDown':  this.hardDrop();  break;
-        case ' ':          this.getAISuggestion(); break;
-      }
-    });
-  }
-
-  // === Simulaciones básicas (en versión real, tendrías lógica de piezas)
-  moveLeft(): void  { this.applyAction(0); }
-  moveRight(): void { this.applyAction(1); }
-  rotate(): void    { this.applyAction(2); }
-  hardDrop(): void  { this.applyAction(3); }
-  noAction(): void  { this.applyAction(4); }
-
-  applyAction(action: number): void {
-    console.log('Aplicando:', this.ACTIONS[action]);
-    // Aquí iría la lógica real del motor de juego
-    this.redrawBoard();
-  }
-
-  // === Sugerencia manual ===
-  getAISuggestion(): void {
-    this.aiLoading = true;
-    this.aiSuggestion = null;
-
-    this.tetrisService.getAIMove(this.board).subscribe({
-      next: (response) => {
-        this.aiSuggestion = response;
-        this.aiLoading = false;
-        console.log('IA sugiere:', this.ACTIONS[response.action]);
-      },
-      error: () => {
-        this.aiLoading = false;
-        alert('Error al contactar con la IA');
-      }
-    });
-  }
-
-  // === Autoplay: juega solo ===
-  startAutoPlay(): void {
-    if (this.isAutoPlaying) return;
-
-    this.isAutoPlaying = true;
-    this.autoPlayInterval = setInterval(() => {
-      this.getAISuggestionForAutoPlay();
-    }, 800);
-  }
-
-  getAISuggestionForAutoPlay(): void {
-    this.tetrisService.getAIMove(this.board).subscribe({
-      next: (response) => {
-        this.aiSuggestion = response;
-        this.applyAction(response.action); // Aplica automáticamente
-      },
-      error: (err) => {
-        console.error('Error en autoplay:', err);
-        this.stopAutoPlay();
-      }
-    });
-  }
-
-  stopAutoPlay(): void {
-    if (this.autoPlayInterval) {
-      clearInterval(this.autoPlayInterval);
-      this.autoPlayInterval = null;
-    }
-    this.isAutoPlaying = false;
-  }
-
-  // === Renderizado visual ===
-  redrawBoard(): void {
-    // En una versión avanzada usarías Canvas
-    console.table(this.board);
-  }
-
-  resetGame(): void {
-    this.stopAutoPlay();
-    this.initBoard();
+  resetGame() {
+    this.board = Array.from({ length: 20 }, () => Array(10).fill(0));
     this.score = 0;
     this.gameOver = false;
-    this.aiSuggestion = null;
+    this.currentPiece = this.generateRandomPiece();
+    this.drawPieceOnBoard();
+    this.gravityCounter = 0;
+    this.lastActionWasDown = false;
+    this.actionStats = [0, 0, 0, 0];
+    this.gameLoop();
   }
-  // ✅ Propiedad segura para mostrar Q-values
-  get qValuesFormatted(): string {
-    const q = this.aiSuggestion?.q_values;
-    if (!Array.isArray(q)) return '---';
-    try {
-      return q.map(v => v.toFixed(2)).join(', ');
-    } catch (e) {
-      return '---';
+
+  gameLoop() {
+    if (this.gameOver) return;
+
+    const body = { board: this.board };
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    this.http.post<{ action: number }>(this.apiUrl, body, { headers }).subscribe({
+      next: (response) => {
+        const action = response.action;
+
+        // ✅ Safe array access
+        if (action >= 0 && action < this.actionStats.length) {
+          this.actionStats[action]++;
+        }
+        console.log('Action:', action, 'Stats:', this.actionStats);
+
+        this.applyMove(action);
+
+        // 🔻 Gravity fallback
+        this.gravityCounter++;
+        if (!this.lastActionWasDown && this.gravityCounter >= this.MAX_GRAVITY) {
+          this.applyMove(3); // Force down
+          this.gravityCounter = 0;
+        }
+
+        this.checkGameOver();
+        this.clearLines();
+
+        setTimeout(() => this.gameLoop(), 400);
+      },
+      error: (err) => {
+        console.error('API Error:', err);
+        this.gameOver = true;
+      }
+    });
+  }
+
+  generateRandomPiece() {
+    const pieces = [
+      [[1, 1, 1, 1]],           // I
+      [[1, 1], [1, 1]],         // O
+      [[0, 1, 0], [1, 1, 1]],   // T
+      [[0, 1, 1], [1, 1, 0]],   // S
+      [[1, 1, 0], [0, 1, 1]],   // Z
+      [[1, 0, 0], [1, 1, 1]],   // J
+      [[0, 0, 1], [1, 1, 1]]    // L
+    ];
+    const shape = pieces[Math.floor(Math.random() * pieces.length)];
+    const x = Math.floor((10 - shape[0].length) / 2);
+    return { shape, position: [x, 0] as [number, number] };
+  }
+
+  applyMove(action: number) {
+    if (!this.currentPiece) return;
+
+    let { shape, position } = this.currentPiece;
+    let [x, y] = position;
+
+    this.clearPieceFromBoard(shape, x, y);
+
+    let newX = x;
+    let newY = y;
+    let newShape = shape;
+
+    switch (action) {
+      case 0:
+        if (!this.checkCollision(shape, x - 1, y)) newX = x - 1;
+        break;
+      case 1:
+        if (!this.checkCollision(shape, x + 1, y)) newX = x + 1;
+        break;
+      case 2:
+        const rotated = this.rotatePiece(shape);
+        if (!this.checkCollision(rotated, x, y)) newShape = rotated;
+        break;
+      case 3:
+        if (!this.checkCollision(shape, x, y + 1)) newY = y + 1;
+        break;
+      default:
+        console.warn('Unknown action:', action);
+        this.drawPieceOnBoard();
+        return;
+    }
+
+    this.currentPiece = { shape: newShape, position: [newX, newY] };
+    this.drawPieceOnBoard();
+    this.lastActionWasDown = action === 3;
+  }
+
+  drawPieceOnBoard() {
+    if (!this.currentPiece) return;
+    const { shape, position } = this.currentPiece;
+    for (let i = 0; i < shape.length; i++) {
+      for (let j = 0; j < shape[i].length; j++) {
+        if (shape[i][j]) {
+          const row = position[1] + i;
+          const col = position[0] + j;
+          if (row >= 0 && row < 20 && col >= 0 && col < 10) {
+            this.board[row][col] = 1;
+          }
+        }
+      }
+    }
+    this.board = [...this.board.map(row => [...row])];
+  }
+
+  clearPieceFromBoard(shape: number[][], x: number, y: number) {
+    for (let i = 0; i < shape.length; i++) {
+      for (let j = 0; j < shape[i].length; j++) {
+        if (shape[i][j]) {
+          const row = y + i;
+          const col = x + j;
+          if (row >= 0 && row < 20 && col >= 0 && col < 10) {
+            this.board[row][col] = 0;
+          }
+        }
+      }
     }
   }
+
+  checkCollision(piece: number[][], x: number, y: number): boolean {
+    for (let i = 0; i < piece.length; i++) {
+      for (let j = 0; j < piece[i].length; j++) {
+        if (piece[i][j]) {
+          const newX = x + j;
+          const newY = y + i;
+          if (newX < 0 || newX >= 10 || newY >= 20 || (newY >= 0 && this.board[newY][newX])) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  rotatePiece(piece: number[][]): number[][] {
+    return piece[0].map((_, i) => piece.map(row => row[i]).reverse());
+  }
+
+  checkGameOver() {
+    const topRows = [...this.board[0], ...this.board[1]];
+    const filledCount = topRows.filter(cell => cell === 1).length;
+    if (filledCount > 3) {
+      this.gameOver = true;
+    }
+  }
+
+  clearLines() {
+    let linesCleared = 0;
+    for (let i = 0; i < this.board.length; i++) {
+      if (this.board[i].every(cell => cell === 1)) {
+        this.board.splice(i, 1);
+        this.board.unshift(Array(10).fill(0));
+        linesCleared++;
+        i--;
+      }
+    }
+    this.score += linesCleared * 10;
+  }
 }
+  
