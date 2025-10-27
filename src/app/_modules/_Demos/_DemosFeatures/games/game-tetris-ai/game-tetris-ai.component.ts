@@ -29,7 +29,7 @@ interface TetrisState {
   styleUrl: './game-tetris-ai.component.css'
 })
 export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
-    board: number[][] = [];
+   board: number[][] = [];
   score = 0;
   gameOver = false;
   currentPiece: { shape: number[][], position: [number, number] } | null = null;
@@ -40,7 +40,8 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
   private readonly MAX_GRAVITY = 3; // Force down every 3 AI steps
 
   // For debugging
-  actionStats: number[] = [0, 0, 0, 0, 0]; // Index 0-4 for actions 0-4//
+  actionStats: number[] = [0, 0, 0, 0, 0]; // Index 0-4 for actions 0-4
+
   constructor(    private http: HttpClient, 
                   private cd: ChangeDetectorRef,
                   public  override configService    : ConfigService,
@@ -56,8 +57,8 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
             PAGE_GAMES_TETRIS_AI
       )
   }
-  //
-    ngOnInit(): void {
+  
+  ngOnInit(): void {
     this.resetGame();
   }
 
@@ -81,7 +82,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
 
     this.http.post<{ action: number }>(this.apiUrl, body, { headers }).subscribe({
       next: (response) => {
-        const action = response.action;
+        let action = response.action;
 
         // Log action stats
         if (action >= 0 && action <= 4) {
@@ -89,12 +90,12 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
         }
         console.log('Action:', action, 'Stats:', this.actionStats);
 
+        // Apply move
         this.applyMove(action);
 
         // 🔻 AUTOMATIC GRAVITY
         this.gravityCounter++;
         if (!this.lastActionWasDown && this.gravityCounter >= this.MAX_GRAVITY) {
-          console.log('Before applyMove:', { action, board: JSON.stringify(this.board.slice(0, 2)) });
           this.applyMove(3); // Force down
           this.gravityCounter = 0;
         }
@@ -106,7 +107,18 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
       },
       error: (err) => {
         console.error('API Error:', err);
-        this.gameOver = true;
+        // Fallback to mock AI
+        const mockAction = this.getMockAction();
+        console.log('Using mock action:', mockAction);
+        this.applyMove(mockAction);
+        this.gravityCounter++;
+        if (!this.lastActionWasDown && this.gravityCounter >= this.MAX_GRAVITY) {
+          this.applyMove(3);
+          this.gravityCounter = 0;
+        }
+        this.checkGameOver();
+        this.clearLines();
+        setTimeout(() => this.gameLoop(), 400);
       }
     });
   }
@@ -186,8 +198,6 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     // Update piece position
     this.currentPiece = { shape: newShape, position: [newX, newY] };
     this.drawPieceOnBoard();
-    console.log('After draw:', { position: this.currentPiece?.position, boardTop: this.board[0].slice(0, 5) });
-
     this.lastActionWasDown = (action === 3);
   }
 
@@ -283,5 +293,24 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     // Check for game over after locking
     this.checkGameOver();
   }
- }
+
+  // 🎯 Mock AI: Simple rule-based logic
+  getMockAction(): number {
+    if (!this.currentPiece) return 3; // Default to "down"
+
+    const [x, y] = this.currentPiece.position;
+
+    // If piece is near right edge, move left
+    if (x > 5) return 0;
+
+    // If piece is near left edge, move right
+    if (x < 2) return 1;
+
+    // Rotate every 5 steps
+    if (Math.random() < 0.2) return 2;
+
+    // Otherwise, move down
+    return 3;
+  } 
+}
   
