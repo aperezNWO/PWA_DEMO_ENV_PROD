@@ -42,6 +42,9 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
   // For debugging
   actionStats: number[] = [0, 0, 0, 0, 0]; // Index 0-4 for actions 0-4
 
+  private stuckCounter = 0;
+  private lastPosition: [number, number] | null = null;
+
   constructor(    private http: HttpClient, 
                   private cd: ChangeDetectorRef,
                   public  override configService    : ConfigService,
@@ -77,6 +80,23 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
   gameLoop() {
     if (this.gameOver) return;
 
+    // Check if piece is stuck (same position for too long)
+    if (this.currentPiece) {
+      const [x, y] = this.currentPiece.position;
+      if (this.lastPosition && this.lastPosition[0] === x && this.lastPosition[1] === y) {
+        this.stuckCounter++;
+        if (this.stuckCounter > 5) {
+          console.log('Stuck detected! Forcing lock...');
+          this.stuckCounter = 0;
+          this.lockPiece();
+          return;
+        }
+      } else {
+        this.stuckCounter = 0;
+        this.lastPosition = [x, y];
+      }
+    }
+    
     const body = { board: this.board };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -139,101 +159,111 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
   }
 
   applyMove(action: number) {
-    if (!this.currentPiece) return;
+  if (!this.currentPiece) return;
 
-    let { shape, position } = this.currentPiece;
-    let [x, y] = position;
+  let { shape, position } = this.currentPiece;
+  let [x, y] = position;
 
-    // Clear current piece from board
-    this.clearPieceFromBoard(shape, x, y);
+  // Clear current piece from board (immutable)
+  this.clearPieceFromBoard(shape, x, y);
 
-    let newX = x;
-    let newY = y;
-    let newShape = shape;
-    let moved = false;
+  let newX = x;
+  let newY = y;
+  let newShape = shape;
+  let moved = false;
 
-    switch (action) {
-      case 0: // left
-        if (!this.checkCollision(shape, x - 1, y)) {
-          newX = x - 1;
-          moved = true;
-        }
-        break;
-      case 1: // right
-        if (!this.checkCollision(shape, x + 1, y)) {
-          newX = x + 1;
-          moved = true;
-        }
-        break;
-      case 2: // rotate
-        const rotated = this.rotatePiece(shape);
-        if (!this.checkCollision(rotated, x, y)) {
-          newShape = rotated;
-          moved = true;
-        }
-        break;
-      case 3: // down
-        if (!this.checkCollision(shape, x, y + 1)) {
-          newY = y + 1;
-          moved = true;
-        }
-        break;
-      case 4: // no_action
-        // Do nothing, but still check for locking
-        break;
-      default:
-        console.warn('Unknown action:', action);
-        this.drawPieceOnBoard(); // Redraw original
-        return;
-    }
-
-    // If no movement occurred, lock the piece
-    if (!moved) {
-      console.log('Piece stuck! Locking piece...');
+  switch (action) {
+    case 0: // left
+      if (!this.checkCollision(shape, x - 1, y)) {
+        newX = x - 1;
+        moved = true;
+      }
+      break;
+    case 1: // right
+      if (!this.checkCollision(shape, x + 1, y)) {
+        newX = x + 1;
+        moved = true;
+      }
+      break;
+    case 2: // rotate
+      const rotated = this.rotatePiece(shape);
+      if (!this.checkCollision(rotated, x, y)) {
+        newShape = rotated;
+        moved = true;
+      }
+      break;
+    case 3: // down
+      if (!this.checkCollision(shape, x, y + 1)) {
+        newY = y + 1;
+        moved = true;
+      }
+      break;
+    case 4: // no_action
+      // 🔥 TREAT THIS AS A SIGNAL TO LOCK THE PIECE
+      console.log('Action 4: Locking piece...');
       this.currentPiece = { shape: newShape, position: [newX, newY] };
       this.lockPiece(); // This will clear lines and spawn new piece
       return;
-    }
+    default:
+      console.warn('Unknown action:', action);
+      this.drawPieceOnBoard(); // Redraw original
+      return;
+  }
 
-    // Update piece position
+  // If no movement occurred, lock the piece
+  if (!moved) {
+    console.log('Piece stuck! Locking piece...');
     this.currentPiece = { shape: newShape, position: [newX, newY] };
-    this.drawPieceOnBoard();
-    this.lastActionWasDown = (action === 3);
+    this.lockPiece(); // This will clear lines and spawn new piece
+    return;
   }
 
-  drawPieceOnBoard() {
-    if (!this.currentPiece) return;
-    const { shape, position } = this.currentPiece;
-    for (let i = 0; i < shape.length; i++) {
-      for (let j = 0; j < shape[i].length; j++) {
-        if (shape[i][j]) {
-          const row = position[1] + i;
-          const col = position[0] + j;
-          if (row >= 0 && row < 20 && col >= 0 && col < 10) {
-            this.board[row][col] = 1;
-          }
-        }
-      }
-    }
-    // Trigger change detection
-    this.board = [...this.board.map(row => [...row])];
-  }
+  // Update piece position
+  this.currentPiece = { shape: newShape, position: [newX, newY] };
+  this.drawPieceOnBoard();
+  this.lastActionWasDown = (action === 3);
+ }
+ 
+ drawPieceOnBoard() {
+  if (!this.currentPiece) return;
 
-  clearPieceFromBoard(shape: number[][], x: number, y: number) {
-    for (let i = 0; i < shape.length; i++) {
-      for (let j = 0; j < shape[i].length; j++) {
-        if (shape[i][j]) {
-          const row = y + i;
-          const col = x + j;
-          if (row >= 0 && row < 20 && col >= 0 && col < 10) {
-            this.board[row][col] = 0;
-          }
+  const { shape, position } = this.currentPiece;
+  let newBoard = [...this.board.map(row => [...row])]; // Deep clone
+
+  for (let i = 0; i < shape.length; i++) {
+    for (let j = 0; j < shape[i].length; j++) {
+      if (shape[i][j]) {
+        const row = position[1] + i;
+        const col = position[0] + j;
+        if (row >= 0 && row < 20 && col >= 0 && col < 10) {
+          newBoard[row][col] = 1;
         }
       }
     }
   }
 
-  checkCollision(piece: number[][], x: number, y: number): boolean {
+  this.board = newBoard; // Replace entire board → triggers change detection
+  }
+
+ clearPieceFromBoard(shape: number[][], x: number, y: number) {
+  let newBoard = [...this.board.map(row => [...row])]; // Deep clone
+
+  for (let i = 0; i < shape.length; i++) {
+    for (let j = 0; j < shape[i].length; j++) {
+      if (shape[i][j]) {
+        const row = y + i;
+        const col = x + j;
+        if (row >= 0 && row < 20 && col >= 0 && col < 10) {
+          newBoard[row][col] = 0;
+        }
+      }
+    }
+  }
+
+  this.board = newBoard; // Replace entire board → triggers change detection
+}
+
+checkCollision(piece: number[][], x: number, y: number): boolean {
     for (let i = 0; i < piece.length; i++) {
       for (let j = 0; j < piece[i].length; j++) {
         if (piece[i][j]) {
@@ -280,19 +310,21 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
   }
 
   lockPiece() {
-    // Place the current piece permanently on the board
-    this.drawPieceOnBoard();
+  // Place the current piece permanently on the board
+  this.drawPieceOnBoard();
 
-    // Check for completed lines
-    this.clearLines();
+  // Check for completed lines
+  this.clearLines();
 
-    // Spawn a new piece
-    this.currentPiece = this.generateRandomPiece();
-    this.drawPieceOnBoard();
+  // Spawn a new piece
+  this.currentPiece = this.generateRandomPiece();
+  
+  // ✅ FORCE RE-RENDER by creating a new board instance
+  this.board = [...this.board.map(row => [...row])];
 
-    // Check for game over after locking
-    this.checkGameOver();
-  }
+  // Check for game over after locking
+  this.checkGameOver();
+}
 
   // 🎯 Mock AI: Simple rule-based logic
   getMockAction(): number {
