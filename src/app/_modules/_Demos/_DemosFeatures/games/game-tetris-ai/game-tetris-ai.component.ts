@@ -29,7 +29,7 @@ interface TetrisState {
   styleUrl: './game-tetris-ai.component.css'
 })
 export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
- board: number[][] = [];
+  board: number[][] = [];
   score = 0;
   gameOver = false;
   currentPiece: { shape: number[][], position: [number, number] } | null = null;
@@ -37,11 +37,11 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
   private apiUrl = 'https://nkg7t7-8000.csb.app/api/tetris/move/';
   private lastActionWasDown = false;
   private gravityCounter = 0;
-  private readonly MAX_GRAVITY = 3;
+  private readonly MAX_GRAVITY = 3; // Force down every 3 AI steps
 
-  // ✅ FIXED: Use array instead of object to avoid TS indexing error
-  actionStats: number[] = [0, 0, 0, 0]; // [left, right, rotate, down]
-
+   // For debugging
+  actionStats: number[] = [0, 0, 0, 0, 0]; // Index 0-4 for actions 0-4
+  //
   constructor(    private http: HttpClient, 
                   private cd: ChangeDetectorRef,
                   public  override configService    : ConfigService,
@@ -56,9 +56,8 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
             speechService,
             PAGE_GAMES_TETRIS_AI
       )
-
- }
-  ngOnInit(): void {
+    }
+    ngOnInit(): void {
     this.resetGame();
   }
 
@@ -70,7 +69,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     this.drawPieceOnBoard();
     this.gravityCounter = 0;
     this.lastActionWasDown = false;
-    this.actionStats = [0, 0, 0, 0];
+    this.actionStats = [0, 0, 0, 0, 0];
     this.gameLoop();
   }
 
@@ -83,17 +82,16 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     this.http.post<{ action: number }>(this.apiUrl, body, { headers }).subscribe({
       next: (response) => {
         const action = response.action;
-        // 
-        console.log(JSON.stringify(response));
-        // ✅ Safe array access
-        if (action >= 0 && action < this.actionStats.length) {
+
+        // Log action stats
+        if (action >= 0 && action <= 4) {
           this.actionStats[action]++;
         }
         console.log('Action:', action, 'Stats:', this.actionStats);
         console.log('Before applyMove:', { action, board: JSON.stringify(this.board.slice(0, 2)) });
         this.applyMove(action);
 
-        // 🔻 Gravity fallback
+        // 🔻 AUTOMATIC GRAVITY
         this.gravityCounter++;
         if (!this.lastActionWasDown && this.gravityCounter >= this.MAX_GRAVITY) {
           this.applyMove(3); // Force down
@@ -133,36 +131,62 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     let { shape, position } = this.currentPiece;
     let [x, y] = position;
 
+    // Clear current piece from board
     this.clearPieceFromBoard(shape, x, y);
 
     let newX = x;
     let newY = y;
     let newShape = shape;
+    let moved = false;
 
     switch (action) {
-      case 0:
-        if (!this.checkCollision(shape, x - 1, y)) newX = x - 1;
+      case 0: // left
+        if (!this.checkCollision(shape, x - 1, y)) {
+          newX = x - 1;
+          moved = true;
+        }
         break;
-      case 1:
-        if (!this.checkCollision(shape, x + 1, y)) newX = x + 1;
+      case 1: // right
+        if (!this.checkCollision(shape, x + 1, y)) {
+          newX = x + 1;
+          moved = true;
+        }
         break;
-      case 2:
+      case 2: // rotate
         const rotated = this.rotatePiece(shape);
-        if (!this.checkCollision(rotated, x, y)) newShape = rotated;
+        if (!this.checkCollision(rotated, x, y)) {
+          newShape = rotated;
+          moved = true;
+        }
         break;
-      case 3:
-        if (!this.checkCollision(shape, x, y + 1)) newY = y + 1;
+      case 3: // down
+        if (!this.checkCollision(shape, x, y + 1)) {
+          newY = y + 1;
+          moved = true;
+        }
+        break;
+      case 4: // no_action (from your log)
+        // Do nothing, but still check for locking
         break;
       default:
         console.warn('Unknown action:', action);
-        this.drawPieceOnBoard();
+        this.drawPieceOnBoard(); // Redraw original
         return;
     }
 
+    // If no movement occurred, lock the piece
+    if (!moved) {
+      console.log('Piece stuck! Locking piece...');
+      this.currentPiece = { shape: newShape, position: [newX, newY] };
+      this.lockPiece(); // This will clear lines and spawn new piece
+      return;
+    }
+
+    // Update piece position
     this.currentPiece = { shape: newShape, position: [newX, newY] };
     this.drawPieceOnBoard();
     console.log('After draw:', { position: this.currentPiece?.position, boardTop: this.board[0].slice(0, 5) });
-    this.lastActionWasDown = action === 3;
+    this.lastActionWasDown = (action === 3);
   }
 
   drawPieceOnBoard() {
@@ -179,6 +203,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
         }
       }
     }
+    // Trigger change detection
     this.board = [...this.board.map(row => [...row])];
   }
 
@@ -202,7 +227,12 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
         if (piece[i][j]) {
           const newX = x + j;
           const newY = y + i;
-          if (newX < 0 || newX >= 10 || newY >= 20 || (newY >= 0 && this.board[newY][newX])) {
+          if (
+            newX < 0 ||
+            newX >= 10 ||
+            newY >= 20 ||
+            (newY >= 0 && this.board[newY][newX])
+          ) {
             return true;
           }
         }
@@ -216,6 +246,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
   }
 
   checkGameOver() {
+    // Only game over if top two rows are significantly filled
     const topRows = [...this.board[0], ...this.board[1]];
     const filledCount = topRows.filter(cell => cell === 1).length;
     if (filledCount > 3) {
@@ -235,5 +266,20 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     }
     this.score += linesCleared * 10;
   }
-}
+
+  lockPiece() {
+    // Place the current piece permanently on the board
+    this.drawPieceOnBoard();
+
+    // Check for completed lines
+    this.clearLines();
+
+    // Spawn a new piece
+    this.currentPiece = this.generateRandomPiece();
+    this.drawPieceOnBoard();
+
+    // Check for game over after locking
+    this.checkGameOver();
+  }
+ }
   
