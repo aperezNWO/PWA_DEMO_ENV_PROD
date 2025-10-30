@@ -406,12 +406,27 @@
 
                 --  [_] tictactoe.
 
- -- TIC-TAC-TOE DEMO.
+ -- [_] TIC-TAC-TOE DEMO.
  
-        --  [_] c++ neural network which learns to play tictactoe against itself.
+        --  [x] c++ neural network which learns to play tictactoe against itself.
 
-                --  [_] https://chat.qwen.ai/c/7d46d2ce-70a5-4c9f-ba4c-d7ce475527ed
+                --  [x] https://chat.qwen.ai/c/7d46d2ce-70a5-4c9f-ba4c-d7ce475527ed
 
-        -- [_] param link to specific lang.        
+        -- [x] param link to specific lang.        
+
+
+ -- [_] OPENCV DEMO.
+        
+         -- [_] WITH TENSORFLOW.
+
+         -- [_] WITH PYTORCH.
+ 
+ -- [_] OCR DEMO.
+        
+         -- [_] WITH TENSORFLOW.
+
+         -- [_] WITH PYTORCH.
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
