@@ -66,8 +66,8 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
         // LENGUAJES DE PROGRAMACION
         //-----------------------------------------------------------------------------
         this.__languajeList = new Array();
-        this.__languajeList.push(new _languageName(0, '(.NET Core/C++ -> Expert   A.I.)'  , false ,"CPP"  ));
-        this.__languajeList.push(new _languageName(1, '(.NET Core/C++ -> Creative A.I.)'  , true,  "CPP"   ));
+        this.__languajeList.push(new _languageName(0, '(.NET Core/C++ -> Expert       )'  , false ,"CPP"  ));
+        this.__languajeList.push(new _languageName(1, '(.NET Core/C++ -> Creative     )'  , true,  "CPP"   ));
         this.__languajeList.push(new _languageName(3, '(.NET Core/C++ -> Random Player)'  , false, "CPP"  ));
         this.__languajeList.push(new _languageName(4, '(Python        -> Tensorflow)   '  , false, "PY"   ));
         //
