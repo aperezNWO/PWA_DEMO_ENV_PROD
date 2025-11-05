@@ -28,7 +28,7 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
   currentStep  = 0;
   loading      = true;
   error        = '';
-  aiMode       = 1; // Creative AI
+  aiMode       = 3; 
   temperature  = 1.5;
   //
   private animationInterval: any;
