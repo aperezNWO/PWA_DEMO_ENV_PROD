@@ -55,13 +55,11 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     //
     this.queryParams();
-    //
-    this.loadGame();
   }
   //
   queryParams():void{
     //
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe({ next: (params) => {
         //-----------------------------------------------------------------------------
         // LENGUAJES DE PROGRAMACION
         //-----------------------------------------------------------------------------
@@ -79,7 +77,7 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
             //
             console.log(` LangName : ${langName}`);  
             //
-            for (var index = 0; index < this.__languajeList.length; index++) {
+            for (var index = 2; index < this.__languajeList.length; index++) {
               //
               if (this.__languajeList[index]._shortName  == langName)
                 {
@@ -95,6 +93,12 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
         {
             this.aiMode = 3;
         }
+        //
+        this.loadGame();
+    }
+    ,complete        : ()                => {
+        //
+     },
     });
   }
   //
@@ -103,7 +107,7 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
     let jsonData : string = JSON.parse(JSON.stringify(_environment.externalConfig))[key];
     //
     return jsonData;
-    }
+  }
   //
   loadGame() {
     //
