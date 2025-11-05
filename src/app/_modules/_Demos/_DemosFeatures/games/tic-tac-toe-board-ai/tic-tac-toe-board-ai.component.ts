@@ -77,12 +77,12 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
             //
             console.log(` LangName : ${langName}`);  
             //
-            for (var index = 2; index < this.__languajeList.length; index++) {
+            for (var index = 0; index < this.__languajeList.length; index++) {
               //
               if (this.__languajeList[index]._shortName  == langName)
                 {
                   this.__languajeList[index]._selected = true;     
-                  this.aiMode                          = (index + 1);
+                  this.aiMode                          = (index + 2);
                   
                   break;
           
