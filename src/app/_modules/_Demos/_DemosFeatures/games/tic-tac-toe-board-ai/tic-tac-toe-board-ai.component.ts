@@ -63,7 +63,8 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
         //-----------------------------------------------------------------------------
         // LENGUAJES DE PROGRAMACION
         //-----------------------------------------------------------------------------
-        this.__languajeList = new Array();
+        let disabled_items_count : number  = 2;
+        this.__languajeList      = new Array();
         //this.__languajeList.push(new _languageName(0, '(.NET Core/C++ -> Expert        ) '  , false ,"CPP"  ));
         //this.__languajeList.push(new _languageName(1, '(.NET Core/C++ -> Creative      ) '  , true,  "CPP"  ));
         this.__languajeList.push(new _languageName(2, '(.NET Core/C++ -> Min Max       ) '  , false, "CPP"  ));
@@ -82,7 +83,7 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
               if (this.__languajeList[index]._shortName  == langName)
                 {
                   this.__languajeList[index]._selected = true;     
-                  this.aiMode                          = (index + 2);
+                  this.aiMode                          = this.__languajeList[index]._index;
                   
                   break;
           
@@ -91,7 +92,7 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
         } 
         else 
         {
-            this.aiMode = 3;
+            this.aiMode = 3; // (.NET Core/C++ -> Random Player ) 
         }
         //
         this.loadGame();
