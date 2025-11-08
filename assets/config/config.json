@@ -1,7 +1,7 @@
 {
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "2.4.37",
+    "appVersion"                                   : "2.4.38",
     "baseUrlNetCoreCPPEntry_local"                 : "http://localhost:83/",
     "baseUrlNetCoreCPPEntry_remote"                : "https://tensorflownetcore64.tryasp.net/",
     "baseUrlNetCoreCPPEntry"                       : "https://tensorflownetcore64.tryasp.net/",
@@ -9,6 +9,9 @@
     "baseUrlNetCore_remote"                        : "https://angularwebapidemo.somee.com/",
     "baseUrlNetCore"                               : "https://angularwebapidemo.somee.com/",
     "baseUrlNodeJs_local"                          : "http://localhost:8080/",
+    "_aperezNWO"                                   : "22 October – 22 November 2025 (available)",
+    "_aperezNWOGmail"                              : "13 October – 13 November 2025 (full)",
+    "_df149032"                                    : "17 October – 17 November 2025 (available)",
     "baseUrlNodeJs_aperezNWO"                      : "https://fxh4m2-4000.csb.app/",
     "baseUrlNodeJs_aperezNWOGmail"                 : "https://xx9q24-4000.csb.app/",
     "baseUrlNodeJs_df149032"                       : "https://3t9x5h-4000.csb.app/",
