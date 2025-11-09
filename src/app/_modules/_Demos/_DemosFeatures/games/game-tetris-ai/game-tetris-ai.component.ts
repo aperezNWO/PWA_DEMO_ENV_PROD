@@ -34,7 +34,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
   gameOver = false;
   currentPiece: { shape: number[][], position: [number, number] } | null = null;
 
-  private apiUrl = 'https://nkg7t7-8000.csb.app/api/tetris/move/';
+  private apiUrl = 'https://nkg7t7-8000.csb.app/api/tetris/movefixed/';
   private lastActionWasDown = false;
   private gravityCounter = 0;
   private readonly MAX_GRAVITY = 3; // Force down every 3 AI steps
