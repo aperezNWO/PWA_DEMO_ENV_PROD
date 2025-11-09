@@ -5,8 +5,16 @@ import { BackendService                            } from 'src/app/_services/Bac
 import { ConfigService                             } from 'src/app/_services/ConfigService/config.service';
 import { SpeechService                             } from 'src/app/_services/speechService/speech.service';
 import { PAGE_GAMES_TETRIS_AI                      } from 'src/app/_models/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
+import { HttpClient, HttpHeaders                   } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+
+export interface AIMove {
+  action: number;
+  action_name: string;
+  q_values: number[];
+  success: boolean;
+}
 
 // Global variables provided by the Canvas environment for authentication and app configuration
 declare const __app_id: string;
@@ -29,14 +37,14 @@ interface TetrisState {
   styleUrl: './game-tetris-ai.component.css'
 })
 export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
-   board: number[][] = [];
+  board: number[][] = [];
   score = 0;
   gameOver = false;
   currentPiece: { shape: number[][], position: [number, number] } | null = null;
 
-  private apiUrl = 'https://nkg7t7-8000.csb.app/tetris_ai_move';
-  private lastActionWasDown = false;
-  private gravityCounter = 0;
+  private apiUrl               = 'https://6rtfk8-8000.csb.app/tetris_ai_move';
+  private lastActionWasDown    = false;
+  private gravityCounter       = 0;
   private readonly MAX_GRAVITY = 3; // Force down every 3 AI steps
 
   // For debugging
@@ -44,6 +52,11 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
 
   private stuckCounter = 0;
   private lastPosition: [number, number] | null = null;
+
+  // SIMULATION
+  aiMove: AIMove | null = null;
+  // Simulación de tablero (vacío)
+  _mockBoard: number[][] = Array(20).fill(0).map(() => Array(10).fill(0));
 
   constructor(    private http: HttpClient, 
                   private cd: ChangeDetectorRef,
@@ -66,6 +79,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
   }
 
   resetGame() {
+    /*
     this.board = Array.from({ length: 20 }, () => Array(10).fill(0));
     this.score = 0;
     this.gameOver = false;
@@ -74,9 +88,28 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     this.gravityCounter = 0;
     this.lastActionWasDown = false;
     this.actionStats = [0, 0, 0, 0, 0];
-    this.gameLoop();
-  }
+    this.gameLoop(); */
 
+    // FOR SIMULATION
+    this.askAI();
+  }
+  //
+  getAIMove(board: number[][]): Observable<AIMove> {
+    return this.http.post<AIMove>(this.apiUrl, { board });
+  }
+  //
+  askAI(): void {
+    this.getAIMove(this._mockBoard).subscribe({
+      next: (response) => {
+        this.aiMove = response;
+        console.log('IA sugiere:', response);
+      },
+      error: (err) => {
+        console.error('Error al contactar con el modelo:', err);
+      }
+    });
+  }
+  //
   gameLoop() {
     if (this.gameOver) return;
 
@@ -97,6 +130,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
       }
     }
     
+
     const body = { board: this.board };
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
