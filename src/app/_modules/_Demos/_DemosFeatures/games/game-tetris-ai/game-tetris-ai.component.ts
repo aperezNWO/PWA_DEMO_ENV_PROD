@@ -8,7 +8,6 @@ import { PAGE_GAMES_TETRIS_AI                      } from 'src/app/_models/commo
 import { HttpClient, HttpHeaders                   } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
 export interface AIMove {
   action: number;
   action_name: string;
@@ -16,20 +15,6 @@ export interface AIMove {
   success: boolean;
 }
 
-// Global variables provided by the Canvas environment for authentication and app configuration
-declare const __app_id: string;
-declare const __firebase_config: string;
-declare const __initial_auth_token: string;
-
-/**
- * Interface representing the expected response structure from the Python backend API.
- * Assuming the backend returns the full grid, the current score, and the game over status.
- */
-interface TetrisState {
-  board: number[][]; // 20 rows x 10 columns. 0 for empty, >0 for block type/color.
-  score: number;
-  game_over: boolean;
-}
 
 @Component({
   selector: 'app-game-tetris-ai',
@@ -37,33 +22,40 @@ interface TetrisState {
   styleUrl: './game-tetris-ai.component.css'
 })
 export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
+  
+  BOARD_HEIGHT = 20;
+  BOARD_WIDTH = 10;
+
   board: number[][] = [];
-  score = 0;
   gameOver = false;
-  currentPiece: { shape: number[][], position: [number, number] } | null = null;
+  score = 0;
 
-  private apiUrl               = 'https://6rtfk8-8000.csb.app/tetris_ai_move';
-  private lastActionWasDown    = false;
-  private gravityCounter       = 0;
-  private readonly MAX_GRAVITY = 3; // Force down every 3 AI steps
+  aiSuggestion: AIMove | null = null;
+  aiLoading = false;
 
-  // For debugging
-  actionStats: number[] = [0, 0, 0, 0, 0]; // Index 0-4 for actions 0-4
+  // 🔗 URL de tu backend
+  private apiUrl = 'https://6rtfk8-8000.csb.app/tetris_ai_move';
 
-  private stuckCounter = 0;
-  private lastPosition: [number, number] | null = null;
-
-  // SIMULATION
-  aiMove: AIMove | null = null;
-  // Simulación de tablero (vacío)
-  _mockBoard: number[][] = Array(20).fill(0).map(() => Array(10).fill(0));
+  // Pieza activa
+  currentPieceX = 5;
+  currentPieceY = 0;
+  currentPieceShape: number[][] = [[1, 1], [1, 1]];
+  pieceTypes = [
+    [[1, 1, 1, 1]],                           // I
+    [[1, 1], [1, 1]],                         // O
+    [[0, 1, 0], [1, 1, 1]],                  // T
+    [[0, 1, 1], [1, 1, 0]],                  // S
+    [[1, 1, 0], [0, 1, 1]],                  // Z
+    [[1, 0, 0], [1, 1, 1]],                  // J
+    [[0, 0, 1], [1, 1, 1]]                   // L
+  ];
 
   constructor(    private http: HttpClient, 
                   private cd: ChangeDetectorRef,
                   public  override configService    : ConfigService,
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
-                  public  override backendService   : BackendService) 
+                  public  override backendService   : BackendService,) 
   { 
       //
       super(configService,
@@ -74,309 +66,199 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
       )
   }
   
-  ngOnInit(): void {
-    this.resetGame();
+ngOnInit(): void {
+    console.log('🎮 Tetris AI: Iniciando modo autoplay...');
+    this.initBoard();
+    this.spawnPiece();
+    this.redraw();
+    this.startAutoPlay();
   }
 
-  resetGame() {
-    /*
-    this.board = Array.from({ length: 20 }, () => Array(10).fill(0));
-    this.score = 0;
-    this.gameOver = false;
-    this.currentPiece = this.generateRandomPiece();
-    this.drawPieceOnBoard();
-    this.gravityCounter = 0;
-    this.lastActionWasDown = false;
-    this.actionStats = [0, 0, 0, 0, 0];
-    this.gameLoop(); */
-
-    // FOR SIMULATION
-    this.askAI();
-  }
-  //
-  getAIMove(board: number[][]): Observable<AIMove> {
-    return this.http.post<AIMove>(this.apiUrl, { board });
-  }
-  //
-  askAI(): void {
-    this.getAIMove(this._mockBoard).subscribe({
-      next: (response) => {
-        this.aiMove = response;
-        console.log('IA sugiere:', response);
-      },
-      error: (err) => {
-        console.error('Error al contactar con el modelo:', err);
-      }
-    });
-  }
-  //
-  gameLoop() {
-    if (this.gameOver) return;
-
-    // Check if piece is stuck (same position for too long)
-    if (this.currentPiece) {
-      const [x, y] = this.currentPiece.position;
-      if (this.lastPosition && this.lastPosition[0] === x && this.lastPosition[1] === y) {
-        this.stuckCounter++;
-        if (this.stuckCounter > 5) {
-          console.log('Stuck detected! Forcing lock...');
-          this.stuckCounter = 0;
-          this.lockPiece();
-          return;
-        }
-      } else {
-        this.stuckCounter = 0;
-        this.lastPosition = [x, y];
-      }
-    }
-    
-
-    const body = { board: this.board };
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    this.http.post<{ action: number }>(this.apiUrl, body, { headers }).subscribe({
-      next: (response) => {
-        let action = response.action;
-
-        // Log action stats
-        if (action >= 0 && action <= 4) {
-          this.actionStats[action]++;
-        }
-        console.log('Action:', action, 'Stats:', this.actionStats);
-
-        // Apply move
-        this.applyMove(action);
-
-        // 🔻 AUTOMATIC GRAVITY
-        this.gravityCounter++;
-        if (!this.lastActionWasDown && this.gravityCounter >= this.MAX_GRAVITY) {
-          this.applyMove(3); // Force down
-          this.gravityCounter = 0;
-        }
-
-        this.checkGameOver();
-        this.clearLines();
-
-        setTimeout(() => this.gameLoop(), 400);
-      },
-      error: (err) => {
-        console.error('API Error:', err);
-        // Fallback to mock AI
-        const mockAction = this.getMockAction();
-        console.log('Using mock action:', mockAction);
-        this.applyMove(mockAction);
-        this.gravityCounter++;
-        if (!this.lastActionWasDown && this.gravityCounter >= this.MAX_GRAVITY) {
-          this.applyMove(3);
-          this.gravityCounter = 0;
-        }
-        this.checkGameOver();
-        this.clearLines();
-        setTimeout(() => this.gameLoop(), 400);
-      }
-    });
+  initBoard(): void {
+    this.board = Array(this.BOARD_HEIGHT).fill(0).map(() => Array(this.BOARD_WIDTH).fill(0));
   }
 
-  generateRandomPiece() {
-    const pieces = [
-      [[1, 1, 1, 1]],           // I
-      [[1, 1], [1, 1]],         // O
-      [[0, 1, 0], [1, 1, 1]],   // T
-      [[0, 1, 1], [1, 1, 0]],   // S
-      [[1, 1, 0], [0, 1, 1]],   // Z
-      [[1, 0, 0], [1, 1, 1]],   // J
-      [[0, 0, 1], [1, 1, 1]]    // L
-    ];
-    const shape = pieces[Math.floor(Math.random() * pieces.length)];
-    const x = Math.floor((10 - shape[0].length) / 2);
-    return { shape, position: [x, 0] as [number, number] };
-  }
+  spawnPiece(): void {
+    this.currentPieceShape = this.pieceTypes[Math.floor(Math.random() * this.pieceTypes.length)];
+    const width = this.currentPieceShape[0].length;
+    this.currentPieceX = Math.max(0, Math.min(this.BOARD_WIDTH - width, 5));
+    this.currentPieceY = 0;
 
-  applyMove(action: number) {
-  if (!this.currentPiece) return;
-
-  let { shape, position } = this.currentPiece;
-  let [x, y] = position;
-
-  // Clear current piece from board (immutable)
-  this.clearPieceFromBoard(shape, x, y);
-
-  let newX = x;
-  let newY = y;
-  let newShape = shape;
-  let moved = false;
-
-  switch (action) {
-    case 0: // left
-      if (!this.checkCollision(shape, x - 1, y)) {
-        newX = x - 1;
-        moved = true;
-      }
-      break;
-    case 1: // right
-      if (!this.checkCollision(shape, x + 1, y)) {
-        newX = x + 1;
-        moved = true;
-      }
-      break;
-    case 2: // rotate
-      const rotated = this.rotatePiece(shape);
-      if (!this.checkCollision(rotated, x, y)) {
-        newShape = rotated;
-        moved = true;
-      }
-      break;
-    case 3: // down
-      if (!this.checkCollision(shape, x, y + 1)) {
-        newY = y + 1;
-        moved = true;
-      }
-      break;
-    case 4: // no_action
-      // 🔥 TREAT THIS AS A SIGNAL TO LOCK THE PIECE
-      console.log('Action 4: Locking piece...');
-      this.currentPiece = { shape: newShape, position: [newX, newY] };
-      this.lockPiece(); // This will clear lines and spawn new piece
-      return;
-    default:
-      console.warn('Unknown action:', action);
-      this.drawPieceOnBoard(); // Redraw original
-      return;
-  }
-
-  // If no movement occurred, lock the piece
-  if (!moved) {
-    console.log('Piece stuck! Locking piece...');
-    this.currentPiece = { shape: newShape, position: [newX, newY] };
-    this.lockPiece(); // This will clear lines and spawn new piece
-    return;
-  }
-
-  // Update piece position
-  this.currentPiece = { shape: newShape, position: [newX, newY] };
-  this.drawPieceOnBoard();
-  this.lastActionWasDown = (action === 3);
- }
- 
- drawPieceOnBoard() {
-  if (!this.currentPiece) return;
-
-  const { shape, position } = this.currentPiece;
-  let newBoard = [...this.board.map(row => [...row])]; // Deep clone
-
-  for (let i = 0; i < shape.length; i++) {
-    for (let j = 0; j < shape[i].length; j++) {
-      if (shape[i][j]) {
-        const row = position[1] + i;
-        const col = position[0] + j;
-        if (row >= 0 && row < 20 && col >= 0 && col < 10) {
-          newBoard[row][col] = 1;
-        }
-      }
+    if (this.wouldCollide()) {
+      console.warn('⚠️ Colisión al spawnear pieza → Juego terminado');
+      this.gameOver = true;
     }
   }
 
-  this.board = newBoard; // Replace entire board → triggers change detection
-  }
-
- clearPieceFromBoard(shape: number[][], x: number, y: number) {
-  let newBoard = [...this.board.map(row => [...row])]; // Deep clone
-
-  for (let i = 0; i < shape.length; i++) {
-    for (let j = 0; j < shape[i].length; j++) {
-      if (shape[i][j]) {
-        const row = y + i;
-        const col = x + j;
-        if (row >= 0 && row < 20 && col >= 0 && col < 10) {
-          newBoard[row][col] = 0;
-        }
-      }
-    }
-  }
-
-  this.board = newBoard; // Replace entire board → triggers change detection
-}
-
-checkCollision(piece: number[][], x: number, y: number): boolean {
-    for (let i = 0; i < piece.length; i++) {
-      for (let j = 0; j < piece[i].length; j++) {
-        if (piece[i][j]) {
-          const newX = x + j;
-          const newY = y + i;
-          if (
-            newX < 0 ||
-            newX >= 10 ||
-            newY >= 20 ||
-            (newY >= 0 && this.board[newY][newX])
-          ) {
-            return true;
-          }
+  wouldCollide(dx = 0, dy = 0): boolean {
+    for (let y = 0; y < this.currentPieceShape.length; y++) {
+      for (let x = 0; x < this.currentPieceShape[y].length; x++) {
+        if (this.currentPieceShape[y][x]) {
+          const px = this.currentPieceX + x + dx;
+          const py = this.currentPieceY + y + dy;
+          if (px < 0 || px >= this.BOARD_WIDTH || py >= this.BOARD_HEIGHT) return true;
+          if (py >= 0 && this.board[py][px] === 1) return true;
         }
       }
     }
     return false;
   }
 
-  rotatePiece(piece: number[][]): number[][] {
-    return piece[0].map((_, i) => piece.map(row => row[i]).reverse());
-  }
-
-  checkGameOver() {
-    // Only game over if top two rows are significantly filled
-    const topRows = [...this.board[0], ...this.board[1]];
-    const filledCount = topRows.filter(cell => cell === 1).length;
-    if (filledCount > 3) {
-      this.gameOver = true;
+  move(dx: number, dy: number): void {
+    if (!this.wouldCollide(dx, dy)) {
+      this.currentPieceX += dx;
+      this.currentPieceY += dy;
+    } else if (dy > 0) {
+      this.lockPiece();
+      this.clearLines();
+      this.spawnPiece();
     }
+    this.redraw();
   }
 
-  clearLines() {
-    let linesCleared = 0;
-    for (let i = 0; i < this.board.length; i++) {
-      if (this.board[i].every(cell => cell === 1)) {
-        this.board.splice(i, 1);
-        this.board.unshift(Array(10).fill(0));
-        linesCleared++;
-        i--;
+  rotatePiece(): void {
+    const rotated = this.rotateMatrix(this.currentPieceShape);
+    const oldShape = this.currentPieceShape;
+    this.currentPieceShape = rotated;
+    if (this.wouldCollide()) this.currentPieceShape = oldShape;
+    this.redraw();
+  }
+
+  hardDrop(): void {
+    while (!this.wouldCollide(0, 1)) {
+      this.currentPieceY++;
+    }
+    this.currentPieceY--;
+    this.lockPiece();
+    this.clearLines();
+    this.spawnPiece();
+    this.redraw();
+  }
+
+  lockPiece(): void {
+    for (let y = 0; y < this.currentPieceShape.length; y++) {
+      for (let x = 0; x < this.currentPieceShape[y].length; x++) {
+        if (this.currentPieceShape[y][x]) {
+          const py = this.currentPieceY + y;
+          const px = this.currentPieceX + x;
+          if (py >= 0 && py < this.BOARD_HEIGHT && px >= 0 && px < this.BOARD_WIDTH) {
+            this.board[py][px] = 1;
+          }
+        }
       }
     }
-    this.score += linesCleared * 10;
   }
 
-  lockPiece() {
-  // Place the current piece permanently on the board
-  this.drawPieceOnBoard();
+  clearLines(): void {
+    let linesCleared = 0;
+    for (let y = this.BOARD_HEIGHT - 1; y >= 0; y--) {
+      if (this.board[y].every(cell => cell === 1)) {
+        linesCleared++;
+        for (let yy = y; yy > 0; yy--) {
+          this.board[yy] = [...this.board[yy - 1]];
+        }
+        this.board[0] = Array(this.BOARD_WIDTH).fill(0);
+        y++;
+      }
+    }
+    if (linesCleared > 0) {
+      this.score += [0, 100, 300, 500, 800][linesCleared];
+    }
+  }
 
-  // Check for completed lines
-  this.clearLines();
+  redraw(): void {
+    this.initBoard();
+    this.lockPiece();
+    this.board = this.board.map(row => [...row]);
+    this.cd.detectChanges(); // 🔥 Fuerza actualización visual
+  }
 
-  // Spawn a new piece
-  this.currentPiece = this.generateRandomPiece();
-  
-  // ✅ FORCE RE-RENDER by creating a new board instance
-  this.board = [...this.board.map(row => [...row])];
+  // === Autoplay: Bucle infinito seguro ===
+  startAutoPlay(): void {
+    console.log('▶️ Autoplay iniciado');
+    this.autoPlayLoop();
+  }
 
-  // Check for game over after locking
-  this.checkGameOver();
-}
+  autoPlayLoop(): void {
+    if (this.gameOver) {
+      console.log('💀 Juego terminado. Deteniendo autoplay.');
+      return;
+    }
 
-  // 🎯 Mock AI: Simple rule-based logic
-  getMockAction(): number {
-    if (!this.currentPiece) return 3; // Default to "down"
+    this.aiLoading = true;
 
-    const [x, y] = this.currentPiece.position;
+    this.http.post<AIMove>(this.apiUrl, { board: this.board })
+      .subscribe({
+        next: (response) => {
+          console.log('✅ Respuesta del modelo:', response);
 
-    // If piece is near right edge, move left
-    if (x > 5) return 0;
+          if (typeof response?.action === 'number') {
+            this.aiSuggestion = response;
+            this.applyAction(response.action);
+          } else {
+            console.warn('⚠️ Respuesta inválida, omitiendo...', response);
+          }
+        },
+        error: (err) => {
+          console.error('❌ Error al contactar con IA:', err);
+        },
+        complete: () => {
+          this.aiLoading = false;
+          // Programar siguiente movimiento SIEMPRE
+          this.scheduleNextMove();
+        }
+      });
+  }
 
-    // If piece is near left edge, move right
-    if (x < 2) return 1;
+  private scheduleNextMove(): void {
+    setTimeout(() => {
+      if (!this.gameOver) {
+        this.autoPlayLoop(); // 🔁 Siguiente iteración
+      }
+    }, 600); // Ajusta velocidad aquí (ms entre movimientos)
+  }
 
-    // Rotate every 5 steps
-    if (Math.random() < 0.2) return 2;
+  applyAction(action: number): void {
+    console.log('🔧 Aplicando acción:', action);
 
-    // Otherwise, move down
-    return 3;
-  } 
-}
-  
+    switch (action) {
+      case 0: this.move(-1, 0); break;  // ← Izquierda
+      case 1: this.move(1, 0); break;   // → Derecha
+      case 2: this.rotatePiece(); break; // ↻ Rotar
+      case 3: this.hardDrop(); break;   // ↓ Bajar rápido
+      case 4: this.move(0, 1); break;   // No hacer nada (bajar)
+      default:
+        console.warn('⚠️ Acción desconocida:', action);
+        this.move(0, 1);
+    }
+  }
+
+  resetGame(): void {
+    console.log('🔄 Reiniciando juego...');
+    this.gameOver = false;
+    this.score = 0;
+    this.aiSuggestion = null;
+    this.initBoard();
+    this.spawnPiece();
+    this.redraw();
+    this.startAutoPlay();
+  }
+
+  get qValuesFormatted(): string {
+    const q = this.aiSuggestion?.q_values;
+    if (!Array.isArray(q)) return '---';
+    return q.map(v => v.toFixed(2)).join(', ');
+  }
+
+  private rotateMatrix(matrix: number[][]): number[][] {
+    const N = matrix.length;
+    const M = matrix[0].length;
+    const result = Array(M).fill(0).map(() => Array(N).fill(0));
+    for (let y = 0; y < N; y++) {
+      for (let x = 0; x < M; x++) {
+        result[x][N - 1 - y] = matrix[y][x];
+      }
+    }
+    return result;
+  }
+}  
