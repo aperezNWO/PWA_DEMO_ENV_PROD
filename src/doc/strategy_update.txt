@@ -433,10 +433,8 @@
 
  -- [_] TETRIS DEMO
 
-        -- [_]   PLEASE GIVE ME A FULL STACK APPLICATION WITH DJANGO AS BACKEND AND ANGULAR AS FRONTEND FOR THE FOLLOWING TENSORFLOW MODEL:
+        -- [_]  https://github.com/nuno-faria/tetris-ai
 
-        -- [_]   curl -L -o tetris_dqn_agent.h5 \
-                 https://storage.googleapis.com/tetris-ai-public-models/tetris_dqn_full_board_20x10_v1.h5
-         
- 
+        -- [_]  https://github.com/TimHanewich/tetris-ai-mini?tab=readme-ov-file
+
 ////////////////////////////////////////////////////////////////////////////////
