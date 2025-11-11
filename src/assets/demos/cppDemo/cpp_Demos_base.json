@@ -174,7 +174,7 @@
         "description"      : "Tic Tac Toe Game A.I. / c++ dll",
         "field_1"          : "TicTacToe Game, A.I., c++",
         "field_2"          : "./#/GamesTicTacToeAI?langName=CPP",
-        "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TENSORFLOW/blob/3ebe8ec939ed30454b8b98f3ea9d31f83d312d26/src/_tensorflow_cpp/include/tictactoe.h#L703",
+        "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TENSORFLOW/blob/6cf02a956cf2c382261768f8b33eb85f64a9d257/src/_tensorflow_cpp/include/tictactoe.h#L703",
         "field_4"          : "https://tensorflownetcore64.tryasp.net/api/tictactoe/play?aiMode=1" ,
         "field_6"          : "https://en.wikipedia.org/wiki/Neural_network_(machine_learning)",
         "field_10"         : "b3ef5370-9841-46da-86bb-664c7880be6a"  
