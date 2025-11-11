@@ -435,6 +435,4 @@
 
         -- [_]  https://github.com/nuno-faria/tetris-ai
 
-        -- [_]  https://github.com/TimHanewich/tetris-ai-mini?tab=readme-ov-file
-
 ////////////////////////////////////////////////////////////////////////////////
