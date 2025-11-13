@@ -79,11 +79,33 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     ).subscribe();
   }
 
+  // Alternative: Show preview only between steps
+  private showPreviewBeforeDrop(): void {
+    // Get preview state
+    this.tetrisService.getStateWithPreview().subscribe(previewState => {
+      if (previewState) {
+        this.state = previewState;
+        this.cd.detectChanges();
+        
+        // Wait 500ms then trigger actual drop
+        setTimeout(() => {
+          this.tetrisService.step().subscribe(() => {
+            // After drop, get final state
+            this.tetrisService.getState().subscribe(finalState => {
+              if (finalState) this.state = finalState;
+            });
+          });
+        }, 500);
+      }
+    });
+  }
+
+  
   private startPolling(): void {
     if (this.statePolling) return;
     
     this.statePolling = interval(100).subscribe(() => {
-      this.tetrisService.getState().pipe(
+      this.tetrisService.getStateWithPreview().pipe(
         tap(state => {
           // Debug log
           if (state) {

@@ -134,4 +134,19 @@ export class TetrisService {
   isGameCreated(): boolean {
     return this.gameCreated;
   }
+
+  // Add new method:
+  getStateWithPreview(): Observable<TetrisState | null> {
+      if (!this.gameCreated) {
+        return of(null);
+      }
+      
+      //return this.http.get<TetrisState>(`${this.apiUrl}/state-with-preview`).pipe(
+      return this.http.get<TetrisState>(`${this.apiUrl}/state`).pipe(
+        catchError(err => {
+          console.warn('⚠️ State with preview fetch failed:', err);
+          return of(null);
+        })
+      );
+  }
 }

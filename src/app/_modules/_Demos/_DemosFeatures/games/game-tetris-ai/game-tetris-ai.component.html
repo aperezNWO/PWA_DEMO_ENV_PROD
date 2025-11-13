@@ -30,10 +30,16 @@
     <!-- ENCABEZADO / FIN -->  
     <hr>
     <!-- TABLERO INICIO -->
-  <div class="tetris-container" *ngIf="isGameReady(); else loadingTemplate">
+   <div class="tetris-container" *ngIf="isGameReady(); else loadingTemplate">
     <div class="board-section">
       <div class="board" *ngIf="state.boardMatrix.length > 0">
-        <div class="row" *ngFor="let row of state.boardMatrix; let y = index">
+          <!-- Preview row with animation -->
+          <div class="preview-row" *ngIf="!state.gameOver">
+            <div class="cell preview" *ngFor="let cell of state.boardMatrix[0]">
+              <div *ngIf="cell !== 0" class="preview-piece"></div>
+            </div>
+          </div>
+          <div class="row" *ngFor="let row of state.boardMatrix; let y = index">
           <div class="cell" 
               *ngFor="let cell of row; let x = index"
               [class.empty]="cell === 0"
@@ -48,7 +54,7 @@
           </div>
         </div>
       </div>
-      
+     
       <!-- Controls -->
       <div class="controls">
         <button (click)="step()">Step AI</button>
@@ -83,10 +89,10 @@
         <button (click)="updateAIWeights()">Update Weights</button>
       </div>
     </div>
-  </div>
-
-
-  <ng-template #loadingTemplate>
+   </div>
+    <!-- TABLERO FIN    -->
+    <!-- STATUS INICIO -->
+    <ng-template #loadingTemplate>
     <div class="loading-container">
       <h2>🎮 Initializing Tetris AI...</h2>
       <p>Please wait while we load the game engine.</p>
@@ -99,9 +105,8 @@
         is in the API directory (same folder as your ASP.NET .exe).
       </p>
     </div>
-  </ng-template>
-    <!-- STATUS FIN -->
-    
+    </ng-template>
+    <!-- STATUS FIN     -->
     <hr />
      <!-- RETURN TO HOME PAGE - INIT -->
      <div align="right">
