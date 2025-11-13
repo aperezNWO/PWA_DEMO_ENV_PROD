@@ -3,16 +3,26 @@ import { HttpClient, HttpErrorResponse                       } from '@angular/co
 import { Observable, interval, Subscription, throwError, of  } from 'rxjs';
 import { catchError, tap                                     } from 'rxjs/operators';
 import { TetrisState,  AIWeights                             } from "src/app/_models/entity.model";
-
+import { _environment                                        } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class TetrisService {
-  private readonly apiUrl = 'http://localhost:83/api/tetris';
+    //
+  private readonly apiUrl                  =  `${this.getConfigValue('baseUrlNetCoreCPPEntry')}api/tetris`;
   private autoPlaySub: Subscription | null = null;
-  private gameCreated = false;
+  private gameCreated                      = false;
+
 
   constructor(private http: HttpClient) {}
+
+  //
+  getConfigValue(key: string) {
+    //
+    let jsonData : string = JSON.parse(JSON.stringify(_environment.externalConfig))[key];
+    //
+    return jsonData;
+  }
 
   private handleError = (error: HttpErrorResponse) => {
     const message = error.error?.error || error.message || 'Unknown error';
