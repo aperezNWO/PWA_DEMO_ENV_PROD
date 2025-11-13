@@ -179,3 +179,32 @@ export interface MainPageSettingDictionary {
 }
 
 ////////////////////////////////////////////////////////////////////////////
+// TETRIS MODELS
+////////////////////////////////////////////////////////////////////////////
+
+export interface TetrisState {
+  score: number;
+  lines: number;
+  level: number;
+  nextPiece: number;
+  gameOver: boolean;
+  boardMatrix: number[][]; // Jagged array
+}
+
+export interface AIWeights {
+  linesWeight: number;
+  heightWeight: number;
+  holesWeight: number;
+  bumpinessWeight: number;
+}
+
+export interface TrainRequest {
+  weightsFile: string;
+  generations: number;
+}
+
+export interface LoadAIRequest {
+  weightsFile: string;
+}
+
+////////////////////////////////////////////////////////////////////////////

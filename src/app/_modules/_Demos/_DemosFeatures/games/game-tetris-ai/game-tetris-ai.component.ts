@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, signal, ViewChild                         } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, } from '@angular/core';
 import { ActivatedRoute                            } from '@angular/router';
 import { BaseComponent                             } from 'src/app/_components/base/base.component';
 import { BackendService                            } from 'src/app/_services/BackendService/backend.service';
@@ -6,18 +6,10 @@ import { ConfigService                             } from 'src/app/_services/Con
 import { SpeechService                             } from 'src/app/_services/speechService/speech.service';
 import { PAGE_GAMES_TETRIS_AI                      } from 'src/app/_models/common';
 import { HttpClient                                } from '@angular/common/http';
-import { interval, Observable, Subscription        } from 'rxjs';
-
-export interface TetrisState {
-  board: number[];
-  score: number;
-  lines: number;
-  level: number;
-  nextPiece: number;
-  gameOver: boolean;
-}
-
-
+import { interval,  Subscription                   } from 'rxjs';
+import { TetrisState,  AIWeights                   } from "src/app/_models/entity.model";
+import { TetrisService                             } from "src/app/_services/TetrisService/tetris.service";
+import { catchError, tap                           } from 'rxjs/operators';
 @Component({
   selector: 'app-game-tetris-ai',
   templateUrl: './game-tetris-ai.component.html',
@@ -25,17 +17,26 @@ export interface TetrisState {
 })
 export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
   
-  private apiUrl = 'http://localhost:83/api/tetris';
-  
-  state: TetrisState | null = null;
-  public autoPlaySub?: Subscription;
+ state: TetrisState = {
+    score: 0,
+    lines: 0,
+    level: 1,
+    nextPiece: 0,
+    gameOver: false,
+    boardMatrix: Array(20).fill(null).map(() => Array(10).fill(0))
+  };
+
+  aiWeights: AIWeights = { linesWeight: 0, heightWeight: 0, holesWeight: 0, bumpinessWeight: 0 };
+  private statePolling: Subscription | null = null;
+  public  initializationAttempted = false;
 
   constructor(    private http: HttpClient, 
                   private cd: ChangeDetectorRef,
                   public  override configService    : ConfigService,
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
-                  public  override backendService   : BackendService,) 
+                  public  override backendService   : BackendService,
+                  public  tetrisService: TetrisService) 
   { 
       //
       super(configService,
@@ -46,73 +47,124 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
       )
   }
   //
-  ngOnInit() {
-    this.loadState();
+  ngOnInit(): void {
+    this.initializeGame();
   }
-  //
-  getState(): Observable<TetrisState> {
-    return this.http.get<TetrisState>(`${this.apiUrl}/state`)
-  }
-  //
-  service_step(): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/step`, {});
-  }
-  //
-  service_reset(): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/reset`, {});
-  }
-  // 
-  loadModel(filename: string): Observable<boolean> {
-    return this.http.post<boolean>(`${this.apiUrl}/load-model`, filename);
-  }
-  //
-  ngOnDestroy() {
-    this.autoPlaySub?.unsubscribe();
-  }
-  //
-  loadState() {
-    this.getState().subscribe(data => this.state = data);
-  }
-  //
-  step() {
-    this.service_step().subscribe(() => this.loadState());
-  }
-  //
-  reset() {
-    this.service_reset().subscribe(() => this.loadState());
-  }
-  // 
-  toggleAutoPlay() {
-    if (this.autoPlaySub) {
-      this.autoPlaySub.unsubscribe();
-      this.autoPlaySub = undefined;
-    } else {
-      this.autoPlaySub = interval(300).subscribe(() => {
-        if (this.state && !this.state.gameOver) {
-          
-          this.step();
 
-          const newTimestamp = new Date().toLocaleString();
-          console.log(`✅ [${newTimestamp}] State obtained:`, this.state);
-          console.log(`📊 [${newTimestamp}] Score: ${this.state.score}`);
-          console.log(`📈 [${newTimestamp}] Lines: ${this.state.lines}`);
+  ngOnDestroy(): void {
+    this.stopPolling();
+    this.tetrisService.stopAutoPlay();
+    if (this.tetrisService.isGameCreated()) {
+      this.tetrisService.destroyGame().subscribe();
+    }
+  }
 
+  initializeGame(): void {
+    if (this.initializationAttempted) return;
+    this.initializationAttempted = true;
+
+    console.log('🎮 Initializing Tetris game...');
+    
+    this.tetrisService.createGame().pipe(
+      tap(() => {
+        console.log('✅ Game created, starting state polling');
+        this.startPolling();
+        this.loadAIWeights();
+      }),
+      catchError(err => {
+        console.error('❌ Failed to create game:', err);
+        alert(`Failed to initialize game: ${err.message}. Check console (F12) and ensure DLL is in the API directory.`);
+        return [];
+      })
+    ).subscribe();
+  }
+
+  private startPolling(): void {
+    if (this.statePolling) return;
+    
+    this.statePolling = interval(100).subscribe(() => {
+      this.tetrisService.getState().pipe(
+        tap(state => {
+          // Debug log
+          if (state) {
+            console.log('📊 State received:', {
+              score: state.score,
+              lines: state.lines,
+              boardHeight: state.boardMatrix.length,
+              boardWidth: state.boardMatrix[0]?.length,
+              sampleValue: state.boardMatrix[0]?.[0],
+              nextPiece: state.nextPiece
+            });
+          }
+        })
+      ).subscribe(state => {
+        if (state && state.boardMatrix && state.boardMatrix.length > 0) {
+          this.state = state;
         }
       });
+    });
+  }
+
+  private stopPolling(): void {
+    if (this.statePolling) {
+      this.statePolling.unsubscribe();
+      this.statePolling = null;
     }
   }
-  //
-  getBoardMatrix(): number[][] {
-    if (!this.state) return [];
-    const matrix: number[][] = [];
-    for (let i = 0; i < 20; i++) {
-      matrix.push(this.state.board.slice(i * 10, (i + 1) * 10));
-    }
-    return matrix;
+
+  // UI Actions
+  step(): void {
+    this.tetrisService.step().subscribe({ error: err => console.error('Step failed:', err) });
   }
-  //
-  getCellStyle(value: number): any {
-    const colors = ['', '#00ffff', '#ffff00', '#ff00ff', '#00ff00', '#ff0000', '#0000ff', '#ff8800'];
-    return value ? { 'background-color': colors[value] } : {};
+
+  reset(): void {
+    this.tetrisService.reset().subscribe({ error: err => console.error('Reset failed:', err) });
+  }
+
+  toggleAutoPlay(): void {
+    if (!this.tetrisService.isGameCreated()) {
+      alert('Game not initialized. Please wait...');
+      return;
+    }
+    if (this.tetrisService.isAutoPlaying()) {
+      this.tetrisService.stopAutoPlay();
+    } else {
+      this.tetrisService.startAutoPlay();
+    }
+  }
+
+  trainAI(): void {
+    console.log('🤖 Starting AI training...');
+    this.tetrisService.trainAI().subscribe(() => {
+      alert('✅ AI training completed!');
+      this.loadAIWeights();
+    });
+  }
+
+  loadAIWeights(): void {
+    this.tetrisService.getAIWeights().subscribe(weights => {
+      this.aiWeights = weights;
+      console.log('📊 AI weights loaded:', weights);
+    });
+  }
+
+  updateAIWeights(): void {
+    this.tetrisService.setAIWeights(this.aiWeights).subscribe(() => {
+      console.log('✅ Weights updated');
+    });
+  }
+
+  getCellClass(value: number): string {
+    if (value === 0) return 'empty';
+    return `occupied piece-${value}`;
+  }
+
+  getPieceName(id: number): string {
+    const names = ['', 'I', 'O', 'T', 'S', 'Z', 'J', 'L'];
+    return names[id] || '?';
+  }
+
+  isGameReady(): boolean {
+    return this.tetrisService.isGameCreated() && this.state.boardMatrix.length > 0;
   }
 }  
