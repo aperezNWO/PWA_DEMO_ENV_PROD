@@ -4,7 +4,7 @@
     "appVersion"                                   : "2.4.72",
     "baseUrlNetCoreCPPEntry_local"                 : "http://localhost:83/",
     "baseUrlNetCoreCPPEntry_remote"                : "https://tensorflownetcore64.tryasp.net/",
-    "baseUrlNetCoreCPPEntry"                       : "http://localhost:83/",
+    "baseUrlNetCoreCPPEntry"                       : "https://tensorflownetcore64.tryasp.net/",
     "baseUrlNetCore_local"                         : "http://localhost:83/",
     "baseUrlNetCore_remote"                        : "https://angularwebapidemo.somee.com/",
     "baseUrlNetCore"                               : "https://angularwebapidemo.somee.com/",
