@@ -45,44 +45,43 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
             PAGE_GAMES_TETRIS_AI
       )
   }
-  
+  //
   ngOnInit() {
     this.loadState();
   }
-
+  //
   getState(): Observable<TetrisState> {
-    return this.http.get<TetrisState>(`${this.apiUrl}/state`);
+    return this.http.get<TetrisState>(`${this.apiUrl}/state`)
   }
-
+  //
   service_step(): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/step`, {});
   }
-
+  //
   service_reset(): Observable<void> {
     return this.http.post<void>(`${this.apiUrl}/reset`, {});
   }
-
+  // 
   loadModel(filename: string): Observable<boolean> {
     return this.http.post<boolean>(`${this.apiUrl}/load-model`, filename);
   }
-  
-
+  //
   ngOnDestroy() {
     this.autoPlaySub?.unsubscribe();
   }
-
+  //
   loadState() {
     this.getState().subscribe(data => this.state = data);
   }
-
+  //
   step() {
     this.service_step().subscribe(() => this.loadState());
   }
-
+  //
   reset() {
     this.service_reset().subscribe(() => this.loadState());
   }
-
+  // 
   toggleAutoPlay() {
     if (this.autoPlaySub) {
       this.autoPlaySub.unsubscribe();
@@ -90,12 +89,19 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     } else {
       this.autoPlaySub = interval(300).subscribe(() => {
         if (this.state && !this.state.gameOver) {
+          
           this.step();
+
+          const newTimestamp = new Date().toLocaleString();
+          console.log(`✅ [${newTimestamp}] State obtained:`, this.state);
+          console.log(`📊 [${newTimestamp}] Score: ${this.state.score}`);
+          console.log(`📈 [${newTimestamp}] Lines: ${this.state.lines}`);
+
         }
       });
     }
   }
-
+  //
   getBoardMatrix(): number[][] {
     if (!this.state) return [];
     const matrix: number[][] = [];
@@ -104,7 +110,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     }
     return matrix;
   }
-
+  //
   getCellStyle(value: number): any {
     const colors = ['', '#00ffff', '#ffff00', '#ff00ff', '#00ff00', '#ff0000', '#0000ff', '#ff8800'];
     return value ? { 'background-color': colors[value] } : {};
