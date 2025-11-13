@@ -43,7 +43,7 @@
                         </option>
                 </select>
                 </label>
-
+                <br>    
                 <!-- Temperature Slider -->
                 <label *ngIf="aiMode === 1">
                 Creativity:
@@ -55,23 +55,20 @@
                 >
                 {{ temperature.toFixed(1) }}
                 </label>
-                
+                <br>
                 <!-- Ensure it's loadGame(), not playGame -->
                 <button class="button_tictactoe" (click)="loadGame()" [disabled]="loading">
                 {{ loading ? 'Loading...' : '🔁 Replay Game' }}
                 </button>
-
             </div>        
             <!-- Error -->
             <div class="error" *ngIf="error">
                 ⚠️ {{ error }}
             </div>
-
             <!-- Loading -->
             <div class="loading" *ngIf="loading">
                 🧠 AI is generating a game...
             </div>
-
             <!-- Board -->
             <div align="center" class="board" *ngIf="!loading && !error">
                 <div *ngFor="let cell of gameHistory[currentStep]; let i = index"
