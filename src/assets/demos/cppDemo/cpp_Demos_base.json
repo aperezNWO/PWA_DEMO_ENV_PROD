@@ -198,7 +198,7 @@
         "description"      : "Tetrus Game A.I. / c++ dll",
         "field_1"          : "Tetris Game, A.I., c++, Tensorflow",
         "field_2"          : "./#/GamesTetrisAI",
-        "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TENSORFLOW/blob/cdc0b13e77ce037320cc630f6a29a5261a2aebd8/src/_tensorflow_cpp/_tensorflow/tensorFlowApp.cpp#L107",
+        "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TENSORFLOW/blob/d69cb8942b8c6548098f93ad79cc69df9717f958/src/_tensorflow_cpp/_tensorflow/tensorFlowApp.cpp#L141",
         "field_4"          : "https://tensorflownetcore64.tryasp.net/api/tetris/health" ,
         "field_6"          : "https://en.wikipedia.org/wiki/Genetic_algorithm",
         "field_10"         : "36fb7939-88da-4a5c-bb38-164062fbaf67"  
@@ -210,7 +210,7 @@
         "description"      : "Tetris Game  A.I. / .net core endpoint",
         "field_1"          : "Tetris Game, A.I., C++, .net core, dllimport",
         "field_2"          : "./#/GamesTetrisAI",
-        "field_3"          : "https://github.com/aperezNWO/ASP_NET_CORE_CPP_ENTRY/blob/686bcfa72fbbef60db8f2146cd9e67be8f76052e/ASP_NET_CORE_CPP_ENTRY/Controllers/TetrisController.cs#L105",
+        "field_3"          : "https://github.com/aperezNWO/ASP_NET_CORE_CPP_ENTRY/blob/8d2049c74c1afb770abb83e718d91568f72b9f76/ASP_NET_CORE_CPP_ENTRY/Controllers/TetrisController.cs#L92",
         "field_4"          : "https://tensorflownetcore64.tryasp.net/api/tetris/health" ,
         "field_6"          : "https://en.wikipedia.org/wiki/Genetic_algorithm",
         "field_10"         : "ca7ac509-59bc-4a9b-b1e1-24362db33e17"  
