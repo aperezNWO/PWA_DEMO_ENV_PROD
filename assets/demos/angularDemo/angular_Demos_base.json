@@ -186,7 +186,7 @@
         "description"      : "Games - Tetris A.I.",
         "field_1"          : "v17,  Genetic Algorithm",
         "field_2"          : "./#/GamesTetrisAI",
-        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/bde6925b01d8207519c2dd9b610229ea82523c63/src/app/_modules/_Demos/_DemosFeatures/games/game-tetris-ai/game-tetris-ai.component.ts#L51",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/0133ecdc9bd5f2b7abe0c37643973c116085fc21/src/app/_modules/_Demos/_DemosFeatures/games/game-tetris-ai/game-tetris-ai.component.ts#L62",
         "field_4"          : "./#/GamesTetrisAI",
         "field_6"          : "https://en.wikipedia.org/wiki/Genetic_algorithm" ,
         "field_10"         : "7aff06eb-556e-422e-aef5-6fadc241f4fd" 
