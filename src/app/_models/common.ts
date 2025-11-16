@@ -86,10 +86,12 @@ export const PAGE_ALGORITMOS_REGEX              = "PAGE_ALGORITMOS_REGEX";
 
 export const PAGE_ABOUT_EDU_RESC                = "PAGE_ABOUT_EDU_RESC";
 
+export const PAGE_ABOUT_SCM                      = 'PAGE_ABOUT_SCM';
+
 ////////////////////////////////////////////////////////////////////////////
 
-export const PAGE_ABOUT_SCM                      = 'PAGE_ABOUT_SCM';
-  
+export const PAGE_CURRICULUM_AI                  = 'PAGE_CURRICULUM_AI';
+
 export const PAGE_CURRICULUM_ANGULAR             = 'PAGE_CURRICULUM_ANGULAR';
 
 export const PAGE_CURRICULUM_CPP                 = 'PAGE_CURRICULUM_CPP';

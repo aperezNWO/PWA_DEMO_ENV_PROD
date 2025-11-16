@@ -439,6 +439,10 @@
 
         -- [_] articles *.md.
 
+                -- [_] ai. / ml.
+
+                -- [_] angular.
+
         -- [_] neural network     -> tic tac toe autoplay.
 
         -- [_] generic algorithm  -> tetris autoplay.

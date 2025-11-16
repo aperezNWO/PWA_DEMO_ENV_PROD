@@ -213,9 +213,9 @@
         "log_name"   : "PAGE_DEMOS_CURRICULUM_INDEX",
         "page_name"  : "[DEMOS - CURRICULUM]",
         "pages"      : [
-            { "id": 0, "url" : "/CurriculumAI"            , "text": "[Reference - A.I.       / Machine Learning]"          },
-            { "id": 1, "url" : "/CurriculumAngular"       , "text": "[Reference - Angular    / TypeScript      ]"          },
-            { "id": 2, "url" : "/CurriculumCpp"           , "text": "[Reference - C++                          ]"          }          
+            { "id": 0, "url" : "/GridParam"               , "text": "[Curriculum - A.I.       / Machine Learning]"             , "queryParams" : "PAGE_CURRICULUM_AI"    },
+            { "id": 1, "url" : "/GridParam"               , "text": "[Curriculum - C++                          ]"             , "queryParams" : "PAGE_CURRICULUM_CPP"   },
+            { "id": 2, "url" : "/CurriculumAngular"       , "text": "[Curriculum - Angular    / TypeScript      ]"                                                       }
           ],
         "_pages" :     [
             { "id": 3, "url" : "/CurriculumNetCore"       , "text": "[Referencia - .net core  / C#]"                       },   
@@ -226,23 +226,23 @@
       },
       {
         "log_name"   : "PAGE_CURRICULUM_AI",
-        "page_name"  : "[REFERENCE  - ARTIFICIAL INTELLIGENCE]",
+        "page_name"  : "[CURRICULUM  - ARTIFICIAL INTELLIGENCE]",
         "pages"      : [
-             { "id": 1, "url" : "./assets/demos/angularDemo/angular_Curriculum_base.json"       , "text": ""    }
+             { "id": 1, "url" : "./assets/demos/aiDemo/ai_Curriculum_base.json"                 , "text": ""    }
         ]
       },      
       {
-        "log_name"   : "PAGE_CURRICULUM_ANGULAR",
-        "page_name"  : "[REFERENCE - ANGULAR / TYPESCRIPT]",
+        "log_name"   : "PAGE_CURRICULUM_CPP",
+        "page_name"  : "[CURRICULUM  - C++]",
         "pages"      : [
-             { "id": 1, "url" : "./assets/demos/angularDemo/angular_Curriculum_base.json"       , "text": ""    }
+             { "id": 1, "url" : "./assets/demos/cppDemo/cpp_Curriculum_base.json"               , "text": ""    }
         ]
       },
       {
-        "log_name"   : "PAGE_CURRICULUM_CPP",
-        "page_name"  : "[REFERENCE - C++]",
+        "log_name"   : "PAGE_CURRICULUM_ANGULAR",
+        "page_name"  : "[CURRICULUM - ANGULAR / TYPESCRIPT]",
         "pages"      : [
-             { "id": 1, "url" : "./assets/demos/cppDemo/cpp_Curriculum_base.json"               , "text": ""    }
+             { "id": 1, "url" : "./assets/demos/angularDemo/angular_Curriculum_base.json"       , "text": ""    }
         ]
       },
       {

@@ -34,7 +34,6 @@ import { NgbPaginationModule, NgbAlertModule    } from '@ng-bootstrap/ng-bootstr
 import { IndexComponent                         } from './_modules/about/index/index.component';
 import { SCMComponent                           } from './_modules/about/scm/scm.component';
 import { LLMListComponent                       } from './_modules/about/llmlist/llmlist.component';
-import { CurriculunmCppComponent                } from './_modules/_Demos/_DemosCurriculum/curriculunm-cpp/curriculunm-cpp.component';
 import { CurriculumAngularComponent             } from './_modules/_Demos/_DemosCurriculum/curriculumAngular/curriculumAngular.component';
 import { CurriculumDjangoPythonComponent        } from './_modules/_Demos/_DemosCurriculum/curriculum-django-python/curriculum-django-python.component';
 import { CurriculumNodeJsComponent              } from './_modules/_Demos/_DemosCurriculum/curriculum-node-js/curriculum-node-js.component';
@@ -162,7 +161,6 @@ export class CustomErrorHandler implements ErrorHandler {
         CurriculumAngularComponent,
         CurriculumNodeJsComponent,
         CurriculumDjangoPythonComponent,
-        CurriculunmCppComponent,
         CurriculumSpringBootCompont,
         CurriculumNetcoreComponent,
         ContactformComponent,

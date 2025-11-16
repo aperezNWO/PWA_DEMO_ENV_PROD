@@ -6,7 +6,6 @@ import { SCMComponent                    } from './_modules/about/scm/scm.compon
 import { LLMListComponent                } from './_modules/about/llmlist/llmlist.component';
 import { TechnicalSpecsComponent         } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
 import { CurriculumAngularComponent      } from './_modules/_Demos/_DemosCurriculum/curriculumAngular/curriculumAngular.component';
-import { CurriculunmCppComponent         } from './_modules/_Demos/_DemosCurriculum/curriculunm-cpp/curriculunm-cpp.component';
 import { CurriculumDjangoPythonComponent } from './_modules/_Demos/_DemosCurriculum/curriculum-django-python/curriculum-django-python.component';
 import { CurriculumNodeJsComponent       } from './_modules/_Demos/_DemosCurriculum/curriculum-node-js/curriculum-node-js.component';
 import { CurriculumSpringBootCompont     } from './_modules/_Demos/_DemosCurriculum/curriculum-spring-boot/curriculum-spring-boot.component';
@@ -74,8 +73,9 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'ComputerVision'        , component: ComputerVisionComponent             , caption: ' Miscelaneous - Computer Vision'              , queryParams : '' },
   {  id: 0,  path: 'MathParsing'           , component: MathParsingComponent                , caption: ' Miscelaneous - Math Parsing'                 , queryParams : '' },
   {  id: 0,  path: 'FractalDemo'           , component: FractalDemoComponent                , caption: ' Miscelaneous - Fractal Demo'                 , queryParams : '' },
+  {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Curriculum - Artificial Intelligence'        , queryParams : 'PAGE_CURRICULUM_AI'              },
+  {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Curriculum - C++'                            , queryParams : 'PAGE_CURRICULUM_CPP'             },
   {  id: 0,  path: 'CurriculumAngular'     , component: CurriculumAngularComponent          , caption: ' Curriculum - Angular    / Typescript'        , queryParams : '' },
-  {  id: 0,  path: 'CurriculumCpp'         , component: CurriculunmCppComponent             , caption: ' Curriculum - C++'                            , queryParams : '' },
   {  id: 0,  path: 'CurriculumNodeJs'      , component: CurriculumNodeJsComponent           , caption: ' Curriculum - Node.js    / Javascript'        , queryParams : '' },
   {  id: 0,  path: 'CurriculumSpringBoot'  , component: CurriculumSpringBootCompont         , caption: ' Curriculum - SpringBoot / Java'              , queryParams : '' },
   {  id: 0,  path: 'CurriculumDjango'      , component: CurriculumDjangoPythonComponent     , caption: ' Curriculum - Django     / Python'            , queryParams : '' },
