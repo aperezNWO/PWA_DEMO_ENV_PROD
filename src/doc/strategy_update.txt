@@ -427,12 +427,27 @@
 
          -- [_] WITH PYTORCH.
 
- -- [_] fix json pages.
-
- -- [_] c++ curriculum.
-
  -- [_] TETRIS DEMO
 
         -- [_]  https://github.com/nuno-faria/tetris-ai
+
+ -- [x] fix json pages.
+
+ -- [_] Artificial Inteligence curriculum.
+
+        -- [_] c++ curriculum.
+
+        -- [_] neural network     -> tic tac toe autoplay.
+
+        -- [_] generic algorithm  -> tetris autoplay.
+
+        -- [_] Machine Learning.
+        
+                -- [_] Linear Regression.
+                
+                -- [_] Clasification.
+
+                -- [_] ...
+
 
 ////////////////////////////////////////////////////////////////////////////////
