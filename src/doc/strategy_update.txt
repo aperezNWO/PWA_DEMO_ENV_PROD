@@ -437,6 +437,8 @@
 
         -- [_] c++ curriculum.
 
+        -- [_] articles *.md.
+
         -- [_] neural network     -> tic tac toe autoplay.
 
         -- [_] generic algorithm  -> tetris autoplay.
