@@ -435,6 +435,12 @@
 
  -- [_] c++ curriculum.
 
+ -- [_] ANGULAR curriculum.
+
+         -- [_] UNIFY curriculum  -> GRIDPARAM.
+
+         -- [_] DELETE curriculum FOLDER.
+
  -- [_] Artificial Inteligence curriculum.
 
         -- [_] http://localhost:4200/#/GridParam?searchTerm=06f33ccf-68be-4fbe-b9af-4ba5cc9535f2&pageName=PAGE_CURRICULUM_AI
