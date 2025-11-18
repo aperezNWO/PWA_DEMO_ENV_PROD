@@ -433,9 +433,11 @@
 
  -- [x] fix json pages.
 
+ -- [_] c++ curriculum.
+
  -- [_] Artificial Inteligence curriculum.
 
-        -- [_] c++ curriculum.
+        -- [_] http://localhost:4200/#/GridParam?searchTerm=06f33ccf-68be-4fbe-b9af-4ba5cc9535f2&pageName=PAGE_CURRICULUM_AI
 
         -- [_] articles *.md.
 
