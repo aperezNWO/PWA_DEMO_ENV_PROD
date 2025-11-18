@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1763333632415,
+  "timestamp": 1763433615942,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -75,14 +75,14 @@
   "hashTable": {
     "/PWA_DEMO_ENV_PROD/484.8cdd85cefc5a3b51.js": "5917412f8e7d284347e02b3e88949a4901e355de",
     "/PWA_DEMO_ENV_PROD/896.4519226224848d4d.js": "b78fb0b014bc156bc77299cc45560d056ef29bac",
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "c87ba21ad9571a201f27e3792522b89b2a6defff",
-    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "3e0249035e144d4cb77d428ee2a1f2d310d86c8b",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "4a495217805e0d7d4c4bddbc5cc13d6e19753a25",
+    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "f67071c047a30a78b8edd82c7d163dbefd85ede8",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "213347aa6eed79751a08ab13a103aa830b93d40f",
-    "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "16aa49d2f75671cb57281d160f1adb018ed7d300",
+    "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "a8f6de1d3486deca56e659439b068fc99f4c8d5c",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "28387cc2d7828d175bb533fff80a2ad1cfd8fc4d",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Demos_base.json": "26694a0ff0187bf0901e08451bf1984139f8bedb",
     "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Curriculum_base.json": "16aa49d2f75671cb57281d160f1adb018ed7d300",
-    "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Demos_base.json": "c9cdf72ebc7ee8be64a5cac361b3d007efd8ef0b",
+    "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Demos_base.json": "0f21ed36c68ae13aaaf8fa041344fab62b4597b0",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json": "16aa49d2f75671cb57281d160f1adb018ed7d300",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "035f907d39ff64f9c4459f5a35ec4f113344b37d",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_Curriculum_base.json": "16aa49d2f75671cb57281d160f1adb018ed7d300",
