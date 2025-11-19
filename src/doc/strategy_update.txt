@@ -435,12 +435,12 @@
 
  -- [_] c++ curriculum.
 
- -- [_] ANGULAR curriculum.
+ -- [_] DOCKER.
 
-         -- [_] UNIFY curriculum  -> GRIDPARAM.
-
-         -- [_] DELETE curriculum FOLDER.
-
+        -- [_] PYTHON. 
+        
+        -- [_] SPRINGBOOT.
+ 
  -- [_] Artificial Inteligence curriculum.
 
         -- [_] http://localhost:4200/#/GridParam?searchTerm=06f33ccf-68be-4fbe-b9af-4ba5cc9535f2&pageName=PAGE_CURRICULUM_AI
@@ -463,5 +463,24 @@
 
                 -- [_] ...
 
+ -- [_] LANGUAGES curriculum.
+
+         -- [_] UNIFY curriculum  -> GRIDPARAM.
+
+         -- [_] DELETE curriculum FOLDER.
+
+         -- [_] official web reference as first item.
+
+         -- [_] ./#/GridParam?searchTerm=bfecb7a6-0d40-48c5-8ee4-3c7fc13ad1e0&pageName=PAGE_CURRICULUM_ANGULAR
+
+         -- [_] Link Refernces <- -> Demos.
+
+ -- [_] CREATE A.I. APP.
+
+         -- [_] RYTHM.
+
+         -- [_] INTEGRATION.
+
+         -- [_] CONNECTION.
 
 ////////////////////////////////////////////////////////////////////////////////
