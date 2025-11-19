@@ -214,10 +214,10 @@
         "page_name"  : "[DEMOS - CURRICULUM]",
         "pages"      : [
             { "id": 0, "url" : "/GridParam"               , "text": "[Curriculum - A.I.       / Machine Learning]"             , "queryParams" : "PAGE_CURRICULUM_AI"    },
-            { "id": 1, "url" : "/CurriculumAngular"       , "text": "[Curriculum - Angular    / TypeScript      ]"                                                       }
+            { "id": 1, "url" : "/CurriculumAngular"       , "text": "[Curriculum - Angular    / TypeScript      ]"                                                       },
+            { "id": 2, "url" : "/GridParam"               , "text": "[Curriculum - C++                          ]"             , "queryParams" : "PAGE_CURRICULUM_CPP"   }
           ],
         "_pages" :     [
-            { "id": 1, "url" : "/GridParam"               , "text": "[Curriculum - C++                          ]"             , "queryParams" : "PAGE_CURRICULUM_CPP"   },
             { "id": 3, "url" : "/CurriculumNetCore"       , "text": "[Referencia - .net core  / C#]"                       },   
             { "id": 4, "url" : "/CurriculumNodeJs"        , "text": "[Referencia - Node.js    / Javascript]"               },
             { "id": 5, "url" : "/CurriculumSpringBoot"    , "text": "[Referencia - SpringBoot / Java]"                     },

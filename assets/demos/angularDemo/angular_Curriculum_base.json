@@ -1,4 +1,16 @@
 [
+    {
+		"id"               : 0,
+        "done"             : true,
+        "name"             : "Angular Reference",
+        "description"      : "Angular Reference",
+        "field_1"          : "Angular Reference",
+        "field_2"          : "Angular",
+        "field_3"          : "./#/GridParam?pageName=PAGE_DEMOS_ANGULAR_JAVASCRIPT",
+        "field_4"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD",
+        "field_5"          : "https://angular.dev/",
+        "field_10"         : "bfecb7a6-0d40-48c5-8ee4-3c7fc13ad1e0"   
+    },
 	{
 		"id"               : 1,
         "done"             : true,
