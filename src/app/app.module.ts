@@ -35,10 +35,6 @@ import { IndexComponent                         } from './_modules/about/index/i
 import { SCMComponent                           } from './_modules/about/scm/scm.component';
 import { LLMListComponent                       } from './_modules/about/llmlist/llmlist.component';
 import { CurriculumAngularComponent             } from './_modules/_Demos/_DemosCurriculum/curriculumAngular/curriculumAngular.component';
-import { CurriculumDjangoPythonComponent        } from './_modules/_Demos/_DemosCurriculum/curriculum-django-python/curriculum-django-python.component';
-import { CurriculumNodeJsComponent              } from './_modules/_Demos/_DemosCurriculum/curriculum-node-js/curriculum-node-js.component';
-import { CurriculumSpringBootCompont            } from './_modules/_Demos/_DemosCurriculum/curriculum-spring-boot/curriculum-spring-boot.component';
-import { CurriculumNetcoreComponent             } from './_modules/_Demos/_DemosCurriculum/curriculum-netcore/curriculum-netcore.component';
 import { AlgorithmCollisionComponent            } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-collision/algorithm-collision.component';
 import { AlgorithmDijkstraComponent             } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
 import { AlgorithmRegExComponent                } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
@@ -159,10 +155,6 @@ export class CustomErrorHandler implements ErrorHandler {
         GameTetrisComponent,
         GameTetrisAIComponent,
         CurriculumAngularComponent,
-        CurriculumNodeJsComponent,
-        CurriculumDjangoPythonComponent,
-        CurriculumSpringBootCompont,
-        CurriculumNetcoreComponent,
         ContactformComponent,
         SpeechPanelComponent,
         BaseSortableHeader,
