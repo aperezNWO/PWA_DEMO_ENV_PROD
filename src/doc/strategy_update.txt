@@ -475,6 +475,13 @@
 
          -- [_] Link Refernces <- -> Demos.
 
+         -- [_] Link Demos     <- -> SCM (GridParam).
+
+         -- [_] Grid Param redirect error.
+
+         -- [_] Grid Index empty rows error.
+
+
  -- [_] CREATE A.I. APP.
 
          -- [_] RYTHM.
