@@ -480,6 +480,8 @@
         -- [_] Machine Learning.
         
                 -- [_] Linear Regression.
+
+                        -- [_] I can identify that many of the linear regression applications can be to predict prizes based up on historical behaviour (taxi fees, hojuse prices, etc)
                 
                 -- [_] Clasification.
 
