@@ -170,6 +170,26 @@
  // TODO LIST
  ////////////////////////////////////////////////////////////////////////////////
 
+ -- [_] LANGUAGES curriculum.
+
+         -- [_] UNIFY curriculum  -> GRIDPARAM.
+
+         -- [_] DELETE curriculum FOLDER.
+
+         -- [_] official web reference [backend]  as first  item.
+
+         -- [_] official web reference [language] as second item.
+
+         -- [_] ./#/GridParam?searchTerm=bfecb7a6-0d40-48c5-8ee4-3c7fc13ad1e0&pageName=PAGE_CURRICULUM_ANGULAR
+
+         -- [_] Link Refernces <- -> Demos.
+
+         -- [_] Link Demos     <- -> SCM (GridParam).
+
+         -- [_] Grid Param redirect error.
+
+         -- [_] Grid Index empty rows error.
+         
 -- [_] programa omar -> owasp.
 
 -- [_] replicar en pwa_demo_env_prod en pwa_demo_env_public.
@@ -427,7 +447,9 @@
  
  -- [_] OCR DEMO.
         
-         -- [_] WITH TENSORFLOW.
+         -- [_] WITH TENSORFLOW / python.
+
+         -- [_] WITH TENSORFLOW / c++.
 
          -- [_] WITH PYTORCH.
 
@@ -462,27 +484,6 @@
                 -- [_] Clasification.
 
                 -- [_] ...
-
- -- [_] LANGUAGES curriculum.
-
-         -- [_] UNIFY curriculum  -> GRIDPARAM.
-
-         -- [_] DELETE curriculum FOLDER.
-
-         -- [_] official web reference [backend]  as first  item.
-
-         -- [_] official web reference [language] as second item.
-
-         -- [_] ./#/GridParam?searchTerm=bfecb7a6-0d40-48c5-8ee4-3c7fc13ad1e0&pageName=PAGE_CURRICULUM_ANGULAR
-
-         -- [_] Link Refernces <- -> Demos.
-
-         -- [_] Link Demos     <- -> SCM (GridParam).
-
-         -- [_] Grid Param redirect error.
-
-         -- [_] Grid Index empty rows error.
-
 
  -- [_] CREATE A.I. APP.
 
