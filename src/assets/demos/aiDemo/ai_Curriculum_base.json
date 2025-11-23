@@ -12,7 +12,7 @@
         "field_10"         : "fd6d21e0-e6b8-422c-93fd-67bf2e5c1094"   
     },
 	{
-		"id"               : 1,
+		"id"               : 2,
         "done"             : true,
         "name"             : "Genetic Algorithm",
         "description"      : "Genetic Algorithm",
@@ -22,5 +22,17 @@
         "field_4"          : "https://tensorflownetcore64.tryasp.net/api/tetris/health",
         "field_6"          : "https://en.wikipedia.org/wiki/Genetic_algorithm",
         "field_10"         : "06f33ccf-68be-4fbe-b9af-4ba5cc9535f2"   
+    },
+    {
+		"id"               : 3,
+        "done"             : false,
+        "name"             : "Linear Regression",
+        "description"      : "(pending)",
+        "field_1"          : "Linear Regression",
+        "field_2"          : "./#/",
+        "field_3"          : "",
+        "field_4"          : "",
+        "field_6"          : "",
+        "field_10"         : "eebbaca8-9d69-4a10-8fb3-514912a832ba"   
     }
 ]
