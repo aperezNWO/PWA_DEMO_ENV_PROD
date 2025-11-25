@@ -34,5 +34,53 @@
         "field_4"          : "",
         "field_6"          : "",
         "field_10"         : "eebbaca8-9d69-4a10-8fb3-514912a832ba"   
+    },
+    {
+		"id"               : 4,
+        "done"             : false,
+        "name"             : "Vector Suppor Machines",
+        "description"      : "(pending)",
+        "field_1"          : "Vector Suppor Machines",
+        "field_2"          : "./#/",
+        "field_3"          : "",
+        "field_4"          : "",
+        "field_6"          : "",
+        "field_10"         : "f3806277-f67f-4dba-8203-72d29f6a9800"   
+    },
+    {
+		"id"               : 5,
+        "done"             : false,
+        "name"             : "Bayessian Regression",
+        "description"      : "(pending)",
+        "field_1"          : "Bayessian Regression",
+        "field_2"          : "./#/",
+        "field_3"          : "",
+        "field_4"          : "",
+        "field_6"          : "",
+        "field_10"         : "6bed6493-139e-45cc-a73b-39305ce41f73"   
+    },
+    {
+		"id"               : 6,
+        "done"             : false,
+        "name"             : "MonteCarlo Probablilistic",
+        "description"      : "(pending)",
+        "field_1"          : "MonteCarlo Probablilistic",
+        "field_2"          : "./#/",
+        "field_3"          : "",
+        "field_4"          : "",
+        "field_6"          : "",
+        "field_10"         : "e3ce6b1c-8b82-44d7-b7b1-dae1868a9194"   
+    },
+    {
+		"id"               : 7,
+        "done"             : false,
+        "name"             : "Reinfoce Learning",
+        "description"      : "(pending)",
+        "field_1"          : "Reinfoce Learning",
+        "field_2"          : "./#/",
+        "field_3"          : "",
+        "field_4"          : "",
+        "field_6"          : "",
+        "field_10"         : "b58f4ebc-43dc-4412-b5a3-d1d479c5ef6f"   
     }
 ]
