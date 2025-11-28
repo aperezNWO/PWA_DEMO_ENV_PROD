@@ -320,9 +320,6 @@ https://chat.openai.com/share/f383e00f-3b68-45c8-ad3f-d5bd32b9933e
 
  -- [_] MACHINE LEARNING PENSUM
 
-      Okay, here's a comprehensive list of fundamental topics you should learn for a solid foundation in 
-      modern Machine Learning, incorporating the topics from your book and the additional areas I mentioned:
-
       Core Machine Learning Topics
 
             1. Fundamentals & Core Concepts:
@@ -394,8 +391,17 @@ https://chat.openai.com/share/f383e00f-3b68-45c8-ad3f-d5bd32b9933e
                   Deep Learning Libraries: TensorFlow/Keras, PyTorch
                   Data Handling: Working with datasets, cleaning, exploration (using Pandas, NumPy).
 
+ -- [_] MACHINE LEARNING APPROACH
 
-      This list provides a much more comprehensive overview of the essential topics needed to understand 
-      and practice modern Machine Learning, building upon the strong foundation provided by your book.            
+      -- [_] CONCEPT.
+          
+      -- [_] REAL WORLD SOLUTION.
+
+      -- [_] C++ CODE.
+          
+      -- [_] TENSORFLOW FOR C++ CODE.
+
+      -- [_] HISTORY OF THE ALGORITHM.
+      
 
 /////////////////////////////////////////////
