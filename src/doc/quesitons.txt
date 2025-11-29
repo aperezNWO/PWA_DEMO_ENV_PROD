@@ -390,18 +390,17 @@ https://chat.openai.com/share/f383e00f-3b68-45c8-ad3f-d5bd32b9933e
                   ML Libraries: Scikit-learn (for classical algorithms)
                   Deep Learning Libraries: TensorFlow/Keras, PyTorch
                   Data Handling: Working with datasets, cleaning, exploration (using Pandas, NumPy).
-
+                  
  -- [_] MACHINE LEARNING APPROACH
 
       -- [_] CONCEPT.
           
-      -- [_] REAL WORLD SOLUTION.
-
-      -- [_] C++ CODE.
-          
-      -- [_] TENSORFLOW FOR C++ CODE.
-
-      -- [_] HISTORY OF THE ALGORITHM.
-      
+	      -- [_] C++ CODE.
+	          
+	      -- [_] TENSORFLOW FOR PYTHON CODE.
+	
+	      -- [_] HISTORY OF THE ALGORITHM.
+	      
+	      -- [_] REAL WORLD SOLUTION (language, models and infrastructure may vary).
 
 /////////////////////////////////////////////
