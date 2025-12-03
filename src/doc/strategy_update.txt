@@ -499,6 +499,8 @@
           
 	      -- [_] C++ CODE.
 
+                        -- [_] compile tensorflow for c++ package.
+
                         -- [_] c++ curriculum.
 
 	      -- [_] TENSORFLOW FOR PYTHON CODE.
@@ -506,5 +508,17 @@
 	      -- [_] HISTORY OF THE ALGORITHM.
 	      
 	      -- [_] REAL WORLD SOLUTION (language, models and infrastructure may vary).
+
+      -- [_] LINEAR REGRESSION.
+
+              -- [_] ANGULAR GRAPHIC.
+
+              -- [_] TENSORFLOW FOR PYTHON LOGIC.
+
+              -- [_] TENSORFLOW FOR PYTHON BACKEND.
+
+              -- [_] C++ LOGIC.
+
+              -- [_] C++ BACKEND.                                 
 
 ////////////////////////////////////////////////////////////////////////////////
