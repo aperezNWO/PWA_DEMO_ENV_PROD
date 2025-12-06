@@ -86,7 +86,7 @@ export const PAGE_ALGORITMOS_REGEX              = "PAGE_ALGORITMOS_REGEX";
 
 export const PAGE_ABOUT_EDU_RESC                = "PAGE_ABOUT_EDU_RESC";
 
-export const PAGE_ABOUT_SCM                      = 'PAGE_ABOUT_SCM';
+export const PAGE_ABOUT_SCM                     = 'PAGE_ABOUT_SCM';
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -118,4 +118,8 @@ export const PAGE_DEMOS_ANGULAR_JAVASCRIPT       = 'PAGE_DEMOS_ANGULAR_JAVASCRIP
 
 ////////////////////////////////////////////////////////////////////////////
 
+export const PAGE_DEMOS_MACHINE_LEARNING_INDEX        = 'PAGE_DEMOS_MACHINE_LEARNING_INDEX'
 
+export const PAGE_MACHINE_LEARNING_LINEAR_REGRESSION  = 'PAGE_MACHINE_LEARNING_LINEAR_REGRESSION'
+
+////////////////////////////////////////////////////////////////////////////

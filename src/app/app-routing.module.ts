@@ -25,6 +25,7 @@ import { ChatComponent               } from './_modules/_Demos/_DemosFeatures/mi
 import { ComputerVisionComponent     } from './_modules/_Demos/_DemosFeatures/miscelaneous/computer-vision/computer-vision.component';
 import { MathParsingComponent        } from './_modules/_Demos/_DemosFeatures/miscelaneous/math-parsing/math-parsing.component';
 import { OcrPhotoCaptureComponent    } from './_modules/_Demos/_DemosFeatures/miscelaneous/ocr-photo-capture/ocr-photo-capture.component';
+import { LinearRegressionComponent   } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
 import { ContactformComponent        } from './_modules/about/contactform/contactform.component';
 import { IndexComponent              } from './_modules/about/index/index.component';
 import { EduResourcesComponent       } from './_modules/about/edu-resources/edu-resources.component';
@@ -69,6 +70,7 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'ComputerVision'        , component: ComputerVisionComponent             , caption: ' Miscelaneous - Computer Vision'              , queryParams : '' },
   {  id: 0,  path: 'MathParsing'           , component: MathParsingComponent                , caption: ' Miscelaneous - Math Parsing'                 , queryParams : '' },
   {  id: 0,  path: 'FractalDemo'           , component: FractalDemoComponent                , caption: ' Miscelaneous - Fractal Demo'                 , queryParams : '' },
+  {  id: 0,  path: 'LinearRegression'      , component: LinearRegressionComponent           , caption: ' Machine Learning  - Linear Regression'       , queryParams : '' },
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Curriculum - Artificial Intelligence'        , queryParams : 'PAGE_CURRICULUM_AI'              },
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Curriculum - C++'                            , queryParams : 'PAGE_CURRICULUM_CPP'             },
   {  id: 0,  path: 'CurriculumAngular'     , component: CurriculumAngularComponent          , caption: ' Curriculum - Angular    / Typescript'        , queryParams : 'PAGE_CURRICULUM_ANGULAR'         },

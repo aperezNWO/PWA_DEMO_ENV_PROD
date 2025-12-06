@@ -56,6 +56,7 @@ import { ChatComponent               } from './_modules/_Demos/_DemosFeatures/mi
 import { ComputerVisionComponent     } from './_modules/_Demos/_DemosFeatures/miscelaneous/computer-vision/computer-vision.component';
 import { MathParsingComponent        } from './_modules/_Demos/_DemosFeatures/miscelaneous/math-parsing/math-parsing.component';
 import { OcrPhotoCaptureComponent    } from './_modules/_Demos/_DemosFeatures/miscelaneous/ocr-photo-capture/ocr-photo-capture.component';
+import { LinearRegressionComponent   } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
 import { ContactformComponent        } from './_modules/about/contactform/contactform.component';
 import { TechnicalSpecsComponent     } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
 import { EduResourcesComponent       } from './_modules/about/edu-resources/edu-resources.component';
@@ -67,6 +68,7 @@ import { _BaseComponent              } from './_components/base/_base.component'
 import { _SearchComponent            } from './_components/search/_search.component ';
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
 import { PageUrlListComponent        } from './_components/page-url-list/page-url-list.component';
+
 
 //
 export function initialize(_configService: ConfigService) 
@@ -155,6 +157,7 @@ export class CustomErrorHandler implements ErrorHandler {
         GameTetrisComponent,
         GameTetrisAIComponent,
         CurriculumAngularComponent,
+        LinearRegressionComponent,
         ContactformComponent,
         SpeechPanelComponent,
         BaseSortableHeader,
