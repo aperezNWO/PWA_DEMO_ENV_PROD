@@ -1,8 +1,11 @@
+import { NgxSignaturePadModule                        } from '@eve-sama/ngx-signature-pad';
+import { finalize, tap                                } from 'rxjs';
+//import { ChartsModule                                 } from 'ng2-charts'; // Import this
 import { MatTableModule                               } from '@angular/material/table';
 import { MatInputModule                               } from '@angular/material/input';
 import { Injectable, NgModule                         } from '@angular/core';
 import { APP_INITIALIZER,ErrorHandler, isDevMode      } from '@angular/core';
-import { DatePipe, DecimalPipe                        } from '@angular/common';
+import { CommonModule, DatePipe, DecimalPipe          } from '@angular/common';
 import { ServiceWorkerModule             } from '@angular/service-worker';
 import { FormsModule                     } from '@angular/forms';
 import { MatListModule                   } from '@angular/material/list';
@@ -27,8 +30,6 @@ import { LogType                         } from './_models/entity.model';
 import { BackendService                  } from './_services/BackendService/backend.service';
 import { ConfigService                   } from './_services/ConfigService/config.service';
 import { AppRoutingModule                } from './app-routing.module';
-import { finalize, tap                   } from 'rxjs';
-import { NgxSignaturePadModule           } from '@eve-sama/ngx-signature-pad';
 import { NgbHighlight, NgbModule                } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule, NgbAlertModule    } from '@ng-bootstrap/ng-bootstrap';
 import { IndexComponent                         } from './_modules/about/index/index.component';
@@ -189,6 +190,8 @@ export class CustomErrorHandler implements ErrorHandler {
     ],
     bootstrap: [AppComponent],
     imports: [
+        //ChartsModule,
+        CommonModule,
         HttpClientModule,
         FormsModule,
         BrowserModule,
