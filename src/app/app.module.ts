@@ -1,6 +1,6 @@
 import { NgxSignaturePadModule                        } from '@eve-sama/ngx-signature-pad';
 import { finalize, tap                                } from 'rxjs';
-//import { ChartsModule                                 } from 'ng2-charts'; // Import this
+import { NgChartsModule                               } from 'ng2-charts'; 
 import { MatTableModule                               } from '@angular/material/table';
 import { MatInputModule                               } from '@angular/material/input';
 import { Injectable, NgModule                         } from '@angular/core';
@@ -190,7 +190,7 @@ export class CustomErrorHandler implements ErrorHandler {
     ],
     bootstrap: [AppComponent],
     imports: [
-        //ChartsModule,
+        NgChartsModule,
         CommonModule,
         HttpClientModule,
         FormsModule,

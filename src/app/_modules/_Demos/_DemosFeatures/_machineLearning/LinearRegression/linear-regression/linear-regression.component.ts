@@ -1,8 +1,7 @@
-import { HttpClient                                         } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit, ViewChild    } from '@angular/core';
+import { Component, OnInit, ViewChild             } from '@angular/core';
 import { ActivatedRoute                           } from '@angular/router';
 import { ChartData, ChartConfiguration, ChartType } from 'chart.js';
-//import { BaseChartDirective                       } from 'ng2-charts';
+import { BaseChartDirective                       } from 'ng2-charts';
 import { BaseComponent                            } from 'src/app/_components/base/base.component';
 import { PAGE_MACHINE_LEARNING_LINEAR_REGRESSION  } from 'src/app/_models/common';
 import { BackendService                           } from 'src/app/_services/BackendService/backend.service';
@@ -36,9 +35,9 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
         { mission: 17, time: 301.0 }
       ]
      // Chart properties
-     //@ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
      //
-     public chartType   : ChartType = 'line';
+     public chartType    : ChartType = 'line';
      // 
      public chartOptions: ChartConfiguration['options'] = {
         responsive          : true,
@@ -110,7 +109,7 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
 
     //
     ngOnInit(): void {
-      //throw new Error('Method not implemented.');
+      this.initializeChart();
     }
     //
     initializeChart(): void {
@@ -118,14 +117,14 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
       const labels      = this.historicalData.map(item => `Apollo ${item.mission}`);
       const actualTimes = this.historicalData.map(item => item.time);
 
-      //this.chartData.labels = labels;
-      //this.chartData.datasets[0].data = actualTimes; // Actual times dataset
-      //this.chartData.datasets[1].data = [];          // Prediction dataset (empty initially)
+      this.chartData.labels = labels;
+      this.chartData.datasets[0].data = actualTimes; // Actual times dataset
+      this.chartData.datasets[1].data = [];          // Prediction dataset (empty initially)
 
       // Update chart if it's already rendered
-      //if (this.chart) {
-      //  this.chart.update();
-      //}
+      if (this.chart) {
+       this.chart.update();
+      }
   }
   //
   predict(): void {
@@ -166,8 +165,8 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
     }
 
     // Update chart data
-    //this.chartData.labels = labels;
-    //this.chartData.datasets[0].data = actualTimes; // Actual times (with NaN for prediction point)
+    this.chartData.labels           = labels;
+    this.chartData.datasets[0].data = actualTimes; // Actual times (with NaN for prediction point)
 
     // Prepare prediction data array aligned with the labels
     const predictionDataArray = new Array(labels.length).fill(NaN);
@@ -175,11 +174,11 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
     if (predictionIndex !== -1) {
         predictionDataArray[predictionIndex] = predictedTime;
     }
-    //this.chartData.datasets[1].data = predictionDataArray; // Prediction times
+    this.chartData.datasets[1].data = predictionDataArray; // Prediction times
 
     // Update the chart
-    //if (this.chart) {
-    //  this.chart.update();
-    //}
+    if (this.chart) {
+      this.chart.update();
+    }
   }
 }
