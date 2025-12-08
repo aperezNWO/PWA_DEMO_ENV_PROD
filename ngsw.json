@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1765157887722,
+  "timestamp": 1765159141669,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -15,7 +15,7 @@
         "/PWA_DEMO_ENV_PROD/973.316ac4d5fee2f217.js",
         "/PWA_DEMO_ENV_PROD/favicon.ico",
         "/PWA_DEMO_ENV_PROD/index.html",
-        "/PWA_DEMO_ENV_PROD/main.26b01708ccbfdc9f.js",
+        "/PWA_DEMO_ENV_PROD/main.315a785a7507cc4e.js",
         "/PWA_DEMO_ENV_PROD/manifest.webmanifest",
         "/PWA_DEMO_ENV_PROD/polyfills.d4aa8125b65d4528.js",
         "/PWA_DEMO_ENV_PROD/runtime.6b36bf15ef5b739f.js",
@@ -75,7 +75,7 @@
   "hashTable": {
     "/PWA_DEMO_ENV_PROD/687.4e557ff9894def18.js": "b329291b5187d9b9da5d99be249548cca48a08fe",
     "/PWA_DEMO_ENV_PROD/973.316ac4d5fee2f217.js": "fea8414d15f033ec1561c7706d1902fe8f5f3632",
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "587958529158e8e936971dc33f149e67658e3183",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "23c9072e4412e6b5b7e22d4c37a17d4c2bae3dbd",
     "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "cb84302cd2663248fa8b7a32aa8cda73e54dae03",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "213347aa6eed79751a08ab13a103aa830b93d40f",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "7df9bf1e8b27a75554e4ff9d3d3a1f23f672ba20",
@@ -112,8 +112,8 @@
     "/PWA_DEMO_ENV_PROD/assets/opencv.js": "9c25f0d869689b62b0834b7f938896a4ecfae698",
     "/PWA_DEMO_ENV_PROD/assets/sudoku.txt": "a11677cdf143c6ab92080e8a4247c50083c14e71",
     "/PWA_DEMO_ENV_PROD/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/PWA_DEMO_ENV_PROD/index.html": "96a50105ee55e26493499866183776eabd9d080b",
-    "/PWA_DEMO_ENV_PROD/main.26b01708ccbfdc9f.js": "78602faa2240a6756da9e5a28fa1556ecfbfe4f9",
+    "/PWA_DEMO_ENV_PROD/index.html": "cdb05dcf9e3188b018ac8a9d9e98ee7c59c24f20",
+    "/PWA_DEMO_ENV_PROD/main.315a785a7507cc4e.js": "c18189a2926acdba52ebd073228d7577e5b0cc74",
     "/PWA_DEMO_ENV_PROD/manifest.webmanifest": "4c4fda145c554fe9a7ed086f63fa914267022e67",
     "/PWA_DEMO_ENV_PROD/polyfills.d4aa8125b65d4528.js": "a063506f957de345af77eb04df62e5280a953eb1",
     "/PWA_DEMO_ENV_PROD/runtime.6b36bf15ef5b739f.js": "3780f6202bd8849dcd78caff49b6a84ddb47a402",
