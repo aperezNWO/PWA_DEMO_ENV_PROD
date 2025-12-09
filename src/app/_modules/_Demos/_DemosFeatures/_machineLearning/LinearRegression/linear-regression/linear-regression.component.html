@@ -3,9 +3,40 @@
     <div align="center">
       <h1>{{  this.pageTitle }}</h1>
     </div>
-    <hr> 
+    <hr>
+    <!-- referencias inicio -->
+    <div class="reference" align="right">
+        <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
+        <ul *ngIf="isListVisible" align="left" widdth="10px">
+          <li> [Frontend]
+              <ul>
+                  <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: 'edb5d4c4-484e-4d4c-b361-963827eaadfb' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }">[Angular]</a></li>
+              </ul>
+          </li>
+          <li> [Backend]
+              <ul>
+                  <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: '63cc6e30-657f-4775-9c4c-fbb446b774d6' , pageName : 'PAGE_DEMOS_DJANGO_PYTHON'      }">[Django/Python]</a></li>
+              </ul>
+          </li>
+          <li>[Libraries]
+            <ul>
+              <li><a href="https://www.tensorflow.org/install/pip?hl=es" target="_blank">[Tensorflow]</a></li>
+              <li><a href="https://www.chartjs.org/"                     target="_blank">[Chart.js]</a></li>
+              <li><a href="https://valor-software.com/ng2-charts/line"   target="_blank">[ng2-charts]</a></li>
+            </ul>
+          </li>
+          <li>[Topics]
+            <ul>
+              <li><a href="https://en.wikipedia.org/wiki/Linear_regression" target="_blank">[Linear Regression]</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+    <!-- referencias fin  -->
+    <!-- ENCABEZADO / FIN -->  
+    <hr>
     <!-- INIT CONTENT -->
-     <div class="container">
+    <div class="container">
         <div class="input-section">
           <label for="missionNumber">Enter Mission Number to Predict:</label>
           <input

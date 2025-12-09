@@ -232,11 +232,23 @@
         "done"             : true,
         "name"             : "Algoritmos - Colisión",
         "description"      : "Algoritmos - Colisión",
-        "field_1"          : "v17, Canvar, Collision",
+        "field_1"          : "v17, Canvas, Collision",
         "field_2"          : "./#/AlgorithmCollision",
         "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PUBLIC/blob/main/src/app/_modules/_Demos/_DemosFeatures/algorithm/algorithm-collision/algorithm-collision.component.ts",
         "field_4"          : "./#/AlgorithmCollision",
         "field_6"          : "https://en.wikipedia.org/wiki/Collision" ,
         "field_10"         : "60669d7b-0380-4756-8f71-7286a4324228" 
+    },
+    {
+		"id"               : 21,
+        "done"             : true,
+        "name"             : "Machine Learning - Linear Regression",
+        "description"      : "Machine Learning - Linear Regression",
+        "field_1"          : "v17, Machine Leanring, Linear Regression, A.I.",
+        "field_2"          : "./#/LinearRegression",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/0d72cb5ef7076f8741905b719732f85ff6e68926/src/app/_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component.ts#L112",
+        "field_4"          : "./#/LinearRegression",
+        "field_6"          : "https://en.wikipedia.org/wiki/Linear_regression" ,
+        "field_10"         : "edb5d4c4-484e-4d4c-b361-963827eaadfb" 
     }
 ]       

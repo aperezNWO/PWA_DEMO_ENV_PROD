@@ -34,5 +34,17 @@
         "field_4"          : "https://sxcqd6-8000.csb.app/train_tictactoe_model"  ,
         "field_6"          : "https://www.tensorflow.org/install/pip?hl=es",		
         "field_10"         : "84b09d01-71ef-47e6-acd8-f0719d1a8949"	
+    },
+    {
+		"id"               : 4,
+        "done"             : true,
+        "name"             : "[MACHINE LEARNING - LINEAR REGRESSION]",
+        "description"      : "MACHINE LEARNING, LINEAR REGRESSION, A.I, Machine Learning, Tensorflow",
+        "field_1"          : "Django, Python, REST Service, Tensorflow, Machine Learning",
+        "field_2"          : "./#/LinearRegression",
+        "field_3"          : "https://github.com/aperezNWO/django_setup_linux/blob/2761fd5a54c30ca3921a1ddf5b9a042bfdffed64/hello/views.py#L277",
+        "field_4"          : "https://6rtfk8-8000.csb.app/health/"  ,
+        "field_6"          : "https://www.tensorflow.org/install/pip?hl=es",		
+        "field_10"         : "63cc6e30-657f-4775-9c4c-fbb446b774d6"	
     }
 ]       

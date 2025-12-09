@@ -8,7 +8,7 @@ import { _environment                                        } from 'src/environ
   providedIn: 'root'
 })
 export class TetrisService {
-    //
+  //
   private readonly apiUrl                  =  `${this.getConfigValue('baseUrlNetCoreCPPEntry')}api/tetris`;
   private autoPlaySub: Subscription | null = null;
   private gameCreated                      = false;
