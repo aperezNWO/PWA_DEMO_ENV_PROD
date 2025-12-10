@@ -19,8 +19,6 @@ export interface PredictionResponse {
 })
 export class ApolloApiService {
   //
-  private readonly apiUrl                  =  `${this.getConfigValue('baseUrlDjangoPythonTF')}predict/`;
-  //
   constructor(private http: HttpClient) { }
   //
   getConfigValue(key: string) {
@@ -31,12 +29,25 @@ export class ApolloApiService {
   }
 
   //
-  predictTime(missionNumber: number): Observable<PredictionResponse> {
+  predictTime_tensorflow_python(missionNumber: number): Observable<PredictionResponse> {
+
+    let apiUrl_tensorflow_python                  =  `${this.getConfigValue('baseUrlDjangoPythonTF')}predict/`;
+
     const body: PredictionRequest = { mission_number: missionNumber };
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-    return this.http.post<PredictionResponse>(this.apiUrl, body, { headers });
+    return this.http.post<PredictionResponse>(apiUrl_tensorflow_python, body, { headers });
+  }
+
+  predictTime_netcore_cpp(missionNumber: number): Observable<PredictionResponse> {
+
+    let apiUrl_netcore_cpp                        =  `${this.getConfigValue('baseUrlNetCoreCPPEntry')}api/linearregression/predict?missionNumberToPredict=${missionNumber}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<PredictionResponse>(apiUrl_netcore_cpp,{ headers });
   }
 }

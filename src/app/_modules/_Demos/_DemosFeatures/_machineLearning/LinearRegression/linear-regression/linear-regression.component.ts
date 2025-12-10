@@ -137,7 +137,7 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
     this.errorMessage = null;
     this.isLoading    = true;
 
-    this.predictService.predictTime(this.inputMissionNumber).subscribe({
+    this.predictService.predictTime_tensorflow_python(this.inputMissionNumber).subscribe({
       next: (response) => {
         this.predictionResult = response;
         this.updateChart(response.input_mission_number, response.predicted_total_time_hours);
