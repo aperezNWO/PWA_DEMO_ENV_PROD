@@ -63,20 +63,27 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
     if (this.initializationAttempted) return;
     this.initializationAttempted = true;
 
-    console.log('🎮 Initializing Tetris game...');
-    
-    this.tetrisService.createGame().pipe(
-      tap(() => {
-        console.log('✅ Game created, starting state polling');
-        this.startPolling();
-        this.loadAIWeights();
-      }),
-      catchError(err => {
-        console.error('❌ Failed to create game:', err);
-        alert(`Failed to initialize game: ${err.message}. Check console (F12) and ensure DLL is in the API directory.`);
-        return [];
-      })
-    ).subscribe();
+    this.tetrisService.reset().subscribe({ 
+        next : value => {
+        
+                console.log('🎮 Initializing Tetris game...');
+            
+                this.tetrisService.createGame().pipe(
+                  tap(() => {
+                    console.log('✅ Game created, starting state polling');
+                    this.startPolling();
+                    this.loadAIWeights();
+                  }),
+                  catchError(err => {
+                    console.error('❌ Failed to create game:', err);
+                    alert(`Failed to initialize game: ${err.message}. Check console (F12) and ensure DLL is in the API directory.`);
+                    return [];
+                  })
+                ).subscribe();
+                
+            },
+            error: err   => console.error('Reset failed:', err), 
+        });
   }
 
   // Alternative: Show preview only between steps
