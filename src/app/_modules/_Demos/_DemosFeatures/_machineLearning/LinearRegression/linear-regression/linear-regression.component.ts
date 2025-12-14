@@ -4,6 +4,7 @@ import { ChartData, ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective                       } from 'ng2-charts';
 import { BaseComponent                            } from 'src/app/_components/base/base.component';
 import { PAGE_MACHINE_LEARNING_LINEAR_REGRESSION  } from 'src/app/_models/common';
+import { _languageName } from 'src/app/_models/entity.model';
 import { BackendService                           } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                            } from 'src/app/_services/ConfigService/config.service';
 import { ApolloApiService, PredictionResponse     } from 'src/app/_services/LinearRegressionService/linear-regression.service';
@@ -91,6 +92,10 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
       ]
     };
     //
+    public linearRegressionEngine         : number = 3; 
+    //
+    public __languajeList : any; 
+    //
     constructor(      public  override configService    : ConfigService,
                       public  override route            : ActivatedRoute,
                       public  override speechService    : SpeechService,
@@ -109,7 +114,50 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
 
     //
     ngOnInit(): void {
-      this.initializeChart();
+      //
+      this.queryParams();
+    }
+    //
+    queryParams():void{
+        //
+        this.route.queryParams.subscribe({ next: (params) => {
+            //-----------------------------------------------------------------------------
+            // LENGUAJES DE PROGRAMACION
+            //-----------------------------------------------------------------------------
+            this.__languajeList      = new Array();
+            this.__languajeList.push(new _languageName(0, '(C++ Engine              : "Exact Solution (Least Squares Method))         '  , true ,  "CPP"  ));
+            this.__languajeList.push(new _languageName(1, '(Python/TensorFlow Engine: "Approximate Solution (Iterative Optimization)) '  , false,  "PY"   ));
+            //
+            let langName = params['langName'] ? params['langName'] : "" ;
+            //
+            if (langName !== '')
+            {
+                //
+                console.log(` LangName : ${langName}`);  
+                //
+                for (var index = 0; index < this.__languajeList.length; index++) {
+                  //
+                  if (this.__languajeList[index]._shortName  == langName)
+                    {
+                      this.__languajeList[index]._selected = true;     
+                      this.linearRegressionEngine                          = this.__languajeList[index]._index;
+                      
+                      break;
+              
+                    }
+                }
+            } 
+            else 
+            {
+                this.linearRegressionEngine = 0; // (C++ Engine              : "Exact Solution (Least Squares Method)) 
+            }
+            //
+            this.initializeChart();
+        }
+        ,complete        : ()                => {
+            //
+         },
+       });
     }
     //
     initializeChart(): void {
@@ -137,20 +185,41 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
     this.errorMessage = null;
     this.isLoading    = true;
 
-    this.predictService.predictTime_tensorflow_python(this.inputMissionNumber).subscribe({
-      next: (response) => {
-        this.predictionResult = response;
-        this.updateChart(response.input_mission_number, response.predicted_total_time_hours);
-      },
-      error: (error) => {
-        console.error('API Error:', error);
-        this.errorMessage = `Error calling API: ${error.message || 'Unknown error'}`;
-        this.predictionResult = null;
-      },
-      complete: () => {
-        this.isLoading = false;
-      }
-    });
+    if (this.linearRegressionEngine == 0)
+    {
+        this.predictService.predictTime_netcore_cpp(this.inputMissionNumber).subscribe({
+            next: (response) => {
+              this.predictionResult = response;
+              this.updateChart(response.input_mission_number, response.predicted_total_time_hours);
+            },
+            error: (error) => {
+              console.error('API Error:', error);
+              this.errorMessage = `Error calling API: ${error.message || 'Unknown error'}`;
+              this.predictionResult = null;
+            },
+            complete: () => {
+              this.isLoading = false;
+            }
+        });
+    }
+
+    if (this.linearRegressionEngine == 1)
+    {
+        this.predictService.predictTime_tensorflow_python(this.inputMissionNumber).subscribe({
+            next: (response) => {
+              this.predictionResult = response;
+              this.updateChart(response.input_mission_number, response.predicted_total_time_hours);
+            },
+            error: (error) => {
+              console.error('API Error:', error);
+              this.errorMessage = `Error calling API: ${error.message || 'Unknown error'}`;
+              this.predictionResult = null;
+            },
+            complete: () => {
+              this.isLoading = false;
+            }
+        });
+    }
   }
   //
   updateChart(predictedMission: number, predictedTime: number): void {
@@ -181,4 +250,13 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
       this.chart.update();
     }
   }
+
+  //
+  onLinearRegressionEngineChange(event: Event): void {
+    const target = event.target;
+    if (target instanceof HTMLSelectElement) {
+      this.linearRegressionEngine = Number(target.value);
+    }
+  }
+
 }

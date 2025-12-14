@@ -16,6 +16,8 @@
           <li> [Backend]
               <ul>
                   <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: '63cc6e30-657f-4775-9c4c-fbb446b774d6' , pageName : 'PAGE_DEMOS_DJANGO_PYTHON'      }">[Django/Python]</a></li>
+                  <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: 'ddfc8e21-fc68-4531-b176-62a7589a3cb1' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }">[C++ / DLL]</a></li>
+                  <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: 'e24429ce-2b9a-42a4-8690-1edcf09c1b72' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }">[C++ / .net core Entry]</a></li>
               </ul>
           </li>
           <li>[Libraries]
@@ -37,6 +39,22 @@
     <hr>
     <!-- INIT CONTENT -->
     <div class="container">
+                  <!-- Controls -->
+            <div class="controls">
+                <!-- AI Style Dropdown -->
+                <label>
+                Engine:
+                <select id="LanguageList"
+                        name="LanguajeList"
+                        (change)="onLinearRegressionEngineChange($event)"
+                        #_languajeList>
+                        <option *ngFor="let _languageName of __languajeList" 
+                                [value]   ="_languageName._index"
+                                [selected]="_languageName._selected">{{_languageName._value}}
+                        </option>
+                </select>
+                </label>
+        </div>
         <div class="input-section">
           <label for="missionNumber">Enter Mission Number to Predict:</label>
           <input
