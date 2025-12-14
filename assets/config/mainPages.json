@@ -3,8 +3,8 @@
         "log_name"   : "PAGE_ANGULAR_DEMO_INDEX",
         "page_name"  : "Welcome to [Angular Demo]",
         "pages"      : [
-          { "id": 1, "url" : "/PageUrlList"                                               , "text": "[CARACTERISTICAS]" , "queryParams" : "PAGE_DEMOS_CARACTERISTICAS_INDEX"     },
-          { "id": 2, "url" : "/PageUrlList"                                               , "text": "[LENGUAJES]"       , "queryParams" : "PAGE_DEMOS_LENGUAJES_INDEX"           },
+          { "id": 1, "url" : "/PageUrlList"                                               , "text": "[FEATURES]" , "queryParams" : "PAGE_DEMOS_CARACTERISTICAS_INDEX"     },
+          { "id": 2, "url" : "/PageUrlList"                                               , "text": "[LANGUAGES]"       , "queryParams" : "PAGE_DEMOS_LENGUAJES_INDEX"           },
           { "id": 3, "url" : "/PageUrlList"                                               , "text": "[CURRICULUM]"      , "queryParams" : "PAGE_DEMOS_CURRICULUM_INDEX"          }
         ]
       },
@@ -12,7 +12,7 @@
         "log_name"   : "PAGE_ABOUT_INDEX",
         "page_name"  : "[ACERCA DE]",
         "pages"      : [
-          { "id": 1, "url" : "/TechnicalSpecs"                                           , "text": "[ESPECIFICACIONES TECNICAS]"               },
+          { "id": 1, "url" : "/TechnicalSpecs"                                           , "text": "[TECHNICAL SPECS.]"               },
           { "id": 2, "url" : "/SCM"                                                      , "text": "[SOFTWARE CONFIGURATION MANAGEMENT]"       },
           { "id": 3, "url" : "/LLMList"                                                  , "text": "[LARGE LANGUAGE MODELS LIST]"              },
           { "id": 4, "url" : "/EduResources"                                             , "text": "[EDUCATIONAL RESOURCES]"                   },
@@ -27,12 +27,12 @@
       },
       {
         "log_name"   : "PAGE_ABOUT_TECHNICAL_SPECS",
-        "page_name"  : "[ACERCA DE - ESPECIFICACIONES TÉCNICAS]",
+        "page_name"  : "[ABOUT - TECHNICAL SPECS.]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_ABOUT_LLM_LIST",
-        "page_name"  : "[ACERCA DE - LISTADO DE LLMs]",
+        "page_name"  : "[ABOUT - LLMs LIST]",
         "pages"      : [
               {
                   "id"   : 1 ,
@@ -103,12 +103,7 @@
                   "id"   : 14,
                   "url"  : "https://stackoverflow.ai/",
                   "text" : "Stack Overflow"
-              },
-              {
-                  "id"   : 15,
-                  "url"  : "https://algorithm-visualizer.org/",
-                  "text" : "Algorithm Visualizer"
-              }      
+              }
         ]
       },
       {
@@ -194,12 +189,12 @@
       },
       {
         "log_name"   : "PAGE_ABOUT_CONTACT_FORM",
-        "page_name"  : "[CONTÁCTENOS]",
+        "page_name"  : "[CONTACT US]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_DEMOS_LENGUAJES_INDEX",
-        "page_name"  : "[DEMOS - LENGUAJES / LIBRERIAS]",
+        "page_name"  : "[DEMOS - LANGUAGES / LIBRARIES]",
         "pages"      : [
           { "id": 1, "url" : "/GridParam"         , "text": "[ANGULAR / TYPESCRIPT]"   , "queryParams" : "PAGE_DEMOS_ANGULAR_JAVASCRIPT"    },
           { "id": 2, "url" : "/GridParam"         , "text": "[.NET CORE / C++]"        , "queryParams" : "PAGE_DEMOS_NETCORE_CPP"           },
@@ -359,7 +354,7 @@
       },
       {
         "log_name"   : "PAGE_DEMOS_FILE_GENREATION_INDEX",
-        "page_name"  : "[DEMOS - GENERAR ARCHIVOS]",
+        "page_name"  : "[DEMOS - FILE GENERATION]",
         "pages"      : [
           { "id": 1, "url" : "/FilesGenerationCSV"       , "text": "[GENERAR ARCHIVO CSV]"      },
           { "id": 2, "url" : "/FilesGenerationXLS"       , "text": "[GENERAR ARCHIVO XLS]"      },
@@ -369,32 +364,32 @@
       },
       {
         "log_name"   : "PAGE_FILE_GENERATION_CSV",
-        "page_name"  : "[GENERAR ARCHIVOS - CSV]",
+        "page_name"  : "[FILE GENERATION - CSV]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_DEMOS_FILE_GENERATION_ZIP",
-        "page_name"  : "[GENERAR ARCHIVOS - ZIP]",
+        "page_name"  : "[FILE GENERATION - ZIP]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_FILE_GENERATION_XLS",
-        "page_name"  : "[GENERAR ARCHIVOS XLS]",
+        "page_name"  : "[FILE GENERATIONS XLS]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_FILE_GENERATION_PDF",
-        "page_name"  : "[GENERAR ARCHIVOS - PDF]",
+        "page_name"  : "[FILE GENERATION - PDF]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_FILE_GENERATION_CHART",
-        "page_name"  : "[GENERAR ARCHIVOS - CHART]",
+        "page_name"  : "[FILE GENERATION - CHART]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_ALGORITMOS_INDEX",
-        "page_name"  : "[DEMOS - ALGORITMOS]",
+        "page_name"  : "[DEMOS - ALGORITHMS]",
         "pages"      : [
           { "id": 1, "url" : "/AlgorithmRegEx"          , "text": "[ALGORITMOS - EXPRESIONES REGULARES]"      },
           { "id": 2, "url" : "/AlgorithmSort"           , "text": "[ALGORITMOS - ORDENAMIENTO]"               },
@@ -403,18 +398,18 @@
         ]
       },
       {
-        "log_name"   : "PAGE_ALGORITMOS_COLISION",
-        "page_name"  : "[ALGORITMOS - COLISIÓN]",
+        "log_name"   : "PAGE_ALGALGORITHMSORITMOS_COLISION",
+        "page_name"  : "[ALGORITHMS - COLISSION]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_ALGORITMOS_DIJKSTRA",
-        "page_name"  : "[ALGORITMOS - DIJKSTRA]",
+        "page_name"  : "[ALGORITHMS - DIJKSTRA]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_ALGORITMOS_REGEX",
-        "page_name"  : "[ALGORITMOS - EXPRESIONES REGULARES]",
+        "page_name"  : "[ALGORITHMS - REGULAR EXPRESSIONS]",
         "pages"      : []
       },
       {
@@ -431,7 +426,7 @@
       },
       {
         "log_name"   : "PAGE_DEMOS_CARACTERISTICAS_INDEX",
-        "page_name"  : "[DEMOS - CARACTERISTICAS]",
+        "page_name"  : "[DEMOS - FEATURES]",
         "pages"      : [
           { "id": 1, "url" : "/PageUrlList"             , "text": "[MISCELANEOUS]"                    , "queryParams" : "PAGE_DEMOS_MISELANEOUS_INDEX"      },
           { "id": 2, "url" : "/PageUrlList"             , "text": "[GAMES]"                           , "queryParams" : "PAGE_DEMOS_GAMES_INDEX"            },
