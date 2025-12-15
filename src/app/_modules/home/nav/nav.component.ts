@@ -43,7 +43,7 @@ export class NavComponent {
     },  
     {
       'url'          : '/PageUrlList', 
-      'text'         : '[ACERCA DE]',
+      'text'         : '[ABOUT]',
       'queryParams'  : 'PAGE_ABOUT_INDEX'
     },    
   ];

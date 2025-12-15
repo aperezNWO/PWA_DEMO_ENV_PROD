@@ -46,7 +46,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     protected   drawEngine        : DrawEngine | undefined;
     //
     public isListVisible            = false; // Initially hidden
-    public toogleLisCaption: string = "[Ver Referencias]";
+    public toogleLisCaption: string = "[See references]";
     //
     constructor(private backendService    : BackendService, 
                 public  speechService     : SpeechService,
@@ -84,9 +84,9 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     //
     toggleList() {
         this.isListVisible     = !this.isListVisible; // Toggle visibility
-        this.toogleLisCaption  = !(this.isListVisible)? "[Ver Referencias]" : "[Ocultar Referencias]";
+        this.toogleLisCaption  = !(this.isListVisible)? "[See references]" : "[Hide References]";
         //
-        (this.isListVisible)? this.speechService.speakTextCustom("[Ver Referencias]") : null;
+        (this.isListVisible)? this.speechService.speakTextCustom("[See references]") : null;
     }
     //
     queryParams():void {

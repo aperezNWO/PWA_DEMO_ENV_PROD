@@ -24,7 +24,7 @@ export class _BaseComponent implements OnInit {
   private _pageTitle       : string = "";
   //
   public isListVisible            = false; // Initially hidden
-  public toogleLisCaption: string = "[Ver Referencias]";
+  public toogleLisCaption: string = "[See references]";
   //
   public status_message           = signal<string>('');
   //
@@ -110,9 +110,9 @@ export class _BaseComponent implements OnInit {
   toggleList() {
     //
     this.isListVisible     = !this.isListVisible; // Toggle visibility
-    this.toogleLisCaption  = !(this.isListVisible)? "[Ver Referencias]" : "[Ocultar Referencias]";
+    this.toogleLisCaption  = !(this.isListVisible)? "[See references]" : "[Hide references]";
     //
     if (this.isListVisible)
-      this.speechService.speakTextCustom("Ver Referncias");
+      this.speechService.speakTextCustom("See references");
   }
 }
