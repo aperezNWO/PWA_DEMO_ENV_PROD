@@ -10,7 +10,7 @@
       },
       {
         "log_name"   : "PAGE_ABOUT_INDEX",
-        "page_name"  : "[ACERCA DE]",
+        "page_name"  : "[ABOUT]",
         "pages"      : [
           { "id": 1, "url" : "/TechnicalSpecs"                                           , "text": "[TECHNICAL SPECS.]"               },
           { "id": 2, "url" : "/SCM"                                                      , "text": "[SOFTWARE CONFIGURATION MANAGEMENT]"       },
@@ -22,7 +22,7 @@
       },
       {
         "log_name"   : "PAGE_NOT_FOUND",
-        "page_name"  : "[PÁGINA NO ENCONTRADA]",
+        "page_name"  : "[PAGE NOT FOUND]",
         "pages"      : []
       },
       {
@@ -108,7 +108,7 @@
       },
       {
         "log_name"   : "PAGE_ABOUT_EDU_RESC",
-        "page_name"  : "[ACERCA DE - EDUCATIONAL RESOURCES]",
+        "page_name"  : "[ABOUT - EDUCATIONAL RESOURCES]",
         "pages"      : [
               {
                   "id"  : 0,
@@ -356,10 +356,10 @@
         "log_name"   : "PAGE_DEMOS_FILE_GENREATION_INDEX",
         "page_name"  : "[DEMOS - FILE GENERATION]",
         "pages"      : [
-          { "id": 1, "url" : "/FilesGenerationCSV"       , "text": "[GENERAR ARCHIVO CSV]"      },
-          { "id": 2, "url" : "/FilesGenerationXLS"       , "text": "[GENERAR ARCHIVO XLS]"      },
-          { "id": 3, "url" : "/FilesGenerationPDF"       , "text": "[GENERAR ARCHIVO PDF]"      },
-          { "id": 4, "url" : "/Chart"                    , "text": "[GENERAR ARCHIVO CHART]"    }
+          { "id": 1, "url" : "/FilesGenerationCSV"       , "text": "[FILE GENERATION CSV]"      },
+          { "id": 2, "url" : "/FilesGenerationXLS"       , "text": "[FILE GENERATION XLS]"      },
+          { "id": 3, "url" : "/FilesGenerationPDF"       , "text": "[FILE GENERATION PDF]"      },
+          { "id": 4, "url" : "/Chart"                    , "text": "[FILE GENERATION CHART]"    }
         ]
       },
       {
@@ -391,10 +391,10 @@
         "log_name"   : "PAGE_ALGORITMOS_INDEX",
         "page_name"  : "[DEMOS - ALGORITHMS]",
         "pages"      : [
-          { "id": 1, "url" : "/AlgorithmRegEx"          , "text": "[ALGORITMOS - EXPRESIONES REGULARES]"      },
-          { "id": 2, "url" : "/AlgorithmSort"           , "text": "[ALGORITMOS - ORDENAMIENTO]"               },
-          { "id": 3, "url" : "/AlgorithmDijkstra"       , "text": "[ALGORITMOS - DISTANCIA MAS CORTA]"        },
-          { "id": 4, "url" : "/AlgorithmCollision"      , "text": "[ALGORITMOS - COLISIÓN]"                   }          
+          { "id": 1, "url" : "/AlgorithmRegEx"          , "text": "[ALGORITHMS - EXPRESIONES REGULARES]"      },
+          { "id": 2, "url" : "/AlgorithmSort"           , "text": "[ALGORITHMS - ORDENAMIENTO]"               },
+          { "id": 3, "url" : "/AlgorithmDijkstra"       , "text": "[ALGORITHMS - DISTANCIA MAS CORTA]"        },
+          { "id": 4, "url" : "/AlgorithmCollision"      , "text": "[ALGORITHMS - COLISIÓN]"                   }          
         ]
       },
       {
@@ -439,7 +439,7 @@
         "log_name"   : "PAGE_DEMOS_INDEX",
         "page_name"  : "[DEMOS]",
         "pages"      : [
-          { "id": 1, "url" : "/PageUrlList"                 , "text": "[DEMOS - CARACTERISTICAS]"                 , "queryParams" : "PAGE_DEMOS_CARACTERISTICAS_INDEX"     },
+          { "id": 1, "url" : "/PageUrlList"                 , "text": "[DEMOS - FEATURES]"                 , "queryParams" : "PAGE_DEMOS_CARACTERISTICAS_INDEX"     },
           { "id": 1, "url" : "/PageUrlList"                 , "text": "[DEMOS - LENGUAJES]"                       , "queryParams" : "PAGE_DEMOS_LENGUAJES_INDEX"           },
           { "id": 1, "url" : "/PageUrlList"                 , "text": "[DEMOS - CURRICULUM]"                      , "queryParams" : "PAGE_DEMOS_CURRICULUM_INDEX"          }
         ] 
