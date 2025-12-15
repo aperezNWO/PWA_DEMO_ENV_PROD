@@ -62,7 +62,7 @@
     {
 		"id"               : 6,
         "done"             : true,
-        "name"             : "Generar archivos - csv",
+        "name"             : "File generation - csv",
         "description"      : "Exportación via servicio RESTFUL con ms sql server",
         "field_1"          : "v17, .NET Core, csv, stringbuilder, ms sql server, HttpClient",
         "field_2"          : "./#/FilesGenerationCSV?langName=CS",
@@ -74,7 +74,7 @@
      {
 		"id"               : 7,
         "done"             : true,
-        "name"             : "Generar Archivos - xls",
+        "name"             : "File generation - xls",
         "description"      : "Exportación via servicio RESTFUL",
         "field_1"          : "v17, .NET Core, xls, OfficeOpenXm,eppPlus",
         "field_2"          : "./#/FilesGenerationXLS?langName=CS",
@@ -86,7 +86,7 @@
     {
 		"id"               : 8,
         "done"             : true,
-        "name"             : "Genearar Archivos - PDF",
+        "name"             : "File generation - PDF",
         "description"      : "Exportación via servicio RESTFUL",
         "field_1"          : ".NET Core, pdf, iTextSharp",
         "field_2"          : "./#/FilesGenerationPDF",
@@ -98,7 +98,7 @@
     {
 		 "id"               : 9,
          "done"             : true,
-         "description"      : "Generar Archivos - Chart",
+         "description"      : "File generation - Chart",
          "name"             : "Gráficos tipo Pastel y Barras",
          "field_1"          : "v17, Pie Chart, Bar Chart, Chart.js",
          "field_2"          : "./#/Chart",
