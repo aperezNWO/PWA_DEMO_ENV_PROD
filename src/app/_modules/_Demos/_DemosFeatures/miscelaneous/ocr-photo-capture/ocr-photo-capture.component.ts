@@ -51,8 +51,8 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
   capturedImageHidden     : boolean = true;
   captureButtonDisabled   : boolean = false;
   saveImageButtonDisabled : boolean = true;
-  selectedIndex           : number  = 0;
-  selectedIndexEngines    : number  = 0;
+  selectedIndex           : number  = 1;
+  selectedIndexEngines    : number  = 1;
   
   //
   constructor(public override configService  : ConfigService,
@@ -92,7 +92,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
     this.route.queryParams.subscribe(params => {
     //-----------------------------------------------------------------------------
     this.__sourceList = new Array();
-    this.__sourceList.push( new _languageName(0,"(CHOOSE OPTION...)"    ,false,""));        
+    this.__sourceList.push( new _languageName(0,"(CHOOSE OPTION...)"   ,false,""));        
     this.__sourceList.push( new _languageName(1,"(FROM CANVAS)"        ,true ,""));        
     this.__sourceList.push( new _languageName(2,"(FROM CAMERA)"        ,false,""));        
     //-----------------------------------------------------------------------------
@@ -176,7 +176,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
         break;      
         default:
           //
-          this.status_message.set("Please choose the option [ENGINE]");
+          this.status_message.set("Please choose the option [OCR ENGINE]");
         break;
      }
   }
@@ -315,7 +315,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
   saveImage() {
        //
        if (this.selectedIndex == 0) {
-                this.status_message.set("Please choose the option    [CAPTURE ORIGIN]");
+                this.status_message.set("Please choose the option [CAPTURE ORIGIN]");
                 return;
        }
        //
@@ -338,7 +338,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
               }        
           break;
           default : //
-              this.status_message.set("Pleae choose the option [ENGINE]");
+              this.status_message.set("Pleae choose the option [OCR ENGINE]");
           break;
        }
   }
