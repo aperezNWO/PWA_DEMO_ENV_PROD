@@ -140,10 +140,19 @@ export class BackendService implements OnInit {
       //
       return appVersion;
     }
+        //
+    _GetTesseract_CPPSTDVersion(): Observable<string> {
+      //
+      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/GetTesseract_CPPSTDVersion`;
+      //
+      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      //
+      return appVersion;
+    }
     //
      _GetTesseractAppVersion(): Observable<string> {
       //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}GetTesseractAppVersion`;
+      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/GetTesseractAppVersion`;
       //
       let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -152,7 +161,7 @@ export class BackendService implements OnInit {
     //
     _GetTesseractAPIVersion(): Observable<string> {
       //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}GetTesseractVersion`;
+      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/GetTesseractVersion`;
       //
       let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -203,14 +212,6 @@ export class BackendService implements OnInit {
       //
       return appVersion;
     }
-    _Algorithm_GetCPPSTDVersion(): Observable<string> {
-      //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}Algorithm_GetCPPSTDVersion`;
-      //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
     //
     _TensorFlow_GetCPPSTDVersion(): Observable<string> {
       //
@@ -220,10 +221,9 @@ export class BackendService implements OnInit {
       //
       return appVersion;
     }
-    //
-    _GetTesseract_CPPSTDVersion(): Observable<string> {
+    _Algorithm_GetCPPSTDVersion(): Observable<string> {
       //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}GetTesseract_CPPSTDVersion`;
+      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}Algorithm_GetCPPSTDVersion`;
       //
       let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
