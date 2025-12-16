@@ -731,7 +731,7 @@ export class BackendService implements OnInit {
   //
   uploadBase64ImageCPP(base64Image: string) {
     //
-    let url = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}upload`;
+    let url = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/upload`;
     //
     ////console.log('Sending ocr to url : ' + url);
     //

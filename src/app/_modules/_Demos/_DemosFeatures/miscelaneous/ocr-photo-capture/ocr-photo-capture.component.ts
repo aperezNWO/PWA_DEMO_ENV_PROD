@@ -43,7 +43,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
   private isFrontCamera                              : boolean = true;
   //
   capturedImage           : string | null = null;
-  tituloListadOrigen      : string | null = "[ORIGEN CAPTURA]";
+  tituloListadOrigen      : string | null = "[CAPTURE ORIGIN]";
   titleEngineList         : string | null = "[OCR ENGINES]";;
   hiddenCanvasContainer   : boolean = false;
   hiddenCameraContainer   : boolean = false;
@@ -92,12 +92,12 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
     this.route.queryParams.subscribe(params => {
     //-----------------------------------------------------------------------------
     this.__sourceList = new Array();
-    this.__sourceList.push( new _languageName(0,"(SELECCIONE OPCION..)" ,false,""));        
-    this.__sourceList.push( new _languageName(1,"(DESDE CANVAS)"        ,true ,""));        
-    this.__sourceList.push( new _languageName(2,"(DESDE CAMARA)"        ,false,""));        
+    this.__sourceList.push( new _languageName(0,"(CHOOSE OPTION...)"    ,false,""));        
+    this.__sourceList.push( new _languageName(1,"(FROM CANVAS)"        ,true ,""));        
+    this.__sourceList.push( new _languageName(2,"(FROM CAMERA)"        ,false,""));        
     //-----------------------------------------------------------------------------
     this.__engineList = new Array();
-    this.__engineList.push( new _languageName(0,"(SELECCIONE OPCION..)"                        ,false,  ""   ));        
+    this.__engineList.push( new _languageName(0,"(CHOOSE OPCION...)"                           ,false,  ""   ));        
     this.__engineList.push( new _languageName(1,"(TESSERACT / javascript)"                     ,true,   "JS" ));        
     this.__engineList.push( new _languageName(2,"(TESSERACT / C++) "                           ,false,  "CPP"));  
         //
@@ -137,7 +137,6 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
     //
     this.status_message.set("");
     //
-    //console.log(`Selected Source : ${this.selectedIndex}`);
   }
   selectionChangeEngines() {
     //
@@ -150,8 +149,14 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
   onEndSign(): void { }
   //
   saveSignature():void {
+
      //
-     //console.log("Saving signature...");
+     if (this.selectedIndex == 0) {
+            this.status_message.set("Please choose the option    [CAPTURE ORIGIN]");
+            return;
+     }
+
+     //
      this.status_message.set("[...parsing...]");
      //
      let base64ImageString : string  = this.signature?.toDataURL()!;
@@ -171,7 +176,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
         break;      
         default:
           //
-          this.status_message.set("Favor seleccione la opción [ENGINE]");
+          this.status_message.set("Please choose the option [ENGINE]");
         break;
      }
   }
@@ -309,6 +314,11 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
   //
   saveImage() {
        //
+       if (this.selectedIndex == 0) {
+                this.status_message.set("Please choose the option    [CAPTURE ORIGIN]");
+                return;
+       }
+       //
        this.status_message.set("[..parsing...]");
        //
        this.selectionChangeEngines();
@@ -328,7 +338,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
               }        
           break;
           default : //
-              this.status_message.set("Favor seleccione la opción [ENGINE]");
+              this.status_message.set("Pleae choose the option [ENGINE]");
           break;
        }
   }
@@ -336,7 +346,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
   dataURLToBlob(dataURL: string): Blob {
     const byteString = atob(dataURL.split(',')[1]);
     const mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
-    const byteArray = new Uint8Array(byteString.length);
+    const byteArray  = new Uint8Array(byteString.length);
 
     for (let i = 0; i < byteString.length; i++) {
       byteArray[i] = byteString.charCodeAt(i);
