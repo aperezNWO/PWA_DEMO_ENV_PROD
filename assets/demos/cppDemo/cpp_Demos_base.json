@@ -103,7 +103,7 @@
         "field_1"          : "OCR, Tesseract",
         "field_2"          : "./#/OcrPhotoCapture?langName=CPP",
         "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TESSERACT/blob/e57058e7e388ae09fc535fcb9379a7a8229ed5e9/tesseractApp.cpp#L176",
-        "field_4"          : "https://tensorflownetcore64.tryasp.net/GetTesseractOcrOutput",
+        "field_4"          : "https://tensorflownetcore64.tryasp.net/api/ocr/GetTesseractOcrOutput",
         "field_6"          : "https://en.wikipedia.org/wiki/Optical_character_recognition",
         "field_10"         : "59c5ba46-4a63-4468-b8e4-409ace1f025e"  
     },
@@ -115,7 +115,7 @@
         "field_1"          : "OCR, Tesseract, C++, .net core, DLLImport",
         "field_2"          : "./#/OcrPhotoCapture?langName=CPP",
         "field_3"          : "https://github.com/aperezNWO/ASP_NET_CORE_CPP_ENTRY/blob/8a465f7d3c40159b1d75c528291da7dcf764868a/ASP_NET_CORE_CPP_ENTRY/Controllers/HomeController.cs#L166",
-        "field_4"          : "https://tensorflownetcore64.tryasp.net/GetTesseractOcrOutput",
+        "field_4"          : "https://tensorflownetcore64.tryasp.net/api/ocr/GetTesseractOcrOutput",
         "field_6"          : "https://learn.microsoft.com/es-es/dotnet/api/system.runtime.interopservices.dllimportattribute?view=net-9.0",
         "field_10"         : "9d7836ed-cd9b-4152-b298-18be6ed9b437"  
     },
