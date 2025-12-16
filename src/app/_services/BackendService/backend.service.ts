@@ -4,6 +4,7 @@ import { HttpRequest, HttpResponse  , HttpInterceptor            } from '@angula
 import { Observable                                              } from 'rxjs';
 import { LogEntry, LogType, SearchCriteria                       } from '../../_models/entity.model';
 import { ConfigService                                           } from '../ConfigService/config.service';
+import { _environment                                            } from 'src/environments/environment';
 //
 @Injectable({
   providedIn: 'root'
@@ -89,6 +90,7 @@ export class BackendService implements OnInit {
     protected __baseUrlNodeJsOcr      : string = '';
     protected __baserUrlSpringBoot    : string = '';
     protected __baseUrlDjangoPython   : string = '';
+    protected __baseUrlTesseract      : string = '';
     //
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
@@ -96,22 +98,51 @@ export class BackendService implements OnInit {
     //
     ngOnInit(): void {
       //
-      ////console.log("Calling MCSDService initialization...");
-      //
-    }
-    constructor(public http: HttpClient, public _configService : ConfigService) {
-      //
-      ////console.log("Calling MCSDService constructor...");
-      //
       this.__baseUrlNetCoreCPPEntry   = this._configService.getConfigValue('baseUrlNetCoreCPPEntry');
       this.__baseUrlNetCore           = this._configService.getConfigValue('baseUrlNetCore');
       this.__baseUrlNodeJs            = this._configService.getConfigValue('baseUrlNodeJs');
       this.__baseUrlNodeJsOcr         = this._configService.getConfigValue('baseUrlNodeJsOcr');
       this.__baserUrlSpringBoot       = this._configService.getConfigValue('baseUrlSpringBootJava');
     }
+    constructor(public http: HttpClient, public _configService : ConfigService) {
+      //
+    }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [COMUNES]
     ////////////////////////////////////////////////////////////////  
+    //
+    _GetTesseract_CPPSTDVersion(): Observable<string> {
+      //
+      this.__baseUrlTesseract     = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;     
+      //
+      let p_url         : string  = `${this.__baseUrlTesseract}GetTesseract_CPPSTDVersion`;
+      //
+      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      //
+      return appVersion;
+    }
+    //
+    _GetTesseract_AppVersion(): Observable<string> {
+      //
+      this.__baseUrlTesseract     = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;
+      //
+      let p_url         : string  = `${this.__baseUrlTesseract}GetTesseractAppVersion`;
+      //
+      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      //
+      return appVersion;
+    }
+    //
+    _GetTesseract_APIVersion(): Observable<string> {
+      //
+      this.__baseUrlTesseract         = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;
+      //
+      let p_url         : string  = `${this.__baseUrlTesseract}GetTesseractVersion`;
+      //
+      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      //
+      return appVersion;
+    }
     //
     _GetWebApiAppVersion(): Observable<string>
     {
@@ -135,33 +166,6 @@ export class BackendService implements OnInit {
     _GetASPNETCoreCppVersion(): Observable<string> {
       //
       let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}_GetAppVersion`;
-      //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
-        //
-    _GetTesseract_CPPSTDVersion(): Observable<string> {
-      //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/GetTesseract_CPPSTDVersion`;
-      //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
-    //
-     _GetTesseractAppVersion(): Observable<string> {
-      //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/GetTesseractAppVersion`;
-      //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
-    //
-    _GetTesseractAPIVersion(): Observable<string> {
-      //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/GetTesseractVersion`;
       //
       let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //

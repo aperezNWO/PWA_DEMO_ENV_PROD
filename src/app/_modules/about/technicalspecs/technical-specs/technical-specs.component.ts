@@ -271,25 +271,19 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetTesseractAppVersion() {
       //
-      let cppBackendObservable : Observable<string> = this.backendService._GetTesseractAppVersion();
+      let cppBackendObservable : Observable<string> = this.backendService._GetTesseract_AppVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 
           //
-          //console.log('_GetAppVersion - (return): ' + jsondata);
-          //
           this._tesseractAppVersion = jsondata;
-          //
-          //console.log(this.pageTitle + "- [webApiVersion] - " + this._webApiAppVersion);
         },
         error           : (err: Error)      => {
-
           //
           console.error('_GetTesseractAppVersion- (ERROR) : ' + JSON.stringify(err.message));
         },
         complete        : ()                => {
           //
-          //console.log('_GetAppVersion -  (COMPLETE)');
         },
       };
       //
@@ -299,26 +293,20 @@ export class TechnicalSpecsComponent extends BaseComponent {
     }
     //
     private _GetTesseractAPIVersion() {
-    //
-      let cppBackendObservable : Observable<string> = this.backendService._GetTesseractAPIVersion();
+      //
+      let cppBackendObservable : Observable<string> = this.backendService._GetTesseract_APIVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 
           //
-          //console.log('_GetAppVersion - (return): ' + jsondata);
-          //
           this._tesseractAPIVersion = jsondata;
-          //
-          //console.log(this.pageTitle + "- [webApiVersion] - " + this._webApiAppVersion);
         },
         error           : (err: Error)      => {
-
           //
           console.error('_GetTesseractAppVersion- (ERROR) : ' + JSON.stringify(err.message));
         },
         complete        : ()                => {
           //
-          //console.log('_GetAppVersion -  (COMPLETE)');
         },
       };
       //
@@ -328,26 +316,20 @@ export class TechnicalSpecsComponent extends BaseComponent {
     }
     //
     private _GetTesseract_CPPSTDVersion() {
-    //
+      //
       let cppBackendObservable : Observable<string> = this.backendService._GetTesseract_CPPSTDVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 
           //
-          //console.log('_GetAppVersion - (return): ' + jsondata);
-          //
           this._tesseractCPPSTDVersion = jsondata;
-          //
-          //console.log(this.pageTitle + "- [webApiVersion] - " + this._webApiAppVersion);
         },
         error           : (err: Error)      => {
-
           //
           console.error('_GetTesseract_CPPSTDVersion- (ERROR) : ' + JSON.stringify(err.message));
         },
         complete        : ()                => {
           //
-          //console.log('_GetAppVersion -  (COMPLETE)');
         },
       };
       //

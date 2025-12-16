@@ -1,9 +1,8 @@
 import { Injectable     } from '@angular/core';
 import { HttpClient     } from '@angular/common/http';
-import { _environment   } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
-import { MainPage, PageSetting } from 'src/app/_models/entity.model';
-import { PAGE_ANGULAR_DEMO_INDEX } from 'src/app/_models/common';
+import { _environment   } from 'src/environments/environment';
+import { MainPage       } from 'src/app/_models/entity.model';
 
 
 @Injectable({
@@ -72,10 +71,6 @@ export class ConfigService {
   getConfigValue(key: string) {
     //
     let jsonData : string = JSON.parse(JSON.stringify(_environment.externalConfig))[key];
-    //
-    ////console.log(jsonData);
-    //
-    ////console.log('Reading config : ' + key + ', value :' + jsonData)
     //
     return jsonData;
   }
