@@ -73,26 +73,6 @@ export class NavComponent {
       keyValue         = this._configService.getConfigValue(keyName);
       this._appVersion = keyValue;
       //
-      let __baseUrlNetCore = this._configService.getConfigValue('baseUrlNetCore');
-      let __baseUrlNodeJs  = this._configService.getConfigValue('baseUrlNodeJs');
-      //
-      this.backendService._baseUrlNetCore = __baseUrlNetCore;
-      this.backendService._baseUrlNodeJs  = __baseUrlNodeJs;
-      //
-      //////////////////////////////////////////////////////
-      // CACHE PARA XML
-      ///////////////////////////////////////////////////////
-      //
-      this.backendService._SetXmlDataToCache(__baseUrlNetCore);
-      ///////////////////////////////////////////////////////
-      // CACHE PARA PIE CHART
-      ///////////////////////////////////////////////////////
-      this.backendService._SetSTATPieCache(__baseUrlNetCore);
-      ///////////////////////////////////////////////////////
-      // CACHE PARA BARCHART
-      ///////////////////////////////////////////////////////
-      this.backendService._SetSTATBarCache(__baseUrlNetCore);
-      //
       let title : string = `${this._appBrand} -- ${this._appEnv} -- ${this._appVersion}`;
       //
       this.titleService.setTitle(title);

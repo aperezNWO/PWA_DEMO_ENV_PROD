@@ -32,15 +32,6 @@ export class AppComponent  {
       this._appBrand          = this._configService.getConfigValue('appBrand');
       this._appVersion        = this._configService.getConfigValue('appVersion');
       let __baseUrlNetCore    = this._configService.getConfigValue('baseUrlNetCore');
-      let __baseUrlNodeJs     = this._configService.getConfigValue('baseUrlNodeJs');
-      let __baseUrlNodeJsOcr  = this._configService.getConfigValue('baseUrlNodeJsOcr');
-      let __baseUrlSpringBoot = this._configService.getConfigValue('baseUrlSpringBootJava');
-      //
-      this.backendService._baseUrlNetCore    = __baseUrlNetCore;
-      this.backendService._baseUrlNodeJs     = __baseUrlNodeJs;
-      this.backendService._baseUrlNodeJs     = __baseUrlNodeJs;
-      this.backendService._baseUrlNodeJsOcr  = __baseUrlNodeJsOcr;
-      this.backendService._baseUrlSpringBoot = __baseUrlSpringBoot;
       //
       //////////////////////////////////////////////////////
       // CACHE PARA XML

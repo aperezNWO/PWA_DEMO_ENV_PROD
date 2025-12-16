@@ -284,8 +284,6 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
         },       
         complete: ()        => {
           //
-          //console.log('Observer got a complete notification');
-          //
           this.rf_buttonCaption     = "[Buscar]";
           //
           this.rf_formSubmit        = false;
@@ -303,8 +301,6 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
     //
     rf_GenerarInformeXLSPost():void  {
       //
-      //console.log("GENERAR EXCEL (RF) - POST");
-      //
       let rf_excelFileName!                   : Observable<string>;
       //
       rf_excelFileName                        = this.backendService.getInformeExcel(this.rf_model);
@@ -319,10 +315,9 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
         //
         next: (_excelFileName: string) => { 
           //
-          //
           let urlFile                = UtilManager.DebugHostingContent(_excelFileName);
           //
-          this.rf_ExcelDownloadLink  = `${this.backendService._baseUrlNetCore}/wwwroot/xlsx/${urlFile}`;
+          this.rf_ExcelDownloadLink  = `${this.configService.getConfigValue('baseUrlNetCore')}/wwwroot/xlsx/${urlFile}`;
           //
           this.rf_textStatus_xls.set("[Descargar Excel]");
         },
@@ -591,7 +586,7 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
           //
           let urlFile                = UtilManager.DebugHostingContent(_excelFileName); 
           //
-          this.td_ExcelDownloadLink  = `${this.backendService._baseUrlNetCore}/wwwroot/xlsx/${urlFile}`;
+          this.td_ExcelDownloadLink  = `${this.configService.getConfigValue('baseUrlNetCore')}/wwwroot/xlsx/${urlFile}`;
           //
           this.td_textStatus.set("Se generó el archivo XLS correctamente");
           //

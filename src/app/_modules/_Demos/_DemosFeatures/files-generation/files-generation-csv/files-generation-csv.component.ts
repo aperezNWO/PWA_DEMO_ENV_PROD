@@ -293,7 +293,7 @@ export class FilesGenerationCSVComponent extends BaseComponent implements OnInit
         const csv_link_observer = {
           next: (p_csv_link: string)          => { 
             //
-            let fileUrl        = this.backendService._baseUrlNetCore + p_csv_link;
+            let fileUrl        = `${this.configService.getConfigValue('baseUrlNetCore')}${p_csv_link}`;
             //
             let downloadLink_1 = fileUrl;
             //

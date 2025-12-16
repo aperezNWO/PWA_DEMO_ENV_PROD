@@ -88,7 +88,7 @@ export class FilesGenerationPDFComponent extends BaseComponent {
               if (resultArray.length > 0) {
                   //
                   this.pdfFileName   = resultArray[1];
-                  var fileUrl        = this.backendService._baseUrlNetCore + '/wwwroot/output/uploadedfiles/pdf/' + this.pdfFileName;
+                  var fileUrl        = `${this.configService.getConfigValue('baseUrlNetCore')}/wwwroot/output/uploadedfiles/pdf/${this.pdfFileName}`;
                   var fileLocalPath  = resultArray[2];
                   var imagePath      = resultArray[3];
                   //

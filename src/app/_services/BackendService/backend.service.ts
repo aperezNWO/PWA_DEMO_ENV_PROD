@@ -1,6 +1,6 @@
 import { Injectable, OnInit                                      } from '@angular/core';
-import { HttpClient, HttpEvent, HttpHandler, HttpHeaders         } from '@angular/common/http';
-import { HttpRequest, HttpResponse  , HttpInterceptor            } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders                      } from '@angular/common/http';
+import { HttpRequest                                             } from '@angular/common/http';
 import { Observable                                              } from 'rxjs';
 import { LogEntry, LogType, SearchCriteria                       } from '../../_models/entity.model';
 import { ConfigService                                           } from '../ConfigService/config.service';
@@ -33,76 +33,13 @@ export class BackendService implements OnInit {
       })
       ,'responseType' : 'text' as 'json'
     }; 
-    public get _baseUrlNetCoreCPPEntry(): string
-    {
-       return this.__baseUrlNetCoreCPPEntry;
-    }
-
-    //
-    public get _baseUrlNetCore(): string {
-      //
-      return this.__baseUrlNetCore;
-    }
-    //
-    public set _baseUrlNetCore(value: string) {
-      //
-      this.__baseUrlNetCore = value;
-    }
-    //
-    public get _baseUrlNodeJs(): string {
-      //
-      return this.__baseUrlNodeJs;
-    }
-    //
-    public set _baseUrlNodeJs(value: string) {
-      //
-      this.__baseUrlNodeJs = value;
-    }
-    //
-    public set _baseUrlNodeJsOcr(value: string) {
-      //
-      this.__baseUrlNodeJsOcr = value;
-    }
-    //
-    public set _baseUrlSpringBoot(value: string) {
-      //
-      this.__baserUrlSpringBoot = value;
-    }
-    //
-    public get _baseUrlSpringBoot():string {
-      //
-      return this.__baserUrlSpringBoot;
-    }
-    //
-    public set _baseUrlDjangoPython(value: string) {
-    //
-    this.__baseUrlDjangoPython = value;
-    }
-    //
-    public get _baseUrlDjangoPython():string {
-      //
-      return this.__baseUrlDjangoPython;
-    }
-      //
-    protected __baseUrlNetCoreCPPEntry     : string = '';
-    protected __baseUrlNetCore        : string = '';
-    protected __baseUrlNodeJs         : string = '';
-    protected __baseUrlNodeJsOcr      : string = '';
-    protected __baserUrlSpringBoot    : string = '';
-    protected __baseUrlDjangoPython   : string = '';
-    protected __baseUrlTesseract      : string = '';
     //
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  
     //
     ngOnInit(): void {
-      //
-      this.__baseUrlNetCoreCPPEntry   = this._configService.getConfigValue('baseUrlNetCoreCPPEntry');
-      this.__baseUrlNetCore           = this._configService.getConfigValue('baseUrlNetCore');
-      this.__baseUrlNodeJs            = this._configService.getConfigValue('baseUrlNodeJs');
-      this.__baseUrlNodeJsOcr         = this._configService.getConfigValue('baseUrlNodeJsOcr');
-      this.__baserUrlSpringBoot       = this._configService.getConfigValue('baseUrlSpringBootJava');
+       //
     }
     constructor(public http: HttpClient, public _configService : ConfigService) {
       //
@@ -113,33 +50,33 @@ export class BackendService implements OnInit {
     //
     _GetTesseract_CPPSTDVersion(): Observable<string> {
       //
-      this.__baseUrlTesseract     = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;     
+      let __baseUrlTesseract      : string = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;     
       //
-      let p_url         : string  = `${this.__baseUrlTesseract}GetTesseract_CPPSTDVersion`;
+      let p_url                   : string  = `${__baseUrlTesseract}GetTesseract_CPPSTDVersion`;
       //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      let appVersion              : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       return appVersion;
     }
     //
     _GetTesseract_AppVersion(): Observable<string> {
       //
-      this.__baseUrlTesseract     = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;
+      let __baseUrlTesseract      : string = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;     
       //
-      let p_url         : string  = `${this.__baseUrlTesseract}GetTesseractAppVersion`;
+      let p_url                   : string  = `${__baseUrlTesseract}GetTesseractAppVersion`;
       //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      let appVersion              : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       return appVersion;
     }
     //
     _GetTesseract_APIVersion(): Observable<string> {
       //
-      this.__baseUrlTesseract         = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;
+      let __baseUrlTesseract      : string = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;     
       //
-      let p_url         : string  = `${this.__baseUrlTesseract}GetTesseractVersion`;
+      let p_url                   : string  = `${__baseUrlTesseract}GetTesseractVersion`;
       //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      let appVersion              : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       return appVersion;
     }
@@ -147,7 +84,7 @@ export class BackendService implements OnInit {
     _GetWebApiAppVersion(): Observable<string>
     {
       //
-      let p_url         : string  = `${this._baseUrlNetCore}demos/_GetAppVersion`;
+      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_GetAppVersion`;
       //
       let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -238,7 +175,7 @@ export class BackendService implements OnInit {
     ////////////////////////////////////////////////////////////////  
     getCSVLinkGET(): Observable<string> {
       //
-      let p_url    = this._baseUrlNetCore + 'demos/_GetCSVLinkJsonGET';
+      let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_GetCSVLinkJsonGET`;
       //
       let csvLink : Observable<string> =  this.http.get<string>(p_url);
       //
@@ -247,7 +184,7 @@ export class BackendService implements OnInit {
     //
     getCSVLink(): Observable<string> {
       //
-      let p_url    = this._baseUrlNetCore + 'demos/_GetCSVLinkJson';
+      let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_GetCSVLinkJson`;
       //
       let csvLink : Observable<string> =  this.http.post<string>(p_url,this.HTTPOptions_Text);
       //
@@ -256,7 +193,7 @@ export class BackendService implements OnInit {
     //    
     getInformeRemotoCSV(): Observable<string> {
       //
-      let p_url    = this._baseUrlNetCore + 'demos/GenerarInformeCSVJson';
+      let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/GenerarInformeCSVJson`;
       //
       let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -265,7 +202,7 @@ export class BackendService implements OnInit {
     //
     getInformeRemotoCSV_STAT():Observable<string> {
         //
-        let p_url    = this._baseUrlNetCore + 'demos/GenerarInformeCSVJsonSTAT';
+        let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/GenerarInformeCSVJsonSTAT`;
         //
         let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
         //
@@ -276,22 +213,17 @@ export class BackendService implements OnInit {
       //
       let p_url    =  `${_prefix}demos/_SetSTATPieCache`;
       //
-      ////console.log("Setting STAT Pie data to cache :  " + p_url);
-      //
       let jsonCSVData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       const jsonCSVDataObserver = {
-        next: (jsondata: string)     => { 
+        next: (jsondata: string)            => { 
           //
-          ////console.log('_SetSTATPieCache - (return): ' + jsondata);
         },
         error           : (err: Error)      => {
           //
-          //console.error('_SetSTATPieCache- (ERROR) : ' + JSON.stringify(err.message));
         },
         complete        : ()                => {
           //
-          ////console.log('_SetSTATPieCache -  (COMPLETE)');
         },
       };
       //
@@ -300,7 +232,7 @@ export class BackendService implements OnInit {
     //    
     getInformeRemotoCSV_NodeJS(): Observable<string> {
     //
-    let p_url: string = `${this._baseUrlNodeJs}GenerarInformeCSVJson`;
+    let p_url: string = `${this._configService.getConfigValue('baseUrlNodeJs')}GenerarInformeCSVJson`;
     //
     console.warn(" REQUESTING URL : " + p_url);
     //
@@ -321,7 +253,7 @@ export class BackendService implements OnInit {
     //
     getLogRemoto(_searchCriteria : SearchCriteria) {
         //
-        let url    = this._baseUrlNetCore + 'demos/generarinformejson';
+        let url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/generarinformejson`;
         //    
         return this.http.get<LogEntry[]>(url);
     }
@@ -335,8 +267,6 @@ export class BackendService implements OnInit {
         this.HTTPOptions_JSON,
       );
       //
-      //console.log('getLogRemotoNodeJS : ' + p_url);
-      //
       return nodeJsOutput;
     }
     //
@@ -348,8 +278,7 @@ export class BackendService implements OnInit {
         p_url,
         this.HTTPOptions_JSON,
       );
-      //
-      ////console.log('getLogRemotoSprinbBootJava ' + p_url);
+
       //
       return nodeJsOutput;
     }
@@ -362,8 +291,6 @@ export class BackendService implements OnInit {
         p_url,
         this.HTTPOptions_JSON,
       );
-      //
-      ////console.log('getPersonsSprinbBootJava ' + p_url);
       //
       return nodeJsOutput;
     }
@@ -378,14 +305,12 @@ export class BackendService implements OnInit {
         this.HTTPOptions_JSON,
       );
       //
-      ////console.log('getLogRemotoSprinbBootJava ' + p_url);
-      //
       return djantoPythonOutput;
     }
     //
     getInformeExcel(_searchCriteria : SearchCriteria){
         //
-        let p_url  = this._baseUrlNetCore + 'demos/generarinformexls';
+        let p_url  = `${this._configService.getConfigValue('baseUrlNetCore')}demos/generarinformexls`;
         //
         let excelFileName : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
         //
@@ -402,21 +327,19 @@ export class BackendService implements OnInit {
         this.HTTPOptions_JSON,
       );
       //
-      ////console.log('getLogRemotoSprinbBootJava ' + p_url);
-      //
       return djantoPythonOutput;
     }
     //
     getLogStatPOST() {
       //
-      let url    = `${this._baseUrlNetCore}demos/GetConsultaLogStatPost`;
+      let url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/GetConsultaLogStatPost`;
       //
       return this.http.post<string>(url,this.HTTPOptions_JSON);   
     }    
     //
     getLogStatGET() {
       //
-      let url    = `${this._baseUrlNetCore}demos/GetConsultaLogStatGet`;
+      let url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/GetConsultaLogStatGet`;
       //
       return this.http.get<LogEntry[]>(url);   
     } 
@@ -425,14 +348,11 @@ export class BackendService implements OnInit {
       //
       let p_url    = `${_prefix}demos/_SetSTATBarCache`;
       //
-      ////console.log("Setting STAT Bar data to cache :  " + p_url);
-      //
       let jsonDataObservable : Observable<string> = this.http.get<string>(p_url,this.HTTPOptions_Text);   
       //
       const jsonDataOberver = {
         next: (jsondata: string)     => { 
           //
-          ////console.log('_SetSTATBarCache - (return): ' + jsondata);
         },
         error           : (err: Error)      => {
           //
@@ -441,7 +361,6 @@ export class BackendService implements OnInit {
         },
         complete        : ()                => {
           //
-          ////console.log('_SetSTATBarCache -  (COMPLETE)');
         },
       };
       //
@@ -456,9 +375,8 @@ export class BackendService implements OnInit {
       //
       formData.append('file', file);
       //
-      let url    = `${this._baseUrlNetCore}demos/_ZipDemoGetFileName`;
+      let url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_ZipDemoGetFileName`;
       //
-      //console.log("[GENERATE ZIP FILE] - (UPLOADING FILE) url: " + url);
       // USAR REQUEST PARA OBTENER PORCENTAJE DE STATUS
       const req = new HttpRequest('POST', url, formData, {
         reportProgress: true,
@@ -470,11 +388,7 @@ export class BackendService implements OnInit {
     //
     SetZip(p_fileName : string | undefined):Observable<string> {
         //
-        let p_url   = `${this._baseUrlNetCore}demos/_SetZip?p_fileName=${p_fileName}`;
-        //
-        ////console.log("[GENERATE ZIP FILE] - [GETTING ZIP] - fileName: " + p_fileName);
-        //
-        ////console.log("[GENERATE ZIP FILE] - [GETTING ZIP] - url     : " + p_url);
+        let p_url   = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_SetZip?p_fileName=${p_fileName}`;
         //
         let returnUrl     : Observable<string> = this.http.get<string>(p_url,this.HTTPOptions_JSON); 
         //
@@ -485,11 +399,8 @@ export class BackendService implements OnInit {
     ////////////////////////////////////////////////////////////////
     public GetPDF(subjectName: string | undefined): Observable<HttpEvent<any>> {
         //
-        let p_url   = `${this._baseUrlNetCore}demos/_GetPdf?subjectName=${subjectName}`;
+        let p_url   = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_GetPdf?subjectName=${subjectName}`;
         //
-        ////console.log("[GENERATE PDF FILE] - [GETTING ZIP] - subjectName  : " + subjectName);
-        //
-        ////console.log("[GENERATE PDF FILE] - [GETTING ZIP] - url          : " + p_url);
         // USAR REQUEST PARA OBTENER PORCENTAJE DE STATUS
         const req = new HttpRequest('GET', p_url, {
           reportProgress: true,
@@ -504,7 +415,7 @@ export class BackendService implements OnInit {
     //    
     getRandomVertex(vertexSize : Number,sourcePoint : Number): Observable<string> {
       //
-      let p_url    = `${this._baseUrlNetCore}demos/GenerateRandomVertex?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/GenerateRandomVertex?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -521,8 +432,8 @@ export class BackendService implements OnInit {
     }
     //
     getRandomVertexSpringBoot(vertexSize : Number,sourcePoint : Number): Observable<string> {
-         //
-      let p_url    = `${this._baseUrlSpringBoot}GenerateRandomVertex_SpringBoot`;
+       //
+      let p_url    = `${this._configService.getConfigValue('baseUrlSpringBootJava')}GenerateRandomVertex_SpringBoot`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //
@@ -535,7 +446,7 @@ export class BackendService implements OnInit {
     getNewSort():Observable<string>
     {
       //
-      let p_url    = `${this._baseUrlNetCore}demos/_NewSort`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_NewSort`;
       //
       let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -545,7 +456,7 @@ export class BackendService implements OnInit {
     getSort(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
     {
       //
-      let p_url    = `${this._baseUrlNetCore}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
       //
       let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -568,7 +479,7 @@ export class BackendService implements OnInit {
     _GetXmlData():Observable<string>
     {
       //
-      let p_url  : string  = `${this._baseUrlNetCore}demos/_GetXmlData`;
+      let p_url  : string  = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_GetXmlData`;
       //
       let xmlData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -606,7 +517,7 @@ export class BackendService implements OnInit {
     public _RegExEval(tagSearchIndex: number, textSearchValue: string): Observable<string>
     {
       //
-      let p_url    : string = `${this._baseUrlNetCore}demos/_RegExEval?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
+      let p_url    : string = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_RegExEval?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
       //
       let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -634,7 +545,7 @@ export class BackendService implements OnInit {
       //
       let logInfo!  : Observable<string>;
       //
-      let p_url     = `${this._baseUrlNetCore}demos/_SetLog?p_logMsg=${p_logMsg}&logType=${logType.toString()}`;
+      let p_url     = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_SetLog?p_logMsg=${p_logMsg}&logType=${logType.toString()}`;
       //
       logInfo       = this.http.get<string>(p_url, this.HTTPOptions_Text);
       //
@@ -662,7 +573,7 @@ export class BackendService implements OnInit {
      //
      _GetSudoku_NodeJS(): Observable<string> {
       //
-      let p_url: string = `${this._baseUrlNodeJs}Sudoku_Generate_NodeJS`;
+      let p_url: string = `${this._configService.getConfigValue('baseUrlNodeJs')}Sudoku_Generate_NodeJS`;
       //
       let sudokuGenerated: Observable<string> = this.http.get<string>(
         p_url,
@@ -694,7 +605,7 @@ export class BackendService implements OnInit {
     //
     _SolveSudoku_NodeJS(p_matrix: string): Observable<string> {
       //
-      let p_url: string = `${this.__baseUrlNodeJs}Sudoku_Solve_NodeJS?p_matrix=${p_matrix}`;
+      let p_url: string = `${this._configService.getConfigValue('baseUrlNodeJs')}Sudoku_Solve_NodeJS?p_matrix=${p_matrix}`;
       //
       let sudokuSolved: Observable<string> = this.http.get<string>(
         p_url,
@@ -712,7 +623,7 @@ export class BackendService implements OnInit {
     //
     formData.append('file', file);
     //
-    let url = `${this._baseUrlNetCore}demos/Sudoku_Upload_File`;
+    let url = `${this._configService.getConfigValue('baseUrlNetCore')}demos/Sudoku_Upload_File`;
     //
     //console.log('[SUDOKU] - (UPLOADING FILE) url: ' + url);
     //
