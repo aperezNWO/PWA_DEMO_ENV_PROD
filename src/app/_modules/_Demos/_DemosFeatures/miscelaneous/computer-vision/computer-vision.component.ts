@@ -174,7 +174,7 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
         break;      
         case 2 : // opencv / c++
             //
-            this.computervisionService.uploadBase64ImageCPPOpenCv(this.signature?.toDataURL() as string).subscribe(
+            this.computervisionService._OpenCv_uploadBase64ImageCPP(this.signature?.toDataURL() as string).subscribe(
               (response) => {
                 //
                 this.status_message.set(JSON.parse(JSON.stringify(response))['message']);
@@ -288,7 +288,7 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
               if (this.capturedImage)
               {
                   //
-                  this.computervisionService.uploadBase64ImageCPPOpenCv(this.capturedImage).subscribe(
+                  this.computervisionService._OpenCv_uploadBase64ImageCPP(this.capturedImage).subscribe(
                     (response) => {
                       //
                       this.status_message.set(JSON.parse(JSON.stringify(response))['message']);
@@ -342,7 +342,7 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
     img.onload = () => {
       //console.log("loading  shape detection service ...")
       //
-      const shapes        = this.computervisionService.detectShapes(img);
+      const shapes        = this.computervisionService._OpenCv_detectShapes(img);
       this.detectedShapes = shapes;
       //
       this.status_message.set("Figura Detectada : " + this.detectedShapes.toString()) ;

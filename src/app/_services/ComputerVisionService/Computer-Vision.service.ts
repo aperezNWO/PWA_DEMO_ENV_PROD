@@ -18,7 +18,7 @@ export class ComputerVisionService extends BaseService {
       this.__baseUrlComputerVision  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
   }
   //
-  detectShapes(image: HTMLImageElement): string[] {
+  _OpenCv_detectShapes(image: HTMLImageElement): string[] {
     //
     const shapes: string[] = [];    
 
@@ -82,7 +82,7 @@ export class ComputerVisionService extends BaseService {
   }
 
   //
-  uploadBase64ImageCPPOpenCv(base64Image: string) {
+  _OpenCv_uploadBase64ImageCPP(base64Image: string) {
     //
     let p_url                   : string  = `${this.__baseUrlComputerVision}uploadOpenCv`;
     //
@@ -90,7 +90,7 @@ export class ComputerVisionService extends BaseService {
   }
 
   //
-  _GetOpenCvAppVersion(): Observable<string> {
+  _OpenCv_GetAppVersion(): Observable<string> {
         //
         let p_url         : string  = `${this.__baseUrlComputerVision}GetOpenCvAppVersion`;
         //
@@ -99,7 +99,7 @@ export class ComputerVisionService extends BaseService {
         return appVersion;
    }
    //
-   _GetOpenCvAPIVersion(): Observable<string> {
+   _OpenCv_GetAPIVersion(): Observable<string> {
         //
         let p_url         : string  = `${this.__baseUrlComputerVision}GetOpenCvAPIVersion`;
         //
@@ -108,12 +108,19 @@ export class ComputerVisionService extends BaseService {
         return appVersion;
    }
    //
-   _GetOpenCv_CPPSTDVersion(): Observable<string> {
+   _OpenCv_GetCPPSTDVersion(): Observable<string> {
         //
         let p_url         : string             = `${this.__baseUrlComputerVision}OpenCv_GetCPPSTDVersion`;
         //
         let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
         //
         return appVersion;
+   }
+   //
+   _OpenCv_GetFractal(p_maxIterations : number, p_realPart : number, p_imagPart : number) {
+        //
+        const url        = `${this.__baseUrlComputerVision}generatejuliaparams/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
+        //
+        return  this.http.get(url, { responseType: 'blob' });
    }
 }

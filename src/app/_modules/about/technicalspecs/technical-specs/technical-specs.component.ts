@@ -341,7 +341,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetOpenCvAppVersion() {
       //
-      let cppBackendObservable : Observable<string> = this.computervisionService._GetOpenCvAppVersion();
+      let cppBackendObservable : Observable<string> = this.computervisionService._OpenCv_GetAppVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 
@@ -367,7 +367,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetOpenCVAPIVersion(){
       //
-      let cppBackendObservable : Observable<string> = this.computervisionService._GetOpenCvAPIVersion();
+      let cppBackendObservable : Observable<string> = this.computervisionService._OpenCv_GetAPIVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 
@@ -375,13 +375,12 @@ export class TechnicalSpecsComponent extends BaseComponent {
           this._OpenCvAPIVersion = jsondata;
         },
         error           : (err: Error)      => {
-
           //
           console.error('_GetOpenCvAppVersion- (ERROR) : ' + JSON.stringify(err.message));
         },
         complete        : ()                => {
           //
-          //console.log('_GetAppVersion -  (COMPLETE)');
+
         },
       };
       //
@@ -392,7 +391,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetOpenCV_CPPSTDVersion(){
       //
-      let cppBackendObservable : Observable<string> = this.computervisionService._GetOpenCv_CPPSTDVersion();
+      let cppBackendObservable : Observable<string> = this.computervisionService._OpenCv_GetCPPSTDVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 

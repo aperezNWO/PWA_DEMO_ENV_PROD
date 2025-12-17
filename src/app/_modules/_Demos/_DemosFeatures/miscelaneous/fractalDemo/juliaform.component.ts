@@ -16,15 +16,15 @@ import { SpeechService                  } from 'src/app/_services/speechService/
 })
 export class FractalDemoComponent  extends BaseComponent {
   //
-  maxIterations: number = 500;
-  realPart: number = -0.4;
-  imagPart: number = 0.6;
-  imageUrl: string | null = null;
-  submitTitle : string = "Generate Fractal";
+  maxIterations : number        = 500;
+  realPart      : number        = -0.4;
+  imagPart      : number        = 0.6;
+  imageUrl      : string | null = null;
+  submitTitle   : string        = "Generate Fractal";
   //
   @ViewChild('_fractal_image')  _fractal_image  : any;
   //
-  constructor(public          shapeDetectionService   : ComputerVisionService,
+  constructor(public          computervisionService   : ComputerVisionService,
               public override configService           : ConfigService,
               public override backendService          : BackendService,
               public override route                   : ActivatedRoute,
@@ -43,17 +43,15 @@ export class FractalDemoComponent  extends BaseComponent {
   // 
   onSubmit() {
     //
-    const url        = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}generatejuliaparams/?maxIterations=${this.maxIterations}&realPart=${this.realPart}&imagPart=${this.imagPart}`;
-    //
-    this.status_message.set("[generando por favor espere..]");
+    this.status_message.set("[Generating please wait..]");
     //
     // Fetch the image as a blob
-    this.http.get(url, { responseType: 'blob' }).subscribe(
+    this.computervisionService._OpenCv_GetFractal(this.maxIterations,this.realPart,this.imagPart).subscribe(
       (response: Blob) => {
         // Convert the blob into an object URL
         this.imageUrl = URL.createObjectURL(response);
         //
-        this.status_message.set("[Se generó correctamente la imagen]");
+        this.status_message.set("[Image generated successfuly]");
       },
       (error) => {
         //
@@ -61,7 +59,7 @@ export class FractalDemoComponent  extends BaseComponent {
         //
         this.imageUrl = null;
         //
-        this.status_message.set("[Ha ocurrido un error, favor intente de nuevo]");
+        this.status_message.set("[An error occurrued, plase try again]");
       }
     );
   }
@@ -71,7 +69,7 @@ export class FractalDemoComponent  extends BaseComponent {
     let fileName_input  : string     = `FRACTAL_IMAGE`;
     let fileName_output : string     = '';
     //
-    this.status_message.set('Generando PDF');
+    this.status_message.set('...Generating PDF...');
     //
     this.pdfEngine._GetPDF
       (
@@ -88,11 +86,11 @@ export class FractalDemoComponent  extends BaseComponent {
         },
         error: (error: { message: string; }) => {
             //
-            this.status_message.set('ha ocurrido un error : ' + error.message);
+            this.status_message.set('An error occured : ' + error.message);
         },
         complete: () => {
             //
-            this.status_message.set(`[Se ha generado el archivo PDF]`);
+            this.status_message.set(`[PDF File generated correctly]`);
         }
       }
     );      
