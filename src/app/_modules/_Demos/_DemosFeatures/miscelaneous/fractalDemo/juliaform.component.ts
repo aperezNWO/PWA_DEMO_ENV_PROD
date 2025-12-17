@@ -43,7 +43,7 @@ export class FractalDemoComponent  extends BaseComponent {
   // 
   onSubmit() {
     //
-    this.status_message.set("[Generating please wait..]");
+    this.status_message.set("[Generating please wait...]");
     //
     // Fetch the image as a blob
     this.computervisionService._OpenCv_GetFractal(this.maxIterations,this.realPart,this.imagPart).subscribe(
