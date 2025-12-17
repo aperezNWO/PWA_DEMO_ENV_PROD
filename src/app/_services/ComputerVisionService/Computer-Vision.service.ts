@@ -18,7 +18,7 @@ export class ComputerVisionService extends BaseService {
       this.__baseUrlComputerVision  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
   }
   //
-  _OpenCv_detectShapes(image: HTMLImageElement): string[] {
+  _OpenCv_js_detectShapes(image: HTMLImageElement): string[] {
     //
     const shapes: string[] = [];    
 
@@ -51,13 +51,13 @@ export class ComputerVisionService extends BaseService {
     
             let shape = '';
             if (approx.rows === 3) {
-              shape = '[Triángulo]';
+              shape = '[Triangle]';
             } else if (approx.rows === 4) {
               const rect = cv.boundingRect(approx);
               const aspectRatio = rect.width / rect.height;
-              shape = aspectRatio >= 0.95 && aspectRatio <= 1.05 ? '[Cuadrado]' : '[Rectángulo]';
+              shape = aspectRatio >= 0.95 && aspectRatio <= 1.05 ? '[Square]' : '[Rectangle]';
             } else if (approx.rows > 4) {
-              shape = '[Círculo]';
+              shape = '[Circle]';
             }
     
             if (shape) {
@@ -82,7 +82,7 @@ export class ComputerVisionService extends BaseService {
   }
 
   //
-  _OpenCv_uploadBase64ImageCPP(base64Image: string) {
+  _OpenCv_CPP_uploadBase64Image(base64Image: string) {
     //
     let p_url                   : string  = `${this.__baseUrlComputerVision}uploadOpenCv`;
     //

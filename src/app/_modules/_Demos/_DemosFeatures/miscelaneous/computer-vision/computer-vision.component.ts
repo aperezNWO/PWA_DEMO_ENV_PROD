@@ -46,7 +46,7 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
   private isFrontCamera                              : boolean = true;
   //
   capturedImage           : string | null = null;
-  tituloListadOrigen      : string | null = "[ORIGEN CAPTURA]";
+  tituloListadOrigen      : string | null = "[CAPTURE ORIGIN]";
   titleEngineList         : string | null = "[ENGINES]";;
   hiddenCanvasContainer   : boolean = false;
   hiddenCameraContainer   : boolean = false;
@@ -54,8 +54,8 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
   capturedImageHidden     : boolean = true;
   captureButtonDisabled   : boolean = false;
   saveImageButtonDisabled : boolean = true;
-  selectedIndex           : number  = 0;
-  selectedIndexEngines    : number  = 0;
+  selectedIndex           : number  = 1;
+  selectedIndexEngines    : number  = 1;
   ////////////////////////////////////////////////////////////////
   detectedShapes          : string[] = [];
   //
@@ -101,14 +101,14 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
     this.route.queryParams.subscribe(params => {
     //-----------------------------------------------------------------------------
     this.__sourceList = new Array();
-    this.__sourceList.push( new _languageName(0,"(SELECCIONE OPCION..)" ,false ,""));        
-    this.__sourceList.push( new _languageName(1,"(DESDE CANVAS)"        ,true  ,""));        
-    this.__sourceList.push( new _languageName(2,"(DESDE CAMARA)"        ,false ,""));        
+    this.__sourceList.push( new _languageName(0,"(SELECT OPTION ...)"      ,false ,""));        
+    this.__sourceList.push( new _languageName(1,"(FROM  CANVAS)"           ,true  ,""));        
+    this.__sourceList.push( new _languageName(2,"(FROM  CAMERA)"           ,false ,""));        
     //-----------------------------------------------------------------------------
     this.__engineList = new Array();
-    this.__engineList.push( new _languageName(0,"(SELECCIONE OPCION..)"                    , false, "    "));        
-    this.__engineList.push( new _languageName(1,"(OPENCV / javascript)"                    , true , "JS"  ));        
-    this.__engineList.push( new _languageName(2,"(OPENCV / C++)                            ",false, "CPP" ));        
+    this.__engineList.push( new _languageName(0,"(SELECT OPTION ...)"      , false , ""    ));        
+    this.__engineList.push( new _languageName(1,"(OPENCV / javascript)"    , true  , "JS"  ));        
+    this.__engineList.push( new _languageName(2,"(OPENCV / C++)"           , false , "CPP" ));        
     //-----------------------------------------------------------------------------
     let langName = params['langName'] ? params['langName'] : "" ;
     //
@@ -145,8 +145,6 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
     }
     //
     this.status_message.set("");
-    //
-    //console.log(`Selected Source : ${this.selectedIndex}`);
   }
   selectionChangeEngines() {
     //
@@ -162,7 +160,14 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
   //
   saveSignature():void {
      //
-     //console.log("Saving signature..., option : " + this.selectedIndexEngines);
+     if (this.selectedIndex == 0)
+     {
+        //
+        this.status_message.set("Please select the option [CAPTURE ORIGIN]");
+        //
+        return;
+     }
+     //
      this.status_message.set("[..parsing...]");
      //
      this.selectionChangeEngines();
@@ -170,40 +175,20 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
      switch (this.selectedIndexEngines)
      {
         case 1 : //opencv / javascrpt
-              this.detectShapes(this.signature?.toDataURL() as string);
+            this.OpenCv_js_DetectShapes(this.signature?.toDataURL() as string);
         break;      
         case 2 : // opencv / c++
             //
-            this.computervisionService._OpenCv_uploadBase64ImageCPP(this.signature?.toDataURL() as string).subscribe(
-              (response) => {
-                //
-                this.status_message.set(JSON.parse(JSON.stringify(response))['message']);
-                //
-                this.statusButton            = '[save]';
-                this.statusButtonSaveImage   = '[save image]';
-                this.captureButtonStatus     = '[start capture]';
-                this.captureButtonDisabled   = false;
-              },
-              (error) => {
-                //
-                console.error('Error uploading image:', error);
-                //
-                this.status_message.set(error);
-                //
-                this.statusButton = '[save]';
-              }
-            );
-        break;
+            this.OpenCv_CPP_DetectShapes(this.signature?.toDataURL() as string);
+         break;
         default:
           //
-          this.status_message.set("Favor seleccione la opción [ENGINE]");
+          this.status_message.set("Please select the option [ENGINE]");
           break;
      }
   }
   // Trigger a click event on the anchor
   clearSignature():void{
-     //
-     //console.log("clearing signature...");
      // PNG
      this.signature?.clear();
      //
@@ -275,7 +260,7 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
           case 1 : // OPENCV / JAVASCRIPT
               if (this.capturedImage) {
                   //
-                  this.detectShapes(this.capturedImage);
+                  this.OpenCv_js_DetectShapes(this.capturedImage);
                   //
                   this.statusButton            = '[save]';
                   this.statusButtonSaveImage   = '[save image]';
@@ -288,7 +273,7 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
               if (this.capturedImage)
               {
                   //
-                  this.computervisionService._OpenCv_uploadBase64ImageCPP(this.capturedImage).subscribe(
+                  this.computervisionService._OpenCv_CPP_uploadBase64Image(this.capturedImage).subscribe(
                     (response) => {
                       //
                       this.status_message.set(JSON.parse(JSON.stringify(response))['message']);
@@ -310,7 +295,7 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
               }
           break;
           default : //
-              this.status_message.set("Favor seleccione la opción [ENGINE]") ;
+              this.status_message.set("Please select the option [ENGINE]") ;
           break;
        }
   }
@@ -329,25 +314,45 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
   //
   async flipCamera() : Promise<void> {
     //
-    //console.log('flippling camera');
-    //
     this.isFrontCamera = !this.isFrontCamera;
     this.stopCamera();
     await this.startCamera();
   }
   ///////////////////////////////////////////////////////
-  detectShapes(capturedImage : string): void {
-
+  OpenCv_js_DetectShapes(capturedImage : string): void {
+    //
     const img  = new Image();
     img.onload = () => {
-      //console.log("loading  shape detection service ...")
       //
-      const shapes        = this.computervisionService._OpenCv_detectShapes(img);
+      const shapes        = this.computervisionService._OpenCv_js_detectShapes(img);
       this.detectedShapes = shapes;
       //
-      this.status_message.set("Figura Detectada : " + this.detectedShapes.toString()) ;
+      this.status_message.set("Detected Shapes : " + this.detectedShapes.toString()) ;
     };
     img.src = capturedImage;
+  }
+  //
+  OpenCv_CPP_DetectShapes(arg0: string) {
+    //
+    this.computervisionService._OpenCv_CPP_uploadBase64Image(this.signature?.toDataURL() as string).subscribe(
+              (response) => {
+                //
+                this.status_message.set(JSON.parse(JSON.stringify(response))['message']);
+                //
+                this.statusButton            = '[save]';
+                this.statusButtonSaveImage   = '[save image]';
+                this.captureButtonStatus     = '[start capture]';
+                this.captureButtonDisabled   = false;
+              },
+              (error) => {
+                //
+                console.error('Error uploading image:', error);
+                //
+                this.status_message.set(error);
+                //
+                this.statusButton = '[save]';
+              }
+            );
   }
 }
 
