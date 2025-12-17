@@ -4,36 +4,21 @@ import { HttpRequest                                             } from '@angula
 import { Observable                                              } from 'rxjs';
 import { LogEntry, LogType, SearchCriteria                       } from '../../_models/entity.model';
 import { ConfigService                                           } from '../ConfigService/config.service';
+import { BaseService                                             } from '../_baseService/base.service';
 import { _environment                                            } from 'src/environments/environment';
+
 //
 @Injectable({
   providedIn: 'root'
 })
 //
-export class BackendService implements OnInit {
-    ////////////////////////////////////////////////////////////////  
-    // CAMPOS
-    ////////////////////////////////////////////////////////////////  
-    //
-    public HTTPOptions_Text_Plain = {
-      headers: new HttpHeaders(),
-      'responseType'  : 'text' as 'json'
-    };
-     //
-    public HTTPOptions_Text = {
-      headers: new HttpHeaders({
-        'Accept':'application/text'
-      }),
-      'responseType'  : 'text' as 'json'
-    };
-    //    
-    public HTTPOptions_JSON = {
-      headers: new HttpHeaders({
-       'Content-Type' : 'application/json'
-      })
-      ,'responseType' : 'text' as 'json'
-    }; 
-    //
+export class BackendService extends BaseService implements OnInit  {
+ 
+    constructor(public http: HttpClient, public _configService : ConfigService) {
+      //
+      super();
+    }
+
     ////////////////////////////////////////////////////////////////  
     // METODOS - [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  
@@ -41,45 +26,9 @@ export class BackendService implements OnInit {
     ngOnInit(): void {
        //
     }
-    constructor(public http: HttpClient, public _configService : ConfigService) {
-      //
-    }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [COMUNES]
     ////////////////////////////////////////////////////////////////  
-    //
-    _GetTesseract_CPPSTDVersion(): Observable<string> {
-      //
-      let __baseUrlTesseract      : string = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;     
-      //
-      let p_url                   : string  = `${__baseUrlTesseract}GetTesseract_CPPSTDVersion`;
-      //
-      let appVersion              : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
-    //
-    _GetTesseract_AppVersion(): Observable<string> {
-      //
-      let __baseUrlTesseract      : string = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;     
-      //
-      let p_url                   : string  = `${__baseUrlTesseract}GetTesseractAppVersion`;
-      //
-      let appVersion              : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
-    //
-    _GetTesseract_APIVersion(): Observable<string> {
-      //
-      let __baseUrlTesseract      : string = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;     
-      //
-      let p_url                   : string  = `${__baseUrlTesseract}GetTesseractVersion`;
-      //
-      let appVersion              : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
     //
     _GetWebApiAppVersion(): Observable<string>
     {
@@ -103,33 +52,6 @@ export class BackendService implements OnInit {
     _GetASPNETCoreCppVersion(): Observable<string> {
       //
       let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}_GetAppVersion`;
-      //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
-    //
-    _GetOpenCvAppVersion(): Observable<string> {
-      //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}GetOpenCvAppVersion`;
-      //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
-    //
-    _GetOpenCvAPIVersion(): Observable<string> {
-      //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}GetOpenCvAPIVersion`;
-      //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
-    //
-    _GetOpenCv_CPPSTDVersion(): Observable<string> {
-      //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}OpenCv_GetCPPSTDVersion`;
       //
       let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -625,41 +547,12 @@ export class BackendService implements OnInit {
     //
     let url = `${this._configService.getConfigValue('baseUrlNetCore')}demos/Sudoku_Upload_File`;
     //
-    //console.log('[SUDOKU] - (UPLOADING FILE) url: ' + url);
-    //
     const req = new HttpRequest('POST', url, formData, {
       reportProgress: true,
       responseType: 'text',
     });
     //
     return this.http.request<HttpEvent<any>>(req);
-  }
-  //
-  uploadBase64ImageNodeJs(base64Image: string) {
-    //
-    let url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}upload`;
-    //
-    ////console.log('Sending ocr to url : ' + url);
-    //
-    return this.http.post(url, { base64Image });
-  }
-  //
-  uploadBase64ImageCPP(base64Image: string) {
-    //
-    let url = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/upload`;
-    //
-    ////console.log('Sending ocr to url : ' + url);
-    //
-    return this.http.post(url, { base64Image });
-  }
-  //
-  uploadBase64ImageCPPOpenCv(base64Image: string) {
-    //
-    let url = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}uploadOpenCv`;
-    //
-    ////console.log('Sending ocr to url : ' + url);
-    //
-    return this.http.post(url, { base64Image });
   }
   ///////////////////////////////////////////////////////////////
 }

@@ -4,12 +4,12 @@ import { ActivatedRoute           } from '@angular/router';
 import { BaseComponent            } from 'src/app/_components/base/base.component';
 import { _languageName            } from 'src/app/_models/entity.model';
 import { BackendService           } from 'src/app/_services/BackendService/backend.service';
-import { ShapeDetectionService    } from 'src/app/_services/ShapeDetection/shape-detection.service';
+import { ComputerVisionService    } from 'src/app/_services/ComputerVisionService/Computer-Vision.service';
 import { SpeechService            } from 'src/app/_services/speechService/speech.service';
-import { NgxSignaturePadComponent } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';
-import { NgxSignatureOptions      } from '@eve-sama/ngx-signature-pad/lib/types/ngx-signature-pad';
 import { ConfigService                    } from 'src/app/_services/ConfigService/config.service';
 import { PAGE_MISELANEOUS_COMPUTER_VISION } from 'src/app/_models/common';
+import { NgxSignaturePadComponent         } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';
+import { NgxSignatureOptions              } from '@eve-sama/ngx-signature-pad/lib/types/ngx-signature-pad';
 
 declare var cv: any; // Declare cv as a global variable
 @Component({   
@@ -59,7 +59,7 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
   ////////////////////////////////////////////////////////////////
   detectedShapes          : string[] = [];
   //
-  constructor(public          shapeDetectionService   : ShapeDetectionService,
+  constructor(public          computervisionService   : ComputerVisionService,
               public override configService           : ConfigService,
               public override backendService          : BackendService,
               public override route                   : ActivatedRoute,
@@ -174,7 +174,7 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
         break;      
         case 2 : // opencv / c++
             //
-            this.backendService.uploadBase64ImageCPPOpenCv(this.signature?.toDataURL() as string).subscribe(
+            this.computervisionService.uploadBase64ImageCPPOpenCv(this.signature?.toDataURL() as string).subscribe(
               (response) => {
                 //
                 this.status_message.set(JSON.parse(JSON.stringify(response))['message']);
@@ -288,7 +288,7 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
               if (this.capturedImage)
               {
                   //
-                  this.backendService.uploadBase64ImageCPPOpenCv(this.capturedImage).subscribe(
+                  this.computervisionService.uploadBase64ImageCPPOpenCv(this.capturedImage).subscribe(
                     (response) => {
                       //
                       this.status_message.set(JSON.parse(JSON.stringify(response))['message']);
@@ -342,7 +342,7 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
     img.onload = () => {
       //console.log("loading  shape detection service ...")
       //
-      const shapes        = this.shapeDetectionService.detectShapes(img);
+      const shapes        = this.computervisionService.detectShapes(img);
       this.detectedShapes = shapes;
       //
       this.status_message.set("Figura Detectada : " + this.detectedShapes.toString()) ;

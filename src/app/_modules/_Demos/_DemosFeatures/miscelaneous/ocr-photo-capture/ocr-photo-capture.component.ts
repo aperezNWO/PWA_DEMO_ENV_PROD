@@ -8,6 +8,7 @@ import { ActivatedRoute           } from '@angular/router';
 import { SpeechService            } from 'src/app/_services/speechService/speech.service';
 import { ConfigService            } from 'src/app/_services/ConfigService/config.service';
 import { PAGE_MISCELANEOUS_OCR    } from 'src/app/_models/common';
+import { OCRService } from 'src/app/_services/OCRService/ocr.service';
 
 @Component({
   selector: 'app-ocr-photo-capture',
@@ -59,6 +60,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
               public override backendService : BackendService,
               public override route          : ActivatedRoute,
               public override speechService  : SpeechService,
+              public          ocrService     : OCRService,
   )
   {
       //
@@ -203,7 +205,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
     this.saveImageButtonDisabled = true;
 
     //
-    this.backendService.uploadBase64ImageNodeJs(base64ImageString).subscribe(
+    this.ocrService.uploadBase64ImageNodeJs(base64ImageString).subscribe(
       (response) => {
         //
         //console.log('Image uploaded successfully:', response);
@@ -237,7 +239,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
     this.saveImageButtonDisabled = true;
 
     //
-    this.backendService.uploadBase64ImageCPP(base64ImageString).subscribe(
+    this.ocrService.uploadBase64ImageCPP(base64ImageString).subscribe(
       (response) => {
         //
         //console.log('Image uploaded successfully:', response);
@@ -249,7 +251,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
         this.captureButtonDisabled   = false;
         this.saveImageButtonDisabled = true;
       },
-      (error) => {
+      (error: string) => {
         //
         console.error('Error uploading image:', error);
         //

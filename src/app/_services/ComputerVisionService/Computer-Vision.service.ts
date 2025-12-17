@@ -1,16 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable    } from '@angular/core';
+import { BaseService   } from '../_baseService/base.service';
+import { ConfigService } from '../ConfigService/config.service';
+import { HttpClient    } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ShapeDetectionService {
-
-  constructor() { 
-
+export class ComputerVisionService extends BaseService {
+  //
+  __baseUrlComputerVision     : string = '';
+  //
+  constructor(public http: HttpClient, public _configService : ConfigService) { 
+      //
+      super();
+      //
+      this.__baseUrlComputerVision  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
   }
- 
+  //
   detectShapes(image: HTMLImageElement): string[] {
-    
+    //
     const shapes: string[] = [];    
 
         // Ensure OpenCV.js is loaded
@@ -66,9 +75,45 @@ export class ShapeDetectionService {
           return shapes;
         } else 
         {
-           //console.log('cv missing');
+          console.log('cv missing');
         }
-    //};
+
     return shapes;    
   }
+
+  //
+  uploadBase64ImageCPPOpenCv(base64Image: string) {
+    //
+    let p_url                   : string  = `${this.__baseUrlComputerVision}uploadOpenCv`;
+    //
+    return this.http.post(p_url, { base64Image });
+  }
+
+  //
+  _GetOpenCvAppVersion(): Observable<string> {
+        //
+        let p_url         : string  = `${this.__baseUrlComputerVision}GetOpenCvAppVersion`;
+        //
+        let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+        //
+        return appVersion;
+   }
+   //
+   _GetOpenCvAPIVersion(): Observable<string> {
+        //
+        let p_url         : string  = `${this.__baseUrlComputerVision}GetOpenCvAPIVersion`;
+        //
+        let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+        //
+        return appVersion;
+   }
+   //
+   _GetOpenCv_CPPSTDVersion(): Observable<string> {
+        //
+        let p_url         : string             = `${this.__baseUrlComputerVision}OpenCv_GetCPPSTDVersion`;
+        //
+        let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+        //
+        return appVersion;
+   }
 }

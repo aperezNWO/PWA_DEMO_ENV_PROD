@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ShapeDetectionService } from './shape-detection.service';
+import { ComputerVisionService } from './Computer-Vision.service';
 
 describe('ShapeRecognitionService', () => {
-  let service: ShapeDetectionService;
+  let service: ComputerVisionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ShapeDetectionService);
+    service = TestBed.inject(ComputerVisionService);
   });
 
   it('should be created', () => {

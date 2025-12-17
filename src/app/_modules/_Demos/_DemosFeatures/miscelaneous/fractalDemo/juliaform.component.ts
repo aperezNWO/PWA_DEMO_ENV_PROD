@@ -6,7 +6,7 @@ import { PdfService } from 'src/app/_engines/pdf.engine';
 import { PAGE_MISCELANEOUS_FRACTAL_DEMO } from 'src/app/_models/common';
 import { BackendService                 } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                  } from 'src/app/_services/ConfigService/config.service';
-import { ShapeDetectionService          } from 'src/app/_services/ShapeDetection/shape-detection.service';
+import { ComputerVisionService          } from 'src/app/_services/ComputerVisionService/Computer-Vision.service';
 import { SpeechService                  } from 'src/app/_services/speechService/speech.service';
 
 @Component({
@@ -24,7 +24,7 @@ export class FractalDemoComponent  extends BaseComponent {
   //
   @ViewChild('_fractal_image')  _fractal_image  : any;
   //
-  constructor(public          shapeDetectionService   : ShapeDetectionService,
+  constructor(public          shapeDetectionService   : ComputerVisionService,
               public override configService           : ConfigService,
               public override backendService          : BackendService,
               public override route                   : ActivatedRoute,
