@@ -55,7 +55,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
   // EVENT HANDLERS //////////////////////////////////////////////  
   ////////////////////////////////////////////////////////////////
   constructor(public override configService      : ConfigService,
-              public override backendService     : BackendService, 
+              public override sudokuService     : BackendService, 
               public override route              : ActivatedRoute,
               public override speechService      : SpeechService,
               public pdfService                  : PdfService,
@@ -63,7 +63,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
             ) 
   {
       super(configService,
-            backendService,
+            sudokuService,
             route,
             speechService,
             PAGE_ALGORITMOS_DIJKSTRA
@@ -227,13 +227,13 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
                   return;
             break;
             case 1 :  // c#
-              randomVertexInfo       = this.backendService.getRandomVertex(_vertexSize,_sourcePoint);
+              randomVertexInfo       = this.sudokuService.getRandomVertex(_vertexSize,_sourcePoint);
             break;
             case 2:   // c++
-              randomVertexInfo       = this.backendService.getRandomVertexCpp(_vertexSize,_sourcePoint);
+              randomVertexInfo       = this.sudokuService.getRandomVertexCpp(_vertexSize,_sourcePoint);
             break;
             case 3:   // springboot
-              randomVertexInfo       = this.backendService.getRandomVertexSpringBoot(_vertexSize,_sourcePoint);
+              randomVertexInfo       = this.sudokuService.getRandomVertexSpringBoot(_vertexSize,_sourcePoint);
             break;
         }
         //

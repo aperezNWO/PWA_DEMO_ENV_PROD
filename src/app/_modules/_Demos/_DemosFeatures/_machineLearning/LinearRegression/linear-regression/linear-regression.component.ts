@@ -99,13 +99,13 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
     constructor(      public  override configService    : ConfigService,
                       public  override route            : ActivatedRoute,
                       public  override speechService    : SpeechService,
-                      public  override backendService   : BackendService,
+                      public  override sudokuService   : BackendService,
                       public  predictService            : TensorFlowService 
                ) 
     { 
           //
           super(configService,
-                backendService,
+                sudokuService,
                 route,
                 speechService,
                 PAGE_MACHINE_LEARNING_LINEAR_REGRESSION

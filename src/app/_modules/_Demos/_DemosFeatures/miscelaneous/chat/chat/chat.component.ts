@@ -24,13 +24,13 @@ export class ChatComponent extends BaseComponent implements OnInit  {
   constructor(public chatService               : ChatService,
               public datePipe                  : DatePipe,
               public override configService    : ConfigService,
-              public override backendService   : BackendService,
+              public override sudokuService   : BackendService,
               public override route            : ActivatedRoute,
               public override speechService    : SpeechService) 
   {
       //
       super(configService,
-            backendService,
+            sudokuService,
             route,
             speechService,
             PAGE_MISCELANEOUS_CHAT);

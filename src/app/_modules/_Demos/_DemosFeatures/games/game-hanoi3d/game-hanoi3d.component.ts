@@ -31,9 +31,10 @@ export class GameHanoi3dComponent extends BaseComponent implements OnInit, After
   constructor(
                   public  pageRestartService        : PageRestartService,
                   public  override configService    : ConfigService,
+                  public           backendService   : BackendService,
                   public  override route            : ActivatedRoute,
-                  public  override speechService    : SpeechService,
-                  public  override backendService   : BackendService) 
+                  public  override speechService    : SpeechService)
+                  
   { 
       //
       super(configService,

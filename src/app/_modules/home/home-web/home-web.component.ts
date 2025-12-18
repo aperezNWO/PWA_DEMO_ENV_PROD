@@ -20,14 +20,14 @@ export class HomeWebComponent extends BaseComponent implements OnInit, AfterView
   }
   //
   constructor(public  override configService  : ConfigService, 
-              public  override backendService : BackendService,
+              public  override sudokuService : BackendService,
               public  override route          : ActivatedRoute, 
               public  override speechService  : SpeechService)
   {
     //
     super(
       configService,
-      backendService,
+      sudokuService,
       route,
       speechService,
       PAGE_ANGULAR_DEMO_INDEX,

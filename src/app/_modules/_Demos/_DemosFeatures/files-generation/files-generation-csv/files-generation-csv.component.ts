@@ -75,12 +75,12 @@ export class FilesGenerationCSVComponent extends BaseComponent implements OnInit
                 public formBuilder                   : FormBuilder, 
                 public customErrorHandler            : CustomErrorHandler,
                 public override configService        : ConfigService,
-                public override backendService       : BackendService, 
+                public override sudokuService       : BackendService, 
                 public override route                : ActivatedRoute,
                 public override speechService        : SpeechService) 
     {
           super(configService,
-                backendService,
+                sudokuService,
                 route,
                 speechService,
                 PAGE_FILE_GENERATION_CSV
@@ -147,7 +147,7 @@ export class FilesGenerationCSVComponent extends BaseComponent implements OnInit
             case 1: // (.NET CORE)
                 //
                 let csv_informeLogRemoto!                 : Observable<string>;
-                csv_informeLogRemoto                      = this.backendService.getInformeRemotoCSV();
+                csv_informeLogRemoto                      = this.sudokuService.getInformeRemotoCSV();
                 //
                 const csv_observer = {
                   next: (csv_data: string)     => { 
@@ -179,7 +179,7 @@ export class FilesGenerationCSVComponent extends BaseComponent implements OnInit
             case 2: // NODE.JS
                 //
                 let csv_informeLogRemoto_NodeJS!                 : Observable<string>;
-                csv_informeLogRemoto_NodeJS                      = this.backendService.getInformeRemotoCSV_NodeJS();
+                csv_informeLogRemoto_NodeJS                      = this.sudokuService.getInformeRemotoCSV_NodeJS();
                 //
                 const csv_observer_node_js = {
                   next: (csv_data_node_js: string)     => { 
@@ -212,7 +212,7 @@ export class FilesGenerationCSVComponent extends BaseComponent implements OnInit
             case 3: // SPRINGBOOT / JAVA
                 // 
                 let td_informeLogRemoto_SprinbBootJava!   : Observable<string>;
-                td_informeLogRemoto_SprinbBootJava        = this.backendService.getPersonsSprinbBootJava();
+                td_informeLogRemoto_SprinbBootJava        = this.sudokuService.getPersonsSprinbBootJava();
                 //
                 const td_observer_sprinbbootjava = {
                   next: (td_persons_sprinbboot_java: string)     => { 
@@ -246,7 +246,7 @@ export class FilesGenerationCSVComponent extends BaseComponent implements OnInit
             case 4: // DJANGO / PYTHON
                 // 
                 let td_Persons_DjangoPython!   : Observable<string>;
-                td_Persons_DjangoPython        = this.backendService.getPersonsDjangoPython();
+                td_Persons_DjangoPython        = this.sudokuService.getPersonsDjangoPython();
                 //
                 const td_observer_pythondjango = {
                   next: (td_persons_python_django: string)     => { 
@@ -288,7 +288,7 @@ export class FilesGenerationCSVComponent extends BaseComponent implements OnInit
         this.status_message.set("Generando por favor espere...");
         //
         let csv_link!                 : Observable<string>;
-        csv_link                      = this.backendService.getCSVLink();
+        csv_link                      = this.sudokuService.getCSVLink();
         //
         const csv_link_observer = {
           next: (p_csv_link: string)          => { 

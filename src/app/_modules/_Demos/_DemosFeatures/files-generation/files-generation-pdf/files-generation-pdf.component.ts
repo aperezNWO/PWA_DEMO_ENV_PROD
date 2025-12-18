@@ -31,13 +31,13 @@ export class FilesGenerationPDFComponent extends BaseComponent {
   ////////////////////////////////////////////////////////////////
   constructor(
               public override configService  : ConfigService,
-              public override backendService : BackendService, 
+              public override sudokuService : BackendService, 
               public override route          : ActivatedRoute,
               public override speechService  : SpeechService)
   {
     //
     super(configService,
-          backendService,
+          sudokuService,
           route,
           speechService,
           PAGE_FILE_GENERATION_PDF
@@ -72,7 +72,7 @@ export class FilesGenerationPDFComponent extends BaseComponent {
       //
       let _subjectName : string = this.subjectName.nativeElement.value;
       //
-      this.GetPDFUrl            = this.backendService.GetPDF(_subjectName);
+      this.GetPDFUrl            = this.sudokuService.GetPDF(_subjectName);
       //
       const pdf_observer = {
         next: (event : any)     => 

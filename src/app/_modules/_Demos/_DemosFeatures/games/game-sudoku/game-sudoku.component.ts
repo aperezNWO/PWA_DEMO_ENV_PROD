@@ -4,13 +4,15 @@ import { FormBuilder, NgForm,              } from '@angular/forms';
 import { HttpEventType, HttpResponse       } from '@angular/common/http';
 import { ActivatedRoute                    } from '@angular/router';
 import { Observable                        } from 'rxjs';
-import { BackendService                    } from 'src/app/_services/BackendService/backend.service';
-import { PdfService                        } from 'src/app/_engines/pdf.engine';
-import { _languageName, ListItem           } from 'src/app/_models/entity.model';
-import { SpeechService                     } from 'src/app/_services/SpeechService/speech.service';
-import { BaseComponent                     } from 'src/app/_components/base/base.component';
 import { PAGE_GAMES_SUDOKU                 } from 'src/app/_models/common';
+import { _languageName, ListItem           } from 'src/app/_models/entity.model';
+import { BaseComponent                     } from 'src/app/_components/base/base.component';
+import { PdfService                        } from 'src/app/_engines/pdf.engine';
+import { BackendService                    } from 'src/app/_services/BackendService/backend.service';
+import { SpeechService                     } from 'src/app/_services/SpeechService/speech.service';
 import { ConfigService                     } from 'src/app/_services/ConfigService/config.service';
+import { SudokuService                     } from 'src/app/_services/__Games/SudokuService/sudoku.service';
+
 //
 @Component({
   selector: 'app-sudoku',
@@ -55,13 +57,14 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
   });
   //
   constructor(
-                  private algorithmService : BackendService,
-                  private formBuilder      : FormBuilder, 
-                  public  pdfEngine        : PdfService,
                   public  override configService    : ConfigService,
+                  public           backendService   : BackendService,                  
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
-                  public  override backendService   : BackendService) 
+                  public  formBuilder               : FormBuilder, 
+                  public  pdfEngine                 : PdfService,
+                  public  _sudokuService            : SudokuService,
+              ) 
   { 
       //
       super(configService,  
@@ -136,10 +139,10 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
         //
         switch (selectedIndex) {
           case 1: // c++
-            generatedSudoku = this.algorithmService._GetSudoku_CPP();
+            generatedSudoku = this._sudokuService._GetSudoku_CPP();
             break;
           case 2: // Typescript
-            generatedSudoku = this.algorithmService._GetSudoku_NodeJS();
+            generatedSudoku = this._sudokuService._GetSudoku_NodeJS();
             break;
           default:
             return;
@@ -218,7 +221,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
         //
         this.currentFile = file;
         //
-        this.algorithmService.uploadSudoku(this.currentFile).subscribe({
+        this._sudokuService.uploadSudoku(this.currentFile).subscribe({
           next: (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
               //
@@ -324,10 +327,10 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
     //
     switch (selectedIndex) {
       case 1: // c++
-        solveSudoku = this.algorithmService._SolveSudoku_CPP(this._sudokuGenerated);
+        solveSudoku = this._sudokuService._SolveSudoku_CPP(this._sudokuGenerated);
         break;
       case 2: // Typescript
-        solveSudoku = this.algorithmService._SolveSudoku_NodeJS(this._sudokuGenerated);
+        solveSudoku = this._sudokuService._SolveSudoku_NodeJS(this._sudokuGenerated);
         break;
       default:
         return;

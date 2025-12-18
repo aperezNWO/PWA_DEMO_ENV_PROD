@@ -81,7 +81,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     ////////////////////////////////////////////////////////////////  
     constructor(
            public override configService         : ConfigService,
-           public override backendService        : BackendService,
+           public override sudokuService        : BackendService,
            public override route                 : ActivatedRoute,
            public override speechService         : SpeechService,
            public          ocrService            : OCRService,
@@ -92,7 +92,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     {
       //
       super(configService,
-            backendService,
+            sudokuService,
             route,
             speechService,
             PAGE_ABOUT_TECHNICAL_SPECS,
@@ -162,7 +162,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     /////////////////////////////////////////////////////////// 
     private _GetWebApiAppVersion() {
       //
-      let appVersion : Observable<string> = this.backendService._GetWebApiAppVersion();
+      let appVersion : Observable<string> = this.sudokuService._GetWebApiAppVersion();
       //
       const appVersionObserver = {
         next: (jsondata: string)     => { 
@@ -188,7 +188,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetAlgorithmAppVersion() {
       //
-      let cppBackendObservable : Observable<string> = this.backendService._GetAlgothmAppVersion();
+      let cppBackendObservable : Observable<string> = this.sudokuService._GetAlgothmAppVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 
@@ -217,7 +217,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetAlgorithmCPPSTDVersion() {
       //
-      let cppBackendObservable : Observable<string> = this.backendService._Algorithm_GetCPPSTDVersion();
+      let cppBackendObservable : Observable<string> = this.sudokuService._Algorithm_GetCPPSTDVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 
@@ -246,7 +246,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetASPNETCoreCppVersion() {
       //
-      let cppBackendObservable : Observable<string> = this.backendService._GetASPNETCoreCppVersion();
+      let cppBackendObservable : Observable<string> = this.sudokuService._GetASPNETCoreCppVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 

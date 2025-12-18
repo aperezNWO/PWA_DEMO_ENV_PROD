@@ -35,7 +35,7 @@ export class BaseComponent {
   /////////////////////////////////////////////////////////
   //
   constructor(    public configService                            : ConfigService,
-                  public backendService                           : BackendService, 
+                  public sudokuService                            : BackendService, 
                   public route                                    : ActivatedRoute,
                   public speechService                            : SpeechService,
                   @Inject(PAGE_TITLE_LOG) public PAGE_TITLE_LOG   : string
@@ -54,7 +54,7 @@ export class BaseComponent {
             //
             this.speechService.speakTextCustom(this.pageTitle);
             //
-            this.backendService.SetLog(this._pageTitle,this.PAGE_TITLE_LOG);
+            this.sudokuService.SetLog(this._pageTitle,this.PAGE_TITLE_LOG);
             //
             if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages)
                  this._pages    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages;

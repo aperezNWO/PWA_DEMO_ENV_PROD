@@ -44,14 +44,14 @@ export class ChartComponent extends BaseComponent implements OnInit  {
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
     constructor(public override configService  : ConfigService,
-                public override backendService : BackendService,
+                public override sudokuService : BackendService,
                 public override route          : ActivatedRoute, 
                 public override speechService  : SpeechService, 
                 public pdfService              : PdfService) 
     {
       //
       super(configService,
-            backendService,
+            sudokuService,
             route,
             speechService,
             PAGE_FILE_GENERATION_CHART
@@ -90,7 +90,7 @@ export class ChartComponent extends BaseComponent implements OnInit  {
         const statBackgroundColor : string[]          = [];
         //
         let csv_informeLogRemoto!                 : Observable<string>;
-        csv_informeLogRemoto                      = this.backendService.getInformeRemotoCSV_STAT();
+        csv_informeLogRemoto                      = this.sudokuService.getInformeRemotoCSV_STAT();
         //
         const csv_observer = {
           next: (csv_data: string)     => { 
@@ -181,7 +181,7 @@ export class ChartComponent extends BaseComponent implements OnInit  {
       const statBackgroundColor : string[]          = [];
       // 
       let td_informeLogStat!                 : Observable<string>;
-      td_informeLogStat                      = this.backendService.getLogStatPOST();
+      td_informeLogStat                      = this.sudokuService.getLogStatPOST();
       //
       const td_observer = {
         next: (td_logEntry: string)     => { 

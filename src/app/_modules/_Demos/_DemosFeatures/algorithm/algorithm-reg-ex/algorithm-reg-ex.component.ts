@@ -32,14 +32,14 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
     @ViewChild('_languajeList')   _languajeList  : any;
     //
     constructor(public override configService : ConfigService,
-                public override backendService: BackendService, 
+                public override sudokuService: BackendService, 
                 public override speechService : SpeechService,
                 public override route         : ActivatedRoute)
     {
         //
         super(
                 configService,
-                backendService,
+                sudokuService,
                 route,
                 speechService,
                 PAGE_ALGORITMOS_REGEX
@@ -92,7 +92,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
         //
         let xmlInfo!  : Observable<string>;
         //
-        xmlInfo       = this.backendService._GetXmlData();
+        xmlInfo       = this.sudokuService._GetXmlData();
         //
         this.status_message.set("[..CARGANDO POR FAVOR ESPERERE...]");
         //
@@ -165,11 +165,11 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
             break;
             case 1 : // C#
                 //
-                regExInfo       = this.backendService._RegExEval(tagSearchIndex,textSearchValue);
+                regExInfo       = this.sudokuService._RegExEval(tagSearchIndex,textSearchValue);
             break;
             case 2: // C++
                 //
-                regExInfo       = this.backendService._RegExEval_CPP(tagSearchIndex,textSearchValue);
+                regExInfo       = this.sudokuService._RegExEval_CPP(tagSearchIndex,textSearchValue);
             break;
         }
         //

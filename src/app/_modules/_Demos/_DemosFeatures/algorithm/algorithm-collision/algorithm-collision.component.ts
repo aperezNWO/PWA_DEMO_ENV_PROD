@@ -33,12 +33,12 @@ export class AlgorithmCollisionComponent extends BaseComponent implements AfterV
   constructor(private pageRestartService: PageRestartService,
               public  override configService     : ConfigService,
               public  override speechService     : SpeechService,
-              public  override backendService    : BackendService,
+              public  override sudokuService    : BackendService,
               public  override route             : ActivatedRoute,
   )
   {
       super(configService,
-            backendService,
+            sudokuService,
             route,
             speechService,
             PAGE_ALGORITMOS_COLISION);

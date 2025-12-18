@@ -8,7 +8,7 @@ import { PAGE_GAMES_TETRIS_AI                      } from 'src/app/_models/commo
 import { HttpClient                                } from '@angular/common/http';
 import { interval,  Subscription                   } from 'rxjs';
 import { TetrisState,  AIWeights                   } from "src/app/_models/entity.model";
-import { TetrisService                             } from "src/app/_services/TetrisService/tetris.service";
+import { TetrisService                             } from "src/app/_services/__Games/TetrisService/tetris.service";
 import { catchError, tap                           } from 'rxjs/operators';
 @Component({
   selector: 'app-game-tetris-ai',
@@ -35,12 +35,12 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
                   public  override configService    : ConfigService,
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
-                  public  override backendService   : BackendService,
+                  public  override sudokuService   : BackendService,
                   public  tetrisService: TetrisService) 
   { 
       //
       super(configService,
-            backendService,
+            sudokuService,
             route,
             speechService,
             PAGE_GAMES_TETRIS_AI

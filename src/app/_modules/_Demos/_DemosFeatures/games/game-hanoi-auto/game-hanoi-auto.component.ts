@@ -20,11 +20,11 @@ export class GameHanoiAutoComponent extends BaseComponent {
                   public  override configService    : ConfigService,
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
-                  public  override backendService   : BackendService) 
+                  public  override sudokuService   : BackendService) 
   { 
       //
       super(configService,
-            backendService,
+            sudokuService,
             route,
             speechService,
             PAGE_GAMES_HANOI_2D,

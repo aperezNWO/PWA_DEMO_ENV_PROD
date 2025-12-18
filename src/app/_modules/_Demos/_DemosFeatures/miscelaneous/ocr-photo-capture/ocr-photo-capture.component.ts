@@ -57,7 +57,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
   
   //
   constructor(public override configService  : ConfigService,
-              public override backendService : BackendService,
+              public override sudokuService : BackendService,
               public override route          : ActivatedRoute,
               public override speechService  : SpeechService,
               public          ocrService     : OCRService,
@@ -65,7 +65,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
   {
       //
       super(configService,
-            backendService,
+            sudokuService,
             route,
             speechService,
             PAGE_MISCELANEOUS_OCR)
