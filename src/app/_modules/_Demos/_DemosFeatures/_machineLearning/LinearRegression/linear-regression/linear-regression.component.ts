@@ -6,9 +6,9 @@ import { BaseComponent                            } from 'src/app/_components/ba
 import { PAGE_MACHINE_LEARNING_LINEAR_REGRESSION  } from 'src/app/_models/common';
 import { _languageName } from 'src/app/_models/entity.model';
 import { BackendService                           } from 'src/app/_services/BackendService/backend.service';
-import { ConfigService                            } from 'src/app/_services/ConfigService/config.service';
-import { TensorFlowService, PredictionResponse     } from 'src/app/_services/TensorflowService/tensor-flow.service';
-import { SpeechService                            } from 'src/app/_services/SpeechService/speech.service';
+import { ConfigService                            } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { TensorFlowService, PredictionResponse     } from 'src/app/_services/__AI/TensorflowService/tensor-flow.service';
+import { SpeechService                            } from 'src/app/_services/__Utils/SpeechService/speech.service';
 
 @Component({
   selector: 'app-linear-regression',
@@ -99,13 +99,13 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
     constructor(      public  override configService    : ConfigService,
                       public  override route            : ActivatedRoute,
                       public  override speechService    : SpeechService,
-                      public  override sudokuService   : BackendService,
+                      public  override backendService   : BackendService,
                       public  predictService            : TensorFlowService 
                ) 
     { 
           //
           super(configService,
-                sudokuService,
+                backendService,
                 route,
                 speechService,
                 PAGE_MACHINE_LEARNING_LINEAR_REGRESSION

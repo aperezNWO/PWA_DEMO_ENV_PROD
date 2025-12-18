@@ -2,7 +2,7 @@ import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common
 import { Injectable                         } from '@angular/core';
 import { Observable                         } from 'rxjs';
 import { BaseService                        } from '../../__baseService/base.service';
-import { ConfigService                      } from '../../ConfigService/config.service';
+import { ConfigService                      } from '../../__Utils/ConfigService/config.service';
 
 @Injectable({
   providedIn: 'root'

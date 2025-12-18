@@ -1,13 +1,14 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute                              } from '@angular/router';
 import { Observable                                  } from 'rxjs';
+import { PAGE_ALGORITMOS_REGEX                       } from 'src/app/_models/common';
 import { _languageName                               } from 'src/app/_models/entity.model';
 import { UtilManager                                 } from 'src/app/_engines/util.engine';
 import { BackendService                              } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService                               } from 'src/app/_services/SpeechService/speech.service';
+import { SpeechService                               } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { BaseComponent                               } from 'src/app/_components/base/base.component';
-import { ConfigService                               } from 'src/app/_services/ConfigService/config.service';
-import { PAGE_ALGORITMOS_REGEX                       } from 'src/app/_models/common';
+import { ConfigService                               } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { AlgorithmService                            } from 'src/app/_services/AlgorithmService/algorithm.service';
 
 //
 @Component({
@@ -31,15 +32,16 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
     @ViewChild('regExSearch')     regExSearch    : any;
     @ViewChild('_languajeList')   _languajeList  : any;
     //
-    constructor(public override configService : ConfigService,
-                public override sudokuService: BackendService, 
-                public override speechService : SpeechService,
-                public override route         : ActivatedRoute)
+    constructor(public override configService    : ConfigService,
+                public override backendService   : BackendService, 
+                public override speechService    : SpeechService,
+                public override route            : ActivatedRoute,
+                public          algorithmService : AlgorithmService)
     {
         //
         super(
                 configService,
-                sudokuService,
+                backendService,
                 route,
                 speechService,
                 PAGE_ALGORITMOS_REGEX
@@ -92,7 +94,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
         //
         let xmlInfo!  : Observable<string>;
         //
-        xmlInfo       = this.sudokuService._GetXmlData();
+        xmlInfo       = this.algorithmService._GetXmlData();
         //
         this.status_message.set("[..CARGANDO POR FAVOR ESPERERE...]");
         //
@@ -165,11 +167,11 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
             break;
             case 1 : // C#
                 //
-                regExInfo       = this.sudokuService._RegExEval(tagSearchIndex,textSearchValue);
+                regExInfo       = this.algorithmService._RegExEval(tagSearchIndex,textSearchValue);
             break;
             case 2: // C++
                 //
-                regExInfo       = this.sudokuService._RegExEval_CPP(tagSearchIndex,textSearchValue);
+                regExInfo       = this.algorithmService._RegExEval_CPP(tagSearchIndex,textSearchValue);
             break;
         }
         //

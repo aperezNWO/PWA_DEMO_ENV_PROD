@@ -7,9 +7,9 @@ import { BehaviorSubject, Observable                   } from 'rxjs';
 import { LogEntry, SearchCriteria, _languageName       } from 'src/app/_models/entity.model';
 import { BackendService                                } from 'src/app/_services/BackendService/backend.service';
 import { ActivatedRoute                                } from '@angular/router';
-import { SpeechService                                 } from 'src/app/_services/SpeechService/speech.service';
+import { SpeechService                                 } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { BaseComponent                                 } from 'src/app/_components/base/base.component';
-import { ConfigService                                 } from 'src/app/_services/ConfigService/config.service';
+import { ConfigService                                 } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_FILE_GENERATION_XLS                      } from 'src/app/_models/common';
 //
 @Component({
@@ -95,14 +95,14 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
     constructor(
                 public          formBuilder         : FormBuilder,
                 public override configService       : ConfigService,
-                public override sudokuService      : BackendService, 
+                public override backendService      : BackendService, 
                 public override route               : ActivatedRoute,
                 public override speechService       : SpeechService,
     ) 
     {
         //
         super(configService,
-              sudokuService,
+              backendService,
               route,
               speechService,
               PAGE_FILE_GENERATION_XLS
@@ -258,7 +258,7 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
       //
       let rf_informeLogRemoto!  : Observable<LogEntry[]>;
       //
-      rf_informeLogRemoto       = this.sudokuService.getLogRemoto(_searchCriteria);
+      rf_informeLogRemoto       = this.backendService.getLogRemoto(_searchCriteria);
       //
       const logSearchObserver   = {
         //
@@ -303,7 +303,7 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
       //
       let rf_excelFileName!                   : Observable<string>;
       //
-      rf_excelFileName                        = this.sudokuService.getInformeExcel(this.rf_model);
+      rf_excelFileName                        = this.backendService.getInformeExcel(this.rf_model);
       //
       this.rf_ExcelDownloadLink               = "#";
       //
@@ -410,7 +410,7 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
               // 
               let td_informeLogRemoto!                 : Observable<LogEntry[]>;
               //      
-              td_informeLogRemoto                      = this.sudokuService.getLogRemoto(td_searchCriteria);
+              td_informeLogRemoto                      = this.backendService.getLogRemoto(td_searchCriteria);
               //
               const td_observer = {
                 next: (td_logEntry: LogEntry[])     => { 
@@ -447,7 +447,7 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
               // 
               let td_informeLogRemoto_NodeJs!   : Observable<string>;
               // 
-              td_informeLogRemoto_NodeJs        = this.sudokuService.getLogRemotoNodeJS(td_searchCriteria);
+              td_informeLogRemoto_NodeJs        = this.backendService.getLogRemotoNodeJS(td_searchCriteria);
               //
               const td_observer_node_js = {
                 next: (td_logEntry_node_js: string)     => { 
@@ -486,7 +486,7 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
               // 
               let td_informeLogRemoto_SprinbBootJava!   : Observable<string>;
               // 
-              td_informeLogRemoto_SprinbBootJava        = this.sudokuService.getLogRemotoSprinbBootJava(td_searchCriteria);
+              td_informeLogRemoto_SprinbBootJava        = this.backendService.getLogRemotoSprinbBootJava(td_searchCriteria);
               //
               const td_observer_sprinbbootjava = {
                 next: (td_logEntry_sprinbboot_java: string)     => { 
@@ -527,7 +527,7 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
           // 
           let td_informeLogRemoto_PythonDjango!   : Observable<string>;
           // 
-          td_informeLogRemoto_PythonDjango        = this.sudokuService.getLogRemotoDjangoPython(td_searchCriteria);
+          td_informeLogRemoto_PythonDjango        = this.backendService.getLogRemotoDjangoPython(td_searchCriteria);
           //
           const td_observer_pythondjango = {
             next: (td_logEntry_python_django: string)     => { 
@@ -572,7 +572,7 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
       //
       let td_excelFileName!                   : Observable<string>;
       //
-      td_excelFileName                        = this.sudokuService.getInformeExcel(this.rf_model);
+      td_excelFileName                        = this.backendService.getInformeExcel(this.rf_model);
       //
       this.td_ExcelDownloadLink               = "#";
       //

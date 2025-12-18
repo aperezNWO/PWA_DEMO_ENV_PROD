@@ -4,8 +4,8 @@ import { ActivatedRoute, Router                  } from '@angular/router';
 import { interval, Subscription          } from 'rxjs';
 import { BaseComponent                   } from 'src/app/_components/base/base.component';
 import { BackendService                  } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService                   } from 'src/app/_services/SpeechService/speech.service';
-import { ConfigService                   } from 'src/app/_services/ConfigService/config.service';
+import { SpeechService                   } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ConfigService                   } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_GAMES_TETRIS               } from 'src/app/_models/common';
 interface Position {
   x: number;
@@ -49,11 +49,11 @@ export class GameTetrisComponent  extends BaseComponent implements OnInit  {
                   public  override configService      : ConfigService,
                   public  override route              : ActivatedRoute,
                   public  override speechService      : SpeechService,
-                  public  override sudokuService     : BackendService) 
+                  public  override backendService     : BackendService) 
   { 
       //
       super(configService,
-            sudokuService,
+            backendService,
             route,
             speechService,
             PAGE_GAMES_TETRIS

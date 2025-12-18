@@ -3,7 +3,8 @@ import { ActivatedRoute                } from '@angular/router';
 import { Title                         } from '@angular/platform-browser';
 import { CustomErrorHandler            } from './app.module';
 import { BackendService                } from './_services/BackendService/backend.service';
-import { ConfigService                 } from './_services/ConfigService/config.service';
+import { AlgorithmService              } from './_services/AlgorithmService/algorithm.service';
+import { ConfigService                 } from './_services/__Utils/ConfigService/config.service';
 export { CustomErrorHandler            };
 
 //
@@ -26,6 +27,7 @@ export class AppComponent  {
                 private backendService      : BackendService, 
                 private _configService      : ConfigService,
                 private titleService        : Title,
+                private algorithmService    : AlgorithmService,
                ) 
     {
       // TODO:IMPLEMENT AS MAP AND ITERATE
@@ -37,7 +39,7 @@ export class AppComponent  {
       // CACHE PARA XML
       ///////////////////////////////////////////////////////
       //
-      this.backendService._SetXmlDataToCache(__baseUrlNetCore);
+      this.algorithmService._SetXmlDataToCache(__baseUrlNetCore);
       ///////////////////////////////////////////////////////
       // CACHE PARA PIE CHART
       ///////////////////////////////////////////////////////

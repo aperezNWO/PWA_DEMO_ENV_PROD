@@ -2,8 +2,8 @@ import { Component, effect, Inject, signal          } from '@angular/core';
 import { ActivatedRoute                             } from '@angular/router';
 import { PAGE_TITLE_LOG                             } from 'src/app/_models/common';
 import { BackendService                             } from 'src/app/_services/BackendService/backend.service';
-import { ConfigService                              } from 'src/app/_services/ConfigService/config.service';
-import { SpeechService                              } from 'src/app/_services/SpeechService/speech.service';
+import { ConfigService                              } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { SpeechService                              } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { _environment                               } from 'src/environments/environment';
 
 @Component({
@@ -35,7 +35,7 @@ export class BaseComponent {
   /////////////////////////////////////////////////////////
   //
   constructor(    public configService                            : ConfigService,
-                  public sudokuService                            : BackendService, 
+                  public backendService                            : BackendService, 
                   public route                                    : ActivatedRoute,
                   public speechService                            : SpeechService,
                   @Inject(PAGE_TITLE_LOG) public PAGE_TITLE_LOG   : string
@@ -54,7 +54,7 @@ export class BaseComponent {
             //
             this.speechService.speakTextCustom(this.pageTitle);
             //
-            this.sudokuService.SetLog(this._pageTitle,this.PAGE_TITLE_LOG);
+            this.backendService.SetLog(this._pageTitle,this.PAGE_TITLE_LOG);
             //
             if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages)
                  this._pages    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages;

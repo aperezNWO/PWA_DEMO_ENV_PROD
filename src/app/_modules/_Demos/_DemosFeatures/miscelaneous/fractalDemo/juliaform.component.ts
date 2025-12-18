@@ -1,13 +1,13 @@
 import { HttpClient                     } from '@angular/common/http';
-import { Component, ViewChild                      } from '@angular/core';
+import { Component, ViewChild           } from '@angular/core';
 import { ActivatedRoute                 } from '@angular/router';
 import { BaseComponent                  } from 'src/app/_components/base/base.component';
-import { PdfService } from 'src/app/_engines/pdf.engine';
 import { PAGE_MISCELANEOUS_FRACTAL_DEMO } from 'src/app/_models/common';
 import { BackendService                 } from 'src/app/_services/BackendService/backend.service';
-import { ConfigService                  } from 'src/app/_services/ConfigService/config.service';
-import { ComputerVisionService          } from 'src/app/_services/ComputerVisionService/Computer-Vision.service';
-import { SpeechService                  } from 'src/app/_services/SpeechService/speech.service';
+import { ConfigService                  } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { ComputerVisionService          } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
+import { SpeechService                  } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { PdfService                     } from 'src/app/_services/__FileGeneration/pdf.service';
 
 @Component({
   selector: 'app-juliaform',
@@ -26,7 +26,7 @@ export class FractalDemoComponent  extends BaseComponent {
   //
   constructor(public          computervisionService   : ComputerVisionService,
               public override configService           : ConfigService,
-              public override sudokuService          : BackendService,
+              public override backendService          : BackendService,
               public override route                   : ActivatedRoute,
               public override speechService           : SpeechService,
               public http                             : HttpClient,
@@ -35,7 +35,7 @@ export class FractalDemoComponent  extends BaseComponent {
   {
       //
       super(configService,
-            sudokuService,
+            backendService,
             route,
             speechService,
             PAGE_MISCELANEOUS_FRACTAL_DEMO);

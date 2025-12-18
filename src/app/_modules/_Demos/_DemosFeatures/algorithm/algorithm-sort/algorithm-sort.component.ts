@@ -4,7 +4,8 @@ import { Observable                                                  } from 'rxj
 import { SortInfo, _languageName                                     } from 'src/app/_models/entity.model';
 import { DrawEngine                                                  } from 'src/app/_engines/draw.engine';
 import { BackendService                                              } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService                                               } from 'src/app/_services/SpeechService/speech.service';
+import { AlgorithmService                                            } from 'src/app/_services/AlgorithmService/algorithm.service';
+import { SpeechService                                               } from 'src/app/_services/__Utils/SpeechService/speech.service';
 //
 @Component({
   selector: 'app-algorithm-sort',
@@ -50,7 +51,8 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
     //
     constructor(private backendService    : BackendService, 
                 public  speechService     : SpeechService,
-                public  route             : ActivatedRoute)
+                public  route             : ActivatedRoute,
+                public  algorithmService  : AlgorithmService)
     {
         //
         backendService.SetLog(this.pageTitle,"PAGE_SORT_BENCHAMRK_DEMO");
@@ -154,11 +156,11 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
             break;
             case 1 : // C#
                 //
-                GetSortInfo           = this.backendService.getSort(p_sortAlgorith, p_unsortedList);            
+                GetSortInfo           = this.algorithmService.getSort(p_sortAlgorith, p_unsortedList);            
             break;
             case 2: // C++
                 //
-                GetSortInfo           = this.backendService.getSort_CPP(p_sortAlgorith, p_unsortedList);            
+                GetSortInfo           = this.algorithmService.getSort_CPP(p_sortAlgorith, p_unsortedList);            
             break;
         }
         //
@@ -230,7 +232,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
         //
         let randomVertexInfo!          : Observable<string>;
         //
-        randomVertexInfo               = this.backendService.getNewSort();
+        randomVertexInfo               = this.algorithmService.getNewSort();
         //
         const randomVertexObserver     = {
             //

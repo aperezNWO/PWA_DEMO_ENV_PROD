@@ -28,7 +28,7 @@ import { PageNotFoundComponent           } from './_modules/home/page-not-found/
 import { NavComponent                    } from './_modules/home/nav/nav.component';
 import { LogType                         } from './_models/entity.model';
 import { BackendService                  } from './_services/BackendService/backend.service';
-import { ConfigService                   } from './_services/ConfigService/config.service';
+import { ConfigService                   } from './_services/__Utils/ConfigService/config.service';
 import { AppRoutingModule                } from './app-routing.module';
 import { NgbHighlight, NgbModule                } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule, NgbAlertModule    } from '@ng-bootstrap/ng-bootstrap';

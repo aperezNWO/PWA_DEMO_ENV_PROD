@@ -1,21 +1,24 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable                         } from '@angular/core';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import html2canvas    from 'html2canvas';
 import jsPDF          from 'jspdf';
+import { Observable } from 'rxjs';
+import { BaseService                        } from '../__baseService/base.service';
+import { ConfigService                      } from '../__Utils/ConfigService/config.service';
+
 //
 @Injectable({
   providedIn: 'root'
 })
-export class PdfService {
+export class PdfService extends BaseService {
   //
-  constructor() { 
+  constructor(public http : HttpClient, public _configService : ConfigService) { 
       //
+      super();
   }
   //
   getPdf(pageTitle: string, c_canvas : any, divCanvas_Pdf : any, fileName: string, observer : any):void
   {
-      //
-      //console.log(pageTitle + ": [GENERANDO PDF]" );
       //
       const timestamp = new Date().toISOString();
       //
@@ -48,4 +51,19 @@ export class PdfService {
       //            
       return pdfObservable;
   };
+  ////////////////////////////////////////////////////////////////  
+  // METODOS - [GENERAR ARCHIVOS  - PDF]
+  ////////////////////////////////////////////////////////////////
+  public GetPDF(subjectName: string | undefined): Observable<HttpEvent<any>> {
+      //
+      let p_url   = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_GetPdf?subjectName=${subjectName}`;
+      //
+      // USAR REQUEST PARA OBTENER PORCENTAJE DE STATUS
+      const req = new HttpRequest('GET', p_url, {
+        reportProgress: true,
+        responseType  : 'text',
+      });
+      //
+      return this.http.request<HttpEvent<any>>(req);
+  }
 }

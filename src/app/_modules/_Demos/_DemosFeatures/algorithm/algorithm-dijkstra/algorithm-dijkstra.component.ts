@@ -2,13 +2,14 @@ import { AfterViewInit, Component, OnInit, ViewChild,signal,effect  } from '@ang
 import { ActivatedRoute                                             } from '@angular/router';
 import { Observable                                                 } from 'rxjs';
 import { _languageName, _vertexSize                                 } from 'src/app/_models/entity.model';
-import { PdfService                                                 } from 'src/app/_engines/pdf.engine';
-import { UtilManager                                                } from 'src/app/_engines/util.engine';
-import { BackendService                                             } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService                                              } from 'src/app/_services/SpeechService/speech.service';
-import { BaseComponent                                              } from 'src/app/_components/base/base.component';
-import { ConfigService                                              } from 'src/app/_services/ConfigService/config.service';
 import { PAGE_ALGORITMOS_DIJKSTRA                                   } from 'src/app/_models/common';
+import { UtilManager                                                } from 'src/app/_engines/util.engine';
+import { BaseComponent                                              } from 'src/app/_components/base/base.component';
+import { BackendService                                             } from 'src/app/_services/BackendService/backend.service';
+import { SpeechService                                              } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ConfigService                                              } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { PdfService                                                 } from 'src/app/_services/__FileGeneration/pdf.service';
+import { AlgorithmService                                           } from 'src/app/_services/AlgorithmService/algorithm.service';
 
 
 @Component({
@@ -55,15 +56,15 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
   // EVENT HANDLERS //////////////////////////////////////////////  
   ////////////////////////////////////////////////////////////////
   constructor(public override configService      : ConfigService,
-              public override sudokuService     : BackendService, 
+              public override backendService     : BackendService, 
               public override route              : ActivatedRoute,
               public override speechService      : SpeechService,
               public pdfService                  : PdfService,
-              //public customErrorHandler           : CustomErrorHandler, 
+              public algorithmService            : AlgorithmService, 
             ) 
   {
       super(configService,
-            sudokuService,
+            backendService,
             route,
             speechService,
             PAGE_ALGORITMOS_DIJKSTRA
@@ -227,13 +228,13 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
                   return;
             break;
             case 1 :  // c#
-              randomVertexInfo       = this.sudokuService.getRandomVertex(_vertexSize,_sourcePoint);
+              randomVertexInfo       = this.algorithmService.getRandomVertex(_vertexSize,_sourcePoint);
             break;
             case 2:   // c++
-              randomVertexInfo       = this.sudokuService.getRandomVertexCpp(_vertexSize,_sourcePoint);
+              randomVertexInfo       = this.algorithmService.getRandomVertexCpp(_vertexSize,_sourcePoint);
             break;
             case 3:   // springboot
-              randomVertexInfo       = this.sudokuService.getRandomVertexSpringBoot(_vertexSize,_sourcePoint);
+              randomVertexInfo       = this.algorithmService.getRandomVertexSpringBoot(_vertexSize,_sourcePoint);
             break;
         }
         //

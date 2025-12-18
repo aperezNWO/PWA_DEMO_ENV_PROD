@@ -5,8 +5,8 @@ import { ActivatedRoute                                                  } from 
 import { BaseComponent                                                   } from 'src/app/_components/base/base.component';
 import { PAGE_ALGORITMOS_COLISION                                        } from 'src/app/_models/common';
 import { BackendService                                                  } from 'src/app/_services/BackendService/backend.service';
-import { ConfigService                                                   } from 'src/app/_services/ConfigService/config.service';
-import { SpeechService                                                   } from 'src/app/_services/SpeechService/speech.service';
+import { ConfigService                                                   } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { SpeechService                                                   } from 'src/app/_services/__Utils/SpeechService/speech.service';
 
 @Component({
   selector: 'app-algorithm-collision',
@@ -33,12 +33,12 @@ export class AlgorithmCollisionComponent extends BaseComponent implements AfterV
   constructor(private pageRestartService: PageRestartService,
               public  override configService     : ConfigService,
               public  override speechService     : SpeechService,
-              public  override sudokuService    : BackendService,
+              public  override backendService    : BackendService,
               public  override route             : ActivatedRoute,
   )
   {
       super(configService,
-            sudokuService,
+            backendService,
             route,
             speechService,
             PAGE_ALGORITMOS_COLISION);

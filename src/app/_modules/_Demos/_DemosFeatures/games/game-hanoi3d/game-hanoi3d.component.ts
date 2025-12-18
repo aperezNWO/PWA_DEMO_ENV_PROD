@@ -4,10 +4,10 @@ import * as THREE from 'three';
 import * as TWEEN from 'tween';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService         } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService          } from 'src/app/_services/SpeechService/speech.service';
+import { SpeechService          } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { BaseComponent          } from 'src/app/_components/base/base.component';
 import { PAGES_GAMES_HANOI_3D   } from 'src/app/_models/common';
-import { ConfigService          } from 'src/app/_services/ConfigService/config.service';
+import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
 
 @Component({
   selector: 'app-game-hanoi3d',
@@ -31,7 +31,7 @@ export class GameHanoi3dComponent extends BaseComponent implements OnInit, After
   constructor(
                   public  pageRestartService        : PageRestartService,
                   public  override configService    : ConfigService,
-                  public           backendService   : BackendService,
+                  public  override backendService   : BackendService,
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService)
                   

@@ -2,8 +2,8 @@ import { ChangeDetectorRef, Component, OnInit, } from '@angular/core';
 import { ActivatedRoute                            } from '@angular/router';
 import { BaseComponent                             } from 'src/app/_components/base/base.component';
 import { BackendService                            } from 'src/app/_services/BackendService/backend.service';
-import { ConfigService                             } from 'src/app/_services/ConfigService/config.service';
-import { SpeechService                             } from 'src/app/_services/SpeechService/speech.service';
+import { ConfigService                             } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { SpeechService                             } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { PAGE_GAMES_TETRIS_AI                      } from 'src/app/_models/common';
 import { HttpClient                                } from '@angular/common/http';
 import { interval,  Subscription                   } from 'rxjs';
@@ -35,12 +35,12 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
                   public  override configService    : ConfigService,
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
-                  public  override sudokuService   : BackendService,
+                  public  override backendService   : BackendService,
                   public  tetrisService: TetrisService) 
   { 
       //
       super(configService,
-            sudokuService,
+            backendService,
             route,
             speechService,
             PAGE_GAMES_TETRIS_AI

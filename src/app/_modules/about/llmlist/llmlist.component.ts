@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from 'src/app/_components/base/base.component';
 import { PAGE_ABOUT_LLM_LIST } from 'src/app/_models/common';
 import { BackendService } from 'src/app/_services/BackendService/backend.service';
-import { ConfigService } from 'src/app/_services/ConfigService/config.service';
-import { SpeechService } from 'src/app/_services/SpeechService/speech.service';
+import { ConfigService } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { SpeechService } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { _environment } from 'src/environments/environment';
 
 @Component({
@@ -16,14 +16,14 @@ export class LLMListComponent  extends BaseComponent {
     //
     constructor(
            public override configService      : ConfigService,
-           public override sudokuService     : BackendService,
+           public override backendService     : BackendService,
            public override route              : ActivatedRoute,
            public override speechService      : SpeechService,
     )
     {
       //
       super(configService,
-            sudokuService,
+            backendService,
             route,
             speechService,
             PAGE_ABOUT_LLM_LIST,

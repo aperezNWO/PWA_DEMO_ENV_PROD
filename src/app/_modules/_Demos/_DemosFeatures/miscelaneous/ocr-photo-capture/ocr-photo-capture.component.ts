@@ -5,10 +5,10 @@ import { BaseComponent            } from 'src/app/_components/base/base.componen
 import { NgxSignaturePadComponent } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';
 import { NgxSignatureOptions      } from '@eve-sama/ngx-signature-pad/lib/types/ngx-signature-pad';
 import { ActivatedRoute           } from '@angular/router';
-import { SpeechService            } from 'src/app/_services/SpeechService/speech.service';
-import { ConfigService            } from 'src/app/_services/ConfigService/config.service';
+import { SpeechService            } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ConfigService            } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_MISCELANEOUS_OCR    } from 'src/app/_models/common';
-import { OCRService } from 'src/app/_services/OCRService/ocr.service';
+import { OCRService } from 'src/app/_services/__AI/OCRService/ocr.service';
 
 @Component({
   selector: 'app-ocr-photo-capture',
@@ -57,7 +57,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
   
   //
   constructor(public override configService  : ConfigService,
-              public override sudokuService : BackendService,
+              public override backendService : BackendService,
               public override route          : ActivatedRoute,
               public override speechService  : SpeechService,
               public          ocrService     : OCRService,
@@ -65,7 +65,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
   {
       //
       super(configService,
-            sudokuService,
+            backendService,
             route,
             speechService,
             PAGE_MISCELANEOUS_OCR)

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit        } from '@angular/core';
 import { BackendService                          } from '../../../_services/BackendService/backend.service';
-import { SpeechService                           } from 'src/app/_services/SpeechService/speech.service';
-import { ConfigService                           } from 'src/app/_services/ConfigService/config.service';
+import { SpeechService                           } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ConfigService                           } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { BaseComponent                           } from 'src/app/_components/base/base.component';
 import { ActivatedRoute                          } from '@angular/router';
 import { _environment                            } from 'src/environments/environment';
@@ -20,14 +20,14 @@ export class HomeWebComponent extends BaseComponent implements OnInit, AfterView
   }
   //
   constructor(public  override configService  : ConfigService, 
-              public  override sudokuService : BackendService,
+              public  override backendService : BackendService,
               public  override route          : ActivatedRoute, 
               public  override speechService  : SpeechService)
   {
     //
     super(
       configService,
-      sudokuService,
+      backendService,
       route,
       speechService,
       PAGE_ANGULAR_DEMO_INDEX,

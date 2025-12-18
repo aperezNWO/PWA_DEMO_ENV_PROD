@@ -4,8 +4,8 @@ import { BaseComponent             } from 'src/app/_components/base/base.compone
 import { PAGE_GAMES_TIC_TAC_TOE_AI } from 'src/app/_models/common';
 import { _languageName } from 'src/app/_models/entity.model';
 import { BackendService            } from 'src/app/_services/BackendService/backend.service';
-import { ConfigService             } from 'src/app/_services/ConfigService/config.service';
-import { SpeechService             } from 'src/app/_services/SpeechService/speech.service';
+import { ConfigService             } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { SpeechService             } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { _environment              } from 'src/environments/environment';
 
 export interface TicTacToeResponse {
@@ -41,11 +41,11 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
                   public  override configService    : ConfigService,
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
-                  public  override sudokuService   : BackendService) 
+                  public  override backendService   : BackendService) 
   {  
       //
       super(configService,
-            sudokuService,
+            backendService,
             route,
             speechService,
             PAGE_GAMES_TIC_TAC_TOE_AI,

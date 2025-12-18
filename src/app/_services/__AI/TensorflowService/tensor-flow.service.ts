@@ -3,8 +3,8 @@ import { Injectable              } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable              } from 'rxjs';
 import { _environment            } from 'src/environments/environment';
-import { ConfigService           } from '../ConfigService/config.service';
-import { BaseService             } from '../__baseService/base.service';
+import { ConfigService           } from '../../__Utils/ConfigService/config.service';
+import { BaseService             } from '../../__baseService/base.service';
 
 export interface PredictionRequest {
   mission_number: number;

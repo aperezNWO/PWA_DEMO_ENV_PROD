@@ -3,7 +3,7 @@ import { CommonModule                                 } from '@angular/common';
 import { ListItem                                     } from 'src/app/_models/entity.model';
 import { SquareComponent                              } from "../square/square.component";
 import { TicTacToeEngine                              } from 'src/app/_engines/tictactoe.engine';
-import { SpeechService                                } from 'src/app/_services/SpeechService/speech.service';
+import { SpeechService                                } from 'src/app/_services/__Utils/SpeechService/speech.service';
 //
 @Component({
     selector: 'app-board',

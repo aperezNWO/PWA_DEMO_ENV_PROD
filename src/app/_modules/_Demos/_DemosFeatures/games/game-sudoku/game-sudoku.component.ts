@@ -7,11 +7,12 @@ import { Observable                        } from 'rxjs';
 import { PAGE_GAMES_SUDOKU                 } from 'src/app/_models/common';
 import { _languageName, ListItem           } from 'src/app/_models/entity.model';
 import { BaseComponent                     } from 'src/app/_components/base/base.component';
-import { PdfService                        } from 'src/app/_engines/pdf.engine';
+import { PdfService                        } from 'src/app/_services/__FileGeneration/pdf.service';
 import { BackendService                    } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService                     } from 'src/app/_services/SpeechService/speech.service';
-import { ConfigService                     } from 'src/app/_services/ConfigService/config.service';
+import { SpeechService                     } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ConfigService                     } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { SudokuService                     } from 'src/app/_services/__Games/SudokuService/sudoku.service';
+
 
 //
 @Component({
@@ -58,7 +59,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
   //
   constructor(
                   public  override configService    : ConfigService,
-                  public           backendService   : BackendService,                  
+                  public  override backendService   : BackendService,                  
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
                   public  formBuilder               : FormBuilder, 

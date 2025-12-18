@@ -1,13 +1,13 @@
 import { Component, effect, OnInit, signal, ViewChild } from '@angular/core';
-import { PdfService                   } from 'src/app/_engines/pdf.engine';
 import { BackendService               } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService                } from 'src/app/_services/SpeechService/speech.service';
+import { SpeechService                } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { PdfService                   } from 'src/app/_services/__FileGeneration/pdf.service';
 import { Chart, registerables         } from 'chart.js';
 import { Observable                   } from 'rxjs';
 import { BaseComponent                } from 'src/app/_components/base/base.component';
 import { ActivatedRoute               } from '@angular/router';
 import { PAGE_FILE_GENERATION_CHART   } from 'src/app/_models/common';
-import { ConfigService                } from 'src/app/_services/ConfigService/config.service';
+import { ConfigService                } from 'src/app/_services/__Utils/ConfigService/config.service';
 
 @Component({
   selector: 'app-chart',
@@ -44,14 +44,14 @@ export class ChartComponent extends BaseComponent implements OnInit  {
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
     constructor(public override configService  : ConfigService,
-                public override sudokuService : BackendService,
+                public override backendService : BackendService,
                 public override route          : ActivatedRoute, 
                 public override speechService  : SpeechService, 
                 public pdfService              : PdfService) 
     {
       //
       super(configService,
-            sudokuService,
+            backendService,
             route,
             speechService,
             PAGE_FILE_GENERATION_CHART
@@ -90,7 +90,7 @@ export class ChartComponent extends BaseComponent implements OnInit  {
         const statBackgroundColor : string[]          = [];
         //
         let csv_informeLogRemoto!                 : Observable<string>;
-        csv_informeLogRemoto                      = this.sudokuService.getInformeRemotoCSV_STAT();
+        csv_informeLogRemoto                      = this.backendService.getInformeRemotoCSV_STAT();
         //
         const csv_observer = {
           next: (csv_data: string)     => { 
@@ -181,7 +181,7 @@ export class ChartComponent extends BaseComponent implements OnInit  {
       const statBackgroundColor : string[]          = [];
       // 
       let td_informeLogStat!                 : Observable<string>;
-      td_informeLogStat                      = this.sudokuService.getLogStatPOST();
+      td_informeLogStat                      = this.backendService.getLogStatPOST();
       //
       const td_observer = {
         next: (td_logEntry: string)     => { 

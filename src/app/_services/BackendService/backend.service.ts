@@ -3,7 +3,7 @@ import { HttpClient, HttpEvent, HttpHeaders                      } from '@angula
 import { HttpRequest                                             } from '@angular/common/http';
 import { Observable                                              } from 'rxjs';
 import { LogEntry, LogType, SearchCriteria                       } from '../../_models/entity.model';
-import { ConfigService                                           } from '../ConfigService/config.service';
+import { ConfigService                                           } from '../__Utils/ConfigService/config.service';
 import { BaseService                                             } from '../__baseService/base.service';
 import { _environment                                            } from 'src/environments/environment';
 
@@ -40,15 +40,6 @@ export class BackendService extends BaseService implements OnInit  {
       return appVersion;
     }
     //
-    _GetAlgothmAppVersion(): Observable<string> {
-      //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}GetDLLVersion`;
-      //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
-    //
     _GetASPNETCoreCppVersion(): Observable<string> {
       //
       let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}_GetAppVersion`;
@@ -57,17 +48,39 @@ export class BackendService extends BaseService implements OnInit  {
       //
       return appVersion;
     }
-    // 
-    _Algorithm_GetCPPSTDVersion(): Observable<string> {
+    //
+    public SetLog(p_PageTitle : string ,p_logMsg : string, logType : LogType = LogType.Info):void
+    {
       //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}Algorithm_GetCPPSTDVersion`;
+      if ((p_PageTitle == '') || (p_logMsg == ''))
+        return;
       //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      let logInfo!  : Observable<string>;
       //
-      return appVersion;
-    }
+      let p_url     = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_SetLog?p_logMsg=${p_logMsg}&logType=${logType.toString()}`;
+      //
+      logInfo       = this.http.get<string>(p_url, this.HTTPOptions_Text);
+      //
+      const logInfoObserver   = {
+            //
+            next: (logResult: string)     => { 
+                  //
+                  //console.warn(p_PageTitle +  ' - [LOG] - [RESULT] : ' + logResult);
+            },
+            error: (err: Error) => {
+                  //
+                  //console.error(p_PageTitle + ' - [LOG] - [ERROR]  : ' + err);
+            },       
+            complete: ()        => {
+                  //
+                  //console.info(p_PageTitle  + ' - [LOG] - [COMPLETE]');
+            },
+        };
+        //
+        logInfo.subscribe(logInfoObserver);
+    };
     ////////////////////////////////////////////////////////////////  
-    // METODOS - [GENERAR ARCHIVO CSV]
+    // METODOS - [GENERAR ARCHIVO CSV] / CHARTS 
     ////////////////////////////////////////////////////////////////  
     getCSVLinkGET(): Observable<string> {
       //
@@ -144,7 +157,7 @@ export class BackendService extends BaseService implements OnInit  {
     return jsonCSVData; 
   }
     ////////////////////////////////////////////////////////////////  
-    // METODOS - [GENERAR ARCHIVO XLS]
+    // METODOS - [GENERAR ARCHIVO XLS] / CHARTS
     ////////////////////////////////////////////////////////////////  
     //
     getLogRemoto(_searchCriteria : SearchCriteria) {
@@ -260,179 +273,6 @@ export class BackendService extends BaseService implements OnInit  {
       //
       jsonDataObservable.subscribe(jsonDataOberver);
     } 
-    ////////////////////////////////////////////////////////////////  
-    // METODOS - [GENERAR ARCHIVOS  - PDF]
-    ////////////////////////////////////////////////////////////////
-    public GetPDF(subjectName: string | undefined): Observable<HttpEvent<any>> {
-        //
-        let p_url   = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_GetPdf?subjectName=${subjectName}`;
-        //
-        // USAR REQUEST PARA OBTENER PORCENTAJE DE STATUS
-        const req = new HttpRequest('GET', p_url, {
-          reportProgress: true,
-          responseType  : 'text',
-        });
-        //
-        return this.http.request<HttpEvent<any>>(req);
-    }
-    ////////////////////////////////////////////////////////////////  
-    // METODOS - [ALGORITMOS - DISTANCIA MAS CORTA]
-    ////////////////////////////////////////////////////////////////  
-    //    
-    getRandomVertex(vertexSize : Number,sourcePoint : Number): Observable<string> {
-      //
-      let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/GenerateRandomVertex?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
-      //
-      let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return dijkstraData; 
-    }
-    //
-    getRandomVertexCpp(vertexSize : Number,sourcePoint : Number): Observable<string> {
-      //
-      let p_url    = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}GenerateRandomVertex_CPP?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
-      //
-      let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return dijkstraData; 
-    }
-    //
-    getRandomVertexSpringBoot(vertexSize : Number,sourcePoint : Number): Observable<string> {
-       //
-      let p_url    = `${this._configService.getConfigValue('baseUrlSpringBootJava')}GenerateRandomVertex_SpringBoot`;
-      //
-      let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
-      //
-      return dijkstraData; 
-    }
-    
-    ////////////////////////////////////////////////////////////////  
-    // METODOS - [ALGORITMOS - ORDENAMIENTO]
-    ////////////////////////////////////////////////////////////////     
-    getNewSort():Observable<string>
-    {
-      //
-      let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_NewSort`;
-      //
-      let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return newSortData; 
-    }
-    //    
-    getSort(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
-    {
-      //
-      let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_GetSort?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
-      //
-      let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return newSortData; 
-    }
-    //    
-    getSort_CPP(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
-    {
-      //
-      let p_url    = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}_GetSort_CPP?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
-      //
-      let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return newSortData; 
-    }
-    ////////////////////////////////////////////////////////////////  
-    // METODOS - [ALGORITMOS - EXPRESIONES REGULARES]
-    ////////////////////////////////////////////////////////////////  
-    //    
-    _GetXmlData():Observable<string>
-    {
-      //
-      let p_url  : string  = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_GetXmlData`;
-      //
-      let xmlData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return xmlData; 
-    }
-    //
-    _SetXmlDataToCache(_prefix : string | undefined):void
-    {
-      //
-      let p_url   : string  = `${_prefix}demos/_SetXmlDataToCache`;
-      //
-      ////console.log("Setting XML data to cache :  " + p_url)
-      //
-      let xmlData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      const td_observer = {
-        next: (jsondata: string)     => { 
-          //
-          ////console.log('_SetXmlDataToCache - (return): ' + jsondata);
-        },
-        error           : (err: Error)      => {
-          //
-          console.error('_SetXmlDataToCache- (ERROR) : ' + JSON.stringify(err.message));
-          //
-        },
-        complete        : ()                => {
-          //
-          ////console.log('_SetXmlDataToCache -  (COMPLETE)');
-        },
-      };
-      //
-      xmlData.subscribe(td_observer);
-    }
-    //
-    public _RegExEval(tagSearchIndex: number, textSearchValue: string): Observable<string>
-    {
-      //
-      let p_url    : string = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_RegExEval?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
-      //
-      let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return regExData; 
-    }
-    //
-    public _RegExEval_CPP(tagSearchIndex: number, textSearchValue: string): Observable<string>
-    {
-      //
-      let p_url    : string = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}_RegExEval_CPP?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
-      //
-      let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return regExData; 
-    }
-    ////////////////////////////////////////////////////////////////  
-    // METODOS - [LOG]
-    ////////////////////////////////////////////////////////////////  
-    //
-    public SetLog(p_PageTitle : string ,p_logMsg : string, logType : LogType = LogType.Info):void
-    {
-      //
-      if ((p_PageTitle == '') || (p_logMsg == ''))
-        return;
-      //
-      let logInfo!  : Observable<string>;
-      //
-      let p_url     = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_SetLog?p_logMsg=${p_logMsg}&logType=${logType.toString()}`;
-      //
-      logInfo       = this.http.get<string>(p_url, this.HTTPOptions_Text);
-      //
-      const logInfoObserver   = {
-            //
-            next: (logResult: string)     => { 
-                  //
-                  //console.warn(p_PageTitle +  ' - [LOG] - [RESULT] : ' + logResult);
-            },
-            error: (err: Error) => {
-                  //
-                  //console.error(p_PageTitle + ' - [LOG] - [ERROR]  : ' + err);
-            },       
-            complete: ()        => {
-                  //
-                  //console.info(p_PageTitle  + ' - [LOG] - [COMPLETE]');
-            },
-        };
-        //
-        logInfo.subscribe(logInfoObserver);
-    };
-  ///////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////
 }
   

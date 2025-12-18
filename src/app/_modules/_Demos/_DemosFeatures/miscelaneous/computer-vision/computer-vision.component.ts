@@ -4,9 +4,9 @@ import { ActivatedRoute           } from '@angular/router';
 import { BaseComponent            } from 'src/app/_components/base/base.component';
 import { _languageName            } from 'src/app/_models/entity.model';
 import { BackendService           } from 'src/app/_services/BackendService/backend.service';
-import { ComputerVisionService    } from 'src/app/_services/ComputerVisionService/Computer-Vision.service';
-import { SpeechService            } from 'src/app/_services/SpeechService/speech.service';
-import { ConfigService                    } from 'src/app/_services/ConfigService/config.service';
+import { ComputerVisionService    } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
+import { SpeechService            } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ConfigService                    } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_MISELANEOUS_COMPUTER_VISION } from 'src/app/_models/common';
 import { NgxSignaturePadComponent         } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';
 import { NgxSignatureOptions              } from '@eve-sama/ngx-signature-pad/lib/types/ngx-signature-pad';
@@ -61,14 +61,14 @@ export class ComputerVisionComponent extends BaseComponent implements AfterViewI
   //
   constructor(public          computervisionService   : ComputerVisionService,
               public override configService           : ConfigService,
-              public override sudokuService          : BackendService,
+              public override backendService          : BackendService,
               public override route                   : ActivatedRoute,
               public override speechService           : SpeechService,
   )
   {
       //
       super(configService,
-            sudokuService,
+            backendService,
             route,
             speechService,
             PAGE_MISELANEOUS_COMPUTER_VISION);

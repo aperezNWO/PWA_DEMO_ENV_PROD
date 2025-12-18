@@ -1,14 +1,16 @@
 import { Component, signal, VERSION        } from '@angular/core';
 import { ActivatedRoute                    } from '@angular/router';
 import { Observable                        } from 'rxjs';
-import { ConfigService                     } from 'src/app/_services/ConfigService/config.service';
+import { ConfigService                     } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { BaseComponent                     } from 'src/app/_components/base/base.component';
-import { SpeechService                     } from 'src/app/_services/SpeechService/speech.service';
+import { SpeechService                     } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { PAGE_ABOUT_TECHNICAL_SPECS        } from 'src/app/_models/common';
-import { OCRService                        } from 'src/app/_services/OCRService/ocr.service';
-import { ComputerVisionService             } from 'src/app/_services/ComputerVisionService/Computer-Vision.service';
+import { OCRService                        } from 'src/app/_services/__AI/OCRService/ocr.service';
+import { ComputerVisionService             } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
+import { AlgorithmService                  } from 'src/app/_services/AlgorithmService/algorithm.service';
 import { BackendService                    } from '../../../../_services/BackendService/backend.service';
-import { TensorFlowService                 } from '../../../../_services/TensorflowService/tensor-flow.service';
+import { TensorFlowService                 } from '../../../../_services/__AI/TensorflowService/tensor-flow.service';
+
 //
 @Component({
   selector: 'app-technical-specs',
@@ -81,18 +83,19 @@ export class TechnicalSpecsComponent extends BaseComponent {
     ////////////////////////////////////////////////////////////////  
     constructor(
            public override configService         : ConfigService,
-           public override sudokuService        : BackendService,
+           public override backendService        : BackendService,
            public override route                 : ActivatedRoute,
            public override speechService         : SpeechService,
            public          ocrService            : OCRService,
            public          computervisionService : ComputerVisionService,
            public          tensorflowService     : TensorFlowService,
+           public          algorithmService      : AlgorithmService,
 
     )
     {
       //
       super(configService,
-            sudokuService,
+            backendService,
             route,
             speechService,
             PAGE_ABOUT_TECHNICAL_SPECS,
@@ -162,7 +165,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     /////////////////////////////////////////////////////////// 
     private _GetWebApiAppVersion() {
       //
-      let appVersion : Observable<string> = this.sudokuService._GetWebApiAppVersion();
+      let appVersion : Observable<string> = this.backendService._GetWebApiAppVersion();
       //
       const appVersionObserver = {
         next: (jsondata: string)     => { 
@@ -188,7 +191,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetAlgorithmAppVersion() {
       //
-      let cppBackendObservable : Observable<string> = this.sudokuService._GetAlgothmAppVersion();
+      let cppBackendObservable : Observable<string> = this.algorithmService._Algorithm_GetAppVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 
@@ -217,7 +220,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetAlgorithmCPPSTDVersion() {
       //
-      let cppBackendObservable : Observable<string> = this.sudokuService._Algorithm_GetCPPSTDVersion();
+      let cppBackendObservable : Observable<string> = this.algorithmService._Algorithm_GetCPPSTDVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 
@@ -246,7 +249,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetASPNETCoreCppVersion() {
       //
-      let cppBackendObservable : Observable<string> = this.sudokuService._GetASPNETCoreCppVersion();
+      let cppBackendObservable : Observable<string> = this.backendService._GetASPNETCoreCppVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 

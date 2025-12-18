@@ -2,9 +2,9 @@ import { DecimalPipe                           } from "@angular/common";
 import { Inject, Injectable                    } from "@angular/core";
 import { _BaseModel                            } from "src/app/_models/entity.model";
 import { _environment                          } from "src/environments/environment";
-import { PAGE_ID, PAGE_SIZE, SEARCH_TERM       } from "src/app/_models/common";
+import { PAGE_DEMOS_DJANGO_PYTHON, PAGE_ID, PAGE_SIZE, SEARCH_TERM       } from "src/app/_models/common";
 import { ConfigService                                                                       } from "../ConfigService/config.service";
-import { BackendService                                                                      } from "../BackendService/backend.service";
+import { BackendService                                                                      } from "../../BackendService/backend.service";
 import { SpeechService                                                                       } from "../SpeechService/speech.service";
 import { BehaviorSubject, Subject, tap, debounceTime, switchMap, delay, Observable, of       } from "rxjs";
 import { _SearchState, _BaseSearchResult, matches, _SortColumn, _SortDirection, sort         } from "src/app/_directives/sortable.directive";
@@ -12,7 +12,7 @@ import { _SearchState, _BaseSearchResult, matches, _SortColumn, _SortDirection, 
 @Injectable({
   providedIn: 'root'
 })
-export class _SearchService  {
+export class __SearchService  {
 	// 1.
 	public _loading               = new BehaviorSubject<boolean>(true);
 	public _search$               = new Subject<void>();
@@ -43,6 +43,7 @@ export class _SearchService  {
 				private speechService     : SpeechService,
 	) 
 	{
+		//let PAGE_ID = PAGE_DEMOS_DJANGO_PYTHON;
 		//
 		this.GetData(PAGE_ID);
 		//
