@@ -1,11 +1,12 @@
+import { Injectable                                                      } from "@angular/core";
+import { Router                                                          } from "@angular/router";
 import { Component, ViewChild, ElementRef, AfterViewInit                 } from '@angular/core';
 import { ActivatedRoute                                                  } from '@angular/router';
 import { BaseComponent                                                   } from 'src/app/_components/base/base.component';
 import { PAGE_ALGORITMOS_COLISION                                        } from 'src/app/_models/common';
 import { BackendService                                                  } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                                                   } from 'src/app/_services/ConfigService/config.service';
-import { PageRestartService                                              } from 'src/app/_services/pageRestart/page-restart.service';
-import { SpeechService                                                   } from 'src/app/_services/speechService/speech.service';
+import { SpeechService                                                   } from 'src/app/_services/SpeechService/speech.service';
 
 @Component({
   selector: 'app-algorithm-collision',
@@ -85,5 +86,30 @@ export class AlgorithmCollisionComponent extends BaseComponent implements AfterV
     } else {
       requestAnimationFrame(this.animate);
     }
+  }
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+class PageRestartService {
+  constructor(private router: Router) {}
+
+  // Method 1: Simple page reload
+  reloadPage() {
+    window.location.reload();
+  }
+
+  // Method 2: Reload current route
+  async reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    await this.router.navigateByUrl('/', { skipLocationChange: true });
+    return this.router.navigateByUrl(currentUrl);
+  }
+
+  // Method 3: Reload with query params refresh
+  reloadWithQueryParamsRefresh() {
+    const currentUrl = window.location.href;
+    window.location.href = currentUrl;
   }
 }

@@ -7,7 +7,7 @@ import { Observable                        } from 'rxjs';
 import { BackendService                    } from 'src/app/_services/BackendService/backend.service';
 import { PdfService                        } from 'src/app/_engines/pdf.engine';
 import { _languageName, ListItem           } from 'src/app/_models/entity.model';
-import { SpeechService                     } from 'src/app/_services/speechService/speech.service';
+import { SpeechService                     } from 'src/app/_services/SpeechService/speech.service';
 import { BaseComponent                     } from 'src/app/_components/base/base.component';
 import { PAGE_GAMES_SUDOKU                 } from 'src/app/_models/common';
 import { ConfigService                     } from 'src/app/_services/ConfigService/config.service';

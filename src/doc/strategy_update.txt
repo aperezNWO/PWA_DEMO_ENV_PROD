@@ -547,18 +547,24 @@
 
         -- [_] OCR SERVICE.
 
--- [_] CV DEMO.
+-- [x] CV DEMO.
 
-        -- [_] Service.
+        -- [x] Service.
 
-        -- [_] ENG LANGUAGE.
+        -- [x] ENG LANGUAGE.
 
-        -- [_] Fractal Demo Path.
+        -- [x] Fractal Demo Path.
 
 -- [_] TENSORFLOW DEMO.
 
         -- [_] Base Service.
 
         -- [_] Service.
+
+-- [_] SCM.
+
+        -- [_] Delete Tailwind.
+
+        -- [_] Fix codesandbox data. Put 3 codesandbox accounts.
 
 ////////////////////////////////////////////////////////////////////////////////

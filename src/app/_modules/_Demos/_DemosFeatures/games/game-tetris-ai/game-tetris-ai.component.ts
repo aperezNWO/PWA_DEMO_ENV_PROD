@@ -3,7 +3,7 @@ import { ActivatedRoute                            } from '@angular/router';
 import { BaseComponent                             } from 'src/app/_components/base/base.component';
 import { BackendService                            } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                             } from 'src/app/_services/ConfigService/config.service';
-import { SpeechService                             } from 'src/app/_services/speechService/speech.service';
+import { SpeechService                             } from 'src/app/_services/SpeechService/speech.service';
 import { PAGE_GAMES_TETRIS_AI                      } from 'src/app/_models/common';
 import { HttpClient                                } from '@angular/common/http';
 import { interval,  Subscription                   } from 'rxjs';

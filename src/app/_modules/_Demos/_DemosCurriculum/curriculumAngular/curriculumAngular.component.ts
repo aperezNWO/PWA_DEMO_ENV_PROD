@@ -2,7 +2,7 @@ import { Component                                               } from '@angula
 import { Router                                                  } from '@angular/router';
 import { PAGE_CURRICULUM_ANGULAR, PAGE_ID, PAGE_SIZE,SEARCH_TERM } from 'src/app/_models/common';
 import { ConfigService                                           } from 'src/app/_services/ConfigService/config.service';
-import { _SearchService                                          } from 'src/app/_services/searchService/_search.service';
+import { _SearchService                                          } from 'src/app/_services/SearchService/_search.service';
 import { _SearchComponent                                        } from 'src/app/_components/search/_search.component ';
 
 

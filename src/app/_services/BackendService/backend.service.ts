@@ -57,33 +57,7 @@ export class BackendService extends BaseService implements OnInit  {
       //
       return appVersion;
     }
-    //
-    _GetTensorFlowAPIVersion(): Observable<string> {
-      //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}GetTensorFlowAPIVersion`;
-      //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
-    //
-    _GetTensorFlowAPPVersion(): Observable<string> {
-      //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}GetTensorFlowAPPVersion`;
-      //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
-    //
-    _TensorFlow_GetCPPSTDVersion(): Observable<string> {
-      //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}TensorFlow_GetCPPSTDVersion`;
-      //
-      let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-      //
-      return appVersion;
-    }
+    // 
     _Algorithm_GetCPPSTDVersion(): Observable<string> {
       //
       let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}Algorithm_GetCPPSTDVersion`;
@@ -151,8 +125,8 @@ export class BackendService extends BaseService implements OnInit  {
       //
       jsonCSVData.subscribe(jsonCSVDataObserver); 
     }
-    //    
-    getInformeRemotoCSV_NodeJS(): Observable<string> {
+  //    
+  getInformeRemotoCSV_NodeJS(): Observable<string> {
     //
     let p_url: string = `${this._configService.getConfigValue('baseUrlNodeJs')}GenerarInformeCSVJson`;
     //
@@ -174,72 +148,70 @@ export class BackendService extends BaseService implements OnInit  {
     ////////////////////////////////////////////////////////////////  
     //
     getLogRemoto(_searchCriteria : SearchCriteria) {
-        //
-        let url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/generarinformejson`;
-        //    
-        return this.http.get<LogEntry[]>(url);
-    }
+          //
+          let url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/generarinformejson`;
+          //    
+          return this.http.get<LogEntry[]>(url);
+      }
     //
     getLogRemotoNodeJS(_searchCriteria : SearchCriteria) : Observable<string>{
-      //
-      let p_url       : string = `${this._configService.getConfigValue('baseUrlNodeJs')}generarinformejson`;
-      //
-      let nodeJsOutput: Observable<string> = this.http.get<string>(
-        p_url,
-        this.HTTPOptions_JSON,
-      );
-      //
-      return nodeJsOutput;
-    }
+        //
+        let p_url       : string = `${this._configService.getConfigValue('baseUrlNodeJs')}generarinformejson`;
+        //
+        let nodeJsOutput: Observable<string> = this.http.get<string>(
+          p_url,
+          this.HTTPOptions_JSON,
+        );
+        //
+        return nodeJsOutput;
+      }
     //
     getLogRemotoSprinbBootJava(_searchCriteria : SearchCriteria) : Observable<string>{
-      //
-      let p_url       : string = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllLogs`;
-      //
-      let nodeJsOutput: Observable<string> = this.http.get<string>(
-        p_url,
-        this.HTTPOptions_JSON,
-      );
+        //
+        let p_url       : string = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllLogs`;
+        //
+        let nodeJsOutput: Observable<string> = this.http.get<string>(
+          p_url,
+          this.HTTPOptions_JSON,
+        );
 
-      //
-      return nodeJsOutput;
-    }
+        //
+        return nodeJsOutput;
+      }
     //
     getPersonsSprinbBootJava() : Observable<string>{
-      //
-      let p_url       : string = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllPersons`;
-      //
-      let nodeJsOutput: Observable<string> = this.http.get<string>(
-        p_url,
-        this.HTTPOptions_JSON,
-      );
-      //
-      return nodeJsOutput;
+        //
+        let p_url       : string = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllPersons`;
+        //
+        let nodeJsOutput: Observable<string> = this.http.get<string>(
+          p_url,
+          this.HTTPOptions_JSON,
+        );
+        //
+        return nodeJsOutput;
     }
     //
-    
     getLogRemotoDjangoPython(_searchCriteria : SearchCriteria) : Observable<string>{
-      //
-      let p_url       : string = `${this._configService.getConfigValue('baseUrlDjangoPython')}getAllLogs?format=json`;
-      //
-      let djantoPythonOutput: Observable<string> = this.http.get<string>(
-        p_url,
-        this.HTTPOptions_JSON,
-      );
-      //
-      return djantoPythonOutput;
-    }
+        //
+        let p_url       : string = `${this._configService.getConfigValue('baseUrlDjangoPython')}getAllLogs?format=json`;
+        //
+        let djantoPythonOutput: Observable<string> = this.http.get<string>(
+          p_url,
+          this.HTTPOptions_JSON,
+        );
+        //
+        return djantoPythonOutput;
+      }
     //
     getInformeExcel(_searchCriteria : SearchCriteria){
-        //
-        let p_url  = `${this._configService.getConfigValue('baseUrlNetCore')}demos/generarinformexls`;
-        //
-        let excelFileName : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-        //
-        return excelFileName; 
-    }
+          //
+          let p_url  = `${this._configService.getConfigValue('baseUrlNetCore')}demos/generarinformexls`;
+          //
+          let excelFileName : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+          //
+          return excelFileName; 
+      }
     //
-    
     getPersonsDjangoPython() : Observable<string>{
       //
       let p_url       : string = `${this._configService.getConfigValue('baseUrlDjangoPython')}getAllPersons?format=json`;
@@ -288,34 +260,6 @@ export class BackendService extends BaseService implements OnInit  {
       //
       jsonDataObservable.subscribe(jsonDataOberver);
     } 
-    //////////////////////////////////////////////////////////////
-    // GET ZIP / FILE UPLODAD METHODS
-    //////////////////////////////////////////////////////////////
-    upload(file: File) : Observable<HttpEvent<any>> {
-      //
-      const formData: FormData = new FormData();
-      //
-      formData.append('file', file);
-      //
-      let url    = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_ZipDemoGetFileName`;
-      //
-      // USAR REQUEST PARA OBTENER PORCENTAJE DE STATUS
-      const req = new HttpRequest('POST', url, formData, {
-        reportProgress: true,
-        responseType  : 'text',
-      });
-      //
-      return this.http.request<HttpEvent<any>>(req);
-    }
-    //
-    SetZip(p_fileName : string | undefined):Observable<string> {
-        //
-        let p_url   = `${this._configService.getConfigValue('baseUrlNetCore')}demos/_SetZip?p_fileName=${p_fileName}`;
-        //
-        let returnUrl     : Observable<string> = this.http.get<string>(p_url,this.HTTPOptions_JSON); 
-        //
-        return returnUrl;   
-    }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [GENERAR ARCHIVOS  - PDF]
     ////////////////////////////////////////////////////////////////
@@ -492,8 +436,8 @@ export class BackendService extends BaseService implements OnInit  {
     ////////////////////////////////////////////////////////////////  
     // GAMES
     //////////////////////////////////////////////////////////////// 
-     //
-     _GetSudoku_NodeJS(): Observable<string> {
+    //
+    _GetSudoku_NodeJS(): Observable<string> {
       //
       let p_url: string = `${this._configService.getConfigValue('baseUrlNodeJs')}Sudoku_Generate_NodeJS`;
       //
@@ -524,8 +468,8 @@ export class BackendService extends BaseService implements OnInit  {
      //
      return sudokuSolved;
    };
-    //
-    _SolveSudoku_NodeJS(p_matrix: string): Observable<string> {
+   //
+   _SolveSudoku_NodeJS(p_matrix: string): Observable<string> {
       //
       let p_url: string = `${this._configService.getConfigValue('baseUrlNodeJs')}Sudoku_Solve_NodeJS?p_matrix=${p_matrix}`;
       //

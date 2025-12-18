@@ -1,14 +1,13 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Injectable } from '@angular/core';
+import { OrbitControls          } from 'three/examples/jsm/controls/OrbitControls';
 import * as THREE from 'three';
 import * as TWEEN from 'tween';
-import { PageRestartService } from 'src/app/_services/pageRestart/page-restart.service';
-import { ActivatedRoute } from '@angular/router';
-import { BackendService } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService } from 'src/app/_services/speechService/speech.service';
-import { BaseComponent } from 'src/app/_components/base/base.component';
-import { PAGES_GAMES_HANOI_3D } from 'src/app/_models/common';
-import { ConfigService } from 'src/app/_services/ConfigService/config.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BackendService         } from 'src/app/_services/BackendService/backend.service';
+import { SpeechService          } from 'src/app/_services/SpeechService/speech.service';
+import { BaseComponent          } from 'src/app/_components/base/base.component';
+import { PAGES_GAMES_HANOI_3D   } from 'src/app/_models/common';
+import { ConfigService          } from 'src/app/_services/ConfigService/config.service';
 
 @Component({
   selector: 'app-game-hanoi3d',
@@ -152,5 +151,30 @@ export class GameHanoi3dComponent extends BaseComponent implements OnInit, After
       this.controls.update();
       if (this.currentMove < this.moves.length) this.animateMove();
       this.renderer.render(this.scene, this.camera);
+  }
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+class PageRestartService {
+  constructor(private router: Router) {}
+
+  // Method 1: Simple page reload
+  reloadPage() {
+    window.location.reload();
+  }
+
+  // Method 2: Reload current route
+  async reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    await this.router.navigateByUrl('/', { skipLocationChange: true });
+    return this.router.navigateByUrl(currentUrl);
+  }
+
+  // Method 3: Reload with query params refresh
+  reloadWithQueryParamsRefresh() {
+    const currentUrl = window.location.href;
+    window.location.href = currentUrl;
   }
 }

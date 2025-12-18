@@ -5,7 +5,7 @@ import { BaseComponent            } from 'src/app/_components/base/base.componen
 import { _languageName            } from 'src/app/_models/entity.model';
 import { BackendService           } from 'src/app/_services/BackendService/backend.service';
 import { ComputerVisionService    } from 'src/app/_services/ComputerVisionService/Computer-Vision.service';
-import { SpeechService            } from 'src/app/_services/speechService/speech.service';
+import { SpeechService            } from 'src/app/_services/SpeechService/speech.service';
 import { ConfigService                    } from 'src/app/_services/ConfigService/config.service';
 import { PAGE_MISELANEOUS_COMPUTER_VISION } from 'src/app/_models/common';
 import { NgxSignaturePadComponent         } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';

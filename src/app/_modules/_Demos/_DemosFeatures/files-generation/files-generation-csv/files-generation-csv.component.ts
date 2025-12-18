@@ -7,7 +7,7 @@ import { PersonEntity, SearchCriteria, _languageName   } from 'src/app/_models/e
 import { BackendService                                } from 'src/app/_services/BackendService/backend.service';
 import { CustomErrorHandler                            } from 'src/app/app.component';
 import { ActivatedRoute                                } from '@angular/router';
-import { SpeechService                                 } from 'src/app/_services/speechService/speech.service';
+import { SpeechService                                 } from 'src/app/_services/SpeechService/speech.service';
 import { BaseComponent                                 } from 'src/app/_components/base/base.component';
 import { ConfigService                                 } from 'src/app/_services/ConfigService/config.service';
 import { PAGE_FILE_GENERATION_CSV                      } from 'src/app/_models/common';

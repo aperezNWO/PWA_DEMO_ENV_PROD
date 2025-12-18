@@ -4,7 +4,7 @@ import { Observable                                                  } from 'rxj
 import { SortInfo, _languageName                                     } from 'src/app/_models/entity.model';
 import { DrawEngine                                                  } from 'src/app/_engines/draw.engine';
 import { BackendService                                              } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService                                               } from 'src/app/_services/speechService/speech.service';
+import { SpeechService                                               } from 'src/app/_services/SpeechService/speech.service';
 //
 @Component({
   selector: 'app-algorithm-sort',

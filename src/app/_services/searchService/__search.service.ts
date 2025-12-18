@@ -5,7 +5,7 @@ import { _environment                          } from "src/environments/environm
 import { PAGE_DEMOS_DJANGO_PYTHON, PAGE_ID, PAGE_SIZE, SEARCH_TERM       } from "src/app/_models/common";
 import { ConfigService                                                                       } from "../ConfigService/config.service";
 import { BackendService                                                                      } from "../BackendService/backend.service";
-import { SpeechService                                                                       } from "../speechService/speech.service";
+import { SpeechService                                                                       } from "../SpeechService/speech.service";
 import { BehaviorSubject, Subject, tap, debounceTime, switchMap, delay, Observable, of       } from "rxjs";
 import { _SearchState, _BaseSearchResult, matches, _SortColumn, _SortDirection, sort         } from "src/app/_directives/sortable.directive";
 

@@ -1,7 +1,7 @@
 import { Component, effect, OnInit, signal, ViewChild } from '@angular/core';
 import { PdfService                   } from 'src/app/_engines/pdf.engine';
 import { BackendService               } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService                } from 'src/app/_services/speechService/speech.service';
+import { SpeechService                } from 'src/app/_services/SpeechService/speech.service';
 import { Chart, registerables         } from 'chart.js';
 import { Observable                   } from 'rxjs';
 import { BaseComponent                } from 'src/app/_components/base/base.component';

@@ -7,7 +7,7 @@ import { PAGE_MISCELANEOUS_FRACTAL_DEMO } from 'src/app/_models/common';
 import { BackendService                 } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                  } from 'src/app/_services/ConfigService/config.service';
 import { ComputerVisionService          } from 'src/app/_services/ComputerVisionService/Computer-Vision.service';
-import { SpeechService                  } from 'src/app/_services/speechService/speech.service';
+import { SpeechService                  } from 'src/app/_services/SpeechService/speech.service';
 
 @Component({
   selector: 'app-juliaform',

@@ -3,11 +3,12 @@ import { ActivatedRoute                    } from '@angular/router';
 import { Observable                        } from 'rxjs';
 import { ConfigService                     } from 'src/app/_services/ConfigService/config.service';
 import { BaseComponent                     } from 'src/app/_components/base/base.component';
-import { SpeechService                     } from 'src/app/_services/speechService/speech.service';
+import { SpeechService                     } from 'src/app/_services/SpeechService/speech.service';
 import { PAGE_ABOUT_TECHNICAL_SPECS        } from 'src/app/_models/common';
 import { OCRService                        } from 'src/app/_services/OCRService/ocr.service';
 import { ComputerVisionService             } from 'src/app/_services/ComputerVisionService/Computer-Vision.service';
 import { BackendService                    } from '../../../../_services/BackendService/backend.service';
+import { TensorFlowService                 } from '../../../../_services/TensorflowService/tensor-flow.service';
 //
 @Component({
   selector: 'app-technical-specs',
@@ -85,6 +86,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
            public override speechService         : SpeechService,
            public          ocrService            : OCRService,
            public          computervisionService : ComputerVisionService,
+           public          tensorflowService     : TensorFlowService,
+
     )
     {
       //
@@ -416,7 +419,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetTensorflowAPIVersion(){
       //
-      let cppBackendObservable : Observable<string> = this.backendService._GetTensorFlowAPIVersion();
+      let cppBackendObservable : Observable<string> = this.tensorflowService._GetTensorFlowAPIVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 
@@ -439,7 +442,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetTensorflowAPPVersion(){
       //
-      let cppBackendObservable : Observable<string> = this.backendService._GetTensorFlowAPPVersion();
+      let cppBackendObservable : Observable<string> = this.tensorflowService._GetTensorFlowAPPVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 
@@ -462,7 +465,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     private _GetTensorflowcCPPSTDVersion(){
       //
-      let cppBackendObservable : Observable<string> = this.backendService._TensorFlow_GetCPPSTDVersion();
+      let cppBackendObservable : Observable<string> = this.tensorflowService._TensorFlow_GetCPPSTDVersion();
       //
       const cppBackendObserver       = {
         next: (jsondata: string)     => { 

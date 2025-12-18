@@ -1,11 +1,10 @@
 // tetris.component.ts
-import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute                  } from '@angular/router';
+import { Component, HostListener, Injectable, OnInit } from '@angular/core';
+import { ActivatedRoute, Router                  } from '@angular/router';
 import { interval, Subscription          } from 'rxjs';
 import { BaseComponent                   } from 'src/app/_components/base/base.component';
 import { BackendService                  } from 'src/app/_services/BackendService/backend.service';
-import { PageRestartService              } from 'src/app/_services/pageRestart/page-restart.service';
-import { SpeechService                   } from 'src/app/_services/speechService/speech.service';
+import { SpeechService                   } from 'src/app/_services/SpeechService/speech.service';
 import { ConfigService                   } from 'src/app/_services/ConfigService/config.service';
 import { PAGE_GAMES_TETRIS               } from 'src/app/_models/common';
 interface Position {
@@ -46,11 +45,11 @@ export class GameTetrisComponent  extends BaseComponent implements OnInit  {
 
 //
   constructor(
-                  private pageRestartService        : PageRestartService,
-                  public  override configService    : ConfigService,
-                  public  override route            : ActivatedRoute,
-                  public  override speechService    : SpeechService,
-                  public  override backendService   : BackendService) 
+                  public           pageRestartService : PageRestartService,
+                  public  override configService      : ConfigService,
+                  public  override route              : ActivatedRoute,
+                  public  override speechService      : SpeechService,
+                  public  override backendService     : BackendService) 
   { 
       //
       super(configService,
@@ -251,5 +250,31 @@ export class GameTetrisComponent  extends BaseComponent implements OnInit  {
     if (this.gameLoop$) {
       this.gameLoop$.unsubscribe();
     }
+  }
+}
+
+
+@Injectable({
+  providedIn: 'root',
+})
+class PageRestartService {
+  constructor(private router: Router) {}
+
+  // Method 1: Simple page reload
+  reloadPage() {
+    window.location.reload();
+  }
+
+  // Method 2: Reload current route
+  async reloadCurrentRoute() {
+    const currentUrl = this.router.url;
+    await this.router.navigateByUrl('/', { skipLocationChange: true });
+    return this.router.navigateByUrl(currentUrl);
+  }
+
+  // Method 3: Reload with query params refresh
+  reloadWithQueryParamsRefresh() {
+    const currentUrl = window.location.href;
+    window.location.href = currentUrl;
   }
 }

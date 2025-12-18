@@ -5,7 +5,7 @@ import { PAGE_GAMES_TIC_TAC_TOE_AI } from 'src/app/_models/common';
 import { _languageName } from 'src/app/_models/entity.model';
 import { BackendService            } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService             } from 'src/app/_services/ConfigService/config.service';
-import { SpeechService             } from 'src/app/_services/speechService/speech.service';
+import { SpeechService             } from 'src/app/_services/SpeechService/speech.service';
 import { _environment              } from 'src/environments/environment';
 
 export interface TicTacToeResponse {

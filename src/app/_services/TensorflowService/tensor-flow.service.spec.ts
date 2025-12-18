@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PageRestartService } from './page-restart.service';
+import { TensorFlowService } from './tensor-flow.service';
 
-describe('PageRestartService', () => {
-  let service: PageRestartService;
+describe('TensorFlowService', () => {
+  let service: TensorFlowService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PageRestartService);
+    service = TestBed.inject(TensorFlowService);
   });
 
   it('should be created', () => {

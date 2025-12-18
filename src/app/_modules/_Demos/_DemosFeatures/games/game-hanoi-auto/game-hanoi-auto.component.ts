@@ -5,7 +5,7 @@ import { HanoiEngine    } from 'src/app/_engines/hanoi-engine';
 import { PAGE_GAMES_HANOI_2D } from 'src/app/_models/common';
 import { BackendService } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService  } from 'src/app/_services/ConfigService/config.service';
-import { SpeechService  } from 'src/app/_services/speechService/speech.service';
+import { SpeechService  } from 'src/app/_services/SpeechService/speech.service';
 
 @Component({
   selector: 'app-game-hanoi-auto',
