@@ -49,7 +49,7 @@
                   id="P_ROW_NUM"
                   type="number"
                   required
-                  [(ngModel)]="td_model.P_ROW_NUM" 
+                  [(ngModel)]="this._model.P_ROW_NUM" 
                   name="P_ROW_NUM"
                   #P_ROW_NUM="ngModel">
         </div>
@@ -60,7 +60,7 @@
                   id="P_FECHA_INICIO"
                   type="date"
                   required
-                  [(ngModel)]="td_model.P_FECHA_INICIO" 
+                  [(ngModel)]="this._model.P_FECHA_INICIO" 
                   name="P_FECHA_INICIO"
                   #P_FECHA_INICIO="ngModel">
         </div>
@@ -71,7 +71,7 @@
                   id="P_FECHA_FIN"
                   type="date"
                   required
-                  [(ngModel)]="td_model.P_FECHA_FIN" 
+                  [(ngModel)]="this._model.P_FECHA_FIN" 
                   name="P_FECHA_FIN"
                   #P_FECHA_FIN="ngModel">
         </div>
@@ -88,13 +88,13 @@
         <div *ngIf="((!this.td_valid_form()) && (this.td_formSubmit))" class="form-group" align="left">
           <ul>
             <p>Favor revise los datos del formulario</p>
-            <li *ngIf="((this.td_model.P_ROW_NUM       == '0') || (this.td_model.P_ROW_NUM       == '') || (this.td_model.P_ROW_NUM  == null))" class="alert alert-danger">
+            <li *ngIf="((this._model.P_ROW_NUM       == '0') || (this._model.P_ROW_NUM       == '') || (this._model.P_ROW_NUM  == null))" class="alert alert-danger">
               Favor seleccione el campo 'Número de Filas'
             </li>
-            <li *ngIf="((this.td_model.P_FECHA_INICIO  == '')  || (this.td_model.P_FECHA_INICIO  == null))"                                     class="alert alert-danger">
+            <li *ngIf="((this._model.P_FECHA_INICIO  == '')  || (this._model.P_FECHA_INICIO  == null))"                                     class="alert alert-danger">
               Favor seleccione el campo 'Fecha de Inicio'
             </li>
-            <li *ngIf="((this.td_model.P_FECHA_FIN     == '')  || (this.td_model.P_FECHA_FIN     == null))"                                     class="alert alert-danger">
+            <li *ngIf="((this._model.P_FECHA_FIN     == '')  || (this._model.P_FECHA_FIN     == null))"                                     class="alert alert-danger">
               Favor seleccione el campo 'Fecha Final'
             </li> 
           </ul>

@@ -3,7 +3,7 @@ import { FormBuilder, Validators                       } from '@angular/forms';
 import { ActivatedRoute                                } from '@angular/router';
 import { MatTableDataSource                            } from '@angular/material/table';
 import { MatPaginator                                  } from '@angular/material/paginator';
-import { BehaviorSubject, Observable                   } from 'rxjs';
+import { Observable                                    } from 'rxjs';
 import { UtilManager                                   } from 'src/app/_engines/util.engine';
 import { LogEntry, SearchCriteria, _languageName       } from 'src/app/_models/entity.model';
 import { BackendService                                } from 'src/app/_services/BackendService/backend.service';
@@ -21,41 +21,6 @@ import { FilesGenerationBaseComponent                  } from '../files-generati
 //
 export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent implements OnInit {
     //--------------------------------------------------------------------------
-    // PROPIEADES - REACTIVE FORMS
-    //--------------------------------------------------------------------------
-    //
-    rf_textStatus                      = signal<string>("");
-    //
-    rf_buttonCaption                   : string = "[Buscar]";
-    //
-    rf_formSubmit                      : boolean = false;
-    //
-    rf_ExcelDownloadLink               : string  = "";
-    //
-    rf_buttonCaption_xls               : string  = "";
-    //
-    rf_textStatus_xls                  = signal<string>("");
-    //
-    rf_dataSource                      = new MatTableDataSource<LogEntry>();
-    // 
-    rf_displayedColumns                : string[] = ['id_Column', 'pageName', 'accessDate', 'ipValue'];
-    //
-    rf_model                           = new SearchCriteria( "1"
-                                            ,"1"
-                                            ,"999"
-                                            ,"2023-01-01"
-                                            ,"2023-12-31"
-                                            ,""
-                                            ,"");
-    //
-    @ViewChild("rf_paginator" ,{read:MatPaginator}) rf_paginator!:  MatPaginator;
-    //
-    rf_searchForm   = this.formBuilder.group({
-      _P_ROW_NUM          : ["999"         , Validators.required],
-      _P_FECHA_INICIO     : ["2023-01-01"  , Validators.required],
-      _P_FECHA_FIN        : ["2022-12-31"  , Validators.required],
-    });
-    //--------------------------------------------------------------------------
     // PROPIEADES - TEMPLATE FORMS
     //--------------------------------------------------------------------------
     //
@@ -72,34 +37,24 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
     td_ExcelDownloadLink               : string  = "#";
     //
     td_dataSource                      = new MatTableDataSource<LogEntry>();
-    //
-    td_model                           = new SearchCriteria( 
-      "1"
-     ,"1"
-     ,"999"
-     ,"2022-09-01"
-     ,"2022-09-30"
-     ,""
-     ,"");
+    // 
+    rf_displayedColumns                : string[] = ['id_Column', 'pageName', 'accessDate', 'ipValue'];
     //
     @ViewChild("td_paginator" ,{read:MatPaginator}) td_paginator!:  MatPaginator;
-    //
-    @ViewChild('_languajeList')    _languajeList       : any;
-    //
-    public _loading                                    = new BehaviorSubject<boolean>(false);
     //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
     //
     constructor(
-                   public formBuilder                   : FormBuilder, 
+                   public override formBuilder          : FormBuilder, 
                    public customErrorHandler            : CustomErrorHandler,
                    public override configService        : ConfigService,
                    public override backendService       : BackendService, 
                    public override route                : ActivatedRoute,
                    public override speechService        : SpeechService) 
     {
-             super(configService,
+             super(formBuilder,
+                   configService,
                    backendService,
                    route,
                    speechService,
@@ -113,217 +68,11 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
         //
         this.queryParams();
         //
-        this.rf_newSearch();
+        //this.rf_newSearch();
         this.td_newSearch();
     }
     //--------------------------------------------------------------------------
-    // METODOS COMUNES 
-    //--------------------------------------------------------------------------
-    //
-    queryParams():void{
-      //
-      this.route.queryParams.subscribe(params => {
-        //-----------------------------------------------------------------------------
-        // LENGUAJES DE PROGRAMACION
-        //-----------------------------------------------------------------------------
-        this.__languajeList = new Array();
-        //
-        this.__languajeList.push(
-          new _languageName(0, '(SELECCIONE OPCION..)', false,""),
-        );
-        //
-        this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS"   ));
-        this.__languajeList.push(new _languageName(2, '(Node.js     / JavaScript)'     , false ,"JS"   ));
-        this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
-        this.__languajeList.push(new _languageName(4, '(Django      / Pytnon)'         , false ,"PY"   ));
-        //
-        let langName = params['langName'] ? params['langName'] : "" ;
-        //
-        if (langName !== '')
-        {   
-            //
-            //console.log("search langName :" + langName );
-            //
-            for (var index = 1; index < this.__languajeList.length; index++) {
-                //
-                if (this.__languajeList[index]._shortName  == langName)
-                  this.__languajeList[index]._selected = true;        
-            }
-
-        } else {
-          //
-          this.__languajeList[1]._selected = true; // C#
-        }
-      });
-    }
-    //
-    GetFormattedDate(p_date : /*Date*/ string, order : number) {
-      //
-      var today = '';
-      switch (order) {
-          case 0:  // FECHA COMPLATIBLE CON RDBMS
-              var p_dates = p_date.toString().split('-'); // P_DATE   = 2022-04-09
-              var day     = p_dates[2];
-              var month   = p_dates[1];
-              var year    = p_dates[0];
-              today       = day + "/" + month + "/" + year;
-              //
-              break;
-      }
-      //
-      return today;
-    } 
-    //--------------------------------------------------------------------------
-    // METODOS REACTIVE FORMS 
-    //--------------------------------------------------------------------------
-    //
-    rf_newSearch()
-    {
-        //
-        console.warn("(NEW SEARCH RF)");
-        //
-        this.rf_dataSource           = new MatTableDataSource<LogEntry>();
-        this.rf_dataSource.paginator = this.rf_paginator;
-        //
-        this.rf_searchForm   = this.formBuilder.group({
-          _P_ROW_NUM          : ["999"         , Validators.required],
-          _P_FECHA_INICIO     : ["2023-01-01"  , Validators.required],
-          _P_FECHA_FIN        : ["2023-12-31"  , Validators.required],
-        });
-        //
-        this.rf_buttonCaption     = "[Buscar]";
-        //
-        this.rf_formSubmit        = false;
-        //
-        this.rf_textStatus.set("");
-        //
-        this.rf_buttonCaption_xls               = "[Generar Excel]";
-        //
-        this.rf_textStatus_xls.set("");
-        //
-        this.rf_ExcelDownloadLink               = "#";
-    }
-    //
-    rf_onSubmit() 
-    {
-        //
-        console.warn("(SUBMIT 1)");
-        //
-        let _P_DATA_SOURCE_ID  : string = ""/*this.searchForm.value["_P_DATA_SOURCE_ID"] || ""*/;
-        let _P_ID_TIPO_LOG     : string = ""/*this.searchForm.value["_P_ID_TIPO_LOG"]    || ""*/;
-        let _P_ROW_NUM         : string = this.rf_searchForm.value["_P_ROW_NUM"]        || "";
-        let _P_FECHA_INICIO    : string = this.rf_searchForm.value["_P_FECHA_INICIO"]   || "";      
-        let _P_FECHA_FIN       : string = this.rf_searchForm.value["_P_FECHA_FIN"]      || "";
-
-        //
-        let _model  = new SearchCriteria( 
-                                _P_DATA_SOURCE_ID
-                              , _P_ID_TIPO_LOG
-                              , _P_ROW_NUM
-                              , _P_FECHA_INICIO
-                              , _P_FECHA_FIN
-                              , "","");
-        //
-        this.rf_formSubmit        = true;
-        //
-        this.rf_textStatus.set("");
-        //
-        if ((this.rf_searchForm.valid == true))
-            this.rf_update(_model);
-    }
-    //
-    rf_update(_searchCriteria : SearchCriteria):void {
-      //
-      this.rf_buttonCaption     = "[Buscando por favor espere]";
-      //
-      this.rf_formSubmit        = true;
-      //
-      let rf_informeLogRemoto!  : Observable<LogEntry[]>;
-      //
-      rf_informeLogRemoto       = this.backendService.getLogRemoto(_searchCriteria);
-      //
-      const logSearchObserver   = {
-        //
-        next: (p_logEntry: LogEntry[])     => { 
-          //
-          let recordCount : number  = p_logEntry.length;
-          //
-          this.rf_textStatus.set("Se encontraton [" + recordCount  + "] registros");
-          //
-          this.rf_dataSource           = new MatTableDataSource<LogEntry>(p_logEntry);
-          this.rf_dataSource.paginator = this.rf_paginator;
-          //
-        },
-        error: (err: Error) => {
-          //
-          console.error('Observer got an error: ' + err);
-          //
-          this.rf_textStatus.set("Ha ocurrido un error");
-          //
-          this.rf_buttonCaption     = "[Buscar]";
-          //
-          this.rf_formSubmit        = false;
-        },       
-        complete: ()        => {
-          //
-          this.rf_buttonCaption     = "[Buscar]";
-          //
-          this.rf_formSubmit        = false;
-        },
-      };
-      //
-      rf_informeLogRemoto
-      .subscribe(logSearchObserver);
-    }
-    //
-    rf_GenerarInformeXLSValidate():void{
-      //
-      this.rf_GenerarInformeXLSPost();
-    };
-    //
-    rf_GenerarInformeXLSPost():void  {
-      //
-      let rf_excelFileName!                   : Observable<string>;
-      //
-      rf_excelFileName                        = this.backendService.getInformeExcel(this.rf_model);
-      //
-      this.rf_ExcelDownloadLink               = "#";
-      //
-      this.rf_buttonCaption_xls               = "[Generando por favor espere...]";
-      //
-      this.rf_textStatus_xls.set("Generando por favor espere");
-      //
-      const xlsObserver                       = {
-        //
-        next: (_excelFileName: string) => { 
-          //
-          let urlFile                = UtilManager.DebugHostingContent(_excelFileName);
-          //
-          this.rf_ExcelDownloadLink  = `${this.configService.getConfigValue('baseUrlNetCore')}/wwwroot/xlsx/${urlFile}`;
-          //
-          this.rf_textStatus_xls.set("[Descargar Excel]");
-        },
-        error   : (err: Error)  => {
-          //
-          console.error('Observer got an error: ' + err.cause);
-          //
-          console.error('Observer got an error: ' + err.message);
-          //
-          this.rf_buttonCaption_xls  = "[Ha ocurrido un error]";
-          //
-          this.rf_textStatus_xls.set("[Ha ocurrido un error]");
-        },
-        complete: () => {
-          //
-          this.rf_buttonCaption_xls  = "[Generar Excel]";
-        },
-      };
-      //
-      rf_excelFileName
-      .subscribe(xlsObserver);
-    }
-    //--------------------------------------------------------------------------
-    // METODOS REACTIVE FORMS 
+    // METODOS TEMÑLEATE BASED FORMS 
     //--------------------------------------------------------------------------
     //
     td_newSearch() : void {
@@ -331,9 +80,9 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
       console.warn("(NEW SEARCH TD)");
       //
       this.td_dataSource           = new MatTableDataSource<LogEntry>();
-      this.td_dataSource.paginator = this.rf_paginator;
+      this.td_dataSource.paginator = this.td_paginator;
       //
-      this.td_model                  = new SearchCriteria( 
+      this._model                  = new SearchCriteria( 
           "1"
          ,"1"
          ,"999"
@@ -357,9 +106,9 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
     //
     td_valid_form() : boolean {
       return (     
-             ( ( this.td_model.P_ROW_NUM        != "" ) && (this.td_model.P_ROW_NUM       !=  null) && (this.td_model.P_ROW_NUM      != "0") ) 
-          && ( ( this.td_model.P_FECHA_INICIO   != "" ) && (this.td_model.P_FECHA_INICIO  !=  null) ) 
-          && ( ( this.td_model.P_FECHA_FIN      != "" ) && (this.td_model.P_FECHA_FIN     !=  null) ) 
+             ( ( this._model.P_ROW_NUM        != "" ) && (this._model.P_ROW_NUM       !=  null) && (this._model.P_ROW_NUM      != "0") ) 
+          && ( ( this._model.P_FECHA_INICIO   != "" ) && (this._model.P_FECHA_INICIO  !=  null) ) 
+          && ( ( this._model.P_FECHA_FIN      != "" ) && (this._model.P_FECHA_FIN     !=  null) ) 
       );  
     }
     //
@@ -373,7 +122,7 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
         this.td_formSubmit    = true;
         //
         if (this.td_valid_form())
-            this.td_update(this.td_model);
+            this.td_update(this._model);
     }
     //
     td_update(td_searchCriteria : SearchCriteria):void {
@@ -547,14 +296,15 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
     //
     td_GenerarInformeXLSValidate():void
     {
-        this.td_GenerarInformeXLS(this.td_model);
+        this.td_GenerarInformeXLS(this._model);
     }
+    //
     td_GenerarInformeXLS(_searchCriteria : SearchCriteria)
     {
       //
       let td_excelFileName!                   : Observable<string>;
       //
-      td_excelFileName                        = this.backendService.getInformeExcel(this.rf_model);
+      td_excelFileName                        = this.backendService.getInformeExcel(this._model);
       //
       this.td_ExcelDownloadLink               = "#";
       //

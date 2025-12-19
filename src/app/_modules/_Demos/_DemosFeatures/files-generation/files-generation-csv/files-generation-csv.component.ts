@@ -21,7 +21,7 @@ import { FilesGenerationBaseComponent                  } from '../files-generati
 export class FilesGenerationCSVComponent extends FilesGenerationBaseComponent implements OnInit, AfterViewInit {
 
     //--------------------------------------------------------------------------
-    // PROPIEDADES - LISTADO
+    // PROPIEADES - REACTIVE FORMS
     //--------------------------------------------------------------------------
     public csv_dataSource                          = new MatTableDataSource<PersonEntity>();
     // 
@@ -31,55 +31,33 @@ export class FilesGenerationCSVComponent extends FilesGenerationBaseComponent im
     //
     public downloadCaption                         : string   = "[DESCARGAR CSV]";
     //
-    @ViewChild("csv_paginator" ,{read:MatPaginator}) csv_paginator!:  MatPaginator;
-    //--------------------------------------------------------------------------
-    // PROPIEADES - REACTIVE FORMS
-    //--------------------------------------------------------------------------
-    //
     rf_buttonCaption                   : string = "[Buscar]";
     //
     rf_formSubmit                      : boolean = false;
     //
     rf_buttonCaption_csv               : string  = "";
-    //
-    //rf_dataSource                      = new MatTableDataSource<PersonEntity>();
     // 
     rf_displayedColumns                : string[] = ['id_Column', 'ciudad', 'nombreCompleto'];
     //
-    rf_model                           = new SearchCriteria( "1"
-                                            ,"1"
-                                            ,"999"
-                                            ,"2023-01-01"
-                                            ,"2023-12-31"
-                                            ,""
-                                            ,"");
-    //
-    rf_searchForm   = this.formBuilder.group({
-      _P_ROW_NUM          : ["999"         , Validators.required],
-      _P_FECHA_INICIO     : ["2023-01-01"  , Validators.required],
-      _P_FECHA_FIN        : ["2022-12-31"  , Validators.required],
-    });
-    //
-    public _loading                 = new BehaviorSubject<boolean>(false);
-    //
-    @ViewChild('_languajeList')    _languajeList       : any;
+    @ViewChild("csv_paginator" ,{read:MatPaginator}) csv_paginator!:  MatPaginator;
     //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
     //
     constructor(
-                public formBuilder                   : FormBuilder, 
+                public override formBuilder          : FormBuilder, 
                 public customErrorHandler            : CustomErrorHandler,
                 public override configService        : ConfigService,
                 public override backendService       : BackendService, 
                 public override route                : ActivatedRoute,
                 public override speechService        : SpeechService) 
     {
-          super(configService,
+          super(formBuilder,
+                configService,
                 backendService,
                 route,
                 speechService,
-                PAGE_FILE_GENERATION_CSV
+                PAGE_FILE_GENERATION_CSV,
           )
     }
     //
@@ -96,40 +74,6 @@ export class FilesGenerationCSVComponent extends FilesGenerationBaseComponent im
     //--------------------------------------------------------------------------
     // METODOS COMUNES 
     //--------------------------------------------------------------------------
-    queryParams():void{
-      //
-      this.route.queryParams.subscribe(params => {
-        //-----------------------------------------------------------------------------
-        // LENGUAJES DE PROGRAMACION
-        //-----------------------------------------------------------------------------
-        this.__languajeList = new Array();
-        //
-        this.__languajeList.push(
-          new _languageName(0, '(SELECCIONE OPCION..)', false,""),
-        );
-        //
-        this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS"   ));
-        this.__languajeList.push(new _languageName(2, '(Node.js     / JavaScript)'     , false ,"JS"   ));
-        this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
-        this.__languajeList.push(new _languageName(4, '(Django      / Pytnon)'         , false ,"PY"   ));
-        //
-        let langName = params['langName'] ? params['langName'] : "" ;
-        //
-        if (langName !== '')
-        {   
-            //
-            for (var index = 1; index < this.__languajeList.length; index++) {
-                //
-                if (this.__languajeList[index]._shortName  == langName)
-                  this.__languajeList[index]._selected = true;        
-            }
-
-        } else {
-          //
-          this.__languajeList[1]._selected = true; // C#
-        }
-      });
-    }
     //
     SetCSVData():void
     {
@@ -352,16 +296,14 @@ export class FilesGenerationCSVComponent extends FilesGenerationBaseComponent im
     rf_onSubmit() 
     {
         //
-        console.warn("(SUBMIT 1)");
-        //
-        let _P_DATA_SOURCE_ID  : string = ""/*this.searchForm.value["_P_DATA_SOURCE_ID"] || ""*/;
-        let _P_ID_TIPO_LOG     : string = ""/*this.searchForm.value["_P_ID_TIPO_LOG"]    || ""*/;
+        let _P_DATA_SOURCE_ID  : string = "";
+        let _P_ID_TIPO_LOG     : string = "";
         let _P_ROW_NUM         : string = this.rf_searchForm.value["_P_ROW_NUM"]        || "";
         let _P_FECHA_INICIO    : string = this.rf_searchForm.value["_P_FECHA_INICIO"]   || "";      
         let _P_FECHA_FIN       : string = this.rf_searchForm.value["_P_FECHA_FIN"]      || "";
 
         //
-        let _model  = new SearchCriteria( 
+        this._model  = new SearchCriteria( 
                                 _P_DATA_SOURCE_ID
                               , _P_ID_TIPO_LOG
                               , _P_ROW_NUM
@@ -374,7 +316,7 @@ export class FilesGenerationCSVComponent extends FilesGenerationBaseComponent im
         this.status_message.set("");
         //
         if ((this.rf_searchForm.valid == true))
-            this.rf_update(_model);
+            this.rf_update(this._model);
     }
     //
     rf_update(_searchCriteria : SearchCriteria):void {
