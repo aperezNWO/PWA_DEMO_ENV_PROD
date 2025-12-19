@@ -234,19 +234,6 @@
         "field_7"     : "#"
     },
     {
-        "id"          : 18,
-        "done"        : false,
-        "name"        : "[TAILDWIND DEMO - ENV TEST]",
-        "description" : "ENV_ONLINE_FRONT_END",
-        "field_1"     : "#",
-        "field_2"     : "[Repo]",
-        "field_3"     : "#",
-        "field_4"     : "[N/A]",
-        "field_5"     : "#",
-        "field_6"     : "[N/A]",
-        "field_7"     : "#"
-    },
-    {
         "id"          : 19,
         "done"        : true,
         "name"        : "[SPRING BOOT - SQL QUERY DEMO - CSV]",
