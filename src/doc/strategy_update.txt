@@ -192,7 +192,6 @@
          
 -- [_] programa omar -> owasp.
 
--- [_] replicar en pwa_demo_env_prod en pwa_demo_env_public.
 
 -- [_] CMS 
 
@@ -209,6 +208,10 @@
         -- [_] routerlist name+param. 
 
         -- [_] Dynamic Form. 
+
+                -- [_] angular curriculum. 
+
+                        -- [_] change /PWA_DEMO_ENV_PUBLIC/ to /PWA_DEMO_ENV_PROD/ 
 
         -- [_] last url -> back to menu. 
 
