@@ -555,20 +555,27 @@
 
         -- [x] Fractal Demo Path.
 
--- [_] TENSORFLOW DEMO.
+-- [x] TENSORFLOW DEMO.
 
-        -- [_] Base Service.
+        -- [x] Base Service.
 
-        -- [_] Service.
+        -- [x] Service.
 
 -- [_] SCM.
 
-        -- [_] Delete Tailwind.
+        -- [x] fractal demo repo path fix.
+
+        -- [x] Delete Tailwind.
+
+        -- [_] deployment doc.
 
         -- [_] Fix codesandbox data. Put 3 codesandbox accounts.
 
--- [_] fractal demo repo path fix.
 
--- [_] deployment doc.
+-- [_] FILE GENERATION.
+
+        -- [_] BASE COMPONENT.
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
