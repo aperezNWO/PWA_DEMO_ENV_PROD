@@ -15,7 +15,7 @@ export class SpeechService {
         const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
         if (SpeechRecognition) {
           this.recognition = new SpeechRecognition();
-          this.recognition.lang = 'es-CO'; // Set language
+          this.recognition.lang = 'en-US'; // Set language
           this.recognition.interimResults = false; // Only final results
           this.recognition.maxAlternatives = 1;
     
@@ -63,7 +63,7 @@ export class SpeechService {
     if (this.transcript) {
       //
       const utterance = new SpeechSynthesisUtterance(this.transcript);
-      utterance.lang = 'es-CO';
+      utterance.lang = 'en-US';
       window.speechSynthesis.speak(utterance);
       //
     } else {
@@ -79,7 +79,7 @@ export class SpeechService {
         //console.log("speaking text : " + _transcript);
         //
         const utterance = new SpeechSynthesisUtterance(_transcript);
-        utterance.lang  = (lang=='')?  'es-CO' : lang;
+        utterance.lang  = (lang=='')?  'en-US' : lang;
         speechSynthesis.speak(utterance);
       }, 1000); // Delay by 1 second     
   }

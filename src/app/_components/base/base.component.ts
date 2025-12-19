@@ -52,7 +52,7 @@ export class BaseComponent {
             //
             this.pageTitle = _environment.mainPageListDictionary[PAGE_TITLE_LOG].page_name;
             //
-            this.speechService.speakTextCustom(this.pageTitle);
+            this.speechService.speakTextCustom(this.pageTitle,"en-US");
             //
             this.backendService.SetLog(this._pageTitle,this.PAGE_TITLE_LOG);
             //
