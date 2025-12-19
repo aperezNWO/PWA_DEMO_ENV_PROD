@@ -41,6 +41,7 @@ import { AlgorithmDijkstraComponent             } from './_modules/_Demos/_Demos
 import { AlgorithmRegExComponent                } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
 import { AlgorithmSortComponent                 } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-sort/algorithm-sort.component';
 import { ChartComponent                         } from './_modules/_Demos/_DemosFeatures/files-generation/chart/chart.component';
+import { FilesGenerationBaseComponent           } from './_modules/_Demos/_DemosFeatures/files-generation/files-generation-base/files-generation-base/files-generation-base.component';
 import { FilesGenerationCSVComponent } from './_modules/_Demos/_DemosFeatures/files-generation/files-generation-csv/files-generation-csv.component';
 import { FilesGenerationPDFComponent } from './_modules/_Demos/_DemosFeatures/files-generation/files-generation-pdf/files-generation-pdf.component';
 import { FilesGenerationXLSComponent } from './_modules/_Demos/_DemosFeatures/files-generation/files-generation-xls/files-generation-xls.component';
@@ -137,6 +138,7 @@ export class CustomErrorHandler implements ErrorHandler {
         AlgorithmSortComponent,
         AlgorithmDijkstraComponent,
         AlgorithmCollisionComponent,
+        FilesGenerationBaseComponent,
         FilesGenerationXLSComponent,
         FilesGenerationCSVComponent,
         FilesGenerationPDFComponent,

@@ -1,16 +1,16 @@
-import { AfterViewInit, Component, OnInit, ViewChild ,effect,signal  } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild   } from '@angular/core';
 import { FormBuilder, Validators                       } from '@angular/forms';
 import { MatTableDataSource                            } from '@angular/material/table';
 import { MatPaginator                                  } from '@angular/material/paginator';
+import { ActivatedRoute                                } from '@angular/router';
 import { BehaviorSubject, Observable                   } from 'rxjs';
 import { PersonEntity, SearchCriteria, _languageName   } from 'src/app/_models/entity.model';
 import { BackendService                                } from 'src/app/_services/BackendService/backend.service';
 import { CustomErrorHandler                            } from 'src/app/app.component';
-import { ActivatedRoute                                } from '@angular/router';
 import { SpeechService                                 } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { BaseComponent                                 } from 'src/app/_components/base/base.component';
 import { ConfigService                                 } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_FILE_GENERATION_CSV                      } from 'src/app/_models/common';
+import { FilesGenerationBaseComponent                  } from '../files-generation-base/files-generation-base/files-generation-base.component';
 //
 @Component({
   selector: 'app-files-generation-csv',
@@ -18,7 +18,7 @@ import { PAGE_FILE_GENERATION_CSV                      } from 'src/app/_models/c
   styleUrls: ['./files-generation-csv.component.css']
 })
 //
-export class FilesGenerationCSVComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class FilesGenerationCSVComponent extends FilesGenerationBaseComponent implements OnInit, AfterViewInit {
 
     //--------------------------------------------------------------------------
     // PROPIEDADES - LISTADO
@@ -54,12 +54,6 @@ export class FilesGenerationCSVComponent extends BaseComponent implements OnInit
                                             ,""
                                             ,"");
     //
-    public __languajeList                              : any;
-    protected tituloListadoLenguajes                   : string = "[Backend]:";
-    //
-    // @ViewChild("rf_paginator" ,{read:MatPaginator}) rf_paginator!:  MatPaginator;
-    @ViewChild('_languajeList')    _languajeList                 : any;
-    //
     rf_searchForm   = this.formBuilder.group({
       _P_ROW_NUM          : ["999"         , Validators.required],
       _P_FECHA_INICIO     : ["2023-01-01"  , Validators.required],
@@ -67,6 +61,8 @@ export class FilesGenerationCSVComponent extends BaseComponent implements OnInit
     });
     //
     public _loading                 = new BehaviorSubject<boolean>(false);
+    //
+    @ViewChild('_languajeList')    _languajeList       : any;
     //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------

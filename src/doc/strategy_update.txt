@@ -571,6 +571,9 @@
 
         -- [_] Fix codesandbox data. Put 3 codesandbox accounts.
 
+        -- [_] https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/PageUrlList?pageName=PAGE_DEMOS_MACHINE_LEARNING_INDEX
+
+                -- [_] Add m.l. pending items. 
 
 -- [_] FILE GENERATION.
 

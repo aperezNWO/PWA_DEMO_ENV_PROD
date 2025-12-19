@@ -35,7 +35,7 @@ export class BaseComponent {
   /////////////////////////////////////////////////////////
   //
   constructor(    public configService                            : ConfigService,
-                  public backendService                            : BackendService, 
+                  public backendService                           : BackendService, 
                   public route                                    : ActivatedRoute,
                   public speechService                            : SpeechService,
                   @Inject(PAGE_TITLE_LOG) public PAGE_TITLE_LOG   : string

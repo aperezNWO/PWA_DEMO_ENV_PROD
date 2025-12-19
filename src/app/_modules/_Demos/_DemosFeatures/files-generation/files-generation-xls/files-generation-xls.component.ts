@@ -1,16 +1,17 @@
 import { Component, OnInit, ViewChild, signal, effect  } from '@angular/core';
 import { FormBuilder, Validators                       } from '@angular/forms';
+import { ActivatedRoute                                } from '@angular/router';
 import { MatTableDataSource                            } from '@angular/material/table';
 import { MatPaginator                                  } from '@angular/material/paginator';
-import { UtilManager                                   } from 'src/app/_engines/util.engine';
 import { BehaviorSubject, Observable                   } from 'rxjs';
+import { UtilManager                                   } from 'src/app/_engines/util.engine';
 import { LogEntry, SearchCriteria, _languageName       } from 'src/app/_models/entity.model';
 import { BackendService                                } from 'src/app/_services/BackendService/backend.service';
-import { ActivatedRoute                                } from '@angular/router';
 import { SpeechService                                 } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { BaseComponent                                 } from 'src/app/_components/base/base.component';
 import { ConfigService                                 } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_FILE_GENERATION_XLS                      } from 'src/app/_models/common';
+import { CustomErrorHandler                            } from 'src/app/app.component';
+import { FilesGenerationBaseComponent                  } from '../files-generation-base/files-generation-base/files-generation-base.component';
 //
 @Component({
   selector     : 'app-files-generation-xls',
@@ -18,7 +19,7 @@ import { PAGE_FILE_GENERATION_XLS                      } from 'src/app/_models/c
   styleUrls    : ['./files-generation-xls.component.css']
 })
 //
-export class FilesGenerationXLSComponent extends BaseComponent implements OnInit {
+export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent implements OnInit {
     //--------------------------------------------------------------------------
     // PROPIEADES - REACTIVE FORMS
     //--------------------------------------------------------------------------
@@ -85,44 +86,25 @@ export class FilesGenerationXLSComponent extends BaseComponent implements OnInit
     //
     @ViewChild('_languajeList')    _languajeList       : any;
     //
-    public __languajeList                              : any;
-    protected tituloListadoLenguajes                   : string = "[Backend] :";
-    //
     public _loading                                    = new BehaviorSubject<boolean>(false);
     //--------------------------------------------------------------------------
     // EVENT HANDLERS FORMIULARIO 
     //--------------------------------------------------------------------------
+    //
     constructor(
-                public          formBuilder         : FormBuilder,
-                public override configService       : ConfigService,
-                public override backendService      : BackendService, 
-                public override route               : ActivatedRoute,
-                public override speechService       : SpeechService,
-    ) 
+                   public formBuilder                   : FormBuilder, 
+                   public customErrorHandler            : CustomErrorHandler,
+                   public override configService        : ConfigService,
+                   public override backendService       : BackendService, 
+                   public override route                : ActivatedRoute,
+                   public override speechService        : SpeechService) 
     {
-        //
-        super(configService,
-              backendService,
-              route,
-              speechService,
-              PAGE_FILE_GENERATION_XLS
-        )
-        // Define an effect to react to changes in the signal
-        effect(() => {
-          if (this.rf_textStatus())
-              this.speechService.speakTextCustom(this.rf_textStatus());
-        });
-        // Define an effect to react to changes in the signal
-        effect(() => {
-          if (this.rf_textStatus_xls())
-              this.speechService.speakTextCustom(this.rf_textStatus_xls());
-          //console.log('Signal value changed:', this.status_message());
-        });
-        // Define an effect to react to changes in the signal
-        effect(() => {
-          if (this.td_textStatus())
-              this.speechService.speakTextCustom(this.td_textStatus());
-        });
+             super(configService,
+                   backendService,
+                   route,
+                   speechService,
+                   PAGE_FILE_GENERATION_XLS
+             )
     }
     //
     ngOnInit(): void {
