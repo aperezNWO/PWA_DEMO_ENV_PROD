@@ -1,7 +1,7 @@
-import { Component, Inject, ViewChild     } from '@angular/core';
-import { FormBuilder, Validators            } from '@angular/forms';
-import { ActivatedRoute        } from '@angular/router';
-import { BehaviorSubject       } from 'rxjs';
+import { Component, Inject, ViewChild   } from '@angular/core';
+import { FormBuilder, Validators        } from '@angular/forms';
+import { ActivatedRoute                 } from '@angular/router';
+import { BehaviorSubject                } from 'rxjs';
 import { BaseComponent                  } from 'src/app/_components/base/base.component';
 import { PAGE_TITLE_LOG                 } from 'src/app/_models/common';
 import { _languageName, SearchCriteria  } from 'src/app/_models/entity.model';
