@@ -275,13 +275,13 @@ export class ChartComponent extends BaseComponent implements OnInit  {
             },
             error: (error: Error) => {
                 //
-                let msg = 'ha ocurrido un error : ' + error.message;
+                let msg = 'An error occurred : ' + error.message;
                 (P_fileName == '[PIE CHART]')? this.pdf_message_csv.set(msg)   : this.pdf_message_xls.set(msg);
             },
             complete: () => {
                 //
                 //let msg = `Se ha generado el archivo [${fileName_output}]`;
-                let msg = `Se ha generado el archivo PDF corrctamente`;
+                let msg = `PDF file generated successfullycorrctamente`;
                 (P_fileName == '[PIE CHART]')? this.pdf_message_csv.set(msg)   : this.pdf_message_xls.set(msg);
             }
           }

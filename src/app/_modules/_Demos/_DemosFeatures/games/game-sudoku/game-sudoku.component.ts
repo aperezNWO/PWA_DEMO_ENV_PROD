@@ -187,7 +187,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
             //
             this.btnGenerateCaption = '[GENERATE]';            
             //
-            this.status_message.set("Ha ocurrido un error");
+            this.status_message.set("An error occurred");
           },
           complete: () => {
             //
@@ -368,7 +368,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
           '[SUDOKU - SOLVE] - (ERROR) : ' + JSON.stringify(err.message),
         );
         //
-        this.status_message.set("Ha ocurrido un error");
+        this.status_message.set("An error occurred");
       },
       complete: () => {
         //
@@ -409,12 +409,12 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
         },
         error: (error: { message: string; }) => {
             //
-            this.status_message.set('ha ocurrido un error : ' + error.message);
+            this.status_message.set('An error occurred : ' + error.message);
         },
         complete: () => {
             //
-            //this.message = `Se ha generado el archivo PDF :[ ${fileName_output} ]`;
-            this.status_message.set(`Se ha generado el archivo PDF `);
+            //this.message = `PDF file generated successfully:[ ${fileName_output} ]`;
+            this.status_message.set(`PDF file generated successfully`);
         }
       }
     );

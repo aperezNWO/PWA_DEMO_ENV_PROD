@@ -129,7 +129,7 @@ export class FilesGenerationPDFComponent extends BaseComponent {
           },
         error           : (err: Error)      => {
           //
-          this.status_message.set('Ha ocurrido un error');
+          this.status_message.set('An error occurred');
           //
           console.error('[GENERATE PDF FILE] - Error :' + err);
         },

@@ -204,7 +204,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                 //
                 console.error(AlgorithmSortComponent.PageTitle + ' - [GETTING SORT] - [error] : ' + err.message);
                 //
-                this.lblStatus.set("ha ocurrido un error");
+                this.lblStatus.set("An error occurred");
                 //
                 return false;
             },       
@@ -266,7 +266,7 @@ export class AlgorithmSortComponent implements OnInit, AfterViewInit {
                 //
                 console.error(AlgorithmSortComponent.PageTitle + ' - [GETTING NEW SORT] - [error] : ' + err.message);
                 //
-                this.lblStatus.set("ha ocurrido un error");
+                this.lblStatus.set("An error occurred");
             },       
             complete: ()        => {
                 //

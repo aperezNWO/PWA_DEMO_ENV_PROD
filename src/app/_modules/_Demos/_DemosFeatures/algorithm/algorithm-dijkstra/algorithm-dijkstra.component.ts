@@ -578,7 +578,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
           },
           error: (error: Error) => {
               //
-              this.status_message.set('ha ocurrido un error : ' + error.message);
+              this.status_message.set('An error occurred : ' + error.message);
           },
           complete: () => {
               //
