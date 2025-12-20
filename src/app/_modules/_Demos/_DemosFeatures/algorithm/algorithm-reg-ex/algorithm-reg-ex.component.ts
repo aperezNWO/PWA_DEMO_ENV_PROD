@@ -69,7 +69,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
             //-----------------------------------------------------------------------------
             this.__languajeList = new Array();
             //
-            this.__languajeList.push( new _languageName(0,"(SELECCIONE OPCION..)",false ,""   ));        
+            this.__languajeList.push( new _languageName(0,"(CHOOSE OPTION...)",false ,""   ));        
             this.__languajeList.push( new _languageName(1,"(.NET CORE/C#)"       ,true  ,"CS" ));        
             this.__languajeList.push( new _languageName(2,"(.NET CORE/C++)"      ,false ,"CPP"));  
             //
@@ -120,7 +120,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
             },
             error: (err: Error) => {
                 //
-                this.status_message.set("[HA OCURRIDO UN ERROR]");
+                this.status_message.set("[An error ocurred]");
                 //
                 this.pattern   = "";
                 //

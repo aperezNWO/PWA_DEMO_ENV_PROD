@@ -69,7 +69,7 @@ export class FilesGenerationBaseComponent extends BaseComponent  {
         this.__languajeList = new Array();
         //
         this.__languajeList.push(
-          new _languageName(0, '(SELECCIONE OPCION..)', false,""),
+          new _languageName(0, '(CHOOSE OPTION...)', false,""),
         );
         //
         this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS"   ));
@@ -92,10 +92,13 @@ export class FilesGenerationBaseComponent extends BaseComponent  {
           //
           this.__languajeList[1]._selected = true; // C#
         }
+
+        //
+        console.warn(`QUERY PARAMS... ${this.__languajeList.length}`);
       });
     }
     //
-      GetFormattedDate(p_date : /*Date*/ string, order : number) {
+    GetFormattedDate(p_date : /*Date*/ string, order : number) {
         //
         var today = '';
         switch (order) {

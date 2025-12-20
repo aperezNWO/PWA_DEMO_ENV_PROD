@@ -9,14 +9,20 @@ import { LogEntry, SearchCriteria, _languageName       } from 'src/app/_models/e
 import { BackendService                                } from 'src/app/_services/BackendService/backend.service';
 import { SpeechService                                 } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                                 } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { PAGE_FILE_GENERATION_XLS                      } from 'src/app/_models/common';
+import { PAGE_TITLE_LOG,PAGE_FILE_GENERATION_XLS       } from 'src/app/_models/common';
 import { CustomErrorHandler                            } from 'src/app/app.component';
 import { FilesGenerationBaseComponent                  } from '../files-generation-base/files-generation-base/files-generation-base.component';
 //
 @Component({
   selector     : 'app-files-generation-xls',
   templateUrl  : './files-generation-xls.component.html',
-  styleUrls    : ['./files-generation-xls.component.css']
+  styleUrls    : ['./files-generation-xls.component.css'],
+  providers    : [
+          { 
+            provide : PAGE_TITLE_LOG, 
+            useValue: PAGE_FILE_GENERATION_XLS 
+          },
+  ]
 })
 //
 export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent implements OnInit {
@@ -26,9 +32,9 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
     //
     td_formSubmit                      : boolean = false;
     //
-    td_buttonCaption                   : string  = "[Buscar]";
+    td_buttonCaption                   : string  = "[Search]";
     //
-    td_buttonCaption_xls               : string  = "[Generar Excel]";
+    td_buttonCaption_xls               : string  = "[Generate XLS]";
     //
     td_textStatus_xls                  : string  = "";
     //
@@ -75,8 +81,6 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
     //
     td_newSearch() : void {
       //
-      console.warn("(NEW SEARCH TD)");
-      //
       this.td_dataSource           = new MatTableDataSource<LogEntry>();
       this.td_dataSource.paginator = this.td_paginator;
       //
@@ -89,13 +93,13 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
          ,""
          ,"");
       //
-      this.td_buttonCaption     = "[Buscar]";
+      this.td_buttonCaption     = "[Search]";
       //
       this.td_formSubmit        = false;
       //
       this.status_message.set("");
       //
-      this.td_buttonCaption_xls               = "[Generar Excel]";
+      this.td_buttonCaption_xls               = "[Generate XLS]";
       //
       this.td_textStatus_xls                  = "";
       //
@@ -133,9 +137,9 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
       switch (selectedIndex) {
         case 1: // C#
               //
-              this.td_buttonCaption = "[Favor espere...]";
+              this.td_buttonCaption = "[Please wait...]";
               //
-              this.status_message.set("Favor espere...");
+              this.status_message.set("[Please wait...]");
               // 
               let td_informeLogRemoto!                 : Observable<LogEntry[]>;
               //      
@@ -147,21 +151,21 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
                   this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry);
                   this.td_dataSource.paginator = this.td_paginator;
                   //
-                  this.status_message.set("Se encontraron [" + td_logEntry.length + "] registros ");
+                  this.status_message.set("[" + td_logEntry.length + "] records found ");
                   this.td_formSubmit           = false;
                 },
                 error           : (err: Error)      => {
                   //
                   console.error('TEMPLATE DRIVEN - (ERROR) : ' + JSON.stringify(err.message));
                   //
-                  this.status_message.set("Ha ocurrido un error. Favor intente de nuevo");
+                  this.status_message.set("An error ocurred. Please try again");
                   this.td_formSubmit           = false;
-                  this.td_buttonCaption        = "[Buscar]";
+                  this.td_buttonCaption        = "[Search]";
                 },
                 complete        : ()                => {
                   //
                   this.td_formSubmit           = false;
-                  this.td_buttonCaption        = "[Buscar]";
+                  this.td_buttonCaption        = "[Search]";
                 },
               }; 
               //
@@ -170,9 +174,9 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
           break;
         case 2: // NODE.JS
               //
-              this.td_buttonCaption = "[Favor espere...]";
+              this.td_buttonCaption = "[Please wait...]";
               //
-              this.status_message.set("Favor espere");
+              this.status_message.set("[Please wait...]");
               // 
               let td_informeLogRemoto_NodeJs!   : Observable<string>;
               // 
@@ -186,21 +190,21 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
                   this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_node_js_json);
                   this.td_dataSource.paginator = this.td_paginator;
                   //
-                  this.status_message.set("Se encontraron [" + td_logEntry_node_js_json.length + "] registros ");
+                  this.status_message.set("[" + td_logEntry_node_js_json.length + "] records found ");
                   this.td_formSubmit           = false;
                 },
                 error           : (err: Error)      => {
                   //
                   console.error('TEMPLATE DRIVEN - NODE.JS - (ERROR) : ' + JSON.stringify(err.message));
                   //
-                  this.status_message.set("Ha ocurrido un error. Favor intente de nuevo");
+                  this.status_message.set("An error ocurred. Please try again");
                   this.td_formSubmit           = false;
-                  this.td_buttonCaption        = "[Buscar]";
+                  this.td_buttonCaption        = "[Search]";
                 },
                 complete        : ()                => {
                   //
                   this.td_formSubmit           = false;
-                  this.td_buttonCaption        = "[Buscar]";
+                  this.td_buttonCaption        = "[Search]";
                 },
               }; 
               //
@@ -209,9 +213,9 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
           break;
         case 3: // SPRINGBOOT / JAVA
               //
-              this.td_buttonCaption = "[Favor espere...]";
+              this.td_buttonCaption = "[Please wait...]";
               //
-              this.status_message.set("Favor espere");
+              this.status_message.set("[Please wait...]");
               // 
               let td_informeLogRemoto_SprinbBootJava!   : Observable<string>;
               // 
@@ -227,21 +231,21 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
                   this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_springboot_java_json);
                   this.td_dataSource.paginator = this.td_paginator;
                   //
-                  this.status_message.set("Se encontraron [" + td_logEntry_springboot_java_json.length + "] registros ");
+                  this.status_message.set("[" + td_logEntry_springboot_java_json.length + "] records found ");
                   this.td_formSubmit           = false;
                 },
                 error           : (err: Error)      => {
                   //
                   console.error('TEMPLATE DRIVEN - sprigboot/Java - (ERROR) : ' + JSON.stringify(err.message));
                   //
-                  this.status_message.set("Ha ocurrido un error. Favor intente de nuevo");
+                  this.status_message.set("An error ocurred. Please try again");
                   this.td_formSubmit           = false;
-                  this.td_buttonCaption        = "[Buscar]";
+                  this.td_buttonCaption        = "[Search]";
                 },
                 complete        : ()                => {
                   //
                   this.td_formSubmit           = false;
-                  this.td_buttonCaption        = "[Buscar]";
+                  this.td_buttonCaption        = "[Search]";
                 },
               }; 
               //
@@ -250,9 +254,9 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
           break;
         case 4: // DJANGO     / PYTHON
           //
-          this.td_buttonCaption = "[Favor espere...]";
+          this.td_buttonCaption = "[Please wait...]";
           //
-          this.status_message.set("Favor espere");
+          this.status_message.set("[Please wait...]");
           // 
           let td_informeLogRemoto_PythonDjango!   : Observable<string>;
           // 
@@ -266,21 +270,21 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
               this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_python_django_json);
               this.td_dataSource.paginator = this.td_paginator;
               //
-              this.status_message.set("Se encontraron [" + td_logEntry_python_django_json.length + "] registros ");
+              this.status_message.set("[" + td_logEntry_python_django_json.length + "] records found ");
               this.td_formSubmit           = false;
             },
             error           : (err: Error)      => {
               //
               console.error('TEMPLATE DRIVEN - python/django - (ERROR) : ' + JSON.stringify(err.message));
               //
-              this.status_message.set("Ha ocurrido un error. Favor intente de nuevo");
+              this.status_message.set("An error ocurred. Please try again");
               this.td_formSubmit           = false;
-              this.td_buttonCaption        = "[Buscar]";
+              this.td_buttonCaption        = "[Search]";
             },
             complete        : ()                => {
               //
               this.td_formSubmit           = false;
-              this.td_buttonCaption        = "[Buscar]";
+              this.td_buttonCaption        = "[Search]";
             },
           }; 
           //
@@ -306,9 +310,9 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
       //
       this.td_ExcelDownloadLink               = "#";
       //
-      this.td_buttonCaption_xls               = "[Generando por favor espere...]";
+      this.td_buttonCaption_xls               = "[Generating please wait ...]";
       //
-      this.status_message.set("Generando por favor espere.");
+      this.status_message.set("[Generating please wait ...]");
       //
       const xlsObserver                       = {
         //
@@ -318,9 +322,9 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
           //
           this.td_ExcelDownloadLink  = `${this.configService.getConfigValue('baseUrlNetCore')}/wwwroot/xlsx/${urlFile}`;
           //
-          this.status_message.set("Se generó el archivo XLS correctamente");
+          this.status_message.set("[XLS file generated correctly]");
           //
-          this.td_textStatus_xls = "[Descargar Excel]";
+          this.td_textStatus_xls = "[Download XLS File]";
         },
         error   : (err: Error)  => {
           //
@@ -328,15 +332,15 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
           //
           console.error('Observer got an error: ' + err.message);
           //
-          this.td_buttonCaption_xls  = "[Ha ocurrido un error]";
+          this.td_buttonCaption_xls  = "[An error ocurred]";
           //
-          this.td_textStatus_xls = "[Ha ocurrido un error]";
+          this.td_textStatus_xls = "[An error ocurred]";
           //
-          this.status_message.set("Ha ocurrido un error")
+          this.status_message.set("[An error ocurred]")
         },
         complete: () => {
           //
-          this.td_buttonCaption_xls  = "[Generar Excel]";
+          this.td_buttonCaption_xls  = "[Generate XLS]";
         },
       };
       //

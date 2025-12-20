@@ -26,7 +26,6 @@ import { AppComponent                    } from './app.component';
 import { HomeWebComponent                } from './_modules/home/home-web/home-web.component';
 import { PageNotFoundComponent           } from './_modules/home/page-not-found/page-not-found.component';
 import { NavComponent                    } from './_modules/home/nav/nav.component';
-import { PAGE_TITLE_LOG                  } from './_models/common';
 import { LogType                         } from './_models/entity.model';
 import { BackendService                  } from './_services/BackendService/backend.service';
 import { ConfigService                   } from './_services/__Utils/ConfigService/config.service';
@@ -179,10 +178,6 @@ export class CustomErrorHandler implements ErrorHandler {
            DecimalPipe,
            ConfigService,  
            BackendService,
-        { 
-          provide : PAGE_TITLE_LOG, 
-          useValue: 'app-files-generation-base' 
-        },
         {  provide: HTTP_INTERCEPTORS , useClass: LoggingInterceptor, multi: true },
         {  provide: LocationStrategy  , useClass: HashLocationStrategy            },
         {  provide: ErrorHandler      , useClass: CustomErrorHandler              },

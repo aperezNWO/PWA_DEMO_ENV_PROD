@@ -28,24 +28,24 @@
     </div>   
     <hr>
       <!-- INIT SEARCH PANEL -->
-      <app-files-generation-base></app-files-generation-base>
       <form (ngSubmit)="td_onSubmit()" #td_searchForm="ngForm">
         <!-- BACKEND -->
         <div class="form-group" align="left" id="LangListDiv">
-          <label for="LangList">{{this.tituloListadoLenguajes}}</label>
-          <select   id="LanguageList"
-                    name="LanguajeList"
-                    style="width:auto;"
-                    #_languajeList>
-                    <option *ngFor="let _languageName of __languajeList" 
-                          [value]   ="_languageName._index"
-                          [selected]="_languageName._selected">{{_languageName._value}}
-                    </option>
-          </select>
+            <app-files-generation-base></app-files-generation-base>
+            <label for="LangList">{{this.tituloListadoLenguajes}}</label>    
+            <select   id="LanguageList"
+                            name="LanguajeList"
+                            style="width:auto;"
+                            #_languajeList>
+                            <option *ngFor="let _languageName of __languajeList" 
+                                  [value]   ="_languageName._index"
+                                  [selected]="_languageName._selected">{{_languageName._value}}
+                            </option>
+            </select>
         </div>
         <!-- [_] P_ROW_NUM -->
         <div class="form-group" align="left">
-          <label for="P_ROW_NUM" style="width:100px;"># registros : </label>
+          <label for="P_ROW_NUM" style="width:100px;"># of records : </label>
           <input class="form-control" 
                   id="P_ROW_NUM"
                   type="number"
@@ -56,7 +56,7 @@
         </div>
         <!-- [_] P_FECHA_INICIO -->
         <div class="form-group" align="left">
-          <label for="P_FECHA_INICIO" style="width:100px;">Fecha Inicio : </label>
+          <label for="P_FECHA_INICIO" style="width:100px;">Initial Date : </label>
           <input class="form-control" 
                   id="P_FECHA_INICIO"
                   type="date"
@@ -67,7 +67,7 @@
         </div>
         <!-- [_] P_FECHA_FIN -->
         <div class="form-group" align="left">
-          <label for="P_FECHA_FIN" style="width:100px;">Fecha Fin : </label>
+          <label for="P_FECHA_FIN" style="width:100px;">Final Date : </label>
           <input class="form-control" 
                   id="P_FECHA_FIN"
                   type="date"
@@ -78,25 +78,25 @@
         </div>
         <!-- INICIO PANEL DE BOTONES    -->
         <div class="form-group" align="right" style="display: block;">
-          <button class="btn btn-primary"    type="submit" [disabled]="(this.td_buttonCaption != '[Buscar]')">{{this.td_buttonCaption}}</button>
+          <button class="btn btn-primary"    type="submit" [disabled]="(this.td_buttonCaption != '[Search]')">{{this.td_buttonCaption}}</button>
           |
-          <button class="btn btn-primary"    type="button" (click)="td_newSearch()">[Nueva]</button>
+          <button class="btn btn-primary"    type="button" (click)="td_newSearch()">[New]</button>
           |
-          <button class="btn btn-success"    type="button" (click)="td_GenerarInformeXLSValidate()" [disabled]="(this.td_buttonCaption_xls != '[Generar Excel]')">{{this.td_buttonCaption_xls}}</button>
+          <button class="btn btn-success"    type="button" (click)="td_GenerarInformeXLSValidate()" [disabled]="(this.td_buttonCaption_xls != '[Generate XLS]')">{{this.td_buttonCaption_xls}}</button>
         </div>
         <!-- FIN    PANEL DE BOTONES    -->
         <!-- INICIO MENSAJES DE VALIDACION -->
         <div *ngIf="((!this.td_valid_form()) && (this.td_formSubmit))" class="form-group" align="left">
           <ul>
-            <p>Favor revise los datos del formulario</p>
+            <p>Please check form data</p>
             <li *ngIf="((this._model.P_ROW_NUM       == '0') || (this._model.P_ROW_NUM       == '') || (this._model.P_ROW_NUM  == null))" class="alert alert-danger">
-              Favor seleccione el campo 'Número de Filas'
+              '# of records' field required
             </li>
             <li *ngIf="((this._model.P_FECHA_INICIO  == '')  || (this._model.P_FECHA_INICIO  == null))"                                     class="alert alert-danger">
-              Favor seleccione el campo 'Fecha de Inicio'
+              'Initial Date' field required
             </li>
             <li *ngIf="((this._model.P_FECHA_FIN     == '')  || (this._model.P_FECHA_FIN     == null))"                                     class="alert alert-danger">
-              Favor seleccione el campo 'Fecha Final'
+              'Final Date' field required
             </li> 
           </ul>
         </div>
@@ -104,7 +104,7 @@
         <!-- INICIO STATUS BUSQUEDA -->
         <div class="form-group" align="center">
           @if (this._loading | async) {
-            <span id="loadingStatus" name="loadingStatus" class="searchStatus">[Cargando...]</span>
+            <span id="loadingStatus" name="loadingStatus" class="searchStatus">[Loading...]</span>
           } 
           @else 
           {

@@ -98,7 +98,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
       this.__languajeList = new Array();
       //
       this.__languajeList.push(
-        new _languageName(0, '(SELECCIONE OPCION..)', false,""),
+        new _languageName(0, '(CHOOSE OPTION...)', false,""),
       );
       //
       this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS" ));

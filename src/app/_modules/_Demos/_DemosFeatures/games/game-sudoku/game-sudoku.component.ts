@@ -85,7 +85,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
     this.queryParams();
     //
     this.__generateSourceList = new Array();
-    this.__generateSourceList.push(new ListItem(0, '(SELECCIONE OPCION..)', false));
+    this.__generateSourceList.push(new ListItem(0, '(CHOOSE OPTION...)', false));
     this.__generateSourceList.push(new ListItem(1, '[Archivo]'      , false));
     this.__generateSourceList.push(new ListItem(2, '[Backend]'      , true));
   }
@@ -100,7 +100,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
       // LENGUAJES DE PROGRAMACION
       //-----------------------------------------------------------------------------
       this.__languajeList = new Array();
-      this.__languajeList.push(new _languageName(0, '(SELECCIONE OPCION..)', false,""    ));
+      this.__languajeList.push(new _languageName(0, '(CHOOSE OPTION...)', false,""    ));
       this.__languajeList.push(new _languageName(1, '(.NET Core/C++)'      , true ,"CPP" ));
       this.__languajeList.push(new _languageName(2, '(Node.js)'            , false,"JS"  ));
       //

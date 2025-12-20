@@ -37,7 +37,7 @@ export class BoardComponent implements OnInit, AfterViewInit {
     //console.log("[TIC-TAC-TOE - INICIAR VALORES");
     //
     this.__SourceList = new Array();
-    this.__SourceList.push(new ListItem(0, '(SELECCIONE OPCION..)'   , false));
+    this.__SourceList.push(new ListItem(0, '(CHOOSE OPTION...)'   , false));
     this.__SourceList.push(new ListItem(this.ticTacToeEngine.COMPUTER, '[MAQUINA]'     , true));
     this.__SourceList.push(new ListItem(this.ticTacToeEngine.HUMAN   , '[JUGADOR]'     , false));
     //
