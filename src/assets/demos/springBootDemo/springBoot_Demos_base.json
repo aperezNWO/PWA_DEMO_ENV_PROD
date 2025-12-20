@@ -2,8 +2,8 @@
    {
 		"id"               : 1,
         "done"             : true,
-        "name"             : "Listado desde MS SQL Server - CSV",
-        "description"      : "Listado desde MS SQL Server - CSV",
+        "name"             : "Generating CSV files from MS SQL Server",
+        "description"      : "Generating CSV files from MS SQL Server",
         "field_1"          : "Spring Boot, REST Service, MS SQL SERVER",
         "field_2"          : ".#/FilesGenerationCSV?langName=JAVA",
         "field_3"          : "https://github.com/aperezNWO/JAVA2_EE_SB_DEMO/blob/583c48d8150d4fe84bd9f074a7fd53b2e64a86ac/src/main/java/com/example/DAO/personasDAO.java#L23",
@@ -14,8 +14,8 @@
     {
         "id"               : 2,
         "done"             : true,
-        "name"             : "Listado desde MS SQL Server - XLS",
-        "description"      : "Listado desde MS SQL Server - XLS",
+        "name"             : "Generating XLS files from MS SQL Server",
+        "description"      : "Generating XLS files from MS SQL Server",
         "field_1"          : "Spring Boot, REST Service, MS SQL SERVER",
         "field_2"          : "./#/FilesGenerationXLS?langName=JAVA",
         "field_3"          : "https://github.com/aperezNWO/JAVA2_EE_SB_DEMO/blob/583c48d8150d4fe84bd9f074a7fd53b2e64a86ac/src/main/java/com/example/DAO/AccessLogDAO.java#L24",
@@ -26,8 +26,8 @@
     {
 		"id"               : 3,
         "done"             : true,
-        "name"             : "Algoritmo distancia mas corta",
-        "description"      : "Algoritmo distancia mas corta",
+        "name"             : "Shortest Path Algorithm",
+        "description"      : "Shortest Path Algorithm",
         "field_1"          : "Spring Boot, REST service, Dijkstra",
         "field_2"          : "./#/AlgorithmDijkstra?langName=JAVA",
         "field_3"          : "https://github.com/aperezNWO/JAVA2_EE_SB_DEMO/blob/master/src/main/java/com/example/demo/AlgorithmManager.java",
