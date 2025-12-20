@@ -211,7 +211,7 @@
 
                 -- [_] angular curriculum. 
 
-                        -- [_] change /PWA_DEMO_ENV_PUBLIC/ to /PWA_DEMO_ENV_PROD/ 
+                        -- [_] change /PWA_DEMO_ENV_PROD/ to /PWA_DEMO_ENV_PROD/ 
 
         -- [_] last url -> back to menu. 
 

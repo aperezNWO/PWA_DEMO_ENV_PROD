@@ -856,11 +856,5 @@
 
  -- [X]  c++ -> OOP -> inheritance -> ReadConfigFile();
 
- -- [X] replicar en pwa_demo_env_prod en pwa_demo_env_public.
-
- -- [X] Cambiar URL : 
  
-        PWA_DEMO_ENV_PUBLIC -> ANGULAR_DEMO_ENV_PROD.
-        PWA_DEMO_ENV_DEV    -> ANGJLAR_DEMO_ENV_PUBLIC.
-
 /////////////////////////////////////////////////////////////////

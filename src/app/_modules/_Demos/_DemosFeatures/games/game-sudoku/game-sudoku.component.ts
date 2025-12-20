@@ -25,11 +25,11 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
   //
   board: number[][] = [];
   //
-  protected tituloListadoLenguajes : string = 'Seleccione Backend';
+  protected tituloListadoLenguajes : string = 'Choose Backend';
   protected btnGenerateCaption     : string = '[GENERATE]';
-  protected btnSolveCaption        : string = '[RESOLVER]';
+  protected btnSolveCaption        : string = '[SOLVE]';
   //
-  protected tituloGenerarDesde    : string = 'Generar Desde';
+  protected tituloGenerarDesde    : string = 'Genereate From';
   //
   @ViewChild('_languajeList') _languajeList   : any;
   @ViewChild('_SourceList')   _sourceList     : any;
@@ -86,8 +86,8 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
     //
     this.__generateSourceList = new Array();
     this.__generateSourceList.push(new ListItem(0, '(CHOOSE OPTION...)', false));
-    this.__generateSourceList.push(new ListItem(1, '[Archivo]'      , false));
-    this.__generateSourceList.push(new ListItem(2, '[Backend]'      , true));
+    this.__generateSourceList.push(new ListItem(1, '[File]'            , false));
+    this.__generateSourceList.push(new ListItem(2, '[Backend]'         , true));
   }
   //--------------------------------------------------------------------------
   // METODOS COMUNES 
@@ -100,7 +100,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
       // LENGUAJES DE PROGRAMACION
       //-----------------------------------------------------------------------------
       this.__languajeList = new Array();
-      this.__languajeList.push(new _languageName(0, '(CHOOSE OPTION...)', false,""    ));
+      this.__languajeList.push(new _languageName(0, '(CHOOSE OPTION...)'   , false,""    ));
       this.__languajeList.push(new _languageName(1, '(.NET Core/C++)'      , true ,"CPP" ));
       this.__languajeList.push(new _languageName(2, '(Node.js)'            , false,"JS"  ));
       //
@@ -133,7 +133,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
   //
   public GenerateFromBackend():void {
         //
-        this.status_message.set("Generando");
+        this.status_message.set("[...generating...]");
         //
         let generatedSudoku: Observable<string>;
         let selectedIndex  : number = this._languajeList.nativeElement.options.selectedIndex; // c++ by default
@@ -151,7 +151,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
         //
         this.sudokuSolved = false;
         //
-        this.btnGenerateCaption = '[...generando...]';
+        this.btnGenerateCaption = '[...generating...]';
         //
         const generatedSudokuObserver = {
           next: (jsondata: string) => {
@@ -177,7 +177,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
               this.board.push(row);
             }
             //
-            this.status_message.set("Se generó correctamente");
+            this.status_message.set("[Generated correctly]");
           },
           error: (err: Error) => {
             //
@@ -214,11 +214,11 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
         //
         this.progress = 0;
         //
-        this.status_message.set('...cargando...');
+        this.status_message.set('[...generating...]');
         //
         this.sudokuSolved = false;
         //
-        this.btnGenerateCaption = '[...generando...]';       
+        this.btnGenerateCaption = '[...generating...]';       
         //
         this.currentFile = file;
         //
@@ -229,7 +229,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
               this.progress = Math.round((100 * event.loaded) / event.total);
             } else if (event instanceof HttpResponse) {
               //
-              this.status_message.set("Se generó correctamente");
+              this.status_message.set("[Generated correctly]");
               //
               let  jsondata  = event.body;
               //
@@ -271,7 +271,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
               this.status_message = err.error.message;
             } else {
               //
-              this.status_message.set('no se puede cargar el archivo');
+              this.status_message.set('unable to load file');
             }
             //
             this.currentFile = undefined;
@@ -292,7 +292,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
     else 
     {
         //
-        this.status_message.set("Favor seleccione archivo");
+        this.status_message.set("¨Please select a file.");
     }
   }
   //
@@ -317,9 +317,9 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
     //
     this.sudokuSolved = true;
     //
-    this.btnSolveCaption = '[...resolviendo...]';
+    this.btnSolveCaption = '[...solving...]';
     //
-    this.status_message.set('resolviendo');
+    this.status_message.set('[...solving...]');
     //
     let solveSudoku: Observable<string>;
     //
@@ -340,7 +340,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
     const solveSudokuObserver = {
       next: (jsondata: string) => {
         //
-        this.status_message.set("Se resolvió correctamente");
+        this.status_message.set("[Solved correctly]");
         //
         this._sudokuGenerated = jsondata;
         //
@@ -372,7 +372,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
       },
       complete: () => {
         //
-        this.btnSolveCaption = '[RESOLVER]';
+        this.btnSolveCaption = '[SOLVE]';
         //
         this.selectedFiles = undefined;
         //
@@ -392,7 +392,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
     let fileName_input  : string     = `SUDOKU_BOARD_${suffix}`;
     let fileName_output : string     = '';
     //
-    this.status_message.set('Generando PDF');
+    this.status_message.set('[... Generating PDF file ...]');
     //
     this.pdfEngine._GetPDF
       (
@@ -413,7 +413,6 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
         },
         complete: () => {
             //
-            //this.message = `PDF file generated successfully:[ ${fileName_output} ]`;
             this.status_message.set(`PDF file generated successfully`);
         }
       }

@@ -122,17 +122,17 @@
         <hr/>
         <div align="left">
             <input class="btn btn-primary" id="GetSudoku"   type="button" [value]="this.btnGenerateCaption"   (click)="this._GetSudoku()"
-            [disabled]="(this.btnGenerateCaption == '[...generando...]') ||
-                        (this.btnSolveCaption    == '[...resolviendo...]')">
+            [disabled]="(this.btnGenerateCaption == '[...generating...]') ||
+                        (this.btnSolveCaption    == '[...solving...]')">
             |
             <input class="btn btn-success" id="SolveSudoku" type="submit" [value]="this.btnSolveCaption" 
-            [disabled]="(this.btnSolveCaption    == '[...resolviendo...]') ||
-                        (this.btnGenerateCaption == '[...generando...]')   ||
+            [disabled]="(this.btnSolveCaption    == '[...solving...]') ||
+                        (this.btnGenerateCaption == '[...generating...]')   ||
                         (this.sudokuSolved       == true)">
             <!-- GENERAR PDF / INICIO -->
             <span *ngIf="(this.board.length>0)" align="left">
                 |
-                <input class="btn btn-secondary" type="button" name="btnGeneratePdf" value="[GENERATE PDF]" (click)="this._GetPdf()" [disabled]="(this.status_message() == '[...Generando PDF...]')">
+                <input class="btn btn-secondary" type="button" name="btnGeneratePdf" value="[GENERATE PDF]" (click)="this._GetPdf()" [disabled]="(this.status_message() == '[...Generating PDF...]')">
             </span>
             <!-- GENERAR PDF / FIN    -->
         </div>

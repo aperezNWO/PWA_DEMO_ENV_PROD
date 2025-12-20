@@ -140,8 +140,6 @@ console.log('After draw:', { position: this.currentPiece?.position, boardTop: th
 
                 --[_] https://pwa-demo-env-prod.web.app/
 
-        --  [_]  PWA_DEMO_ENV_PUBLIC   -> SHOW TO PUBLIC
-
         --  [_]  PWA_DEMO_ENV_DEV      -> TENSORFLOW / DATA SCIENCE 
 
         
