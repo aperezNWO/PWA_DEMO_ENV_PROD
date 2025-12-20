@@ -26,7 +26,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
   board: number[][] = [];
   //
   protected tituloListadoLenguajes : string = 'Seleccione Backend';
-  protected btnGenerateCaption     : string = '[GENERAR]';
+  protected btnGenerateCaption     : string = '[GENERATE]';
   protected btnSolveCaption        : string = '[RESOLVER]';
   //
   protected tituloGenerarDesde    : string = 'Generar Desde';
@@ -185,13 +185,13 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
               '[SUDOKU - GENERATE] - (ERROR) : ' + JSON.stringify(err.message),
             );
             //
-            this.btnGenerateCaption = '[GENERAR]';            
+            this.btnGenerateCaption = '[GENERATE]';            
             //
             this.status_message.set("Ha ocurrido un error");
           },
           complete: () => {
             //
-            this.btnGenerateCaption = '[GENERAR]';
+            this.btnGenerateCaption = '[GENERATE]';
           },
         };
         //
@@ -276,11 +276,11 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
             //
             this.currentFile = undefined;
             //
-            this.btnGenerateCaption = '[GENERAR]';
+            this.btnGenerateCaption = '[GENERATE]';
           },
           complete: () => {
             //
-            this.btnGenerateCaption = '[GENERAR]';
+            this.btnGenerateCaption = '[GENERATE]';
             //
             this.selectedFiles = undefined;
             //

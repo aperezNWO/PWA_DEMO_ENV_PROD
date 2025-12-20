@@ -206,7 +206,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
       //[X]
       this.DrawGrid();
       //
-      this.status_message.set(`Se reinició correctamente el gráfico`);
+      this.status_message.set(`[Graph reseted succesfully]`);
   };
   // 
   _GetGraph():void
@@ -220,7 +220,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
         //
         let _progLangId        : number = Number.parseInt(this._languajeList.nativeElement.value);
         //
-        this.status_message.set('[Generando Gráfico por favor espere]');
+        this.status_message.set('[Generating graph. Please wait...]');
         //
         switch(_progLangId)    
         {
@@ -288,9 +288,9 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
                 //-------------------------------------------------------------
                 //
                 let _sourcePoint        : number = Number.parseInt(this._sourcePointList.nativeElement.value);
-                this.tituloListadoDistancias     = "DISTANCIAS DESDE [" + _sourcePoint.toString() + "]:";
+                this.tituloListadoDistancias     = "DISTANCE FROM [" + _sourcePoint.toString() + "]:";
                 //
-                this.status_message.set("[Se generó correctamente el gráfico]");
+                this.status_message.set("[Graph generated correctly]");
                 //
                 this.DrawDistanceList(false,vertexString);
             },
@@ -300,7 +300,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
                 //
                 this._ResetControls();
                 //
-                this.status_message.set('[Ha ocurrido un error favor intente de nuevo]');
+                this.status_message.set('[An error occured. Please try again]');
             },       
             complete: ()        => {
                 //
@@ -499,7 +499,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
     if (clearItems == false)
     {
         //
-        let _vertexSizeInitial : _vertexSize = new _vertexSize(0,"(SELECCIONE DISTANCIA)");
+        let _vertexSizeInitial : _vertexSize = new _vertexSize(0,"(SELECT DISTANCE)");
         this.__distanceList.push(_vertexSizeInitial);
         //
         let stringItems : string[] = Items.split("<br/>");
@@ -560,7 +560,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
   _GetPDF():void
   {
       //
-      this.status_message.set('[...Generando PDF...]');
+      this.status_message.set('[...Generating PDF...]');
       //
       let fileName         : string     = "DIJKSTRA";
       let fileName_output  : string     = '';
@@ -582,7 +582,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
           },
           complete: () => {
               //
-              this.status_message.set(`Se ha generado el archivo pdf correctamente`);
+              this.status_message.set(`[PDF file generated correctly]`);
           }
         }
       );

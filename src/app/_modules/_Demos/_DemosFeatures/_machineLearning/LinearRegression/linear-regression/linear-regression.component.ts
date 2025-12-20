@@ -212,8 +212,9 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
             },
             error: (error) => {
               console.error('API Error:', error);
-              this.errorMessage = `Error calling API: ${error.message || 'Unknown error'}`;
+              this.errorMessage     = `Error calling API: ${error.message || 'Unknown error'}`;
               this.predictionResult = null;
+              this.isLoading        = false;
             },
             complete: () => {
               this.isLoading = false;

@@ -416,7 +416,9 @@
         "log_name"   : "PAGE_DEMOS_MACHINE_LEARNING_INDEX",
         "page_name"  : "[DEMOS - MACHINE LEARNING]",
         "pages"      : [
-          { "id": 1, "url" : "/LinearRegression"          , "text": "[MACHINE LEARNING - LINEAR REGRESSION]"      }
+          { "id": 1, "url" : "/LinearRegression"          , "text": "[MACHINE LEARNING - LINEAR REGRESSION]"      },
+          { "id": 2, "url" : "/GamesTicTacToeAI"          , "text": "[MACHINE LEARNING - NEURAL NETWORKS]"        },
+          { "id": 3, "url" : "/GamesTetrisAI"             , "text": "[MACHINE LEARNING - GENETIC ALGORITHMS]"     }
         ]
       },
       {
