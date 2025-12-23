@@ -586,18 +586,22 @@
 
 -- [_] curriculum update.
 
-        -- [_] typescript reference.
+        -- [x] typescript reference.
         
-        -- [_] effect.
+        -- [x] effect.
         
-        -- [_] sound wtk.
+        -- [x] sound wtk.
         
         -- [_] backend->create sql query.
         
         -- [_] backend->create restful point.
 
+        -- [_] python tensorflow create/train model.
+        
         -- [_] node.js smpt.
 
         -- [_] .NET dllimport.
+
+        -- [_] c++ constexpr.
  
 ////////////////////////////////////////////////////////////////////////////////
