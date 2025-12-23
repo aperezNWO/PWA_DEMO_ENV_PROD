@@ -570,6 +570,8 @@
 
         -- [x] Delete Tailwind.
 
+        -- [_] CODESANDBOX DYNAMIC BACKEND REFERENCE.
+
         -- [_] deployment doc.
 
         -- [_] Fix codesandbox data. Put 3 codesandbox accounts.
@@ -581,8 +583,6 @@
 -- [_] FILE GENERATION.
 
         -- [_] BASE COMPONENT.
-
--- [_] CODESANDBOX DYNAMIC BACKEND REFERENCE.
 
 -- [_] curriculum update.
 
@@ -603,5 +603,7 @@
         -- [_] .NET dllimport.
 
         -- [_] c++ constexpr.
+
+ -- [_] TRANSLATE FORMS TO ENGLISH.       
  
 ////////////////////////////////////////////////////////////////////////////////
