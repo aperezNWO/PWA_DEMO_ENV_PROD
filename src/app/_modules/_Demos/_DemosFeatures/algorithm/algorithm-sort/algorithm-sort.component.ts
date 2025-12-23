@@ -22,7 +22,7 @@ export class AlgorithmSortComponent extends BaseComponent implements OnInit, Aft
     // VARIABLES
     ////////////////////////////////////////////////////////////////////////
     private   rectSize                                    : number = 10;
-    public    lblStatus                                   = signal<string>("[STATUS]");
+    public    lblStatus                                   = signal<string>("");
     public    tituloListadoLenguajes                      : string = "[BACKEND] : ";
     public    context                                     : any;
     @ViewChild('c_canvas') c_canvas                       : any;
@@ -210,6 +210,8 @@ export class AlgorithmSortComponent extends BaseComponent implements OnInit, Aft
     public GetNewSort():void
     {
         //
+        this.lblStatus.set("");
+        //
         this.SortAlgorithmList.nativeElement.options.selectedIndex = 0;
         //
         this.stringMatrix              = [];
@@ -289,6 +291,8 @@ export class AlgorithmSortComponent extends BaseComponent implements OnInit, Aft
         this.status_message.set("RESTART SUCCESSFUL");
         //
         this.GetSortLabel    = "[SORT]";
+        //
+        this.lblStatus.set("");
     }
     //
     DrawStep():void
@@ -319,7 +323,7 @@ export class AlgorithmSortComponent extends BaseComponent implements OnInit, Aft
         if ((this.stringMatrix[this.indexDraw] == null) || (this.stringMatrix[this.indexDraw] != ''))
         {
             //
-            this.status_message.set(`Step ${this.indexDraw} of ${this.stringMatrix.length-1}`);
+            this.lblStatus.set(`Step ${this.indexDraw} of ${this.stringMatrix.length-1}`);
             //
             let stringArray_past    : string[]   = (this.indexDraw == 1) ? this.stringArray_ : this.stringMatrix[this.indexDraw - 1].split(",") ;
             //
@@ -355,7 +359,7 @@ export class AlgorithmSortComponent extends BaseComponent implements OnInit, Aft
         //
         this.GetSortLabel  = "[...sorting...]";
         //
-        this.status_message.set("sorted");
+        this.status_message.set("");
         //
         this.DrawStep();
     }

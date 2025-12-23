@@ -72,8 +72,11 @@
             </div>
             <hr>
             <!--STATUS / INICIO   -->
-            <div  *ngIf="this.lblStatus" class="form-group alert alert-secondary" align="center" role="alert">
+            <div  *ngIf="this.status_message" class="form-group alert alert-secondary" align="center" role="alert">
                 {{ this.status_message() }}
+            </div>
+            <div  *ngIf="this.lblStatus" class="form-group alert alert-secondary" align="center" role="alert">
+                {{ this.lblStatus() }}
             </div>
             <!-- STATUS / FIN      -->
             <hr />
