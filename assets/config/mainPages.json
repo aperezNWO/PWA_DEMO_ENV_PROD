@@ -391,10 +391,10 @@
         "log_name"   : "PAGE_ALGORITMOS_INDEX",
         "page_name"  : "[DEMOS - ALGORITHMS]",
         "pages"      : [
-          { "id": 1, "url" : "/AlgorithmRegEx"          , "text": "[ALGORITHMS - EXPRESIONES REGULARES]"      },
-          { "id": 2, "url" : "/AlgorithmSort"           , "text": "[ALGORITHMS - ORDENAMIENTO]"               },
-          { "id": 3, "url" : "/AlgorithmDijkstra"       , "text": "[ALGORITHMS - DISTANCIA MAS CORTA]"        },
-          { "id": 4, "url" : "/AlgorithmCollision"      , "text": "[ALGORITHMS - COLISIÓN]"                   }          
+          { "id": 1, "url" : "/AlgorithmRegEx"          , "text": "[ALGORITHMS - REGULAR EXPRESSIONS]"    },
+          { "id": 2, "url" : "/AlgorithmSort"           , "text": "[ALGORITHMS - SORTING]"                },
+          { "id": 3, "url" : "/AlgorithmDijkstra"       , "text": "[ALGORITHMS - SHORTEST PATH]"          },
+          { "id": 4, "url" : "/AlgorithmCollision"      , "text": "[ALGORITHMS - COLLISION]"              }          
         ]
       },
       {
@@ -447,7 +447,7 @@
         "page_name"  : "[DEMOS]",
         "pages"      : [
           { "id": 1, "url" : "/PageUrlList"                 , "text": "[DEMOS - FEATURES]"                 , "queryParams" : "PAGE_DEMOS_CARACTERISTICAS_INDEX"     },
-          { "id": 1, "url" : "/PageUrlList"                 , "text": "[DEMOS - LENGUAJES]"                       , "queryParams" : "PAGE_DEMOS_LENGUAJES_INDEX"           },
+          { "id": 1, "url" : "/PageUrlList"                 , "text": "[DEMOS - LANGUAGES]"                       , "queryParams" : "PAGE_DEMOS_LENGUAJES_INDEX"           },
           { "id": 1, "url" : "/PageUrlList"                 , "text": "[DEMOS - CURRICULUM]"                      , "queryParams" : "PAGE_DEMOS_CURRICULUM_INDEX"          }
         ] 
       },
