@@ -398,7 +398,12 @@
         ]
       },
       {
-        "log_name"   : "PAGE_ALGALGORITHMSORITMOS_COLISION",
+        "log_name"   : "PAGE_ALGORITMOS_SORT",
+        "page_name"  : "[ALGORITHMS - SORT]",
+        "pages"      : []
+      },
+      {
+        "log_name"   : "PAGE_ALGORITMOS_COLISION",
         "page_name"  : "[ALGORITHMS - COLISSION]",
         "pages"      : []
       },
