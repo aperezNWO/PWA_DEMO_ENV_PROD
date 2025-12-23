@@ -584,4 +584,20 @@
 
 -- [_] CODESANDBOX DYNAMIC BACKEND REFERENCE.
 
+-- [_] curriculum update.
+
+        -- [_] typescript reference.
+        
+        -- [_] effect.
+        
+        -- [_] sound wtk.
+        
+        -- [_] backend->create sql query.
+        
+        -- [_] backend->create restful point.
+
+        -- [_] node.js smpt.
+
+        -- [_] .NET dllimport.
+ 
 ////////////////////////////////////////////////////////////////////////////////
