@@ -69,7 +69,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
             //-----------------------------------------------------------------------------
             this.__languajeList = new Array();
             //
-            this.__languajeList.push( new _languageName(0,"(CHOOSE OPTION...)",false ,""   ));        
+            this.__languajeList.push( new _languageName(0,"(CHOOSE OPTION...)"   ,false ,""   ));        
             this.__languajeList.push( new _languageName(1,"(.NET CORE/C#)"       ,true  ,"CS" ));        
             this.__languajeList.push( new _languageName(2,"(.NET CORE/C++)"      ,false ,"CPP"));  
             //
@@ -96,7 +96,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
         //
         xmlInfo       = this.algorithmService._GetXmlData();
         //
-        this.status_message.set("[..CARGANDO POR FAVOR ESPERERE...]");
+        this.status_message.set("[...LOADING PLEASE WAIT...]");
         //
         const xmlInfoObserver   = {
             //
@@ -114,7 +114,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
                 //
                 this.mensajes.nativeElement.innerHTML = this.xmlData;
                 //
-                this.status_message.set("[REINICIO EXITOSO]")                 
+                this.status_message.set("[RESTART SUCCESFUL]")                 
                 //
                 this.pattern   = "";
             },
@@ -141,24 +141,31 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
         let selectedIndex   : number = this.tagSearch.nativeElement.options.selectedIndex;
         let tagSearchIndex  : number = this.tagSearch.nativeElement.options[selectedIndex].value;
         let textSearchValue : string = this.textSearch.nativeElement.value;
+        let _progLangId     : number = Number.parseInt(this._languajeList.nativeElement.value);
+        //
+        if (_progLangId == 0)
+        {
+            //
+            this.status_message.set("PLEASE SELECT A LANGUAGE") ;
+            //
+            return;
+        }
         //
         if (tagSearchIndex == 0) {
             //
-            this.status_message.set("FAVOR SELECCIONE UN [ELEMENTO A BUSCAR]") ;
+            this.status_message.set("PLEASE SELECT AN ELEMENT TO SEARCH") ;
             //
             return;
         }
         //
         if (textSearchValue == "") {
             //
-            this.status_message.set("FAVOR INGRESE UN VALOR EN EL CAMPO [CONTENIDO]");
+            this.status_message.set("PLEASE ENTER A VALUE IN THE FILED [CONTENT]");
             //
             return;
         }
         //
         let regExInfo!         : Observable<string>;
-        //
-        let _progLangId        : number = Number.parseInt(this._languajeList.nativeElement.value);
         //
         switch(_progLangId)    
         {
@@ -203,7 +210,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
                     //
                     this.mensajes.nativeElement.innerHTML = xmlHighlighted;
                     //
-                    this.status_message.set('SE ENCONTRARON (' + matchAmt + ') COINCIDENCIAS');
+                    this.status_message.set('[' + matchAmt + '] MATCHES FOUND');
                 }
             },
             error: (err: Error) => {

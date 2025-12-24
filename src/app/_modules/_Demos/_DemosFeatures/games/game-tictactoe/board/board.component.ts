@@ -14,7 +14,7 @@ import { SpeechService                                } from 'src/app/_services/
 })
 export class BoardComponent implements OnInit, AfterViewInit {
   //
-  protected tituloSource                   : string = '¿Quien Inicia?';
+  protected tituloSource                   : string = '¿Who Starts?';
   protected __SourceList                   : any;
   @ViewChild('_SourceList')   _sourceList  : any;
   //
@@ -38,8 +38,8 @@ export class BoardComponent implements OnInit, AfterViewInit {
     //
     this.__SourceList = new Array();
     this.__SourceList.push(new ListItem(0, '(CHOOSE OPTION...)'   , false));
-    this.__SourceList.push(new ListItem(this.ticTacToeEngine.COMPUTER, '[MAQUINA]'     , true));
-    this.__SourceList.push(new ListItem(this.ticTacToeEngine.HUMAN   , '[JUGADOR]'     , false));
+    this.__SourceList.push(new ListItem(this.ticTacToeEngine.COMPUTER, '[Computer]'     , true));
+    this.__SourceList.push(new ListItem(this.ticTacToeEngine.HUMAN   , '[Player]'     , false));
     //
     this.ticTacToeEngine.initialise();
   }
