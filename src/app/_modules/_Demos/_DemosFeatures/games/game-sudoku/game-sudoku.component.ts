@@ -413,7 +413,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
         },
         complete: () => {
             //
-            this.status_message.set(`PDF file generated successfully`);
+            this.status_message.set(`PDF file generated correctly`);
         }
       }
     );

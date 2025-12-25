@@ -53,7 +53,7 @@ export class FilesGenerationPDFComponent extends BaseComponent {
   {
     //
     this.progress     = 0;
-    this.status_message.set('Reinicio exitoso');
+    this.status_message.set('[Restart sucessful]');
     this.DownloadLink = '';
     this.pdfFileName  = "";
     this.subjectName.nativeElement.value = '';
@@ -64,13 +64,13 @@ export class FilesGenerationPDFComponent extends BaseComponent {
       //
       if (this.subjectName.nativeElement.value == '')
       {
-        this.status_message.set('Favor ingrese [NOMBRE COMPLETO]');
+        this.status_message.set('Please enter [FULL NAME]');
         return;
       }
       //
       this.progress             = 0;
-      this.status_message.set('...cargando...');
-      this.downloadCaption      = '...cargando...';
+      this.status_message.set('...loading...');
+      this.downloadCaption      = '...loading...';
       //
       let _subjectName : string = this.subjectName.nativeElement.value;
       //
@@ -109,9 +109,9 @@ export class FilesGenerationPDFComponent extends BaseComponent {
                   //
                   console.info('[GENERATE PDF FILE] - [Download link] : ' + this.DownloadLink);
                   //
-                  this.status_message.set('Se cargó correctamente el archivo');
+                  this.status_message.set('File loaded correctly');
                   //
-                  this.downloadCaption = '[DESCARGAR PDF]'
+                  this.downloadCaption = '[DOWNLOAD PDF]'
                 }
             } 
             else 

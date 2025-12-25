@@ -141,7 +141,7 @@ export class ChartComponent extends BaseComponent implements OnInit  {
             const data = {
               labels: statLabels,
               datasets: [{
-                  label: 'CIUDADES',
+                  label: 'CITIES',
                   data: statData,
                   backgroundColor: statBackgroundColor,
                   hoverOffset: 4
@@ -161,7 +161,7 @@ export class ChartComponent extends BaseComponent implements OnInit  {
                           },
                           title: {
                               display: true,
-                              text: 'CIUDADES'
+                              text: 'CITIES'
                           }
                       }
                   }
@@ -220,7 +220,7 @@ export class ChartComponent extends BaseComponent implements OnInit  {
           const data = {
             labels              : statLabels,
             datasets            : [{
-                label           : 'CONTEO DE SESIONES',
+                label           : 'SESSION COUNT',
                 data            : statData,
                 backgroundColor : statBackgroundColor,
                 hoverOffset     : 4
@@ -241,7 +241,7 @@ export class ChartComponent extends BaseComponent implements OnInit  {
                             },
                             title       : {
                                 display : true,
-                                text    : 'CONTEO DE SESIONES'
+                                text    : 'SESSION COUNT'
                               }
                           }
                 }
@@ -258,7 +258,7 @@ export class ChartComponent extends BaseComponent implements OnInit  {
     GetPDF(P_fileName : string):void
     {
         //
-        (P_fileName == '[PIE CHART]')? this.pdf_message_csv.set('[...Generando PDF...]') : this.pdf_message_xls.set('[...Generando PDF...]');
+        (P_fileName == '[PIE CHART]')? this.pdf_message_csv.set('[...Generating PDF...]') : this.pdf_message_xls.set('[...Generating PDF...]');
         //
         let fileName_output  : string     = '';
         //
@@ -281,7 +281,7 @@ export class ChartComponent extends BaseComponent implements OnInit  {
             complete: () => {
                 //
                 //let msg = `Se ha generado el archivo [${fileName_output}]`;
-                let msg = `PDF file generated successfullycorrctamente`;
+                let msg = `PDF file generated correctly`;
                 (P_fileName == '[PIE CHART]')? this.pdf_message_csv.set(msg)   : this.pdf_message_xls.set(msg);
             }
           }

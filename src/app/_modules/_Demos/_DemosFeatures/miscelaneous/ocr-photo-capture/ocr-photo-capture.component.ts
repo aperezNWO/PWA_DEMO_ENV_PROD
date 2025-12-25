@@ -208,7 +208,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
     this.ocrService.uploadBase64ImageNodeJs(base64ImageString).subscribe(
       (response) => {
         //
-        //console.log('Image uploaded successfully:', response);
+        //console.log('Image uploaded correctly:', response);
         this.status_message.set(JSON.parse(JSON.stringify(response))['message']);
         //
         this.statusButton            = '[save]';
@@ -242,7 +242,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
     this.ocrService.uploadBase64ImageCPP(base64ImageString).subscribe(
       (response) => {
         //
-        //console.log('Image uploaded successfully:', response);
+        //console.log('Image uploaded correctly:', response);
         this.status_message.set(JSON.parse(JSON.stringify(response))['message']);
         //
         this.statusButton            = '[save]';

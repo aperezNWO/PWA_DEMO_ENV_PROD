@@ -604,6 +604,12 @@
 
         -- [_] c++ constexpr.
 
- -- [_] TRANSLATE FORMS TO ENGLISH.       
+ -- [_] TRANSLATE FORMS TO ENGLISH.  
+ 
+ -- [_] TRANSLATE DATABASE FIELDS TO ENGLISH.        
+
+ -- [_] SCM TRANSLATE TO ENGLISH.  
+ 
+        -- [_] ENV_ONLINE_HOSTING -> ENV_ONLINE_BACKEND.  
  
 ////////////////////////////////////////////////////////////////////////////////
