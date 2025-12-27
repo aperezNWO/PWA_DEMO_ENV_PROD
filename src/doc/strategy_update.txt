@@ -590,6 +590,10 @@
  
  -- [_] SCM.
 
+<       -- [x] https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/PageUrlList?pageName=PAGE_DEMOS_MACHINE_LEARNING_INDEX
+
+                -- [x] Add m.l. pending items. 
+
         -- [x] fractal demo repo path fix.
 
         -- [x] Delete Tailwind.
@@ -599,10 +603,6 @@
         -- [_] deployment doc.
 
         -- [_] Fix codesandbox data. Put 3 codesandbox accounts.
-
-        -- [_] https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/PageUrlList?pageName=PAGE_DEMOS_MACHINE_LEARNING_INDEX
-
-                -- [_] Add m.l. pending items. 
 
         -- [_] ENV_ONLINE_HOSTING -> ENV_ONLINE_BACKEND.  
 
