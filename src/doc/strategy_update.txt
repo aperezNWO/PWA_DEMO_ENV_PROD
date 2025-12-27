@@ -540,15 +540,15 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
--- [_] OCR DEMO.
+-- [x] OCR DEMO.
 
-        -- [_] VOICE IN ENGLISH.
+        -- [x] VOICE IN ENGLISH.
 
-        -- [_] ASP.NET CORE SPLIT CONTROLLERS.
+        -- [x] ASP.NET CORE SPLIT CONTROLLERS.
 
-        -- [_] VALIDATIONS.
+        -- [x] VALIDATIONS.
 
-        -- [_] OCR SERVICE.
+        -- [x] OCR SERVICE.
 
 -- [x] CV DEMO.
 
@@ -562,27 +562,7 @@
 
         -- [x] Base Service.
 
-        -- [x] Service.
-
--- [_] SCM.
-
-        -- [x] fractal demo repo path fix.
-
-        -- [x] Delete Tailwind.
-
-        -- [_] CODESANDBOX DYNAMIC BACKEND REFERENCE.
-
-        -- [_] deployment doc.
-
-        -- [_] Fix codesandbox data. Put 3 codesandbox accounts.
-
-        -- [_] https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/PageUrlList?pageName=PAGE_DEMOS_MACHINE_LEARNING_INDEX
-
-                -- [_] Add m.l. pending items. 
-
--- [_] FILE GENERATION.
-
-        -- [_] BASE COMPONENT.
+        -- [_] check repeated sound on title.
 
 -- [_] curriculum update.
 
@@ -606,10 +586,26 @@
 
  -- [_] TRANSLATE FORMS TO ENGLISH.  
  
- -- [_] TRANSLATE DATABASE FIELDS TO ENGLISH.        
+ -- [_] TRANSLATE DATABASE FIELDS TO ENGLISH.      
+ 
+ -- [_] SCM.
 
- -- [_] SCM TRANSLATE TO ENGLISH.  
- 
+        -- [x] fractal demo repo path fix.
+
+        -- [x] Delete Tailwind.
+
+        -- [_] CODESANDBOX DYNAMIC BACKEND REFERENCE.
+
+        -- [_] deployment doc.
+
+        -- [_] Fix codesandbox data. Put 3 codesandbox accounts.
+
+        -- [_] https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/PageUrlList?pageName=PAGE_DEMOS_MACHINE_LEARNING_INDEX
+
+                -- [_] Add m.l. pending items. 
+
         -- [_] ENV_ONLINE_HOSTING -> ENV_ONLINE_BACKEND.  
- 
+
+        -- [_] SCM TRANSLATE TO ENGLISH.  
+
 ////////////////////////////////////////////////////////////////////////////////
