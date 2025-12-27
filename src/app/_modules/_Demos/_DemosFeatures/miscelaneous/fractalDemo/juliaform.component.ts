@@ -51,7 +51,7 @@ export class FractalDemoComponent  extends BaseComponent {
         // Convert the blob into an object URL
         this.imageUrl = URL.createObjectURL(response);
         //
-        this.status_message.set("[Image generated successfuly]");
+        this.status_message.set("[Image generated correctly]");
       },
       (error) => {
         //

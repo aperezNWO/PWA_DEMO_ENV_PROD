@@ -206,7 +206,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
       //[X]
       this.DrawGrid();
       //
-      this.status_message.set(`[Graph reseted succesfully]`);
+      this.status_message.set(`[Graph reseted correctly]`);
   };
   // 
   _GetGraph():void
