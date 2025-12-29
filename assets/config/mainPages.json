@@ -3,7 +3,7 @@
         "log_name"   : "PAGE_ANGULAR_DEMO_INDEX",
         "page_name"  : "Welcome to [Angular Demo]",
         "pages"      : [
-          { "id": 1, "url" : "/PageUrlList"                                               , "text": "[FEATURES]" , "queryParams" : "PAGE_DEMOS_CARACTERISTICAS_INDEX"     },
+          { "id": 1, "url" : "/PageUrlList"                                               , "text": "[FEATURES]"        , "queryParams" : "PAGE_DEMOS_CARACTERISTICAS_INDEX"     },
           { "id": 2, "url" : "/PageUrlList"                                               , "text": "[LANGUAGES]"       , "queryParams" : "PAGE_DEMOS_LENGUAJES_INDEX"           },
           { "id": 3, "url" : "/PageUrlList"                                               , "text": "[CURRICULUM]"      , "queryParams" : "PAGE_DEMOS_CURRICULUM_INDEX"          }
         ]
@@ -123,7 +123,7 @@
               {
                   "id"  : 2,
                   "url" : "https://ng-bootstrap.github.io/#/components/table/examples#basic",
-                  "name": "ng-bootstrap"
+                  "name": "Angular Components - ng-bootstrap"
               }, 
               {
                   "id"  : 3,
@@ -133,17 +133,17 @@
               {
                   "id"  : 4,
                   "url" : "https://en.cppreference.com/w/",
-                  "name": "cppreference"
+                  "name": "C++ Reference"
               },
               {
                   "id"  : 5,
                   "url" : "https://www.learncpp.com/",
-                  "name": "learncpp"
+                  "name": "Learn CPP"
               },
               {
                   "id"  : 6,
                   "url" : "https://www.coursera.org/learn/analysis-of-algorithms",
-                  "name": "Coursera - Análisis de Algoritmos"
+                  "name": "Coursera - Algorithms"
               },
               {
                   "id"  : 7,
@@ -178,7 +178,7 @@
               {
                   "id"  : 13,
                   "url" : "https://w3.org/",
-                  "name": "w3c"
+                  "name": "W3C"
               },
               {
                   "id"  : 14,

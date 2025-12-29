@@ -194,10 +194,10 @@
    {
         "id"               : 16,
         "done"             : true,
-        "name"             : "queryParams",
+        "name"             : "QueryParams",
         "description"      : "URL param query extraction",
         "field_1"          : "Angular",
-        "field_2"          : "v17, ActivatedRoute, queryParams",
+        "field_2"          : "v17, ActivatedRoute, QueryParams",
         "field_3"          : "./#/FilesGenerationCSV?langName=CS",
         "field_4"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/cf7597c0522d46643f261edea429cb9131efd167/src/app/_modules/_Demos/_DemosFeatures/files-generation/files-generation-csv/files-generation-csv.component.ts#L119",
         "field_5"          : "https://angular.dev/api/router/ActivatedRoute?tab=description"  ,
