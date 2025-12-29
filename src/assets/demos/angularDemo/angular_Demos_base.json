@@ -122,9 +122,9 @@
     {
 		"id"               : 11,
         "done"             : true,
-        "name"             : "Games - Tic Tac Toe",
+        "name"             : "Games - Tic-Tac-Toe",
         "description"      : "Min Max Algorithm",
-        "field_1"          : "v17, Min Max Algorithm, Tic Tac Toe",
+        "field_1"          : "v17, Min Max Algorithm, Tic-Tac-Toe",
         "field_2"          : "./#/GamesTicTacToe",
         "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_engines/game.engine.ts",
         "field_4"          : "./#/GamesTicTacToe",
@@ -134,9 +134,9 @@
     {
 		"id"               : 12,
         "done"             : true,
-        "name"             : "Games - Tic Tac Toe - AI",
+        "name"             : "Games - Tic-Tac-Toe - AI",
         "description"      : "Genetic Algorithm",
-        "field_1"          : "v17, Neural Networks, Tic Tac Toe, A.I. Genetic Algorithm",
+        "field_1"          : "v17, Neural Networks, Tic-Tac-Toe, A.I. Genetic Algorithm",
         "field_2"          : "./#/GamesTicTacToeAI",
         "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/games/tic-tac-toe-board-ai/tic-tac-toe-board-ai.component.ts",
         "field_4"          : "./#/GamesTicTacToeAI",
