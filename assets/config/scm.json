@@ -296,7 +296,7 @@
     {
         "id"          : 21,
         "done"        : true,
-        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] (aperezNWO)",
+        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] - (aperezNWO)",
         "description" : "ENV_ONLINE_BACKEND",
         "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationCSV?langName=JAVA",
         "field_2"     : "[Repo]",
@@ -310,7 +310,7 @@
     {
         "id"          : 22,
         "done"        : true,
-        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] (aperezNWOGmail)",
+        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] - (aperezNWOGmail)",
         "description" : "ENV_ONLINE_BACKEND",
         "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationCSV?langName=JAVA",
         "field_2"     : "[Repo]",
@@ -324,7 +324,7 @@
         {
         "id"          : 23,
         "done"        : true,
-        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] (Exam70486)",
+        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] - (Exam70486)",
         "description" : "ENV_ONLINE_BACKEND",
         "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationCSV?langName=JAVA",
         "field_2"     : "[Repo]",
