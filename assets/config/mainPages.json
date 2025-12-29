@@ -329,12 +329,12 @@
       },
       {
         "log_name"   : "PAGE_GAMES_TIC_TAC_TOE",
-        "page_name"  : "[GAMES - TIC TAC TOE]",
+        "page_name"  : "[GAMES - TIC-TAC TOE]",
         "pages"      : []
       },
             {
         "log_name"   : "PAGE_GAMES_TIC_TAC_TOE_AI",
-        "page_name"  : "[GAMES - TIC TAC TOE - AI]",
+        "page_name"  : "[GAMES - TIC-TAC-TOE - AI]",
         "pages"      : []
       },
       {

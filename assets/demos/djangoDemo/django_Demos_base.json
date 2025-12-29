@@ -26,8 +26,8 @@
     {
 		"id"               : 3,
         "done"             : true,
-        "name"             : "[TIC TAC TOE GAME - A.I.]",
-        "description"      : "TIC TAC TOE GAME, A.I, Machine Learning, Tensorflow",
+        "name"             : "[TIC-TAC-TOE GAME - A.I.]",
+        "description"      : "TIC-TAC-TOE GAME, A.I, Machine Learning, Tensorflow",
         "field_1"          : "Django, Python, REST Service, Tensorflow",
         "field_2"          : "./#/GamesTicTacToeAI?langName=PY",
         "field_3"          : "https://github.com/aperezNWO/django_setup_linux/blob/38165d9766e6fa7f9ad84b4ef1133aae2fbea499/hello/views.py#L69",
