@@ -34,13 +34,13 @@
 			<thead>
 				<tr>
 					<th scope="col" sortable="id"             (sortevent)="onSort($event)"  >#</th>
-					<th scope="col" sortable="name"           (sortevent)="onSort($event)" >Nombre</th>
+					<th scope="col" sortable="name"           (sortevent)="onSort($event)"  >Name</th>
 					<th scope="col" sortable="field_2"        (sortevent)="onSort($event)"  >Demo</th>
 					<th scope="col" sortable="field_3"        (sortevent)="onSort($event)"  >Repo</th>
 					<th scope="col" sortable="field_4"        (sortevent)="onSort($event)"  >EndPoint</th>
-					<th scope="col" sortable="field_6"        (sortevent)="onSort($event)"  >Tema</th>
-					<th scope="col" sortable="field_1"        (sortevent)="onSort($event)"  >P. Clave</th>
-					<th scope="col" sortable="description"    (sortevent)="onSort($event)"  >Descripción</th>
+					<th scope="col" sortable="field_6"        (sortevent)="onSort($event)"  >Topic</th>
+					<th scope="col" sortable="field_1"        (sortevent)="onSort($event)"  >Keyword</th>
+					<th scope="col" sortable="description"    (sortevent)="onSort($event)"  >Description</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,7 +69,7 @@
 						</td>
 						<td>
 							<a ngb-highlight [href]="featurePage.field_6" target="_blank">
-								[Tema]
+								[Topic]
 							</a>
 						</td>
 						<td><ngb-highlight [result]="featurePage.field_1"               [term]="this.searchService.searchTerm" /></td>

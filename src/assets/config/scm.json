@@ -254,7 +254,49 @@
     {
         "id"          : 18,
         "done"        : true,
-        "name"        : "[SPRING BOOT - SQL QUERY DEMO - CSV] (aperezNWO)",
+        "name"        : "[CODESANDBOX - (aperezNWO) - (alejandro.perez.acosta@hotmail.com)] ",
+        "description" : "ENV_ONLINE_BACKEND",
+        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/",
+        "field_2"     : "[Repo]",
+        "field_3"     : "https://github.com/aperezNWO/",
+        "field_4"     : "[Hosting]",
+        "field_5"     : "https://codesandbox.io/",
+        "field_6"     : "[End Point]",
+        "field_7"     : "#",
+        "field_8"     : "89b4055c-ffe5-4da0-8fd3-9125c8821d91"
+    },
+    {
+        "id"          : 19,
+        "done"        : true,
+        "name"        : "[CODESANDBOX - (aperezNWOGmail) - (alejandro.perez.acosta@gmail.com)] ",
+        "description" : "ENV_ONLINE_BACKEND",
+        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/",
+        "field_2"     : "[Repo]",
+        "field_3"     : "https://github.com/aperezNWOGmail/",
+        "field_4"     : "[Hosting]",
+        "field_5"     : "https://codesandbox.io/",
+        "field_6"     : "[End Point]",
+        "field_7"     : "#",
+        "field_8"     : "f6d8158d-9f1b-4f6f-85a7-5df3c17910ba"
+    },
+        {
+        "id"          : 20,
+        "done"        : true,
+        "name"        : "[CODESANDBOX - (Exam70486) - (df149032@outlook.com)] ",
+        "description" : "ENV_ONLINE_BACKEND",
+        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/",
+        "field_2"     : "[Repo]",
+        "field_3"     : "https://github.com/Exam70486/",
+        "field_4"     : "[Hosting]",
+        "field_5"     : "https://codesandbox.io/",
+        "field_6"     : "[End Point]",
+        "field_7"     : "#",
+        "field_8"     : "7be32ee8-2dc8-4a60-be47-d3dead9a65f8"
+    },
+    {
+        "id"          : 21,
+        "done"        : true,
+        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] (aperezNWO)",
         "description" : "ENV_ONLINE_BACKEND",
         "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationCSV?langName=JAVA",
         "field_2"     : "[Repo]",
@@ -266,13 +308,13 @@
         "field_8"     : "a9bdbe4e-dc40-4ea6-8497-7668c13963ec"
     },
     {
-        "id"          : 19,
+        "id"          : 22,
         "done"        : true,
-        "name"        : "[SPRING BOOT - SQL QUERY DEMO - CSV] (aperezNWOGmail)",
+        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] (aperezNWOGmail)",
         "description" : "ENV_ONLINE_BACKEND",
         "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationCSV?langName=JAVA",
         "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/JAVA2_EE_SB_DEMO/blob/master/src/main/java/com/example/DAO/personasDAO.java",
+        "field_3"     : "https://github.com/aperezNWOGmail/JAVA2_EE_SB_DEMO/blob/master/src/main/java/com/example/DAO/personasDAO.java",
         "field_4"     : "[Hosting]",
         "field_5"     : "https://codesandbox.io/p/github/aperezNWOGmail/JAVA2_EE_SB_DEMO/master",
         "field_6"     : "[End Point]",
@@ -280,13 +322,13 @@
         "field_8"     : "247870ae-b812-420d-b259-8bff38067b30"
     },
         {
-        "id"          : 20,
+        "id"          : 23,
         "done"        : true,
-        "name"        : "[SPRING BOOT - SQL QUERY DEMO - CSV] (df149032)",
+        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] (Exam70486)",
         "description" : "ENV_ONLINE_BACKEND",
         "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationCSV?langName=JAVA",
         "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/JAVA2_EE_SB_DEMO/blob/master/src/main/java/com/example/DAO/personasDAO.java",
+        "field_3"     : "https://github.com/Exam70486/JAVA2_EE_SB_DEMO/blob/master/src/main/java/com/example/DAO/personasDAO.java",
         "field_4"     : "[Hosting]",
         "field_5"     : "https://codesandbox.io/p/github/Exam70486/JAVA2_EE_SB_DEMO/master",
         "field_6"     : "[End Point]",
@@ -294,32 +336,6 @@
         "field_8"     : "d6643535-13b8-48e4-a5f1-4e5894661a44"
     },
     {
-        "id"          : 20,
-        "done"        : true,
-        "name"        : "[SPRING BOOT - SQL QUERY DEMO - XLS]",
-        "description" : "ENV_ONLINE_BACKEND",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationXLS?langName=JAVA",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/JAVA2_EE_SB_DEMO/blob/master/src/main/java/com/example/DAO/AccessLogDAO.java",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://codesandbox.io/p/github/aperezNWOgmail/JAVA2_EE_SB_DEMO/master",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://3rkn5h-8080.csb.app/getAllLogs"
-    },
-    {
-        "id"          : 21,
-        "done"        : true,
-        "name"        : "[SPRING BOOT - DISTANCIA MAS CORTA]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/AlgorithmDijkstra?langName=JAVA",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/JAVA2_EE_SB_DEMO/blob/master/src/main/java/com/example/demo/AlgorithmManager.java",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://codesandbox.io/p/github/aperezNWOgmail/JAVA2_EE_SB_DEMO/master",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://3rkn5h-8080.csb.app/GenerateRandomVertex_SpringBoot"
-    },
-     {
         "id"          : 37,
         "done"        : true,
         "name"        : "[DJANGO / PYTHON - SQL QUERY DEMO - CSV]",
@@ -345,7 +361,7 @@
         "field_6"     : "[End Point]",
         "field_7"     : "https://n96q4t-8000.csb.app/getAllLogs?format=json"
     },
-      {
+    {
         "id"          : 28,
         "done"        : true,
         "name"        : "[.NET CORE - SWAGGER]",

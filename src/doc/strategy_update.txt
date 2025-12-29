@@ -590,7 +590,7 @@
  
  -- [_] SCM.
 
-<       -- [x] https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/PageUrlList?pageName=PAGE_DEMOS_MACHINE_LEARNING_INDEX
+       -- [x] https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/PageUrlList?pageName=PAGE_DEMOS_MACHINE_LEARNING_INDEX
 
                 -- [x] Add m.l. pending items. 
 
@@ -598,11 +598,9 @@
 
         -- [x] Delete Tailwind.
 
-        -- [_] CODESANDBOX DYNAMIC BACKEND REFERENCE.
-
         -- [_] deployment doc.
 
-        -- [_] Fix codesandbox data. Put 3 codesandbox accounts.
+        -- [_] Fix codesandbox data. Put 3 codesandbox accounts + root account.
 
         -- [_] ENV_ONLINE_HOSTING -> ENV_ONLINE_BACKEND.  
 
