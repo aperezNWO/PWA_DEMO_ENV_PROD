@@ -296,7 +296,7 @@
     {
         "id"          : 21,
         "done"        : true,
-        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] - (aperezNWO)",
+        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL | CSV | XLS | Charts}] - (aperezNWO)",
         "description" : "ENV_ONLINE_BACKEND",
         "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationCSV?langName=JAVA",
         "field_2"     : "[Repo]",
@@ -310,7 +310,7 @@
     {
         "id"          : 22,
         "done"        : true,
-        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] - (aperezNWOGmail)",
+        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL | CSV | XLS | Charts}] - (aperezNWOGmail)",
         "description" : "ENV_ONLINE_BACKEND",
         "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationCSV?langName=JAVA",
         "field_2"     : "[Repo]",
@@ -324,7 +324,7 @@
         {
         "id"          : 23,
         "done"        : true,
-        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL / CSV / XLS / Charts}] - (Exam70486)",
+        "name"        : "[CODESANDBOX - (SPRINGBOOT-JAVA) - {SQL | CSV | XLS | Charts}] - (Exam70486)",
         "description" : "ENV_ONLINE_BACKEND",
         "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationCSV?langName=JAVA",
         "field_2"     : "[Repo]",
@@ -338,7 +338,7 @@
     {
         "id"          : 37,
         "done"        : true,
-        "name"        : "[DJANGO / PYTHON - SQL QUERY DEMO - CSV]",
+        "name"        : "[DJANGO / PYTHON - {CSV | XLS}]",
         "description" : "ENV_ONLINE_HOSTING",
         "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationCSV?langName=PY",
         "field_2"     : "[Repo]",
@@ -351,7 +351,7 @@
     {
         "id"          : 38,
         "done"        : true,
-        "name"        : "[DJANGO / PYTHON - SQL QUERY DEMO - XLS]",
+        "name"        : "[DJANGO / PYTHON - {MACHINE LEARNING}]",
         "description" : "ENV_ONLINE_HOSTING",
         "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationXLS?langName=PY",
         "field_2"     : "[Repo]",
@@ -374,7 +374,7 @@
         "field_6"     : "[End Point]",
         "field_7"     : "https://angularwebapidemo.somee.com/swagger"
     },
-       {
+    {
         "id"          : 29,
         "done"        : true,
         "name"        : "[.NET CORE - SQL QUERY DEMO - CSV]",
@@ -388,97 +388,6 @@
         "field_7"     : "https://angularwebapidemo.somee.com/demos/GenerarInformeCSVJson"
     },
     {
-        "id"          : 30,
-        "done"        : true,
-        "name"        : "[.NET CORE - SQL QUERY DEMO - XLS]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationXLS?langName=CS",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/mcsdNetCoreBackup/blob/main/mcsd.Web/Controllers/DemosController.cs",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://www.somee.com",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://angularwebapidemo.somee.com/demos/GenerarInformeJson"
-    },
-    {
-        "id"          : 31,
-        "done"        : true,
-        "name"        : "[.NET CORE - GENERAR ARCHIVO PDF]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationPDF",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/mcsdNetCoreBackup/blob/main/mcsd.Web/Controllers/DemosController.cs",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://www.somee.com",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://angularwebapidemo.somee.com/demos/_GetPdf?subjectName=taty"
-    },
-    {
-        "id"          : 32,
-        "done"        : true,
-        "name"        : "[.NET CORE - ALGORITMO ORDENAMIENTO]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/AlgorithmSort/",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/mcsdNetCoreBackup/blob/main/mcsd.Web/Controllers/DemosController.cs",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://www.somee.com",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://angularwebapidemo.somee.com/demos/_GetSort?p_sortAlgoritm=2&p_unsortedList=16|1|20|15|12|8|19|6|11|14|23|5|2|10|9|13|24|7|22|18|0|17|3|21|4"
-    },
-    {
-        "id"          : 33,
-        "done"        : true,
-        "name"        : "[.NET CORE / C++ - ALGORITMO ORDENAMIENTO]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/AlgorithmSort/",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/CppBuilder01/blob/master/Project2/SortBenchMark.cpp",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://www.somee.com",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://angularwebapidemo.somee.com/demos/_GetSort_cpp?p_sortAlgoritm=2&p_unsortedList=16|1|20|15|12|8|19|6|11|14|23|5|2|10|9|13|24|7|22|18|0|17|3|21|4"
-    },
-    {
-        "id"          : 34,
-        "done"        : true,
-        "name"        : "[.NET CORE - DISTANCIA MAS CORTA]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/AlgorithmDijkstra?langName=CS",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/mcsdNetCoreBackup/blob/main/mcsd.Core.Library/Managers/AlgorithmManager.cs",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://www.somee.com",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://angularwebapidemo.somee.com/demos/GenerateRandomVertex?p_vertexSize=9&p_sourcePoint=0"
-    },
-    {
-        "id"          : 35,
-        "done"        : true,
-        "name"        : "[.NET CORE / C++ - DISTANCIA MAS CORTA]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/AlgorithmDijkstra?langName=CPP",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/CPP_GCC_ALGORITHM/blob/c42e537f50f39f9fe32144b27ac12604800e6e2b/src/include/Dijkstra.cpp#L398",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://www.somee.com",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://tensorflownetcore64.tryasp.net/GenerateRandomVertex_CPP?p_vertexSize=9&p_sourcePoint=0"
-    },
-    {
-        "id"          : 36,
-        "done"        : true,
-        "name"        : "[.NET CORE / C++ - FRACTAL]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FractalDemo",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/CPP_GCC_OPEN_CV/blob/4d162f3c80cf1ec28bbcf50321ff997a8fbc8efd/mingwin/OpenCvDll.cpp#L342",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://www.somee.com",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://tensorflownetcore64.tryasp.net/generatejuliaparams/?maxIterations=500&realPart=-0.4&imagPart=0.6"
-    },   
-    {
         "id"          : 22,
         "done"        : true,
         "name"        : "[NODE.JS - OCR DEMO]",
@@ -490,58 +399,6 @@
         "field_5"     : "https://codesandbox.io/p/github/aperezNWOgmail/cs_nodejs_ocr_/main",
         "field_6"     : "[End Point]",
         "field_7"     : "https://9tvpj7-3000.csb.app/upload"
-    },
-    {
-        "id"          : 23,
-        "done"        : true,
-        "name"        : "[NODE.JS - CHAT DEMO]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/Chat",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/cs_node_js_test_chat/blob/main/index.js",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://codesandbox.io/p/github/aperezNWOgmail/cs_node_js_test_chat/main",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://v3mf3v-3000.csb.app/"
-    },
-    {
-        "id"          : 24,
-        "done"        : true,
-        "name"        : "[NODE.JS - SUDOKU DEMO]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/GamesSudoku?langName=JS",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/CS_NodeJs/blob/main/modules/sudoku.js",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://codesandbox.io/p/github/aperezNWOgmail/CS_NodeJs/main",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://9rfn3t-4000.csb.app/Sudoku_Generate_NodeJS"
-    },
-    {
-        "id"          : 25,
-        "done"        : true,
-        "name"        : "[NODE.JS - SQL QUERY DEMO - CSV]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationCSV?langName=JS",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/CS_NodeJs/blob/main/modules/database.js",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://codesandbox.io/p/github/aperezNWOgmail/CS_NodeJs/main",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://9rfn3t-4000.csb.app/GenerarInformeCSVJson"
-    },
-    {
-        "id"          : 26,
-        "done"        : true,
-        "name"        : "[NODE.JS - SQL QUERY DEMO - XLS]",
-        "description" : "ENV_ONLINE_HOSTING",
-        "field_1"     : "https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/FilesGenerationXLS?langName=JS",
-        "field_2"     : "[Repo]",
-        "field_3"     : "https://github.com/aperezNWO/CS_NodeJs/blob/main/modules/database.js",
-        "field_4"     : "[Hosting]",
-        "field_5"     : "https://codesandbox.io/p/github/aperezNWOgmail/CS_NodeJs/main",
-        "field_6"     : "[End Point]",
-        "field_7"     : "https://9rfn3t-4000.csb.app/generarinformejson"
     },
     {
         "id"          : 27,
