@@ -2,7 +2,7 @@ import { HttpClient                     } from '@angular/common/http';
 import { Component, ViewChild           } from '@angular/core';
 import { ActivatedRoute                 } from '@angular/router';
 import { BaseComponent                  } from 'src/app/_components/base/base.component';
-import { PAGE_MISCELANEOUS_FRACTAL_DEMO } from 'src/app/_models/common';
+import { PAGE_MISCELANEOUS_FRACTAL_DEMO, PAGE_TITLE_LOG } from 'src/app/_models/common';
 import { BackendService                 } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                  } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { ComputerVisionService          } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
@@ -10,9 +10,15 @@ import { SpeechService                  } from 'src/app/_services/__Utils/Speech
 import { PdfService                     } from 'src/app/_services/__FileGeneration/pdf.service';
 
 @Component({
-  selector: 'app-juliaform',
-  templateUrl: './juliaform.component.html',
-  styleUrl: './juliaform.component.css'
+  selector    : 'app-juliaform',
+  templateUrl : './juliaform.component.html',
+  styleUrl    : './juliaform.component.css',
+  providers   : [
+    { 
+      provide : PAGE_TITLE_LOG, 
+      useValue: PAGE_MISCELANEOUS_FRACTAL_DEMO 
+    },
+  ]
 })
 export class FractalDemoComponent  extends BaseComponent {
   //

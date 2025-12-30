@@ -564,6 +564,10 @@
 
         -- [_] check repeated sound on title.
 
+        -- [_] tensorflow controller.
+
+-- [_] chat demo exception handling.
+
 -- [_] curriculum update.
 
         -- [x] typescript reference.
@@ -590,16 +594,22 @@
  
  -- [_] SCM.
 
-       -- [x] https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/PageUrlList?pageName=PAGE_DEMOS_MACHINE_LEARNING_INDEX
-
-                -- [x] Add m.l. pending items. 
-
         -- [x] fractal demo repo path fix.
 
         -- [x] Delete Tailwind.
 
+        -- [x] https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/PageUrlList?pageName=PAGE_DEMOS_MACHINE_LEARNING_INDEX
+
+                -- [x] Add m.l. pending items. 
+                
+                -- [x] TOPICS -> FREECODECAMP. 
+
         -- [_] deployment doc.
 
+               -- [_] BY CONTAINER / LANGUAGE.
+
+               -- [_] GIT HUB README.       
+ 
         -- [_] Fix codesandbox data. Put 3 codesandbox accounts + root account.
 
         -- [_] ENV_ONLINE_HOSTING -> ENV_ONLINE_BACKEND.  
@@ -608,4 +618,15 @@
 
  -- [_] .NET CORE FREE SPACE BUTTON.  
 
+ -- [_] base component.
+
+        -- [_] title.
+
+        -- [_] reference list.
+
+ -- [_] check .config links.
+
+        -- [_] chart demo.
+ 
+ 
 ////////////////////////////////////////////////////////////////////////////////

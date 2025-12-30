@@ -1,14 +1,12 @@
 <div class="content" align="center">
-    <div>
-        <h1>{{this.pageTitle}}</h1>
-    </div>
+    <app-base></app-base>
     <hr> 
     <div class="reference" align="right">
       <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
       <ul *ngIf="isListVisible" align="left" widdth="10px">
           <li> [Frontend]
             <ul>
-              <li><a routerLink="/GridParam"      [queryParams]="{ searchTerm: '5640c548-8aa6-4f15-bcf9-b10b8cb7fd0d' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }">[Angular]</a></li>
+              <li><a routerLink="/GridParam"             [queryParams]="{ searchTerm: '5640c548-8aa6-4f15-bcf9-b10b8cb7fd0d' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }">[Angular]</a></li>
             </ul>
           </li>
           <li>[Backend]

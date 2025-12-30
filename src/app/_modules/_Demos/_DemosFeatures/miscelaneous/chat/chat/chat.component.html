@@ -1,7 +1,5 @@
-<div class="content">
-        <div align="center">
-                <h1>{{ this.pageTitle }}</h1>
-        </div>
+<div class="content" align="center">
+        <app-base></app-base>
         <hr/>
         <div class="reference" align="right">
                 <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
@@ -56,7 +54,7 @@
         </div>
         <!-- MESSAGES / FIN    -->
         <hr>
-        <!-- FORMULARIO FIN -->
+        <!-- FORMULARIO FIN    -->
         <div align="right">
                 <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_MISELANEOUS_INDEX'}" >[Back to Menu]</a>
         </div>

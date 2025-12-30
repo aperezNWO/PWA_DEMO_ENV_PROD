@@ -1,19 +1,25 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild    } from '@angular/core';
-import { BackendService           } from 'src/app/_services/BackendService/backend.service';
-import { _languageName            } from 'src/app/_models/entity.model';
-import { BaseComponent            } from 'src/app/_components/base/base.component';
-import { NgxSignaturePadComponent } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';
-import { NgxSignatureOptions      } from '@eve-sama/ngx-signature-pad/lib/types/ngx-signature-pad';
-import { ActivatedRoute           } from '@angular/router';
-import { SpeechService            } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { ConfigService            } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { PAGE_MISCELANEOUS_OCR    } from 'src/app/_models/common';
-import { OCRService } from 'src/app/_services/__AI/OCRService/ocr.service';
+import { ActivatedRoute                                             } from '@angular/router';
+import { BackendService                                             } from 'src/app/_services/BackendService/backend.service';
+import { _languageName                                              } from 'src/app/_models/entity.model';
+import { BaseComponent                                              } from 'src/app/_components/base/base.component';
+import { SpeechService                                              } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ConfigService                                              } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { PAGE_MISCELANEOUS_OCR, PAGE_TITLE_LOG                      } from 'src/app/_models/common';
+import { OCRService                                                 } from 'src/app/_services/__AI/OCRService/ocr.service';
+import { NgxSignaturePadComponent                                   } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';
+import { NgxSignatureOptions                                        } from '@eve-sama/ngx-signature-pad/lib/types/ngx-signature-pad';
 
 @Component({
-  selector: 'app-ocr-photo-capture',
-  templateUrl: './ocr-photo-capture.component.html',
-  styleUrl: './ocr-photo-capture.component.css'
+  selector    : 'app-ocr-photo-capture',
+  templateUrl : './ocr-photo-capture.component.html',
+  styleUrl    : './ocr-photo-capture.component.css',
+  providers   : [
+    { 
+      provide : PAGE_TITLE_LOG, 
+      useValue: PAGE_MISCELANEOUS_OCR 
+    },
+  ]
 })
 export class OcrPhotoCaptureComponent extends BaseComponent implements AfterViewInit , OnInit {
   /** Catch object, call functions via instance object */
