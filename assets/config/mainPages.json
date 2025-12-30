@@ -184,6 +184,16 @@
                   "id"  : 14,
                   "url" : "https://algorithm-visualizer.org/",
                   "name" : "Algorithm Visualizer"
+              },
+              {
+                  "id"   : 15,
+                  "url"  : "https://en.wikipedia.org/wiki/SOLID",
+                  "name" : "Solid Principles"
+              },
+              {
+                  "id"   : 16,
+                  "url"  : "https://learn.microsoft.com/en-us/azure/architecture/",
+                  "name" : "Microsoft Pattern and Practices"
               }
          ]
       },

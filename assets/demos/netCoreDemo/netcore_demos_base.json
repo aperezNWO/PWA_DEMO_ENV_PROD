@@ -78,9 +78,9 @@
         "description"      : "Generate files - Chart",
         "field_1"          : ".net core, restful, chart.js",
         "field_2"          : "./#/Chart",
-        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/files-generation/chart/chart.component.ts",
+        "field_3"          : "https://github.com/aperezNWO/ASP_NET_CORE_CSHARP_DEMO/blob/c82bc7d07a491f3292161be872da3d7ea0433830/mcsd.Service/mcsd.Service/Controllers/DemosController.cs#L629",
         "field_4"          : "https://angularwebapidemo.somee.com/demos/GetConsultaLogStatPost",
-        "field_6"          : "https://www.chartjs.org/",
+        "field_6"          : "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-10.0",
         "field_10"         : "0b0b083f-bda7-44b8-9922-2365317ee934"
 	}
 ]  
