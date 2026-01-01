@@ -9,9 +9,9 @@ import { LogEntry, SearchCriteria, _languageName       } from 'src/app/_models/e
 import { BackendService                                } from 'src/app/_services/BackendService/backend.service';
 import { SpeechService                                 } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                                 } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { PAGE_TITLE_LOG,PAGE_FILE_GENERATION_XLS       } from 'src/app/_models/common';
-import { CustomErrorHandler                            } from 'src/app/app.component';
-import { FilesGenerationBaseComponent                  } from '../files-generation-base/files-generation-base/files-generation-base.component';
+import { PAGE_TITLE_LOG,PAGE_FILE_GENERATION_XLS, PAGE_TITLE_NO_SOUND       } from 'src/app/_models/common';
+import { CustomErrorHandler                                                 } from 'src/app/app.component';
+import { FilesGenerationBaseComponent                                       } from '../files-generation-base/files-generation-base/files-generation-base.component';
 //
 @Component({
   selector     : 'app-files-generation-xls',
@@ -20,7 +20,7 @@ import { FilesGenerationBaseComponent                  } from '../files-generati
   providers    : [
           { 
             provide : PAGE_TITLE_LOG, 
-            useValue: PAGE_FILE_GENERATION_XLS 
+            useValue: PAGE_TITLE_NO_SOUND 
           },
   ]
 })

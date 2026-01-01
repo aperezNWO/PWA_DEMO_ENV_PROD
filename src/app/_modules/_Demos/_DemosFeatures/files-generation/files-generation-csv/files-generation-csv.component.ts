@@ -9,8 +9,8 @@ import { BackendService                                } from 'src/app/_services
 import { CustomErrorHandler                            } from 'src/app/app.component';
 import { SpeechService                                 } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                                 } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { PAGE_TITLE_LOG,PAGE_FILE_GENERATION_CSV       } from 'src/app/_models/common';
-import { FilesGenerationBaseComponent                  } from '../files-generation-base/files-generation-base/files-generation-base.component';
+import { PAGE_TITLE_LOG,PAGE_TITLE_NO_SOUND,PAGE_FILE_GENERATION_CSV   } from 'src/app/_models/common';
+import { FilesGenerationBaseComponent                                  } from '../files-generation-base/files-generation-base/files-generation-base.component';
 //
 @Component({
   selector: 'app-files-generation-csv',
@@ -19,7 +19,7 @@ import { FilesGenerationBaseComponent                  } from '../files-generati
   providers : [
           { 
             provide : PAGE_TITLE_LOG, 
-            useValue: PAGE_FILE_GENERATION_CSV 
+            useValue: PAGE_TITLE_NO_SOUND 
           },
   ]
 })

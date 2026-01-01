@@ -14,6 +14,8 @@ export const PAGE_NAME       = new InjectionToken<string>('PAGE_NAME');
 
 ////////////////////////////////////////////////////////////////////////////
 
+export const PAGE_TITLE_NO_SOUND                = "PAGE_TITLE_NO_SOUND";
+
 export const PAGE_ANGULAR_DEMO_INDEX            = "PAGE_ANGULAR_DEMO_INDEX";
 
 export const PAGE_ABOUT_INDEX                   = "PAGE_ABOUT_INDEX";

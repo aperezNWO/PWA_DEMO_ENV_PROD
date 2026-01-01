@@ -44,6 +44,11 @@ export class BaseComponent {
       // Define an effect to react to changes in the signal
       effect(() => {
         if (this.status_message())
+            //
+            console.log(`status_message : ${this.status_message()} `);
+            //
+            //console.log(`PAGE_TITLE_LOG : ${PAGE_TITLE_LOG.toString()} `);
+            //
             this.speechService.speakTextCustom(this.status_message());
       });
       //      
