@@ -622,6 +622,8 @@
 
         -- [_] Monster ASP.NET list.         
 
+        -- [_] Grid Master / Detail.         
+
  -- [_] .NET CORE FREE SPACE BUTTON.  
 
  -- [_] base component.
