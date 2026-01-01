@@ -616,6 +616,12 @@
 
         -- [_] SCM TRANSLATE TO ENGLISH.  
 
+        -- [_] DB LIST.
+
+        -- [_] Azure devops list.
+
+        -- [_] Monster ASP.NET list.         
+
  -- [_] .NET CORE FREE SPACE BUTTON.  
 
  -- [_] base component.
