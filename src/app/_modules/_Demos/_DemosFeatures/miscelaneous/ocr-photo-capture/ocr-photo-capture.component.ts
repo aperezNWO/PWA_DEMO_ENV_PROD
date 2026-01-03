@@ -5,7 +5,7 @@ import { _languageName                                              } from 'src/
 import { BaseComponent                                              } from 'src/app/_components/base/base.component';
 import { SpeechService                                              } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                                              } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { PAGE_MISCELANEOUS_OCR, PAGE_TITLE_LOG                      } from 'src/app/_models/common';
+import { PAGE_MISCELANEOUS_OCR, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
 import { OCRService                                                 } from 'src/app/_services/__AI/OCRService/ocr.service';
 import { NgxSignaturePadComponent                                   } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';
 import { NgxSignatureOptions                                        } from '@eve-sama/ngx-signature-pad/lib/types/ngx-signature-pad';
@@ -74,7 +74,7 @@ export class OcrPhotoCaptureComponent extends BaseComponent implements AfterView
             backendService,
             route,
             speechService,
-            PAGE_MISCELANEOUS_OCR)
+            PAGE_TITLE_NO_SOUND)
   }
   //
   ngOnInit(): void {

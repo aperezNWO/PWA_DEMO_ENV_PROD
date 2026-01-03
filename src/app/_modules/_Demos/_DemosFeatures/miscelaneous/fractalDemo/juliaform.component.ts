@@ -2,7 +2,7 @@ import { HttpClient                     } from '@angular/common/http';
 import { Component, ViewChild           } from '@angular/core';
 import { ActivatedRoute                 } from '@angular/router';
 import { BaseComponent                  } from 'src/app/_components/base/base.component';
-import { PAGE_MISCELANEOUS_FRACTAL_DEMO, PAGE_TITLE_LOG } from 'src/app/_models/common';
+import { PAGE_MISCELANEOUS_FRACTAL_DEMO, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
 import { BackendService                 } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                  } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { ComputerVisionService          } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
@@ -44,7 +44,7 @@ export class FractalDemoComponent  extends BaseComponent {
             backendService,
             route,
             speechService,
-            PAGE_MISCELANEOUS_FRACTAL_DEMO);
+            PAGE_TITLE_NO_SOUND);
   }
   // 
   onSubmit() {

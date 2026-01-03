@@ -47,17 +47,20 @@ export class BaseComponent {
             //
             console.log(`status_message : ${this.status_message()} `);
             //
-            //console.log(`PAGE_TITLE_LOG : ${PAGE_TITLE_LOG.toString()} `);
-            //
             this.speechService.speakTextCustom(this.status_message());
       });
       //      
       this.configService._loadMainPages().then( ()=> 
       {
             //
+            if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].page_name === null)
+              return;
+            //
             this.pageTitle = _environment.mainPageListDictionary[PAGE_TITLE_LOG].page_name;
             //
             this.speechService.speakTextCustom(this.pageTitle,"en-US");
+            //
+            console.log(`PAGE_TITLE_LOG : ${PAGE_TITLE_LOG.toString()} `);
             //
             this.backendService.SetLog(this._pageTitle,this.PAGE_TITLE_LOG);
             //

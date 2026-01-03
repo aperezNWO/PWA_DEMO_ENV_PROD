@@ -2,9 +2,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatePipe                     } from '@angular/common';
 import { NgForm                       } from '@angular/forms'
-import { ActivatedRoute               } from '@angular/router';;
-import { BaseComponent                                } from 'src/app/_components/base/base.component';
-import { PAGE_MISCELANEOUS_CHAT, PAGE_TITLE_LOG       } from 'src/app/_models/common';
+import { ActivatedRoute               } from '@angular/router';
+import { BaseComponent                                                     } from 'src/app/_components/base/base.component';
+import { PAGE_MISCELANEOUS_CHAT, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND       } from 'src/app/_models/common';
 import { BackendService                               } from 'src/app/_services/BackendService/backend.service';
 import { SpeechService                                } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                                } from 'src/app/_services/__Utils/ConfigService/config.service';
@@ -40,7 +40,7 @@ export class ChatComponent extends BaseComponent implements OnInit  {
             backendService,
             route,
             speechService,
-            PAGE_MISCELANEOUS_CHAT);
+            PAGE_TITLE_NO_SOUND);
 
   }
   ngOnInit() {
