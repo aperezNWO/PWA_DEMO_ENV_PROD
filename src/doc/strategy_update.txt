@@ -566,6 +566,16 @@
 
         -- [_] tensorflow controller.
 
+ -- [_] architecture overhauling.
+
+        -- [_] jwt and security.
+
+        -- [_] solid principles.
+
+ -- [_] check .config links.
+
+        -- [x] chart demo.
+ 
 -- [_] chat demo exception handling.
 
 -- [_] curriculum update.
@@ -635,10 +645,5 @@
         -- [_] error: double sound on title.
  
         -- [_] reference list.
-
- -- [_] check .config links.
-
-        -- [_] chart demo.
- 
  
 ////////////////////////////////////////////////////////////////////////////////
