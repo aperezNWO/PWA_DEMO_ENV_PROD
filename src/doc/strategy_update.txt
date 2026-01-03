@@ -597,8 +597,6 @@
         -- [_] .NET dllimport.
 
         -- [_] c++ constexpr.
-
- -- [_] TRANSLATE FORMS TO ENGLISH.  
  
  -- [_] TRANSLATE DATABASE FIELDS TO ENGLISH.      
  
@@ -640,10 +638,14 @@
 
  -- [_] base component.
 
-        -- [_] title.
+        -- [x] title.
 
-        -- [_] error: double sound on title.
+        -- [x] error: double sound on title.
  
         -- [_] reference list.
  
+  -- [_] TRANSLATE FORMS TO ENGLISH.  
+
+         -- [_] correct text "miscellaneous".
+
 ////////////////////////////////////////////////////////////////////////////////
