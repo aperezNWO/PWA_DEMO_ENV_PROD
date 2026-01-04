@@ -313,7 +313,7 @@ export class AlgorithmSortComponent extends BaseComponent implements OnInit, Aft
             //
             this.mensajes_2.nativeElement.innerHTML = _sortedArrayDecoded;
             //
-            this.status_message.set("LIST HAST BEEN SORTED CORRECTLY");
+            this.status_message.set("LIST HAS BEEN SORTED CORRECTLY");
             //
             this.GetSortLabel     = "[SORT]";
             //

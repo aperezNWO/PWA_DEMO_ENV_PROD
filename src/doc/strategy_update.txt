@@ -654,4 +654,8 @@
 
          -- [x] correct text "miscellaneous","manus","tictactoe".
 
+         -- [_] chart pdf wait message.
+
+         -- [_] missing status messages.
+     
 ////////////////////////////////////////////////////////////////////////////////

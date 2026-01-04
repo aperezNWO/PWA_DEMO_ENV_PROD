@@ -183,9 +183,9 @@ onTempChange(event: Event): void {
     this.temperature = parseFloat(input.value);
   }
 }
-
-  getCurrentWinner(): string {
-    const board = this.gameHistory[this.currentStep];
+getCurrentWinner(): string {
+    const _speechService = this.speechService;
+    const board          = this.gameHistory[this.currentStep];
     const wins = [
       [0,1,2], [3,4,5], [6,7,8],
       [0,3,6], [1,4,7], [2,5,8],
@@ -194,12 +194,15 @@ onTempChange(event: Event): void {
 
     for (const [a,b,c] of wins) {
       if (board[a] !== 0 && board[a] === board[b] && board[b] === board[c]) {
-        return board[a] === 1 ? 'X' : 'O';
+        let winner    = board[a] === 1 ? 'X' : 'O'; 
+        return winner;
       }
     }
 
     // Draw?
-    if (board.every(cell => cell !== 0)) return 'Draw';
+    if (board.every(cell => cell !== 0)) {
+        return 'Draw';
+    } 
 
     return 'In Progress';
   }
