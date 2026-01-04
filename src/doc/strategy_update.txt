@@ -562,9 +562,13 @@
 
         -- [x] Base Service.
 
-        -- [_] check repeated sound on title.
+        -- [x] check repeated sound on title.
 
-        -- [_] tensorflow controller.
+        -- [x] tensorflow controller.
+
+        -- [_] springboot self playing tictactoe.
+
+        -- [_] django self playing tictactoe.
 
  -- [_] architecture overhauling.
 
@@ -648,6 +652,6 @@
  
   -- [_] TRANSLATE FORMS TO ENGLISH.  
 
-         -- [_] correct text "miscellaneous".
+         -- [_] correct text "miscellaneous","manus","tictactoe".
 
 ////////////////////////////////////////////////////////////////////////////////
