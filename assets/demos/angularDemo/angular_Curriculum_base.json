@@ -227,7 +227,7 @@
         "field_5"          : "https://v17.angular.io/guide/comparing-observables"  ,
         "field_10"         : "7950b0e2-5056-493d-9175-e7397c61d529"
     },
-       {
+    {
         "id"               : 19,
         "done"             : true,
         "name"             : "ng bootstrap table",
@@ -238,5 +238,17 @@
         "field_4"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/06b753e4729db26cfd0df8877bf0304304e5ad3b/src/app/_modules/about/index/index.component.html#L36",
         "field_5"          : "https://ng-bootstrap.github.io/#/components/table/examples#basic"  ,
         "field_10"         : "0e78f392-b15e-4da6-beb3-3beab76bed6c"
-    }       
+    },
+    {
+        "id"               : 20,
+        "done"             : true,
+        "name"             : "Title Service",
+        "description"      : "Title Service",
+        "field_1"          : "Angular",
+        "field_2"          : "v17, Title",
+        "field_3"          : "./#/",
+        "field_4"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PUBLIC/blob/124e474ca1f21ad27277fa6c0bc2c4335af3d07a/src/app/app.component.ts#L63",
+        "field_5"          : "https://v17.angular.io/api/platform-browser/Title",
+        "field_10"         : "f86c04e6-8cf7-41b1-b911-3c6fd69cbc03"
+    }         
 ]
