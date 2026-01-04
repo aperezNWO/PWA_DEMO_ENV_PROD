@@ -652,6 +652,6 @@
  
   -- [_] TRANSLATE FORMS TO ENGLISH.  
 
-         -- [_] correct text "miscellaneous","manus","tictactoe".
+         -- [x] correct text "miscellaneous","manus","tictactoe".
 
 ////////////////////////////////////////////////////////////////////////////////
