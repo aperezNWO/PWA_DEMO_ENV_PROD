@@ -92,7 +92,7 @@
               {
                   "id"   : 12,
                   "url"  : "https://manus.im/",
-                  "text" : "Manus"
+                  "text" : "Manus (META)"
               },
               {
                   "id"   : 13,
@@ -279,39 +279,39 @@
         ]
       },
       {
-        "log_name"   : "PAGE_DEMOS_MISELANEOUS_INDEX",
-        "page_name"  : "[DEMOS - MISCELANEOUS]",
+        "log_name"   : "PAGE_DEMOS_MISCELLANEOUS_INDEX",
+        "page_name"  : "[DEMOS - MISCELLANEOUS]",
         "pages"      : [
-            { "id": 1, "url" : "/OcrPhotoCapture"       , "text": "[MISCELANEOUS - OCR]"               },
-            { "id": 2, "url" : "/ComputerVision"        , "text": "[MISCELANEOUS - COMPUTER VISION]"   },
-            { "id": 3, "url" : "/Chat"                  , "text": "[MISCELANEOUS - CHAT]"              },
-            { "id": 4, "url" : "/MathParsing"           , "text": "[MISCELANEOUS - MATH PARSING]"      },
-            { "id": 5, "url" : "/FractalDemo"           , "text": "[MISCELANEOUS - FRACTAL DEMO]"      }
+            { "id": 1, "url" : "/OcrPhotoCapture"       , "text": "[MISCELLANEOUS - OCR]"               },
+            { "id": 2, "url" : "/ComputerVision"        , "text": "[MISCELLANEOUS - COMPUTER VISION]"   },
+            { "id": 3, "url" : "/Chat"                  , "text": "[MISCELLANEOUS - CHAT]"              },
+            { "id": 4, "url" : "/MathParsing"           , "text": "[MISCELLANEOUS - MATH PARSING]"      },
+            { "id": 5, "url" : "/FractalDemo"           , "text": "[MISCELLANEOUS - FRACTAL DEMO]"      }
           ]
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_COMPUTER_VISION",
-        "page_name"  : "[MISELANEOUS - COMPUTER VISION]",
+        "page_name"  : "[MISCELLANEOUS - COMPUTER VISION]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_MATH_PARSING",
-        "page_name"  : "[MISCELANEOUS - MATH PARSING]",
+        "page_name"  : "[MISCELLANEOUS - MATH PARSING]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_CHAT",
-        "page_name"  : "[MISCELANEOUS - CHAT]",
+        "page_name"  : "[MISCELLANEOUS - CHAT]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_OCR",
-        "page_name"  : "[MISCELANEOUS - OCR]",
+        "page_name"  : "[MISCELLANEOUS - OCR]",
         "pages"      : []
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_FRACTAL_DEMO",
-        "page_name"  : "[MISCELANEOUS - FRACTAL DEMO]",
+        "page_name"  : "[MISCELLANEOUS - FRACTAL DEMO]",
         "pages"      : []
       },
       {
@@ -319,8 +319,8 @@
         "page_name"  : "[DEMOS - GAMES]",
         "pages"      : [
           { "id": 1, "url" : "/GamesSudoku"            , "text": "[GAMES - SUDOKU]"           },
-          { "id": 2, "url" : "/GamesTicTacToe"         , "text": "[GAMES - TICTACTOE]"        },
-          { "id": 3, "url" : "/GamesTicTacToeAI"       , "text": "[GAMES - TICTACTOE - AI]"   },
+          { "id": 2, "url" : "/GamesTicTacToe"         , "text": "[GAMES - TIC-TAC-TOE]"      },
+          { "id": 3, "url" : "/GamesTicTacToeAI"       , "text": "[GAMES - TIC-TAC-TOE - AI]" },
           { "id": 4, "url" : "/GamesHanoiAuto"         , "text": "[GAMES - HANOI 2d]"         },
           { "id": 5, "url" : "/GamesHanoi3d"           , "text": "[GAMES - HANOI 3d]"         },
           { "id": 6, "url" : "/GamesTetris"            , "text": "[GAMES - TETRIS]"           },
@@ -339,7 +339,7 @@
       },
       {
         "log_name"   : "PAGE_GAMES_TIC_TAC_TOE",
-        "page_name"  : "[GAMES - TIC-TAC TOE]",
+        "page_name"  : "[GAMES - TIC-TAC-TOE]",
         "pages"      : []
       },
             {
@@ -445,7 +445,7 @@
         "log_name"   : "PAGE_DEMOS_CARACTERISTICAS_INDEX",
         "page_name"  : "[DEMOS - FEATURES]",
         "pages"      : [
-          { "id": 1, "url" : "/PageUrlList"             , "text": "[MISCELANEOUS]"                    , "queryParams" : "PAGE_DEMOS_MISELANEOUS_INDEX"      },
+          { "id": 1, "url" : "/PageUrlList"             , "text": "[MISCELLANEOUS]"                    , "queryParams" : "PAGE_DEMOS_MISCELLANEOUS_INDEX"    },
           { "id": 2, "url" : "/PageUrlList"             , "text": "[GAMES]"                           , "queryParams" : "PAGE_DEMOS_GAMES_INDEX"            },
           { "id": 3, "url" : "/PageUrlList"             , "text": "[ALGORITHMS]"                      , "queryParams" : "PAGE_ALGORITMOS_INDEX"             },
           { "id": 4, "url" : "/PageUrlList"             , "text": "[FILE GENERATION]"                 , "queryParams" : "PAGE_DEMOS_FILE_GENREATION_INDEX"  },     
