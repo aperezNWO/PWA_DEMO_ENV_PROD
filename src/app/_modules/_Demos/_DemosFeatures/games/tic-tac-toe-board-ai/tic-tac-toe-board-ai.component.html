@@ -88,7 +88,7 @@
             <!-- Game Info -->
             <div class="game-info" *ngIf="!loading && gameHistory.length > 0">
                 <p><strong>Step {{ currentStep }} / {{ gameHistory.length - 1 }}</strong></p>
-                <p>Winner: <strong>{{ getCurrentWinner() }}</strong></p>
+                <p><strong>{{ this.winner }}</strong></p>
             </div>
       </div>
        <!-- TABLERO / FIN    -->

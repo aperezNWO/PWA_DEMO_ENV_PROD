@@ -4,11 +4,12 @@ import { ChartData, ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective                       } from 'ng2-charts';
 import { BaseComponent                            } from 'src/app/_components/base/base.component';
 import { PAGE_MACHINE_LEARNING_LINEAR_REGRESSION  } from 'src/app/_models/common';
-import { _languageName } from 'src/app/_models/entity.model';
+import { _languageName                            } from 'src/app/_models/entity.model';
 import { BackendService                           } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                            } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { TensorFlowService, PredictionResponse     } from 'src/app/_services/__AI/TensorflowService/tensor-flow.service';
+import { TensorFlowService, PredictionResponse    } from 'src/app/_services/__AI/TensorflowService/tensor-flow.service';
 import { SpeechService                            } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-linear-regression',
@@ -100,7 +101,8 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
                       public  override route            : ActivatedRoute,
                       public  override speechService    : SpeechService,
                       public  override backendService   : BackendService,
-                      public  predictService            : TensorFlowService 
+                      public  predictService            : TensorFlowService,
+                      public  decimalPipe               : DecimalPipe
                ) 
     { 
           //
@@ -176,25 +178,33 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
   }
   //
   predict(): void {
+    //
     if (this.inputMissionNumber === null || this.inputMissionNumber < 1) {
       this.errorMessage     = 'Please enter a valid mission number (1 or higher).';
       this.predictionResult = null;
       return;
     }
-
+    //
     this.errorMessage = null;
     this.isLoading    = true;
 
+    // C++
     if (this.linearRegressionEngine == 0)
     {
         this.predictService.predictTime_netcore_cpp(this.inputMissionNumber).subscribe({
             next: (response) => {
-              this.predictionResult = response;
+              //
+              this.predictionResult            = response;
+              let predicted_total_time_hours   = this.decimalPipe.transform(response.predicted_total_time_hours, '1.2-2' );
+              let predicted_duration_days      = this.decimalPipe.transform(response.predicted_duration_days   , '1.2-2' );
+              this.status_message.set(`Input Mission Number : ${response.input_mission_number}, Predicted Total Time : ${predicted_total_time_hours} Hours,  Predicted Duration :${predicted_duration_days} Days `);
+              //
               this.updateChart(response.input_mission_number, response.predicted_total_time_hours);
             },
             error: (error) => {
               console.error('API Error:', error);
               this.errorMessage = `Error calling API: ${error.message || 'Unknown error'}`;
+               this.status_message.set(this.errorMessage);
               this.predictionResult = null;
             },
             complete: () => {
@@ -202,17 +212,24 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
             }
         });
     }
-
+    
+    // PYTHON
     if (this.linearRegressionEngine == 1)
     {
         this.predictService.predictTime_tensorflow_python(this.inputMissionNumber).subscribe({
             next: (response) => {
+              //
               this.predictionResult = response;
+              let predicted_total_time_hours   = this.decimalPipe.transform(response.predicted_total_time_hours, '1.2-2' );
+              let predicted_duration_days      = this.decimalPipe.transform(response.predicted_duration_days   , '1.2-2' );
+              this.status_message.set(`Input Mission Number : ${response.input_mission_number}, Predicted Total Time : ${predicted_total_time_hours} Hours,  Predicted Duration :${predicted_duration_days} Days `);
+              //  
               this.updateChart(response.input_mission_number, response.predicted_total_time_hours);
             },
             error: (error) => {
               console.error('API Error:', error);
               this.errorMessage     = `Error calling API: ${error.message || 'Unknown error'}`;
+              this.status_message.set(this.errorMessage);
               this.predictionResult = null;
               this.isLoading        = false;
             },

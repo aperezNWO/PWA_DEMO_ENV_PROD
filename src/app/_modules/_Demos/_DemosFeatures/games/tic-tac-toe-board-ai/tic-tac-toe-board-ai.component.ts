@@ -26,6 +26,7 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
   //
   gameHistory: number[][] = [];
   currentStep  = 0;
+  winner       = 'In Progress';
   loading      = true;
   error        = '';
   aiMode       = 3; 
@@ -114,6 +115,7 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
     this.loading     = true;
     this.error       = '';
     this.currentStep = 0;
+    this.winner      = 'In Progress';
     //
     if (this.animationInterval) clearInterval(this.animationInterval);
     //
@@ -145,9 +147,11 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
 
   animateGame() {
     this.currentStep = 0;
+    this.winner      = 'In Progress';
     this.animationInterval = setInterval(() => {
       if (this.currentStep < this.gameHistory.length - 1) {
         this.currentStep++;
+        this.getCurrentWinner();
       } else {
         clearInterval(this.animationInterval);
       }
@@ -194,17 +198,21 @@ getCurrentWinner(): string {
 
     for (const [a,b,c] of wins) {
       if (board[a] !== 0 && board[a] === board[b] && board[b] === board[c]) {
-        let winner    = board[a] === 1 ? 'X' : 'O'; 
-        return winner;
+        this.winner    = `Winner : ${(board[a] === 1 ? 'X' : 'O')}`; 
+        this.status_message.set(this.winner);
+        return this.winner;
       }
     }
 
     // Draw?
     if (board.every(cell => cell !== 0)) {
-        return 'Draw';
+        this.winner = 'Winner: Draw';
+        this.status_message.set(this.winner);
+        return this.winner;
     } 
 
-    return 'In Progress';
+    //
+    return this.winner;
   }
 }
 
