@@ -415,7 +415,11 @@
       {
         "log_name"   : "PAGE_ALGORITMOS_COLISION",
         "page_name"  : "[ALGORITHMS - COLISSION]",
-        "pages"      : []
+        "pages"      : [
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+          { "id": 2, "url" : "/#/"           , "text": "[Libraries]"   },
+          { "id": 3, "url" : "/#/"           , "text": "[Topics]"      }
+        ]
       },
       {
         "log_name"   : "PAGE_ALGORITMOS_DIJKSTRA",
