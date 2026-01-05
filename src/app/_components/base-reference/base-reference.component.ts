@@ -64,8 +64,12 @@ export class BaseReferenceComponent {
             //
             this.backendService.SetLog(this._pageTitle,this.PAGE_TITLE_LOG);
             //
-            if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages)
+            if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages){
+                 //
                  this._pages    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages;
+                 //
+                 console.log(`PAGES : ${JSON.stringify(this._pages)}`);
+            }
       });
   }
   /////////////////////////////////////////////////////////

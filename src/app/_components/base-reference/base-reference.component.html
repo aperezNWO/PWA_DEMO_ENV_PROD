@@ -4,6 +4,15 @@
 <hr>
 <div class="reference" align="right">
         <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
+        <div *ngIf="isListVisible"  align="left" widdth="10px">
+              <ul *ngFor="let page of this._pages">
+                  <li>
+                    <!--<a [routerLink]="[page.url]" [queryParams]="{pageName: page.queryParams}">{{page.text}}</a>-->
+                       {{page.text}}
+                  </li>
+              </ul>
+        </div>
+        <hr>
         <ul *ngIf="isListVisible" align="left" widdth="10px">
             <li> [Frontend]
               <ul>
