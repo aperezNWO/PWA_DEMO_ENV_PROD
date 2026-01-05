@@ -1,26 +1,6 @@
 <div align="center">
-    <h1>{{ this.pageTitle }}</h1>
-    <hr>
-    <div class="reference" align="right">
-        <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
-        <ul *ngIf="isListVisible" align="left" widdth="10px">
-            <li> [Frontend]
-              <ul>
-                <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: '60669d7b-0380-4756-8f71-7286a4324228' , pageName: 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }">[Angular]</a></li>
-              </ul>
-            </li>
-            <li>[Libraries]
-                <ul>
-                  <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API" target="_blank">[HTML Canvas]</a></li>
-                </ul>
-            </li>
-            <li>[Topics]
-                <ul>
-                  <li><a href="https://en.wikipedia.org/wiki/Collision" target="_blank">[Colisión]</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>   
+    <app-base-reference></app-base-reference>
+  
     <hr>
     <canvas #ballCanvas width="300" height="300"></canvas>
     <hr>
