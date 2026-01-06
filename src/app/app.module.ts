@@ -121,7 +121,7 @@ export class CustomErrorHandler implements ErrorHandler {
     handleError(_error: Error): void 
     { 
       // 
-      console.warn("[CUSTOM ERROR HANDLING]:\n" + _error); 
+      console.error("[CUSTOM ERROR HANDLING]:\n" + _error); 
       //
       let logType : LogType = LogType.Error
       //

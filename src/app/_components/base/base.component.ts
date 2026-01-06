@@ -52,20 +52,27 @@ export class BaseComponent {
       //      
       this.configService._loadMainPages().then( ()=> 
       {
-            //
-            if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].page_name === null)
-              return;
-            //
-            this.pageTitle = _environment.mainPageListDictionary[PAGE_TITLE_LOG].page_name;
-            //
-            this.speechService.speakTextCustom(this.pageTitle,"en-US");
-            //
-            console.log(`PAGE_TITLE_LOG : ${PAGE_TITLE_LOG.toString()} `);
-            //
-            this.backendService.SetLog(this._pageTitle,this.PAGE_TITLE_LOG);
-            //
-            if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages)
-                 this._pages    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages;
+            const pageData = _environment.mainPageListDictionary?.[PAGE_TITLE_LOG];
+            const pageName = pageData?.page_name;
+
+            if (pageName && typeof pageName === 'string') {
+              
+                //
+                this.pageTitle = pageName;
+                this.speechService.speakTextCustom(this.pageTitle, "en-US");
+                this.backendService.SetLog(this._pageTitle, PAGE_TITLE_LOG);
+
+                //
+                if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages !== null){
+                    //
+                    this._pages    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages;
+                }
+
+            } else {
+                console.warn(`Page data not found for key: ${PAGE_TITLE_LOG}`);
+                // Handle missing page gracefully
+                this.pageTitle = PAGE_TITLE_LOG;
+            }
       });
   }
   /////////////////////////////////////////////////////////

@@ -54,45 +54,48 @@ export class BaseReferenceComponent {
       //      
       this.configService._loadMainPages().then( ()=> 
       {
-            //
-            if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].page_name === null)
-              return;
-            //
-            this.pageTitle = _environment.mainPageListDictionary[PAGE_TITLE_LOG].page_name;
-            //
-            this.speechService.speakTextCustom(this.pageTitle,"en-US");
-            //
-            //console.log(`PAGE_TITLE_LOG : ${PAGE_TITLE_LOG.toString()} `);
-            //
-            this.backendService.SetLog(this._pageTitle,this.PAGE_TITLE_LOG);
-            //
-            if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages !== null){
-                 //
-                 this._pages    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages;
-                 //
-                 //console.log(`PAGES : ${JSON.stringify(this._pages)}`);
-            }
-            //
-            if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages_nested !== null){
-                 //
-                 this._pages_nested    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages_nested;
+            const pageData = _environment.mainPageListDictionary?.[PAGE_TITLE_LOG];
+            const pageName = pageData?.page_name;
 
-                 // Convert all query strings to proper objects
-                 this._pages_nested = this._pages_nested.map(page => ({
-                    ...page,
-                    queryParamsObj: this.parseQueryParams(page.queryParams)
-                 }));
+            if (pageName && typeof pageName === 'string') {
+              
+                //
+                this.pageTitle = pageName;
+                this.speechService.speakTextCustom(this.pageTitle, "en-US");
+                this.backendService.SetLog(this._pageTitle, PAGE_TITLE_LOG);
 
-                // Group pages by ID
-                this.pagesByGroupId = this._pages_nested.reduce((groups, page) => {
-                    const id = page.id;
-                    if (!groups[id]) {
-                      groups[id] = [];
-                    }
-                    groups[id].push(page);
-                    return groups;
-                }, {});
+                //
+                if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages !== null){
+                    //
+                    this._pages    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages;
+                }
+                //
+                if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages_nested !== null){
+                    //
+                    this._pages_nested    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages_nested;
+
+                    // Convert all query strings to proper objects
+                    this._pages_nested = this._pages_nested.map(page => ({
+                        ...page,
+                        queryParamsObj: this.parseQueryParams(page.queryParams)
+                    }));
+
+                    // Group pages by ID
+                    this.pagesByGroupId = this._pages_nested.reduce((groups, page) => {
+                        const id = page.id;
+                        if (!groups[id]) {
+                          groups[id] = [];
+                        }
+                        groups[id].push(page);
+                        return groups;
+                    }, {});
+                }
+            } else {
+                console.warn(`Page data not found for key: ${PAGE_TITLE_LOG}`);
+                // Handle missing page gracefully
+                this.pageTitle = PAGE_TITLE_LOG;
             }
+     
       });
   }
   /////////////////////////////////////////////////////////

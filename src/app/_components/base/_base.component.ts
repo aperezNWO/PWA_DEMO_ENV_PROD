@@ -54,7 +54,7 @@ export class _BaseComponent implements OnInit {
     // Subscribe to query param changes
     this.route.queryParams.subscribe(params => {
       //
-      const pageName = params['pageName'];
+      const pageName =  params['pageName']? params['pageName'] : '';
       //
       if (!pageName) {
         console.warn('No pageName provided in query params');
