@@ -164,15 +164,11 @@ export interface PageInfo
     queryParams  : string;
 }
 export interface MainPage {
-    log_name    : string;
-    page_name   : string;
-    pages       : PageInfo[];
+    log_name     : string;
+    page_name    : string;
+    pages        : PageInfo[];
+    pages_nested : PageInfo[];
 }
-/*
-export interface MainPagesResponse {
-    mainpages: mainpage[];
-}*/
-
 //
 export interface MainPageSettingDictionary {
     [key: string]: MainPage;

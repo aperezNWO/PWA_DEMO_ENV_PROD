@@ -29,7 +29,8 @@ export class BaseReferenceComponent {
   //
   public status_message           = signal<string>('');
   //
-  public _pages         : any[]   = [];
+  public _pages                : any[]   = [];
+  public _pages_nested         : any[]   = [];
   /////////////////////////////////////////////////////////
   // CONSTRUCTOR - EVENT HANDLERS
   /////////////////////////////////////////////////////////
@@ -69,6 +70,15 @@ export class BaseReferenceComponent {
                  this._pages    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages;
                  //
                  console.log(`PAGES : ${JSON.stringify(this._pages)}`);
+            }
+            //
+            if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages_nested){
+                 //
+                 this._pages_nested    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages_nested;
+                 //
+                 console.log(`PAGES_NESTED    : ${JSON.stringify(this._pages_nested)}`);
+                 //                
+                 console.log(`PAGES_NESTED[0] : ${(JSON.stringify(this._pages_nested[0]))}`);
             }
       });
   }
