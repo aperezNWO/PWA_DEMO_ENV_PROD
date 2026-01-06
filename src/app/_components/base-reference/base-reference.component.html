@@ -5,16 +5,14 @@
 <div class="reference" align="right">
         <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
         <ul *ngIf="isListVisible" align="left" widdth="10px">
-            <li *ngFor="let _nestedPage of this._pages_nested">{{ _nestedPage.text}}
-
+        <hr>
+            <li *ngFor="let _page of this._pages">{{_page.text}}
+                <ul>
+                  <li><a href="{{ this._pages_nested[(_page.id - 1)].url }}" target="_blank">{{ this._pages_nested[(_page.id - 1)].text }}</a></li>
+                </ul>
             </li>
-            <hr>
-                <li *ngFor="let _page of this._pages">{{_page.text}} - {{ _page.id - 1 }}
-                    <ul *ngFor="let nestedPage of this._pages_nested[(_page.id - 1)]">
-                      <li>{{ nestedPage.text}}</li>
-                    </ul>
-                </li>
         </ul>
+        <!--
         <hr>
         <ul *ngIf="isListVisible" align="left" widdth="10px">
             <li> [Frontend]
@@ -33,5 +31,6 @@
                 </ul>
             </li>
         </ul>
+      -->
 </div>   
 
