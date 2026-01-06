@@ -584,12 +584,18 @@
 
 -- [_] curriculum update.
 
-        -- [x] typescript reference.
-        
-        -- [x] effect.
-        
-        -- [x] sound wtk.
-        
+        -- [_] Angular.
+
+                -- [x] typescript reference.
+                
+                -- [x] effect.
+                
+                -- [x] sound wtk.
+
+                -- [_] ngFor, ngIf (other) directives.
+
+                -- [_] interpolation.
+                                        
         -- [_] backend->create sql query.
         
         -- [_] backend->create restful point.
@@ -604,6 +610,8 @@
 
                 -- [_] main feature by std release.
  
+
+
  -- [_] TRANSLATE DATABASE FIELDS TO ENGLISH.      
  
  -- [_] SCM.
