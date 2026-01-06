@@ -7,17 +7,19 @@
         <ul *ngIf="isListVisible" align="left" widdth="10px" class="reference_base">
             <li *ngFor="let _page of this._pages">{{_page.text}}
                 <ul *ngIf="(this._pages_nested !== null)">
-                  <li *ngIf="!(this._pages_nested[(_page.id - 1)].routerLink == 'about:blank')">
-                      <a [routerLink]="_pages_nested[_page.id - 1].routerLink" 
-                        [queryParams]="_pages_nested[_page.id - 1].queryParamsObj">
-                              {{ _pages_nested[_page.id - 1].text }}
-                      </a>
-                  </li>
-                  <li *ngIf="!(this._pages_nested[(_page.id - 1)].url        == 'about:blank')">
-                        <a [href]="this._pages_nested[(_page.id - 1)].url" target="_blank">
-                              {{ this._pages_nested[(_page.id - 1)].text }}
+                  <div *ngFor="let ___page of pagesByGroupId[_page.id]">
+                    <li *ngIf="___page.routerLink !== 'about:blank'">
+                        <a [routerLink]="___page.routerLink" 
+                          [queryParams]="___page.queryParamsObj">
+                          {{ ___page.text }}
                         </a>
-                  </li>
+                    </li> 
+                    <li *ngIf="___page.url        !== 'about:blank'">
+                        <a [href]="___page.url" target="_blank">
+                              {{ ___page.text }}
+                        </a>
+                    </li>
+                  </div>
                 </ul>
             </li>
         </ul>

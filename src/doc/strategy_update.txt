@@ -668,6 +668,6 @@
 
          -- [_] missing status messages.
 
-   -- [_] CODE WIKI.         
+   -- [_] Algorithm, FileManager .NET core Controllers.         
      
 ////////////////////////////////////////////////////////////////////////////////

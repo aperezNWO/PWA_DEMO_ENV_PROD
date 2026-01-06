@@ -29,8 +29,9 @@ export class BaseReferenceComponent {
   //
   public status_message           = signal<string>('');
   //
-  public _pages                : any[]   = [];
-  public _pages_nested         : any[]   = [];
+  public _pages                   : any[]   = [];
+  public _pages_nested            : any[]   = [];
+  public  pagesByGroupId          : { [id: number]: any[] } = {};
   /////////////////////////////////////////////////////////
   // CONSTRUCTOR - EVENT HANDLERS
   /////////////////////////////////////////////////////////
@@ -76,17 +77,21 @@ export class BaseReferenceComponent {
                  //
                  this._pages_nested    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages_nested;
 
-                 //
-                 //console.log(`PAGES_NESTED    : ${JSON.stringify(this._pages_nested)}`);
-
-                 //                
-                 //console.log(`PAGES_NESTED[0] : ${(JSON.stringify(this._pages_nested[0]))}`);
-
                  // Convert all query strings to proper objects
                  this._pages_nested = this._pages_nested.map(page => ({
                     ...page,
                     queryParamsObj: this.parseQueryParams(page.queryParams)
                  }));
+
+                // Group pages by ID
+                this.pagesByGroupId = this._pages_nested.reduce((groups, page) => {
+                    const id = page.id;
+                    if (!groups[id]) {
+                      groups[id] = [];
+                    }
+                    groups[id].push(page);
+                    return groups;
+                }, {});
             }
       });
   }
