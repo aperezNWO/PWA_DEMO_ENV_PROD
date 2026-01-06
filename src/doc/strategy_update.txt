@@ -595,6 +595,8 @@
                 -- [_] ngFor, ngIf (other) directives.
 
                 -- [_] interpolation.
+
+                -- [_] Param.
                                         
         -- [_] backend->create sql query.
         

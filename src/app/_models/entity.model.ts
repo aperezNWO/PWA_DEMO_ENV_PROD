@@ -1,3 +1,5 @@
+import {  Params                    } from '@angular/router';
+
 ////////////////////////////////////////////////////////////////////////////
 
 export enum LogType {
@@ -158,10 +160,12 @@ export interface PageSettingDictionary {
 //
 export interface PageInfo
 {
-    id           : number;
-    url          : string;
-    text         : string;
-    queryParams  : string;
+    id             : number;
+    url            : string;
+    text           : string;
+    queryParams    : string;
+    queryParamsObj : Params;
+    routerLink     : string;
 }
 export interface MainPage {
     log_name     : string;

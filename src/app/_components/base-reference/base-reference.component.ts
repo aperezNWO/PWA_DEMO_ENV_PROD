@@ -1,5 +1,5 @@
 import { Component, effect, Inject, signal          } from '@angular/core';
-import { ActivatedRoute                             } from '@angular/router';
+import { ActivatedRoute,  Params                    } from '@angular/router';
 import { PAGE_TITLE_LOG                             } from 'src/app/_models/common';
 import { BackendService                             } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                              } from 'src/app/_services/__Utils/ConfigService/config.service';
@@ -61,7 +61,7 @@ export class BaseReferenceComponent {
             //
             this.speechService.speakTextCustom(this.pageTitle,"en-US");
             //
-            console.log(`PAGE_TITLE_LOG : ${PAGE_TITLE_LOG.toString()} `);
+            //console.log(`PAGE_TITLE_LOG : ${PAGE_TITLE_LOG.toString()} `);
             //
             this.backendService.SetLog(this._pageTitle,this.PAGE_TITLE_LOG);
             //
@@ -69,16 +69,24 @@ export class BaseReferenceComponent {
                  //
                  this._pages    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages;
                  //
-                 console.log(`PAGES : ${JSON.stringify(this._pages)}`);
+                 //console.log(`PAGES : ${JSON.stringify(this._pages)}`);
             }
             //
             if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages_nested){
                  //
                  this._pages_nested    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages_nested;
+
                  //
-                 console.log(`PAGES_NESTED    : ${JSON.stringify(this._pages_nested)}`);
+                 //console.log(`PAGES_NESTED    : ${JSON.stringify(this._pages_nested)}`);
+
                  //                
-                 console.log(`PAGES_NESTED[0] : ${(JSON.stringify(this._pages_nested[0]))}`);
+                 //console.log(`PAGES_NESTED[0] : ${(JSON.stringify(this._pages_nested[0]))}`);
+
+                 // Convert all query strings to proper objects
+                 this._pages_nested = this._pages_nested.map(page => ({
+                    ...page,
+                    queryParamsObj: this.parseQueryParams(page.queryParams)
+                 }));
             }
       });
   }
@@ -94,5 +102,23 @@ export class BaseReferenceComponent {
     if (this.isListVisible)
       this.speechService.speakTextCustom("See references");
   }
+  // 
+  parseQueryParams(str: string): Params {
+      // Clean the string (remove curly braces, quotes, extra spaces)
+      const cleanStr = str
+        .replace(/{|}/g, '')
+        .replace(/['"]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+      
+      // Split into key-value pairs
+      return cleanStr.split(',').reduce((params, pair) => {
+        const [key, value] = pair.split(':').map(s => s.trim());
+        if (key && value) {
+          params[key] = value;
+        }
+        return params;
+      }, {} as Params);
+    }
 }
 
