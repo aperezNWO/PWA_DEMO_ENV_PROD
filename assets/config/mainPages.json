@@ -421,9 +421,9 @@
           { "id": 3, "url" : "/#/"           , "text": "[Topics]"      }
         ],
         "pages_nested" : [
-          { "id" : 1, "url": "/GridParam"                                                 , "text" : "[Angular]"     , "queryParams" : "{ searchTerm: '60669d7b-0380-4756-8f71-7286a4324228' , pageName: 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
-          { "id" : 2, "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API", "text" : "[HTML Canvas]"},
-          { "id" : 3, "url": "https://en.wikipedia.org/wiki/Collision"                    , "text" : "[Colisión]"   }
+          { "id" : 1, "url": "about:blank"                                                , "text" : "[Angular]"     , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '60669d7b-0380-4756-8f71-7286a4324228' , pageName: 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+          { "id" : 2, "url": "https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API", "text" : "[HTML Canvas]" , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 3, "url": "https://en.wikipedia.org/wiki/Collision"                    , "text" : "[Colisión]"    , "routerLink" : "about:blank" , "queryParams" : ""}
         ]
       },
       {
