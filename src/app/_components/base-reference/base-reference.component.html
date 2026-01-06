@@ -8,7 +8,9 @@
         <hr>
             <li *ngFor="let _page of this._pages">{{_page.text}}
                 <ul>
-                  <li><a href="{{ this._pages_nested[(_page.id - 1)].url }}" target="_blank">{{ this._pages_nested[(_page.id - 1)].text }}</a></li>
+                  <li><a href="{{ this._pages_nested[(_page.id - 1)].url }}" target="_blank">
+                        {{ this._pages_nested[(_page.id - 1)].text }}</a>
+                  </li>
                 </ul>
             </li>
         </ul>
