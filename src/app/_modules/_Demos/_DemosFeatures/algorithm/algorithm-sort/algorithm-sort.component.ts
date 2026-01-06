@@ -1,23 +1,29 @@
 import { AfterViewInit, Component, OnInit, ViewChild, effect, signal } from '@angular/core';
 import { ActivatedRoute                                              } from '@angular/router';
 import { Observable                                                  } from 'rxjs';
-import { PAGE_ALGORITMOS_SORT                                        } from 'src/app/_models/common';
+import { PAGE_ALGORITMOS_SORT, PAGE_TITLE_NO_SOUND,PAGE_TITLE_LOG    } from 'src/app/_models/common';
 import { SortInfo, _languageName                                     } from 'src/app/_models/entity.model';
 import { DrawEngine                                                  } from 'src/app/_engines/draw.engine';
 import { BackendService                                              } from 'src/app/_services/BackendService/backend.service';
 import { AlgorithmService                                            } from 'src/app/_services/AlgorithmService/algorithm.service';
 import { SpeechService                                               } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { BaseComponent                                               } from 'src/app/_components/base/base.component';
 import { ConfigService                                               } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { BaseReferenceComponent                                      } from 'src/app/_components/base-reference/base-reference.component';
 
 //
 @Component({
   selector: 'app-algorithm-sort',
   templateUrl: './algorithm-sort.component.html',
-  styleUrls: ['./algorithm-sort.component.css']
+  styleUrls: ['./algorithm-sort.component.css'],
+  providers   : [
+      { 
+        provide : PAGE_TITLE_LOG, 
+        useValue: PAGE_ALGORITMOS_SORT 
+      },
+  ]
 })
 //
-export class AlgorithmSortComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class AlgorithmSortComponent extends BaseReferenceComponent implements OnInit, AfterViewInit {
     ////////////////////////////////////////////////////////////////////////
     // VARIABLES
     ////////////////////////////////////////////////////////////////////////
@@ -57,7 +63,7 @@ export class AlgorithmSortComponent extends BaseComponent implements OnInit, Aft
               backendService,
               route,
               speechService,
-              PAGE_ALGORITMOS_SORT
+              PAGE_TITLE_NO_SOUND
         );
     
     }

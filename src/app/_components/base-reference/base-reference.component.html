@@ -2,11 +2,11 @@
      <h1>{{this.pageTitle}}</h1>
 </div>
 <hr>
-<div class="reference" align="right">
+<div align="right" style="padding:1em;">
         <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
-        <ul *ngIf="isListVisible" align="left" widdth="10px">
+        <ul *ngIf="isListVisible" align="left" widdth="10px" class="reference_base">
             <li *ngFor="let _page of this._pages">{{_page.text}}
-                <ul>
+                <ul *ngIf="(this._pages_nested !== null)">
                   <li *ngIf="!(this._pages_nested[(_page.id - 1)].routerLink == 'about:blank')">
                       <a [routerLink]="_pages_nested[_page.id - 1].routerLink" 
                         [queryParams]="_pages_nested[_page.id - 1].queryParamsObj">

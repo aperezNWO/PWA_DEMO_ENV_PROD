@@ -36,7 +36,7 @@ export class AlgorithmCollisionComponent extends BaseReferenceComponent implemen
   private friction    = 0.98; // Friction to slow down the ball
   private restitution = 0.8; // Bounce factor, 1 = perfect elastic collision, <1 = energy loss
   //
-  constructor(private pageRestartService: PageRestartService,
+  constructor(private pageRestartService         : PageRestartService,
               public  override configService     : ConfigService,
               public  override speechService     : SpeechService,
               public  override backendService    : BackendService,
