@@ -54,9 +54,11 @@ export class BaseReferenceComponent {
       //      
       this.configService._loadMainPages().then( ()=> 
       {
+            //
             const pageData = _environment.mainPageListDictionary?.[PAGE_TITLE_LOG];
             const pageName = pageData?.page_name;
 
+            //
             if (pageName && typeof pageName === 'string') {
               
                 //
@@ -67,7 +69,7 @@ export class BaseReferenceComponent {
                 //
                 if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages !== null){
                     //
-                    this._pages    = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages;
+                    this._pages          = _environment.mainPageListDictionary[PAGE_TITLE_LOG].pages;
                 }
                 //
                 if (_environment.mainPageListDictionary[PAGE_TITLE_LOG].pages_nested !== null){

@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute                              } from '@angular/router';
-import { Observable                                  } from 'rxjs';
-import { PAGE_ALGORITMOS_REGEX                       } from 'src/app/_models/common';
+import { AfterViewInit, Component, OnInit, ViewChild                 } from '@angular/core';
+import { ActivatedRoute                                              } from '@angular/router';
+import { Observable                                                  } from 'rxjs';
+import { PAGE_ALGORITMOS_REGEX, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND  } from 'src/app/_models/common';
 import { _languageName                               } from 'src/app/_models/entity.model';
 import { UtilManager                                 } from 'src/app/_engines/util.engine';
 import { BackendService                              } from 'src/app/_services/BackendService/backend.service';
@@ -12,9 +12,15 @@ import { AlgorithmService                            } from 'src/app/_services/A
 
 //
 @Component({
-  selector: 'app-algorithm-reg-ex',
-  templateUrl: './algorithm-reg-ex.component.html',
-  styleUrls: ['./algorithm-reg-ex.component.css']
+  selector    : 'app-algorithm-reg-ex',
+  templateUrl : './algorithm-reg-ex.component.html',
+  styleUrls   : ['./algorithm-reg-ex.component.css'],
+  providers   : [
+      { 
+        provide : PAGE_TITLE_LOG, 
+        useValue: PAGE_ALGORITMOS_REGEX 
+      },
+  ]
 })
 //
 export class AlgorithmRegExComponent extends BaseComponent implements OnInit, AfterViewInit {
@@ -44,7 +50,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
                 backendService,
                 route,
                 speechService,
-                PAGE_ALGORITMOS_REGEX
+                PAGE_TITLE_NO_SOUND
         );
     }
     //
@@ -92,9 +98,11 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
     }
     _GetXMLData():void {
         //
-        let xmlInfo!  : Observable<string>;
+        let xmlInfo!                        : Observable<string>;
         //
-        xmlInfo       = this.algorithmService._GetXmlData();
+        xmlInfo                             = this.algorithmService._GetXmlData();
+        //
+        this.textSearch.nativeElement.value = "";
         //
         this.status_message.set("[...LOADING PLEASE WAIT...]");
         //
