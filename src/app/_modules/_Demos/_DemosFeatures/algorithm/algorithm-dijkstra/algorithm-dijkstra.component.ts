@@ -1,24 +1,30 @@
-import { AfterViewInit, Component, OnInit, ViewChild,signal,effect  } from '@angular/core';
-import { ActivatedRoute                                             } from '@angular/router';
-import { Observable                                                 } from 'rxjs';
-import { _languageName, _vertexSize                                 } from 'src/app/_models/entity.model';
-import { PAGE_ALGORITMOS_DIJKSTRA                                   } from 'src/app/_models/common';
+import { AfterViewInit, Component, OnInit, ViewChild,signal,effect       } from '@angular/core';
+import { ActivatedRoute                                                  } from '@angular/router';
+import { Observable                                                      } from 'rxjs';
+import { _languageName, _vertexSize                                      } from 'src/app/_models/entity.model';
+import { PAGE_ALGORITHMS_DIJKSTRA, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND   } from 'src/app/_models/common';
 import { UtilManager                                                } from 'src/app/_engines/util.engine';
-import { BaseComponent                                              } from 'src/app/_components/base/base.component';
 import { BackendService                                             } from 'src/app/_services/BackendService/backend.service';
 import { SpeechService                                              } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                                              } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PdfService                                                 } from 'src/app/_services/__FileGeneration/pdf.service';
 import { AlgorithmService                                           } from 'src/app/_services/AlgorithmService/algorithm.service';
+import { BaseReferenceComponent                                     } from 'src/app/_components/base-reference/base-reference.component';
 
 
 @Component({
   selector       : 'app-algorithm-dijkstra',
   templateUrl    : './algorithm-dijkstra.component.html',
-  styleUrls      : ['./algorithm-dijkstra.component.css']
+  styleUrls      : ['./algorithm-dijkstra.component.css'],
+  providers   : [
+    { 
+      provide : PAGE_TITLE_LOG, 
+      useValue: PAGE_ALGORITHMS_DIJKSTRA 
+    },
+    ]
 })
 //
-export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit, AfterViewInit  {
+export class AlgorithmDijkstraComponent extends BaseReferenceComponent implements OnInit, AfterViewInit  {
   ////////////////////////////////////////////////////////////////
   // PROPERTIES //////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
@@ -67,7 +73,7 @@ export class AlgorithmDijkstraComponent extends BaseComponent implements OnInit,
             backendService,
             route,
             speechService,
-            PAGE_ALGORITMOS_DIJKSTRA
+            PAGE_TITLE_NO_SOUND
 
       );
   }
