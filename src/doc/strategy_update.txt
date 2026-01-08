@@ -690,4 +690,8 @@
 
    -- [_] Codesadbox dynamic refernce of endpoints inside datagrids.      
 
+   -- [_] datagrids row master / detail.     
+
+   -- [_] backend url standarization / .net controller standarization.      
+
 ////////////////////////////////////////////////////////////////////////////////

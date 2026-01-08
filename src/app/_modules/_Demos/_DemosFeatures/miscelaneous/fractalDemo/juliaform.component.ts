@@ -1,13 +1,13 @@
 import { HttpClient                     } from '@angular/common/http';
 import { Component, ViewChild           } from '@angular/core';
 import { ActivatedRoute                 } from '@angular/router';
-import { BaseComponent                  } from 'src/app/_components/base/base.component';
 import { PAGE_MISCELANEOUS_FRACTAL_DEMO, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
 import { BackendService                 } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                  } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { ComputerVisionService          } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
 import { SpeechService                  } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { PdfService                     } from 'src/app/_services/__FileGeneration/pdf.service';
+import { BaseReferenceComponent         } from 'src/app/_components/base-reference/base-reference.component';
 
 @Component({
   selector    : 'app-juliaform',
@@ -20,13 +20,15 @@ import { PdfService                     } from 'src/app/_services/__FileGenerati
     },
   ]
 })
-export class FractalDemoComponent  extends BaseComponent {
+export class FractalDemoComponent  extends BaseReferenceComponent {
   //
-  maxIterations : number        = 500;
-  realPart      : number        = -0.4;
-  imagPart      : number        = 0.6;
-  imageUrl      : string | null = null;
-  submitTitle   : string        = "Generate Fractal";
+  maxIterations    : number        = 500;
+  realPart         : number        = -0.4;
+  imagPart         : number        = 0.6;
+  imageUrl         : string | null = null;
+  submitTitle      : string        = "[Generate Fractal]";
+  pdfButtonCaption : string        = "[Generate PDF]"
+
   //
   @ViewChild('_fractal_image')  _fractal_image  : any;
   //
@@ -75,8 +77,6 @@ export class FractalDemoComponent  extends BaseComponent {
     let fileName_input  : string     = `FRACTAL_IMAGE`;
     let fileName_output : string     = '';
     //
-    this.status_message.set('...Generating PDF...');
-    //
     this.pdfEngine._GetPDF
       (
         this.pageTitle,
@@ -88,15 +88,20 @@ export class FractalDemoComponent  extends BaseComponent {
       {
         next: (fileName: string) =>{
           //
+          this.status_message.set('[...Generating PDF...]');
+          this.pdfButtonCaption = '[...Generating PDF...]'
+          //
           fileName_output = fileName;
         },
         error: (error: { message: string; }) => {
             //
             this.status_message.set('An error occured : ' + error.message);
+            this.pdfButtonCaption  = "[Generate PDF]";
         },
         complete: () => {
             //
             this.status_message.set(`[PDF File generated correctly]`);
+            this.pdfButtonCaption  = "[Generate PDF]";
         }
       }
     );      
