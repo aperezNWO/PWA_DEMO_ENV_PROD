@@ -602,7 +602,9 @@
 
                 -- [_] Component, Service, Application.
 
-                -- [_] Change Order.
+                -- [_] OOP : Properties, Inheritance.
+
+                -- [_] Split content by topics.
                                         
         -- [_] backend->create sql query.
         
@@ -658,14 +660,24 @@
 
  -- [_] .NET CORE FREE SPACE BUTTON.  
 
- -- [_] base component.
+ -- [x] base component.
 
         -- [x] title.
 
         -- [x] error: double sound on title.
  
-        -- [_] reference list.
- 
+        -- [x] reference list.
+
+   -- [_] Algorithm, FileManager .NET core Controllers.  
+
+   -- [_] Check logic TETRIS -- A.I.   
+
+   -- [_] Codesadbox dynamic refernce of endpoints inside datagrids.      
+
+   -- [_] datagrids row master / detail.     
+
+   -- [_] backend url standarization / .net controller standarization.      
+
   -- [_] TRANSLATE FORMS TO ENGLISH.  
 
          -- [x] correct text "miscellaneous","manus","tictactoe".
@@ -684,14 +696,6 @@
 
                         -- [_] change text with gauges (tictactoe-ai example).  
 
-   -- [_] Algorithm, FileManager .NET core Controllers.  
-
-   -- [_] Check logic TETRIS -- A.I.   
-
-   -- [_] Codesadbox dynamic refernce of endpoints inside datagrids.      
-
-   -- [_] datagrids row master / detail.     
-
-   -- [_] backend url standarization / .net controller standarization.      
-
+         -- [_] restart grid numbers at start.
+         
 ////////////////////////////////////////////////////////////////////////////////
