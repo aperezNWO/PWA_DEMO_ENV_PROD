@@ -7,7 +7,7 @@
         "field_1"          : "Spring Boot, REST Service, MS SQL SERVER",
         "field_2"          : ".#/FilesGenerationCSV?langName=JAVA",
         "field_3"          : "https://github.com/aperezNWO/JAVA2_EE_SB_DEMO/blob/583c48d8150d4fe84bd9f074a7fd53b2e64a86ac/src/main/java/com/example/DAO/personasDAO.java#L23",
-        "field_4"          : "{{baseUrlSpringBootJava}}AllPersons"  ,
+        "field_4"          : "{{baseUrlSpringBootJava}}getAllPersons"  ,
         "field_6"          : "https://docs.spring.io/spring-boot/docs/2.1.x/reference/html/boot-features-sql.html",
         "field_10"         : "b9d33b9d-4f94-4f95-a437-b4544ff478ca"		
     },
