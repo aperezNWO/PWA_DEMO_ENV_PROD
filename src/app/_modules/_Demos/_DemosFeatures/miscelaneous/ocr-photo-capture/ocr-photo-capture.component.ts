@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild    } from '@ang
 import { ActivatedRoute                                             } from '@angular/router';
 import { BackendService                                             } from 'src/app/_services/BackendService/backend.service';
 import { _languageName                                              } from 'src/app/_models/entity.model';
-import { BaseComponent                                              } from 'src/app/_components/base/base.component';
+import { BaseReferenceComponent                                     } from 'src/app/_components/base-reference/base-reference.component';
 import { SpeechService                                              } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                                              } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_MISCELANEOUS_OCR, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
@@ -21,7 +21,7 @@ import { NgxSignatureOptions                                        } from '@eve
     },
   ]
 })
-export class OcrPhotoCaptureComponent extends BaseComponent implements AfterViewInit , OnInit {
+export class OcrPhotoCaptureComponent extends BaseReferenceComponent implements AfterViewInit , OnInit {
   /** Catch object, call functions via instance object */
   @ViewChild('signature') signature: NgxSignaturePadComponent | undefined;
   /** You can see more introduction in the below about NgxSignatureOptions */

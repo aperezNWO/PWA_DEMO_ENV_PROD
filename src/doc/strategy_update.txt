@@ -696,5 +696,9 @@
                 -- [_] datagrids row master / detail.     
 
          -- [_] missing status messages.
+
+         -- [_] base reference component implementation.
+
+         -- [_] complete scm config info.
          
 ////////////////////////////////////////////////////////////////////////////////

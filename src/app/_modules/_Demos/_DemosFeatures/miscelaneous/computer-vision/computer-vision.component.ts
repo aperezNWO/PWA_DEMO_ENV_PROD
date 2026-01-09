@@ -1,7 +1,6 @@
 
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild,    } from '@angular/core';
 import { ActivatedRoute                                              } from '@angular/router';
-import { BaseComponent                                               } from 'src/app/_components/base/base.component';
 import { _languageName                                               } from 'src/app/_models/entity.model';
 import { BackendService                                              } from 'src/app/_services/BackendService/backend.service';
 import { ComputerVisionService                                       } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
@@ -10,6 +9,7 @@ import { ConfigService                                               } from 'src
 import { PAGE_MISELANEOUS_COMPUTER_VISION, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND            } from 'src/app/_models/common';
 import { NgxSignaturePadComponent                                                         } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';
 import { NgxSignatureOptions                                                              } from '@eve-sama/ngx-signature-pad/lib/types/ngx-signature-pad';
+import { BaseReferenceComponent                                                           } from 'src/app/_components/base-reference/base-reference.component';
 
 //
 declare var cv: any; // Declare cv as a global variable
@@ -26,7 +26,7 @@ declare var cv: any; // Declare cv as a global variable
     },
   ]
 })
-export class ComputerVisionComponent extends BaseComponent implements AfterViewInit , OnInit {
+export class ComputerVisionComponent extends BaseReferenceComponent implements AfterViewInit , OnInit {
   /** Catch object, call functions via instance object */
   @ViewChild('signature') signature: NgxSignaturePadComponent | undefined;
   /** You can see more introduction in the below about NgxSignatureOptions */
