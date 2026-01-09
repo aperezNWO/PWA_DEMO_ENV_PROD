@@ -701,4 +701,16 @@
 
          -- [_] base reference component implementation.
 
+-- [_] offer market by library / component.
+
+        -- [_] opencv demo.
+
+        -- [_] tesseract demo.
+
+        -- [_] tensorflow demo.
+
+        -- [_] dymamic intro.
+
+        -- [_] publish single codebase on multiple hosting.
+
 ////////////////////////////////////////////////////////////////////////////////
