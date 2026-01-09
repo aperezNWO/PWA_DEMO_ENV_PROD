@@ -540,6 +540,14 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+ -- [x] base component.
+
+        -- [x] title.
+
+        -- [x] error: double sound on title.
+ 
+        -- [x] reference list.
+
 -- [>]  TypeError: Cannot read properties of undefined (reading 'page_name')   : BaseComponent : csv generation.
 
 -- [x] OCR DEMO.
@@ -572,15 +580,14 @@
 
         -- [_] django self playing tictactoe.
 
+
+ -- [_] Check logic TETRIS -- A.I.   
+
  -- [_] architecture overhauling.
 
         -- [_] jwt and security.
 
-        -- [_] solid principles.
-
- -- [_] check .config links.
-
-        -- [x] chart demo.
+        -- [_] angular solid principles.
  
 -- [_] chat demo exception handling.
 
@@ -620,11 +627,17 @@
 
                 -- [_] main feature by std release.
  
-
-
  -- [_] TRANSLATE DATABASE FIELDS TO ENGLISH.      
  
- -- [_] SCM.
+ -- [_] .NET CORE FREE SPACE BUTTON.  
+
+ -- [_] Fractal Demo. change text with gauges (tictactoe-ai example).  
+
+ -- [_] backend url standarization / .net controller standarization. 
+
+                -- [_] Algorithm, FileManager .NET core Controllers.  
+
+  -- [_] SCM.
 
         -- [x] fractal demo repo path fix.
 
@@ -656,46 +669,32 @@
 
         -- [_] Somee list.    
 
-        -- [_] Grid Master / Detail.         
+        -- [_] Grid modifications.    
 
- -- [_] .NET CORE FREE SPACE BUTTON.  
+                -- [_] Codesadbox dynamic refernce of endpoints inside datagrids.      
 
- -- [x] base component.
-
-        -- [x] title.
-
-        -- [x] error: double sound on title.
- 
-        -- [x] reference list.
-
-   -- [_] Algorithm, FileManager .NET core Controllers.  
-
-   -- [_] Check logic TETRIS -- A.I.   
-
-   -- [_] Codesadbox dynamic refernce of endpoints inside datagrids.      
-
-   -- [_] datagrids row master / detail.     
-
-   -- [_] backend url standarization / .net controller standarization.      
+                -- [_] datagrids row master / detail.     
 
   -- [_] TRANSLATE FORMS TO ENGLISH.  
 
          -- [x] correct text "miscellaneous","manus","tictactoe".
 
-         -- [_] chart pdf wait message.
+         -- [x] chart pdf wait message.
+
+         -- [x] dijkstra uber reference.      
+
+         -- [x] DISABLE CONTROLS.    
+
+                 -- [x] DIJKSTRA.    
+
+                 -- [x] FRACTAL.    
+
+         -- [x] restart grid numbers at start.
+
+         -- [>] check .config links.
+
+                -- [x] chart demo.
 
          -- [_] missing status messages.
-
-         -- [_] dijkstra uber reference.      
-
-         -- [_] DISABLE CONTROLS.    
-
-                 -- [_] DIJKSTRA.    
-
-                 -- [_] FRACTAL.    
-
-                        -- [_] change text with gauges (tictactoe-ai example).  
-
-         -- [_] restart grid numbers at start.
          
 ////////////////////////////////////////////////////////////////////////////////

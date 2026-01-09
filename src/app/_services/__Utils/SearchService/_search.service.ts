@@ -109,6 +109,13 @@ export class _SearchService  {
 				_searchPages.push(element);
 		});
 
+		// 1.1. fix id field
+		let idfixed = 1;
+		_searchPages = _searchPages.map(page => ({
+			...page,
+			id: idfixed++
+		}));
+
 		// 2. sort
 		_searchPages = sort(_searchPages, sortColumn, sortDirection);
 
