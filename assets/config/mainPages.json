@@ -300,14 +300,23 @@
         "pages"      : []
       },
       {
-        "log_name"   : "PAGE_MISCELANEOUS_CHAT",
-        "page_name"  : "[MISCELLANEOUS - CHAT]",
-        "pages"      : []
-      },
-      {
         "log_name"   : "PAGE_MISCELANEOUS_OCR",
         "page_name"  : "[MISCELLANEOUS - OCR]",
         "pages"      : []
+      },
+      {
+        "log_name"   : "PAGE_MISCELANEOUS_CHAT",
+        "page_name"  : "[MISCELLANEOUS - CHAT]",
+        "pages"      : [
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"     },
+          { "id": 2, "url" : "/#/"           , "text": "[Backend]"      },   
+          { "id": 3, "url" : "/#/"           , "text": "[Libraries]"    }
+        ],
+        "pages_nested" : [
+          { "id" : 1, "url": "about:blank"                                              , "text" : "[Angular]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '415b3965-c5ef-4953-8484-080c34df691f' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+          { "id" : 2, "url": "about:blank"                                              , "text" : "[Node.Js/Javascript]"         , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '1996fa99-4e01-42eb-ac45-98e2918208d9' , pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'  }"},
+          { "id" : 3, "url": "https://socket.io/get-started/chat/"                      , "text" : "[socket.io]"                  , "routerLink" : "about:blank" , "queryParams" : ""}
+        ]    
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_MATH_PARSING",
