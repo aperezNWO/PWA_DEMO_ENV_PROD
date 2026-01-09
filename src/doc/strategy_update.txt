@@ -669,12 +669,6 @@
 
         -- [_] Somee list.    
 
-        -- [_] Grid modifications.    
-
-                -- [_] Codesadbox dynamic refernce of endpoints inside datagrids.      
-
-                -- [_] datagrids row master / detail.     
-
   -- [_] TRANSLATE FORMS TO ENGLISH.  
 
          -- [x] correct text "miscellaneous","manus","tictactoe".
@@ -694,6 +688,12 @@
          -- [>] check .config links.
 
                 -- [x] chart demo.
+
+        -- [_] Grid modifications.    
+
+                -- [x] Codesadbox dynamic refernce of endpoints inside datagrids.      
+
+                -- [_] datagrids row master / detail.     
 
          -- [_] missing status messages.
          
