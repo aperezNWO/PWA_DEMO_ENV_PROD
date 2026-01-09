@@ -697,8 +697,8 @@
 
          -- [_] missing status messages.
 
+         -- [_] complete scm config info.
+
          -- [_] base reference component implementation.
 
-         -- [_] complete scm config info.
-         
 ////////////////////////////////////////////////////////////////////////////////
