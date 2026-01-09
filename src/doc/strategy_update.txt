@@ -703,14 +703,24 @@
 
 -- [_] offer market by library / component.
 
-        -- [_] opencv demo.
-
-        -- [_] tesseract demo.
-
-        -- [_] tensorflow demo.
+        -- [_] narrow market -> offer by library (additional to languages).
 
         -- [_] dymamic intro.
 
-        -- [_] publish single codebase on multiple hosting.
+                -- [_] by language.
+
+                -- [_] by libraries.
+
+        -- [_] libraries intro.
+
+                -- [_] opencv demo.
+                
+                -- [_] tesseract demo.
+
+                -- [_] tensorflow demo.
+
+        -- [_] root menu items -> libraries.
+
+        -- [_] publish single codebase (param by dymamic intro) on multiple hosting.
 
 ////////////////////////////////////////////////////////////////////////////////
