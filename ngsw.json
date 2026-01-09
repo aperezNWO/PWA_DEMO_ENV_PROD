@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1767941055529,
+  "timestamp": 1767941854487,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -75,7 +75,7 @@
   "hashTable": {
     "/PWA_DEMO_ENV_PROD/687.4e557ff9894def18.js": "b329291b5187d9b9da5d99be249548cca48a08fe",
     "/PWA_DEMO_ENV_PROD/973.316ac4d5fee2f217.js": "fea8414d15f033ec1561c7706d1902fe8f5f3632",
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "b09f99577ac33a1f36f3895a3c7b78228c05289a",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "f7d7b59d9f7fb70ac8f0bd0c5c2a2a6a60ad0833",
     "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "c350d62aae668b0df13128fd4a4f244716f6d682",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "3185c079455724d954ca6768bec0b4ea41ebe50f",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "7df9bf1e8b27a75554e4ff9d3d3a1f23f672ba20",
@@ -86,11 +86,11 @@
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json": "c5cb47a936b0f9bc39bd5fcebfaf615e8cf8c497",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "185162b4a94ee641c3dc7661c80db1cfcb5fa766",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_Curriculum_base.json": "989628b99da2028ff7ee8b8407d82420bf6b108a",
-    "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "f7520e272906a8bf44178ec8f1208a7589bc7e80",
+    "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "534b33c76f632a2b081c79de21206ff640a66bbe",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Curriculum_base.json": "d9a5f04e6eb21310eab505a8c000ac28a6b050bb",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Demos_base.json": "e03619308f6af1caea6285d12c2411b3583ffcfc",
     "/PWA_DEMO_ENV_PROD/assets/demos/springBootDemo/springBoot_Curriculum_base.json": "41a5121544c5c4227848ec6d2f60dbb8e2dfa5c2",
-    "/PWA_DEMO_ENV_PROD/assets/demos/springBootDemo/springBoot_Demos_base.json": "7c2a7c58bcef5192132ae19c34f93cec766bccbf",
+    "/PWA_DEMO_ENV_PROD/assets/demos/springBootDemo/springBoot_Demos_base.json": "a4d042789407b46e6f5be87c9e5b21662132e011",
     "/PWA_DEMO_ENV_PROD/assets/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",
     "/PWA_DEMO_ENV_PROD/assets/icons/icon-144x144.png": "b155fd5f2fd5d2ea7760721063003c4cd95fd783",
     "/PWA_DEMO_ENV_PROD/assets/icons/icon-152x152.png": "eae6e0f0c8afb8aaae339e2a569b43e9238e5e6c",
