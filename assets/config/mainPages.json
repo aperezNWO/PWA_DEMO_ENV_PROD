@@ -103,6 +103,11 @@
                   "id"   : 14,
                   "url"  : "https://stackoverflow.ai/",
                   "text" : "Stack Overflow"
+              },
+              {
+                  "id"   : 15,
+                  "url"  : "https://g.ai/",
+                  "text" : "Google a.i."
               }
         ]
       },
@@ -295,11 +300,6 @@
         "pages"      : []
       },
       {
-        "log_name"   : "PAGE_MISCELANEOUS_MATH_PARSING",
-        "page_name"  : "[MISCELLANEOUS - MATH PARSING]",
-        "pages"      : []
-      },
-      {
         "log_name"   : "PAGE_MISCELANEOUS_CHAT",
         "page_name"  : "[MISCELLANEOUS - CHAT]",
         "pages"      : []
@@ -308,6 +308,20 @@
         "log_name"   : "PAGE_MISCELANEOUS_OCR",
         "page_name"  : "[MISCELLANEOUS - OCR]",
         "pages"      : []
+      },
+      {
+        "log_name"   : "PAGE_MISCELANEOUS_MATH_PARSING",
+        "page_name"  : "[MISCELLANEOUS - MATH PARSING]",
+        "pages"      : [
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+          { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }   
+        ],
+        "pages_nested" : [
+          { "id" : 1, "url": "about:blank"                                              , "text" : "[Angular]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '5efc8f87-995f-40aa-9d5b-5bdf5810dd6d' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+          { "id" : 3, "url": "https://mathjs.org/"                                      , "text" : "[Math Parser]"                , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 4, "url": "https://en.wikipedia.org/wiki/Parsing#Parser"             , "text" : "[Parser]"                     , "routerLink" : "about:blank" , "queryParams" : ""}
+        ]    
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_FRACTAL_DEMO",
@@ -354,7 +368,7 @@
         "page_name"  : "[GAMES - TIC-TAC-TOE]",
         "pages"      : []
       },
-            {
+      {
         "log_name"   : "PAGE_GAMES_TIC_TAC_TOE_AI",
         "page_name"  : "[GAMES - TIC-TAC-TOE - AI]",
         "pages"      : []
