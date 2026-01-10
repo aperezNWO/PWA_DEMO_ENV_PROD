@@ -475,8 +475,20 @@
         "log_name"   : "PAGE_FILE_GENERATION_CSV",
         "page_name"  : "[FILE GENERATION - CSV]",
         "pages"      : [
-
-        ]
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+          { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
+          { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }     
+        ],
+        "pages_nested" : [
+          { "id" : 1, "url": "about:blank"                                                                                    , "text" : "[Angular]"                       , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'c8981879-7457-4534-b660-b2e8c8eb9c83' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT'     }"},
+          { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[C# / .NET  Core]"               , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'ea0a96ee-2278-48c2-9ac6-8ea29c77f925  , pageName  : 'PAGE_DEMOS_NETCORE_CSHARP'        }"},
+          { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[Node.Js/Javascript]"            , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'f58efe4e-fc26-4f9c-b11b-0e148b3ffb2e' , pageName  : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'     }"},
+          { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[SpringBoot/Java]"               , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'b9d33b9d-4f94-4f95-a437-b4544ff478ca' , pageName  : 'PAGE_DEMOS_SPRING_BOOT_JAVA'     }"},
+          { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[Django/Python]"                 , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '882904a3-efd8-4ed7-bf4c-ccae59b995ce' , pageName  : 'PAGE_DEMOS_DJANGO_PYTHON'     }"},
+          { "id" : 3, "url": "https://material.angular.io/"                                                                   , "text" : "[Angular Material]"              , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 4, "url": "https://en.wikipedia.org/wiki/REST"                                                             , "text" : "REST (Architecture)"             , "routerLink" : "about:blank" , "queryParams" : ""}
+        ]   
       },
       {
         "log_name"   : "PAGE_FILE_GENERATION_XLS",
