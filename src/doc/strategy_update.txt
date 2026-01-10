@@ -669,11 +669,13 @@
 
         -- [_] Somee list.    
 
--- [_] offer market by library / component.
+-- [_] landing component
+
+        -- [_] offer market by library / component.
 
         -- [_] narrow market -> offer by library (additional to languages).
 
-        -- [_] dymamic intro / landing component.
+        -- [_] dymamic intro / .
 
                 -- [_] by language.
 
@@ -697,7 +699,7 @@
 
         -- [_] publish single codebase (param by dymamic intro) on multiple hosting.
 
-        -- [_] <ZAZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaOffer to communities
+        -- [_] Offer to communities
 
 -- [_] TRANSLATE FORMS TO ENGLISH.  
 
