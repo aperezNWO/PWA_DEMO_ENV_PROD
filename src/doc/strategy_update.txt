@@ -689,9 +689,15 @@
 
                 -- [_] tensorflow demo.
 
+                -- [_] Pdf, xls, chart demo
+
+                -- [_] Go lang / rust demo.
+
         -- [_] root bottom menu items -> libraries.
 
         -- [_] publish single codebase (param by dymamic intro) on multiple hosting.
+
+        -- [_] <ZAZaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaOffer to communities
 
 -- [_] TRANSLATE FORMS TO ENGLISH.  
 
@@ -720,6 +726,8 @@
                 -- [_] datagrids row master / detail.     
 
          -- [_] missing status messages.
+
+         -- [_] missing jspdf references.
 
          -- [_] complete scm config info.
 
