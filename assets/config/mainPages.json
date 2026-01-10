@@ -297,7 +297,7 @@
       {
         "log_name"   : "PAGE_MISCELANEOUS_OCR",
         "page_name"  : "[MISCELLANEOUS - OCR]",
-      "pages"      : [
+        "pages"      : [
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
           { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
           { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
@@ -311,7 +311,8 @@
           { "id" : 3, "url": "https://www.npmjs.com/package/ngx-signaturepad"                    , "text" : "[ngx-signaturepad]"              , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"   , "text" : "[HTML Video]"                    , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://www.npmjs.com/package/tesseract.js/v/2.1.1"                , "text" : "[Tesseract / Node.js]"           , "routerLink" : "about:blank" , "queryParams" : ""},
-          { "id" : 3, "url": "https://github.com/tesseract-ocr/tesseract"                        , "text" : "[Tesseract / C++]"               , "routerLink" : "about:blank" , "queryParams" : ""},          { "id" : 4, "url": "https://en.wikipedia.org/wiki/Optical_character_recognition"       , "text" : "[OCR]"                         , "routerLink" : "about:blank" , "queryParams" : ""}
+          { "id" : 3, "url": "https://github.com/tesseract-ocr/tesseract"                        , "text" : "[Tesseract / C++]"               , "routerLink" : "about:blank" , "queryParams" : ""},          
+          { "id" : 4, "url": "https://en.wikipedia.org/wiki/Optical_character_recognition"       , "text" : "[OCR]"                           , "routerLink" : "about:blank" , "queryParams" : ""}
         ]        
       },
       {
@@ -460,7 +461,18 @@
       {
         "log_name"   : "PAGE_FILE_GENERATION_CHART",
         "page_name"  : "[FILE GENERATION - CHART]",
-        "pages"      : []
+        "pages"      : [
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+          { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
+          { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }     
+        ],
+        "pages_nested" : [
+          { "id" : 1, "url": "about:blank"                                                                                    , "text" : "[Angular]"                       , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '483973b3-b8f6-478b-a702-de3fbab225a4' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+          { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[C# / .NET  Core]"               , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '0b0b083f-bda7-44b8-9922-2365317ee934' , pageName : 'PAGE_DEMOS_NETCORE_CSHARP'     }"},
+          { "id" : 3, "url": "https://www.chartjs.org/"                                                                       , "text" : "[Chart.js]"                      , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 4, "url": "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-10.0"  , "text" : "[.NET Core Caching]"             , "routerLink" : "about:blank" , "queryParams" : ""}
+        ]    
       },
       {
         "log_name"   : "PAGE_ALGORITMOS_INDEX",
