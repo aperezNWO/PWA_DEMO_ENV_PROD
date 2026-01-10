@@ -715,10 +715,6 @@
 
          -- [x] restart grid numbers at start.
 
-         -- [>] check .config links.
-
-                -- [x] chart demo.
-
          -- [_] Grid modifications.    
 
                 -- [x] Codesadbox dynamic refernce of endpoints inside datagrids.      
@@ -742,5 +738,8 @@
          -- [>] complete scm config info.
 
          -- [>] base reference component implementation.
+
+                  -- [>] check grid .config links.
+
 
 ////////////////////////////////////////////////////////////////////////////////
