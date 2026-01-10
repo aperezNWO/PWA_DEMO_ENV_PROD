@@ -4,17 +4,23 @@ import { SpeechService                } from 'src/app/_services/__Utils/SpeechSe
 import { PdfService                   } from 'src/app/_services/__FileGeneration/pdf.service';
 import { Chart, registerables         } from 'chart.js';
 import { Observable                   } from 'rxjs';
-import { BaseComponent                } from 'src/app/_components/base/base.component';
 import { ActivatedRoute               } from '@angular/router';
-import { PAGE_FILE_GENERATION_CHART   } from 'src/app/_models/common';
+import { PAGE_FILE_GENERATION_CHART, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND   } from 'src/app/_models/common';
 import { ConfigService                } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { BaseReferenceComponent       } from 'src/app/_components/base-reference/base-reference.component';
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
-  styleUrl: './chart.component.css'
+  styleUrl: './chart.component.css',
+  providers   : [
+    { 
+      provide : PAGE_TITLE_LOG, 
+      useValue: PAGE_FILE_GENERATION_CHART 
+    },
+  ]
 })
-export class ChartComponent extends BaseComponent implements OnInit  {
+export class ChartComponent extends BaseReferenceComponent implements OnInit  {
     //--------------------------------------------------------------------------
     // PROPIEDADES COMUNES
     //--------------------------------------------------------------------------
@@ -54,7 +60,7 @@ export class ChartComponent extends BaseComponent implements OnInit  {
             backendService,
             route,
             speechService,
-            PAGE_FILE_GENERATION_CHART
+            PAGE_TITLE_NO_SOUND
       )
       //
       Chart.register(...registerables);

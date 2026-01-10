@@ -669,7 +669,31 @@
 
         -- [_] Somee list.    
 
-  -- [_] TRANSLATE FORMS TO ENGLISH.  
+-- [_] offer market by library / component.
+
+        -- [_] narrow market -> offer by library (additional to languages).
+
+        -- [_] dymamic intro / landing component.
+
+                -- [_] by language.
+
+                -- [_] by libraries.
+
+                -- [_] both includes Angular.
+
+        -- [_] libraries intro.
+
+                -- [_] opencv demo.
+                
+                -- [_] tesseract demo.
+
+                -- [_] tensorflow demo.
+
+        -- [_] root bottom menu items -> libraries.
+
+        -- [_] publish single codebase (param by dymamic intro) on multiple hosting.
+
+-- [_] TRANSLATE FORMS TO ENGLISH.  
 
          -- [x] correct text "miscellaneous","manus","tictactoe".
 
@@ -689,7 +713,7 @@
 
                 -- [x] chart demo.
 
-        -- [_] Grid modifications.    
+         -- [_] Grid modifications.    
 
                 -- [x] Codesadbox dynamic refernce of endpoints inside datagrids.      
 
@@ -700,27 +724,5 @@
          -- [_] complete scm config info.
 
          -- [_] base reference component implementation.
-
--- [_] offer market by library / component.
-
-        -- [_] narrow market -> offer by library (additional to languages).
-
-        -- [_] dymamic intro.
-
-                -- [_] by language.
-
-                -- [_] by libraries.
-
-        -- [_] libraries intro.
-
-                -- [_] opencv demo.
-                
-                -- [_] tesseract demo.
-
-                -- [_] tensorflow demo.
-
-        -- [_] root menu items -> libraries.
-
-        -- [_] publish single codebase (param by dymamic intro) on multiple hosting.
 
 ////////////////////////////////////////////////////////////////////////////////
