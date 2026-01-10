@@ -1,21 +1,26 @@
 import { ActivatedRoute                       } from '@angular/router';
 import { Component, ViewChild, effect, signal } from '@angular/core';
 import { HttpEventType, HttpResponse          } from '@angular/common/http';
-import { PAGE_FILE_GENERATION_PDF             } from 'src/app/_models/common';
 import { UtilManager                          } from 'src/app/_engines/util.engine';
 import { BackendService                       } from 'src/app/_services/BackendService/backend.service';
 import { SpeechService                        } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { BaseComponent                        } from 'src/app/_components/base/base.component';
+import { BaseReferenceComponent               } from 'src/app/_components/base-reference/base-reference.component';
 import { ConfigService                        } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PdfService                           } from 'src/app/_services/__FileGeneration/pdf.service';
-
+import { PAGE_FILE_GENERATION_PDF, PAGE_TITLE_NO_SOUND,PAGE_TITLE_LOG  } from 'src/app/_models/common';
 
 @Component({
   selector: 'app-files-generation-pdf',
   templateUrl: './files-generation-pdf.component.html',
-  styleUrls: ['./files-generation-pdf.component.css']
+  styleUrls: ['./files-generation-pdf.component.css'],
+  providers   : [
+    { 
+      provide : PAGE_TITLE_LOG, 
+      useValue: PAGE_FILE_GENERATION_PDF 
+    },
+  ]
 })
-export class FilesGenerationPDFComponent extends BaseComponent {
+export class FilesGenerationPDFComponent extends BaseReferenceComponent {
   ////////////////////////////////////////////////////////////////
   // PROPERTIES
   ////////////////////////////////////////////////////////////////
@@ -42,7 +47,7 @@ export class FilesGenerationPDFComponent extends BaseComponent {
           backendService,
           route,
           speechService,
-          PAGE_FILE_GENERATION_PDF
+          PAGE_TITLE_NO_SOUND
     )
   }  
   //--------------------------------------------------------------------------

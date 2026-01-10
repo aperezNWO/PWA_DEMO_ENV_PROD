@@ -5,9 +5,10 @@ import { PdfService                   } from 'src/app/_services/__FileGeneration
 import { Chart, registerables         } from 'chart.js';
 import { Observable                   } from 'rxjs';
 import { ActivatedRoute               } from '@angular/router';
+import { BaseReferenceComponent       } from 'src/app/_components/base-reference/base-reference.component';
 import { PAGE_FILE_GENERATION_CHART, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND   } from 'src/app/_models/common';
 import { ConfigService                } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { BaseReferenceComponent       } from 'src/app/_components/base-reference/base-reference.component';
+
 
 @Component({
   selector: 'app-chart',
