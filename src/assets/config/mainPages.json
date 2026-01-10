@@ -439,24 +439,21 @@
         ]
       },
       {
-        "log_name"   : "PAGE_FILE_GENERATION_CSV",
-        "page_name"  : "[FILE GENERATION - CSV]",
-        "pages"      : []
-      },
-      {
-        "log_name"   : "PAGE_DEMOS_FILE_GENERATION_ZIP",
-        "page_name"  : "[FILE GENERATION - ZIP]",
-        "pages"      : []
-      },
-      {
-        "log_name"   : "PAGE_FILE_GENERATION_XLS",
-        "page_name"  : "[FILE GENERATIONS XLS]",
-        "pages"      : []
-      },
-      {
         "log_name"   : "PAGE_FILE_GENERATION_PDF",
         "page_name"  : "[FILE GENERATION - PDF]",
-        "pages"      : []
+        "pages"      : [
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+          { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
+          { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }            
+        ],
+        "pages_nested" : [ 
+          { "id" : 1, "url": "about:blank"                                                                                    , "text" : "[Angular]"                                  , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '179c6e7c-6dad-4aea-a515-d45d09641a76' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+          { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[C# / .NET  Core]"                          , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '0cd41eee-f54c-44be-b03a-422769b1a8f2' , pageName : 'PAGE_DEMOS_NETCORE_CSHARP'     }"},
+          { "id" : 3, "url": "https://www.nuget.org/packages/iTextSharp/"                                                     , "text" : "[ITextSharp v5.5.13.2]"                     , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 4, "url": "https://ironpdf.com/blog/compare-to-other-components/itextsharp-html-to-pdf-css-style-example/" , "text" : "[ITextSharp HTML to PDF Example]"           , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 4, "url": "https://v17.angular.io/api/common/http/HttpEventType#DownloadProgress"                          , "text" : "[Angular HttpEventType.DownloadProgress]"   , "routerLink" : "about:blank" , "queryParams" : ""}
+        ] 
       },
       {
         "log_name"   : "PAGE_FILE_GENERATION_CHART",
@@ -473,6 +470,20 @@
           { "id" : 3, "url": "https://www.chartjs.org/"                                                                       , "text" : "[Chart.js]"                      , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-10.0"  , "text" : "[.NET Core Caching]"             , "routerLink" : "about:blank" , "queryParams" : ""}
         ]    
+      },
+      {
+        "log_name"   : "PAGE_FILE_GENERATION_CSV",
+        "page_name"  : "[FILE GENERATION - CSV]",
+        "pages"      : [
+
+        ]
+      },
+      {
+        "log_name"   : "PAGE_FILE_GENERATION_XLS",
+        "page_name"  : "[FILE GENERATIONS XLS]",
+        "pages"      : [
+
+        ]
       },
       {
         "log_name"   : "PAGE_ALGORITMOS_INDEX",

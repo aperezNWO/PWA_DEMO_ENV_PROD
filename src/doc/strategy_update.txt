@@ -729,12 +729,18 @@
 
          -- [_] missing jspdf references.
 
-         -- [_] complete scm config info.
-
-         -- [_] base reference component implementation.
-
          -- [_] .zip demo.
 
          -- [_] strategy update npm macro.
+
+                  -- [_] PDF TOPICS.
+
+                  -- [_] NG STATUS BAR / HttpEventType.DownloadProgress.
+
+                  -- [_] ITEXTPDF.
+
+         -- [>] complete scm config info.
+
+         -- [>] base reference component implementation.
 
 ////////////////////////////////////////////////////////////////////////////////
