@@ -1,31 +1,5 @@
 <div class="content">
-    <div align="center" style="padding-top:10px;">
-          <h4>{{pageTitle}}</h4>
-    </div>
-    <hr>
-    <div class="reference" align="right">
-      <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
-      <ul *ngIf="isListVisible" align="left" widdth="10px">
-          <li> [Frontend]
-            <ul>
-              <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: '096030d9-cebd-4243-addf-02a36e7eda01', pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }">[Angular]</a></li>
-            </ul>
-          </li>
-          <li>[Backend]
-            <ul>
-              <li><a routerLink="/GridParam"       [queryParams]="{ searchTerm: '75310400-5648-43c1-8bdd-bc3f5cf75e82', pageName : 'PAGE_DEMOS_NETCORE_CSHARP'    }">[.netcore/c#]</a></li>
-              <li><a routerLink="/GridParam"       [queryParams]="{ searchTerm: 'e109d2d1-64dc-41ac-bee2-3820bc571a97', pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT' }">[Node.Js/Javascript]</a></li>
-              <li><a routerLink="/GridParam"       [queryParams]="{ searchTerm: '4cb9a915-ad62-4ba1-ad34-351112d50343', pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'  }">[SpringBoot/java]</a></li>
-              <li><a routerLink="/GridParam"       [queryParams]="{ searchTerm: 'f1ba13c3-131f-4517-aa72-ca9899058317', pageName : 'PAGE_DEMOS_DJANGO_PYTHON'     }">[Django/Python]</a></li>
-            </ul> 
-          </li>
-          <li>[Libraries]
-            <ul>
-              <li><a href="https://material.angular.io/" target="_blank">[Angular Material]</a></li>
-            </ul>
-        </li>
-      </ul>
-    </div>   
+    <app-base-reference></app-base-reference>
     <hr>
       <!-- INIT SEARCH PANEL -->
       <form (ngSubmit)="td_onSubmit()" #td_searchForm="ngForm">

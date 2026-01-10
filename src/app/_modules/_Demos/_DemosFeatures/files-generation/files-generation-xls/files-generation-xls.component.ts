@@ -3,7 +3,7 @@ import { FormBuilder, Validators                       } from '@angular/forms';
 import { ActivatedRoute                                } from '@angular/router';
 import { MatTableDataSource                            } from '@angular/material/table';
 import { MatPaginator                                  } from '@angular/material/paginator';
-import { Observable                                    } from 'rxjs';
+import { BehaviorSubject, Observable                                    } from 'rxjs';
 import { UtilManager                                   } from 'src/app/_engines/util.engine';
 import { LogEntry, SearchCriteria, _languageName       } from 'src/app/_models/entity.model';
 import { BackendService                                } from 'src/app/_services/BackendService/backend.service';
@@ -11,7 +11,7 @@ import { SpeechService                                 } from 'src/app/_services
 import { ConfigService                                 } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_TITLE_LOG,PAGE_FILE_GENERATION_XLS, PAGE_TITLE_NO_SOUND       } from 'src/app/_models/common';
 import { CustomErrorHandler                                                 } from 'src/app/app.component';
-import { FilesGenerationBaseComponent                                       } from '../files-generation-base/files-generation-base/files-generation-base.component';
+import { BaseReferenceComponent                                             } from 'src/app/_components/base-reference/base-reference.component';
 //
 @Component({
   selector     : 'app-files-generation-xls',
@@ -20,12 +20,37 @@ import { FilesGenerationBaseComponent                                       } fr
   providers    : [
           { 
             provide : PAGE_TITLE_LOG, 
-            useValue: PAGE_TITLE_NO_SOUND 
+            useValue: PAGE_FILE_GENERATION_XLS 
           },
   ]
 })
 //
-export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent implements OnInit {
+export class FilesGenerationXLSComponent extends BaseReferenceComponent implements OnInit {
+    //--------------------------------------------------------------------------
+    // PROPERTIES - COMMON
+    //--------------------------------------------------------------------------
+    //
+    public _loading                                     = new BehaviorSubject<boolean>(false);
+    //
+    public __languajeList                              : any;
+    protected tituloListadoLenguajes                   : string = "[Backend] :";
+    //
+    rf_searchForm   = this.formBuilder.group({
+      _P_ROW_NUM          : ["999"         , Validators.required],
+      _P_FECHA_INICIO     : ["2023-01-01"  , Validators.required],
+      _P_FECHA_FIN        : ["2022-12-31"  , Validators.required],
+    });
+    //
+    _model                           = new SearchCriteria( 
+      "1"
+      ,"1"
+      ,"999"
+      ,"2022-09-01"
+      ,"2022-09-30"
+      ,""
+      ,"");
+    //
+    @ViewChild('_languajeList')    _languajeList       : any;
     //--------------------------------------------------------------------------
     // PROPIEADES - TEMPLATE FORMS
     //--------------------------------------------------------------------------
@@ -50,19 +75,18 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
     //--------------------------------------------------------------------------
     //
     constructor(
-                   public override formBuilder          : FormBuilder, 
+                   public formBuilder          : FormBuilder, 
                    public customErrorHandler            : CustomErrorHandler,
                    public override configService        : ConfigService,
                    public override backendService       : BackendService, 
                    public override route                : ActivatedRoute,
                    public override speechService        : SpeechService) 
     {
-             super(formBuilder,
-                   configService,
+             super(configService,
                    backendService,
                    route,
                    speechService,
-                   PAGE_FILE_GENERATION_XLS
+                   PAGE_TITLE_NO_SOUND
              )
     }
     //
@@ -347,6 +371,64 @@ export class FilesGenerationXLSComponent extends FilesGenerationBaseComponent im
       td_excelFileName
       .subscribe(xlsObserver);
     }
+     //--------------------------------------------------------------------------
+    // METODOS COMUNES 
+    //--------------------------------------------------------------------------
+    //
+    queryParams():void{
+      //
+      this.route.queryParams.subscribe(params => {
+        //-----------------------------------------------------------------------------
+        // LENGUAJES DE PROGRAMACION
+        //-----------------------------------------------------------------------------
+        this.__languajeList = new Array();
+        //
+        this.__languajeList.push(
+          new _languageName(0, '(CHOOSE OPTION...)', false,""),
+        );
+        //
+        this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS"   ));
+        this.__languajeList.push(new _languageName(2, '(Node.js     / JavaScript)'     , false ,"JS"   ));
+        this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
+        this.__languajeList.push(new _languageName(4, '(Django      / Pytnon)'         , false ,"PY"   ));
+        //
+        let langName = params['langName'] ? params['langName'] : "" ;
+        //
+        if (langName !== '')
+        {   
+            //
+            for (var index = 1; index < this.__languajeList.length; index++) {
+                //
+                if (this.__languajeList[index]._shortName  == langName)
+                  this.__languajeList[index]._selected = true;        
+            }
+
+        } else {
+          //
+          this.__languajeList[1]._selected = true; // C#
+        }
+
+        //
+        console.warn(`QUERY PARAMS... ${this.__languajeList.length}`);
+      });
+    }
+    //
+    GetFormattedDate(p_date : /*Date*/ string, order : number) {
+        //
+        var today = '';
+        switch (order) {
+            case 0:  // FECHA COMPLATIBLE CON RDBMS
+                var p_dates = p_date.toString().split('-'); // P_DATE   = 2022-04-09
+                var day     = p_dates[2];
+                var month   = p_dates[1];
+                var year    = p_dates[0];
+                today       = day + "/" + month + "/" + year;
+                //
+                break;
+        }
+        //
+        return today;
+    }  
 }
 
 
