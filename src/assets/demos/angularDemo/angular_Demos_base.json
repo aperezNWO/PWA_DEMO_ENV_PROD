@@ -114,7 +114,7 @@
         "description"      : "Games - Sudoku",
         "field_1"          : "v17, Sudoku, canvas",
         "field_2"          : "./#/GamesSudoku",
-        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/games/game-sudoku/game-sudoku.component.ts",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/89dd3ac13e27ed3ba0ba55bcf80e3fd685966dfe/src/app/_modules/_Demos/_DemosFeatures/games/game-sudoku/game-sudoku.component.ts#L141",
         "field_4"          : "./#/GamesSudoku",
         "field_6"          : "https://www.geeksforgeeks.org/sudoku-backtracking-7/" ,
         "field_10"         : "8c25ff6b-2568-411b-b366-cb5700b95b28" 
