@@ -34,8 +34,6 @@ export const PAGE_DEMOS_LENGUAJES_INDEX         = "PAGE_DEMOS_LENGUAJES_INDEX";
 
 export const PAGE_MISCELANEOUS_OCR              = "PAGE_MISCELANEOUS_OCR";
 
-export const PAGE_GAMES_HANOI_2D                = "PAGE_GAMES_HANOI_2D";
-
 export const PAGE_DEMOS_INDEX                   = "PAGE_DEMOS_INDEX";
 
 export const PAGE_MISCELANEOUS_MATH_PARSING     = "PAGE_MISCELANEOUS_MATH_PARSING";
@@ -64,9 +62,9 @@ export const PAGE_GAMES_TETRIS                  = "PAGE_GAMES_TETRIS";
 
 export const PAGE_GAMES_TETRIS_AI               = "PAGE_GAMES_TETRIS_AI";
 
-export const PAGES_GAMES_HANOI_3D               = "PAGES_GAMES_HANOI_3D";
+export const PAGE_GAMES_HANOI_3D                = "PAGE_GAMES_HANOI_3D";
 
-export const PAGES_GAMES_HANOI_2D               = "PAGES_GAMES_HANOI_2D";
+export const PAGE_GAMES_HANOI_2D                = "PAGE_GAMES_HANOI_2D";
 
 export const PAGE_DEMOS_GAMES_INDEX             = "PAGE_DEMOS_GAMES_INDEX";
 

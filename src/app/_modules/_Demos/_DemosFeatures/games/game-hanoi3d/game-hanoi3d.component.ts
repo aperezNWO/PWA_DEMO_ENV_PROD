@@ -5,16 +5,24 @@ import * as TWEEN from 'tween';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService         } from 'src/app/_services/BackendService/backend.service';
 import { SpeechService          } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { BaseComponent          } from 'src/app/_components/base/base.component';
-import { PAGES_GAMES_HANOI_3D   } from 'src/app/_models/common';
+import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
 import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND, PAGE_GAMES_HANOI_3D   } from 'src/app/_models/common';
+
 
 @Component({
   selector: 'app-game-hanoi3d',
   templateUrl: './game-hanoi3d.component.html',
-  styleUrl: './game-hanoi3d.component.css'
+  styleUrl: './game-hanoi3d.component.css' ,
+  providers   : [
+    { 
+      provide : PAGE_TITLE_LOG, 
+      useValue: PAGE_GAMES_HANOI_3D 
+    },
+  ]
 })
-export class GameHanoi3dComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class GameHanoi3dComponent extends BaseReferenceComponent implements OnInit, AfterViewInit {
+  //
   @ViewChild('rendererContainer', { static: false }) rendererContainer!: ElementRef;
   scene!: THREE.Scene;
   camera!: THREE.PerspectiveCamera;
@@ -41,7 +49,7 @@ export class GameHanoi3dComponent extends BaseComponent implements OnInit, After
             backendService,
             route,
             speechService,
-            PAGES_GAMES_HANOI_3D,
+            PAGE_TITLE_NO_SOUND,
       )
   }
 
