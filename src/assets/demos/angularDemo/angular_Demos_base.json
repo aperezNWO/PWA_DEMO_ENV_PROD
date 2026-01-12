@@ -119,6 +119,30 @@
         "field_6"          : "https://www.geeksforgeeks.org/sudoku-backtracking-7/" ,
         "field_10"         : "8c25ff6b-2568-411b-b366-cb5700b95b28" 
     },
+     {
+		"id"               : 13,
+        "done"             : true,
+        "name"             : "Games - Hanoi Towers 2d",
+        "description"      : "Games - Hanoi Towers 2d",
+        "field_1"          : "v17, Recursion Algorithms, observable,",
+        "field_2"          : "./#/GamesHanoiAuto",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/ee896df7c634cc5c65faad0e18421a046b14337c/src/app/_engines/hanoi-engine.ts#L270",
+        "field_4"          : "./#/GamesHanoiAuto",
+        "field_6"          : "https://en.wikipedia.org/wiki/Tower_of_Hanoi" ,
+        "field_10"         : "85fbe9be-c748-4754-bd71-daf1a40d3fb9" 
+    },
+    {
+		"id"               : 14,
+        "done"             : true,
+        "name"             : "Games - Hanoi Towers 3d",
+        "description"      : "Games - Hanoi Towers 3d",
+        "field_1"          : "v17, Recursion Algorithms, observable, THREE,TWEEN",
+        "field_2"          : "./#/GamesHanoi3d",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/ee896df7c634cc5c65faad0e18421a046b14337c/src/app/_modules/_Demos/_DemosFeatures/games/game-hanoi3d/game-hanoi3d.component.ts#L57",
+        "field_4"          : "./#/GamesHanoi3d",
+        "field_6"          : "https://www.npmjs.com/package/three-tween" ,
+        "field_10"         : "7bd14d49-9fc4-4657-86b8-d16132a8c3e1" 
+    },
     {
 		"id"               : 11,
         "done"             : true,
@@ -142,30 +166,6 @@
         "field_4"          : "./#/GamesTicTacToeAI",
         "field_6"          : "https://en.wikipedia.org/wiki/Neural_network_(machine_learning)"  ,
         "field_10"         : "e9ee9d64-65ad-49a3-8595-5479300b4264"
-    },
-    {
-		"id"               : 13,
-        "done"             : true,
-        "name"             : "Games - Hanoi Towers 2d",
-        "description"      : "Games - Hanoi Towers 2d",
-        "field_1"          : "v17, Recursion Algorithms, observable,",
-        "field_2"          : "./#/GamesHanoiAuto",
-        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_engines/hanoi-engine.ts",
-        "field_4"          : "./#/GamesHanoiAuto",
-        "field_6"          : "https://en.wikipedia.org/wiki/Tower_of_Hanoi" ,
-        "field_10"         : "85fbe9be-c748-4754-bd71-daf1a40d3fb9" 
-    },
-    {
-		"id"               : 14,
-        "done"             : true,
-        "name"             : "Games - Hanoi Towers 3d",
-        "description"      : "Games - Hanoi Towers 3d",
-        "field_1"          : "v17, Recursion Algorithms, observable, THREE,TWEEN",
-        "field_2"          : "./#/GamesHanoi3d",
-        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/games/game-hanoi3d/game-hanoi3d.component.ts",
-        "field_4"          : "./#/GamesHanoi3d",
-        "field_6"          : "https://www.npmjs.com/package/three-tween" ,
-        "field_10"         : "7bd14d49-9fc4-4657-86b8-d16132a8c3e1" 
     },
     {
 		"id"               : 15,

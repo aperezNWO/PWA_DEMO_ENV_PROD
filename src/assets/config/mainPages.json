@@ -385,10 +385,10 @@
         "page_name"  : "[DEMOS - GAMES]",
         "pages"      : [
           { "id": 1, "url" : "/GamesSudoku"            , "text": "[GAMES - SUDOKU]"           },
-          { "id": 2, "url" : "/GamesTicTacToe"         , "text": "[GAMES - TIC-TAC-TOE]"      },
-          { "id": 3, "url" : "/GamesTicTacToeAI"       , "text": "[GAMES - TIC-TAC-TOE - AI]" },
-          { "id": 4, "url" : "/GamesHanoiAuto"         , "text": "[GAMES - HANOI 2d]"         },
-          { "id": 5, "url" : "/GamesHanoi3d"           , "text": "[GAMES - HANOI 3d]"         },
+          { "id": 3, "url" : "/GamesHanoiAuto"         , "text": "[GAMES - HANOI 2d]"         },
+          { "id": 4, "url" : "/GamesHanoi3d"           , "text": "[GAMES - HANOI 3d]"         },
+          { "id": 2, "url" : "/GamesTicTacToe"         , "text": "[GAMES - TIC-TAC-TOE]"      }, 
+          { "id": 5, "url" : "/GamesTicTacToeAI"       , "text": "[GAMES - TIC-TAC-TOE - AI]" },
           { "id": 6, "url" : "/GamesTetris"            , "text": "[GAMES - TETRIS]"           },
           { "id": 7, "url" : "/GamesTetrisAI"          , "text": "[GAMES - TETRIS - AI]"      }   
         ]
@@ -412,6 +412,26 @@
         ]
       },
       {
+        "log_name"   : "PAGE_GAMES_HANOI_2D",
+        "page_name"  : "[GAMES - HANOI 2D]",
+       "pages"      : [
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+          { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
+        ],
+        "pages_nested" : [
+          { "id" : 1, "url": "about:blank"                                                   , "text" : "[Angular]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '85fbe9be-c748-4754-bd71-daf1a40d3fb9' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+          { "id" : 3, "url": "https://v17.angular.io/guide/rx-library"                       , "text" : "[Rxjs]    "                   , "routerLink" : "about:blank" , "queryParams" : "" },
+          { "id" : 4, "url": "https://v17.angular.io/guide/observables"                      , "text" : "[Observables]"                , "routerLink" : "about:blank" , "queryParams" : "" },
+          { "id" : 4, "url": "https://en.wikipedia.org/wiki/Tower_of_Hanoi"                  , "text" : "[Towers of Hanoi]"            , "routerLink" : "about:blank" , "queryParams" : "" }
+        ]
+      },
+      {
+        "log_name"   : "PAGES_GAMES_HANOI_3D",
+        "page_name"  : "[GAMES - HANOI 3D]",
+        "pages"      : []
+      },
+      {
         "log_name"   : "PAGE_GAMES_TETRIS",
         "page_name"  : "[GAMES - TETRIS]",
         "pages"      : []
@@ -429,16 +449,6 @@
       {
         "log_name"   : "PAGE_GAMES_TIC_TAC_TOE_AI",
         "page_name"  : "[GAMES - TIC-TAC-TOE - AI]",
-        "pages"      : []
-      },
-      {
-        "log_name"   : "PAGE_GAMES_HANOI_2D",
-        "page_name"  : "[GAMES - HANOI 2D]",
-        "pages"      : []
-      },
-      {
-        "log_name"   : "PAGES_GAMES_HANOI_3D",
-        "page_name"  : "[GAMES - HANOI 3D]",
         "pages"      : []
       },
       {

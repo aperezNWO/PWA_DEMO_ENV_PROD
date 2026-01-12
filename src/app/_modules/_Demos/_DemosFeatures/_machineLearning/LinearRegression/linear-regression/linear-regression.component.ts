@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild             } from '@angular/core';
 import { ActivatedRoute                           } from '@angular/router';
 import { ChartData, ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective                       } from 'ng2-charts';
-import { BaseComponent                            } from 'src/app/_components/base/base.component';
+import { BaseReferenceComponent                   } from 'src/app/_components/base-reference/base-reference.component';
 import { PAGE_MACHINE_LEARNING_LINEAR_REGRESSION, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND  } from 'src/app/_models/common';
 import { _languageName                            } from 'src/app/_models/entity.model';
 import { BackendService                           } from 'src/app/_services/BackendService/backend.service';
@@ -10,6 +10,7 @@ import { ConfigService                            } from 'src/app/_services/__Ut
 import { TensorFlowService, PredictionResponse    } from 'src/app/_services/__AI/TensorflowService/tensor-flow.service';
 import { SpeechService                            } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { DecimalPipe                              } from '@angular/common';
+
 
 @Component({
   selector    : 'app-linear-regression',
@@ -22,7 +23,7 @@ import { DecimalPipe                              } from '@angular/common';
     },
   ]
 })
-export class LinearRegressionComponent  extends BaseComponent implements OnInit {
+export class LinearRegressionComponent  extends BaseReferenceComponent implements OnInit {
      //
      title              : string                    = 'Apollo Mission Time Predictor';
      inputMissionNumber : number             | null = 18; // Default value
