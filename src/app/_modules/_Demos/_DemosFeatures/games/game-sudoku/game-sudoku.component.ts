@@ -4,7 +4,6 @@ import { FormBuilder, NgForm,              } from '@angular/forms';
 import { HttpEventType, HttpResponse       } from '@angular/common/http';
 import { ActivatedRoute                    } from '@angular/router';
 import { Observable                        } from 'rxjs';
-import { PAGE_GAMES_SUDOKU                 } from 'src/app/_models/common';
 import { _languageName, ListItem           } from 'src/app/_models/entity.model';
 import { BaseComponent                     } from 'src/app/_components/base/base.component';
 import { PdfService                        } from 'src/app/_services/__FileGeneration/pdf.service';
@@ -12,6 +11,7 @@ import { BackendService                    } from 'src/app/_services/BackendServ
 import { SpeechService                     } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                     } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { SudokuService                     } from 'src/app/_services/__Games/SudokuService/sudoku.service';
+import { PAGE_GAMES_SUDOKU, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
 
 
 //
@@ -19,6 +19,12 @@ import { SudokuService                     } from 'src/app/_services/__Games/Sud
   selector: 'app-sudoku',
   templateUrl: './game-sudoku.component.html',
   styleUrl: './game-sudoku.component.css',
+  providers   : [
+    { 
+      provide : PAGE_TITLE_LOG, 
+      useValue: PAGE_GAMES_SUDOKU 
+    },
+  ]
 })
 //
 export class SudokuComponent extends BaseComponent implements OnInit, AfterViewInit {
@@ -72,7 +78,7 @@ export class SudokuComponent extends BaseComponent implements OnInit, AfterViewI
             backendService,
             route,
             speechService,
-            PAGE_GAMES_SUDOKU,
+            PAGE_TITLE_NO_SOUND,
       )
   }
   //

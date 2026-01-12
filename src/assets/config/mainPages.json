@@ -394,6 +394,24 @@
         ]
       },
       {
+        "log_name"   : "PAGE_GAMES_SUDOKU",
+        "page_name"  : "[GAMES - SUDOKU]",
+        "pages"      : [
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+          { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
+          { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
+        ],
+        "pages_nested" : [
+          { "id" : 1, "url": "about:blank"                                                   , "text" : "[Angular]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '8c25ff6b-2568-411b-b366-cb5700b95b28' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+          { "id" : 2, "url": "about:blank"                                                   , "text" : "[C++ / DLL Scource]"          , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'dbda4780-50c8-4a97-8617-cf2a60bf9b32' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
+          { "id" : 2, "url": "about:blank"                                                   , "text" : "[C++ / .Net core Endpoint]"   , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '945b42ca-17b7-44a0-a1c4-2cfec480ef2a' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
+          { "id" : 2, "url": "about:blank"                                                   , "text" : "[nodejs / javascript]"        , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'f1f0af0b-4032-49b7-9df0-80e578168fa3' , pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'  }"},
+          { "id" : 3, "url": "https://www.npmjs.com/package/jspdf"                           , "text" : "[jsPDF]"                      , "routerLink" : "about:blank" , "queryParams" : "" },
+          { "id" : 4, "url": "https://www.geeksforgeeks.org/sudoku-backtracking-7/"          , "text" : "[Sudoku]"                     , "routerLink" : "about:blank" , "queryParams" : "" }
+        ]
+      },
+      {
         "log_name"   : "PAGE_GAMES_TETRIS",
         "page_name"  : "[GAMES - TETRIS]",
         "pages"      : []
@@ -411,11 +429,6 @@
       {
         "log_name"   : "PAGE_GAMES_TIC_TAC_TOE_AI",
         "page_name"  : "[GAMES - TIC-TAC-TOE - AI]",
-        "pages"      : []
-      },
-      {
-        "log_name"   : "PAGE_GAMES_SUDOKU",
-        "page_name"  : "[GAMES - SUDOKU]",
         "pages"      : []
       },
       {
