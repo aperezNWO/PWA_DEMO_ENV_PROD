@@ -150,7 +150,7 @@
         "description"      : "Min Max Algorithm",
         "field_1"          : "v17, Min Max Algorithm, Tic-Tac-Toe",
         "field_2"          : "./#/GamesTicTacToe",
-        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_engines/game.engine.ts",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/da2b88e912f3e771735a57454834d13f74c9bee8/src/app/_engines/tictactoe.engine.ts#L258",
         "field_4"          : "./#/GamesTicTacToe",
         "field_6"          : "https://en.m.wikipedia.org/wiki/Minimax"  ,
         "field_10"         : "ac973e56-6f8e-4d0e-a7d9-3a8a415af70b"
@@ -162,7 +162,7 @@
         "description"      : "Genetic Algorithm",
         "field_1"          : "v17, Neural Networks, Tic-Tac-Toe, A.I. Genetic Algorithm",
         "field_2"          : "./#/GamesTicTacToeAI",
-        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/games/tic-tac-toe-board-ai/tic-tac-toe-board-ai.component.ts",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/da2b88e912f3e771735a57454834d13f74c9bee8/src/app/_modules/_Demos/_DemosFeatures/games/tic-tac-toe-board-ai/tic-tac-toe-board-ai.component.ts#L58",
         "field_4"          : "./#/GamesTicTacToeAI",
         "field_6"          : "https://en.wikipedia.org/wiki/Neural_network_(machine_learning)"  ,
         "field_10"         : "e9ee9d64-65ad-49a3-8595-5479300b4264"
@@ -174,7 +174,7 @@
         "description"      : "Games - Tetris",
         "field_1"          : "v17, Recursion Algorithms, observable,",
         "field_2"          : "./#/GamesTetris",
-        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/games/game-tetris/game-tetris.component.ts",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/da2b88e912f3e771735a57454834d13f74c9bee8/src/app/_modules/_Demos/_DemosFeatures/games/game-tetris/game-tetris.component.ts#L68",
         "field_4"          : "./#/GamesTetris",
         "field_6"          : "https://en.wikipedia.org/wiki/Tetris" ,
         "field_10"         : "67431c50-5240-4889-81df-84270075fed8" 

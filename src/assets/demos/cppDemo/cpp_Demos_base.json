@@ -186,9 +186,9 @@
         "description"      : "Tic-Tac-Toe Game A.I. / .net core endpoint",
         "field_1"          : "Tic-Tac-Toe Game, A.I., C++, .net core, dllimport",
         "field_2"          : "./#/GamesTicTacToeAI?langName=CPP",
-        "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TENSORFLOW/blob/main/src/_tensorflow_cpp/include/tictactoe.h#L708",
+        "field_3"          : "https://github.com/aperezNWO/ASP_NET_CORE_CPP_ENTRY/blob/3fdd99e8a8c670c16718b428f746984e99dcdc56/ASP_NET_CORE_CPP_ENTRY/Controllers/TicTacToeController.cs#L17",
         "field_4"          : "{{baseUrlNetCoreCPPEntry}}api/tictactoe/play?aiMode=1" ,
-        "field_6"          : "https://en.wikipedia.org/wiki/Neural_network_(machine_learning)",
+        "field_6"          : "https://learn.microsoft.com/es-es/dotnet/api/system.runtime.interopservices.dllimportattribute?view=net-9.0",
         "field_10"         : "924c1431-2c6e-40a2-9664-f8191235d8a6"  
     },
         {

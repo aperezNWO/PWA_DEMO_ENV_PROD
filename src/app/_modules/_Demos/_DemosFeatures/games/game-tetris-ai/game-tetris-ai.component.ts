@@ -1,21 +1,28 @@
-import { ChangeDetectorRef, Component, OnInit, } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit,     } from '@angular/core';
 import { ActivatedRoute                            } from '@angular/router';
-import { BaseComponent                             } from 'src/app/_components/base/base.component';
+import { HttpClient                                } from '@angular/common/http';
+import { BaseReferenceComponent                    } from 'src/app/_components/base-reference/base-reference.component';
 import { BackendService                            } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                             } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { SpeechService                             } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { PAGE_GAMES_TETRIS_AI                      } from 'src/app/_models/common';
-import { HttpClient                                } from '@angular/common/http';
-import { interval,  Subscription                   } from 'rxjs';
 import { TetrisState,  AIWeights                   } from "src/app/_models/entity.model";
 import { TetrisService                             } from "src/app/_services/__Games/TetrisService/tetris.service";
+import { interval,  Subscription                   } from 'rxjs';
 import { catchError, tap                           } from 'rxjs/operators';
+import { PAGE_GAMES_TETRIS_AI, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
+
 @Component({
   selector: 'app-game-tetris-ai',
   templateUrl: './game-tetris-ai.component.html',
-  styleUrl: './game-tetris-ai.component.css'
+  styleUrl: './game-tetris-ai.component.css',
+  providers   : [
+    { 
+      provide : PAGE_TITLE_LOG, 
+      useValue: PAGE_GAMES_TETRIS_AI 
+    },
+  ]
 })
-export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
+export class GameTetrisAIComponent  extends BaseReferenceComponent implements OnInit {
   
  state: TetrisState = {
     score: 0,
@@ -43,7 +50,7 @@ export class GameTetrisAIComponent  extends BaseComponent implements OnInit {
             backendService,
             route,
             speechService,
-            PAGE_GAMES_TETRIS_AI
+            PAGE_TITLE_NO_SOUND,
       )
   }
   //

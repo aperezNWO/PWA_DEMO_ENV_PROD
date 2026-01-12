@@ -1,32 +1,6 @@
 <div align="center">
     <!-- ENCABEZADO / INICIO  -->  
-    <div align="center">
-      <h1>{{  this.pageTitle }}</h1>
-    </div>
-    <hr> 
-    <div class="reference" align="right">
-        <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
-        <ul *ngIf="isListVisible" align="left" widdth="10px">
-        <li>[Frontend]
-            <ul>
-                <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: '7aff06eb-556e-422e-aef5-6fadc241f4fd' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }">[Angular]</a></li>
-            </ul>
-        </li>
-        <li>[Backend]
-            <ul>
-                <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: 'ca7ac509-59bc-4a9b-b1e1-24362db33e17'  , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }">[C++ .Net Core /  DLLImport]</a></li>
-                <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: '36fb7939-88da-4a5c-bb38-164062fbaf67'  , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }">[C++ DLL]</a></li>
-            </ul>
-        </li>
-        <li>[Topics]
-            <ul>
-                <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: '06f33ccf-68be-4fbe-b9af-4ba5cc9535f2'  , pageName : 'PAGE_CURRICULUM_AI'            }">[Genetic Algorithm]</a></li>
-                <li><a href="https://en.wikipedia.org/wiki/Tetris"            target="_blank">[Tetris]</a></li>
-                <li><a href="https://leeyiyuan.github.io/tetrisai/"           target="_blank">[Tetris with A.I.]</a></li>
-            </ul>
-        </li>
-      </ul>
-    </div>  
+    <app-base-reference></app-base-reference>
     <!-- ENCABEZADO / FIN -->  
     <hr>
     <!-- TABLERO INICIO -->

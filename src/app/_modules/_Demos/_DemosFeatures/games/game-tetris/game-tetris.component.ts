@@ -1,23 +1,30 @@
 // tetris.component.ts
 import { Component, HostListener, Injectable, OnInit } from '@angular/core';
-import { ActivatedRoute, Router                  } from '@angular/router';
-import { interval, Subscription          } from 'rxjs';
-import { BaseComponent                   } from 'src/app/_components/base/base.component';
-import { BackendService                  } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService                   } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { ConfigService                   } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { PAGE_GAMES_TETRIS               } from 'src/app/_models/common';
+import { ActivatedRoute, Router                      } from '@angular/router';
+import { BaseReferenceComponent                      } from 'src/app/_components/base-reference/base-reference.component';
+import { BackendService                              } from 'src/app/_services/BackendService/backend.service';
+import { SpeechService                               } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ConfigService                               } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { PAGE_GAMES_TETRIS, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
+import { interval, Subscription                      } from 'rxjs';
+
 interface Position {
   x: number;
   y: number;
 }
 
 @Component({
-  selector: 'app-game-tetris',
-  templateUrl: './game-tetris.component.html',
-  styleUrl: './game-tetris.component.css'
+  selector    : 'app-game-tetris',
+  templateUrl : './game-tetris.component.html',
+  styleUrl    : './game-tetris.component.css',
+  providers   : [
+    { 
+      provide : PAGE_TITLE_LOG, 
+      useValue: PAGE_GAMES_TETRIS 
+    },
+  ]
 })
-export class GameTetrisComponent  extends BaseComponent implements OnInit  {
+export class GameTetrisComponent  extends BaseReferenceComponent implements OnInit  {
   readonly BOARD_WIDTH = 10;
   readonly BOARD_HEIGHT = 20;
   readonly TICK_INTERVAL = 1000;
@@ -56,7 +63,7 @@ export class GameTetrisComponent  extends BaseComponent implements OnInit  {
             backendService,
             route,
             speechService,
-            PAGE_GAMES_TETRIS
+            PAGE_TITLE_NO_SOUND
       )
   }
   //
@@ -238,7 +245,7 @@ export class GameTetrisComponent  extends BaseComponent implements OnInit  {
         y++; // Check the same line again
       }
     }
-    
+
     if (linesCleared > 0) {
       this.score += Math.pow(2, linesCleared - 1) * 100;
     }

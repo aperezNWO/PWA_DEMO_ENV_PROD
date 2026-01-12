@@ -1,12 +1,13 @@
 import { Component, OnInit         } from '@angular/core';
 import { ActivatedRoute            } from '@angular/router';
-import { BaseComponent             } from 'src/app/_components/base/base.component';
-import { PAGE_GAMES_TIC_TAC_TOE_AI } from 'src/app/_models/common';
-import { _languageName } from 'src/app/_models/entity.model';
+import { BaseReferenceComponent    } from 'src/app/_components/base-reference/base-reference.component';
+import { _languageName             } from 'src/app/_models/entity.model';
 import { BackendService            } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService             } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { SpeechService             } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { _environment              } from 'src/environments/environment';
+import { PAGE_GAMES_TIC_TAC_TOE_AI, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
+
 
 export interface TicTacToeResponse {
   finalBoard: number[];
@@ -20,9 +21,15 @@ export interface TicTacToeResponse {
 @Component({
   selector: 'app-tic-tac-toe-board-ai',
   templateUrl: './tic-tac-toe-board-ai.component.html',
-  styleUrl: './tic-tac-toe-board-ai.component.css'
+  styleUrl: './tic-tac-toe-board-ai.component.css',
+  providers   : [
+      { 
+        provide : PAGE_TITLE_LOG, 
+        useValue: PAGE_GAMES_TIC_TAC_TOE_AI 
+      },
+  ]
 })
-export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
+export class TicTacToeBoardAiComponent extends BaseReferenceComponent implements OnInit {
   //
   gameHistory: number[][] = [];
   currentStep  = 0;
@@ -49,7 +56,7 @@ export class TicTacToeBoardAiComponent extends BaseComponent implements OnInit {
             backendService,
             route,
             speechService,
-            PAGE_GAMES_TIC_TAC_TOE_AI,
+            PAGE_TITLE_NO_SOUND,
       )
   }
   //

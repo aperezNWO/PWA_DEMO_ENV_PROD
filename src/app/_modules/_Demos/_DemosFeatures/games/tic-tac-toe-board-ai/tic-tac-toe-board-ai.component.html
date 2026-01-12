@@ -1,39 +1,8 @@
 <div class="content">    
       <!-- ENCABEZADO / INICIO  -->  
-      <div align="center">
-            <h1>{{  this.pageTitle }}</h1>
-       </div>
-       <hr>
-       <div class="reference" align="right">
-            <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
-            <ul *ngIf="isListVisible" align="left" widdth="10px">
-            <li>[Frontend]
-                <ul>
-                    <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: 'e9ee9d64-65ad-49a3-8595-5479300b4264'  , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }">[Angular]</a></li>
-                </ul>
-            </li>
-            <li>[Backend]
-                <ul>
-                    <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: '84b09d01-71ef-47e6-acd8-f0719d1a8949'  , pageName : 'PAGE_DEMOS_DJANGO_PYTHON'      }">[Python]</a></li>
-                    <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: '924c1431-2c6e-40a2-9664-f8191235d8a6'  , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }">[C++ .Net Core /  DLLImport]</a></li>
-                    <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: 'b3ef5370-9841-46da-86bb-664c7880be6a'  , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }">[C++ DLL]</a></li>
-                </ul>
-            </li>
-           <li>[Libraries]            
-                    <ul>
-                        <li><a href="https://www.tensorflow.org/?hl=es-419" target=_blank>[Tensorflow]</a></li>
-                    </ul>
-            </li>
-            <li>[Topics]            
-                    <ul>
-                         <li><a routerLink="/GridParam" [queryParams]="{ searchTerm: 'fd6d21e0-e6b8-422c-93fd-67bf2e5c1094'  , pageName : 'PAGE_CURRICULUM_AI' }">[Neural Networks]</a></li>
-                         <li><a href="https://en.wikipedia.org/wiki/Tic-tac-toe" target="_blank">[Tic-Tac-Toe]</a></li>
-                    </ul>
-            </li>
-            </ul>
-       </div>
-       <hr>
+      <app-base-reference></app-base-reference> 
       <!-- ENCABEZADO / FIN -->  
+      <hr>
       <!-- TABLERO / INICIO -->
       <div class="game-container">
             <!-- Controls -->
