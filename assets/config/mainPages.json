@@ -607,7 +607,22 @@
       {
         "log_name"   : "PAGE_MACHINE_LEARNING_LINEAR_REGRESSION",
         "page_name"  : "[MACHINE LEARNING - LINEAR REGRESSION]",
-        "pages"      : []
+        "pages"      : [
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+          { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
+          { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
+        ],
+        "pages_nested" : [
+          { "id" : 1, "url": "about:blank"                                                   , "text" : "[Angular]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'edb5d4c4-484e-4d4c-b361-963827eaadfb' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+          { "id" : 2, "url": "about:blank"                                                   , "text" : "[C++ / DLL Scource]"          , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'ddfc8e21-fc68-4531-b176-62a7589a3cb1' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
+          { "id" : 2, "url": "about:blank"                                                   , "text" : "[C++ / .Net core Endpoint]"   , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'e24429ce-2b9a-42a4-8690-1edcf09c1b72' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
+          { "id" : 2, "url": "about:blank"                                                   , "text" : "[Python]"                     , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '63cc6e30-657f-4775-9c4c-fbb446b774d6' , pageName : 'PAGE_DEMOS_DJANGO_PYTHON'      }"},
+          { "id" : 3, "url": "https://www.tensorflow.org/install/pip?hl=es"                  , "text" : "[Tensorflow]"                 , "routerLink" : "about:blank" , "queryParams" : "" },
+          { "id" : 3, "url": "https://www.chartjs.org/"                                      , "text" : "[Chart.js]"                   , "routerLink" : "about:blank" , "queryParams" : "" },
+          { "id" : 3, "url": "https://valor-software.com/ng2-charts/line"                    , "text" : "[ng2-charts]"                 , "routerLink" : "about:blank" , "queryParams" : "" },
+          { "id" : 4, "url": "https://en.wikipedia.org/wiki/Linear_regression"               , "text" : "[linear Regression]"          , "routerLink" : "about:blank" , "queryParams" : "" }
+        ]
       },
       {
         "log_name"   : "PAGE_DEMOS_CARACTERISTICAS_INDEX",
