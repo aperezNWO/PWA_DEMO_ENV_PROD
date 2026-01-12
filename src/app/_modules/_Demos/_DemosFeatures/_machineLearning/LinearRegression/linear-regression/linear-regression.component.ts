@@ -3,18 +3,24 @@ import { ActivatedRoute                           } from '@angular/router';
 import { ChartData, ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective                       } from 'ng2-charts';
 import { BaseComponent                            } from 'src/app/_components/base/base.component';
-import { PAGE_MACHINE_LEARNING_LINEAR_REGRESSION  } from 'src/app/_models/common';
+import { PAGE_MACHINE_LEARNING_LINEAR_REGRESSION, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND  } from 'src/app/_models/common';
 import { _languageName                            } from 'src/app/_models/entity.model';
 import { BackendService                           } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                            } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { TensorFlowService, PredictionResponse    } from 'src/app/_services/__AI/TensorflowService/tensor-flow.service';
 import { SpeechService                            } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe                              } from '@angular/common';
 
 @Component({
-  selector: 'app-linear-regression',
-  templateUrl: './linear-regression.component.html',
-  styleUrl: './linear-regression.component.css'
+  selector    : 'app-linear-regression',
+  templateUrl : './linear-regression.component.html',
+  styleUrl    : './linear-regression.component.css',
+  providers   : [
+    { 
+      provide : PAGE_TITLE_LOG, 
+      useValue: PAGE_MACHINE_LEARNING_LINEAR_REGRESSION 
+    },
+  ]
 })
 export class LinearRegressionComponent  extends BaseComponent implements OnInit {
      //
@@ -110,7 +116,7 @@ export class LinearRegressionComponent  extends BaseComponent implements OnInit 
                 backendService,
                 route,
                 speechService,
-                PAGE_MACHINE_LEARNING_LINEAR_REGRESSION
+                PAGE_TITLE_NO_SOUND
           )
     }
 
