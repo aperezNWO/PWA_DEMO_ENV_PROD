@@ -581,6 +581,8 @@
         -- [_] django self playing tictactoe.
 
 
+ -- [_] check error install TWEEN module.   
+
  -- [_] Check logic TETRIS -- A.I.   
 
  -- [_] architecture overhauling.
