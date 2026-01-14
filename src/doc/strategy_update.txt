@@ -639,6 +639,14 @@
 
                 -- [_] Algorithm, FileManager .NET core Controllers.  
 
+                -- [_] move somee.com to monsterasp.net. leave dbs only. 
+
+  -- [_] docker hosting.
+
+        -- [_] vertex.
+
+        -- [_] unique restful endpoint.
+
   -- [_] SCM.
 
         -- [x] fractal demo repo path fix.
