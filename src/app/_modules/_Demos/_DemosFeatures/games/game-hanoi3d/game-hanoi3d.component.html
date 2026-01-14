@@ -5,7 +5,9 @@
     <hr>
     <div #rendererContainer style="width: 300px; height: 300px;"></div>
     <hr>
-    <button (click)="restart()">[RESTART]</button>
+    <button (click)="restart()" class="reset-button">
+      <i class="fas fa-redo"></i> Restart Game
+    </button>
     <hr />
     <div align="right">
         <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_GAMES_INDEX'}" >[Back to Menu]</a>

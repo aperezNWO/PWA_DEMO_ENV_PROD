@@ -1,14 +1,15 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, Injectable } from '@angular/core';
-import { OrbitControls          } from 'three/examples/jsm/controls/OrbitControls';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit    } from '@angular/core';
+import { ActivatedRoute                                             } from '@angular/router';
+import { BackendService                                             } from 'src/app/_services/BackendService/backend.service';
+import { SpeechService                                              } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { BaseReferenceComponent                                     } from 'src/app/_components/base-reference/base-reference.component';
+import { ConfigService                                              } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND, PAGE_GAMES_HANOI_3D   } from 'src/app/_models/common';
+import { OrbitControls                                              } from 'three/examples/jsm/controls/OrbitControls';
 import * as THREE from 'three';
 import * as TWEEN from 'tween';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BackendService         } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService          } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
-import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND, PAGE_GAMES_HANOI_3D   } from 'src/app/_models/common';
-
+//import '@tweenjs/tween.js';
+//declare var TWEEN: any;
 
 @Component({
   selector: 'app-game-hanoi3d',
@@ -36,8 +37,9 @@ export class GameHanoi3dComponent extends BaseReferenceComponent implements OnIn
   isAnimating = false;
 
   //
+  private animationFrameId: number | null = null;
+  //
   constructor(
-                  public  pageRestartService        : PageRestartService,
                   public  override configService    : ConfigService,
                   public  override backendService   : BackendService,
                   public  override route            : ActivatedRoute,
@@ -53,10 +55,6 @@ export class GameHanoi3dComponent extends BaseReferenceComponent implements OnIn
       )
   }
 
-  restart() {
-    this.pageRestartService.reloadPage(); // or use any other method
-  }
-    
   ngOnInit(): void {
 
   }
@@ -67,6 +65,10 @@ export class GameHanoi3dComponent extends BaseReferenceComponent implements OnIn
     this.createDisks();
     this.solveHanoi(this.numDisks, 0, 2, 1); // Solve the Hanoi puzzle
     this.animate();
+  }
+
+  restart() {
+    this.resetGame();
   }
 
   initScene() {
@@ -124,11 +126,19 @@ export class GameHanoi3dComponent extends BaseReferenceComponent implements OnIn
       const move = this.moves[this.currentMove];
 
       // Correct Disk Selection: Find the top disk on the source tower
-      const disksOnSource = this.disks.filter(d => Math.abs(d.position.x - this.towers[move.from].position.x) < 0.1).sort((a, b) => b.position.y - a.position.y);
+      const disksOnSource = this.disks.filter(d => 
+        Math.abs(d.position.x - this.towers[move.from].position.x) < 0.1
+      ).sort((a, b) => b.position.y - a.position.y);
+      
       if (disksOnSource.length > 0) {
         const diskToMove = disksOnSource[0];
-
-        const targetY = this.towers[move.to].position.y + 0.25 + this.disks.filter(d => Math.abs(d.position.x - this.towers[move.to].position.x) < 0.1).length * 0.5;
+        
+        // CORRECTED: Calculate target Y based on tower base (Y=0), not tower center (Y=2.5)
+        const disksOnTarget = this.disks.filter(d => 
+          Math.abs(d.position.x - this.towers[move.to].position.x) < 0.1
+        );
+        const diskIndex = disksOnTarget.length; // This is the index of the new disk
+        const targetY = diskIndex * 0.5 + 0.25; // Position the center of the disk
         
         new TWEEN.Tween(diskToMove.position)
           .to({ y: diskToMove.position.y + 3 }, 500) // Move up
@@ -137,7 +147,7 @@ export class GameHanoi3dComponent extends BaseReferenceComponent implements OnIn
               .to({ x: this.towers[move.to].position.x }, 500) // Move across
               .onComplete(() => {
                 new TWEEN.Tween(diskToMove.position)
-                  .to({ y: targetY }, 500) // Move down
+                  .to({ y: targetY }, 500) // Move down to CORRECT position
                   .onComplete(() => {
                     this.currentMove++;
                     this.isAnimating = false;
@@ -161,29 +171,103 @@ export class GameHanoi3dComponent extends BaseReferenceComponent implements OnIn
       if (this.currentMove < this.moves.length) this.animateMove();
       this.renderer.render(this.scene, this.camera);
   }
-}
 
-@Injectable({
-  providedIn: 'root',
-})
-class PageRestartService {
-  constructor(private router: Router) {}
-
-  // Method 1: Simple page reload
-  reloadPage() {
-    window.location.reload();
+  resetGame() {
+    // 1. Stop animation loop
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+    }
+  
+    // 2. Stop any ongoing tweens
+    TWEEN.removeAll();
+    
+    // 3. Clean up old scene objects
+    this.cleanupScene();
+    
+    // 4. Reset game state
+    this.currentMove = 0;
+    this.isAnimating = false;
+    this.moves = [];
+    
+    // 5. Reinitialize everything
+    this.initScene();
+    this.createTowers();
+    this.createDisks();
+    this.solveHanoi(this.numDisks, 0, 2, 1);
+    
+    // 6. Restart animation
+    this.startAnimation();
   }
 
-  // Method 2: Reload current route
-  async reloadCurrentRoute() {
-    const currentUrl = this.router.url;
-    await this.router.navigateByUrl('/', { skipLocationChange: true });
-    return this.router.navigateByUrl(currentUrl);
+  // Helper to clean up old scene objects
+  private cleanupScene() {
+    // Remove all disks
+    this.disks.forEach(disk => {
+      this.scene.remove(disk);
+      if (disk.geometry) disk.geometry.dispose();
+      if (disk.material) {
+        if (Array.isArray(disk.material)) {
+          disk.material.forEach(m => m.dispose());
+        } else {
+          disk.material.dispose();
+        }
+      }
+    });
+    this.disks = [];
+    
+    // Remove all towers
+    this.towers.forEach(tower => {
+      this.scene.remove(tower);
+      if (tower.geometry) tower.geometry.dispose();
+      if (tower.material) {
+        if (Array.isArray(tower.material)) {
+          tower.material.forEach(m => m.dispose());
+        } else {
+          tower.material.dispose();
+        }
+      }
+    });
+    this.towers = [];
+    
+    // Dispose renderer
+    if (this.renderer) {
+      this.renderer.dispose();
+      this.renderer.forceContextLoss();
+      const gl = this.renderer.domElement.getContext('webgl');
+      if (gl) {
+        // Clean up WebGL resources
+        gl.getExtension('WEBGL_lose_context')?.loseContext();
+      }
+      
+      // Remove renderer element
+      if (this.renderer.domElement && this.rendererContainer?.nativeElement) {
+        this.rendererContainer.nativeElement.removeChild(this.renderer.domElement);
+      }
+    }
+  
+    // Remove controls
+    if (this.controls) {
+      this.controls.dispose();
+    }
   }
 
-  // Method 3: Reload with query params refresh
-  reloadWithQueryParamsRefresh() {
-    const currentUrl = window.location.href;
-    window.location.href = currentUrl;
+  // Helper to start animation loop
+  private startAnimation() {
+    // Create a new animation loop
+    const animate = () => {
+      this.animationFrameId = requestAnimationFrame(animate);
+      
+      TWEEN.update();
+      this.controls.update();
+      
+      if (this.currentMove < this.moves.length) {
+        this.animateMove();
+      }
+      
+      this.renderer.render(this.scene, this.camera);
+    };
+    
+    // Start the animation
+    animate();
   }
 }
