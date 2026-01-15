@@ -5,213 +5,44 @@
         "pages"      : [
           { "id": 1, "url" : "/PageUrlList"                                               , "text": "[FEATURES]"        , "queryParams" : "PAGE_DEMOS_CARACTERISTICAS_INDEX"     },
           { "id": 2, "url" : "/PageUrlList"                                               , "text": "[LANGUAGES]"       , "queryParams" : "PAGE_DEMOS_LENGUAJES_INDEX"           },
-          { "id": 3, "url" : "/PageUrlList"                                               , "text": "[CURRICULUM]"      , "queryParams" : "PAGE_DEMOS_CURRICULUM_INDEX"          }
+          { "id": 3, "url" : "/PageUrlList"                                               , "text": "[LIBRARIES]"       , "queryParams" : "PAGE_DEMOS_LIBRARIES_INDEX"           },
+          { "id": 4, "url" : "/PageUrlList"                                               , "text": "[CURRICULUM]"      , "queryParams" : "PAGE_DEMOS_CURRICULUM_INDEX"          }
         ]
       },
       {
-        "log_name"   : "PAGE_ABOUT_INDEX",
-        "page_name"  : "[ABOUT]",
+        "log_name"   : "PAGE_DEMOS_INDEX",
+        "page_name"  : "[DEMOS]",
         "pages"      : [
-          { "id": 1, "url" : "/TechnicalSpecs"                                           , "text": "[TECHNICAL SPECS.]"               },
-          { "id": 2, "url" : "/SCM"                                                      , "text": "[SOFTWARE CONFIGURATION MANAGEMENT]"       },
-          { "id": 3, "url" : "/LLMList"                                                  , "text": "[LARGE LANGUAGE MODELS LIST]"              },
-          { "id": 4, "url" : "/EduResources"                                             , "text": "[EDUCATIONAL RESOURCES]"                   },
-          { "id": 5, "url" : "/ContactForm"                                              , "text": "[CONTACT FORM]"                            },
-          { "id": 6, "url" : "/Index"                                                    , "text": "[INDEX]"                                                                        }
-        ]
+          { "id": 1, "url" : "/PageUrlList"                                               , "text": "[FEATURES]"        , "queryParams" : "PAGE_DEMOS_CARACTERISTICAS_INDEX"     },
+          { "id": 2, "url" : "/PageUrlList"                                               , "text": "[LANGUAGES]"       , "queryParams" : "PAGE_DEMOS_LENGUAJES_INDEX"           },
+          { "id": 3, "url" : "/PageUrlList"                                               , "text": "[LIBRARIES]"       , "queryParams" : "PAGE_DEMOS_LIBRARIES_INDEX"           },
+          { "id": 4, "url" : "/PageUrlList"                                               , "text": "[CURRICULUM]"      , "queryParams" : "PAGE_DEMOS_CURRICULUM_INDEX"          }
+        ] 
       },
-      {
+            {
         "log_name"   : "PAGE_NOT_FOUND",
         "page_name"  : "[PAGE NOT FOUND]",
         "pages"      : []
       },
       {
-        "log_name"   : "PAGE_ABOUT_TECHNICAL_SPECS",
-        "page_name"  : "[ABOUT - TECHNICAL SPECS.]",
-        "pages"      : []
-      },
-      {
-        "log_name"   : "PAGE_ABOUT_LLM_LIST",
-        "page_name"  : "[ABOUT - LLMs LIST]",
+        "log_name"   : "PAGE_DEMOS_LENGUAJES_INDEX",
+        "page_name"  : "[DEMOS - LANGUAGES]",
         "pages"      : [
-              {
-                  "id"   : 1 ,
-                  "url"  : "https://gemini.google.com/",
-                  "text" : "Google Gemini"
-              },
-              {
-                  "id"  : 2 ,
-                  "url" : "https://chatgpt.com/",
-                  "text": "Chat GTP"
-              },
-              {
-                  "id"   : 3,
-                  "url"  : "https://claude.ai/new",
-                  "text" : "Arthropic - Claude"
-              },
-              {
-                  "id"   : 4,
-                  "url"  : "https://groq.com/",
-                  "text" : "Groq"
-              },
-              {
-                  "id"   : 5,  
-                  "url"  : "https://pi.ai/talk",
-                  "text" : "Inflection - PI"
-              },
-              {
-                  "id"   : 6,
-                  "url"  : "https://www.meta.ai/",
-                  "text" : "Meta - A.I."
-              },
-              {
-                  "id"   : 7,
-                  "url"  : "https://venice.ai/",
-                  "text" : "Venice"
-              },
-              {
-                  "id"   : 8,
-                  "url"  : "https://x.com/i/grok?focus=1",
-                  "text" : "xAI"
-              },
-              {
-                  "id"   : 9,
-                  "url"  : "https://copilot.microsoft.com/",
-                  "text" : "Microsoft Copilot"
-              },
-              {
-                  "id"   : 10,
-                  "url"  : "https://www.deepseek.com/",
-                  "text" : "Deep Seek"
-              },
-              {
-                  "id"   : 11,
-                  "url"  : "https://chat.qwenlm.ai/",
-                  "text" : "Qwen"
-              },
-              {
-                  "id"   : 12,
-                  "url"  : "https://manus.im/",
-                  "text" : "Manus (META)"
-              },
-              {
-                  "id"   : 13,
-                  "url"  : "https://kimi.com/",
-                  "text" : "Kimi"
-              },
-              {
-                  "id"   : 14,
-                  "url"  : "https://stackoverflow.ai/",
-                  "text" : "Stack Overflow"
-              },
-              {
-                  "id"   : 15,
-                  "url"  : "https://g.ai/",
-                  "text" : "Google a.i."
-              }
+          { "id": 1, "url" : "/GridParam"         , "text": "[ANGULAR / TYPESCRIPT]"   , "queryParams" : "PAGE_DEMOS_ANGULAR_JAVASCRIPT"    },
+          { "id": 2, "url" : "/GridParam"         , "text": "[.NET CORE / C++]"        , "queryParams" : "PAGE_DEMOS_NETCORE_CPP"           },
+          { "id": 3, "url" : "/GridParam"         , "text": "[.NET CORE / C#]"         , "queryParams" : "PAGE_DEMOS_NETCORE_CSHARP"        },
+          { "id": 4, "url" : "/GridParam"         , "text": "[NODE.JS / JAVASCRIPT]"   , "queryParams" : "PAGE_DEMOS_NODEJS_JAVASCRIPT"     },
+          { "id": 4, "url" : "/GridParam"         , "text": "[SPRING BOOT / JAVA]"     , "queryParams" : "PAGE_DEMOS_SPRING_BOOT_JAVA"      },
+          { "id": 4, "url" : "/GridParam"         , "text": "[PYTHON / DJANGO]"        , "queryParams" : "PAGE_DEMOS_DJANGO_PYTHON"         }
         ]
       },
       {
-        "log_name"   : "PAGE_ABOUT_EDU_RESC",
-        "page_name"  : "[ABOUT - EDUCATIONAL RESOURCES]",
+        "log_name"   : "PAGE_DEMOS_LIBRARIES_INDEX",
+        "page_name"  : "[DEMOS - LIBRARIES]",
         "pages"      : [
-              {
-                  "id"  : 0,
-                  "url" : "https://www.computer.org/education/bodies-of-knowledge/software-engineering/",
-                  "name": "SWEBOK - [Software Engineering Body of Knowledge]"
-              },
-              {
-                  "id"  : 1,
-                  "url" : "https://angular.dev/",
-                  "name": "Angular Main Page"
-              },
-              {
-                  "id"  : 2,
-                  "url" : "https://ng-bootstrap.github.io/#/components/table/examples#basic",
-                  "name": "Angular Components - ng-bootstrap"
-              }, 
-              {
-                  "id"  : 3,
-                  "url": "https://isocpp.org/",
-                  "name": "C++ Main Page"
-              },
-              {
-                  "id"  : 4,
-                  "url" : "https://en.cppreference.com/w/",
-                  "name": "C++ Reference"
-              },
-              {
-                  "id"  : 5,
-                  "url" : "https://www.learncpp.com/",
-                  "name": "Learn CPP"
-              },
-              {
-                  "id"  : 6,
-                  "url" : "https://www.coursera.org/learn/analysis-of-algorithms",
-                  "name": "Coursera - Algorithms"
-              },
-              {
-                  "id"  : 7,
-                  "url" : "https://www.deeplearning.ai/",
-                  "name": "Coursera - Deep Learning"
-              },
-              {
-                  "id"  : 8,
-                  "url" : "https://www-cs-faculty.stanford.edu/~knuth/taocp.html",
-                  "name": "The Art of Computer Programming"
-              },    
-              {
-                  "id"  : 9,
-                  "url" : "https://developer.mozilla.org/en-US/",
-                  "name": "Mozilla Developer Network"
-              },    
-              {
-                  "id"  : 10,
-                  "url" : "https://web.dev/?hl=es-419",
-                  "name": "Web.dev (by Google)"
-              },    
-              {
-                  "id"  : 11,
-                  "url" : "https://www.freecodecamp.org/learn",
-                  "name": "Freecodecampo (By Microsoft)"
-              },
-              {
-                  "id"  : 12,
-                  "url" : "https://owasp.org/",
-                  "name": "Open Web Application Security Project (OWASP)"
-              },
-              {
-                  "id"  : 13,
-                  "url" : "https://w3.org/",
-                  "name": "W3C"
-              },
-              {
-                  "id"  : 14,
-                  "url" : "https://algorithm-visualizer.org/",
-                  "name" : "Algorithm Visualizer"
-              },
-              {
-                  "id"   : 15,
-                  "url"  : "https://en.wikipedia.org/wiki/SOLID",
-                  "name" : "Solid Principles"
-              },
-              {
-                  "id"   : 16,
-                  "url"  : "https://learn.microsoft.com/en-us/azure/architecture/",
-                  "name" : "Microsoft Pattern and Practices"
-              }
-         ]
-      },
-      {
-        "log_name"   : "PAGE_ABOUT_CONTACT_FORM",
-        "page_name"  : "[CONTACT US]",
-        "pages"      : []
-      },
-      {
-        "log_name"   : "PAGE_DEMOS_LENGUAJES_INDEX",
-        "page_name"  : "[DEMOS - LANGUAGES / LIBRARIES]",
-        "pages"      : [
-          { "id": 1, "url" : "/GridParam"         , "text": "[ANGULAR / TYPESCRIPT]"   , "queryParams" : "PAGE_DEMOS_ANGULAR_JAVASCRIPT"    },
+            { "id": 1, "url" : "/GridParam"         , "text": "[ANGULAR / TYPESCRIPT]"   , "queryParams" : "PAGE_DEMOS_ANGULAR_JAVASCRIPT"    }
+        ],
+        "_pages"      : [
           { "id": 2, "url" : "/GridParam"         , "text": "[.NET CORE / C++]"        , "queryParams" : "PAGE_DEMOS_NETCORE_CPP"           },
           { "id": 3, "url" : "/GridParam"         , "text": "[.NET CORE / C#]"         , "queryParams" : "PAGE_DEMOS_NETCORE_CSHARP"        },
           { "id": 4, "url" : "/GridParam"         , "text": "[NODE.JS / JAVASCRIPT]"   , "queryParams" : "PAGE_DEMOS_NODEJS_JAVASCRIPT"     },
@@ -717,22 +548,6 @@
         ]
       },
       {
-        "log_name"   : "PAGE_DEMOS_INDEX",
-        "page_name"  : "[DEMOS]",
-        "pages"      : [
-          { "id": 1, "url" : "/PageUrlList"                 , "text": "[DEMOS - FEATURES]"                        , "queryParams" : "PAGE_DEMOS_CARACTERISTICAS_INDEX"     },
-          { "id": 1, "url" : "/PageUrlList"                 , "text": "[DEMOS - LANGUAGES]"                       , "queryParams" : "PAGE_DEMOS_LENGUAJES_INDEX"           },
-          { "id": 1, "url" : "/PageUrlList"                 , "text": "[DEMOS - CURRICULUM]"                      , "queryParams" : "PAGE_DEMOS_CURRICULUM_INDEX"          }
-        ] 
-      },
-      {
-        "log_name"   : "PAGE_ABOUT_SCM",
-        "page_name"  : "[SOFTWARE CONFIGURATION MANAGEMENT]",
-        "pages"      : [
-          { "id": 1, "url" : "./assets/config/scm.json"       , "text": ""    }
-        ]
-      },
-      {
         "log_name"   : "PAGE_DEMOS_DJANGO_PYTHON",
         "page_name"  : "[DEMOS - PYTHON / DJANGO]",
         "pages"      : [
@@ -773,6 +588,207 @@
         "pages"      : [
           { "id": 1, "url" : "./assets/demos/angularDemo/angular_Demos_base.json"              , "text": ""      }
         ]
+      },
+     {
+        "log_name"   : "PAGE_ABOUT_INDEX",
+        "page_name"  : "[ABOUT]",
+        "pages"      : [
+          { "id": 1, "url" : "/TechnicalSpecs"                                           , "text": "[TECHNICAL SPECS.]"               },
+          { "id": 2, "url" : "/SCM"                                                      , "text": "[SOFTWARE CONFIGURATION MANAGEMENT]"       },
+          { "id": 3, "url" : "/LLMList"                                                  , "text": "[LARGE LANGUAGE MODELS LIST]"              },
+          { "id": 4, "url" : "/EduResources"                                             , "text": "[EDUCATIONAL RESOURCES]"                   },
+          { "id": 5, "url" : "/ContactForm"                                              , "text": "[CONTACT FORM]"                            },
+          { "id": 6, "url" : "/Index"                                                    , "text": "[INDEX]"                                                                        }
+        ]
+      },
+      {
+        "log_name"   : "PAGE_ABOUT_TECHNICAL_SPECS",
+        "page_name"  : "[ABOUT - TECHNICAL SPECS.]",
+        "pages"      : []
+      },
+      {
+        "log_name"   : "PAGE_ABOUT_SCM",
+        "page_name"  : "[SOFTWARE CONFIGURATION MANAGEMENT]",
+        "pages"      : [
+          { "id": 1, "url" : "./assets/config/scm.json"       , "text": ""    }
+        ]
+      },
+      {
+        "log_name"   : "PAGE_ABOUT_LLM_LIST",
+        "page_name"  : "[ABOUT - LLMs LIST]",
+        "pages"      : [
+              {
+                  "id"   : 1 ,
+                  "url"  : "https://gemini.google.com/",
+                  "text" : "Google Gemini"
+              },
+              {
+                  "id"  : 2 ,
+                  "url" : "https://chatgpt.com/",
+                  "text": "Chat GTP"
+              },
+              {
+                  "id"   : 3,
+                  "url"  : "https://claude.ai/new",
+                  "text" : "Arthropic - Claude"
+              },
+              {
+                  "id"   : 4,
+                  "url"  : "https://groq.com/",
+                  "text" : "Groq"
+              },
+              {
+                  "id"   : 5,  
+                  "url"  : "https://pi.ai/talk",
+                  "text" : "Inflection - PI"
+              },
+              {
+                  "id"   : 6,
+                  "url"  : "https://www.meta.ai/",
+                  "text" : "Meta - A.I."
+              },
+              {
+                  "id"   : 7,
+                  "url"  : "https://venice.ai/",
+                  "text" : "Venice"
+              },
+              {
+                  "id"   : 8,
+                  "url"  : "https://x.com/i/grok?focus=1",
+                  "text" : "xAI"
+              },
+              {
+                  "id"   : 9,
+                  "url"  : "https://copilot.microsoft.com/",
+                  "text" : "Microsoft Copilot"
+              },
+              {
+                  "id"   : 10,
+                  "url"  : "https://www.deepseek.com/",
+                  "text" : "Deep Seek"
+              },
+              {
+                  "id"   : 11,
+                  "url"  : "https://chat.qwenlm.ai/",
+                  "text" : "Qwen"
+              },
+              {
+                  "id"   : 12,
+                  "url"  : "https://manus.im/",
+                  "text" : "Manus (META)"
+              },
+              {
+                  "id"   : 13,
+                  "url"  : "https://kimi.com/",
+                  "text" : "Kimi"
+              },
+              {
+                  "id"   : 14,
+                  "url"  : "https://stackoverflow.ai/",
+                  "text" : "Stack Overflow"
+              },
+              {
+                  "id"   : 15,
+                  "url"  : "https://g.ai/",
+                  "text" : "Google a.i."
+              }
+        ]
+      },
+      {
+        "log_name"   : "PAGE_ABOUT_EDU_RESC",
+        "page_name"  : "[ABOUT - EDUCATIONAL RESOURCES]",
+        "pages"      : [
+              {
+                  "id"  : 0,
+                  "url" : "https://www.computer.org/education/bodies-of-knowledge/software-engineering/",
+                  "name": "SWEBOK - [Software Engineering Body of Knowledge]"
+              },
+              {
+                  "id"  : 1,
+                  "url" : "https://angular.dev/",
+                  "name": "Angular Main Page"
+              },
+              {
+                  "id"  : 2,
+                  "url" : "https://ng-bootstrap.github.io/#/components/table/examples#basic",
+                  "name": "Angular Components - ng-bootstrap"
+              }, 
+              {
+                  "id"  : 3,
+                  "url": "https://isocpp.org/",
+                  "name": "C++ Main Page"
+              },
+              {
+                  "id"  : 4,
+                  "url" : "https://en.cppreference.com/w/",
+                  "name": "C++ Reference"
+              },
+              {
+                  "id"  : 5,
+                  "url" : "https://www.learncpp.com/",
+                  "name": "Learn CPP"
+              },
+              {
+                  "id"  : 6,
+                  "url" : "https://www.coursera.org/learn/analysis-of-algorithms",
+                  "name": "Coursera - Algorithms"
+              },
+              {
+                  "id"  : 7,
+                  "url" : "https://www.deeplearning.ai/",
+                  "name": "Coursera - Deep Learning"
+              },
+              {
+                  "id"  : 8,
+                  "url" : "https://www-cs-faculty.stanford.edu/~knuth/taocp.html",
+                  "name": "The Art of Computer Programming"
+              },    
+              {
+                  "id"  : 9,
+                  "url" : "https://developer.mozilla.org/en-US/",
+                  "name": "Mozilla Developer Network"
+              },    
+              {
+                  "id"  : 10,
+                  "url" : "https://web.dev/?hl=es-419",
+                  "name": "Web.dev (by Google)"
+              },    
+              {
+                  "id"  : 11,
+                  "url" : "https://www.freecodecamp.org/learn",
+                  "name": "Freecodecampo (By Microsoft)"
+              },
+              {
+                  "id"  : 12,
+                  "url" : "https://owasp.org/",
+                  "name": "Open Web Application Security Project (OWASP)"
+              },
+              {
+                  "id"  : 13,
+                  "url" : "https://w3.org/",
+                  "name": "W3C"
+              },
+              {
+                  "id"  : 14,
+                  "url" : "https://algorithm-visualizer.org/",
+                  "name" : "Algorithm Visualizer"
+              },
+              {
+                  "id"   : 15,
+                  "url"  : "https://en.wikipedia.org/wiki/SOLID",
+                  "name" : "Solid Principles"
+              },
+              {
+                  "id"   : 16,
+                  "url"  : "https://learn.microsoft.com/en-us/azure/architecture/",
+                  "name" : "Microsoft Pattern and Practices"
+              }
+         ]
+      },
+      {
+        "log_name"   : "PAGE_ABOUT_CONTACT_FORM",
+        "page_name"  : "[CONTACT US]",
+        "pages"      : []
       },
       {
         "log_name"   : "",
