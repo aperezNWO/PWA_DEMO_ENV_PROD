@@ -38,7 +38,7 @@
       },
       {
         "log_name"   : "PAGE_DEMOS_LIBRARIES_INDEX",
-        "page_name"  : "[DEMOS - LIBRARIES]",
+        "page_name"  : "[DEMOS - LIBRARIES / FRAMEWORKS]",
         "pages"      : [
             { "id": 1, "url" : "/GridParam"         , "text": "[ANGULAR / TYPESCRIPT]"   , "queryParams" : "PAGE_DEMOS_ANGULAR_JAVASCRIPT"    }
         ],
