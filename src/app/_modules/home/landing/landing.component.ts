@@ -35,7 +35,7 @@ export class LandingComponent extends BaseReferenceComponent implements OnInit, 
       backendService,
       route,
       speechService,
-      PAGE_TITLE_NO_SOUND,
+      PAGE_ANGULAR_DEMO_LANDING,
     );
   }
   //
