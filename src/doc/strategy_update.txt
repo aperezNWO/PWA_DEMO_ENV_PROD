@@ -641,11 +641,17 @@
 
                 -- [_] move somee.com to monsterasp.net. leave dbs only. 
 
-  -- [_] docker hosting.
+                -- [_] docker hosting.
 
-        -- [_] vertex.
+                        -- [_] render.
 
-        -- [_] unique restful endpoint.
+                        -- [_] vercel.
+
+                        -- [_] unique restful endpoint.
+
+                        -- [_] google antigravity.
+
+                        -- [_] google idx / firebase.
 
   -- [_] SCM.
 
@@ -727,8 +733,6 @@
 
          -- [x] restart grid numbers at start.
 
-         -- [_] base file generation component.
-
          -- [_] Grid modifications.    
 
                 -- [x] Codesadbox dynamic refernce of endpoints inside datagrids.      
@@ -737,11 +741,11 @@
 
          -- [_] missing status messages.
 
-         -- [_] missing jspdf references.
-
          -- [_] .zip demo.
 
-         -- [_] strategy update npm macro.
+         -- [_] pdf demo.
+
+                  -- [_] missing jspdf references.
 
                   -- [_] PDF TOPICS.
 
@@ -755,5 +759,10 @@
 
                   -- [>] check grid .config links.
 
+         -- [_] LANDING COMPONENT.
 
+                -- [_] languages bottom menu.
+
+                -- [_] filter router list by caption.
+                
 ////////////////////////////////////////////////////////////////////////////////

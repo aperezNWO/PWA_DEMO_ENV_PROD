@@ -24,6 +24,7 @@ import { AppComponent                    } from './app.component';
 import { HomeWebComponent                } from './_modules/home/home-web/home-web.component';
 import { PageNotFoundComponent           } from './_modules/home/page-not-found/page-not-found.component';
 import { NavComponent                    } from './_modules/home/nav/nav.component';
+import { LandingComponent                } from './_modules/home/landing/landing.component';
 import { LogType                         } from './_models/entity.model';
 import { BackendService                  } from './_services/BackendService/backend.service';
 import { ConfigService                   } from './_services/__Utils/ConfigService/config.service';
@@ -72,6 +73,7 @@ import { NgbHighlight, NgbModule                      } from '@ng-bootstrap/ng-b
 import { NgbPaginationModule, NgbAlertModule          } from '@ng-bootstrap/ng-bootstrap';
 import { finalize, tap                                } from 'rxjs';
 import { NgChartsModule                               } from 'ng2-charts'; 
+
 
 //
 export function initialize(_configService: ConfigService) 
@@ -132,6 +134,7 @@ export class CustomErrorHandler implements ErrorHandler {
 @NgModule({
     declarations: [
         AppComponent,
+        LandingComponent,
         HomeWebComponent,
         SCMComponent,
         LLMListComponent,
