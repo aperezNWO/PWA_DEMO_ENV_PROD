@@ -685,6 +685,12 @@
 
         -- [_] Somee list.    
 
+-- [_] caching STRATEGY
+
+        -- [_] diagnose internet connection.
+
+        -- [_] caching objects.
+
 -- [_] landing component
 
         -- [_] offer market by library / component.
