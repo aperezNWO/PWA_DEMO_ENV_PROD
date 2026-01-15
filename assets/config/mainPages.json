@@ -9,6 +9,19 @@
           { "id": 4, "url" : "/PageUrlList"                                               , "text": "[CURRICULUM]"      , "queryParams" : "PAGE_DEMOS_CURRICULUM_INDEX"          }
         ]
       },
+            {
+        "log_name"   : "PAGE_ANGULAR_DEMO_LANDING",
+        "page_name"  : "Welcome to [Angular Demo]",
+        "pages"      : [
+          { "id": 1, "url" : "/PageUrlList"                                               , "text": "[FEATURES]"        , "queryParams" : "PAGE_DEMOS_CARACTERISTICAS_INDEX"     },
+          { "id": 2, "url" : "/PageUrlList"                                               , "text": "[LANGUAGES]"       , "queryParams" : "PAGE_DEMOS_LENGUAJES_INDEX"           },
+          { "id": 3, "url" : "/PageUrlList"                                               , "text": "[LIBRARIES]"       , "queryParams" : "PAGE_DEMOS_LIBRARIES_INDEX"           },
+          { "id": 4, "url" : "/PageUrlList"                                               , "text": "[CURRICULUM]"      , "queryParams" : "PAGE_DEMOS_CURRICULUM_INDEX"          }
+        ],
+        "pages_nested" : [
+
+        ]
+      },
       {
         "log_name"   : "PAGE_DEMOS_INDEX",
         "page_name"  : "[DEMOS]",
@@ -17,7 +30,10 @@
           { "id": 2, "url" : "/PageUrlList"                                               , "text": "[LANGUAGES]"       , "queryParams" : "PAGE_DEMOS_LENGUAJES_INDEX"           },
           { "id": 3, "url" : "/PageUrlList"                                               , "text": "[LIBRARIES]"       , "queryParams" : "PAGE_DEMOS_LIBRARIES_INDEX"           },
           { "id": 4, "url" : "/PageUrlList"                                               , "text": "[CURRICULUM]"      , "queryParams" : "PAGE_DEMOS_CURRICULUM_INDEX"          }
-        ] 
+        ], 
+        "pages_nested" : [
+
+        ]
       },
             {
         "log_name"   : "PAGE_NOT_FOUND",
@@ -38,16 +54,38 @@
       },
       {
         "log_name"   : "PAGE_DEMOS_LIBRARIES_INDEX",
-        "page_name"  : "[DEMOS - LIBRARIES]",
+        "page_name"  : "[DEMOS - LIBRARIES / FRAMEWORKS]",
         "pages"      : [
-            { "id": 1, "url" : "/GridParam"         , "text": "[ANGULAR / TYPESCRIPT]"   , "queryParams" : "PAGE_DEMOS_ANGULAR_JAVASCRIPT"    }
-        ],
+            { "id": 1, "url" : "/GridParam"         , "text": "[DEMOS - ANGULAR    / TYPESCRIPT]"        , "queryParams" : "PAGE_DEMOS_ANGULAR_JAVASCRIPT"    },
+            { "id": 2, "url" : "/PageUrlList"       , "text": "[DEMOS - TESSERACT  / OCR]"               , "queryParams" : "PAGE_DEMOS_LIB_TESSERACT_OCR"     }
+          ],  
         "_pages"      : [
-          { "id": 2, "url" : "/GridParam"         , "text": "[.NET CORE / C++]"        , "queryParams" : "PAGE_DEMOS_NETCORE_CPP"           },
-          { "id": 3, "url" : "/GridParam"         , "text": "[.NET CORE / C#]"         , "queryParams" : "PAGE_DEMOS_NETCORE_CSHARP"        },
-          { "id": 4, "url" : "/GridParam"         , "text": "[NODE.JS / JAVASCRIPT]"   , "queryParams" : "PAGE_DEMOS_NODEJS_JAVASCRIPT"     },
-          { "id": 4, "url" : "/GridParam"         , "text": "[SPRING BOOT / JAVA]"     , "queryParams" : "PAGE_DEMOS_SPRING_BOOT_JAVA"      },
-          { "id": 4, "url" : "/GridParam"         , "text": "[PYTHON / DJANGO]"        , "queryParams" : "PAGE_DEMOS_DJANGO_PYTHON"         }
+            { "id": 3, "url" : "/PageUrlList"       , "text": "[DEMOS - OPEN CV    / COMPUTER VISION]"   , "queryParams" : "PAGE_DEMOS_LIB_OPEN_CV"           },
+            { "id": 4, "url" : "/PageUrlList"       , "text": "[DEMOS - TENSORFLOW / MACHINE LEARNING]"  , "queryParams" : "PAGE_DEMOS_LIB_TENSORFLOW_AI"     },
+            { "id": 5, "url" : "/PageUrlList"       , "text": "[DEMOS - EPP PLUS   / EXCEL]"             , "queryParams" : ""                                 },
+            { "id": 6, "url" : "/PageUrlList"       , "text": "[DEMOS - PDF        ]"                    , "queryParams" : ""                                 },
+            { "id": 7, "url" : "/PageUrlList"       , "text": "[DEMOS - CHART      ]"                    , "queryParams" : ""                                 }
+          ]
+      },
+      {
+        "log_name"   : "PAGE_DEMOS_LIB_TESSERACT_OCR",
+        "page_name"  : "[DEMOS - TESSERACT / OCR]",
+        "pages"      : [
+          { "id": 1, "url" : "./assets/demos/<Folder>/<file>.json"              , "text": ""      }
+        ]
+      },
+      {
+        "log_name"   : "PAGE_DEMOS_LIB_OPEN_CV",
+        "page_name"  : "[DEMOS - OPEN CV / COMPUTER VISION]",
+        "pages"      : [
+          { "id": 1, "url" : "./assets/demos/<Folder>/<file>.json"              , "text": ""      }
+        ]
+      },
+      {
+        "log_name"   : "PAGE_DEMOS_LIB_TENSORFLOW_AI",
+        "page_name"  : "[DEMOS - TENSORFLOW / MACHINE LEARNING]",
+        "pages"      : [
+          { "id": 1, "url" : "./assets/demos/<Folder>/<file>.json"              , "text": ""      }
         ]
       },
       {
@@ -589,11 +627,11 @@
           { "id": 1, "url" : "./assets/demos/angularDemo/angular_Demos_base.json"              , "text": ""      }
         ]
       },
-     {
+      {
         "log_name"   : "PAGE_ABOUT_INDEX",
         "page_name"  : "[ABOUT]",
         "pages"      : [
-          { "id": 1, "url" : "/TechnicalSpecs"                                           , "text": "[TECHNICAL SPECS.]"               },
+          { "id": 1, "url" : "/TechnicalSpecs"                                           , "text": "[TECHNICAL SPECS.]"                        },
           { "id": 2, "url" : "/SCM"                                                      , "text": "[SOFTWARE CONFIGURATION MANAGEMENT]"       },
           { "id": 3, "url" : "/LLMList"                                                  , "text": "[LARGE LANGUAGE MODELS LIST]"              },
           { "id": 4, "url" : "/EduResources"                                             , "text": "[EDUCATIONAL RESOURCES]"                   },
