@@ -114,9 +114,8 @@
     {
         "id"          : 8,
         "done"        : true,
-        "name"        : "Azure Devops",
+        "name"        : "Azure Devops - (alejandro.perez.acosta@hotmail.com)",
         "description" : "REPO_MAIN",
-        "comment_1"   : "(alejandro.perez.acosta@hotmail.com)",
         "field_1"     : "https://alejandroperezacosta.visualstudio.com/",
         "field_2"     : "[N/A]",
         "field_3"     : "#",
@@ -126,12 +125,11 @@
         "field_7"     : "#",
         "field_8"     : "d806ade5-24df-4b18-976c-e50c11f92bc5"
     },
-        {
+    {
         "id"          : 8,
         "done"        : true,
-        "name"        : "Azure Devops",
+        "name"        : "Azure Devops - (df14932@outlook.com)",
         "description" : "REPO_MAIN",
-        "comment_1"   : "(df14932@outlook.com)",
         "field_1"     : "https://dev.azure.com/DF149032/",
         "field_2"     : "[N/A]",
         "field_3"     : "#",
