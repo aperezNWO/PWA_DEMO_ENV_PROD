@@ -725,6 +725,7 @@
 
 -- [_] TRANSLATE FORMS TO ENGLISH.  
 
+
          -- [x] correct text "miscellaneous","manus","tictactoe".
 
          -- [x] chart pdf wait message.
@@ -737,13 +738,13 @@
 
                  -- [x] FRACTAL.    
 
-         -- [x] restart grid numbers at start.
+         -- [x] LANDING COMPONENT.
 
-         -- [_] Grid modifications.    
+                -- [x] languages bottom menu.
 
-                -- [x] Codesadbox dynamic refernce of endpoints inside datagrids.      
+         -- [x] base reference component implementation.
 
-                -- [_] datagrids row master / detail.     
+                  -- [x] check grid .config links.
 
          -- [_] missing status messages.
 
@@ -759,16 +760,16 @@
 
                   -- [_] ITEXTPDF.
 
-         -- [>] complete scm config info.
+         -- [>] complete scm config info (see section).
 
-         -- [>] base reference component implementation.
+                -- [_] Grid modifications.    
 
-                  -- [>] check grid .config links.
+                        -- [x] restart grid numbers at start.
 
-         -- [_] LANDING COMPONENT.
+                        -- [x] Codesadbox dynamic refernce of endpoints inside datagrids.      
 
-                -- [_] languages bottom menu.
+                        -- [_] datagrids row master / detail.     
 
-                -- [_] filter router list by caption.
-                
+         -- [_] LANDING PAGE AS QUERY PARAM.
+
 ////////////////////////////////////////////////////////////////////////////////
