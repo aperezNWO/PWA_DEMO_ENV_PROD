@@ -48,23 +48,14 @@
         "log_name"   : "PAGE_DEMOS_LIBRARIES_INDEX",
         "page_name"  : "[DEMOS - LIBRARIES / FRAMEWORKS]",
         "pages"      : [
-            { "id": 1, "url" : "/GridParam"           , "text": "[DEMOS - ANGULAR    / TYPESCRIPT]"        , "queryParams" : "PAGE_DEMOS_ANGULAR_JAVASCRIPT"    },
-            { "id": 2, "url" : "/OcrPhotoCapture"     , "text": "[DEMOS - TESSERACT  / OCR]"               , "queryParams" : ""                                 },
-            { "id": 3, "url" : "/ComputerVision"      , "text": "[DEMOS - OPEN CV    / COMPUTER VISION]"   , "queryParams" : ""                                 },
-            { "id": 4, "url" : "/LinearRegression"    , "text": "[DEMOS - TENSORFLOW / MACHINE LEARNING]"  , "queryParams" : ""                                 },
-            { "id": 5, "url" : "/FilesGenerationXLS"  , "text": "[DEMOS - EXCEL      / EPP PLUS]"          , "queryParams" : ""                                 },
-            { "id": 6, "url" : "/FilesGenerationPDF"  , "text": "[DEMOS - PDF        / iTextSharp]"        , "queryParams" : ""                                 },
-            { "id": 7, "url" : "/Chart"               , "text": "[DEMOS - CHART      / Chart.js ]"         , "queryParams" : ""                                 }
-        ],
-        "pages_nested" : [
-            { "id": 1, "url" : "/GridParam"           , "text": "[DEMOS - ANGULAR    / TYPESCRIPT]"        , "queryParams" : "PAGE_DEMOS_ANGULAR_JAVASCRIPT"    },
-            { "id": 2, "url" : "/OcrPhotoCapture"     , "text": "[DEMOS - TESSERACT  / OCR]"               , "queryParams" : ""                                 },
-            { "id": 3, "url" : "/ComputerVision"      , "text": "[DEMOS - OPEN CV    / COMPUTER VISION]"   , "queryParams" : ""                                 },
-            { "id": 4, "url" : "/LinearRegression"    , "text": "[DEMOS - TENSORFLOW / MACHINE LEARNING]"  , "queryParams" : ""                                 },
-            { "id": 5, "url" : "/FilesGenerationXLS"  , "text": "[DEMOS - EXCEL      / EPP PLUS]"          , "queryParams" : ""                                 },
-            { "id": 6, "url" : "/FilesGenerationPDF"  , "text": "[DEMOS - PDF        / iTextSharp]"        , "queryParams" : ""                                 },
-            { "id": 7, "url" : "/Chart"               , "text": "[DEMOS - CHART      / Chart.js ]"         , "queryParams" : ""                                 }
-        ]          
+            { "id": 1, "url" : "/GridParam"           , "text": "[LIBRARIES - ANGULAR    / TYPESCRIPT]"        , "queryParams" : "PAGE_DEMOS_ANGULAR_JAVASCRIPT"    },
+            { "id": 2, "url" : "/OcrPhotoCapture"     , "text": "[LIBRARIES - TESSERACT  / OCR]"               , "queryParams" : ""                                 },
+            { "id": 3, "url" : "/ComputerVision"      , "text": "[LIBRARIES - OPEN CV    / COMPUTER VISION]"   , "queryParams" : ""                                 },
+            { "id": 4, "url" : "/LinearRegression"    , "text": "[LIBRARIES - TENSORFLOW / MACHINE LEARNING]"  , "queryParams" : ""                                 },
+            { "id": 5, "url" : "/FilesGenerationXLS"  , "text": "[LIBRARIES - EXCEL      / EPP PLUS]"          , "queryParams" : ""                                 },
+            { "id": 6, "url" : "/FilesGenerationPDF"  , "text": "[LIBRARIES - PDF        / iTextSharp]"        , "queryParams" : ""                                 },
+            { "id": 7, "url" : "/Chart"               , "text": "[LIBRARIES - CHART      / Chart.js ]"         , "queryParams" : ""                                 }
+        ]
       },
       {
         "log_name"   : "PAGE_DEMOS_LIB_TESSERACT_OCR",
