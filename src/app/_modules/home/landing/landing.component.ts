@@ -4,7 +4,7 @@ import { BaseReferenceComponent           } from 'src/app/_components/base-refer
 import { ConfigService                    } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { SpeechService                    } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { BackendService                   } from 'src/app/_services/BackendService/backend.service';
-import { PAGE_ANGULAR_DEMO_LANDING, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND        } from 'src/app/_models/common';
+import { PAGE_DEMOS_LIBRARIES_INDEX, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND        } from 'src/app/_models/common';
 
 @Component({
   selector: 'app-landing',
@@ -13,7 +13,7 @@ import { PAGE_ANGULAR_DEMO_LANDING, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND        }
   providers   : [
     { 
       provide : PAGE_TITLE_LOG, 
-      useValue: PAGE_ANGULAR_DEMO_LANDING 
+      useValue: PAGE_DEMOS_LIBRARIES_INDEX 
     },
   ]
 })
@@ -35,7 +35,7 @@ export class LandingComponent extends BaseReferenceComponent implements OnInit, 
       backendService,
       route,
       speechService,
-      PAGE_ANGULAR_DEMO_LANDING,
+      PAGE_TITLE_NO_SOUND,
     );
   }
   //

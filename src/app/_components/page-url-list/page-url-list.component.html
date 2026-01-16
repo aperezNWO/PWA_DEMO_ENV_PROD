@@ -4,7 +4,15 @@
 <div align="left">
     <ul *ngFor="let page of this._pages" >
         <li>        
-            <a [routerLink]="[page.url]"  [queryParams]="{pageName: page.queryParams}">{{page.text}}</a>
+            <!-- WARNING : ROOT MUST NOT HAVE "./#/" STYLE -->
+            @if (page.queryParams)
+            {
+                <a [routerLink]="[page.url]"  [queryParams]="{pageName: page.queryParams}">{{page.text}}</a>
+            } 
+            @else 
+            {            
+                <a [routerLink]="[page.url]">{{page.text}}</a>
+            }
         </li>
     </ul>
 </div>
