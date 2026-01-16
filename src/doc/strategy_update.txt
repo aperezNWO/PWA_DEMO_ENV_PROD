@@ -653,7 +653,7 @@
 
                         -- [_] google idx / firebase.
 
-  -- [_] SCM.
+  -- [_] SCM (SECTION).
 
         -- [x] fractal demo repo path fix.
 
@@ -665,25 +665,31 @@
                 
                 -- [x] TOPICS -> FREECODECAMP. 
 
+        -- [X] Somee list.    
+
+        -- [X] DB LIST.
+
+        -- [X] Fix codesandbox data. Put 3 codesandbox accounts + root account.
+
+        -- [X] ENV_ONLINE_HOSTING -> ENV_ONLINE_BACKEND.  
+
+        -- [>] SCM TRANSLATE TO ENGLISH.  
+
+        -- [x] Azure devops list.
+
+        -- [X] Monster ASP.NET list.   
+
         -- [_] deployment doc.
 
                -- [_] BY CONTAINER / LANGUAGE.
 
-               -- [_] GIT HUB README.       
- 
-        -- [_] Fix codesandbox data. Put 3 codesandbox accounts + root account.
+               -- [_] GIT HUB README.
 
-        -- [_] ENV_ONLINE_HOSTING -> ENV_ONLINE_BACKEND.  
+               -- [_] END POINT RESTFUL VERSIONS.       
 
-        -- [_] SCM TRANSLATE TO ENGLISH.  
+     
 
-        -- [_] DB LIST.
-
-        -- [_] Azure devops list.
-
-        -- [_] Monster ASP.NET list.        
-
-        -- [_] Somee list.    
+        -- [_] Codesandbox list.  
 
 -- [_] caching STRATEGY
 
@@ -748,13 +754,13 @@
 
          -- [_] pdf demo.
 
+                  -- [x] NG STATUS BAR / HttpEventType.DownloadProgress.
+
+                  -- [x] ITEXTPDF.
+
                   -- [_] missing jspdf references.
 
                   -- [_] PDF TOPICS.
-
-                  -- [_] NG STATUS BAR / HttpEventType.DownloadProgress.
-
-                  -- [_] ITEXTPDF.
 
                   -- [_] pdf demo grid (both jsPDF and iTextSharp).
 
@@ -775,5 +781,8 @@
                         -- [x] Codesadbox dynamic refernce of endpoints inside datagrids.      
 
                         -- [_] datagrids row master / detail.     
+
+                        -- [_] dynamic codesandbox values {{}}.     
+
 
 ////////////////////////////////////////////////////////////////////////////////
