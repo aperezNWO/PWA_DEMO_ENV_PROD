@@ -738,10 +738,6 @@
 
                  -- [x] FRACTAL.    
 
-         -- [x] LANDING COMPONENT.
-
-                -- [x] languages bottom menu.
-
          -- [x] base reference component implementation.
 
                   -- [x] check grid .config links.
@@ -760,6 +756,14 @@
 
                   -- [_] ITEXTPDF.
 
+         -- [>] LANDING COMPONENT (see section).
+
+                -- [x] languages bottom menu.
+
+                -- [_] LANDING PAGE AS QUERY PARAM.
+
+                -- [_] tensorflow section as datagrid.
+
          -- [>] complete scm config info (see section).
 
                 -- [_] Grid modifications.    
@@ -769,7 +773,5 @@
                         -- [x] Codesadbox dynamic refernce of endpoints inside datagrids.      
 
                         -- [_] datagrids row master / detail.     
-
-         -- [_] LANDING PAGE AS QUERY PARAM.
 
 ////////////////////////////////////////////////////////////////////////////////
