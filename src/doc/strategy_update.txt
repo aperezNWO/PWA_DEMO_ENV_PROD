@@ -756,6 +756,8 @@
 
                   -- [_] ITEXTPDF.
 
+                  -- [_] pdf demo grid (both jsPDF and iTextSharp).
+
          -- [>] LANDING COMPONENT (see section).
 
                 -- [x] languages bottom menu.
