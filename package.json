@@ -10,7 +10,7 @@
     "_package": "ng build --c=production --base-href=\"/PWA_DEMO_ENV_PROD/\"",
     "_publish": "npx ngh --dir=dist\\PWA_DEMO_ENV_PROD",
     "package-and-publish": "ng build --c=production --base-href=\"/PWA_DEMO_ENV_PROD/\" && npx ngh --dir=dist\\PWA_DEMO_ENV_PROD",
-    "git-update": "git add * && git commit -m \"strategy update\" -a && git push && git pull"
+    "git-update-strategy": "git add * && git commit -m \"strategy update\" -a && git push && git pull"
   },
   "private": true,
   "dependencies": {
