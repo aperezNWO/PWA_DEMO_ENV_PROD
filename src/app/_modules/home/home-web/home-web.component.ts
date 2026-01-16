@@ -1,19 +1,18 @@
 import { Component, OnInit, AfterViewInit        } from '@angular/core';
 import { ActivatedRoute                          } from '@angular/router';
-import { BaseComponent                           } from 'src/app/_components/base/base.component';
 import { _environment                            } from 'src/environments/environment';
 import { PAGE_ANGULAR_DEMO_INDEX                 } from 'src/app/_models/common';
-import { BackendService                          } from '../../../_services/BackendService/backend.service';
 import { SpeechService                           } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                           } from 'src/app/_services/__Utils/ConfigService/config.service';
-
+import { BackendService                          } from '../../../_services/BackendService/backend.service';
+import { BaseReferenceComponent                  } from 'src/app/_components/base-reference/base-reference.component';
 //
 @Component({
   selector    : 'app-home-web',
   templateUrl : './home-web.component.html',
   styleUrls   : ['./home-web.component.css']
 })
-export class HomeWebComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class HomeWebComponent extends BaseReferenceComponent implements OnInit, AfterViewInit {
   //
   public get _appBrand()            : string
   {

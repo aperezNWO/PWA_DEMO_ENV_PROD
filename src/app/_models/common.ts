@@ -38,8 +38,6 @@ export const PAGE_ABOUT_CONTACT_FORM            = "PAGE_ABOUT_CONTACT_FORM";
 
 ////////////////////////////////////////////////////////////////////////////
 
-export const PAGE_DEMOS_INDEX                   = "PAGE_DEMOS_INDEX";
-
 export const PAGE_DEMOS_CARACTERISTICAS_INDEX   = "PAGE_DEMOS_CARACTERISTICAS_INDEX";
 
 ////////////////////////////////////////////////////////////////////////////

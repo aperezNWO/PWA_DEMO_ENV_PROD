@@ -39,7 +39,7 @@ export class NavComponent {
     {
       'url'          : '/PageUrlList', 
       'text'         : '[DEMOS]',
-      'queryParams'  : 'PAGE_DEMOS_INDEX'
+      'queryParams'  : 'PAGE_ANGULAR_DEMO_INDEX'
     },  
     {
       'url'          : '/PageUrlList', 

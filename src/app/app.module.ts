@@ -24,7 +24,7 @@ import { AppComponent                    } from './app.component';
 import { HomeWebComponent                } from './_modules/home/home-web/home-web.component';
 import { PageNotFoundComponent           } from './_modules/home/page-not-found/page-not-found.component';
 import { NavComponent                    } from './_modules/home/nav/nav.component';
-import { LandingComponent                } from './_modules/home/landing/landing.component';
+import { LandingComponent                } from './_components/landing/landing.component';
 import { LogType                         } from './_models/entity.model';
 import { BackendService                  } from './_services/BackendService/backend.service';
 import { ConfigService                   } from './_services/__Utils/ConfigService/config.service';

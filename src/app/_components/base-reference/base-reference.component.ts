@@ -31,6 +31,7 @@ export class BaseReferenceComponent {
   //
   public _pages                   : any[]   = [];
   public _pages_nested            : any[]   = [];
+  public _page_name               : string  = ''
   public  pagesByGroupId          : { [id: number]: any[] } = {};
   /////////////////////////////////////////////////////////
   // CONSTRUCTOR - EVENT HANDLERS
@@ -56,13 +57,13 @@ export class BaseReferenceComponent {
       {
             //
             const pageData = _environment.mainPageListDictionary?.[PAGE_TITLE_LOG];
-            const pageName = pageData?.page_name;
+            this._page_name = pageData?.page_name;
 
             //
-            if (pageName && typeof pageName === 'string') {
+            if (this._page_name && typeof this._page_name === 'string') {
               
                 //
-                this.pageTitle = pageName;
+                this.pageTitle = this._page_name;
                 this.speechService.speakTextCustom(this.pageTitle, "en-US");
                 this.backendService.SetLog(this._pageTitle, PAGE_TITLE_LOG);
 

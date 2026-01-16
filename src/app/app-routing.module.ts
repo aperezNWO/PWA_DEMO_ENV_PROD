@@ -32,7 +32,7 @@ import { EduResourcesComponent       } from './_modules/about/edu-resources/edu-
 import { FractalDemoComponent        } from './_modules/_Demos/_DemosFeatures/miscelaneous/fractalDemo/juliaform.component';
 import { PageUrlListComponent        } from './_components/page-url-list/page-url-list.component';
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
-import { LandingComponent } from './_modules/home/landing/landing.component';
+import { LandingComponent            } from './_components/landing/landing.component';
 
 export interface _Route extends Route
 {  
