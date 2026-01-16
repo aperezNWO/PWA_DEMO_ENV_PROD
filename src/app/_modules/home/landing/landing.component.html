@@ -50,9 +50,18 @@
         />
     </a>
     <hr>
-    <span *ngFor="let page of this._pages">
-        <span *ngIf="page" style="padding:5px;">
-            <a [routerLink]="[page.url]" [queryParams]="{ pageName: page.queryParams}"><span align="left">{{page.text}}</span></a>
-        </span>
-    </span>
+    <div align="left">
+    <ul *ngFor="let page of this._pages" >
+        <li>        
+            <div>
+                @if (page.queryParam)
+                {
+                        <a [routerLink]="[page.url]"  [queryParams]="{pageName: page.queryParams}">{{page.text}}</a>
+                } @else {
+                        <a [href]="[page.url]">{{page.text}}</a>
+                }
+            </div>
+        </li>
+    </ul>
+   </div>
 </div>
