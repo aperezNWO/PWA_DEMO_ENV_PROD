@@ -3,7 +3,6 @@ import { Route, RouterModule             } from '@angular/router';
 import { HomeWebComponent                } from './_modules/home/home-web/home-web.component';
 import { PageNotFoundComponent           } from './_modules/home/page-not-found/page-not-found.component';
 import { SCMComponent                    } from './_modules/about/scm/scm.component';
-import { LLMListComponent                } from './_modules/about/llmlist/llmlist.component';
 import { TechnicalSpecsComponent         } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
 import { CurriculumAngularComponent      } from './_modules/_Demos/_DemosCurriculum/curriculumAngular/curriculumAngular.component';
 import { AlgorithmCollisionComponent     } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-collision/algorithm-collision.component';
@@ -28,7 +27,6 @@ import { OcrPhotoCaptureComponent    } from './_modules/_Demos/_DemosFeatures/mi
 import { LinearRegressionComponent   } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
 import { ContactformComponent        } from './_modules/about/contactform/contactform.component';
 import { IndexComponent              } from './_modules/about/index/index.component';
-import { EduResourcesComponent       } from './_modules/about/edu-resources/edu-resources.component';
 import { FractalDemoComponent        } from './_modules/_Demos/_DemosFeatures/miscelaneous/fractalDemo/juliaform.component';
 import { PageUrlListComponent        } from './_components/page-url-list/page-url-list.component';
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
@@ -47,8 +45,8 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'Index'                 , component: IndexComponent                      , caption: ' Index'                                       , queryParams : 'PAGE_HOME_INDEX'         },
   {  id: 0,  path:  ''                     , component: HomeWebComponent                    , caption: ''                                             , queryParams : '' },
   {  id: 0,  path: 'SCM'                   , component: SCMComponent                        , caption: ' About  - SCM'                                , queryParams : '' },
-  {  id: 0,  path: 'LLMList'               , component: LLMListComponent                    , caption: ' About  - LLM List'                           , queryParams : '' },
-  {  id: 0,  path: 'EduResources'          , component: EduResourcesComponent               , caption: ' About  - Educational Resources'              , queryParams : '' },
+  {  id: 0,  path: 'LLMList'               , component: GridParamComponent                  , caption: ' About  - LLM List'                           , queryParams : 'PAGE_ABOUT_LLM_LIST'     },
+  {  id: 0,  path: 'EduResources'          , component: GridParamComponent                  , caption: ' About  - Educational Resources'              , queryParams : 'PAGE_ABOUT_EDU_RESC'     },
   {  id: 0,  path: 'TechnicalSpecs'        , component: TechnicalSpecsComponent             , caption: ' About  - Technical Specifications'           , queryParams : '' },
   {  id: 0,  path: 'ContactForm'           , component: ContactformComponent                , caption: ' About  - Contact Form'                       , queryParams : '' },
   {  id: 0,  path: 'AlgorithmRegEx'        , component: AlgorithmRegExComponent             , caption: ' Algorithms - Regular Expression'             , queryParams : '' },

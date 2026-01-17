@@ -618,10 +618,14 @@
         "pages"      : [
           { "id": 1, "url" : "/TechnicalSpecs"                                           , "text": "[TECHNICAL SPECS.]"                        },
           { "id": 2, "url" : "/SCM"                                                      , "text": "[SOFTWARE CONFIGURATION MANAGEMENT]"       },
-          { "id": 3, "url" : "/LLMList"                                                  , "text": "[LARGE LANGUAGE MODELS LIST]"              },
-          { "id": 4, "url" : "/EduResources"                                             , "text": "[EDUCATIONAL RESOURCES]"                   },
+          { "id": 3, "url" : "/PageUrlList"                                              , "text": "[LARGE LANGUAGE MODELS LIST]"                , "queryParams" : "PAGE_ABOUT_LLM_LIST"     },
+          { "id": 4, "url" : "/PageUrlList"                                              , "text": "[EDUCATIONAL RESOURCES]"                     , "queryParams" : "PAGE_ABOUT_EDU_RESC"     },
           { "id": 5, "url" : "/ContactForm"                                              , "text": "[CONTACT FORM]"                            },
-          { "id": 6, "url" : "/Index"                                                    , "text": "[INDEX]"                                                                        }
+          { "id": 6, "url" : "/Index"                                                    , "text": "[INDEX]"                                   }
+        ],
+        "_pages"      : [
+          { "id": 1, "url" : "/LLMList"                                                  , "text": "[LARGE LANGUAGE MODELS LIST]"              },
+          { "id": 4, "url" : "/EduResources"                                             , "text": "[EDUCATIONAL RESOURCES]"                   }
         ]
       },
       {
@@ -724,87 +728,87 @@
               {
                   "id"  : 0,
                   "url" : "https://www.computer.org/education/bodies-of-knowledge/software-engineering/",
-                  "name": "SWEBOK - [Software Engineering Body of Knowledge]"
+                  "text": "SWEBOK - [Software Engineering Body of Knowledge]"
               },
               {
                   "id"  : 1,
                   "url" : "https://angular.dev/",
-                  "name": "Angular Main Page"
+                  "text": "Angular Main Page"
               },
               {
                   "id"  : 2,
                   "url" : "https://ng-bootstrap.github.io/#/components/table/examples#basic",
-                  "name": "Angular Components - ng-bootstrap"
+                  "text": "Angular Components - ng-bootstrap"
               }, 
               {
                   "id"  : 3,
                   "url": "https://isocpp.org/",
-                  "name": "C++ Main Page"
+                  "text": "C++ Main Page"
               },
               {
                   "id"  : 4,
                   "url" : "https://en.cppreference.com/w/",
-                  "name": "C++ Reference"
+                  "text": "C++ Reference"
               },
               {
                   "id"  : 5,
                   "url" : "https://www.learncpp.com/",
-                  "name": "Learn CPP"
+                  "text": "Learn CPP"
               },
               {
                   "id"  : 6,
                   "url" : "https://www.coursera.org/learn/analysis-of-algorithms",
-                  "name": "Coursera - Algorithms"
+                  "text": "Coursera - Algorithms"
               },
               {
                   "id"  : 7,
                   "url" : "https://www.deeplearning.ai/",
-                  "name": "Coursera - Deep Learning"
+                  "text": "Coursera - Deep Learning"
               },
               {
                   "id"  : 8,
                   "url" : "https://www-cs-faculty.stanford.edu/~knuth/taocp.html",
-                  "name": "The Art of Computer Programming"
+                  "text": "The Art of Computer Programming"
               },    
               {
                   "id"  : 9,
                   "url" : "https://developer.mozilla.org/en-US/",
-                  "name": "Mozilla Developer Network"
+                  "text": "Mozilla Developer Network"
               },    
               {
                   "id"  : 10,
                   "url" : "https://web.dev/?hl=es-419",
-                  "name": "Web.dev (by Google)"
+                  "text": "Web.dev (by Google)"
               },    
               {
                   "id"  : 11,
                   "url" : "https://www.freecodecamp.org/learn",
-                  "name": "Freecodecampo (By Microsoft)"
+                  "text": "Freecodecampo (By Microsoft)"
               },
               {
                   "id"  : 12,
                   "url" : "https://owasp.org/",
-                  "name": "Open Web Application Security Project (OWASP)"
+                  "text": "Open Web Application Security Project (OWASP)"
               },
               {
                   "id"  : 13,
                   "url" : "https://w3.org/",
-                  "name": "W3C"
+                  "text": "W3C"
               },
               {
                   "id"  : 14,
                   "url" : "https://algorithm-visualizer.org/",
-                  "name" : "Algorithm Visualizer"
+                  "text" : "Algorithm Visualizer"
               },
               {
                   "id"   : 15,
                   "url"  : "https://en.wikipedia.org/wiki/SOLID",
-                  "name" : "Solid Principles"
+                  "text" : "Solid Principles"
               },
               {
                   "id"   : 16,
                   "url"  : "https://learn.microsoft.com/en-us/azure/architecture/",
-                  "name" : "Microsoft Pattern and Practices"
+                  "text" : "Microsoft Pattern and Practices"
               }
          ]
       },

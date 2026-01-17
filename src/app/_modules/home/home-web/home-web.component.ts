@@ -19,6 +19,8 @@ export class HomeWebComponent extends BaseReferenceComponent implements OnInit, 
       return `Welcome to ${this.configService.getConfigValue('appBrand')}`;
   }
   //
+  selectedLandingPage : string = '';
+  //
   constructor(public  override configService  : ConfigService, 
               public  override backendService : BackendService,
               public  override route          : ActivatedRoute, 
@@ -36,10 +38,32 @@ export class HomeWebComponent extends BaseReferenceComponent implements OnInit, 
   //
   ngOnInit(): void {
       //
+      this.queryParams();
   }
   //
   ngAfterViewInit():void
   {  
       //
+  }
+  //
+  queryParams():void
+  {
+    //
+    this.route.queryParams.subscribe({ next: (params) => {
+        //
+        let landingPage = params['landingPage'] ? params['landingPage'] : 'NO_ASSIGNED' ;
+        //
+        console.log(` Landing Page Query Param : ${landingPage} `);
+        //
+        if (landingPage !== 'NO_ASSIGNED')
+        {
+            //
+            this.selectedLandingPage = landingPage;
+        } 
+    }
+    ,complete        : ()                => {
+        //
+      },
+    });
   }
 }

@@ -31,7 +31,6 @@ import { ConfigService                   } from './_services/__Utils/ConfigServi
 import { AppRoutingModule                } from './app-routing.module';
 import { IndexComponent                         } from './_modules/about/index/index.component';
 import { SCMComponent                           } from './_modules/about/scm/scm.component';
-import { LLMListComponent                       } from './_modules/about/llmlist/llmlist.component';
 import { CurriculumAngularComponent             } from './_modules/_Demos/_DemosCurriculum/curriculumAngular/curriculumAngular.component';
 import { AlgorithmCollisionComponent            } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-collision/algorithm-collision.component';
 import { AlgorithmDijkstraComponent             } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
@@ -58,7 +57,6 @@ import { OcrPhotoCaptureComponent    } from './_modules/_Demos/_DemosFeatures/mi
 import { LinearRegressionComponent   } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
 import { ContactformComponent        } from './_modules/about/contactform/contactform.component';
 import { TechnicalSpecsComponent     } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
-import { EduResourcesComponent       } from './_modules/about/edu-resources/edu-resources.component';
 import { FractalDemoComponent        } from './_modules/_Demos/_DemosFeatures/miscelaneous/fractalDemo/juliaform.component';
 import { BaseSortableHeader          } from './_directives/sortable.directive';
 import { SpeechPanelComponent        } from './_components/speech-panel/speech-panel.component';
@@ -137,7 +135,6 @@ export class CustomErrorHandler implements ErrorHandler {
         LandingComponent,
         HomeWebComponent,
         SCMComponent,
-        LLMListComponent,
         AlgorithmRegExComponent,
         AlgorithmSortComponent,
         AlgorithmDijkstraComponent,
@@ -171,7 +168,6 @@ export class CustomErrorHandler implements ErrorHandler {
         BaseReferenceComponent,
         BaseComponent,
         _BaseComponent,
-        EduResourcesComponent,
         _SearchComponent,
         GridParamComponent,
         PageUrlListComponent

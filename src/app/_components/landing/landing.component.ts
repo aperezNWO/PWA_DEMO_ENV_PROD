@@ -11,7 +11,9 @@ import { PAGE_ANGULAR_DEMO_LANDING       } from 'src/app/_models/common';
 })
 export class LandingComponent implements AfterViewInit {
   //
-  public _pages_nested : any[]   = [];
+  public _pages_nested  : any[]   = [];
+  //
+  @Input() LandingPage? : string = undefined;
   //
   constructor(public configService : ConfigService)
   {
@@ -30,8 +32,7 @@ export class LandingComponent implements AfterViewInit {
       {
               //
               const pageData = _environment.mainPageListDictionary?.[PAGE_ANGULAR_DEMO_LANDING];
-              const pageName = pageData?.page_name;
-  
+              const pageName = this.LandingPage? this.LandingPage :  pageData?.page_name;
               //
               if (pageName && typeof pageName === 'string') {
                 

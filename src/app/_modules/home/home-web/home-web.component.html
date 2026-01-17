@@ -1,7 +1,7 @@
 <div align="center" class="animate">
     <h4>{{this._appBrand}}!</h4>
     <hr>
-    <app-landing>
+    <app-landing [LandingPage]="this.selectedLandingPage">
     </app-landing>
     <hr>
     <span *ngFor="let page of this._pages">

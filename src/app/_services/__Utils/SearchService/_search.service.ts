@@ -116,6 +116,12 @@ export class _SearchService  {
 			id: idfixed++
 		}));
 
+		// 1.1. fix field4 - Backend
+		_searchPages = _searchPages.map(page => ({
+			...page,
+			field_7:  this.fixBackend(page.field_7)
+		}));
+
 		// 2. sort
 		_searchPages = sort(_searchPages, sortColumn, sortDirection);
 
@@ -218,5 +224,28 @@ export class _SearchService  {
 	public clearText() : void
 	{
 		 this.searchTerm = "";
+	}
+		//
+	public fixBackend(field_4_input: string): string {
+		// Regex to match {{anything}} (non-greedy)
+		const regex = /\{\{(.+?)\}\}/g;
+
+		let field_4_ouput : string  = field_4_input;
+		let variable      : string  = '';
+
+		return field_4_input.replace(regex, (match, variable) => {
+			// Trim whitespace from variable name
+			const cleanVariable = variable.trim();
+			
+			// Get replacement from custom function
+			let replacement = field_4_input;
+			
+			if (cleanVariable !== undefined)
+				replacement = this.__configService.getConfigValue(cleanVariable);
+			
+			// Return replacement or original if not found
+			return replacement !== undefined ? replacement : match;
+		});
+		//return field_4_ouput;
 	}
 }
