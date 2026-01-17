@@ -639,7 +639,7 @@
         -- [_] angular solid principles.
  
 
- -- [_] check errors.   
+ -- [_] check errors (section).   
 
      -- [_] validate empty image on ocr / opencv.
 
@@ -648,6 +648,8 @@
      -- [_] check error install TWEEN module.   
 
      -- [_] Check logic TETRIS -- A.I.   
+
+     -- [_] References alignment on firerox.   
 
 -- [_] curriculum update.
 
