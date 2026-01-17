@@ -632,17 +632,22 @@
         -- [_] django self playing tictactoe.
 
 
- -- [_] check error install TWEEN module.   
-
- -- [_] Check logic TETRIS -- A.I.   
-
  -- [_] architecture overhauling.
 
         -- [_] jwt and security.
 
         -- [_] angular solid principles.
  
--- [_] chat demo exception handling.
+
+ -- [_] check errors.   
+
+     -- [_] validate empty image on ocr / opencv.
+
+     -- [_] chat demo exception handling.
+
+     -- [_] check error install TWEEN module.   
+
+     -- [_] Check logic TETRIS -- A.I.   
 
 -- [_] curriculum update.
 
