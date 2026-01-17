@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1768570946379,
+  "timestamp": 1768689606706,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -15,7 +15,7 @@
         "/PWA_DEMO_ENV_PROD/973.316ac4d5fee2f217.js",
         "/PWA_DEMO_ENV_PROD/favicon.ico",
         "/PWA_DEMO_ENV_PROD/index.html",
-        "/PWA_DEMO_ENV_PROD/main.8216f5b5076cea67.js",
+        "/PWA_DEMO_ENV_PROD/main.c3c4614457201503.js",
         "/PWA_DEMO_ENV_PROD/manifest.webmanifest",
         "/PWA_DEMO_ENV_PROD/polyfills.d4aa8125b65d4528.js",
         "/PWA_DEMO_ENV_PROD/runtime.6b36bf15ef5b739f.js",
@@ -82,10 +82,10 @@
   "hashTable": {
     "/PWA_DEMO_ENV_PROD/687.4e557ff9894def18.js": "b329291b5187d9b9da5d99be249548cca48a08fe",
     "/PWA_DEMO_ENV_PROD/973.316ac4d5fee2f217.js": "fea8414d15f033ec1561c7706d1902fe8f5f3632",
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "82e766565321568adce876c82818ac0edb46d96e",
-    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "62a97cbbcb47215fa22eb91071faba5019653f8d",
-    "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "92621a9b75ea909e716d7937710650c0146bedf1",
-    "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "7c38bc82720f317dd8f3104964f62af6c7826b61",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "9109f125571ed6d340e4664197e47e06224734ce",
+    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "81a43643e9ebf4d43aa2347c78c77c694bebb581",
+    "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "bc7786e08716fc14505365b9a1bd821425dd48ef",
+    "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "930b1bb67aacd91a98c1613ff7fb92cce7367553",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Demos_base.json": "6f681cc3f8573857ea629bc7b5f25572e689b615",
     "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Curriculum_base.json": "9a7997543130dfc444465d1649d6c29414e987c7",
@@ -126,8 +126,8 @@
     "/PWA_DEMO_ENV_PROD/assets/opencv.js": "9c25f0d869689b62b0834b7f938896a4ecfae698",
     "/PWA_DEMO_ENV_PROD/assets/sudoku.txt": "a11677cdf143c6ab92080e8a4247c50083c14e71",
     "/PWA_DEMO_ENV_PROD/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/PWA_DEMO_ENV_PROD/index.html": "d109e5c63fe7c98945f7cc66460706cd98183eb7",
-    "/PWA_DEMO_ENV_PROD/main.8216f5b5076cea67.js": "0b19dd143606a7e936537ac02eac97ac562ff12c",
+    "/PWA_DEMO_ENV_PROD/index.html": "da0c72c196255caac77bcaa76230956d12478952",
+    "/PWA_DEMO_ENV_PROD/main.c3c4614457201503.js": "6b43471f8e6b8834084e3bd3df1f48cc2c2c6e3e",
     "/PWA_DEMO_ENV_PROD/manifest.webmanifest": "4c4fda145c554fe9a7ed086f63fa914267022e67",
     "/PWA_DEMO_ENV_PROD/polyfills.d4aa8125b65d4528.js": "a063506f957de345af77eb04df62e5280a953eb1",
     "/PWA_DEMO_ENV_PROD/runtime.6b36bf15ef5b739f.js": "3780f6202bd8849dcd78caff49b6a84ddb47a402",
