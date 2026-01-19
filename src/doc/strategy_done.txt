@@ -856,5 +856,88 @@
 
  -- [X]  c++ -> OOP -> inheritance -> ReadConfigFile();
 
+  -- [x] PageUrlList component
+
+        -- [x] improve queryParams parsing.
+
+
+  -- [x] landing component
+
+        -- [x] dymamic intro / .
+
+                -- [x] by language.
+
+                -- [x] by libraries.
+
+                -- [x] both includes Angular.
+
+        -- [x] libraries intro.
+
+                -- [x] opencv demo.
+                
+                -- [x] tesseract demo.
+
+                -- [x] tensorflow demo.
+
+                -- [x] Pdf, xls, chart demo
+
+
+        -- [x] root bottom menu items -> libraries.
+
+        -- [x] narrow market -> offer by library (additional to languages).
+
+  -- [x] SCM (SECTION).
+
+        -- [x] fractal demo repo path fix.
+
+        -- [x] Delete Tailwind.
+
+        -- [x] https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/PageUrlList?pageName=PAGE_DEMOS_MACHINE_LEARNING_INDEX
+
+                -- [x] Add m.l. pending items. 
+                
+                -- [x] TOPICS -> FREECODECAMP. 
+
+        -- [X] Somee list.    
+
+        -- [X] DB LIST.
+
+        -- [X] Fix codesandbox data. Put 3 codesandbox accounts + root account.
+
+        -- [X] ENV_ONLINE_HOSTING -> ENV_ONLINE_BACKEND.  
+
+        -- [>] SCM TRANSLATE TO ENGLISH.  
+
+        -- [x] Azure devops list.
+
+        -- [X] Monster ASP.NET list.   
+
+ -- [x] base component.
+
+        -- [x] title.
+
+        -- [x] error: double sound on title.
  
+        -- [x] reference list.
+
+-- [>]  TypeError: Cannot read properties of undefined (reading 'page_name')   : BaseComponent : csv generation.
+
+-- [x] OCR DEMO.
+
+        -- [x] VOICE IN ENGLISH.
+
+        -- [x] ASP.NET CORE SPLIT CONTROLLERS.
+
+        -- [x] VALIDATIONS.
+
+        -- [x] OCR SERVICE.
+
+-- [x] CV DEMO.
+
+        -- [x] Service.
+
+        -- [x] ENG LANGUAGE.
+
+        -- [x] Fractal Demo Path.
+
 /////////////////////////////////////////////////////////////////
