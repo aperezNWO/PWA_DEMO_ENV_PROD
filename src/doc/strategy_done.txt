@@ -940,4 +940,45 @@
 
         -- [x] Fractal Demo Path.
 
+
+-- [x] TENSORFLOW DEMO.
+
+        -- [x] Base Service.
+
+        -- [x] check repeated sound on title.
+
+        -- [x] tensorflow controller.
+
+        -- [x] springboot self playing tictactoe.
+
+        -- [x] django self playing tictactoe.
+
+ -- [>] LANDING COMPONENT (see section).
+
+        -- [x] languages bottom menu.
+
+        -- [x] LANDING PAGE AS QUERY PARAM (for email market).
+
+                -- [_] DEMOS LIBRARIES.
+
+                        -- [_] tensorflow section as datagrid.
+
+                        -- [_] pdf demo as datagrid (both jsPDF and iTextSharp).
+
+        -- [x] publish single codebase (param by dymamic intro) on multiple hosting.
+
+ -- [x] fix json pages.
+
+ -- [x] TIC-TAC-TOE DEMO.
+ 
+        --  [x] c++ neural network which learns to play tictactoe against itself.
+
+                --  [x] https://chat.qwen.ai/c/7d46d2ce-70a5-4c9f-ba4c-d7ce475527ed
+
+        -- [x] param link to specific lang.        
+
+-- [x] TETRIS DEMO
+
+        -- [x]  https://github.com/nuno-faria/tetris-ai
+
 /////////////////////////////////////////////////////////////////
