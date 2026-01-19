@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
--- STRATEGY UPDATE
+                        -- STRATEGY UPDATE --
 ////////////////////////////////////////////////////////////////////////////////
 
  ////////////////////////////////////////////////////////////////////////////////
@@ -28,6 +28,9 @@
 
         -- [_] Replicate to docs and social media. 
 
+ ////////////////////////////////////////////////////////////////////////////////
+ // CURRICULUM
+ ////////////////////////////////////////////////////////////////////////////////
 
  -- [_] ALGOITHM curriculum.
  
@@ -51,10 +54,6 @@
          --  [_]   OWASP.
 
          --  [_]   PWA.
-
- ////////////////////////////////////////////////////////////////////////////////
- // CURRICULUM
- ////////////////////////////////////////////////////////////////////////////////
 
  -- [_] LANGUAGES curriculum.
 
@@ -193,8 +192,6 @@
         -- [_] to log.
         -- [_] debug console messages.
         -- [_] asp.net core enable trace.
-
--- [_] paypal button.
 
 -- [_] Games
 
@@ -631,25 +628,6 @@
 
 -- [_] TRANSLATE FORMS TO ENGLISH.  
 
-
-         -- [x] correct text "miscellaneous","manus","tictactoe".
-
-         -- [x] chart pdf wait message.
-
-         -- [x] dijkstra uber reference.      
-
-         -- [x] DISABLE CONTROLS.    
-
-                 -- [x] DIJKSTRA.    
-
-                 -- [x] FRACTAL.    
-
-         -- [x] base reference component implementation.
-
-                  -- [x] check grid .config links.
-
-         -- [x] missing status messages.
-
          -- [_] pdf demo.
 
                   -- [x] NG STATUS BAR / HttpEventType.DownloadProgress.
@@ -678,5 +656,7 @@
 --[_] https://apereznwo.github.io/NG_BOOTSTRAP_DEMO_ENV_DEV/#/Home -> PWA_DEMO_ENV_TF
 
 --[_] https://apereznwo.github.io/PWA_DEMO_ENV_DEV/#/              -> PWA_DEMO_ENV_OPEN_CV 
+
+-- [_] paypal button.
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -981,4 +981,22 @@
 
         -- [x]  https://github.com/nuno-faria/tetris-ai
 
+-- [x] correct text "miscellaneous","manus","tictactoe".
+
+-- [x] chart pdf wait message.
+
+-- [x] dijkstra uber reference.      
+
+-- [x] DISABLE CONTROLS.    
+
+        -- [x] DIJKSTRA.    
+
+        -- [x] FRACTAL.    
+
+-- [x] base reference component implementation.
+
+        -- [x] check grid .config links.
+
+-- [x] missing status messages.
+
 /////////////////////////////////////////////////////////////////
