@@ -540,6 +540,11 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+  -- [x] PageUrlList component
+
+        -- [x] improve queryParams parsing.
+
+
   -- [x] landing component
 
         -- [x] dymamic intro / .
@@ -698,8 +703,11 @@
 
                 -- [_]  CACHING TECHNICAL SPECS INFO AT START.       
 
+        -- [_]  .NET core Controllers.  
 
-        -- [_] Algorithm, FileManager .NET core Controllers.  
+                 -- [_] Algorithm, FileManager 
+
+                 -- [_] .zip demo.
 
         -- [_] move somee.com to monsterasp.net. leave dbs only. 
 
@@ -715,8 +723,6 @@
 
                 -- [_] google idx / firebase.
 
-
-
  -- [_] architecture overhauling.
 
         -- [_] jwt and security.
@@ -729,9 +735,8 @@
 
                 -- [_] caching objects.
 
--- [_] PageUrlList component
+-- [>] PUBLISH ENV_PROD.  
 
-        -- [_] improve queryParams parsing.
 
 -- [_] TRANSLATE FORMS TO ENGLISH.  
 
@@ -752,9 +757,7 @@
 
                   -- [x] check grid .config links.
 
-         -- [_] missing status messages.
-
-         -- [_] .zip demo.
+         -- [x] missing status messages.
 
          -- [_] pdf demo.
 
@@ -799,10 +802,12 @@
 
                                 -- [_] pdf demo as datagrid (both jsPDF and iTextSharp).
 
-                -- [_] publish single codebase (param by dymamic intro) on multiple hosting.
+                -- [x] publish single codebase (param by dymamic intro) on multiple hosting.
 
                 -- [_] Offer to communities
 
--- [_] PUBLISH ENV_PROD.  
+--[_] https://apereznwo.github.io/NG_BOOTSTRAP_DEMO_ENV_DEV/#/Home -> PWA_DEMO_ENV_TF
+
+--[_] https://apereznwo.github.io/PWA_DEMO_ENV_DEV/#/              -> PWA_DEMO_ENV_OPEN_CV 
 
 ////////////////////////////////////////////////////////////////////////////////
