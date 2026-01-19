@@ -632,13 +632,6 @@
         -- [_] django self playing tictactoe.
 
 
- -- [_] architecture overhauling.
-
-        -- [_] jwt and security.
-
-        -- [_] angular solid principles.
- 
-
  -- [_] check errors (section).   
 
      -- [_] validate empty image on ocr / opencv.
@@ -723,11 +716,18 @@
                 -- [_] google idx / firebase.
 
 
--- [_] caching STRATEGY
 
-        -- [_] diagnose internet connection.
+ -- [_] architecture overhauling.
 
-        -- [_] caching objects.
+        -- [_] jwt and security.
+
+        -- [_] angular solid principles.
+
+        -- [_] caching STRATEGY
+
+                -- [_] diagnose internet connection.
+
+                -- [_] caching objects.
 
 -- [_] PageUrlList component
 
