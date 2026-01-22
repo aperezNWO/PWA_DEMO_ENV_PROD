@@ -50,7 +50,7 @@ export class AlgorithmService extends BaseService {
     //
     getRandomVertexCpp(vertexSize : Number,sourcePoint : Number): Observable<string> {
       //
-      let p_url    = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}GenerateRandomVertex_CPP?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/Algorithm/GenerateRandomVertex_CPP?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -92,7 +92,7 @@ export class AlgorithmService extends BaseService {
     getSort_CPP(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
     {
       //
-      let p_url    = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}_GetSort_CPP?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/Algorithm/_GetSort_CPP?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
       //
       let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -153,7 +153,7 @@ export class AlgorithmService extends BaseService {
     public _RegExEval_CPP(tagSearchIndex: number, textSearchValue: string): Observable<string>
     {
       //
-      let p_url    : string = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}_RegExEval_CPP?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
+      let p_url    : string = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/Algorithm/_RegExEval_CPP?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
       //
       let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
