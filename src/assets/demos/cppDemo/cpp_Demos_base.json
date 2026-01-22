@@ -7,7 +7,7 @@
         "field_1"          : "Sudoku Game",
         "field_2"          : "./#/GamesSudoku?langName=CPP",
         "field_3"          : "https://github.com/aperezNWO/CPP_GCC_ALGORITHM/blob/c2966f93059d84b5c129dbd4e81bbaa1c5daa634/Algorithm.cpp#L247",
-        "field_4"          : "{{baseUrlNetCoreCPPEntry}}Sudoku_Solve_CPP?p_matrix=[{7,3,9,1,4,2,0,6,8},{0,4,0,3,8,5,7,9,1},{1,8,0,6,9,7,3,2,4},{2,0,3,5,7,8,4,0,6},{0,1,0,9,3,6,2,8,5},{8,0,0,4,2,1,0,7,3},{0,0,0,0,5,4,0,3,7},{3,7,4,8,1,9,6,0,2},{0,2,1,0,0,3,8,4,9" ,
+        "field_4"          : "{{baseUrlNetCoreCPPEntry}}api/Algorithm/Sudoku_Solve_CPP?p_matrix=[{7,3,9,1,4,2,0,6,8},{0,4,0,3,8,5,7,9,1},{1,8,0,6,9,7,3,2,4},{2,0,3,5,7,8,4,0,6},{0,1,0,9,3,6,2,8,5},{8,0,0,4,2,1,0,7,3},{0,0,0,0,5,4,0,3,7},{3,7,4,8,1,9,6,0,2},{0,2,1,0,0,3,8,4,9" ,
         "field_6"          : "https://www.geeksforgeeks.org/program-sudoku-generator/",
         "field_10"         : "dbda4780-50c8-4a97-8617-cf2a60bf9b32"  
     },
@@ -19,7 +19,7 @@
         "field_1"          : "Sudoku Game, C++, .net core, dllimport",
         "field_2"          : "./#/GamesSudoku?langName=CPP",
         "field_3"          : "https://github.com/aperezNWO/ASP_NET_CORE_CPP_ENTRY/blob/8a465f7d3c40159b1d75c528291da7dcf764868a/ASP_NET_CORE_CPP_ENTRY/Controllers/HomeController.cs#L658",
-        "field_4"          : "{{baseUrlNetCoreCPPEntry}}Sudoku_Solve_CPP?p_matrix=[{7,3,9,1,4,2,0,6,8},{0,4,0,3,8,5,7,9,1},{1,8,0,6,9,7,3,2,4},{2,0,3,5,7,8,4,0,6},{0,1,0,9,3,6,2,8,5},{8,0,0,4,2,1,0,7,3},{0,0,0,0,5,4,0,3,7},{3,7,4,8,1,9,6,0,2},{0,2,1,0,0,3,8,4,9" ,
+        "field_4"          : "{{baseUrlNetCoreCPPEntry}}api/Algorithm/Sudoku_Solve_CPP?p_matrix=[{7,3,9,1,4,2,0,6,8},{0,4,0,3,8,5,7,9,1},{1,8,0,6,9,7,3,2,4},{2,0,3,5,7,8,4,0,6},{0,1,0,9,3,6,2,8,5},{8,0,0,4,2,1,0,7,3},{0,0,0,0,5,4,0,3,7},{3,7,4,8,1,9,6,0,2},{0,2,1,0,0,3,8,4,9" ,
         "field_6"          : "https://learn.microsoft.com/es-es/dotnet/api/system.runtime.interopservices.dllimportattribute?view=net-9.0",
         "field_10"         : "945b42ca-17b7-44a0-a1c4-2cfec480ef2a"  
     },
