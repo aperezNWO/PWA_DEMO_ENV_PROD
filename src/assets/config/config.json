@@ -1,10 +1,10 @@
 {
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "3.1.13",
+    "appVersion"                                   : "3.1.14",
     "baseUrlNetCoreCPPEntry_local"                 : "http://localhost:83/",
     "baseUrlNetCoreCPPEntry_remote"                : "https://tensorflownetcore64.tryasp.net/",
-    "baseUrlNetCoreCPPEntry"                       : "http://localhost:83/",
+    "baseUrlNetCoreCPPEntry"                       : "https://tensorflownetcore64.tryasp.net/",
     "baseUrlNetCore_local"                         : "http://localhost:81/",
     "baseUrlNetCore_remote"                        : "https://asp-net-core-csharp-demo.somee.com/",
     "baseUrlNetCore"                               : "https://asp-net-core-csharp-demo.somee.com/",

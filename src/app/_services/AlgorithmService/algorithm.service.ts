@@ -19,7 +19,7 @@ export class AlgorithmService extends BaseService {
     //
     _Algorithm_GetAppVersion(): Observable<string> {
       //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/Algorithm/GetDLLVersion`;
+      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/Algorithm/GetAppVersion`;
       //
       let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -28,7 +28,7 @@ export class AlgorithmService extends BaseService {
     // 
     _Algorithm_GetCPPSTDVersion(): Observable<string> {
       //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/Algorithm/Algorithm_GetCPPSTDVersion`;
+      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/Algorithm/GetCPPSTDVersion`;
       //
       let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
