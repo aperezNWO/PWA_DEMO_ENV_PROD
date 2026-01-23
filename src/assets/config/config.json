@@ -7,7 +7,7 @@
     "baseUrlNetCoreCPPEntry"                       : "https://tensorflownetcore64.tryasp.net/",
     "baseUrlNetCore_local"                         : "http://localhost:81/",
     "baseUrlNetCore_remote"                        : "https://asp-net-core-csharp-demo.somee.com/",
-    "baseUrlNetCore"                               : "http://localhost:81/",
+    "baseUrlNetCore"                               : "https://asp-net-core-csharp-demo.somee.com/",
     "_aperezNWO"                                   : "<fecha_inicio>  – <fecha_fin> (disabled) ",
     "_aperezNWOGmail"                              : "<fecha_inicio>  – <fecha_fin> (enabled)",
     "_df149032"                                    : "<fecha_inicio>  – <fecha_fin> (disabled)",
