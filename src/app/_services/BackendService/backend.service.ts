@@ -236,18 +236,11 @@ export class BackendService extends BaseService implements OnInit  {
       return djantoPythonOutput;
     }
     //
-    getLogStatPOST() {
-      //
-      let url    = `${this._configService.getConfigValue('baseUrlNetCore')}api/FileManager/GetConsultaLogStatPost`;
-      //
-      return this.http.post<string>(url,this.HTTPOptions_JSON);   
-    }    
-    //
     getLogStatGET() {
       //
-      let url    = `${this._configService.getConfigValue('baseUrlNetCore')}api/FileManager/GetConsultaLogStatGet`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}api/FileManager/GetConsultaLogStatGet`;
       //
-      return this.http.get<LogEntry[]>(url);   
+      return this.http.get<string>(p_url,this.HTTPOptions_JSON);   
     } 
     //
     _SetSTATBarCache(_prefix : string | undefined) : void {

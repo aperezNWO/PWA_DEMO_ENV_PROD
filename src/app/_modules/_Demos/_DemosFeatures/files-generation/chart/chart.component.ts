@@ -188,7 +188,8 @@ export class ChartComponent extends BaseReferenceComponent implements OnInit  {
       const statBackgroundColor : string[]          = [];
       // 
       let td_informeLogStat!                 : Observable<string>;
-      td_informeLogStat                      = this.backendService.getLogStatPOST();
+      //td_informeLogStat                    = this.backendService.getLogStatPOST();
+      td_informeLogStat                      = this.backendService.getLogStatGET();
       //
       const td_observer = {
         next: (td_logEntry: string)     => { 
