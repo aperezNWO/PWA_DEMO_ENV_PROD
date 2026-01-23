@@ -32,7 +32,7 @@ export class BackendService extends BaseService implements OnInit  {
     _GetWebApiAppVersion(): Observable<string>
     {
       //
-      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCore')}api/Demos/_GetAppVersion`;
+      let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCore')}api/Demos/GetAppVersion`;
       //
       let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -56,7 +56,7 @@ export class BackendService extends BaseService implements OnInit  {
       //
       let logInfo!  : Observable<string>;
       //
-      let p_url     = `${this._configService.getConfigValue('baseUrlNetCore')}api/Demos/_SetLog?p_logMsg=${p_logMsg}&logType=${logType.toString()}`;
+      let p_url     = `${this._configService.getConfigValue('baseUrlNetCore')}api/Demos/SetLog?p_logMsg=${p_logMsg}&logType=${logType.toString()}`;
       //
       logInfo       = this.http.get<string>(p_url, this.HTTPOptions_Text);
       //
