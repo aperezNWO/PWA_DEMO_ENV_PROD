@@ -2,7 +2,7 @@
       {
         "comment"    : "MAIN PAGE / BOTTOM MENU",
         "log_name"   : "PAGE_ANGULAR_DEMO_INDEX",
-        "page_name"  : "[DEMOS]",
+        "page_name"  : "[Welcome to Angular Demo]",
         "pages"      : [
           { "id": 1, "url" : "/PageUrlList"                                               , "text": "[FEATURES]"        , "queryParams" : "{ pageName : 'PAGE_DEMOS_CARACTERISTICAS_INDEX'}"     },
           { "id": 2, "url" : "/PageUrlList"                                               , "text": "[LANGUAGES]"       , "queryParams" : "{ pageName : 'PAGE_DEMOS_LENGUAJES_INDEX'}"           },

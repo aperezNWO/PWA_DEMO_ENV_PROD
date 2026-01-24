@@ -2,7 +2,7 @@
     {
         "id"          : 6,
         "done"        : true,
-        "name"        : "stackblitz",
+        "name"        : "StackBlitz",
         "description" : "ENV_ONLINE_DEV",
         "field_1"     : "https://stackblitz.com/",
         "field_2"     : "[N/A]",
