@@ -28,4 +28,6 @@ Contacto :  https://shorturl.at/2vr3t
 
 -- [_] publish to angular community ENG for feedback.
 
+-- [_] Free Angular Lesson.
+
 //////////////////////////////////////////////////
