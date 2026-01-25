@@ -188,5 +188,18 @@ console.log('After draw:', { position: this.currentPiece?.position, boardTop: th
  -- [_] owasp online check for vulnerabilities.
 
         --[_]  https://www.veracode.com
-               
+
+-- [_] errors:
+
+        -- [_]  TWEEN LINK ERROR AT DESIGN TIME.
+        -- [_]  Uncaught (in promise) Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+        -- [_]  PWA_DEMO_ENV_PROD/#/:1 Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+        -- [_]  PWA_DEMO_ENV_PROD/#/:1 Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+
+-- [_] warnings:
+
+        -- [_] COMPILATION WARNINGS : BAILOUTS 
+
+        -- [_] COMPILATION WARNINGS : PAGE WEIGHT 
+
 /////////////////////////////////////////////////////////////////
