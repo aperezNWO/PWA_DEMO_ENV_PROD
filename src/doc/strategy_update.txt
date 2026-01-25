@@ -207,6 +207,10 @@
 
      -- [_] Check logic TETRIS -- A.I.   
 
+          -- [_] save score.   
+
+          -- [_] get highest score.   
+
      -- [_] References alignment on firerox.   
 
      -- [_] Fractal Demo. change text with gauges (tictactoe-ai example).  
