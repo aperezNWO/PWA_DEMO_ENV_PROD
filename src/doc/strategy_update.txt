@@ -39,6 +39,8 @@
 
  -- [_] Chess a.i. 
 
+ -- [_] Go lang / rust demo.
+
  -- [_] programa omar -> owasp.
 
  -- [_] curriculum update.
@@ -208,8 +210,6 @@
 
      -- [_] TRANSLATE DATABASE FIELDS TO ENGLISH.      
  
- -- [_] Go lang / rust demo.
-
  -- [_] backend url standarization / .net controller standarization. 
 
         -- [_] ABOUT TECH SPECS
@@ -317,11 +317,11 @@
 
 --[_] host 'ASP_NET_CORE_CSHARP_DEMO' on MONSTER.ASP
 
---[_] codesandbox gmail smtp change email body. Whatsapp contact.
+--[X] codesandbox gmail smtp change email body. Whatsapp contact.
 
---[_] block text box controls from forms.
+--[x] block text box controls from forms.
 
---[_] PWA_DEMO_ENV_ADMIN change codesandbox origin from list. getallcontacforms update.
+--[X] PWA_DEMO_ENV_ADMIN change codesandbox origin from list. getallcontacforms update.
 
 
 
