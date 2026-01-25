@@ -213,6 +213,10 @@
 
           -- [_] game by navigation session.   
 
+          -- [_] stop game process when leave page.   
+
+          -- [_] console app stateless benchmark.   
+
      -- [_] References alignment on firerox.   
 
      -- [_] Fractal Demo. change text with gauges (tictactoe-ai example).  
