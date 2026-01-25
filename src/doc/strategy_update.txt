@@ -211,6 +211,8 @@
 
           -- [_] get highest score.   
 
+          -- [_] game by navigation session.   
+
      -- [_] References alignment on firerox.   
 
      -- [_] Fractal Demo. change text with gauges (tictactoe-ai example).  
