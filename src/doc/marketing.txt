@@ -26,4 +26,6 @@ Contacto :  https://shorturl.at/2vr3t
 
 -- [_] Offer to companies, individuals.
 
+-- [_] publish to angular community ENG for feedback.
+
 //////////////////////////////////////////////////
