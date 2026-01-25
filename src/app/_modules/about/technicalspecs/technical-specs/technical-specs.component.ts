@@ -41,11 +41,29 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _TensorFlowCPPSTDVersion  : string = "(..cargando..)";
     //
     guid = signal<string>(''); // Signal to hold the GUID
-
+    //
+    protected __baseUrlNetCore           : string = '';
+    protected __baseUrlNetCoreSwagger    : string = `${this.configService.getConfigValue('baseUrlNetCore')}swagger`;
+    protected __baseUrlNetCoreCPPSwagger : string = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}swagger`;
+    protected __baseUrlNodeJs            : string = '';
+    protected __baseUrlNodeJsChat        : string = '';
+    protected __baseUrlNodeJsOcr         : string = '';
+    protected __baseUrlSprinbBootJava    : string = '';
+    protected __baseUrlNetCoreCPPEntry   : string = '';
     //
     public get _baseUrlNetCore(): string {
       //
       return this.__baseUrlNetCore;
+    }
+    //
+    public get _baseUrlNetCoreSwagger(): string {
+      //
+      return this.__baseUrlNetCoreSwagger;
+    }
+    //
+    public get _baseUrlNetCoreCPPSwagger(): string {
+      //
+      return this.__baseUrlNetCoreCPPSwagger;
     }
     //
     public get _baseUrlNodeJs(): string {
@@ -71,13 +89,6 @@ export class TechnicalSpecsComponent extends BaseComponent {
     {
       return this.__baseUrlNetCoreCPPEntry;
     }
-    //
-    protected __baseUrlNetCore          : string = '';
-    protected __baseUrlNodeJs           : string = '';
-    protected __baseUrlNodeJsChat       : string = '';
-    protected __baseUrlNodeJsOcr        : string = '';
-    protected __baseUrlSprinbBootJava   : string = '';
-    protected __baseUrlNetCoreCPPEntry  : string = '';
     ////////////////////////////////////////////////////////////////  
     // [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  

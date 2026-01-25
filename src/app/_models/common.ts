@@ -110,6 +110,8 @@ export const PAGE_CURRICULUM_AI                  = 'PAGE_CURRICULUM_AI';
 
 export const PAGE_CURRICULUM_ANGULAR             = 'PAGE_CURRICULUM_ANGULAR';
 
+export const PAGE_CURRICULUM_ANGULAR_            = 'PAGE_CURRICULUM_ANGULAR_';
+
 export const PAGE_CURRICULUM_CPP                 = 'PAGE_CURRICULUM_CPP';
 
 export const PAGE_CURRICULUM_NET_CORE            = 'PAGE_CURRICULUM_NET_CORE';

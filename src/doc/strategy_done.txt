@@ -999,4 +999,44 @@
 
 -- [x] missing status messages.
 
+ --  [x]  Tensorflow Update Log.
+
+        --  [x]  https://chat.qwen.ai/c/5ebb0c4c-fc7a-4883-8d27-cdcba22e3afb
+        
+        --  [x]  Somee admits x32 only arch. for c and c++.
+
+        --  [x]  TryAsp.net admits both x32 and x64.
+
+        --  [x]  TryAsp.net admit c++ compiled code using basic c++ libraries.
+
+        --  [x]  TryAsp.net doen't admit c++ compiled code including tensorflow.
+
+        --  [x]  TryAsp.net admit c generated code for tensorflow x64.
+
+        --  [x]  TryAsp.net c genrerated Tensorflow code expects *.PB model file.
+
+        --  [x]  *.pb model files are generated mostly on Python.      
+                
+ --[x] move somee.com to monsterasp.net. leave dbs only. 
+
+ --[x] complete scm config info (see section).
+
+ --[x] Codesandbox list.  
+
+ --[X] TRANSLATE FORMS TO ENGLISH.  
+
+ --[x] CSV ASYNC REFERENCE.
+
+ --[X] codesandbox gmail smtp change email body. Whatsapp contact.
+
+ --[x] block text box controls from forms.
+ 
+ --[X] PWA_DEMO_ENV_ADMIN change codesandbox origin from list. getallcontacforms update.
+
+ --[X] https://stackblitz.com/edit/angular-66sddqgy?file=src%2Fmain.ts
+
+ --[x] (unable) host 'ASP_NET_CORE_CSHARP_DEMO' on MONSTER.ASP
+
+ --[x] (unable) host 'https://tensorflownetcore64.tryasp.net/' rename to 'ASP_NET_CORE_CPP_ENTRY' on MONSTER.ASP
+
 /////////////////////////////////////////////////////////////////

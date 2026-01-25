@@ -24,7 +24,7 @@ Contacto :  https://shorturl.at/2vr3t
 
 -- [_] Offer to dev communities.
 
--- [_] Offer to companies, individuals.
+-- [_] Offer to companies, individuals (ON SITE VISIT).
 
 -- [_] publish to angular community ENG for feedback.
 

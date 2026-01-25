@@ -34,14 +34,26 @@
 -- [_] TODO LIST.
 
 ////////////////////////////////////////////////////////////////////////////////
- 
- -- [X] https://stackblitz.com/edit/angular-66sddqgy?file=src%2Fmain.ts
 
  -- [_] Chess a.i. 
 
  -- [_] Go lang / rust demo.
 
  -- [_] programa omar -> owasp.
+
+--[_] ASP_MET_CORE_CPP_ENTRY swagger.
+
+        --[_] INative.
+
+        --[x] ABOUT / TECHNICAL SPECES SECTION.
+        
+--[_] ASP_MET_CORE_CSHARP_DEMO  swagger.
+
+        --[_] INative.
+
+        --[x] Controller Overhauling.
+
+        --[x] ABOUT / TECHNICAL SPECES SECTION.
 
  -- [_] curriculum update.
 
@@ -79,26 +91,7 @@
                                 
                                 -- [_]  https://chat.qwen.ai/c/c127093a-9ae5-4fcb-8e6e-95b02e739f9c
 
-                        --  [_]  Tensorflow Update Log.
-
-                                --  [_]  https://chat.qwen.ai/c/5ebb0c4c-fc7a-4883-8d27-cdcba22e3afb
-                                
-                                --  [_]  Somee admits x32 only arch. for c and c++.
-
-                                --  [_]  TryAsp.net admits both x32 and x64.
-
-                                --  [_]  TryAsp.net admit c++ compiled code using basic c++ libraries.
-
-                                --  [_]  TryAsp.net doen't admit c++ compiled code including tensorflow.
-
-                                --  [_]  TryAsp.net admit c generated code for tensorflow x64.
-
-                                --  [_]  TryAsp.net c genrerated Tensorflow code expects *.PB model file.
-                        
-                                --  [_]  *.pb model files are generated mostly on Python.      
-                
-                        -- [_] main feature by std release.
-
+                        -- [_] explore main features by std release.
 
         -- [_] c# sql curriculum.
 
@@ -194,6 +187,14 @@
  
  -- [_] check errors / improvements (section).   
 
+     --[_] UIX IMPROVEMENT (BASED UP ON SWAGGER UIX).
+
+     --[_] angular curriculum FIX 
+
+                --[_] backend : javascript:void(0);
+
+                --[_] field_2 : [routerLink]  + [queryParams] + parse from string to  queryParamsObj.
+
      -- [_] chheck method "sudoku_upload_file". or block the option.
 
      -- [_] validate empty image on ocr / opencv.
@@ -226,8 +227,6 @@
 
                  -- [_] .zip demo.
 
-        -- [_] move somee.com to monsterasp.net. leave dbs only. 
-
         -- [_] docker hosting.
 
                 -- [_] render.
@@ -258,34 +257,26 @@
 
                         -- [_] GIT HUB README.
 
--- [>] PUBLISH ENV_PROD.  
+-- [_] pdf demo.
 
--- [_] TRANSLATE FORMS TO ENGLISH.  
+        -- [x] NG STATUS BAR / HttpEventType.DownloadProgress.
 
-         -- [_] pdf demo.
+        -- [x] ITEXTPDF.
 
-                  -- [x] NG STATUS BAR / HttpEventType.DownloadProgress.
+        -- [_] missing jspdf references.
 
-                  -- [x] ITEXTPDF.
-
-                  -- [_] missing jspdf references.
-
-                  -- [_] PDF TOPICS.
+        -- [_] pdf libraries demo as datagrid.
 
 
-         -- [>] complete scm config info (see section).
+-- [_] Grid modifications.    
 
-                -- [x] Codesandbox list.  
-                
-                -- [_] Grid modifications.    
+        -- [x] restart grid numbers at start.
 
-                        -- [x] restart grid numbers at start.
+        -- [x] Codesadbox dynamic refernce of endpoints inside datagrids.      
 
-                        -- [x] Codesadbox dynamic refernce of endpoints inside datagrids.      
+        -- [x] dynamic codesandbox values {{}}.     
 
-                        -- [x] dynamic codesandbox values {{}}.     
-
-                        -- [_] datagrids row master / detail.     
+        -- [_] datagrids row master / detail.     
 
 --[_] git hub pages (single code base, different landing page)
 
@@ -293,36 +284,11 @@
 
         --[_] https://apereznwo.github.io/PWA_DEMO_ENV_DEV/#/              -> PWA_DEMO_ENV_OPEN_CV 
 
---[_] ASP_MET_CORE_CPP_ENTRY swagger.
-
-        --[_] INative.
-
-        --[_] ABOUT / TECHNICAL SPECES SECTION.
-        
---[_] ASP_MET_CORE_CPP_DEMO  swagger.
-
-        --[_] INative.
-
-        --[_] Controller Overhauling.
-
-        --[_] ABOUT / TECHNICAL SPECES SECTION.
+        -- [>] PUBLISH ENV_PROD.  
 
 --[_] paypal button.
 
---[_] CSV ASYNC REFERENCE.
-
 --[_] ALGORITHM BIG O NOTATION.
-
---[_] UIX IMPROVEMENT (BASED UP ON SWAGGER UIX).
-
---[_] host 'ASP_NET_CORE_CSHARP_DEMO' on MONSTER.ASP
-
---[X] codesandbox gmail smtp change email body. Whatsapp contact.
-
---[x] block text box controls from forms.
-
---[X] PWA_DEMO_ENV_ADMIN change codesandbox origin from list. getallcontacforms update.
-
 
 
 ////////////////////////////////////////////////////////////////////////////////
