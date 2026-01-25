@@ -217,6 +217,8 @@
 
           -- [_] console app stateless benchmark.   
 
+          -- [_] memory management.   
+
      -- [_] References alignment on firerox.   
 
      -- [_] Fractal Demo. change text with gauges (tictactoe-ai example).  
