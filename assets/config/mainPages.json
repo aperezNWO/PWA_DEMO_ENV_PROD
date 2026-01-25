@@ -111,6 +111,13 @@
         ]
       },
       {
+        "log_name"   : "PAGE_CURRICULUM_ANGULAR_",
+        "page_name"  : "[CURRICULUM - ANGULAR / TYPESCRIPT]",
+        "pages"      : [
+             { "id": 1, "url" : "./assets/demos/angularDemo/angular_Curriculum_base_.json"       , "text": ""    }
+        ]
+      },
+      {
         "log_name"   : "PAGE_CURRICULUM_NET_CORE",
         "page_name"  : "[CURRICULUM - .NET CORE / C#]",
         "pages"      : [
