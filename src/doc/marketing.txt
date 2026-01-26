@@ -30,4 +30,8 @@ Contacto :  https://shorturl.at/2vr3t
 
 -- [_] Free Angular Lesson.
 
+-- [_] The Odin Project.
+
+-- [_] UpWork, Workana, Fiverr.
+
 //////////////////////////////////////////////////
