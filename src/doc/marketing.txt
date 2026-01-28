@@ -34,4 +34,6 @@ Contacto :  https://shorturl.at/2vr3t
 
 -- [_] UpWork, Workana, Fiverr.
 
+-- [_] Slack.
+
 //////////////////////////////////////////////////
