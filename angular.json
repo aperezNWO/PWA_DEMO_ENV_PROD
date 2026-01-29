@@ -11,8 +11,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
+            "builder": "@angular-devkit/build-angular:browser",
+            "options": {
+            "allowedCommonJsDependencies": [
+              "three",
+              "@tweenjs/tween.js"
+            ],
             "outputPath": "dist/PWA_DEMO_ENV_PROD/",
             "index": "src/index.html",
             "main": "src/main.ts",
