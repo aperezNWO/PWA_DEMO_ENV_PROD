@@ -2,7 +2,7 @@
 
 -- [_]  facebook offer:
 
-https://github.com/aperezNWO/PWA_DEMO_ENV_ADMIN/blob/main/doc/marketing.txt
+        -- [_]  https://github.com/aperezNWO/PWA_DEMO_ENV_ADMIN/blob/main/doc/marketing.txt
 
 -- [_]  admin url:
  
