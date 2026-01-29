@@ -15,7 +15,7 @@
     </div>
     <div class="controls">
       <div class="score">Score: {{score}}</div>
-      <button (click)="startGame()" *ngIf="!isPlaying || gameOver">
+      <button (click)="resetGame()" *ngIf="!isPlaying || gameOver">
         {{gameOver ? 'Play Again' : 'Start Game'}}
       </button>
       
@@ -28,7 +28,7 @@
     </div>
   </div>
   <hr>
-  <button (click)="restart()">[RESTART]</button>
+  <button (click)="resetGame()">[RESTART]</button>
   <hr />
   <div align="right">
       <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_GAMES_INDEX'}" >[Back to Menu]</a>

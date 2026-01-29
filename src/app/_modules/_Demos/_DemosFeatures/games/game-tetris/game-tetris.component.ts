@@ -1,12 +1,11 @@
-// tetris.component.ts
-import { Component, HostListener, Injectable, OnInit } from '@angular/core';
-import { ActivatedRoute, Router                      } from '@angular/router';
-import { BaseReferenceComponent                      } from 'src/app/_components/base-reference/base-reference.component';
-import { BackendService                              } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService                               } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { ConfigService                               } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute                             } from '@angular/router';
+import { BaseReferenceComponent                     } from 'src/app/_components/base-reference/base-reference.component';
+import { BackendService                             } from 'src/app/_services/BackendService/backend.service';
+import { SpeechService                              } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ConfigService                              } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_GAMES_TETRIS, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
-import { interval, Subscription                      } from 'rxjs';
+import { interval, Subscription                     } from 'rxjs';
 
 interface Position {
   x: number;
@@ -14,20 +13,20 @@ interface Position {
 }
 
 @Component({
-  selector    : 'app-game-tetris',
-  templateUrl : './game-tetris.component.html',
-  styleUrl    : './game-tetris.component.css',
-  providers   : [
+  selector: 'app-game-tetris',
+  templateUrl: './game-tetris.component.html',
+  styleUrl: './game-tetris.component.css',
+  providers: [
     { 
-      provide : PAGE_TITLE_LOG, 
+      provide: PAGE_TITLE_LOG, 
       useValue: PAGE_GAMES_TETRIS 
     },
   ]
 })
-export class GameTetrisComponent  extends BaseReferenceComponent implements OnInit  {
+export class GameTetrisComponent extends BaseReferenceComponent implements OnInit, OnDestroy {
   readonly BOARD_WIDTH = 10;
   readonly BOARD_HEIGHT = 20;
-  readonly TICK_INTERVAL = 1000;
+  readonly TICK_INTERVAL = 500; // Faster than before
   
   board: string[][] = [];
   displayBoard: string[][] = [];
@@ -39,7 +38,7 @@ export class GameTetrisComponent  extends BaseReferenceComponent implements OnIn
   isMobile: boolean = false;
   
   private gameLoop$?: Subscription;
-  
+
   readonly TETROMINOS = {
     I: { shape: [[1, 1, 1, 1]], color: '#00f0f0' },
     O: { shape: [[1, 1], [1, 1]], color: '#f0f000' },
@@ -50,30 +49,20 @@ export class GameTetrisComponent  extends BaseReferenceComponent implements OnIn
     L: { shape: [[0, 0, 1], [1, 1, 1]], color: '#f0a000' }
   };
 
-//
   constructor(
-                  public           pageRestartService : PageRestartService,
-                  public  override configService      : ConfigService,
-                  public  override route              : ActivatedRoute,
-                  public  override speechService      : SpeechService,
-                  public  override backendService     : BackendService) 
-  { 
-      //
-      super(configService,
-            backendService,
-            route,
-            speechService,
-            PAGE_TITLE_NO_SOUND
-      )
-  }
-  //
-  restart() {
-    this.pageRestartService.reloadPage(); // or use any other method
+    public override configService: ConfigService,
+    public override route: ActivatedRoute,
+    public override speechService: SpeechService,
+    public override backendService: BackendService
+  ) {
+    super(configService, backendService, route, speechService, PAGE_TITLE_NO_SOUND);
   }
 
   ngOnInit() {
     this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    this.initBoard();
+    
+    // Initialize and start the game immediately
+    this.startGame();
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -82,18 +71,23 @@ export class GameTetrisComponent  extends BaseReferenceComponent implements OnIn
     
     switch(event.key) {
       case 'ArrowLeft':
+        event.preventDefault();
         this.moveLeft();
         break;
       case 'ArrowRight':
+        event.preventDefault();
         this.moveRight();
         break;
       case 'ArrowUp':
+        event.preventDefault();
         this.rotate();
         break;
       case 'ArrowDown':
+        event.preventDefault();
         this.moveDown();
         break;
       case ' ':
+        event.preventDefault();
         this.drop();
         break;
     }
@@ -107,21 +101,58 @@ export class GameTetrisComponent  extends BaseReferenceComponent implements OnIn
   }
 
   startGame() {
+    // Cancel any existing game loop
     if (this.gameLoop$) {
       this.gameLoop$.unsubscribe();
     }
     
+    // Reset game state
     this.initBoard();
     this.score = 0;
     this.gameOver = false;
     this.isPlaying = true;
+    this.currentPiece = [];
+    this.currentColor = '';
+    
+    // Spawn first piece
     this.spawnPiece();
     
+    // Start game loop
     this.gameLoop$ = interval(this.TICK_INTERVAL).subscribe(() => {
       if (!this.gameOver) {
         this.moveDown();
       }
     });
+    
+    // Update display immediately
+    this.updateDisplayBoard();
+  }
+
+  resetGame() {
+    // Stop current game loop
+    if (this.gameLoop$) {
+      this.gameLoop$.unsubscribe();
+    }
+    
+    // Reset all game state
+    this.initBoard();
+    this.score = 0;
+    this.gameOver = false;
+    this.isPlaying = true;
+    this.currentPiece = [];
+    this.currentColor = '';
+    
+    // Start fresh game
+    this.spawnPiece();
+    
+    // Restart game loop
+    this.gameLoop$ = interval(this.TICK_INTERVAL).subscribe(() => {
+      if (!this.gameOver) {
+        this.moveDown();
+      }
+    });
+    
+    this.updateDisplayBoard();
   }
 
   spawnPiece() {
@@ -135,6 +166,7 @@ export class GameTetrisComponent  extends BaseReferenceComponent implements OnIn
     
     this.currentColor = piece.color;
     
+    // Check for game over
     if (this.checkCollision()) {
       this.gameOver = true;
       this.isPlaying = false;
@@ -187,7 +219,7 @@ export class GameTetrisComponent  extends BaseReferenceComponent implements OnIn
   rotate() {
     if (!this.currentPiece.length) return;
     
-    const center = this.currentPiece[1]; // Use second block as rotation center
+    const center = this.currentPiece[1] || this.currentPiece[0]; // Use second block as rotation center, fall back to first
     const newPositions = this.currentPiece.map(pos => ({
       x: center.x - (pos.y - center.y),
       y: center.y + (pos.x - center.x)
@@ -257,31 +289,5 @@ export class GameTetrisComponent  extends BaseReferenceComponent implements OnIn
     if (this.gameLoop$) {
       this.gameLoop$.unsubscribe();
     }
-  }
-}
-
-
-@Injectable({
-  providedIn: 'root',
-})
-class PageRestartService {
-  constructor(private router: Router) {}
-
-  // Method 1: Simple page reload
-  reloadPage() {
-    window.location.reload();
-  }
-
-  // Method 2: Reload current route
-  async reloadCurrentRoute() {
-    const currentUrl = this.router.url;
-    await this.router.navigateByUrl('/', { skipLocationChange: true });
-    return this.router.navigateByUrl(currentUrl);
-  }
-
-  // Method 3: Reload with query params refresh
-  reloadWithQueryParamsRefresh() {
-    const currentUrl = window.location.href;
-    window.location.href = currentUrl;
   }
 }
