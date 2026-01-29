@@ -217,6 +217,8 @@
 
           -- [_] console app stateless benchmark.   
 
+          -- [_] desktop app stateless benchmark.   
+
           -- [_] memory management.   
 
      -- [_] References alignment on firerox.   
