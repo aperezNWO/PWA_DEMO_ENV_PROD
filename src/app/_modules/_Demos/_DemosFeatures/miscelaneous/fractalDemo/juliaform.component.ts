@@ -9,6 +9,8 @@ import { SpeechService                  } from 'src/app/_services/__Utils/Speech
 import { PdfService                     } from 'src/app/_services/__FileGeneration/pdf.service';
 import { BaseReferenceComponent         } from 'src/app/_components/base-reference/base-reference.component';
 
+
+
 @Component({
   selector    : 'app-juliaform',
   templateUrl : './juliaform.component.html',
@@ -21,6 +23,13 @@ import { BaseReferenceComponent         } from 'src/app/_components/base-referen
   ]
 })
 export class FractalDemoComponent  extends BaseReferenceComponent {
+  //
+  // Add as class properties
+  private defaultValues = {
+    maxIterations: 500,
+    realPart: -0.4,
+    imagPart: 0.6
+  };
   //
   maxIterations    : number        = 500;
   realPart         : number        = -0.4;
@@ -105,5 +114,31 @@ export class FractalDemoComponent  extends BaseReferenceComponent {
         }
       }
     );      
+  }
+  //
+  // Add this method to reset to defaults
+  resetToDefaults(): void {
+    this.maxIterations = this.defaultValues.maxIterations;
+    this.realPart = this.defaultValues.realPart;
+    this.imagPart = this.defaultValues.imagPart;
+    
+    // Optional: Clear any generated image
+    if (this.imageUrl) {
+      URL.revokeObjectURL(this.imageUrl);
+      this.imageUrl = null;
+    }
+  
+    // Clear status message
+    this.status_message.set("");
+    
+    // You can also trigger auto-generation after reset:
+    // this.onSubmit();  
+  }
+
+  // Add this method to disable reset when already at defaults
+  isAtDefaultValues(): boolean {
+    return this.maxIterations === this.defaultValues.maxIterations &&
+          Math.abs(this.realPart - this.defaultValues.realPart) < 0.001 &&
+          Math.abs(this.imagPart - this.defaultValues.imagPart) < 0.001;
   }
 }
