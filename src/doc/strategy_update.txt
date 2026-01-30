@@ -332,4 +332,12 @@
         
         --[_] DRAW COORDINATES.
 
+--[_] Module Federation.
+
+--[_] Educational Resources : The Odin Project.
+
+--[_] Claude Code -> inspect git hub repo.
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
