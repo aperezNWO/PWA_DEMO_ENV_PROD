@@ -60,7 +60,9 @@ export class OcrPhotoCaptureComponent extends BaseReferenceComponent implements 
   saveImageButtonDisabled : boolean = true;
   selectedIndex           : number  = 1;
   selectedIndexEngines    : number  = 1;
-  
+  //
+  // Add this property to store whether signature is empty
+  private isSignatureEmpty: boolean = true;
   //
   constructor(public override configService  : ConfigService,
               public override backendService : BackendService,
@@ -162,6 +164,20 @@ export class OcrPhotoCaptureComponent extends BaseReferenceComponent implements 
      if (this.selectedIndex == 0) {
             this.status_message.set("Please choose the option    [CAPTURE ORIGIN]");
             return;
+     }
+
+     // Special validation for signature pad (selectedIndex === 1)
+     if (this.selectedIndex == 1) {
+        if (this.isSignaturePadEmpty()) {
+          this.status_message.set("Please draw something on the signature pad before saving");
+          return;
+        }
+     }
+
+     // If using camera and no image captured
+     if (this.selectedIndex === 2 && !this.capturedImage) {
+      this.status_message.set("Please capture an image from the camera first");
+      return;
      }
 
      //
@@ -371,4 +387,28 @@ export class OcrPhotoCaptureComponent extends BaseReferenceComponent implements 
     this.stopCamera();
     await this.startCamera();
   }
-}
+  //
+  // Add this method to check if signature is empty
+  isSignaturePadEmpty(): boolean {
+    // The signature pad is considered empty if:
+    // 1. It hasn't been initialized yet, OR
+    // 2. It has no points drawn on it
+    
+    if (!this.signature) return true;
+    
+    try {
+      // Try to get data URL - if it's blank, it will be a minimal PNG
+      //const dataURL = this.signature.toDataURL();
+      
+      // A completely empty signature pad produces a very small base64 string
+      // This checks if the signature is just the canvas background with no drawing
+      //return dataURL.length < 500; // Adjust threshold as needed
+      
+      // Alternative approach: use isEmpty() if available
+      return (this.signature as any).isEmpty?.() === true;
+    } catch (error) {
+      console.warn('Error checking signature emptiness:', error);
+      return true;
+    }
+  }  
+} 

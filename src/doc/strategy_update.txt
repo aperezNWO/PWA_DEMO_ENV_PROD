@@ -35,6 +35,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+ -- [x] validate empty image on ocr / opencv.
+
  -- [_] scm errors / warnings. 
 
  -- [_] Chess a.i. 
@@ -198,8 +200,6 @@
                 --[_] field_2 : [routerLink]  + [queryParams] + parse from string to  queryParamsObj.
 
      -- [_] chheck method "sudoku_upload_file". or block the option.
-
-     -- [_] validate empty image on ocr / opencv.
 
      -- [_] chat demo exception handling.
 

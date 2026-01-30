@@ -176,6 +176,22 @@ export class ComputerVisionComponent extends BaseReferenceComponent implements A
         //
         return;
      }
+     
+     //
+     // Special validation for signature pad (selectedIndex === 1)
+     if (this.selectedIndex == 1) {
+        if (this.isSignaturePadEmpty()) {
+          this.status_message.set("Please draw something on the signature pad before saving");
+          return;
+        }
+     }
+
+     // If using camera and no image captured
+     if (this.selectedIndex === 2 && !this.capturedImage) {
+        this.status_message.set("Please capture an image from the camera first");
+        return;
+     }
+
      //
      this.status_message.set("[..parsing...]");
      //
@@ -363,6 +379,30 @@ export class ComputerVisionComponent extends BaseReferenceComponent implements A
               }
             );
   }
+  //
+  // Add this method to check if signature is empty
+  isSignaturePadEmpty(): boolean {
+    // The signature pad is considered empty if:
+    // 1. It hasn't been initialized yet, OR
+    // 2. It has no points drawn on it
+    
+    if (!this.signature) return true;
+    
+    try {
+      // Try to get data URL - if it's blank, it will be a minimal PNG
+      //const dataURL = this.signature.toDataURL();
+      
+      // A completely empty signature pad produces a very small base64 string
+      // This checks if the signature is just the canvas background with no drawing
+      //return dataURL.length < 500; // Adjust threshold as needed
+      
+      // Alternative approach: use isEmpty() if available
+      return (this.signature as any).isEmpty?.() === true;
+    } catch (error) {
+      console.warn('Error checking signature emptiness:', error);
+      return true;
+    }
+  }  
 }
 
 
