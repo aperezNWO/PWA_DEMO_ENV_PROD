@@ -106,6 +106,7 @@ export class IndexComponent {
   //
   private _search(): Observable<BaseSearchResult> {
     //
+    let filteredRoutes: _Route[];
     let _searchPages: any;
     let _total: any;
     let _searchResult: BaseSearchResult = { searchPages: _searchPages, total: _total };
@@ -113,8 +114,10 @@ export class IndexComponent {
     // 0. get state
     const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
 
-    // 1. get data
-    _searchPages   = routes;
+    // 1. get data - start with only routes that have captions
+    _searchPages   = routes.filter(route => 
+      route.caption && route.caption.trim() !== ''
+    );
 
     // 2. filter
     _searchPages = _searchPages.filter((_searchPage: _Route) => matches(_searchPage, searchTerm, this.pipe));
