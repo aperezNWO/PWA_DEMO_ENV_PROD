@@ -1,3 +1,118 @@
-canvas {
-    border: 1px solid #d3d3d3;
-  }
+/* BALANCED COMPACT CALCULATION PANEL - Easy to read but space-efficient */
+.calculation-panel {
+    background: #f0f7ff;
+    border: 1px solid #d0e3f0;
+    border-radius: 6px;
+    padding: 8px; /* Increased from 2px */
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    box-sizing: border-box;
+}
+
+.calculation-panel h4 {
+    margin: 0 0 6px 0; /* More space below header */
+    font-size: 12px; /* Increased from 9px */
+    color: #495057;
+    text-align: center;
+    border-bottom: 1px solid #d0e3f0;
+    padding-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for better readability */
+    gap: 6px; /* Increased from 1px */
+}
+
+.calc-item {
+    display: flex;
+    flex-direction: column;
+    padding: 6px 8px; /* Increased from 1px 2px */
+    background: #ffffff;
+    border-radius: 4px; /* Slightly rounder */
+    border: 1px solid #c5d5e5;
+    line-height: 1.2; /* Better line spacing */
+    min-height: 0;
+}
+
+.calc-label {
+    font-size: 10px; /* Increased from 6px - readable on mobile */
+    color: #5a6c7d;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-bottom: 2px; /* Small gap between label and value */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+}
+
+.calc-value {
+    font-size: 12px; /* Increased from 7px - much more readable */
+    font-weight: bold;
+    color: #212529;
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Tablet and Desktop - Side panel */
+@media (min-width: 768px) {
+    .calculation-panel {
+        flex: 0 0 180px; /* Slightly wider than before (was 140px) */
+        max-width: 180px;
+        padding: 10px;
+    }
+    
+    .calc-grid {
+        grid-template-columns: 1fr; /* Single column on desktop */
+        gap: 6px;
+    }
+    
+    .calc-item {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 10px;
+    }
+    
+    .calc-label {
+        font-size: 11px;
+        margin-bottom: 0;
+    }
+    
+    .calc-value {
+        font-size: 13px; /* Bigger on desktop */
+    }
+}
+
+/* Large screens */
+@media (min-width: 1024px) {
+    .calculation-panel {
+        flex: 0 0 200px; /* Comfortable width */
+    }
+}
+
+/* Small mobile - keep 2 columns but bigger */
+@media (max-width: 360px) {
+    .calc-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4px;
+    }
+    
+    .calc-item {
+        padding: 5px 6px;
+    }
+    
+    .calc-label {
+        font-size: 9px;
+    }
+    
+    .calc-value {
+        font-size: 11px;
+    }
+}

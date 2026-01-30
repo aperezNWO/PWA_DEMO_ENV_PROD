@@ -1,11 +1,115 @@
-<div align="center">
+<div class="container">
     <app-base-reference></app-base-reference>
     <hr>
-    <canvas #ballCanvas width="300" height="300"></canvas>
+    
+    <!-- RESPONSIVE SLIDERS -->
+    <div class="position-controls">
+        <div class="control-group">
+            <label for="xPosition">
+                <span class="label-text">X Position:</span>
+                <span class="label-value">{{ xPosition }}</span>
+            </label>
+            <input type="range" id="xPosition" 
+                   [(ngModel)]="xPosition" 
+                   [min]="ball.radius" 
+                   [max]="canvasWidth - ball.radius"
+                   step="1" class="slider touch-friendly"
+                   (input)="updatePosition()">
+        </div>
+        
+        <div class="control-group">
+            <label for="yPosition">
+                <span class="label-text">Y Position:</span>
+                <span class="label-value">{{ yPosition }}</span>
+            </label>
+            <input type="range" id="yPosition" 
+                   [(ngModel)]="yPosition" 
+                   [min]="ball.radius" 
+                   [max]="canvasHeight - ball.radius"
+                   step="1" class="slider touch-friendly"
+                   (input)="updatePosition()">
+        </div>
+    </div>
+    
+    <!-- SIMULATION LAYOUT: Canvas first on mobile, side-by-side on desktop -->
+    <div class="simulation-wrapper">
+        
+        <!-- CANVAS CONTAINER -->
+        <div class="canvas-container">
+            <div class="canvas-wrapper" [style.width.px]="canvasWidth" [style.height.px]="canvasHeight">
+                <canvas #ballCanvas 
+                        [width]="canvasWidth" 
+                        [height]="canvasHeight"
+                        style="width: 100%; height: 100%;">
+                </canvas>
+            </div>
+        </div>
+
+        <!-- MOBILE-FIRST CONTROLS -->
+        <div class="controls-container">
+            <button *ngIf="!isPlaying" (click)="startSimulation()" class="btn btn-success" type="button">
+                <span class="btn-text">Start</span>
+                <span class="btn-icon">▶</span>
+            </button>
+            <button *ngIf="isPlaying && !isPaused" (click)="pauseSimulation()" class="btn btn-warning" type="button">
+                <span class="btn-text">Pause</span>
+                <span class="btn-icon">⏸</span>
+            </button>
+            <button *ngIf="isPlaying && isPaused" (click)="resumeSimulation()" class="btn btn-info" type="button">
+                <span class="btn-text">Resume</span>
+                <span class="btn-icon">▶</span>
+            </button>
+            <button (click)="resetSimulation()" class="btn btn-danger" type="button">
+                <span class="btn-text">Reset</span>
+                <span class="btn-icon">↺</span>
+            </button>
+        </div>
+
+        <!-- CALCULATION PANEL -->
+        <div class="calculation-panel">
+                <h4>Physics Data</h4>
+                <div class="calc-grid">
+                    <div class="calc-item">
+                        <span class="calc-label">Position:</span>
+                        <span class="calc-value">({{ currentX.toFixed(1) }}, {{ currentY.toFixed(1) }})</span>
+                    </div>
+                    <div class="calc-item">
+                        <span class="calc-label">Velocity:</span>
+                        <span class="calc-value">{{ vx.toFixed(1) }}, {{ vy.toFixed(1) }}</span>
+                    </div>
+                    <div class="calc-item">
+                        <span class="calc-label">Speed:</span>
+                        <span class="calc-value">{{ speed.toFixed(1) }} px/s</span>
+                    </div>
+                    <div class="calc-item">
+                        <span class="calc-label">Kinetic:</span>
+                        <span class="calc-value">{{ kineticEnergy.toFixed(1) }} J</span>
+                    </div>
+                    <div class="calc-item">
+                        <span class="calc-label">Potential:</span>
+                        <span class="calc-value">{{ potentialEnergy.toFixed(1) }} J</span>
+                    </div>
+                    <div class="calc-item">
+                        <span class="calc-label">Total:</span>
+                        <span class="calc-value">{{ totalEnergy.toFixed(1) }} J</span>
+                    </div>
+                    <div class="calc-item">
+                        <span class="calc-label">Momentum:</span>
+                        <span class="calc-value">{{ momentum.toFixed(1) }}</span>
+                    </div>
+                    <div class="calc-item">
+                        <span class="calc-label">Collisions:</span>
+                        <span class="calc-value">{{ collisionCount }}</span>
+                    </div>
+                </div>
+        </div>
+    </div>
+   
     <hr>
-    <button (click)="resetSimulation()">Reset</button>
-    <hr>
-    <div align="right">
-      <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_ALGORITMOS_INDEX'}" >[Back to Menu]</a>
+    <!-- NAVIGATION -->
+    <div class="navigation">
+        <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_ALGORITMOS_INDEX'}" class="back-link">
+            ← Back to Menu
+        </a>
     </div>
 </div>
