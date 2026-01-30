@@ -37,6 +37,8 @@
 
  -- [x] validate empty image on ocr / opencv.
 
+ -- [x] Fractal Demo. change text with gauges (tictactoe-ai example).  
+
  -- [_] scm errors / warnings. 
 
  -- [_] Chess a.i. 
@@ -222,8 +224,6 @@
           -- [_] memory management.   
 
      -- [_] References alignment on firerox.   
-
-     -- [_] Fractal Demo. change text with gauges (tictactoe-ai example).  
 
      -- [_] TRANSLATE DATABASE FIELDS TO ENGLISH.      
  
