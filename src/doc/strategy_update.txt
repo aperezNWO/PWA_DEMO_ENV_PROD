@@ -35,6 +35,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+ -- [x] INDEX -> DON'T SHOW EMPTY ITEMS.
+
  -- [x] validate empty image on ocr / opencv.
 
  -- [x] Fractal Demo. change text with gauges (tictactoe-ai example).  
@@ -317,8 +319,6 @@
 --[_] ALGORITHM BIG O NOTATION / json.
 
 --[_] ALGORITHM apps / json.
-
---[_] INDEX -> DON'T SHOW EMPTY ITEMS.
 
 --[_] ask i.a. about marketing.
 
