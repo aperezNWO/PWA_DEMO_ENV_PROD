@@ -2,19 +2,16 @@
     <app-base-reference></app-base-reference>
     <hr>
     
-    <!-- RESPONSIVE SLIDERS -->
+    <!-- POSITION SLIDERS -->
     <div class="position-controls">
         <div class="control-group">
             <label for="xPosition">
                 <span class="label-text">X Position:</span>
                 <span class="label-value">{{ xPosition }}</span>
             </label>
-            <input type="range" id="xPosition" 
-                   [(ngModel)]="xPosition" 
-                   [min]="ball.radius" 
-                   [max]="canvasWidth - ball.radius"
-                   step="1" class="slider touch-friendly"
-                   (input)="updatePosition()">
+            <input type="range" id="xPosition" [(ngModel)]="xPosition" 
+                   [min]="ball.radius" [max]="canvasWidth - ball.radius"
+                   step="1" class="slider touch-friendly" (input)="updatePosition()">
         </div>
         
         <div class="control-group">
@@ -22,30 +19,24 @@
                 <span class="label-text">Y Position:</span>
                 <span class="label-value">{{ yPosition }}</span>
             </label>
-            <input type="range" id="yPosition" 
-                   [(ngModel)]="yPosition" 
-                   [min]="ball.radius" 
-                   [max]="canvasHeight - ball.radius"
-                   step="1" class="slider touch-friendly"
-                   (input)="updatePosition()">
+            <input type="range" id="yPosition" [(ngModel)]="yPosition" 
+                   [min]="ball.radius" [max]="canvasHeight - ball.radius"
+                   step="1" class="slider touch-friendly" (input)="updatePosition()">
         </div>
     </div>
     
-    <!-- SIMULATION LAYOUT: Canvas first on mobile, side-by-side on desktop -->
+    <!-- SIMULATION LAYOUT -->
     <div class="simulation-wrapper">
         
-        <!-- CANVAS CONTAINER -->
+        <!-- CANVAS -->
         <div class="canvas-container">
             <div class="canvas-wrapper" [style.width.px]="canvasWidth" [style.height.px]="canvasHeight">
-                <canvas #ballCanvas 
-                        [width]="canvasWidth" 
-                        [height]="canvasHeight"
-                        style="width: 100%; height: 100%;">
-                </canvas>
+                <canvas #ballCanvas [width]="canvasWidth" [height]="canvasHeight"
+                        style="width: 100%; height: 100%;"></canvas>
             </div>
         </div>
 
-        <!-- MOBILE-FIRST CONTROLS -->
+        <!-- CONTROLS -->
         <div class="controls-container">
             <button *ngIf="!isPlaying" (click)="startSimulation()" class="btn btn-success" type="button">
                 <span class="btn-text">Start</span>
@@ -65,49 +56,93 @@
             </button>
         </div>
 
-        <!-- CALCULATION PANEL -->
+        <!-- PHYSICS DATA PANEL WITH FORMULAS -->
         <div class="calculation-panel">
+            <div class="panel-header" (click)="togglePanel()" [class.collapsed]="isPanelCollapsed">
                 <h4>Physics Data</h4>
-                <div class="calc-grid">
-                    <div class="calc-item">
-                        <span class="calc-label">Position:</span>
-                        <span class="calc-value">({{ currentX.toFixed(1) }}, {{ currentY.toFixed(1) }})</span>
+                <span class="toggle-icon">{{ isPanelCollapsed ? '▼' : '▲' }}</span>
+            </div>
+            
+            <div class="panel-content" [class.hidden]="isPanelCollapsed">
+                
+                <!-- Position -->
+                <div class="calc-item">
+                    <div class="calc-header">
+                        <span class="calc-label">Position</span>
+                        <span class="calc-unit">(x, y)</span>
                     </div>
-                    <div class="calc-item">
-                        <span class="calc-label">Velocity:</span>
-                        <span class="calc-value">{{ vx.toFixed(1) }}, {{ vy.toFixed(1) }}</span>
-                    </div>
-                    <div class="calc-item">
-                        <span class="calc-label">Speed:</span>
-                        <span class="calc-value">{{ speed.toFixed(1) }} px/s</span>
-                    </div>
-                    <div class="calc-item">
-                        <span class="calc-label">Kinetic:</span>
-                        <span class="calc-value">{{ kineticEnergy.toFixed(1) }} J</span>
-                    </div>
-                    <div class="calc-item">
-                        <span class="calc-label">Potential:</span>
-                        <span class="calc-value">{{ potentialEnergy.toFixed(1) }} J</span>
-                    </div>
-                    <div class="calc-item">
-                        <span class="calc-label">Total:</span>
-                        <span class="calc-value">{{ totalEnergy.toFixed(1) }} J</span>
-                    </div>
-                    <div class="calc-item">
-                        <span class="calc-label">Momentum:</span>
-                        <span class="calc-value">{{ momentum.toFixed(1) }}</span>
-                    </div>
-                    <div class="calc-item">
-                        <span class="calc-label">Collisions:</span>
-                        <span class="calc-value">{{ collisionCount }}</span>
-                    </div>
+                    <div class="calc-solution">({{ currentX.toFixed(0) }}, {{ currentY.toFixed(0) }}) px</div>
                 </div>
+
+                <!-- Velocity -->
+                <div class="calc-item">
+                    <div class="calc-header">
+                        <span class="calc-label">Velocity</span>
+                        <span class="calc-unit">v = (vx, vy)</span>
+                    </div>
+                    <div class="calc-solution">{{ velocityFormula }} px/s</div>
+                </div>
+
+                <!-- Speed -->
+                <div class="calc-item">
+                    <div class="calc-header">
+                        <span class="calc-label">Speed</span>
+                        <span class="calc-unit">√(vx²+vy²)</span>
+                    </div>
+                    <div class="calc-solution">{{ speedFormula }} px/s</div>
+                </div>
+
+                <!-- Kinetic Energy -->
+                <div class="calc-item">
+                    <div class="calc-header">
+                        <span class="calc-label">Kinetic Energy</span>
+                        <span class="calc-unit">½mv²</span>
+                    </div>
+                    <div class="calc-solution">{{ keFormula }} J</div>
+                </div>
+
+                <!-- Potential Energy -->
+                <div class="calc-item">
+                    <div class="calc-header">
+                        <span class="calc-label">Potential Energy</span>
+                        <span class="calc-unit">mgh</span>
+                    </div>
+                    <div class="calc-solution">{{ peFormula }} J</div>
+                </div>
+
+                <!-- Total Energy -->
+                <div class="calc-item">
+                    <div class="calc-header">
+                        <span class="calc-label">Total Energy</span>
+                        <span class="calc-unit">KE+PE</span>
+                    </div>
+                    <div class="calc-solution">{{ totalFormula }} J</div>
+                </div>
+
+                <!-- Momentum -->
+                <div class="calc-item">
+                    <div class="calc-header">
+                        <span class="calc-label">Momentum</span>
+                        <span class="calc-unit">p = mv</span>
+                    </div>
+                    <div class="calc-solution">{{ momentumFormula }} kg·px/s</div>
+                </div>
+
+                <!-- Collisions -->
+                <div class="calc-item">
+                    <div class="calc-header">
+                        <span class="calc-label">Collisions</span>
+                        <span class="calc-unit">count</span>
+                    </div>
+                    <div class="calc-solution count">{{ collisionCount }}</div>
+                </div>
+
+            </div>
         </div>
     </div>
    
     <hr>
-    <!-- NAVIGATION -->
-    <div class="navigation">
+    <div class="navigation" align="right" >
         <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_ALGORITMOS_INDEX'}" class="back-link">
             ← Back to Menu
         </a>

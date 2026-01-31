@@ -22,7 +22,6 @@ import { GameTictactoeComponent      } from './_modules/_Demos/_DemosFeatures/ga
 import { TicTacToeBoardAiComponent   } from './_modules/_Demos/_DemosFeatures/games/tic-tac-toe-board-ai/tic-tac-toe-board-ai.component';
 import { ChatComponent               } from './_modules/_Demos/_DemosFeatures/miscelaneous/chat/chat/chat.component';
 import { ComputerVisionComponent     } from './_modules/_Demos/_DemosFeatures/miscelaneous/computer-vision/computer-vision.component';
-import { MathParsingComponent        } from './_modules/_Demos/_DemosFeatures/miscelaneous/math-parsing/math-parsing.component';
 import { OcrPhotoCaptureComponent    } from './_modules/_Demos/_DemosFeatures/miscelaneous/ocr-photo-capture/ocr-photo-capture.component';
 import { LinearRegressionComponent   } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
 import { ContactformComponent        } from './_modules/about/contactform/contactform.component';
@@ -67,7 +66,6 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'Chat'                  , component: ChatComponent                       , caption: ' MISCELLANEOUS - Chat Demo'                    , queryParams : '' },
   {  id: 0,  path: 'OcrPhotoCapture'       , component: OcrPhotoCaptureComponent            , caption: ' MISCELLANEOUS - Ocr Photo Capture'            , queryParams : '' },
   {  id: 0,  path: 'ComputerVision'        , component: ComputerVisionComponent             , caption: ' MISCELLANEOUS - Computer Vision'              , queryParams : '' },
-  {  id: 0,  path: 'MathParsing'           , component: MathParsingComponent                , caption: ' MISCELLANEOUS - Math Parsing'                 , queryParams : '' },
   {  id: 0,  path: 'FractalDemo'           , component: FractalDemoComponent                , caption: ' MISCELLANEOUS - Fractal Demo'                 , queryParams : '' },
   {  id: 0,  path: 'LinearRegression'      , component: LinearRegressionComponent           , caption: ' Machine Learning  - Linear Regression'       , queryParams : '' },
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Curriculum - Artificial Intelligence'        , queryParams : 'PAGE_CURRICULUM_AI'              },

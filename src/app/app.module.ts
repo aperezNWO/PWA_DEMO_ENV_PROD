@@ -52,7 +52,6 @@ import { TicTacToeBoardAiComponent   } from './_modules/_Demos/_DemosFeatures/ga
 import { SquareComponent             } from './_modules/_Demos/_DemosFeatures/games/game-tictactoe/square/square.component';
 import { ChatComponent               } from './_modules/_Demos/_DemosFeatures/miscelaneous/chat/chat/chat.component';
 import { ComputerVisionComponent     } from './_modules/_Demos/_DemosFeatures/miscelaneous/computer-vision/computer-vision.component';
-import { MathParsingComponent        } from './_modules/_Demos/_DemosFeatures/miscelaneous/math-parsing/math-parsing.component';
 import { OcrPhotoCaptureComponent    } from './_modules/_Demos/_DemosFeatures/miscelaneous/ocr-photo-capture/ocr-photo-capture.component';
 import { LinearRegressionComponent   } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
 import { ContactformComponent        } from './_modules/about/contactform/contactform.component';
@@ -157,7 +156,6 @@ export class CustomErrorHandler implements ErrorHandler {
         IndexComponent,
         ComputerVisionComponent,
         GameHanoi3dComponent,
-        MathParsingComponent,
         GameTetrisComponent,
         GameTetrisAIComponent,
         CurriculumAngularComponent,
