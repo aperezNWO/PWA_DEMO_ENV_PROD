@@ -36,18 +36,6 @@
         "field_10"         : "415b3965-c5ef-4953-8484-080c34df691f"
     },
     {
-		"id"               : 4,
-        "done"             : true,
-        "name"             : "MISCELLANEOUS - Math Parser",
-        "description"      : "Math Parser",
-        "field_1"          : "v17, Math Parser, math.js",
-        "field_2"          : "./#/MathParsing",
-        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/miscelaneous/math-parsing/math-parsing.component.ts",
-        "field_4"          : "./#/MathParsing",
-        "field_6"          : "https://www.npmjs.com/package/mathjs"  ,
-        "field_10"         : "5efc8f87-995f-40aa-9d5b-5bdf5810dd6d"
-    },
-        {
 		"id"               : 5,
         "done"             : true,
         "name"             : "MISCELLANEOUS - Fractal Demo",
@@ -232,7 +220,7 @@
         "done"             : true,
         "name"             : "Algorithm - Colission",
         "description"      : "Algorithm - Colission",
-        "field_1"          : "v17, Canvas, Collision",
+        "field_1"          : "v17, Canvas, Collision, Math.js",
         "field_2"          : "./#/AlgorithmCollision",
         "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/algorithm/algorithm-collision/algorithm-collision.component.ts",
         "field_4"          : "./#/AlgorithmCollision",
