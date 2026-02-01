@@ -334,6 +334,8 @@
 
 --[_] Module Federation.
 
+     --[_] Independent deployment
+
 --[_] Educational Resources : The Odin Project.
 
 --[_] Claude Code -> inspect git hub repo.
