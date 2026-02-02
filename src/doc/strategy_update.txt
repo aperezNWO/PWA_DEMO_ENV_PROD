@@ -35,6 +35,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+ -- [x] Educational Resources : The Odin Project.
+
  -- [x] INDEX -> DON'T SHOW EMPTY ITEMS.
 
  -- [x] validate empty image on ocr / opencv.
@@ -316,8 +318,6 @@
 
 --[_] paypal button.
 
---[_] ALGORITHM BIG O NOTATION / json.
-
 --[_] ALGORITHM apps / json.
 
 --[_] ask i.a. about marketing.
@@ -336,8 +336,6 @@
 
      --[_] Independent deployment
 
---[_] Educational Resources : The Odin Project.
-
 --[_] Claude Code -> inspect git hub repo.
 
 --[_] Antigravity / Firebase / Gemini.
@@ -349,5 +347,7 @@
         --[_] Chat + tictactoe.
 
         --[_] Opencv + ocr.
+
+--[_] ALGORITHM BIG O NOTATION / json.
 
 ////////////////////////////////////////////////////////////////////////////////
