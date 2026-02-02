@@ -350,4 +350,8 @@
 
 --[_] ALGORITHM BIG O NOTATION / json.
 
+        --[_] Comparisons, Swaps, Recursive Calls.
+
+        --[_] Pick up using Linear Regression related techniques.
+
 ////////////////////////////////////////////////////////////////////////////////
