@@ -10,6 +10,7 @@ import { ComputerVisionService             } from 'src/app/_services/__AI/Comput
 import { AlgorithmService                  } from 'src/app/_services/AlgorithmService/algorithm.service';
 import { BackendService                    } from '../../../../_services/BackendService/backend.service';
 import { TensorFlowService                 } from '../../../../_services/__AI/TensorflowService/tensor-flow.service';
+import { VersionBundle, VersionCacheService } from 'src/app/_services/__Utils/VersionCacheService/versio-cache.service';
 
 //
 @Component({
@@ -26,35 +27,22 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _appBrand                 : string | undefined;
     _appVersion               : string | undefined;
     _runtimeVersion           : string = VERSION.full;
-    _webApiAppVersion         : string = "(..cargando..)";
-    _AlgorithmAppVersion      : string = "(..cargando..)";
-    _Algorithm_CPPSTDVersion  : string = "(..cargando..)";
-    _ASPNETCoreCppVersion     : string = "(..cargando..)";
-    _tesseractAppVersion      : string = "(..cargando..)";
-    _tesseractAPIVersion      : string = "(..cargando..)";
-    _tesseractCPPSTDVersion   : string = "(..cargando..)";
-    _OpenCvAppVersion         : string = "(..cargando..)";
-    _OpenCvAPIVersion         : string = "(..cargando..)";
-    _OpenCvCPPSTDVersion      : string = "(..cargando..)";
-    _TensorFlowAPIVersion     : string = "(..cargando..)";
-    _TensorFlowAPPVersion     : string = "(..cargando..)";
-    _TensorFlowCPPSTDVersion  : string = "(..cargando..)";
+    /* same properties as before – just initialise with cached value if we have it */
+    _webApiAppVersion          = this.fromCache('webApiApp');
+    _AlgorithmAppVersion       = this.fromCache('algorithmApp');
+    _Algorithm_CPPSTDVersion   = this.fromCache('algorithmCpp');
+    _ASPNETCoreCppVersion      = this.fromCache('aspNetCoreCpp');
+    _OpenCvAppVersion          = this.fromCache('openCvApp');
+    _OpenCvAPIVersion          = this.fromCache('openCvApi');
+    _OpenCvCPPSTDVersion       = this.fromCache('openCvCpp');
+    _tesseractAppVersion       = this.fromCache('tesseractApp');
+    _tesseractAPIVersion       = this.fromCache('tesseractApi');
+    _tesseractCPPSTDVersion    = this.fromCache('tesseractCpp');;
+    _TensorFlowAPPVersion      = this.fromCache('tfApp');;
+    _TensorFlowAPIVersion      = this.fromCache('tfApi');;
+    _TensorFlowCPPSTDVersion   = this.fromCache('tfCpp');;
     //
     guid = signal<string>(''); // Signal to hold the GUID
-    //
-    protected __baseUrlNetCore           : string = '';
-    protected __baseUrlNetCoreSwagger    : string = `${this.configService.getConfigValue('baseUrlNetCore')}swagger`;
-    protected __baseUrlNetCoreCPPSwagger : string = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}swagger`;
-    protected __baseUrlNodeJs            : string = '';
-    protected __baseUrlNodeJsChat        : string = '';
-    protected __baseUrlNodeJsOcr         : string = '';
-    protected __baseUrlSprinbBootJava    : string = '';
-    protected __baseUrlNetCoreCPPEntry   : string = '';
-    //
-    public get _baseUrlNetCore(): string {
-      //
-      return this.__baseUrlNetCore;
-    }
     //
     public get _baseUrlNetCoreSwagger(): string {
       //
@@ -65,43 +53,18 @@ export class TechnicalSpecsComponent extends BaseComponent {
       //
       return this.__baseUrlNetCoreCPPSwagger;
     }
-    //
-    public get _baseUrlNodeJs(): string {
-      //
-      return this.__baseUrlNodeJs;
-    }
-    public get _baseUrlNodeJsOcr(): string {
-      //
-      return this.__baseUrlNodeJsOcr;
-    }
-    //
-    public get _baseUrlNodeJsChat(): string
-    {
-      return this.__baseUrlNodeJsChat;
-    }
-    //
-    public get _baseUrlSpringBootJava(): string
-    {
-      return this.__baseUrlSprinbBootJava;
-    }
-    //
-    public get _baseUrlNetCoreCPPEntry(): string
-    {
-      return this.__baseUrlNetCoreCPPEntry;
-    }
+    protected __baseUrlNetCoreSwagger    : string = `${this.configService.getConfigValue('baseUrlNetCore')}swagger`;
+    protected __baseUrlNetCoreCPPSwagger : string = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}swagger`;
     ////////////////////////////////////////////////////////////////  
     // [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  
     constructor(
+           /* inject the cache */
+           private         versionCache          : VersionCacheService,
            public override configService         : ConfigService,
            public override backendService        : BackendService,
            public override route                 : ActivatedRoute,
            public override speechService         : SpeechService,
-           public          ocrService            : OCRService,
-           public          computervisionService : ComputerVisionService,
-           public          tensorflowService     : TensorFlowService,
-           public          algorithmService      : AlgorithmService,
-
     )
     {
       //
@@ -112,44 +75,38 @@ export class TechnicalSpecsComponent extends BaseComponent {
             PAGE_ABOUT_TECHNICAL_SPECS,
       );
       ////
+      /* remove all _GetXxxVersion() calls from constructor */
       this._appBrand                = this.configService.getConfigValue('appBrand');
       this._appVersion              = this.configService.getConfigValue('appVersion');
-      this.__baseUrlNetCoreCPPEntry = this.configService.getConfigValue('baseUrlNetCoreCPPEntry');
-      this.__baseUrlNetCore         = this.configService.getConfigValue('baseUrlNetCore');
-      this.__baseUrlNodeJs          = this.configService.getConfigValue('baseUrlNodeJs');
-      this.__baseUrlNodeJsChat      = this.configService.getConfigValue('baseUrlNodeJsChat');
-      this.__baseUrlNodeJsOcr       = this.configService.getConfigValue('baseUrlNodeJsOcr');
-      this.__baseUrlSprinbBootJava  = this.configService.getConfigValue('baseUrlSpringBootJava');
-      //
-      this._GetWebApiAppVersion();
-      //
-      this._GetAlgorithmAppVersion();
-      //
-      this._GetAlgorithmCPPSTDVersion();
-      //
-      this._GetASPNETCoreCppVersion();
-      //
-      this._GetTesseractAppVersion();
-      //
-      this._GetTesseractAPIVersion();
-      //
-      this._GetTesseract_CPPSTDVersion();
-      //
-      this._GetOpenCvAppVersion();
-      //
-      this._GetOpenCVAPIVersion();
-      //
-      this._GetOpenCV_CPPSTDVersion();
-      //
-      this._GetTensorflowAPIVersion();
-      //
-      this._GetTensorflowAPPVersion();
-      //
-      this._GetTensorflowcCPPSTDVersion();
     }
     //
     ngOnInit(): void {
-      //
+        //
+        this.versionCache.versions$.subscribe(v => {
+          this._webApiAppVersion        = v.webApiApp        ?? '(..loading..)';
+          this._AlgorithmAppVersion     = v.algorithmApp     ?? '(..loading..)';
+          this._Algorithm_CPPSTDVersion = v.algorithmCpp     ?? '(..loading..)';
+          this._ASPNETCoreCppVersion    = v.aspNetCoreCpp    ?? '(..loading..)';
+          this._tesseractAppVersion     = v.tesseractApp     ?? '(..loading..)';
+          this._tesseractAPIVersion     = v.tesseractApi     ?? '(..loading..)';
+          this._tesseractCPPSTDVersion  = v.tesseractCpp     ?? '(..loading..)';
+          this._OpenCvAppVersion        = v.openCvApp        ?? '(..loading..)';
+          this._OpenCvAPIVersion        = v.openCvApi        ?? '(..loading..)';
+          this._OpenCvCPPSTDVersion     = v.openCvCpp        ?? '(..loading..)';
+          this._TensorFlowAPPVersion    = v.tfApp            ?? '(..loading..)';
+          this._TensorFlowAPIVersion    = v.tfApi            ?? '(..loading..)';
+          this._TensorFlowCPPSTDVersion = v.tfCpp            ?? '(..loading..)';
+        });
+    }
+    //
+    /* helper: read synchronous snapshot from localStorage (instant first paint) */
+    private fromCache(key: keyof VersionBundle): string {
+      try {
+        const raw = localStorage.getItem('version-cache');
+        if (!raw) return '(..loading..)';
+        const v = JSON.parse(raw) as VersionBundle;
+        return v[key] ?? '(..loading..)';
+      } catch { return '(..loading..)'; }
     }
     ////////////////////////////////////////////////////////////////  
     // [METODOS COMUNES]
@@ -171,333 +128,5 @@ export class TechnicalSpecsComponent extends BaseComponent {
         alert('Failed to copy text.');
       }
     }
-    /////////////////////////////////////////////////////////// 
-    // [METODOS BACKEND]
-    /////////////////////////////////////////////////////////// 
-    private _GetWebApiAppVersion() {
-      //
-      let appVersion : Observable<string> = this.backendService._GetWebApiAppVersion();
-      //
-      const appVersionObserver = {
-        next: (jsondata: string)     => { 
-          //
-          //console.log('_GetAppVersion - (return): ' + jsondata);
-          //
-          this._webApiAppVersion = jsondata;
-        },
-        error           : (err: Error)      => {
-
-          //
-          console.error('_GetAppVersion- (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          //
-        },
-      };
-      //
-      appVersion.subscribe(appVersionObserver);
-      //
-      this.setNewGuid();
-    } 
-    //
-    private _GetAlgorithmAppVersion() {
-      //
-      let cppBackendObservable : Observable<string> = this.algorithmService._Algorithm_GetAppVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //
-          //console.log('_GetAppVersion - (return): ' + jsondata);
-          //
-          this._AlgorithmAppVersion = jsondata;
-          //
-          //console.log(this.pageTitle + "- [webApiVersion] - " + this._webApiAppVersion);
-        },
-        error           : (err: Error)      => {
-
-          //
-          console.error('_GetCppDLLVersion- (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          //
-          //console.log('_GetAppVersion -  (COMPLETE)');
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._tesseractAppVersion;
-    }
-    //
-    private _GetAlgorithmCPPSTDVersion() {
-      //
-      let cppBackendObservable : Observable<string> = this.algorithmService._Algorithm_GetCPPSTDVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //
-          //console.log('_GetAppVersion - (return): ' + jsondata);
-          //
-          this._Algorithm_CPPSTDVersion = jsondata;
-          //
-          //console.log(this.pageTitle + "- [webApiVersion] - " + this._webApiAppVersion);
-        },
-        error           : (err: Error)      => {
-
-          //
-          console.error('_Algorithm_CPPSTDVersion  - (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          //
-          //console.log('_GetAppVersion -  (COMPLETE)');
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._Algorithm_CPPSTDVersion;
-    }
-    //
-    private _GetASPNETCoreCppVersion() {
-      //
-      let cppBackendObservable : Observable<string> = this.backendService._GetASPNETCoreCppVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //
-          //console.log('_GetAppVersion - (return): ' + jsondata);
-          //
-          this._ASPNETCoreCppVersion = jsondata;
-          //
-          //console.log(this.pageTitle + "- [webApiVersion] - " + this._webApiAppVersion);
-        },
-        error           : (err: Error)      => {
-
-          //
-          console.error('_GetASPNETCoreCppVersion- (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          //
-          //console.log('_GetAppVersion -  (COMPLETE)');
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._tesseractAppVersion;
-    }
-    //
-    private _GetTesseractAppVersion() {
-      //
-      let cppBackendObservable : Observable<string> = this.ocrService._GetTesseract_AppVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //
-          this._tesseractAppVersion = jsondata;
-        },
-        error           : (err: Error)      => {
-          //
-          console.error('_GetAppVersion- (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          //
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._tesseractAppVersion;
-    }
-    //
-    private _GetTesseractAPIVersion() {
-      //
-      let cppBackendObservable : Observable<string> = this.ocrService._GetTesseract_APIVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //
-          this._tesseractAPIVersion = jsondata;
-        },
-        error           : (err: Error)      => {
-          //
-          console.error('_GetAppVersion- (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          //
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._tesseractAPIVersion;
-    }
-    //
-    private _GetTesseract_CPPSTDVersion() {
-      //
-      let cppBackendObservable : Observable<string> = this.ocrService._GetTesseract_CPPSTDVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //
-          this._tesseractCPPSTDVersion = jsondata;
-        },
-        error           : (err: Error)      => {
-          //
-          console.error('_GetCPPSTDVersion- (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          //
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._tesseractCPPSTDVersion;
-    }
-    //
-    private _GetOpenCvAppVersion() {
-      //
-      let cppBackendObservable : Observable<string> = this.computervisionService._OpenCv_GetAppVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //  
-          //console.log('_GetAppVersion - (return): ' + jsondata);
-          //
-          this._OpenCvAppVersion = jsondata;
-        },
-        error           : (err: Error)      => {
-
-          //
-          console.error('_GetOpenCvAppVersion- (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          //
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._OpenCvAppVersion;
-    } 
-    //
-    private _GetOpenCVAPIVersion(){
-      //
-      let cppBackendObservable : Observable<string> = this.computervisionService._OpenCv_GetAPIVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //
-          this._OpenCvAPIVersion = jsondata;
-        },
-        error           : (err: Error)      => {
-          //
-          console.error('_GetOpenCvAppVersion- (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          //
-
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._OpenCvAPIVersion;
-    } 
-    //
-    private _GetOpenCV_CPPSTDVersion(){
-      //
-      let cppBackendObservable : Observable<string> = this.computervisionService._OpenCv_GetCPPSTDVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //
-          this._OpenCvCPPSTDVersion = jsondata;
-        },
-        error           : (err: Error)      => {
-
-          //
-          console.error('_GetOpenCV_CPPSTDVersion- (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          //
-          //console.log('_GetAppVersion -  (COMPLETE)');
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._OpenCvCPPSTDVersion;
-    } 
-    //
-    private _GetTensorflowAPIVersion(){
-      //
-      let cppBackendObservable : Observable<string> = this.tensorflowService._GetTensorFlowAPIVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //
-          this._TensorFlowAPIVersion = jsondata;
-        },
-        error           : (err: Error)      => {
-          //
-          console.error('_GetTensorflowAPIVersion - (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          // 
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._TensorFlowAPIVersion;
-    } 
-    //
-    private _GetTensorflowAPPVersion(){
-      //
-      let cppBackendObservable : Observable<string> = this.tensorflowService._GetTensorFlowAPPVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //
-          this._TensorFlowAPPVersion = jsondata;
-        },
-        error           : (err: Error)      => {
-          //
-          console.error('_GetTensorflowAPIVersion - (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          // 
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._TensorFlowAPPVersion;
-    } 
-    //
-    private _GetTensorflowcCPPSTDVersion(){
-      //
-      let cppBackendObservable : Observable<string> = this.tensorflowService._TensorFlow_GetCPPSTDVersion();
-      //
-      const cppBackendObserver       = {
-        next: (jsondata: string)     => { 
-          //
-          this._TensorFlowCPPSTDVersion = jsondata;
-        },
-        error           : (err: Error)      => {
-          //
-          console.error('_GetTensorflowcCPPSTDVersion - (ERROR) : ' + JSON.stringify(err.message));
-        },
-        complete        : ()                => {
-          // 
-        },
-      };
-      //
-      cppBackendObservable.subscribe(cppBackendObserver);
-      //
-      return this._TensorFlowCPPSTDVersion;
-    }     
-    ///////////////////////////////////////////////////////////  
+  ///////////////////////////////////////////////////////////  
 }
