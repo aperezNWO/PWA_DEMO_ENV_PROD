@@ -37,7 +37,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _OpenCvCPPSTDVersion       = this.fromCache('openCvCpp');
     _tesseractAppVersion       = this.fromCache('tesseractApp');
     _tesseractAPIVersion       = this.fromCache('tesseractApi');
-    _tesseractCPPSTDVersion    = this.fromCache('tesseractCpp');;
+    _tesseractCPPSTDVersion    = this.fromCache('tesseractCpp');
+
+;
     _TensorFlowAPPVersion      = this.fromCache('tfApp');;
     _TensorFlowAPIVersion      = this.fromCache('tfApi');;
     _TensorFlowCPPSTDVersion   = this.fromCache('tfCpp');;
@@ -55,6 +57,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     }
     protected __baseUrlNetCoreSwagger    : string = `${this.configService.getConfigValue('baseUrlNetCore')}swagger`;
     protected __baseUrlNetCoreCPPSwagger : string = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}swagger`;
+    protected _repo                      : string = `https://github.com/aperezNWO/PWA_DEMO_ENV_PROD`;
     ////////////////////////////////////////////////////////////////  
     // [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  
