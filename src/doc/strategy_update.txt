@@ -43,6 +43,16 @@
 
  -- [x] Fractal Demo. change text with gauges (tictactoe-ai example).  
 
+ -- [x] COLLISION DEMO.
+
+        --[x] MATH.JS.
+        
+        --[x] VERTICAL / HORIZONTAL GAUGES.
+        
+        --[x] START BUTTON.
+        
+        --[x] DRAW COORDINATES.
+
  -- [_] scm errors / warnings. 
 
  -- [_] Chess a.i. 
@@ -322,16 +332,6 @@
 
 --[_] ask i.a. about marketing.
 
---[_] COLLISION DEMO.
-
-        --[_] MATH.JS.
-        
-        --[_] VERTICAL / HORIZONTAL GAUGES.
-        
-        --[_] START BUTTON.
-        
-        --[_] DRAW COORDINATES.
-
 --[_] Module Federation.
 
      --[_] Independent deployment
@@ -342,16 +342,22 @@
 
 --[_] Minify CSS.
 
---[_] Merge :
-
-        --[_] Chat + tictactoe.
-
-        --[_] Opencv + ocr.
-
 --[_] ALGORITHM BIG O NOTATION / json.
 
         --[_] Comparisons, Swaps, Recursive Calls.
 
         --[_] Pick up using Linear Regression related techniques.
+
+ --[_] xls / csv modification.
+
+         --[_] zip file.
+
+         --[_] chart demo.
+
+ --[_] Merge :
+
+        --[_] Chat + tictactoe.
+
+        --[_] Opencv + ocr.
 
 ////////////////////////////////////////////////////////////////////////////////
