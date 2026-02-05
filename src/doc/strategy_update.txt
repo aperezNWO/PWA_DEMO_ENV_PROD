@@ -271,7 +271,11 @@
 
  -- [_] python linear regression correction.
 
- -- [_] tetris a.i. correction.
+ -- [_] tetris 
+ 
+       -- [_] a.i. correction.
+
+       -- [_] save score.
 
  -- [_] architecture overhauling.
 
