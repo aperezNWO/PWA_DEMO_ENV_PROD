@@ -18,7 +18,7 @@
               "@tweenjs/tween.js"
             ],
             "outputPath": {
-              "base": "dist/PWA_DEMO_ENV_PROD/"
+              "base": "dist/PWA_DEMO_ENV_PUBLIC/"
             },
             "index": "src/index.html",
             "polyfills": [
