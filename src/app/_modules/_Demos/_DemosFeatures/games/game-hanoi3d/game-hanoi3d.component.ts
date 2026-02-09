@@ -7,9 +7,10 @@ import { ConfigService                                              } from 'src/
 import { PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND, PAGE_GAMES_HANOI_3D   } from 'src/app/_models/common';
 import { OrbitControls                                              } from 'three/examples/jsm/controls/OrbitControls';
 import * as THREE from 'three';
-import * as TWEEN from 'tween';
+//import * as TWEEN from 'tween';
 //import '@tweenjs/tween.js';
 //declare var TWEEN: any;
+import * as TWEEN from '@tweenjs/tween.js';
 
 @Component({
   selector: 'app-game-hanoi3d',
