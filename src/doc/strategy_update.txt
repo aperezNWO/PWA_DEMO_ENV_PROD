@@ -207,7 +207,7 @@
  
  -- [_] check errors / improvements (section).   
 
-     --[_] fix hanoid 3d demo. 
+     --[_] fix hanoid 3d demo (disks are not moving). 
 
      --[_] UIX IMPROVEMENT (BASED UP ON SWAGGER UIX).
 
