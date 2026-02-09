@@ -1,3 +1,16 @@
+/*
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { BackendService } from 'src/app/_services/BackendService/backend.service';
+import { SpeechService } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
+import { ConfigService } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND, PAGE_GAMES_HANOI_3D } from 'src/app/_models/common';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import * as TWEEN from '@tweenjs/tween.js';
+import * as THREE from 'three';
+*/
+
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit    } from '@angular/core';
 import { ActivatedRoute                                             } from '@angular/router';
 import { BackendService                                             } from 'src/app/_services/BackendService/backend.service';
@@ -5,23 +18,20 @@ import { SpeechService                                              } from 'src/
 import { BaseReferenceComponent                                     } from 'src/app/_components/base-reference/base-reference.component';
 import { ConfigService                                              } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND, PAGE_GAMES_HANOI_3D   } from 'src/app/_models/common';
-import { OrbitControls                                              } from 'three/examples/jsm/controls/OrbitControls';
-import * as THREE from 'three';
-//import * as TWEEN from 'tween';
-//import '@tweenjs/tween.js';
-//declare var TWEEN: any;
+import { OrbitControls                                              } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as TWEEN from '@tweenjs/tween.js';
-
+import * as THREE from 'three';
 @Component({
-  selector: 'app-game-hanoi3d',
-  templateUrl: './game-hanoi3d.component.html',
-  styleUrl: './game-hanoi3d.component.css' ,
-  providers   : [
-    { 
-      provide : PAGE_TITLE_LOG, 
-      useValue: PAGE_GAMES_HANOI_3D 
-    },
-  ]
+    selector: 'app-game-hanoi3d',
+    templateUrl: './game-hanoi3d.component.html',
+    styleUrl: './game-hanoi3d.component.css',
+    providers: [
+        {
+            provide: PAGE_TITLE_LOG,
+            useValue: PAGE_GAMES_HANOI_3D
+        },
+    ],
+    standalone: false
 })
 export class GameHanoi3dComponent extends BaseReferenceComponent implements OnInit, AfterViewInit {
   //
