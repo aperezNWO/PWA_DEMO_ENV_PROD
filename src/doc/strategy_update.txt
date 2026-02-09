@@ -207,6 +207,8 @@
  
  -- [_] check errors / improvements (section).   
 
+     --[_] fix hanoid 3d demo. 
+
      --[_] UIX IMPROVEMENT (BASED UP ON SWAGGER UIX).
 
      --[_] angular curriculum FIX 
@@ -364,6 +366,4 @@
 
         --[_] Opencv + ocr.
  
- --[_] fix hanoid 3d demo. 
-
 ////////////////////////////////////////////////////////////////////////////////
