@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1770650457199,
+  "timestamp": 1770650904931,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -137,7 +137,7 @@
     "/PWA_DEMO_ENV_PROD/chunk-VU7IBUSQ.js": "e6fd467b9fb503aba1ddd6bcbe799631bd1d549d",
     "/PWA_DEMO_ENV_PROD/chunk-WIELM4ZQ.js": "2b09b18be43f29e3b8dac870beb4ed731a4ceafc",
     "/PWA_DEMO_ENV_PROD/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/PWA_DEMO_ENV_PROD/index.html": "c6813382b98db454e0f612ddf62aeda7359c6f02",
+    "/PWA_DEMO_ENV_PROD/index.html": "3498780e1420bcb3a22188e5fe9049d790bacbcf",
     "/PWA_DEMO_ENV_PROD/main-OT3KIS5P.js": "712be64a79ea29289871559df31e5f351c5b81d4",
     "/PWA_DEMO_ENV_PROD/manifest.webmanifest": "4c4fda145c554fe9a7ed086f63fa914267022e67",
     "/PWA_DEMO_ENV_PROD/polyfills-MH2GNY63.js": "3c45a12b17fda69e5b6ed63ba5d8cc13f85d5dd1",
