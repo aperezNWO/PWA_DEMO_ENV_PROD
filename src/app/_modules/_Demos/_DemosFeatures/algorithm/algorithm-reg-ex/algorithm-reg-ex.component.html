@@ -44,7 +44,7 @@
           <input type="text" id="regExSearch" #regExSearch class="fieldSetRegex" value="{{this.pattern}}" style="background-color:#cccccc;" readonly="readonly">
         </div>
         <!--STATUS / INICIO   -->
-        @if (this.status_message) {
+        @if (this.status_message()) {
           <div class="form-group alert alert-secondary" align="center" role="alert">
             {{ this.status_message() }}
           </div>

@@ -34,7 +34,7 @@
         <!-- GENERAR PDF / FIN    -->
         <!-- STATUS / INICIO -->
         <div align="right">
-          @if (this.pdf_message_csv) {
+          @if (this.pdf_message_csv()) {
             <div class="alert alert-secondary" role="alert">{{ this.pdf_message_csv() }}</div>
           }
         </div>
@@ -59,7 +59,7 @@
         <hr />
         <!-- STATUS / INICIO -->
         <div align="right">
-          @if (this.pdf_message_xls) {
+          @if (this.pdf_message_xls()) {
             <div class="alert alert-secondary" role="alert">{{ this.pdf_message_xls() }}</div>
           }
         </div>
