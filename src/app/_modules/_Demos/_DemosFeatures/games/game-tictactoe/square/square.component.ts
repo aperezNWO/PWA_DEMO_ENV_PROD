@@ -1,9 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule                           } from '@angular/common';
+
 //
 @Component({
     selector: 'app-square',
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './square.component.html',
     styleUrls: ['./square.component.css']
 })

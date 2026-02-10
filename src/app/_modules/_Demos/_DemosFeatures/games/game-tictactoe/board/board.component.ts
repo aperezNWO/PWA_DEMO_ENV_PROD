@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit , ViewChild,effect } from '@angular/core';
-import { CommonModule                                 } from '@angular/common';
+
 import { ListItem                                     } from 'src/app/_models/entity.model';
 import { SquareComponent                              } from "../square/square.component";
 import { TicTacToeEngine                              } from 'src/app/_engines/tictactoe.engine';
@@ -9,7 +9,7 @@ import { SpeechService                                } from 'src/app/_services/
     selector: 'app-board',
     templateUrl: './board.component.html',
     styleUrls: ['./board.component.css'],
-    imports: [SquareComponent, CommonModule]
+    imports: [SquareComponent]
 })
 export class BoardComponent implements OnInit, AfterViewInit {
   //

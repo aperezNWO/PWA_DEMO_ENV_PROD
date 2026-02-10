@@ -1,27 +1,39 @@
 <div align="center">
-     <h1>{{this.pageTitle}}</h1>
+  <h1>{{this.pageTitle}}</h1>
 </div>
 <hr>
-<div align="right" style="padding:1em;">
-        <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
-        <ul *ngIf="isListVisible" align="left" widdth="10px" class="reference_base">
-            <li *ngFor="let _page of this._pages">{{_page.text}}
-                <ul *ngIf="(this._pages_nested !== null)">
-                  <div *ngFor="let ___page of pagesByGroupId[_page.id]">
-                    <li *ngIf="___page.routerLink !== 'about:blank'">
-                        <a [routerLink]="___page.routerLink" 
+  <div align="right" style="padding:1em;">
+    <button class="btn btn-primary" (click)="this.toggleList()">{{this.toogleLisCaption}}</button>
+    @if (isListVisible) {
+      <ul align="left" widdth="10px" class="reference_base">
+        @for (_page of this._pages; track _page) {
+          <li>{{_page.text}}
+            @if ((this._pages_nested !== null)) {
+              <ul>
+                @for (___page of pagesByGroupId[_page.id]; track ___page) {
+                  <div>
+                    @if (___page.routerLink !== 'about:blank') {
+                      <li>
+                        <a [routerLink]="___page.routerLink"
                           [queryParams]="___page.queryParamsObj">
                           {{ ___page.text }}
                         </a>
-                    </li> 
-                    <li *ngIf="___page.url        !== 'about:blank'">
+                      </li>
+                    }
+                    @if (___page.url        !== 'about:blank') {
+                      <li>
                         <a [href]="___page.url" target="_blank">
-                              {{ ___page.text }}
+                          {{ ___page.text }}
                         </a>
-                    </li>
+                      </li>
+                    }
                   </div>
-                </ul>
-            </li>
-        </ul>
-</div>   
+                }
+              </ul>
+            }
+          </li>
+        }
+      </ul>
+    }
+  </div>
 
