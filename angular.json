@@ -22,7 +22,8 @@
             },
             "index": "src/index.html",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -70,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "AngularDijkstra:build:production"
+              "buildTarget": "AngularDijkstra:build:production"
             },
             "development": {
-              "browserTarget": "AngularDijkstra:build:development"
+              "buildTarget": "AngularDijkstra:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "AngularDijkstra:build"
+            "buildTarget": "AngularDijkstra:build"
           }
         },
         "test": {
@@ -89,7 +90,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
