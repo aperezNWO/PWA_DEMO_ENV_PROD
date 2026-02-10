@@ -7,8 +7,9 @@ import { SpeechService                                              } from 'src/
 import { ConfigService                                              } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_MISCELANEOUS_OCR, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
 import { OCRService                                                 } from 'src/app/_services/__AI/OCRService/ocr.service';
-import { NgxSignaturePadComponent                                   } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';
-import { NgxSignatureOptions                                        } from '@eve-sama/ngx-signature-pad/lib/types/ngx-signature-pad';
+import { NgxSignaturePadComponent, NgxSignatureOptions } from '@eve-sama/ngx-signature-pad';
+//import { NgxSignaturePadComponent                                   } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';
+//import { NgxSignatureOptions                                        } from '@eve-sama/ngx-signature-pad/lib/types/ngx-signature-pad';
 
 @Component({
     selector: 'app-ocr-photo-capture',

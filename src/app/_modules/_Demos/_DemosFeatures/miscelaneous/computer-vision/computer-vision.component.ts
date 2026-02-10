@@ -7,10 +7,8 @@ import { ComputerVisionService                                       } from 'src
 import { SpeechService                                               } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                                               } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_MISELANEOUS_COMPUTER_VISION, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND            } from 'src/app/_models/common';
-import { NgxSignaturePadComponent                                                         } from '@eve-sama/ngx-signature-pad/lib/ngx-signature-pad.component';
-import { NgxSignatureOptions                                                              } from '@eve-sama/ngx-signature-pad/lib/types/ngx-signature-pad';
 import { BaseReferenceComponent                                                           } from 'src/app/_components/base-reference/base-reference.component';
-
+import { NgxSignaturePadComponent, NgxSignatureOptions } from '@eve-sama/ngx-signature-pad';
 //
 declare var cv: any; // Declare cv as a global variable
 
