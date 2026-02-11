@@ -381,9 +381,10 @@
 
   --[_] algorithms generation module.
 
-  --[_] Angular Marketing Questoins.
+  --[_] Angular Marketing Questions.
 
-  --[_] Ask Gemini Angular UIX Questoins with Images.
+  --[_] Ask Gemini Angular UIX Questions with Images.
 
+  --[_] Landing Page Carrousel.
   
 ////////////////////////////////////////////////////////////////////////////////
