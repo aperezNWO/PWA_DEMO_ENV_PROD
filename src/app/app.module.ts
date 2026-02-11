@@ -49,7 +49,6 @@ import { FractalDemoComponent        } from './_modules/_Demos/_DemosFeatures/mi
 import { BaseSortableHeader          } from './_directives/sortable.directive';
 import { SpeechPanelComponent        } from './_components/speech-panel/speech-panel.component';
 import { BaseComponent               } from './_components/base/base.component';
-import { BaseReferenceComponent      } from './_components/base-reference/base-reference.component';
 import { _BaseComponent              } from './_components/base/_base.component';
 import { _SearchComponent            } from './_components/search/_search.component ';
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
@@ -59,6 +58,7 @@ import { NgbModule                                    } from '@ng-bootstrap/ng-b
 import { finalize, tap                                } from 'rxjs';
 import { NgChartsModule                               } from 'ng2-charts'; 
 import { FileGenerationModule                         } from './_modules/_Demos/_DemosFeatures/files-generation/file-generation.module';
+import { SharedModule } from './_modules/shared/shared.module';
 
 
 //
@@ -155,6 +155,7 @@ export class CustomErrorHandler implements ErrorHandler {
     exports: [RouterModule],
     bootstrap: [AppComponent], 
     imports: [NgChartsModule,
+        SharedModule,
         FileGenerationModule,
         ReactiveFormsModule,  
         CommonModule,
