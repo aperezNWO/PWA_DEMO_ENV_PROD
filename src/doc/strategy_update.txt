@@ -381,4 +381,9 @@
 
   --[_] algorithms generation module.
 
+  --[_] Angular Marketing Questoins.
+
+  --[_] Ask Gemini Angular UIX Questoins with Images.
+
+  
 ////////////////////////////////////////////////////////////////////////////////
