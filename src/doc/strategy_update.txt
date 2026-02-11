@@ -377,4 +377,8 @@
 
   --[_] sort demo -> change buttons order.
 
+  --[_] file generation module.
+
+  --[_] algorithms generation module.
+
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,19 +1,13 @@
 
-import { MatTableModule                               } from '@angular/material/table';
-import { MatInputModule                               } from '@angular/material/input';
 import { Injectable, NgModule, inject, provideAppInitializer } from '@angular/core';
 import { ErrorHandler, isDevMode                             } from '@angular/core';
 import { CommonModule, DatePipe, DecimalPipe                 } from '@angular/common';
 import { ServiceWorkerModule             } from '@angular/service-worker';
 import { FormsModule                     } from '@angular/forms';
-import { MatListModule                   } from '@angular/material/list';
-import { MatPaginatorModule              } from '@angular/material/paginator';
-import { MatTabsModule                   } from '@angular/material/tabs';
-import { MatFormFieldModule              } from '@angular/material/form-field';
 import { BrowserModule                   } from '@angular/platform-browser';
 import { BrowserAnimationsModule         } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule             } from '@angular/forms';
-import { HttpClient, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpHandler, HttpInterceptor    } from '@angular/common/http';
 import { HttpRequest, HttpResponse       } from '@angular/common/http';
 import { HTTP_INTERCEPTORS               } from '@angular/common/http';
@@ -36,11 +30,6 @@ import { AlgorithmCollisionComponent            } from './_modules/_Demos/_Demos
 import { AlgorithmDijkstraComponent             } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
 import { AlgorithmRegExComponent                } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
 import { AlgorithmSortComponent                 } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-sort/algorithm-sort.component';
-import { ChartComponent                         } from './_modules/_Demos/_DemosFeatures/files-generation/chart/chart.component';
-import { FilesGenerationBaseComponent           } from './_modules/_Demos/_DemosFeatures/files-generation/files-generation-base/files-generation-base/files-generation-base.component';
-import { FilesGenerationCSVComponent } from './_modules/_Demos/_DemosFeatures/files-generation/files-generation-csv/files-generation-csv.component';
-import { FilesGenerationPDFComponent } from './_modules/_Demos/_DemosFeatures/files-generation/files-generation-pdf/files-generation-pdf.component';
-import { FilesGenerationXLSComponent } from './_modules/_Demos/_DemosFeatures/files-generation/files-generation-xls/files-generation-xls.component';
 import { GameHanoiAutoComponent      } from './_modules/_Demos/_DemosFeatures/games/game-hanoi-auto/game-hanoi-auto.component';
 import { GameHanoi3dComponent        } from './_modules/_Demos/_DemosFeatures/games/game-hanoi3d/game-hanoi3d.component';
 import { SudokuComponent             } from './_modules/_Demos/_DemosFeatures/games/game-sudoku/game-sudoku.component';
@@ -66,10 +55,10 @@ import { _SearchComponent            } from './_components/search/_search.compon
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
 import { PageUrlListComponent        } from './_components/page-url-list/page-url-list.component';
 import { NgxSignaturePadModule                        } from '@eve-sama/ngx-signature-pad';
-import { NgbHighlight, NgbModule                      } from '@ng-bootstrap/ng-bootstrap';
-import { NgbPaginationModule, NgbAlertModule          } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule                                    } from '@ng-bootstrap/ng-bootstrap';
 import { finalize, tap                                } from 'rxjs';
 import { NgChartsModule                               } from 'ng2-charts'; 
+import { FileGenerationModule                         } from './_modules/_Demos/_DemosFeatures/files-generation/file-generation.module';
 
 
 //
@@ -137,10 +126,6 @@ export class CustomErrorHandler implements ErrorHandler {
         AlgorithmSortComponent,
         AlgorithmDijkstraComponent,
         AlgorithmCollisionComponent,
-        FilesGenerationBaseComponent,
-        FilesGenerationXLSComponent,
-        FilesGenerationCSVComponent,
-        FilesGenerationPDFComponent,
         TechnicalSpecsComponent,
         SudokuComponent,
         GameTictactoeComponent,
@@ -148,7 +133,6 @@ export class CustomErrorHandler implements ErrorHandler {
         GameHanoiAutoComponent,
         OcrPhotoCaptureComponent,
         ChatComponent,
-        ChartComponent,
         FractalDemoComponent,
         NavComponent,
         PageNotFoundComponent,
@@ -162,7 +146,6 @@ export class CustomErrorHandler implements ErrorHandler {
         ContactformComponent,
         SpeechPanelComponent,
         BaseSortableHeader,
-        BaseReferenceComponent,
         BaseComponent,
         _BaseComponent,
         _SearchComponent,
@@ -170,23 +153,16 @@ export class CustomErrorHandler implements ErrorHandler {
         PageUrlListComponent
     ],
     exports: [RouterModule],
-    bootstrap: [AppComponent], imports: [NgChartsModule,
+    bootstrap: [AppComponent], 
+    imports: [NgChartsModule,
+        FileGenerationModule,
+        ReactiveFormsModule,  
         CommonModule,
         HttpClientModule,
         FormsModule,
         BrowserModule,
         BrowserAnimationsModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatListModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatTabsModule,
-        MatFormFieldModule,
         NgbModule,
-        NgbHighlight,
-        NgbPaginationModule,
-        NgbAlertModule,
         NgxSignaturePadModule,
         BoardComponent,
         SquareComponent,
