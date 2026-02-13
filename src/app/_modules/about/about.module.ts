@@ -12,6 +12,7 @@ import { SpeechPanelComponent    } from 'src/app/_components/speech-panel/speech
 
 // THIRD PARTY
 import { NgbHighlight, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { BaseSortableHeader } from 'src/app/_directives/sortable.directive';
 
 
 @NgModule({
@@ -20,7 +21,6 @@ import { NgbHighlight, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap
         SCMComponent,
         TechnicalSpecsComponent,
         ContactformComponent,
-        //BaseSortableHeader,
   ],
   imports: [
     CommonModule,
@@ -29,6 +29,7 @@ import { NgbHighlight, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap
     NgbHighlight,
     NgbPaginationModule,
     NgbAlertModule,
+    BaseSortableHeader,
   ],
   exports : [
         IndexComponent,
