@@ -63,7 +63,7 @@ export function matches(scmList: _BaseModel, term: string, pipe: PipeTransform) 
         '[class.desc]': 'direction === "desc"',
         '(click)': 'rotatePage()',
     },
-    standalone: false
+    standalone: true
 })
 export class BaseSortableHeader {
   //

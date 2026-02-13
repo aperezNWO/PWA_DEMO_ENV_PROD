@@ -29,6 +29,7 @@ import { NgChartsModule                                               } from 'ng
   imports: [
     SharedModule,
     CommonModule,
+    NgChartsModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
@@ -38,13 +39,13 @@ import { NgChartsModule                                               } from 'ng
     MatPaginatorModule,
     MatTabsModule,
     MatFormFieldModule,
-    NgbHighlight,
-    NgbPaginationModule,
-    NgbAlertModule,
     MatTableModule,   // If your components use tables
     MatInputModule,   // If they use inputs
     NgbModule,        // If they use Bootstrap components
     NgChartsModule,    // Since you have a ChartComponent!
+    NgbHighlight,
+    NgbPaginationModule,
+    NgbAlertModule,
   ],
   exports: [
     FilesGenerationBaseComponent,

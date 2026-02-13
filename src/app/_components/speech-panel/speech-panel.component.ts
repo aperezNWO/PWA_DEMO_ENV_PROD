@@ -5,7 +5,7 @@ import { SpeechService                              } from 'src/app/_services/__
     selector: 'app-speech-panel',
     templateUrl: './speech-panel.component.html',
     styleUrl: './speech-panel.component.css',
-    standalone: false
+    standalone: true
 })
 export class SpeechPanelComponent {
     //////////////////////////////////////////////////////////

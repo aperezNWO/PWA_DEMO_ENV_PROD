@@ -389,10 +389,14 @@
 
         --[_] games module.
 
+        --[_] App module purge.
+
   --[_] Angular Marketing Questions.
 
   --[_] Ask Gemini Angular UIX Questions with Images.
 
   --[_] Landing Page Carrousel.
-  
+    
+  --[_] Module Federation questions.
+
 ////////////////////////////////////////////////////////////////////////////////

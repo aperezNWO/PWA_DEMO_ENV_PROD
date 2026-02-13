@@ -1,4 +1,4 @@
-
+// ANGULAR MODULES
 import { Injectable, NgModule, inject, provideAppInitializer } from '@angular/core';
 import { ErrorHandler, isDevMode                             } from '@angular/core';
 import { CommonModule, DatePipe, DecimalPipe                 } from '@angular/common';
@@ -14,51 +14,37 @@ import { HTTP_INTERCEPTORS               } from '@angular/common/http';
 import { RouterModule                    } from '@angular/router';
 import { HashLocationStrategy            } from '@angular/common';
 import { LocationStrategy                } from '@angular/common';
-import { AppComponent                    } from './app.component';
+// CUSTOM MODULES
+import { AppRoutingModule                } from './app-routing.module';
+import { SharedModule                    } from './_modules/shared/shared.module';
+import { FileGenerationModule            } from './_modules/_Demos/_DemosFeatures/files-generation/file-generation.module';
+import { GamesModule                     } from './_modules/_Demos/_DemosFeatures/games/games.module';
+import { AlgorithmModule                 } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm.module';
+import { MiscelaneousModule              } from './_modules/_Demos/_DemosFeatures/miscelaneous/miscelaneous.module';
+import { AboutModule                     } from './_modules/about/about.module';
+// COMPONENTS 
 import { HomeWebComponent                } from './_modules/home/home-web/home-web.component';
 import { PageNotFoundComponent           } from './_modules/home/page-not-found/page-not-found.component';
 import { NavComponent                    } from './_modules/home/nav/nav.component';
-import { LandingComponent                } from './_components/landing/landing.component';
 import { LogType                         } from './_models/entity.model';
-import { BackendService                  } from './_services/BackendService/backend.service';
-import { ConfigService                   } from './_services/__Utils/ConfigService/config.service';
-import { AppRoutingModule                } from './app-routing.module';
-import { IndexComponent                         } from './_modules/about/index/index.component';
-import { SCMComponent                           } from './_modules/about/scm/scm.component';
-import { CurriculumAngularComponent             } from './_modules/_Demos/_DemosCurriculum/curriculumAngular/curriculumAngular.component';
-import { AlgorithmCollisionComponent            } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-collision/algorithm-collision.component';
-import { AlgorithmDijkstraComponent             } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
-import { AlgorithmRegExComponent                } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-reg-ex/algorithm-reg-ex.component';
-import { AlgorithmSortComponent                 } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-sort/algorithm-sort.component';
-import { GameHanoiAutoComponent      } from './_modules/_Demos/_DemosFeatures/games/game-hanoi-auto/game-hanoi-auto.component';
-import { GameHanoi3dComponent        } from './_modules/_Demos/_DemosFeatures/games/game-hanoi3d/game-hanoi3d.component';
-import { SudokuComponent             } from './_modules/_Demos/_DemosFeatures/games/game-sudoku/game-sudoku.component';
-import { GameTetrisComponent         } from './_modules/_Demos/_DemosFeatures/games/game-tetris/game-tetris.component';
-import { GameTetrisAIComponent       } from './_modules/_Demos/_DemosFeatures/games/game-tetris-ai/game-tetris-ai.component';
-import { BoardComponent              } from './_modules/_Demos/_DemosFeatures/games/game-tictactoe/board/board.component';
-import { GameTictactoeComponent      } from './_modules/_Demos/_DemosFeatures/games/game-tictactoe/game-tictactoe.component';
-import { TicTacToeBoardAiComponent   } from './_modules/_Demos/_DemosFeatures/games/tic-tac-toe-board-ai/tic-tac-toe-board-ai.component';
-import { SquareComponent             } from './_modules/_Demos/_DemosFeatures/games/game-tictactoe/square/square.component';
-import { ChatComponent               } from './_modules/_Demos/_DemosFeatures/miscelaneous/chat/chat/chat.component';
-import { ComputerVisionComponent     } from './_modules/_Demos/_DemosFeatures/miscelaneous/computer-vision/computer-vision.component';
-import { OcrPhotoCaptureComponent    } from './_modules/_Demos/_DemosFeatures/miscelaneous/ocr-photo-capture/ocr-photo-capture.component';
-import { LinearRegressionComponent   } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
-import { ContactformComponent        } from './_modules/about/contactform/contactform.component';
-import { TechnicalSpecsComponent     } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
-import { FractalDemoComponent        } from './_modules/_Demos/_DemosFeatures/miscelaneous/fractalDemo/juliaform.component';
-import { BaseSortableHeader          } from './_directives/sortable.directive';
-import { SpeechPanelComponent        } from './_components/speech-panel/speech-panel.component';
+import { CurriculumAngularComponent      } from './_modules/_Demos/_DemosCurriculum/curriculumAngular/curriculumAngular.component';
+import { LinearRegressionComponent       } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
+// COMPONENTS
+import { AppComponent                } from './app.component';
+import { LandingComponent            } from './_components/landing/landing.component';
 import { BaseComponent               } from './_components/base/base.component';
 import { _BaseComponent              } from './_components/base/_base.component';
-import { _SearchComponent            } from './_components/search/_search.component ';
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
 import { PageUrlListComponent        } from './_components/page-url-list/page-url-list.component';
-import { NgxSignaturePadModule                        } from '@eve-sama/ngx-signature-pad';
-import { NgbModule                                    } from '@ng-bootstrap/ng-bootstrap';
+import { SpeechPanelComponent        } from 'src/app/_components/speech-panel/speech-panel.component';
+// SERVICES
+import { ConfigService               } from './_services/__Utils/ConfigService/config.service';
+import { BackendService              } from './_services/BackendService/backend.service';
+// THIRD-PARTY
 import { finalize, tap                                } from 'rxjs';
-import { NgChartsModule                               } from 'ng2-charts'; 
-import { FileGenerationModule                         } from './_modules/_Demos/_DemosFeatures/files-generation/file-generation.module';
-import { SharedModule } from './_modules/shared/shared.module';
+import { NgbModule                                    } from '@ng-bootstrap/ng-bootstrap';
+import { NgChartsModule                               } from 'ng2-charts'
+import { BaseSortableHeader } from './_directives/sortable.directive';
 
 
 //
@@ -121,52 +107,35 @@ export class CustomErrorHandler implements ErrorHandler {
         AppComponent,
         LandingComponent,
         HomeWebComponent,
-        SCMComponent,
-        AlgorithmRegExComponent,
-        AlgorithmSortComponent,
-        AlgorithmDijkstraComponent,
-        AlgorithmCollisionComponent,
-        TechnicalSpecsComponent,
-        SudokuComponent,
-        GameTictactoeComponent,
-        TicTacToeBoardAiComponent,
-        GameHanoiAutoComponent,
-        OcrPhotoCaptureComponent,
-        ChatComponent,
-        FractalDemoComponent,
         NavComponent,
         PageNotFoundComponent,
-        IndexComponent,
-        ComputerVisionComponent,
-        GameHanoi3dComponent,
-        GameTetrisComponent,
-        GameTetrisAIComponent,
         CurriculumAngularComponent,
         LinearRegressionComponent,
-        ContactformComponent,
-        SpeechPanelComponent,
-        BaseSortableHeader,
+        //SpeechPanelComponent,
+        //BaseSortableHeader,
         BaseComponent,
         _BaseComponent,
-        _SearchComponent,
         GridParamComponent,
         PageUrlListComponent
     ],
-    exports: [RouterModule],
+    exports  : [RouterModule],
     bootstrap: [AppComponent], 
-    imports: [NgChartsModule,
+    imports  : [CommonModule,
         SharedModule,
         FileGenerationModule,
+        GamesModule,
+        AlgorithmModule,
+        MiscelaneousModule,
+        AboutModule,
+        SpeechPanelComponent,
+        BaseSortableHeader,
+        NgChartsModule,
         ReactiveFormsModule,  
-        CommonModule,
         HttpClientModule,
         FormsModule,
         BrowserModule,
         BrowserAnimationsModule,
         NgbModule,
-        NgxSignaturePadModule,
-        BoardComponent,
-        SquareComponent,
         AppRoutingModule,
         //RouterModule,
         //RouterModule.forRoot(routes, { useHash: true }),

@@ -4,8 +4,6 @@ import { PAGE_CURRICULUM_ANGULAR, PAGE_ID, PAGE_SIZE,SEARCH_TERM } from 'src/app
 import { ConfigService                                           } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { _SearchService                                          } from 'src/app/_services/__Utils/SearchService/_search.service';
 import { _SearchComponent                                        } from 'src/app/_components/search/_search.component ';
-
-
 @Component({
     selector: 'app-curriculum-angular',
     templateUrl: './curriculumAngular.component.html',
