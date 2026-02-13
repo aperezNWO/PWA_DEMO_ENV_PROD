@@ -43,6 +43,10 @@
 
  -- [x] Fractal Demo. change text with gauges (tictactoe-ai example).  
 
+ -- [x] sort demo -> change buttons order.
+
+ -- [x] file generation module.
+
  -- [x] COLLISION DEMO.
 
         --[x] MATH.JS.
@@ -366,7 +370,9 @@
 
         --[_] Opencv + ocr.
  
-  --[_] MATCH PWA_DEMO_ENV_PUBLIC
+  --[_] MATCH PWA_DEMO_ENV_PUBLIC.
+
+  --[_] Angular Regular updates to latest version.
 
   --[_] FIX COMPONENT "pageurllist".
 
@@ -375,11 +381,13 @@
   
   --[_] haonoi 3d -> add controls.
 
-  --[_] sort demo -> change buttons order.
+  -- [_] MODULES
 
-  --[_] file generation module.
+        --[_] miscelaneous module.
 
-  --[_] algorithms generation module.
+        --[_] algorithms generation module.
+
+        --[_] games module.
 
   --[_] Angular Marketing Questions.
 
