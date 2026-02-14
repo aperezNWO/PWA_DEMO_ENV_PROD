@@ -395,9 +395,9 @@
 
         -- [>] about module.
 
-        -- [_] home module.
+        -- [x] machine learning module -> linear regression as standalone.
 
-        -- [_] machine learning module -> linear regression as standalone.
+        -- [_] home module.
 
         -- [_] curiculum angular as standalone.
 
