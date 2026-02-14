@@ -413,6 +413,8 @@
     
   --[_] Module Federation questions.
 
+        --[_] Native Federation.
+
         --[_] PWA_DEMO_ENV_CORE.
 
   -- [_] new curiculum angular 
