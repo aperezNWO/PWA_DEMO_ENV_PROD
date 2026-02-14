@@ -1,312 +1,108 @@
 /////////////////////////////////////////////
-// STRATEGY
-/////////////////////////////////////////////
-
-/////////////////////////////////////////////
-// GENERAL
-/////////////////////////////////////////////
-
--- [_] MAIN MENU.
--- [_] http interceptor.
--- [_] codespaces.
-
-/////////////////////////////////////////////
-// HANOI TOWER
-/////////////////////////////////////////////
-
--- [_] MAIN MENU.
--- [_] .
--- [_] .
-
-/////////////////////////////////////////////
-// SUDOKU
-/////////////////////////////////////////////
-
---[_] sudoku from photo capture.
-
-/////////////////////////////////////////////
-
-1) show me an angular and node.js code to crreate an online tic tac toe app
-
-2) ¿Can I make an angular and node.js applicatoin which taka a photograph and recognize letters and numbers?
-
-3) ¿Can I make an angular, node.js and gemini ai applicatoin which taka a photograph and recognize letters and numbers?
-
-https://chat.openai.com/share/f383e00f-3b68-45c8-ad3f-d5bd32b9933e
-
-https://chat.openai.com/share/f383e00f-3b68-45c8-ad3f-d5bd32b9933e
-
-/////////////////////////////////////////////
-
-[EXPORT BARD ANSWERS TO GOOGLE DOCUMENTS]
-
-/////////////////////////////////////////////
-// PWA
-/////////////////////////////////////////////
-
---[_] https://web.dev/learn/pwa/service-workers
-
---[_] https://angular.dev/ecosystem/service-workers
-
-/////////////////////////////////////////////
-// TODO LIST
-/////////////////////////////////////////////
-
--- [x] ngb pad instructions.   
-
--- [x] Angular Url Query Param. 
-
--- [x] RXJS Playground.
-
-      --[x] https://v17.angular.io/guide/observables
-
-      --[x] Replace timers with observables.
-
---[>>] Improve Hanoi Program.
-     
-      --[>>] Hanoi RJXS
-
-      --[>>] Hanoi Game Engine.
-
-      --[>>] Hanoi RJXS - Auto 
-
-            --[>>] Merge Hanoi RJXS with Hanoi Game Engine. 
--- [x] index.
-
-      -- [x] app routes.
-
-      -- [x] atributo adicional.
-
-      -- [x] grid.
-
-      -- [x] speech to text search.
-
--- [_] OPEN CV
-
-      -- [_] OCR ? .
-
-      -- [_] CV / BASIC SHAPES RECOGNITION.
-
-      -- [_] CV / COLORED SHAPES RECOGNITION.
-
-      -- [_] C++ Builder. 
-
--- [_] amigo secreto.
-
-      -- [_] SMTP CLIENT / node.js.
-
-      -- [_] excel list with open fields.
-
-      -- [_] https://gemini.google.com/app/ebedc87978d91d09.
-
-
--- [_] miscelaneous.
-
-      -- [X] move a.i. prompts from ENV_LANDING.
-
-      -- [X] SPLIT "STABLE RELEASES" FROM "DEV".
-
-      -- [x] BACK TO HOME LINK ON FOOTER.
-
-      -- [>] read config from database.
-
--- [_] file generation zip / xls | zip / csv.      
-
--- [_] show me a practial example of tensorflow.js and angular
-
-      -- [_]  https://claude.ai/chat/1fbb12fc-eab0-44da-b2a8-764005708a35     
-
--- [_] django python backend.
-
-        -- [_] https://code.visualstudio.com/docs/python/tutorial-fastapi
-
--- [_] A.I. Prompts API QUERY EXAMPLE.
-
-      -- [_] djuango backend.
-      
-      -- [_] node.js backend.
-      
--- [x] A.I. Prompts.            
-
-        -- [x] page list from json file.
-
-        <li><a href="https://gemini.google.com/" target="_blank">Google Gemini.</a></li>
-        <li><a href="https://chatgpt.com/"       target="_blank">Chat GTP.</a></li>
-        <li><a href="https://claude.ai/new"      target="_blank">Arthropic - Claude.</a></li>
-        <li><a href="https://groq.com/"          target="_blank">Groq</a></li>
-        <li><a href="https://pi.ai/talk"         target="_blank">Inflection - PI</a></li>
-        <li><a href="https://www.meta.ai/"       target="_blank">Meta - A.I.</a></li>
-        <li><a href="https://venice.ai/"         target="_blank">Venice</a></li>
-        <li><a href="https://x.com/i/grok?focus=1" target="_blank">xAI</a></li>
-
-
--- [_] scm.            
-
-        -- [_] ngb grid component.
-
-            -- [_] AI_PROMPTS.
-
-            -- [_] AI_DEV.
-
-            -- [_] DEV_ENVS.
-
-            -- [_] HOSTINGS.
-
-            -- [_] DB.
-
- -- [_] HOME
-  
-      -- [_] ICON QUERY URL TO INDEX.
-
--- [_] TOPICS
-  
-      -- [_] LINK TO ENV_LANDING.
-
--- [_] ENV_PUBLIC  / ACERCA DE / TECHNICAL SPECS (WEB):
-
-      -- [_] TECHNICAL SPECS (DETAIL) :
-
-            -- [_] json external list.
-
-      -- [_] SCM:
-
-             -- [_] ngb grid.
-
-                  -- [_] span row.
-             
-            -- [_] json external list.
-     
-      -- [_] LLM.
-
-   -- [_] scm             
-
-        -- [_] row detail grid.
-
-        -- [_] ngb grid component.
-
-        -- [_] AI_PROMPTS.
-
-        -- [_] AI_DEV.
-
-        -- [_] DEV_ENVS.
-
-        -- [_] HOSTINGS.
-
-        -- [_] DB.
-
--- [_] complete header references.
-
--- [_] download csv / xls /pdf file as zip.
-
--- [_] CORRECT HANOI 3D POSITION.
-
--- [_] join chart / xls / csv.
-
--- [_] opencv.
-
-      -- [_] opencv.js typescript.
-
-      -- [_] python.
-
-      -- [_] c++.
-
-      -- [_] java.
-
--- [_] tensorflow.
-
-      -- [_] django python backend.
-
-            -- [_] https://code.visualstudio.com/docs/python/tutorial-django
-
-      -- [_] tensorflow.js typescript.
-
-      -- [_] python.
-
-      -- [_] c++.
-
-      -- [_] java.
-
-
--- [_] sites destination.
-
-        -- [_] env_landing -> marketing.
-
-        -- [_] env_public  -> programming demo.
-
-        -- [_] env_dev     -> tensorflow.
-
-        -- [_] env_prod    -> contact form.
-
--- [_] git hub source.        
-
-      -- [_] aperezNWO      -> PRIVATE.        
-
-      -- [_] aperezNWOGmail -> PUBLIC.        
-
-      -- [_] EXAM486        -> PUBLIC.        
-
--- [_] contact form.
-
-      -- [_] oAuth.
-
-            -- [_] Facebook.
-
-                  -- [_] Facebook LOGIN BUTTON.
-
-            -- [_] Gmail.
-     
-      -- [_] Dynamic form.
-
-      -- [_] email notification.
-      
-      -- [_] log.
-
-      -- [_] LLM -> secure tips.
-      
-      -- [_] isolated url / LANDING_PAGE.
-
-      -- [_] Microsoft Fornm.
-  
-      -- [_] Angular / Features.
-
-      -- [_] ENV_XXX 
-            
-            -- [_] env_TEST    => TEST env .
-
-            -- [_] env_DEV     => FREECODECAMP.
-            
-            -- [_] env_prod    => production env.
-
-            -- [_] env_PUBLIC  => CONTACT FORM / DELETE ROUTES.
-
-            -- [_] env_LANDING => MARKETING.
-
-/////////////////////////////////////////////
-
-
--- [_] CONTACT FORM.
-
-      -- [_]  ADMIN WEB SITE.
-
-            -- [_]  CHANGE LANDING FOR ADMIN.
-
-            -- [_]  ADD CONTACT FORM LOG GRID.
- 
-      -- [_]  CONTACT FORM.
-
-            -- [_]  RENEW TEST ENV.
-
-            -- [_]  CHANGE / ADD DEV ENV FOR CONTACT ENV.
-
-            -- [_]  ADD FORM "ContacFormoAuth" to CONTACT ENV ( as test).
-
-            -- [_]  LEAVE FORM "ContacFormo" to CONTACT ENV ( as PUBLIC / PROD).
-
--- [_] PEDING FRECODECAMP ENV (ML / TENSORFLOW / ETC) -> env_dev.
-
-/////////////////////////////////////////////
 // QUESTIONS
 /////////////////////////////////////////////
+
+/////////////////////////////////////////////
+// MACHINE LEARNING QUESTIONS
+/////////////////////////////////////////////
+
+-- [_] https://chat.qwen.ai/c/283bf0b9-9100-4e0f-a617-37980c14df1f
+
+-- [_] MACHINE LEARNING PENSUM QUESIION
+
+-- [_] I had a c++ code which showcase the usage of a neural network with a tic tac toe autoplay. Also I have a c++ code which showcase the usage of genetic algorithms with a tetris autoplay. 
+
+       Both does not rely on prebuilt a.i. or g.a. libraries but on pure math logic. Despite of the existance of prebuilt libraries for machine learning, 
+       
+       can you advise me on one or several excersices the simplest as possible to showcase the fundamentals of mschine learning using the same aproach (no prebuilt libraries, just pure math and c++ logic)?
+
+-- [_] MACHINE LEARNING PENSUM
+
+     Core Machine Learning Topics
+
+            1. Fundamentals & Core Concepts:
+
+                  What is Machine Learning? (Supervised, Unsupervised, Reinforcement Learning)
+                  Types of Problems: Classification, Regression, Clustering
+                  Training, Validation, Test Sets
+                  Overfitting and Underfitting
+                  Bias-Variance Tradeoff
+                  Feature Engineering & Data Preprocessing: Scaling, encoding, handling missing data, creating features
+                  Model Evaluation:
+                  Metrics: Accuracy, Precision, Recall, F1-Score, Confusion Matrix, ROC-AUC (Classification); MSE, MAE, R-squared (Regression)
+                  Cross-Validation
+
+            2. Essential Mathematical Background:
+
+                  Linear Algebra: Vectors, Matrices, Matrix Multiplication, Eigenvalues/Eigenvectors (used everywhere)
+                  Calculus: Derivatives (for optimization like gradient descent), Partial Derivatives, Gradients
+                  Probability & Statistics: Distributions, Bayes' Theorem, Expectation, Variance, Correlation
+
+            3. Supervised Learning Algorithms:
+
+                  Linear Regression (Your Book)
+                  Logistic Regression (Often presented as an extension of Linear Regression for classification)
+                  Naive Bayes Classification (Your Book)
+                  k-Nearest Neighbors (k-NN)
+                  Decision Trees
+                  Ensemble Methods:
+                  Random Forest
+                  Gradient Boosting (e.g., XGBoost, LightGBM, CatBoost)
+                  Support Vector Machines (SVMs) (Your Book)
+
+            4. Unsupervised Learning Algorithms:
+
+                  Clustering:
+                  K-Means (Your Book - via Genetic Algorithms example, but a core unsupervised method)
+                  Hierarchical Clustering
+                  DBSCAN
+                  Dimensionality Reduction:
+                  Principal Component Analysis (PCA)
+                  t-SNE (for visualization)
+
+            5. Neural Networks & Deep Learning:
+
+                  Neural Networks (Perceptrons, Multi-Layer Perceptrons) (Your Book)
+                  Forward Propagation & Backpropagation
+                  Activation Functions: ReLU, Sigmoid, Tanh
+                  Loss Functions: MSE, Cross-Entropy
+                  Optimization: Gradient Descent, Stochastic Gradient Descent (SGD), Adam, RMSprop
+                  Convolutional Neural Networks (CNNs) (For Image Processing)
+                  Recurrent Neural Networks (RNNs), LSTMs, GRUs (For Sequence Data)
+                  Introduction to Transformers (For NLP and other tasks)
+
+            6. Reinforcement Learning (RL):
+
+                  Basic Concepts: Agent, Environment, State, Action, Reward, Policy, Value Function
+                  Core Algorithms: Q-Learning, Deep Q-Networks (DQN) (As discussed for Tetris/Tic Tac Toe)
+
+            7. Optimization & Search Algorithms:
+
+                  Gradient Descent Variants (Already mentioned under NNs)
+                  Genetic Algorithms (Your Book)
+                  Monte Carlo Methods (Your Book) (Also used in RL, e.g., Monte Carlo Tree Search)
+
+            8. Software & Tools (Concepts & Practice):
+
+                  Python Programming (NumPy, Pandas, Matplotlib/Seaborn)
+                  ML Libraries: Scikit-learn (for classical algorithms)
+                  Deep Learning Libraries: TensorFlow/Keras, PyTorch
+                  Data Handling: Working with datasets, cleaning, exploration (using Pandas, NumPy).   
+
+                  Deep Learning Libraries: TensorFlow/Keras, PyTorch
+                  Data Handling: Working with datasets, cleaning, exploration (using Pandas, NumPy).
+
+ -- [_] MACHINE LEARNING APPROACH
+
+      -- [_] CONCEPT.
+          
+	      -- [_] C++ CODE.
+	          
+	      -- [_] TENSORFLOW FOR PYTHON CODE.
+	
+	      -- [_] HISTORY OF THE ALGORITHM.
+	      
+	      -- [_] REAL WORLD SOLUTION (language, models and infrastructure may vary).
 
 -- [_] MACHINE LEARNING PENSUM QUESIION
 
@@ -402,5 +198,91 @@ https://chat.openai.com/share/f383e00f-3b68-45c8-ad3f-d5bd32b9933e
 	      -- [_] HISTORY OF THE ALGORITHM.
 	      
 	      -- [_] REAL WORLD SOLUTION (language, models and infrastructure may vary).
+
+
+-- [_] https://chat.qwen.ai/c/283bf0b9-9100-4e0f-a617-37980c14df1f
+
+          
+/////////////////////////////////////////////
+// ANGULAR QUESTIONS
+/////////////////////////////////////////////
+
+
+Hi Qwen. I have a full stack angular application v21.1.3 with the following features
+
+  - Angular Frontend.
+  - .NET    Backend
+  - Codesandbox hosted backend (node.js, python, springboot)
+  - c++ compiled dll exposed through .NET backend via dllimport.
+  - MS SQL Server database hosted remotely.
+  
+The program has the following group of FORMS
+
+
+1. Miscelaneous
+
+    1.1  OCR demo using the camera or a drawing pad
+         - Library : Tessseract for c++ via .net core backend dllimport.
+		 - Library : Tesseract for javascript via node.js backend.
+    1.2  Shape recognition using the camera or a drawing path
+         - Library : Opencv for c++ via .net core backend dllimport.
+         - Library : Opencv for Angular / Typescript
+    1.3  Collision demo using html  canvas, physics formulas and math.js library.
+    1.4. Chat demo using socket.io  
+
+2. file format demos
+
+    2.1 Form which queries a remote database, shows the result in a grid, imports to xls format.
+    2.2 Form which queries a remote database, shows the result in a grid, imports to csv format.
+    2.3 pdf export generation sample using iTextSharp.
+    2.4 Chart demo using chart.js library ( pie chart , bar chart).
+
+3. Algorithms
+
+    3.1 Dijkstra demo which put random points and connnections and search the shorstes distance from
+        one defined point to other
+        Backend : Springboot, c++, C#.
+    3.2 Regular Expression demo. Search into a xml document via regex tag.
+        Backend : C++ and c#
+    3.3 Sort Benchmar,.  Sorts a shuffled ist of 25 sequential numbers
+        Backend : C++ and c#
+    3.4  Fractal demo using Opencv for c++ via .net core backend dllimport.  
+
+4. Games
+
+    3.1  Hanoi Towers challenge 2d using canvas html and observables
+    3.2  Hanoi Towers challenge 3d using TWEEN library
+    3.3  Sudoku autogenerated and ajuto solved
+         backend: c++ and node.js
+    3.4  Tic tac Toe with Typescript engine, playing user against machine.
+    3.5  Tic tac Toe a.i. using one the following resources 
+         
+	   - Tensorflow
+         - c++ neural network from scratch.
+
+ The application hws the following components
+
+   - The backbone of the whole application is a ng-boostsrap grid. I overhalued the compoent so it
+     has a speech search. The datasource can be any local .json file or any remote url with json format.
+
+   - Each Form has the following group of references (link to source code, backend or external links)
+
+       - Frontend (Angular)
+       - Backend (can be .net, springboot, django or node.js).
+       - Libraries (like chart.js, math.js, eppplus, tensorflow, opencv, etc).
+       - Topics. (Machine Learning, Algorithms, etc)
+
+   - Link to a contact form.
+
+   - A "technical specs" section which shows the versions of C++ and .NET used as backend,
+
+ I have a huge list of improvements like the followin ones
+
+   -- Merge tictactoe and chat in a online game.
+   -- Split the services and engines logic (like pdf) into a separated program (Native Federation).
+   -- Language Versions (es-CO, en-US).
+   
+ My question is if you please can help me to build an angular pensum starting backwards from the recent version
+ back to 17x.  In the way I showcase every new feature of each version
 
 /////////////////////////////////////////////

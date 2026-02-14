@@ -2,6 +2,49 @@
 // STRATEGY DONE 
 /////////////////////////////////////////////////////////////////
 
+--[x] Improve Hanoi Program.
+     
+      --[>>] Hanoi RJXS
+
+      --[>>] Hanoi Game Engine.
+
+      --[>>] Hanoi RJXS - Auto 
+
+            --[>>] Merge Hanoi RJXS with Hanoi Game Engine. 
+-- [x] index.
+
+      -- [x] app routes.
+
+      -- [x] atributo adicional.
+
+      -- [x] grid.
+
+      -- [x] speech to text search.
+      
+-- [x] ngb pad instructions.   
+
+-- [x] Angular Url Query Param. 
+
+-- [x] RXJS Playground.
+
+      --[x] https://v17.angular.io/guide/observables
+
+      --[x] Replace timers with observables.
+
+-- [x] node.js backend.
+      
+-- [x] A.I. Prompts.            
+
+        -- [x] page list from json file.
+
+        <li><a href="https://gemini.google.com/" target="_blank">Google Gemini.</a></li>
+        <li><a href="https://chatgpt.com/"       target="_blank">Chat GTP.</a></li>
+        <li><a href="https://claude.ai/new"      target="_blank">Arthropic - Claude.</a></li>
+        <li><a href="https://groq.com/"          target="_blank">Groq</a></li>
+        <li><a href="https://pi.ai/talk"         target="_blank">Inflection - PI</a></li>
+        <li><a href="https://www.meta.ai/"       target="_blank">Meta - A.I.</a></li>
+        <li><a href="https://venice.ai/"         target="_blank">Venice</a></li>
+        <li><a href="https://x.com/i/grok?focus=1" target="_blank">xAI</a></li>
 
 --[X] Bootstrap Mobile / Desktop.
 --[X] Referencia c++ Regex / Geek for geeks.

@@ -57,6 +57,13 @@
         
         --[x] DRAW COORDINATES.
 
+--[_] PWA
+
+        --[_] https://web.dev/learn/pwa/service-workers
+
+        --[_] https://angular.dev/ecosystem/service-workers
+
+
  -- [_] scm errors / warnings. 
 
  -- [_] Chess a.i. 
