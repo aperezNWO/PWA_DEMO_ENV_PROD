@@ -405,10 +405,6 @@
 
         --[_] App module purge.
 
-  --[_] Angular Marketing Questions.
-
-  --[_] Ask Gemini Angular UIX Questions with Images.
-
   --[_] Landing Page Carrousel.
     
   --[_] Module Federation questions.
@@ -421,4 +417,8 @@
 
         -- [_] whats new 17x to 21x.
 
+  --[_] Angular Marketing Questions.
+
+  --[_] Ask Gemini Angular UIX Questions with Images.
+  
 ////////////////////////////////////////////////////////////////////////////////
