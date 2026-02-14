@@ -2,14 +2,17 @@ import { AfterViewInit, Component, Input } from '@angular/core';
 import { _environment                    } from 'src/environments/environment';
 import { ConfigService                   } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_ANGULAR_DEMO_LANDING       } from 'src/app/_models/common';
-import { Params } from '@angular/router';
+import { Params, RouterLink                          } from '@angular/router';
 
 
 @Component({
     selector: 'app-landing',
     templateUrl: './landing.component.html',
     styleUrl: './landing.component.css',
-    standalone: false 
+    imports : [
+        RouterLink,
+    ],
+    standalone: true 
 })
 export class LandingComponent implements AfterViewInit {
   //

@@ -1,7 +1,7 @@
 // ANGULAR MODULES
 import { Injectable, NgModule, inject, provideAppInitializer } from '@angular/core';
 import { ErrorHandler, isDevMode                             } from '@angular/core';
-import { CommonModule, DatePipe, DecimalPipe                 } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe                 } from '@angular/common';
 import { ServiceWorkerModule             } from '@angular/service-worker';
 import { FormsModule                     } from '@angular/forms';
 import { BrowserModule                   } from '@angular/platform-browser';
@@ -105,11 +105,11 @@ export class CustomErrorHandler implements ErrorHandler {
 //
 @NgModule({ 
      declarations: [AppComponent,
-        HomeWebComponent,
+        //HomeWebComponent,
+        //LandingComponent,
+        //CurriculumAngularComponent,
         NavComponent,
         PageNotFoundComponent,
-        LandingComponent,
-        //CurriculumAngularComponent,
         GridParamComponent,    // curriculuums
         PageUrlListComponent   // edu resources, llm list
     ],
@@ -136,8 +136,12 @@ export class CustomErrorHandler implements ErrorHandler {
             // Register the ServiceWorker as soon as the application is stable
             // or after 30 seconds (whichever comes first).
             registrationStrategy: 'registerWhenStable:30000'
-        })], providers: [
+        })], 
+     providers: [
         ConfigService,
+        DecimalPipe,
+        DatePipe,
+        CurrencyPipe,
         { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: ErrorHandler, useClass: CustomErrorHandler },

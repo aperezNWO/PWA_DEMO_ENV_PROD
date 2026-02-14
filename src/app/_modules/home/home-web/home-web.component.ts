@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit        } from '@angular/core';
-import { ActivatedRoute                          } from '@angular/router';
+import { ActivatedRoute, RouterLink                          } from '@angular/router';
 import { _environment                            } from 'src/environments/environment';
 import { PAGE_ANGULAR_DEMO_INDEX                 } from 'src/app/_models/common';
 import { SpeechService                           } from 'src/app/_services/__Utils/SpeechService/speech.service';
@@ -12,7 +12,11 @@ import { LandingComponent                        } from 'src/app/_components/lan
     selector: 'app-home-web',
     templateUrl: './home-web.component.html',
     styleUrls: ['./home-web.component.css'],
-    standalone: false
+    standalone: true,
+    imports : [
+              LandingComponent,
+              RouterLink // <--- Add this here!
+    ]
 })
 export class HomeWebComponent extends BaseReferenceComponent implements OnInit, AfterViewInit {
   //
