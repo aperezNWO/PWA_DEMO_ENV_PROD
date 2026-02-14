@@ -110,7 +110,7 @@ export class CustomErrorHandler implements ErrorHandler {
         PageNotFoundComponent,
         LandingComponent,
         CurriculumAngularComponent,
-        GridParamComponent,    // scm
+        GridParamComponent,  // scm
         PageUrlListComponent   // edu resources, llm list
         //BaseComponent,       // index       
         //_BaseComponent,      // scm
