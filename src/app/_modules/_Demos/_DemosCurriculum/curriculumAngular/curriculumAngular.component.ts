@@ -4,6 +4,11 @@ import { PAGE_CURRICULUM_ANGULAR, PAGE_ID, PAGE_SIZE,SEARCH_TERM } from 'src/app
 import { ConfigService                                           } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { _SearchService                                          } from 'src/app/_services/__Utils/SearchService/_search.service';
 import { _SearchComponent                                        } from 'src/app/_components/search/_search.component ';
+import { SharedModule } from 'src/app/_modules/shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SpeechPanelComponent } from 'src/app/_components/speech-panel/speech-panel.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BaseSortableHeader } from 'src/app/_directives/sortable.directive';
 @Component({
     selector: 'app-curriculum-angular',
     templateUrl: './curriculumAngular.component.html',
@@ -18,7 +23,14 @@ import { _SearchComponent                                        } from 'src/app
             deps: [ConfigService], // Dependencies required by the factory function
         }
     ],
-    standalone: false
+    imports: [
+        SharedModule,
+        ReactiveFormsModule,
+        SpeechPanelComponent,
+        NgbModule,
+        BaseSortableHeader,
+    ],
+    standalone: true
 })
 export class CurriculumAngularComponent extends _SearchComponent  
 {

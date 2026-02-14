@@ -109,7 +109,7 @@ export class CustomErrorHandler implements ErrorHandler {
         NavComponent,
         PageNotFoundComponent,
         LandingComponent,
-        CurriculumAngularComponent,
+        //CurriculumAngularComponent,
         GridParamComponent,    // curriculuums
         PageUrlListComponent   // edu resources, llm list
     ],
