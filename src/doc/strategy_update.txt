@@ -377,6 +377,7 @@
 
         --[_] Opencv + ocr.
 
+        --[_] Sudoku solve from camera capture.
  
   --[_] MATCH PWA_DEMO_ENV_PUBLIC.
 
@@ -404,13 +405,13 @@
 
         -- [x] machine learning module -> linear regression as standalone.
 
-        -- [_] home module.
+        -- [x] home as standalone component.
 
-        -- [_] curiculum angular as standalone.
+        -- [x] curiculum angular as standalone.
 
         -- [_] standalone components.
 
-        --[_] App module purge.
+        -- [_] App module purge.
 
   --[_] Landing Page Carrousel.
     
