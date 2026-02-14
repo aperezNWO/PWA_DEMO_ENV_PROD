@@ -110,13 +110,8 @@ export class CustomErrorHandler implements ErrorHandler {
         PageNotFoundComponent,
         LandingComponent,
         CurriculumAngularComponent,
-        GridParamComponent,  // scm
+        GridParamComponent,    // curriculuums
         PageUrlListComponent   // edu resources, llm list
-        //BaseComponent,       // index       
-        //_BaseComponent,      // scm
-        //SpeechPanelComponent,
-        //BaseSortableHeader,
-        //LinearRegressionComponent,
     ],
     exports  : [RouterModule],
     bootstrap: [AppComponent], 
@@ -127,11 +122,8 @@ export class CustomErrorHandler implements ErrorHandler {
         AlgorithmModule,
         MiscelaneousModule,
         AboutModule,
-        DatePipe,              // chat demo
-        DecimalPipe,           // linear regression demo
         SpeechPanelComponent,  // used by gridparams, index and scm
         BaseSortableHeader,    // used by gridparsms, index and scm
-        NgChartsModule,        // used by linear regression demo  
         NgbModule,             // used by  nav module
         ReactiveFormsModule,  
         FormsModule,
@@ -146,7 +138,6 @@ export class CustomErrorHandler implements ErrorHandler {
             registrationStrategy: 'registerWhenStable:30000'
         })], providers: [
         ConfigService,
-        //BackendService,
         { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: ErrorHandler, useClass: CustomErrorHandler },
