@@ -1,0 +1,23 @@
+/* Style for external links */
+.external-link::after {
+  content: ' ↗'; /* Unicode for an external link arrow */
+  font-size: 0.8em;
+  margin-left: 4px;
+  color: #888;
+}
+
+/* Optional: change color on hover to show interactivity */
+.external-link:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+/* Ensure list items look consistent */
+ul {
+  list-style-type: none; /* Removes default bullets for a cleaner look */
+  padding-left: 15px;
+}
+
+li {
+  margin-bottom: 8px;
+}

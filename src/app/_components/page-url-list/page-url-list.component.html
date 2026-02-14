@@ -1,22 +1,29 @@
-
 <H4>{{this.pageTitle}}</H4>
 <hr>
-  <div align="left">
-    @for (page of this._pages; track page) {
-      <ul >
-        <li>
-          <!-- WARNING : ROOT MUST NOT HAVE "./#/" STYLE -->
-          @if (page.queryParams)
-            {
-            <a [routerLink]="[page.url]"  [queryParams]="page.queryParamsObj">{{page.text}}</a>
+<div align="left">
+  @for (page of this._pages; track page.id) {
+    <ul>
+      <li>
+        @if (page.url.startsWith('http')) {
+          <a [href]="page.url" 
+             class="external-link"
+             target="_blank" 
+             rel="noopener noreferrer">
+            {{page.text}}
+          </a>
+        } 
+        @else {
+          @if (page.queryParams) {
+            <a [routerLink]="[page.url]" [queryParams]="page.queryParamsObj">
+              {{page.text}}
+            </a>
+          } @else {
+            <a [routerLink]="[page.url]">{{page.text}}</a>
           }
-          @else
-          {
-          <a [routerLink]="[page.url]">{{page.text}}</a>
         }
       </li>
     </ul>
   }
 </div>
 <hr>
-  <div align="right"><a routerLink="/Home">[Home]</a></div>
+<div align="right"><a routerLink="/Home">[Home]</a></div>
