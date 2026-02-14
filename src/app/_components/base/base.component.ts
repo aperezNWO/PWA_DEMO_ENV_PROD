@@ -10,7 +10,7 @@ import { _environment                               } from 'src/environments/env
     selector: 'app-base',
     templateUrl: './base.component.html',
     styleUrl: './base.component.css',
-    standalone: false
+    standalone: true
 })
 export class BaseComponent {
   /////////////////////////////////////////////////////////

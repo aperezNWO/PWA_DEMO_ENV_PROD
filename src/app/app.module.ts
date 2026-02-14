@@ -103,20 +103,20 @@ export class CustomErrorHandler implements ErrorHandler {
     } 
 }
 //
-@NgModule({ declarations: [
-        AppComponent,
-        LandingComponent,
+@NgModule({ 
+     declarations: [AppComponent,
         HomeWebComponent,
         NavComponent,
         PageNotFoundComponent,
+        LandingComponent,
+        GridParamComponent,  // scm
         CurriculumAngularComponent,
-        LinearRegressionComponent,
+        PageUrlListComponent // edu resources, llm list
+        //BaseComponent,       // index       
+        //_BaseComponent,      // scm
         //SpeechPanelComponent,
         //BaseSortableHeader,
-        BaseComponent,
-        _BaseComponent,
-        GridParamComponent,
-        PageUrlListComponent
+        //LinearRegressionComponent,
     ],
     exports  : [RouterModule],
     bootstrap: [AppComponent], 
@@ -127,28 +127,26 @@ export class CustomErrorHandler implements ErrorHandler {
         AlgorithmModule,
         MiscelaneousModule,
         AboutModule,
-        SpeechPanelComponent,
-        BaseSortableHeader,
-        NgChartsModule,
+        DatePipe,              // chat demo
+        DecimalPipe,           // linear regression demo
+        SpeechPanelComponent,  // used by gridparams, index and scm
+        BaseSortableHeader,    // used by gridparsms, index and scm
+        NgChartsModule,        // used by linear regression demo  
+        NgbModule,             // used by  nav module
         ReactiveFormsModule,  
-        HttpClientModule,
         FormsModule,
         BrowserModule,
-        BrowserAnimationsModule,
-        NgbModule,
         AppRoutingModule,
-        //RouterModule,
-        //RouterModule.forRoot(routes, { useHash: true }),
+        HttpClientModule,
+        BrowserAnimationsModule,
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: !isDevMode(),
             // Register the ServiceWorker as soon as the application is stable
             // or after 30 seconds (whichever comes first).
             registrationStrategy: 'registerWhenStable:30000'
         })], providers: [
-        DatePipe,
-        DecimalPipe,
         ConfigService,
-        BackendService,
+        //BackendService,
         { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: ErrorHandler, useClass: CustomErrorHandler },

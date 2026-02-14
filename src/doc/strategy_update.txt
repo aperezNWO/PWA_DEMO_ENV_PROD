@@ -330,7 +330,7 @@
 
         --[_] https://apereznwo.github.io/NG_BOOTSTRAP_DEMO_ENV_DEV/#/Home -> PWA_DEMO_ENV_TF_OPEN_CV
 
-        --[_] https://apereznwo.github.io/PWA_DEMO_ENV_DEV/#/              -> PWA_DEMO_ENV_V_22 
+        --[_] https://apereznwo.github.io/PWA_DEMO_ENV_DEV/#/              -> PWA_DEMO_ENV_CORE (MODULE FEDERATION)
 
         -- [>] PUBLISH ENV_PROD.  
 
@@ -369,10 +369,12 @@
         --[_] Chat + tictactoe.
 
         --[_] Opencv + ocr.
+
  
   --[_] MATCH PWA_DEMO_ENV_PUBLIC.
 
-  --[_] Angular Regular updates to latest version.
+        --[_] Angular Regular updates to latest version.
+
 
   --[_] FIX COMPONENT "pageurllist".
 
@@ -383,11 +385,23 @@
 
   -- [_] MODULES
 
-        --[_] miscelaneous module.
+        --[x] games module.
 
-        --[_] algorithms generation module.
+        --[x] filegeneration module.
 
-        --[_] games module.
+        --[x] algorithms module.
+
+        --[x] miscelaneous module.
+
+        -- [>] about module.
+
+        -- [_] home module.
+
+        -- [_] machine learning module -> linear regression as standalone.
+
+        -- [_] curiculum angular as standalone.
+
+        -- [_] standalone components.
 
         --[_] App module purge.
 
@@ -398,5 +412,11 @@
   --[_] Landing Page Carrousel.
     
   --[_] Module Federation questions.
+
+        --[_] PWA_DEMO_ENV_CORE.
+
+  -- [_] new curiculum angular 
+
+        -- [_] whats new 17x to 21x.
 
 ////////////////////////////////////////////////////////////////////////////////

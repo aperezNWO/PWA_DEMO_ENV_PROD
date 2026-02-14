@@ -6,6 +6,7 @@ import { SpeechService                           } from 'src/app/_services/__Uti
 import { ConfigService                           } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { BackendService                          } from '../../../_services/BackendService/backend.service';
 import { BaseReferenceComponent                  } from 'src/app/_components/base-reference/base-reference.component';
+import { LandingComponent                        } from 'src/app/_components/landing/landing.component';
 //
 @Component({
     selector: 'app-home-web',

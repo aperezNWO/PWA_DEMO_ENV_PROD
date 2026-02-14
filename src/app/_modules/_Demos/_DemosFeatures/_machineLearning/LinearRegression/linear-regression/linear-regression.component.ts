@@ -1,28 +1,41 @@
+// angular core
 import { Component, OnInit, ViewChild             } from '@angular/core';
 import { ActivatedRoute                           } from '@angular/router';
-import { ChartData, ChartConfiguration, ChartType } from 'chart.js';
-import { BaseChartDirective                       } from 'ng2-charts';
+import { DecimalPipe                              } from '@angular/common';
+import { ReactiveFormsModule                      } from '@angular/forms';
+// custom modules
+import { SharedModule                             } from 'src/app/_modules/shared/shared.module';
+import { _languageName                            } from 'src/app/_models/entity.model';
+// custom components
 import { BaseReferenceComponent                   } from 'src/app/_components/base-reference/base-reference.component';
 import { PAGE_MACHINE_LEARNING_LINEAR_REGRESSION, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND  } from 'src/app/_models/common';
-import { _languageName                            } from 'src/app/_models/entity.model';
+// Services
 import { BackendService                           } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                            } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { TensorFlowService, PredictionResponse    } from 'src/app/_services/__AI/TensorflowService/tensor-flow.service';
 import { SpeechService                            } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { DecimalPipe                              } from '@angular/common';
+// third party
+import { ChartData, ChartConfiguration, ChartType } from 'chart.js';
+import { BaseChartDirective, NgChartsModule       } from 'ng2-charts';
 
 
 @Component({
     selector: 'app-linear-regression',
     templateUrl: './linear-regression.component.html',
     styleUrl: './linear-regression.component.css',
+    imports: [
+        SharedModule,
+        DecimalPipe,
+        ReactiveFormsModule,
+        NgChartsModule,
+   ],
     providers: [
         {
             provide: PAGE_TITLE_LOG,
             useValue: PAGE_MACHINE_LEARNING_LINEAR_REGRESSION
         },
     ],
-    standalone: false
+    standalone: true
 })
 export class LinearRegressionComponent  extends BaseReferenceComponent implements OnInit {
      //

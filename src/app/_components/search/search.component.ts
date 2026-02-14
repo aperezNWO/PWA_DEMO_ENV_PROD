@@ -8,7 +8,7 @@ import { SearchService                      } from 'src/app/_services/__Utils/Se
     selector: 'app-search',
     templateUrl: './search.component.html',
     styleUrl: './search.component.css',
-    standalone: false
+    standalone: true
 })
 export class SearchComponent {
 

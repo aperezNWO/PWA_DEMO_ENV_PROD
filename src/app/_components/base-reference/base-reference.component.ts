@@ -10,7 +10,7 @@ import { _environment                               } from 'src/environments/env
     selector: 'app-base-reference',
     templateUrl: './base-reference.component.html',
     styleUrl: './base-reference.component.css',
-    standalone: false
+    standalone: false 
 })
 export class BaseReferenceComponent {
   /////////////////////////////////////////////////////////

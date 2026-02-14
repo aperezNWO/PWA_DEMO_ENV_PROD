@@ -9,7 +9,7 @@ import { _environment                               } from 'src/environments/env
     selector: 'app-base-custom',
     templateUrl: './base.component.html',
     styleUrl: './base.component.css',
-    standalone: false
+    standalone: true
 })
 export class _BaseComponent implements OnInit {
   /////////////////////////////////////////////////////////

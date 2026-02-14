@@ -9,7 +9,7 @@ import { Params } from '@angular/router';
     selector: 'app-landing',
     templateUrl: './landing.component.html',
     styleUrl: './landing.component.css',
-    standalone: false
+    standalone: false 
 })
 export class LandingComponent implements AfterViewInit {
   //
