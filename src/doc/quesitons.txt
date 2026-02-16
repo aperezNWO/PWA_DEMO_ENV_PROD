@@ -458,7 +458,12 @@ https://www.kimi.com/chat/19c68504-af02-8a21-8000-09290b95c453
 
 -- [_] gemini
 
+/doc/Gemini-Angular v21 Migration & Modernization.pdf
+
 https://gemini.google.com/app/6f694c31546a5058
+
+https://docs.google.com/document/d/1HKeBfV_TPFkbcTKm1iNih_dwVqGUJHINAeztW9TT8kQ/edit?usp=sharing
+
 
 It’s impressive that you’ve managed to orchestrate such a diverse tech stack—C++, .NET, Spring Boot, and Python 
 all feeding into a single Angular frontend is quite a "polyglot" achievement.
