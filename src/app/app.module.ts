@@ -23,16 +23,11 @@ import { AlgorithmModule                 } from './_modules/_Demos/_DemosFeature
 import { MiscelaneousModule              } from './_modules/_Demos/_DemosFeatures/miscelaneous/miscelaneous.module';
 import { AboutModule                     } from './_modules/about/about.module';
 // COMPONENTS 
-import { HomeWebComponent                } from './_modules/home/home-web/home-web.component';
 import { PageNotFoundComponent           } from './_modules/home/page-not-found/page-not-found.component';
 import { NavComponent                    } from './_modules/home/nav/nav.component';
 import { LogType                         } from './_models/entity.model';
-import { CurriculumAngularComponent      } from './_modules/_Demos/_DemosCurriculum/curriculumAngular/curriculumAngular.component';
-import { LinearRegressionComponent       } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
 // COMPONENTS
 import { AppComponent                } from './app.component';
-import { LandingComponent            } from './_components/landing/landing.component';
-import { BaseComponent               } from './_components/base/base.component';
 import { _BaseComponent              } from './_components/base/_base.component';
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
 import { PageUrlListComponent        } from './_components/page-url-list/page-url-list.component';
@@ -43,8 +38,7 @@ import { BackendService              } from './_services/BackendService/backend.
 // THIRD-PARTY
 import { finalize, tap                                } from 'rxjs';
 import { NgbModule                                    } from '@ng-bootstrap/ng-bootstrap';
-import { NgChartsModule                               } from 'ng2-charts'
-import { BaseSortableHeader } from './_directives/sortable.directive';
+import { BaseSortableHeader                           } from './_directives/sortable.directive';
 
 
 //
