@@ -448,6 +448,12 @@ The program has the following group of FORMS
 // answer
 /////////////////////////////////////////////
 
+-- [_] kimi
+
+https://www.kimi.com/chat/19c68504-af02-8a21-8000-09290b95c453
+
+-- [_] gemini
+
 https://gemini.google.com/app/6f694c31546a5058
 
 It’s impressive that you’ve managed to orchestrate such a diverse tech stack—C++, .NET, Spring Boot, and Python 
