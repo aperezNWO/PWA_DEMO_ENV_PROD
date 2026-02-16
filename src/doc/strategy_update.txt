@@ -35,6 +35,29 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+
+  -- [x] MODULES
+
+        --[x] games module.
+
+        --[x] filegeneration module.
+
+        --[x] algorithms module.
+
+        --[x] miscelaneous module.
+
+        -- [>] about module.
+
+        -- [x] machine learning module -> linear regression as standalone.
+
+        -- [x] home as standalone component.
+
+        -- [x] curiculum angular as standalone.
+
+        -- [x] standalone components.
+
+        -- [x] App module purge.
+
  -- [x] Educational Resources : The Odin Project.
 
  -- [x] INDEX -> DON'T SHOW EMPTY ITEMS.
@@ -390,28 +413,6 @@
                 key "PageUrlList" at index "3" and "4".
   
   --[_] haonoi 3d -> add controls.
-
-  -- [_] MODULES
-
-        --[x] games module.
-
-        --[x] filegeneration module.
-
-        --[x] algorithms module.
-
-        --[x] miscelaneous module.
-
-        -- [>] about module.
-
-        -- [x] machine learning module -> linear regression as standalone.
-
-        -- [x] home as standalone component.
-
-        -- [x] curiculum angular as standalone.
-
-        -- [_] standalone components.
-
-        -- [_] App module purge.
 
   --[_] Landing Page Carrousel.
     

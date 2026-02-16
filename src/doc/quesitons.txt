@@ -448,6 +448,10 @@ The program has the following group of FORMS
 // answer
 /////////////////////////////////////////////
 
+-- [_] qwen
+
+https://chat.qwen.ai/c/dca15284-295a-4a06-abb0-14b7a274b00e
+
 -- [_] kimi
 
 https://www.kimi.com/chat/19c68504-af02-8a21-8000-09290b95c453
