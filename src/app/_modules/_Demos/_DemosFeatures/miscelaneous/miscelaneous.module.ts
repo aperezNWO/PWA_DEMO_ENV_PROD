@@ -20,7 +20,7 @@ import { ComputerVisionComponent    } from './computer-vision/computer-vision.co
   imports: [
     CommonModule,
     SharedModule,
-    NgxSignaturePadModule
+    NgxSignaturePadModule,
   ],
   exports : [
         OcrPhotoCaptureComponent,
