@@ -1,9 +1,12 @@
-import { Injectable, inject } from '@angular/core';
+// angular core modules
+import { Injectable, inject                 } from '@angular/core';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
-import { BaseService } from '../__baseService/base.service';
-import { ConfigService } from '../__Utils/ConfigService/config.service';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+// services
+import { BaseService   }    from '../__baseService/base.service';
+import { ConfigService }    from '../__Utils/ConfigService/config.service';
+// third party
+import html2canvas          from 'html2canvas';
+import jsPDF                from 'jspdf';
 import { Observable, from } from 'rxjs';
 
 @Injectable({
