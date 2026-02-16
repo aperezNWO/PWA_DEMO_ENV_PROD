@@ -358,11 +358,11 @@ Would you like to start at the bottom of the stack and look at how to implement 
 Angular v21 Release
 This breakdown from the Angular team provides an excellent visual overview of the new features introduced in version 21, specifically highlighting the experimental Signal Forms and the new MCP server integration that you can use to modernize your forms and AI workflows.
 
-
+/////////////////////////////////////////////
+// question
 /////////////////////////////////////////////
 
-
-Hi Qwen. I have a full stack angular application v21.1.3 which was recentlhy migrated from v17, with the following features
+I have a full stack angular application v21.1.3 which was recentlhy migrated from v17, with the following features
 
   - Angular Frontend.
   - .NET    Backend
@@ -436,4 +436,108 @@ The program has the following group of FORMS
    -- Split the services and engines logic (like pdf) into a separated program (Native Federation).
    -- Language Versions (es-CO, en-US).
    
- My question is if you please can help me to suggest
+ My question are:
+ 
+ 1)  Can you please give me the list of new features on v21?
+ 
+ 2)  According to the previous list can you please suggests me how to modify the code so I can showcase 
+     that new features on v21. 
+     The current application code still have v17 features like Observables, rxjs, ReactiveFormsModules, Modules, etc.
+
+/////////////////////////////////////////////
+// answer
+/////////////////////////////////////////////
+
+https://gemini.google.com/app/6f694c31546a5058
+
+It’s impressive that you’ve managed to orchestrate such a diverse tech stack—C++, .NET, Spring Boot, and Python 
+all feeding into a single Angular frontend is quite a "polyglot" achievement.
+Since you are running Angular v21.1.3, you are at the bleeding edge. 
+
+This version marks a major shift where the "experimental" features of v17–v19 have matured into the new standard 
+for high-performance applications.1. 
+
+New Features in Angular v21Angular v21 (released late 2025/early 2026) is centered around "Signal-First" architecture 
+and Zoneless performance.Signal Forms (Experimental/Stable-ish): 
+
+A complete rewrite of the Forms API. It replaces FormControl and FormGroup with signal-based models. 
+
+It offers full type safety and eliminates the need for ControlValueAccessor for custom components.
+
+Zoneless by Default: New applications no longer include zone.js. 
+
+This reduces bundle size by ~30KB and stops Angular from "guessing" when to check for changes, making the app much faster.
+
+Incremental Hydration: Building on @defer, you can now render a component on the server but delay its interactivity 
+(hydration) until a user interacts with it (e.g., hydrate on interaction).
+
+The Resource API (resource()): A new way to handle asynchronous data (like your .NET or Node.js API calls) 
+using signals instead of RxJS Observables.Linked Signals (linkedSignal): Allows you to create a writable signal 
+that automatically resets or updates when a source signal changes (perfect for "resetting" a form 
+when a user selects a different algorithm).
+
+Angular Aria: A new suite of "headless" accessible components (Grids, Listboxes, Menus) that provide 
+the logic while letting you provide 100% of the CSS.Vitest as Default: 
+
+Karma and Jasmine are deprecated; Vitest is now the standard for lightning-fast unit testing.
+
+2. Refactoring Roadmap: Showcasing v21To truly showcase v21, you should move away from the "v17 style" 
+(Observables and Modules) toward a Signal-First, Zoneless architecture.
+
+A. Modernize the "Backbone" GridYour ng-bootstrap grid is the perfect candidate for Angular Aria.
+
+Refactor: Replace the standard grid logic with provideAriaGrid().
+
+Speech Search: Instead of using a Subject and debounceTime, use a linkedSignal for the search term. 
+
+When the speech-to-text updates the signal, the resource() API (see below) will automatically re-fetch the data.
+
+B. Replace HttpClient with the Resource APIFor your Algorithm (3.1 - 3.4) and File Format (2.1) demos:
+
+The Old Way: this.http.get(url).subscribe(...).The v21 Way: Use the resource() function. 
+
+It handles the loading state, errors, and data as signals automatically.TypeScript
+
+// Example: Fetching Dijkstra result from SpringBoot
+pathResource = resource({
+  params: () => ({ start: this.startNode(), end: this.endNode() }),
+  loader: ({params}) => fetch(`api/dijkstra?s=${params.start}&e=${params.end}`).then(res => res.json())
+});
+// In HTML: @if (pathResource.isLoading()) { <spinner /> }
+
+C. Optimize Heavy Demos (OCR & Fractals) with @deferYour OCR and Fractal demos involve heavy libraries 
+(Tesseract, OpenCV).Improvement: Use Incremental Hydration. 
+
+Render the "UI Shell" on the server, but don't load the heavy WASM/JS libraries until the user clicks 
+"Start Demo."HTML@defer (on interaction; hydrate on interaction) 
+{
+  <app-ocr-canvas [engine]="'tesseract-cpp'"></app-ocr-canvas>
+} @placeholder {
+  <button>Click to Initialize OCR Engine (Heavy Load)</button>
+}
+
+D. Multi-Backend Tic-Tac-Toe (Signal-Based AI)To merge the Chat and Tic-Tac-Toe 
+(your requested improvement):
+
+Multiplayer State: Use a signal for the board state.Zoneless 
+
+Chat: Since socket.io is asynchronous, running in Zoneless mode will significantly reduce the CPU overhead of your 
+chat demo, as Angular won't trigger a global change detection cycle for every single heartbeat or message.
+
+E. Native Federation & Service SplittingSince you want to split services (like PDF generation) 
+into a separate program:Native Federation: Use the @angular-architects/native-federation package. 
+
+It allows you to host the PDF Engine as a separate micro-frontend.v21 
+
+Benefit: v21’s improved EnvironmentInjector cleanup ensures that when you switch from the "Hanoi Towers" game 
+to the "PDF Export," the memory from the previous micro-app is fully purged.
+
+Summary Table for your 
+MigrationFeaturev17 Style (Current) v21 Style (Recommended) State ManagementBehaviorSubject / RxJSsignal(), computed(), linkedSignal()
+Data Fetching.subscribe() / `async`Change DetectionZone.js (Global)Zoneless (Signal-based)
+Component LogicNgModulesStandalone ComponentsControl 
+
+Flow*ngIf, *ngFor@if, @for, @switchLarge LibrariesStandard Lazy Loading@defer + Incremental HydrationWould you like me to write 
+a specific code example for the resource() implementation to connect your Angular frontend to the .NET DllImport backend?
+
+/////////////////////////////////////////////
