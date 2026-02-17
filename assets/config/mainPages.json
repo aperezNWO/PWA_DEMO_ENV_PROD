@@ -149,15 +149,14 @@
         "log_name"   : "PAGE_DEMOS_MISCELLANEOUS_INDEX",
         "page_name"  : "[DEMOS - MISCELLANEOUS]",
         "pages"      : [
-            { "id": 1, "url" : "/OcrPhotoCapture"       , "text": "[MISCELLANEOUS - OCR]"               },
-            { "id": 2, "url" : "/ComputerVision"        , "text": "[MISCELLANEOUS - COMPUTER VISION]"   },
-            { "id": 3, "url" : "/Chat"                  , "text": "[MISCELLANEOUS - CHAT]"              },
-            { "id": 5, "url" : "/FractalDemo"           , "text": "[MISCELLANEOUS - FRACTAL DEMO]"      }
+            { "id": 1, "url" : "/OcrPhotoCapture"       , "text": "[MISCELLANEOUS - VISION HUB]"               },
+            { "id": 2, "url" : "/Chat"                  , "text": "[MISCELLANEOUS - CHAT]"              },
+            { "id": 3, "url" : "/FractalDemo"           , "text": "[MISCELLANEOUS - FRACTAL DEMO]"      }
           ]
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_OCR",
-        "page_name"  : "[MISCELLANEOUS - OCR]",
+        "page_name"  : "[MISCELLANEOUS - VISION HUB]",
         "pages"      : [
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
           { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
