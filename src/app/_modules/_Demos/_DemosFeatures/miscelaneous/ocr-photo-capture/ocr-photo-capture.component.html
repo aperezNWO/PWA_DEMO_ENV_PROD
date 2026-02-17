@@ -1,77 +1,87 @@
-<div class="content" align="center">
+<div class="ocr-container" align="center">
   <app-base-reference></app-base-reference>
-  <hr>
-    <div id="canvasContainer" [hidden]="this.hiddenCanvasContainer">
-      <!-- CANVAS INICIO   -->
-      <div aling="center">Please use the finger or the mouse pointer to draw</div>
-      <br>
-        <ngx-signature-pad
-          #signature
-          [options]="options"
-          (beginSign)="onBeginSign()"
-          (endSign)="onEndSign()">
-        </ngx-signature-pad>
-        <!-- CANVAS FIN      -->
-        <!-- BOTONES INICIO   -->
-        <hr/>
-        <input  class="btn btn-primary"   type="button" value="{{this.statusButton}}" (click)="this.saveSignature()" [disabled]="(this.statusButton=='..parsing..')">
-        |
-        <button class="btn btn-secondary" (click)="this.clearSignature()">Clear Signature</button>
-        <br>
-          <!-- BOTONES FIN      -->
-        </div>
-        <div id ="cameraContainer" [hidden]="this.hiddenCameraContainer">
-          <div class="camera-container" [hidden]="this.cameraContainerHidden">
-            <video #video autoplay [style]="this.videoStyle"></video>
-            <canvas #canvas hidden ></canvas>
-          </div>
-          @if (capturedImage) {
-            <img [src]="capturedImage" [hidden]="this.capturedImageHidden" alt="Captured Photo" />
-          }
-          <hr />
-          <!-- BOTONES INICIO -->
-          <button class="btn btn-primary"   (click)="capturePhoto()" [disabled]="(this.captureButtonDisabled)">{{this.captureButtonStatus}}</button>
-          |
-          <button class="btn btn-primary"   (click)="saveImage()" [disabled]="(this.saveImageButtonDisabled)">{{this.statusButtonSaveImage}}</button>
-          |
-          <button class="btn btn-success"   (click)="flipCamera()">Flip Camera</button>
-          <!-- BOTONES FIN    -->
-        </div>
-        <hr>
-          <!-- STATUS INICIO -->
-          <span style="padding:2px; width:100px;height:10px;background-color: azure;">{{this.status_message()}}</span>
-          <hr />
-          <!-- STATUS FIN        -->
-          <!-- FORMULARIO INICIO -->
-          <div class="form-group" align="left" id="SourceListDiv">
-            <label for="sourceList"><span id="tituloListadoLenguajes">{{this.tituloListadOrigen}}</span></label>
-            &nbsp;<select   id="sourceList"
-            name="sourceList"
-            #_sourceList
-            (change)="this.selectionChange()">
-            @for (_sourceName of __sourceList; track _sourceName) {
-              <option
-                [value]="_sourceName._index"
-              [selected]="_sourceName._selected">{{_sourceName._value}}</option>
-            }
-          </select>
-        </div>
-        <div class="form-group" align="left" id="EngineListDiv">
-          <label for="engineList"><span id="titleEngines">{{this.titleEngineList}}</span></label>
-          &nbsp;<select   id="engineList"
-          name="engineList"
-          #_engineList
-          (change)="this.selectionChangeEngines()">
-          @for (_engineName of __engineList; track _engineName) {
-            <option
-              [value]="_engineName._index"
-            [selected]="_engineName._selected">{{_engineName._value}}</option>
-          }
-        </select>
-      </div>
-      <!-- FORMULARIO FIN -->
-      <div align="right">
-        <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}" >[Back to Menu]</a>
+  
+  @let parsing = isParsing();
+
+  <div class="capture-card">
+    
+    <div id="canvasContainer" [hidden]="hiddenCanvasContainer()">
+      <div class="instruction-text">Draw text clearly on the pad:</div>
+      <ngx-signature-pad #signature [options]="options"></ngx-signature-pad>
+      <div class="button-row">
+        <button class="btn btn-primary" (click)="saveSignature()" [disabled]="parsing">
+          {{ parsing ? 'PROCESSING...' : '[SAVE]' }}
+        </button>
+        <button class="btn btn-secondary" (click)="clearSignature()">CLEAR</button>
       </div>
     </div>
 
+    <div id="cameraContainer" [hidden]="hiddenCameraContainer()">
+      <div [hidden]="cameraContainerHidden()">
+        <video #video autoplay [style]="videoStyle" class="video-feed"></video>
+        <canvas #canvas hidden></canvas>
+        <div class="button-row">
+          <button class="btn btn-dark" (click)="capturePhoto()">CAPTURE</button>
+          <button class="btn btn-info" (click)="flipCamera()">FLIP</button>
+        </div>
+      </div>
+      
+      @if (capturedImage()) {
+        <div [hidden]="capturedImageHidden()" class="preview-box">
+          <img [src]="capturedImage()" class="img-preview" alt="Captured"/>
+          <div class="button-row">
+            <button class="btn btn-primary" (click)="saveImage()" [disabled]="parsing">
+              {{ parsing ? 'ANALYZING...' : '[SAVE IMAGE]' }}
+            </button>
+            <button class="btn btn-warning" (click)="cameraContainerHidden.set(false); capturedImageHidden.set(true)">RETAKE</button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="result-status-container" [class.parsing-active]="parsing">
+    <div class="result-header">
+      <span class="dot"></span> OCR SYSTEM OUTPUT
+    </div>
+    <div class="status-text">
+      {{ status_message() || 'READY: Waiting for input...' }}
+    </div>
+  </div>
+ 
+  <!--
+  <div class="engine-info">
+    @let res = cppStdVersion;
+    @if (res.isLoading()) { <span>Syncing with Engine...</span> }
+    @else { <span>Backend: <strong>{{ res.value() }}</strong></span> }
+  </div>
+ -->
+
+  <hr class="separator">
+
+  <div class="form-group-container">
+    <div class="custom-form-group">
+      <label>{{ tituloListadOrigen }}</label>
+      <select #_sourceList (change)="selectionChange()">
+        @for (item of __sourceList; track item._index) {
+          <option [value]="item._index" [selected]="item._selected">{{ item._value }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="custom-form-group">
+      <label>{{ titleEngineList }}</label>
+      <select #_engineList>
+        @for (item of __engineList; track item._index) {
+          <option [value]="item._index" [selected]="item._selected">{{ item._value }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="footer-link">
+    <a [routerLink]="['/PageUrlList']" [queryParams]="{pageName : 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}">
+      &laquo; Return to Menu
+    </a>
+  </div>
+</div>
