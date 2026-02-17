@@ -5,17 +5,15 @@ import { CommonModule } from '@angular/common';
 import { SharedModule               } from 'src/app/_modules/shared/shared.module';
 import { ChatComponent              } from './chat/chat/chat.component';
 import { FractalDemoComponent       } from './fractalDemo/juliaform.component';
-import { OcrPhotoCaptureComponent   } from './ocr-photo-capture/ocr-photo-capture.component';
+import { VisionHUBComponent         } from './VisionHUB/vision-HUB.component';
 // THIRD PARTY 
 import { NgxSignaturePadModule      } from '@eve-sama/ngx-signature-pad';
-import { ComputerVisionComponent    } from './computer-vision/computer-vision.component';
 
 @NgModule({
   declarations: [
-        OcrPhotoCaptureComponent,
+        VisionHUBComponent,
         ChatComponent,
         FractalDemoComponent,
-        ComputerVisionComponent
   ],
   imports: [
     CommonModule,
@@ -23,10 +21,9 @@ import { ComputerVisionComponent    } from './computer-vision/computer-vision.co
     NgxSignaturePadModule,
   ],
   exports : [
-        OcrPhotoCaptureComponent,
+        VisionHUBComponent,
         ChatComponent,
         FractalDemoComponent,
-        ComputerVisionComponent,
   ]
 })
 export class MiscelaneousModule { 

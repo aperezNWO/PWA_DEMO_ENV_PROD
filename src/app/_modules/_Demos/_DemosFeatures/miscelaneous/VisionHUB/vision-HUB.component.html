@@ -1,0 +1,69 @@
+<div class="vision-hub-shell">
+  <app-base-reference></app-base-reference>
+
+  <div class="hub-header">
+    <div class="field">
+      <label>AI Feature</label>
+      <select (change)="selectedFeature.set(+$any($event.target).value)">
+        <option value="1">OCR Recognition</option>
+        <option value="2">Computer Vision</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Input Source</label>
+      <select (change)="onSourceChange($event)">
+        <option value="0">Select...</option>
+        <option value="1">Digital Canvas</option>
+        <option value="2">Camera Feed</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Backend Engine</label>
+      <select [value]="selectedEngine()" (change)="selectedEngine.set(+$any($event.target).value)">
+        @for (eng of engineList(); track eng.id) {
+          <option [value]="eng.id">{{ eng.label }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="work-area">
+    @if (selectedSource() === 1) {
+      <div class="canvas-container">
+        <ngx-signature-pad #signature [options]="options"></ngx-signature-pad>
+        <div class="actions">
+          <button class="btn primary" (click)="saveSignature()" [disabled]="isParsing()">
+            {{ isParsing() ? 'Processing...' : 'Analyze Canvas' }}
+          </button>
+          <button class="btn secondary" (click)="clearCanvas()">Clear</button>
+        </div>
+      </div>
+    }
+
+    @if (selectedSource() === 2) {
+      <div class="camera-container">
+        @if (!capturedImage()) {
+          <video #video autoplay playsinline class="media-box"></video>
+          <canvas #canvas hidden></canvas>
+          <div class="actions">
+            <button class="btn primary" (click)="capturePhoto()">Capture Photo</button>
+            <button class="btn secondary" (click)="isFrontCamera = !isFrontCamera; startCamera()">Flip</button>
+          </div>
+        } @else {
+          <img [src]="capturedImage()" class="media-box preview" />
+          <div class="actions">
+            <button class="btn primary" (click)="processUpload(capturedImage()!)">Upload Snapshot</button>
+            <button class="btn secondary" (click)="capturedImage.set(null); startCamera()">Retake</button>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="hub-footer" [class.loading]="isParsing()">
+    <div class="pulse-icon"></div>
+    <span class="msg">{{ status_message() }}</span>
+  </div>
+</div>

@@ -21,8 +21,7 @@ import { GameTetrisAIComponent       } from './_modules/_Demos/_DemosFeatures/ga
 import { GameTictactoeComponent      } from './_modules/_Demos/_DemosFeatures/games/game-tictactoe/game-tictactoe.component';
 import { TicTacToeBoardAiComponent   } from './_modules/_Demos/_DemosFeatures/games/tic-tac-toe-board-ai/tic-tac-toe-board-ai.component';
 import { ChatComponent               } from './_modules/_Demos/_DemosFeatures/miscelaneous/chat/chat/chat.component';
-import { ComputerVisionComponent     } from './_modules/_Demos/_DemosFeatures/miscelaneous/computer-vision/computer-vision.component';
-import { OcrPhotoCaptureComponent    } from './_modules/_Demos/_DemosFeatures/miscelaneous/ocr-photo-capture/ocr-photo-capture.component';
+import { VisionHUBComponent          } from './_modules/_Demos/_DemosFeatures/miscelaneous/VisionHUB/vision-HUB.component';
 import { LinearRegressionComponent   } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
 import { ContactformComponent        } from './_modules/about/contactform/contactform.component';
 import { IndexComponent              } from './_modules/about/index/index.component';
@@ -63,10 +62,9 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'GamesHanoi3d'          , component: GameHanoi3dComponent                , caption: ' Games  - Hanoi 3d'                           , queryParams : '' },
   {  id: 0,  path: 'GamesTetris'           , component: GameTetrisComponent                 , caption: ' Games  - Tetris'                             , queryParams : '' },
   {  id: 0,  path: 'GamesTetrisAI'         , component: GameTetrisAIComponent               , caption: ' Games  - Tetris - A.I.'                      , queryParams : '' },
-  {  id: 0,  path: 'Chat'                  , component: ChatComponent                       , caption: ' MISCELLANEOUS - Chat Demo'                    , queryParams : '' },
-  {  id: 0,  path: 'OcrPhotoCapture'       , component: OcrPhotoCaptureComponent            , caption: ' MISCELLANEOUS - Ocr Photo Capture'            , queryParams : '' },
-  {  id: 0,  path: 'ComputerVision'        , component: ComputerVisionComponent             , caption: ' MISCELLANEOUS - Computer Vision'              , queryParams : '' },
-  {  id: 0,  path: 'FractalDemo'           , component: FractalDemoComponent                , caption: ' MISCELLANEOUS - Fractal Demo'                 , queryParams : '' },
+  {  id: 0,  path: 'Chat'                  , component: ChatComponent                       , caption: ' MISCELLANEOUS - Chat Demo'                   , queryParams : '' },
+  {  id: 0,  path: 'OcrPhotoCapture'       , component: VisionHUBComponent                  , caption: ' MISCELLANEOUS - Ocr / Computer Visiopn'      , queryParams : '' },
+  {  id: 0,  path: 'FractalDemo'           , component: FractalDemoComponent                , caption: ' MISCELLANEOUS - Fractal Demo'                , queryParams : '' },
   {  id: 0,  path: 'LinearRegression'      , component: LinearRegressionComponent           , caption: ' Machine Learning  - Linear Regression'       , queryParams : '' },
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Curriculum - Artificial Intelligence'        , queryParams : 'PAGE_CURRICULUM_AI'              },
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Curriculum - C++'                            , queryParams : 'PAGE_CURRICULUM_CPP'             },

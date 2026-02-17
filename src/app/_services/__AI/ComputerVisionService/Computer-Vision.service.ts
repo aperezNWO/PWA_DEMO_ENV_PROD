@@ -1,126 +1,66 @@
-import { Injectable    } from '@angular/core';
-import { BaseService   } from '../../__baseService/base.service';
-import { ConfigService } from '../../__Utils/ConfigService/config.service';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ConfigService } from '../../__Utils/ConfigService/config.service';
+import { BaseService } from '../../__baseService/base.service';
+import { OCRResponse } from '../OCRService/ocr.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class ComputerVisionService extends BaseService {
-  //
-  __baseUrlComputerVision     : string = '';
-  //
-  constructor(public http: HttpClient, public _configService : ConfigService) { 
-      //
-      super();
-      //
-      this.__baseUrlComputerVision  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
-  }
-  //
-  _OpenCv_js_detectShapes(image: HTMLImageElement): string[] {
-    //
-    const shapes: string[] = [];    
+  private readonly http = inject(HttpClient);
+  private readonly _configService = inject(ConfigService);
 
-        // Ensure OpenCV.js is loaded
-        if (cv.getBuildInformation) {
+  private readonly __baseUrl = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
 
-          //console.log('cv is loaded ... ' + cv.getBuildInformation) 
-          // Create a Mat from the image
-          const src = cv.imread(image);
-          const gray = new cv.Mat();
-          const edges = new cv.Mat();
-    
-          // Convert to grayscale
-          cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
-    
-          // Apply Canny edge detector
-          cv.Canny(gray, edges, 50, 150, 3, false);
-    
-          // Find contours
-          const contours = new cv.MatVector();
-          const hierarchy = new cv.Mat();
-          cv.findContours(edges, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
-    
-          // Iterate over contours and classify shapes
-          for (let i = 0; i < contours.size(); i++) {
-            const contour = contours.get(i);
-            const approx = new cv.Mat();
-            const epsilon = 0.04 * cv.arcLength(contour, true);
-            cv.approxPolyDP(contour, approx, epsilon, true);
-    
-            let shape = '';
-            if (approx.rows === 3) {
-              shape = '[Triangle]';
-            } else if (approx.rows === 4) {
-              const rect = cv.boundingRect(approx);
-              const aspectRatio = rect.width / rect.height;
-              shape = aspectRatio >= 0.95 && aspectRatio <= 1.05 ? '[Square]' : '[Rectangle]';
-            } else if (approx.rows > 4) {
-              shape = '[Circle]';
-            }
-    
-            if (shape) {
-              shapes.push(shape);
-            }
-          }
-    
-          // Release resources
-          src.delete();
-          gray.delete();
-          edges.delete();
-          contours.delete();
-          hierarchy.delete();
-    
-          return shapes;
-        } else 
-        {
-          console.log('cv missing');
-        }
+  // --- RESTORED LEGACY METHODS (to fix TS2339 & TS2551) ---
 
-    return shapes;    
-  }
-
-  //
-  _OpenCv_CPP_uploadBase64Image(base64Image: string) {
-    //
-    let p_url                   : string  = `${this.__baseUrlComputerVision}uploadOpenCv`;
-    //
-    return this.http.post(p_url, { base64Image });
-  }
-
-  //
   _OpenCv_GetAppVersion(): Observable<string> {
-        //
-        let p_url         : string  = `${this.__baseUrlComputerVision}GetAppVersion`;
-        //
-        let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-        //
-        return appVersion;
-   }
-   //
-   _OpenCv_GetAPIVersion(): Observable<string> {
-        //
-        let p_url         : string  = `${this.__baseUrlComputerVision}GetAPIVersion`;
-        //
-        let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-        //
-        return appVersion;
-   }
-   //
-   _OpenCv_GetCPPSTDVersion(): Observable<string> {
-        //
-        let p_url         : string             = `${this.__baseUrlComputerVision}GetCPPSTDVersion`;
-        //
-        let appVersion    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
-        //
-        return appVersion;
-   }
-   //
-   _OpenCv_GetFractal(p_maxIterations : number, p_realPart : number, p_imagPart : number) {
-        //
-        const url        = `${this.__baseUrlComputerVision}generatejuliaparams/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
-        //
-        return  this.http.get(url, { responseType: 'blob' });
-   }
+    return this.http.get<string>(`${this.__baseUrl}GetAppVersion`, this.HTTPOptions_Text);
+  }
+
+  _OpenCv_GetAPIVersion(): Observable<string> {
+    return this.http.get<string>(`${this.__baseUrl}GetAPIVersion`, this.HTTPOptions_Text);
+  }
+
+  _OpenCv_GetCPPSTDVersion(): Observable<string> {
+    return this.http.get<string>(`${this.__baseUrl}GetCPPSTDVersion`, this.HTTPOptions_Text);
+  }
+
+  _OpenCv_GetFractal(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
+    const url = `${this.__baseUrl}generatejuliaparams/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
+  _OpenCv_CPP_uploadBase64Image(base64Image: string): Observable<OCRResponse> {
+    return this.http.post<OCRResponse>(`${this.__baseUrl}uploadOpenCv`, { base64Image });
+  }
+
+  // --- OPENCV.JS LOCAL LOGIC ---
+
+  _OpenCv_js_detectShapes(imageElement: HTMLImageElement): string[] {
+    const shapes: string[] = [];
+    const cv = (window as any).cv;
+    if (!cv) return ['OpenCV not loaded'];
+
+    const src = cv.imread(imageElement);
+    const gray = new cv.Mat();
+    const edges = new cv.Mat();
+    cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
+    cv.Canny(gray, edges, 50, 150, 3, false);
+
+    const contours = new cv.MatVector();
+    const hierarchy = new cv.Mat();
+    cv.findContours(edges, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+
+    for (let i = 0; i < contours.size(); i++) {
+      const approx = new cv.Mat();
+      cv.approxPolyDP(contours.get(i), approx, 0.04 * cv.arcLength(contours.get(i), true), true);
+      if (approx.rows === 3) shapes.push('[Triangle]');
+      else if (approx.rows === 4) shapes.push('[Rectangle/Square]');
+      else if (approx.rows > 4) shapes.push('[Circle]');
+      approx.delete();
+    }
+    src.delete(); gray.delete(); edges.delete(); contours.delete(); hierarchy.delete();
+    return shapes;
+  }
 }

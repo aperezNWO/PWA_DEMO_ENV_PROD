@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OcrPhotoCaptureComponent } from './ocr-photo-capture.component';
+import { VisionHUBComponent } from './vision-HUB.component';
 
-describe('OcrPhotoCaptureComponent', () => {
-  let component: OcrPhotoCaptureComponent;
-  let fixture: ComponentFixture<OcrPhotoCaptureComponent>;
+describe('VisionHUBComponent', () => {
+  let component: VisionHUBComponent;
+  let fixture: ComponentFixture<VisionHUBComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OcrPhotoCaptureComponent]
+      imports: [VisionHUBComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(OcrPhotoCaptureComponent);
+    fixture = TestBed.createComponent(VisionHUBComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

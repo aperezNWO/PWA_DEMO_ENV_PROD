@@ -1,0 +1,105 @@
+.vision-hub-shell {
+  max-width: 650px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.hub-header {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.field {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field label {
+  font-size: 0.7rem;
+  color: #00ff00;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+select {
+  background: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.work-area {
+  background: #000;
+  min-height: 380px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #333;
+}
+
+.media-box {
+  width: 100%;
+  max-width: 360px;
+  border: 2px solid #555;
+  border-radius: 4px;
+}
+
+.preview { border-color: #00ff00; }
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.primary { background: #00ff00; color: #000; }
+.secondary { background: #444; color: #fff; }
+
+.hub-footer {
+  margin-top: 20px;
+  padding: 10px;
+  background: #000;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #00ff00;
+  font-family: monospace;
+}
+
+.pulse-icon {
+  width: 8px;
+  height: 8px;
+  background: #00ff00;
+  border-radius: 50%;
+}
+
+.loading .pulse-icon {
+  background: #ffcc00;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink { 
+  0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } 
+}
+
+ngx-signature-pad { background: #fff; }

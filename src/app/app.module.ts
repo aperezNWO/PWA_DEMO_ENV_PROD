@@ -1,7 +1,7 @@
 // ANGULAR MODULES
 import { Injectable, NgModule, inject, provideAppInitializer } from '@angular/core';
 import { ErrorHandler, isDevMode                             } from '@angular/core';
-import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe                 } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe   } from '@angular/common';
 import { ServiceWorkerModule             } from '@angular/service-worker';
 import { FormsModule                     } from '@angular/forms';
 import { BrowserModule                   } from '@angular/platform-browser';
