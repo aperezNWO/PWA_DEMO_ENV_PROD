@@ -444,6 +444,8 @@
 
   -- [_] new curiculum angular 
 
+        --[_] app version on nad module.
+
         --[_] Module Federation questions.
 
               --[_] Native Federation.
