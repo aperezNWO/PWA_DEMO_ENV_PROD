@@ -1,5 +1,5 @@
 // AMGULAR MODULES
-import { NgModule                } from '@angular/core';
+import { ErrorHandler, NgModule                } from '@angular/core';
 import { CommonModule            } from '@angular/common';
 // CUSTOM MODULES
 import { SharedModule            } from '../shared/shared.module';
@@ -12,6 +12,7 @@ import { TechnicalSpecsComponent } from './technicalspecs/technical-specs/techni
 import { SpeechPanelComponent    } from 'src/app/_components/speech-panel/speech-panel.component';
 // THIRD PARTY
 import { NgbHighlight, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { CustomErrorHandler } from 'src/app/app.module';
 
 
 @NgModule({
@@ -36,6 +37,10 @@ import { NgbHighlight, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap
         TechnicalSpecsComponent,
         ContactformComponent,
      
+  ],
+  providers : [
+      // Referenciamos la clase que definimos arriba
+    { provide: ErrorHandler, useClass: CustomErrorHandler },
   ]
 })
 export class AboutModule { 

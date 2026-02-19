@@ -1,5 +1,5 @@
 // angular core
-import { Component, OnInit, ViewChild             } from '@angular/core';
+import { Component, ErrorHandler, OnInit, ViewChild             } from '@angular/core';
 import { ActivatedRoute                           } from '@angular/router';
 import { DecimalPipe                              } from '@angular/common';
 import { ReactiveFormsModule                      } from '@angular/forms';
@@ -17,6 +17,7 @@ import { SpeechService                            } from 'src/app/_services/__Ut
 // third party
 import { ChartData, ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective, NgChartsModule       } from 'ng2-charts';
+import { CustomErrorHandler } from 'src/app/app.module';
 
 
 @Component({
@@ -34,6 +35,8 @@ import { BaseChartDirective, NgChartsModule       } from 'ng2-charts';
             provide: PAGE_TITLE_LOG,
             useValue: PAGE_MACHINE_LEARNING_LINEAR_REGRESSION
         },
+        // Referenciamos la clase que definimos arriba
+        { provide: ErrorHandler, useClass: CustomErrorHandler },
     ],
     standalone: true
 })

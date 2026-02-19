@@ -10,7 +10,6 @@ import { BackendService                                } from 'src/app/_services
 import { SpeechService                                 } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                                 } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_TITLE_LOG,PAGE_FILE_GENERATION_XLS, PAGE_TITLE_NO_SOUND       } from 'src/app/_models/common';
-import { CustomErrorHandler                                                 } from 'src/app/app.component';
 import { BaseReferenceComponent                                             } from 'src/app/_components/base-reference/base-reference.component';
 //
 @Component({
@@ -76,8 +75,7 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
     //--------------------------------------------------------------------------
     //
     constructor(
-                   public formBuilder          : FormBuilder, 
-                   public customErrorHandler            : CustomErrorHandler,
+                   public formBuilder                   : FormBuilder, 
                    public override configService        : ConfigService,
                    public override backendService       : BackendService, 
                    public override route                : ActivatedRoute,

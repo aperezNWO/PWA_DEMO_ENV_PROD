@@ -1,4 +1,4 @@
-import { NgModule                         } from '@angular/core';
+import { ErrorHandler, NgModule                         } from '@angular/core';
 import { CommonModule                     } from '@angular/common';
 import { RouterModule                     } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -17,6 +17,7 @@ import { FilesGenerationXLSComponent  } from './files-generation-xls/files-gener
 import { ChartComponent               } from './chart/chart.component';
 import { NgbAlertModule, NgbHighlight, NgbModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgChartsModule                                               } from 'ng2-charts'
+import { CustomErrorHandler } from 'src/app/app.module';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,10 @@ import { NgChartsModule                                               } from 'ng
     FilesGenerationPDFComponent,
     FilesGenerationXLSComponent,
     ChartComponent,
+  ],
+  providers : [
+      // Referenciamos la clase que definimos arriba
+    { provide: ErrorHandler, useClass: CustomErrorHandler },
   ]
 })
 export class FileGenerationModule { 

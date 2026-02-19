@@ -6,7 +6,6 @@ import { ActivatedRoute                                } from '@angular/router';
 import { BehaviorSubject, Observable                                    } from 'rxjs';
 import { PersonEntity, SearchCriteria, _languageName   } from 'src/app/_models/entity.model';
 import { BackendService                                } from 'src/app/_services/BackendService/backend.service';
-import { CustomErrorHandler                            } from 'src/app/app.component';
 import { SpeechService                                 } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                                 } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_TITLE_LOG,PAGE_TITLE_NO_SOUND,PAGE_FILE_GENERATION_CSV   } from 'src/app/_models/common';
@@ -81,7 +80,6 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
     //
     constructor(
                 public          formBuilder          : FormBuilder, 
-                public customErrorHandler            : CustomErrorHandler,
                 public override configService        : ConfigService,
                 public override backendService       : BackendService, 
                 public override route                : ActivatedRoute,

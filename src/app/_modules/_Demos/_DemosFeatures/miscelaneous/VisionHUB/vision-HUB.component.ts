@@ -106,7 +106,7 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
 
     try {
       let result = "";
-      if (engineId === 1) {
+      if (engineId === 1)        {
         const res = await firstValueFrom(this.ocrService.uploadBase64ImageNodeJs(base64));
         result = res.message;
       } else if (engineId === 2) {

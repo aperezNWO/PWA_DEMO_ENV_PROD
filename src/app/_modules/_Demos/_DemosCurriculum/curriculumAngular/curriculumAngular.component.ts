@@ -1,4 +1,4 @@
-import { Component                                               } from '@angular/core';
+import { Component, ErrorHandler                                               } from '@angular/core';
 import { Router                                                  } from '@angular/router';
 import { PAGE_CURRICULUM_ANGULAR, PAGE_ID, PAGE_SIZE,SEARCH_TERM } from 'src/app/_models/common';
 import { ConfigService                                           } from 'src/app/_services/__Utils/ConfigService/config.service';
@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SpeechPanelComponent } from 'src/app/_components/speech-panel/speech-panel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BaseSortableHeader } from 'src/app/_directives/sortable.directive';
+import { CustomErrorHandler } from 'src/app/app.module';
 @Component({
     selector: 'app-curriculum-angular',
     templateUrl: './curriculumAngular.component.html',
@@ -21,7 +22,9 @@ import { BaseSortableHeader } from 'src/app/_directives/sortable.directive';
         { provide: SEARCH_TERM,
             useFactory: (configService: ConfigService) => configService.queryUrlParams("searchTerm"),
             deps: [ConfigService], // Dependencies required by the factory function
-        }
+        },
+        // Referenciamos la clase que definimos arriba
+        { provide: ErrorHandler, useClass: CustomErrorHandler },
     ],
     imports: [
         SharedModule,

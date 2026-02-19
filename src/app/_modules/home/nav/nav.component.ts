@@ -1,6 +1,5 @@
 import { Component, OnInit, VERSION    } from '@angular/core';
 import { Title                         } from '@angular/platform-browser';
-import { CustomErrorHandler            } from 'src/app/app.component';
 import { BackendService                } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                 } from 'src/app/_services/__Utils/ConfigService/config.service';
 //
@@ -50,7 +49,6 @@ export class NavComponent {
   ];
   //-----------------------------------------------------------------------------------------------------
   constructor(
-                private _customErrorHandler : CustomErrorHandler, 
                 private backendService      : BackendService, 
                 private _configService      : ConfigService,
                 private titleService        : Title

@@ -1,4 +1,4 @@
-import { NgModule        } from '@angular/core';
+import { ErrorHandler, NgModule        } from '@angular/core';
 import { CommonModule    } from '@angular/common';
 import { SharedModule              } from 'src/app/_modules/shared/shared.module';
 import { SudokuComponent           } from './game-sudoku/game-sudoku.component';
@@ -10,6 +10,7 @@ import { GameTetrisAIComponent     } from './game-tetris-ai/game-tetris-ai.compo
 import { GameTetrisComponent       } from './game-tetris/game-tetris.component';
 import { GameTictactoeComponent    } from './game-tictactoe/game-tictactoe.component';
 import { TicTacToeBoardAiComponent } from './tic-tac-toe-board-ai/tic-tac-toe-board-ai.component';
+import { CustomErrorHandler } from 'src/app/app.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,10 @@ import { TicTacToeBoardAiComponent } from './tic-tac-toe-board-ai/tic-tac-toe-bo
     GameHanoi3dComponent,
     GameTetrisComponent,
     GameTetrisAIComponent,
+  ], 
+  providers : [
+            // Referenciamos la clase que definimos arriba
+        { provide: ErrorHandler, useClass: CustomErrorHandler },
   ]
 })
 export class GamesModule { 

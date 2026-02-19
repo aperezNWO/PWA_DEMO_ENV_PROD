@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit        } from '@angular/core';
-import { ActivatedRoute, RouterLink                          } from '@angular/router';
+import { Component, OnInit, AfterViewInit, ErrorHandler        } from '@angular/core';
+import { ActivatedRoute, RouterLink                            } from '@angular/router';
 import { _environment                            } from 'src/environments/environment';
 import { PAGE_ANGULAR_DEMO_INDEX                 } from 'src/app/_models/common';
 import { SpeechService                           } from 'src/app/_services/__Utils/SpeechService/speech.service';
@@ -7,6 +7,7 @@ import { ConfigService                           } from 'src/app/_services/__Uti
 import { BackendService                          } from '../../../_services/BackendService/backend.service';
 import { BaseReferenceComponent                  } from 'src/app/_components/base-reference/base-reference.component';
 import { LandingComponent                        } from 'src/app/_components/landing/landing.component';
+import { CustomErrorHandler                      } from 'src/app/app.module';
 //
 @Component({
     selector: 'app-home-web',
@@ -16,6 +17,10 @@ import { LandingComponent                        } from 'src/app/_components/lan
     imports : [
               LandingComponent,
               RouterLink // <--- Add this here!
+    ],
+    providers : [
+              // Referenciamos la clase que definimos arriba
+              { provide: ErrorHandler, useClass: CustomErrorHandler },
     ]
 })
 export class HomeWebComponent extends BaseReferenceComponent implements OnInit, AfterViewInit {
