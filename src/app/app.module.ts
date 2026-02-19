@@ -1,34 +1,41 @@
 // ANGULAR CORE & COMMON
-import { NgModule, ErrorHandler, isDevMode, inject, provideAppInitializer, Injectable } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, ErrorHandler, isDevMode, inject, provideAppInitializer, Injectable              } from '@angular/core';
 import { CommonModule, CurrencyPipe, DatePipe, DecimalPipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule           } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { FormsModule, ReactiveFormsModule          } from '@angular/forms';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { ServiceWorkerModule                       } from '@angular/service-worker';
 
 // CUSTOM MODULES & COMPONENTS
-import { AppRoutingModule } from './app-routing.module';
-import { SharedModule } from './_modules/shared/shared.module';
+import { AppRoutingModule     } from './app-routing.module';
+import { SharedModule         } from './_modules/shared/shared.module';
 import { FileGenerationModule } from './_modules/_Demos/_DemosFeatures/files-generation/file-generation.module';
-import { GamesModule } from './_modules/_Demos/_DemosFeatures/games/games.module';
-import { AlgorithmModule } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm.module';
-import { MiscelaneousModule } from './_modules/_Demos/_DemosFeatures/miscelaneous/miscelaneous.module';
-import { AboutModule } from './_modules/about/about.module';
+import { GamesModule          } from './_modules/_Demos/_DemosFeatures/games/games.module';
+import { AlgorithmModule      } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm.module';
+import { MiscelaneousModule   } from './_modules/_Demos/_DemosFeatures/miscelaneous/miscelaneous.module';
+import { AboutModule          } from './_modules/about/about.module';
 
-import { AppComponent } from './app.component';
-import { NavComponent } from './_modules/home/nav/nav.component';
+// CUSTOM COMPONENTS
+import { AppComponent          } from './app.component';
+import { NavComponent          } from './_modules/home/nav/nav.component';
 import { PageNotFoundComponent } from './_modules/home/page-not-found/page-not-found.component';
-import { GridParamComponent } from './_components/grid-param/grid-param.component';
-import { PageUrlListComponent } from './_components/page-url-list/page-url-list.component';
-import { SpeechPanelComponent } from 'src/app/_components/speech-panel/speech-panel.component';
-import { BaseSortableHeader } from './_directives/sortable.directive';
+import { GridParamComponent    } from './_components/grid-param/grid-param.component';
+import { PageUrlListComponent  } from './_components/page-url-list/page-url-list.component';
+import { SpeechPanelComponent  } from 'src/app/_components/speech-panel/speech-panel.component';
+
+// DIRECTIVES / ENTITIES 
+import { LogType               } from './_models/entity.model';
+import { BaseSortableHeader    } from './_directives/sortable.directive';
 
 // SERVICES
-import { ConfigService } from './_services/__Utils/ConfigService/config.service';
+import { ConfigService  } from './_services/__Utils/ConfigService/config.service';
 import { BackendService } from './_services/BackendService/backend.service';
-import { LogType } from './_models/entity.model';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+// THIRD PARTY
+import { NgbModule      } from '@ng-bootstrap/ng-bootstrap';
 
 // --- MANTENEMOS LA CLASE AQUÍ PARA EVITAR EL ERROR DE IMPORTACIÓN ---
 @Injectable({
