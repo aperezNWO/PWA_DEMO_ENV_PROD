@@ -241,7 +241,7 @@
  
  -- [_] check errors / improvements (section).   
     
-    --[_] global error handling error.
+    -- [_] global error handlling (check SharedModule).
 
     --[_] computer vision c++ fix (reads only one shape).
 
@@ -319,7 +319,7 @@
 
  -- [_] architecture overhauling.
 
-        -- [_] global error handlling.
+        -- [_] global error handlling (check SharedModule).
 
         -- [_] jwt and security.
 
