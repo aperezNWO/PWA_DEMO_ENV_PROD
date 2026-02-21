@@ -1,4 +1,4 @@
-import { Component, OnInit, VERSION    } from '@angular/core';
+import { Component,VERSION             } from '@angular/core';
 import { Title                         } from '@angular/platform-browser';
 import { BackendService                } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService                 } from 'src/app/_services/__Utils/ConfigService/config.service';
@@ -17,6 +17,7 @@ export class NavComponent {
     public readonly _title                                       : string | undefined  = "";
     public readonly _appEnv                                      : string | undefined  = "";
     public readonly _appVersion                                  : string | undefined  = "";
+    public readonly _runtimeVersion                              : string | undefined  = VERSION.full;
     //
     public  _navbarCollapsed                                     : boolean = true;
     //
@@ -71,6 +72,8 @@ export class NavComponent {
       keyName          = 'appVersion';
       keyValue         = this._configService.getConfigValue(keyName);
       this._appVersion = keyValue;
+      //
+
       //
       let title : string = `${this._appBrand} -- ${this._appEnv} -- ${this._appVersion}`;
       //

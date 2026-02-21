@@ -1,12 +1,11 @@
-import { Component, signal, VERSION        } from '@angular/core';
-import { ActivatedRoute                    } from '@angular/router';
-import { ConfigService                     } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { BaseComponent                     } from 'src/app/_components/base/base.component';
-import { SpeechService                     } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { PAGE_ABOUT_TECHNICAL_SPECS        } from 'src/app/_models/common';
-import { BackendService                    } from '../../../../_services/BackendService/backend.service';
+import { Component, signal, VERSION         } from '@angular/core';
+import { ActivatedRoute                     } from '@angular/router';
+import { PAGE_ABOUT_TECHNICAL_SPECS         } from 'src/app/_models/common';
+import { BaseComponent                      } from 'src/app/_components/base/base.component';
+import { SpeechService                      } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ConfigService                      } from 'src/app/_services/__Utils/ConfigService/config.service'
 import { VersionBundle, VersionCacheService } from 'src/app/_services/__Utils/VersionCacheService/versio-cache.service';
-
+import { BackendService                     } from '../../../../_services/BackendService/backend.service';
 //
 @Component({
     selector: 'app-technical-specs',
