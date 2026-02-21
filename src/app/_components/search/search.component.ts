@@ -5,10 +5,10 @@ import { _BaseModel, SiteRole               } from 'src/app/_models/entity.model
 import { SearchService                      } from 'src/app/_services/__Utils/SearchService/search.service';
 
 @Component({
-    selector: 'app-search',
+    selector: 'app-search-custom',
     templateUrl: './search.component.html',
     styleUrl: './search.component.css',
-    standalone: true
+    standalone: false
 })
 export class SearchComponent {
 
@@ -20,8 +20,8 @@ export class SearchComponent {
   //
   public ConfigRoleString: string = SiteRole.RoleConfig.toString();
 
-  constructor(public searchService         : SearchService,
-
+  constructor(
+        public searchService         : SearchService,
   )
   {
     //

@@ -2,7 +2,7 @@ import { DecimalPipe                           } from "@angular/common";
 import { Inject, Injectable                    } from "@angular/core";
 import { _BaseModel                            } from "src/app/_models/entity.model";
 import { _environment                          } from "src/environments/environment";
-import { PAGE_DEMOS_DJANGO_PYTHON, PAGE_ID, PAGE_SIZE, SEARCH_TERM       } from "src/app/_models/common";
+import { PAGE_ID, PAGE_SIZE, SEARCH_TERM       } from "src/app/_models/common";
 import { ConfigService                                                                       } from "../ConfigService/config.service";
 import { BackendService                                                                      } from "../../BackendService/backend.service";
 import { SpeechService                                                                       } from "../SpeechService/speech.service";
@@ -12,7 +12,7 @@ import { _SearchState, _BaseSearchResult, matches, _SortColumn, _SortDirection, 
 @Injectable({
   providedIn: 'root'
 })
-export class __SearchService  {
+export class SearchCustomService  {
 	// 1.
 	public _loading               = new BehaviorSubject<boolean>(true);
 	public _search$               = new Subject<void>();
@@ -43,7 +43,6 @@ export class __SearchService  {
 				private speechService     : SpeechService,
 	) 
 	{
-		//let PAGE_ID = PAGE_DEMOS_DJANGO_PYTHON;
 		//
 		this.GetData(PAGE_ID);
 		//
@@ -118,10 +117,9 @@ export class __SearchService  {
 		}));
 
 		// 1.1. fix field4 - Backend
-		let _field4_Fixed = 1;
 		_searchPages = _searchPages.map(page => ({
 			...page,
-			field_4:  this.fixBackend(page.field_4)
+			field_7:  this.fixBackend(page.field_7)
 		}));
 
 		// 2. sort
@@ -229,6 +227,16 @@ export class __SearchService  {
 	}
 	//
 	public fixBackend(field_4_input: string): string {
+		// Comprehensive validation
+		if (typeof field_4_input !== 'string' || !field_4_input.trim()) {
+			console.debug('field_4_input: Invalid input', { input: field_4_input });
+			return '';
+		}
+		// Comprehensive validation
+		if (typeof field_4_input !== 'string' || !field_4_input.trim()) {
+			console.debug('field_4_input: Invalid input', { input: field_4_input });
+			return '';
+		}
 		// Regex to match {{anything}} (non-greedy)
 		const regex = /\{\{(.+?)\}\}/g;
 
@@ -251,5 +259,3 @@ export class __SearchService  {
 		//return field_4_ouput;
 	}
 }
-
-

@@ -2,8 +2,8 @@ import { Component, ErrorHandler                                               }
 import { Router                                                  } from '@angular/router';
 import { PAGE_CURRICULUM_ANGULAR, PAGE_ID, PAGE_SIZE,SEARCH_TERM } from 'src/app/_models/common';
 import { ConfigService                                           } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { _SearchService                                          } from 'src/app/_services/__Utils/SearchService/_search.service';
-import { _SearchComponent                                        } from 'src/app/_components/search/_search.component ';
+import { SearchCustomService                                          } from 'src/app/_services/__Utils/SearchService/search-custom.service';
+import { SearchCustomComponent                                        } from 'src/app/_components/search/search-custom.component ';
 import { SharedModule } from 'src/app/_modules/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SpeechPanelComponent } from 'src/app/_components/speech-panel/speech-panel.component';
@@ -16,7 +16,7 @@ import { CustomErrorHandler } from 'src/app/app.module';
     styleUrl: './curriculumAngular.component.css',
     providers: [
         ConfigService,
-        _SearchService,
+        SearchCustomService,
         { provide: PAGE_ID, useValue: PAGE_CURRICULUM_ANGULAR }, // Unique ID for this component
         { provide: PAGE_SIZE, useValue: 8 },
         { provide: SEARCH_TERM,
@@ -35,13 +35,13 @@ import { CustomErrorHandler } from 'src/app/app.module';
     ],
     standalone: true
 })
-export class CurriculumAngularComponent extends _SearchComponent  
+export class CurriculumAngularComponent extends SearchCustomComponent  
 {
     //
     toogleLisCaption: string = "[Ir a Demos / Angular ...]";
     //
     constructor(
-                public override searchService         : _SearchService,
+                public override searchService         : SearchCustomService,
                 public          router                : Router,
     )  
     {

@@ -6,9 +6,9 @@ import { BaseSortableHeader                                            } from 's
 import { PAGE_ID, PAGE_SIZE,SEARCH_TERM                                } from 'src/app/_models/common';
 import { _environment                                                  } from 'src/environments/environment';
 import { ConfigService                                                 } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { __SearchService                                               } from 'src/app/_services/__Utils/SearchService/__search.service';
+import { SearchService                                               } from 'src/app/_services/__Utils/SearchService/search.service';
 import { SpeechPanelComponent                                          } from '../speech-panel/speech-panel.component';
-import { __SearchComponent                                             } from '../search/__search.component';
+import { SearchComponent                                             } from '../search/search.component';
 
 
 
@@ -18,7 +18,7 @@ import { __SearchComponent                                             } from '.
     styleUrl: './grid-param.component.css',
     providers: [
         ConfigService,
-        __SearchService,
+        SearchService,
         { provide: PAGE_ID,
             useFactory: (configService: ConfigService) => configService.queryUrlParams("pageName"),
             deps: [ConfigService]
@@ -31,13 +31,13 @@ import { __SearchComponent                                             } from '.
     ],
     standalone: false 
 })
-export class GridParamComponent extends __SearchComponent  
+export class GridParamComponent extends SearchComponent  
 {
       //
       toogleLisCaption: string = "[Ir a Referencia - <page_nanme>...]";
       //
       constructor(
-                  public override searchService         : __SearchService,
+                  public override searchService         : SearchService,
                   public          router                : Router,
       )
       {

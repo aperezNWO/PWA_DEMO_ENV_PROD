@@ -2,15 +2,17 @@ import { Component, QueryList, ViewChildren } from '@angular/core';
 import { Observable                         } from 'rxjs';
 import { BaseSortableHeader, _BaseSortEvent } from 'src/app/_directives/sortable.directive';
 import { _BaseModel, SiteRole               } from 'src/app/_models/entity.model';
-import { __SearchService                    } from 'src/app/_services/__Utils/SearchService/__search.service';
+import { SearchCustomService                } from 'src/app/_services/__Utils/SearchService/search-custom.service';
+
+
 
 @Component({
-    selector: 'app-search-custom',
+    selector: 'app-search_',
     templateUrl: './search.component.html',
     styleUrl: './search.component.css',
     standalone: false
 })
-export class __SearchComponent {
+export class SearchCustomComponent {
 
   //
   public __pages!:     Observable<_BaseModel[]>;
@@ -21,7 +23,7 @@ export class __SearchComponent {
   public ConfigRoleString: string = SiteRole.RoleConfig.toString();
 
   constructor(
-        public searchService         : __SearchService,
+        public searchService         : SearchCustomService,
   )
   {
     //

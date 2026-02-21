@@ -3,7 +3,9 @@ import { Inject, Injectable                    } from "@angular/core";
 import { _BaseModel                            } from "src/app/_models/entity.model";
 import { _environment                          } from "src/environments/environment";
 import { PAGE_ID, PAGE_SIZE, SEARCH_TERM       } from "src/app/_models/common";
-import { ConfigService                         } from "../ConfigService/config.service";
+import { ConfigService                                                                       } from "../ConfigService/config.service";
+import { BackendService                                                                      } from "../../BackendService/backend.service";
+import { SpeechService                                                                       } from "../SpeechService/speech.service";
 import { BehaviorSubject, Subject, tap, debounceTime, switchMap, delay, Observable, of       } from "rxjs";
 import { _SearchState, _BaseSearchResult, matches, _SortColumn, _SortDirection, sort         } from "src/app/_directives/sortable.directive";
 
@@ -16,6 +18,8 @@ export class SearchService  {
 	public _search$               = new Subject<void>();
 	private _Pagelist             = new BehaviorSubject<_BaseModel[]>([]);
 	public _total                 = new BehaviorSubject<number>(0);
+	private _pageTitle            : string = "";
+	private _PAGE_ID              : string = "";
 	// 1.
 	private  _environmentList : string[] = [];
 	// 2. 
@@ -34,26 +38,30 @@ export class SearchService  {
 				@Inject(SEARCH_TERM) 
 				private SEARCH_TERM       : string,
 				private pipe              : DecimalPipe,
-				private __configService   : ConfigService
+				private __configService   : ConfigService,
+				private backendService    : BackendService,
+				private speechService     : SpeechService,
 	) 
 	{
+		//let PAGE_ID = PAGE_DEMOS_DJANGO_PYTHON;
 		//
 		this.GetData(PAGE_ID);
 		//
 		this.pageSize   = PAGE_SIZE;
 		//
 		this.searchTerm = SEARCH_TERM;
-		//
-		//console.log("SEARCH_TERM" + SEARCH_TERM);
-
 	}
 	// 4. Get Data
-	private GetData(_PAGE_ID : string):void{
-			// 1. get data 
-			const pageSetting    = _environment.pageSettingDictionary[_PAGE_ID ];
-			//
-			this.__configService.loadJsonData(pageSetting.p_Path,
-			this._environmentList).then(() => {
+	private GetData(PAGE_ID : string):void{
+
+		this.__configService._loadMainPages().then( ()=> 
+		{
+				// 1. get data 
+				this.pageTitle       = _environment.mainPageListDictionary[PAGE_ID ].page_name;
+				const pageSetting    = _environment.mainPageListDictionary[PAGE_ID ];
+				//
+				this.__configService.loadJsonData(pageSetting.pages[0].url,
+				this._environmentList).then(() => {
 					/*
 						In Angular and RxJS (Reactive Extensions for JavaScript), the pipe method is a core feature of Observables . 
 						It allows you to combine multiple RxJS operators (like map, filter, debounceTime, etc.) 
@@ -76,7 +84,16 @@ export class SearchService  {
 					});
 					//
 					this._search$.next();
-			});
+					//
+					console.info("speak " + this.pageTitle);
+					//
+					console.info("log   " + this.pageID);
+					//
+					this.speechService.speakTextCustom(this.pageTitle);
+					//
+					this.backendService.SetLog(this.pageTitle,this.pageID);
+			    });
+		});
 	}						
 	// 5. 
 	public _search(): Observable<_BaseSearchResult> {
@@ -92,6 +109,20 @@ export class SearchService  {
 		this._environmentList.forEach((element: any) => {
 				_searchPages.push(element);
 		});
+
+		// 1.1. fix id field
+		let idfixed = 1;
+		_searchPages = _searchPages.map(page => ({
+			...page,
+			id: idfixed++
+		}));
+
+		// 1.1. fix field4 - Backend
+		let _field4_Fixed = 1;
+		_searchPages = _searchPages.map(page => ({
+			...page,
+			field_4:  this.fixBackend(page.field_4)
+		}));
 
 		// 2. sort
 		_searchPages = sort(_searchPages, sortColumn, sortDirection);
@@ -112,6 +143,24 @@ export class SearchService  {
 	//////////////////////////////////////////////////////////////////////
 	// 6. PROPERTIES
 	//////////////////////////////////////////////////////////////////////
+	//
+	public get pageID()
+	{
+		return this._PAGE_ID;
+	}
+	public set pageID(value : string)
+	{
+		this._PAGE_ID = value;
+	}
+	//
+	public get pageTitle()
+	{
+		return this._pageTitle
+	}
+	public set pageTitle(value : string)
+	{
+		this._pageTitle = value;
+	}
 	//
 	public get total() {
 		return this._total!.asObservable();
@@ -178,4 +227,29 @@ export class SearchService  {
 	{
 		 this.searchTerm = "";
 	}
+	//
+	public fixBackend(field_4_input: string): string {
+		// Regex to match {{anything}} (non-greedy)
+		const regex = /\{\{(.+?)\}\}/g;
+
+		let field_4_ouput : string  = field_4_input;
+		let variable      : string  = '';
+
+		return field_4_input.replace(regex, (match, variable) => {
+			// Trim whitespace from variable name
+			const cleanVariable = variable.trim();
+			
+			// Get replacement from custom function
+			let replacement = field_4_input;
+			
+			if (cleanVariable !== undefined)
+				replacement = this.__configService.getConfigValue(cleanVariable);
+			
+			// Return replacement or original if not found
+			return replacement !== undefined ? replacement : match;
+		});
+		//return field_4_ouput;
+	}
 }
+
+

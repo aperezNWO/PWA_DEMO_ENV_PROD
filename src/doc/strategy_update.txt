@@ -422,4 +422,6 @@
 
         -- [_] Index v21 style.
 
+        -- [_] ngbgrids custom (scm / angular curriculum) with custom schema.
+
 ////////////////////////////////////////////////////////////////////////////////
