@@ -403,7 +403,7 @@
 
   -- [_] new curiculum angular 
 
-        --[_] app version on nad module.
+        --[x] app version on nav module.
 
         --[_] Module Federation questions.
 
