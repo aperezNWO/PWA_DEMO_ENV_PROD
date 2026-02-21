@@ -196,6 +196,8 @@
  
  -- [_] check errors / improvements (section).   
     
+    --[_] httpinterceptor global not working.
+
     -- [_] global error handlling (check SharedModule).
 
     --[_] computer vision c++ fix (reads only one shape).
