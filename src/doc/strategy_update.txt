@@ -396,7 +396,7 @@
 
         -- [_] modify SMTP note to customers (deepwiki link).
 
-        -- [_] add codewiki links from other repos.
+        -- [_] add codewiki links from other backends/repos.
 
   --[_] Vision Hub references update.
 
@@ -417,5 +417,7 @@
         -- [_] whats new 17x to 21x.
 
         -- [_] AppModule, App comonent v21 style.
+
+        -- [_] Index v21 style.
 
 ////////////////////////////////////////////////////////////////////////////////
