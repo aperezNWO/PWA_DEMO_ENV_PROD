@@ -2,6 +2,52 @@
 // STRATEGY DONE 
 /////////////////////////////////////////////////////////////////
 
+
+
+  -- [x] MODULES
+
+        --[x] games module.
+
+        --[x] filegeneration module.
+
+        --[x] algorithms module.
+
+        --[x] miscelaneous module.
+
+        -- [x] about module.
+
+        -- [x] machine learning module -> linear regression as standalone.
+
+        -- [x] home as standalone component.
+
+        -- [x] curiculum angular as standalone.
+
+        -- [x] standalone components.
+
+        -- [x] App module purge.
+
+ -- [x] Educational Resources : The Odin Project.
+
+ -- [x] INDEX -> DON'T SHOW EMPTY ITEMS.
+
+ -- [x] validate empty image on ocr / opencv.
+
+ -- [x] Fractal Demo. change text with gauges (tictactoe-ai example).  
+
+ -- [x] sort demo -> change buttons order.
+
+ -- [x] file generation module.
+
+ -- [x] COLLISION DEMO.
+
+        --[x] MATH.JS.
+        
+        --[x] VERTICAL / HORIZONTAL GAUGES.
+        
+        --[x] START BUTTON.
+        
+        --[x] DRAW COORDINATES.
+        
 --[x] Improve Hanoi Program.
      
       --[>>] Hanoi RJXS
