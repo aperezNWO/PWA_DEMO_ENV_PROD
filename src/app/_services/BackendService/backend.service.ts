@@ -1,10 +1,18 @@
-        import { Injectable, OnInit, inject, DestroyRef } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+// ANGULAR CORE
+import { Injectable, OnInit, inject, DestroyRef } from '@angular/core';
+import { HttpClient, HttpHeaders                } from '@angular/common/http';
+
+// GLOBAL
 import { LogEntry, LogType, SearchCriteria } from '../../_models/entity.model';
+
+// SERVICES
 import { ConfigService } from '../__Utils/ConfigService/config.service';
-import { BaseService } from '../__baseService/base.service';
+import { BaseService   } from '../__baseService/base.service';
+
+// THIRD PARTY
+import { Observable               } from 'rxjs';
+import { takeUntilDestroyed       } from '@angular/core/rxjs-interop';
+
 
 /**
  * v21 Update: Se utiliza la inyección de dependencias funcional y DestroyRef
@@ -16,7 +24,7 @@ import { BaseService } from '../__baseService/base.service';
 export class BackendService extends BaseService implements OnInit {
 
   // v21: Inyección funcional (Reemplaza al constructor)
-  public readonly http = inject(HttpClient);
+  public readonly http           = inject(HttpClient);
   public readonly _configService = inject(ConfigService);
   
   /**
