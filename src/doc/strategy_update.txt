@@ -432,9 +432,11 @@
 
   --[_] code description.
 
-        --[_] Gemini CLI code description.
+        -- [_] Gemini CLI code description.
 
-        --[_] https://deepwiki.com/aperezNWO/PWA_DEMO_ENV_PROD.
+        -- [_] https://deepwiki.com/aperezNWO/PWA_DEMO_ENV_PROD.
+
+        -- [_] modify SMTP note to customers (deepwiki link).
 
   --[_] Vision Hub references update.
 
@@ -455,5 +457,6 @@
         -- [_] whats new 17x to 21x.
 
         -- [_] AppModule, App comonent v21 style.
+
 
 ////////////////////////////////////////////////////////////////////////////////
