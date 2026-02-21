@@ -1,46 +1,70 @@
-import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute                             } from '@angular/router';
-import { BaseReferenceComponent                     } from 'src/app/_components/base-reference/base-reference.component';
-import { BackendService                             } from 'src/app/_services/BackendService/backend.service';
-import { SpeechService                              } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { ConfigService                              } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { PAGE_GAMES_TETRIS, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
-import { interval, Subscription                     } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Component, HostListener, OnInit, OnDestroy, signal, computed, effect, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { interval, Subscription } from 'rxjs';
+import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
+import { PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
+import { TetrisService } from 'src/app/_services/__Games/TetrisService/tetris.service';
+import { ConfigService } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { SpeechService } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { BackendService } from 'src/app/_services/BackendService/backend.service';
 
+// Define interfaces
 interface Position {
   x: number;
   y: number;
 }
 
+interface Tetromino {
+  shape: number[][];
+  color: string;
+}
+
+type TetrominoType = 'I' | 'O' | 'T' | 'S' | 'Z' | 'J' | 'L';
+
 @Component({
-    selector: 'app-game-tetris',
-    templateUrl: './game-tetris.component.html',
-    styleUrl: './game-tetris.component.css',
-    providers: [
-        {
-            provide: PAGE_TITLE_LOG,
-            useValue: PAGE_GAMES_TETRIS
-        },
-    ],
-    standalone: false
+  selector: 'app-game-tetris',
+  templateUrl: './game-tetris.component.html',
+  styleUrl: './game-tetris.component.css',
+  standalone : false
 })
 export class GameTetrisComponent extends BaseReferenceComponent implements OnInit, OnDestroy {
-  readonly BOARD_WIDTH = 10;
-  readonly BOARD_HEIGHT = 20;
-  readonly TICK_INTERVAL = 500; // Faster than before
+  // Constants
+  private readonly BOARD_WIDTH = 10;
+  private readonly BOARD_HEIGHT = 20;
+  private readonly TICK_INTERVAL = 500;
   
-  board: string[][] = [];
-  displayBoard: string[][] = [];
-  currentPiece: Position[] = [];
-  currentColor: string = '';
-  score: number = 0;
-  isPlaying: boolean = false;
-  gameOver: boolean = false;
-  isMobile: boolean = false;
+  // Signals for reactive state
+  private board = signal<string[][]>([]);
+  private currentPiece = signal<Position[]>([]);
+  private currentColor = signal<string>('');
+  private lockedScore = signal<number>(0);
+  private lockedIsPlaying = signal<boolean>(false);
+  private lockedGameOver = signal<boolean>(false);
+  private lockedIsMobile = signal<boolean>(false);
+  
+  // Computed signals
+  readonly displayBoard = computed(() => {
+    const boardCopy = this.board().map(row => [...row]);
+    
+    // Add current piece to display
+    this.currentPiece().forEach(pos => {
+      if (pos.y >= 0 && pos.y < this.BOARD_HEIGHT) {
+        boardCopy[pos.y][pos.x] = this.currentColor();
+      }
+    });
+    
+    return boardCopy;
+  });
+  
+  readonly score = computed(() => this.lockedScore());
+  readonly isPlaying = computed(() => this.lockedIsPlaying());
+  readonly gameOver = computed(() => this.lockedGameOver());
+  readonly isMobile = computed(() => this.lockedIsMobile());
   
   private gameLoop$?: Subscription;
 
-  readonly TETROMINOS = {
+  private readonly TETROMINOS: Record<TetrominoType, Tetromino> = {
     I: { shape: [[1, 1, 1, 1]], color: '#00f0f0' },
     O: { shape: [[1, 1], [1, 1]], color: '#f0f000' },
     T: { shape: [[0, 1, 0], [1, 1, 1]], color: '#a000f0' },
@@ -50,25 +74,37 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
     L: { shape: [[0, 0, 1], [1, 1, 1]], color: '#f0a000' }
   };
 
-  constructor(
-    public override configService: ConfigService,
-    public override route: ActivatedRoute,
-    public override speechService: SpeechService,
-    public override backendService: BackendService
-  ) {
-    super(configService, backendService, route, speechService, PAGE_TITLE_NO_SOUND);
-  }
-
+    constructor(    private http: HttpClient, 
+                    private cd: ChangeDetectorRef,
+                    public  override configService    : ConfigService,
+                    public  override route            : ActivatedRoute,
+                    public  override speechService    : SpeechService,
+                    public  override backendService   : BackendService,
+                    public  tetrisService: TetrisService) 
+    { 
+        //
+        super(configService,
+              backendService,
+              route,
+              speechService,
+              PAGE_TITLE_NO_SOUND,
+        )
+            // Effect for debugging or side effects if needed
+      effect(() => {
+      if (this.gameOver()) {
+        console.log('Game Over! Final score:', this.score());
+      }
+    });
+  }  
+ 
   ngOnInit() {
-    this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    // Initialize and start the game immediately
+    this.lockedIsMobile.set(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
     this.startGame();
   }
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    if (!this.isPlaying || this.gameOver) return;
+    if (!this.isPlaying() || this.gameOver()) return;
     
     switch(event.key) {
       case 'ArrowLeft':
@@ -94,11 +130,10 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
     }
   }
 
-  initBoard() {
-    this.board = Array(this.BOARD_HEIGHT).fill(null)
+  private initBoard() {
+    const newBoard = Array(this.BOARD_HEIGHT).fill(null)
       .map(() => Array(this.BOARD_WIDTH).fill(''));
-    this.displayBoard = Array(this.BOARD_HEIGHT).fill(null)
-      .map(() => Array(this.BOARD_WIDTH).fill(''));
+    this.board.set(newBoard);
   }
 
   startGame() {
@@ -109,24 +144,21 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
     
     // Reset game state
     this.initBoard();
-    this.score = 0;
-    this.gameOver = false;
-    this.isPlaying = true;
-    this.currentPiece = [];
-    this.currentColor = '';
+    this.lockedScore.set(0);
+    this.lockedGameOver.set(false);
+    this.lockedIsPlaying.set(true);
+    this.currentPiece.set([]);
+    this.currentColor.set('');
     
     // Spawn first piece
     this.spawnPiece();
     
     // Start game loop
     this.gameLoop$ = interval(this.TICK_INTERVAL).subscribe(() => {
-      if (!this.gameOver) {
+      if (!this.gameOver()) {
         this.moveDown();
       }
     });
-    
-    // Update display immediately
-    this.updateDisplayBoard();
   }
 
   resetGame() {
@@ -137,69 +169,63 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
     
     // Reset all game state
     this.initBoard();
-    this.score = 0;
-    this.gameOver = false;
-    this.isPlaying = true;
-    this.currentPiece = [];
-    this.currentColor = '';
+    this.lockedScore.set(0);
+    this.lockedGameOver.set(false);
+    this.lockedIsPlaying.set(true);
+    this.currentPiece.set([]);
+    this.currentColor.set('');
     
     // Start fresh game
     this.spawnPiece();
     
     // Restart game loop
     this.gameLoop$ = interval(this.TICK_INTERVAL).subscribe(() => {
-      if (!this.gameOver) {
+      if (!this.gameOver()) {
         this.moveDown();
       }
     });
-    
-    this.updateDisplayBoard();
   }
 
-  spawnPiece() {
-    const pieces = Object.keys(this.TETROMINOS);
-    const randomPiece = pieces[Math.floor(Math.random() * pieces.length)] as keyof typeof this.TETROMINOS;
+  private spawnPiece() {
+    const pieces = Object.keys(this.TETROMINOS) as TetrominoType[];
+    const randomPiece = pieces[Math.floor(Math.random() * pieces.length)];
     const piece = this.TETROMINOS[randomPiece];
     
-    this.currentPiece = piece.shape.flatMap((row, y) => 
+    const newPiece = piece.shape.flatMap((row, y) => 
       row.map((cell, x) => cell ? { x: x + Math.floor(this.BOARD_WIDTH/2) - 1, y } : null)
     ).filter((pos): pos is Position => pos !== null);
     
-    this.currentColor = piece.color;
+    this.currentPiece.set(newPiece);
+    this.currentColor.set(piece.color);
     
     // Check for game over
     if (this.checkCollision()) {
-      this.gameOver = true;
-      this.isPlaying = false;
+      this.lockedGameOver.set(true);
+      this.lockedIsPlaying.set(false);
       if (this.gameLoop$) {
         this.gameLoop$.unsubscribe();
       }
     }
-    
-    this.updateDisplayBoard();
   }
 
   moveLeft() {
-    const newPositions = this.currentPiece.map(pos => ({ ...pos, x: pos.x - 1 }));
+    const newPositions = this.currentPiece().map(pos => ({ ...pos, x: pos.x - 1 }));
     if (this.isValidMove(newPositions)) {
-      this.currentPiece = newPositions;
-      this.updateDisplayBoard();
+      this.currentPiece.set(newPositions);
     }
   }
 
   moveRight() {
-    const newPositions = this.currentPiece.map(pos => ({ ...pos, x: pos.x + 1 }));
+    const newPositions = this.currentPiece().map(pos => ({ ...pos, x: pos.x + 1 }));
     if (this.isValidMove(newPositions)) {
-      this.currentPiece = newPositions;
-      this.updateDisplayBoard();
+      this.currentPiece.set(newPositions);
     }
   }
 
   moveDown() {
-    const newPositions = this.currentPiece.map(pos => ({ ...pos, y: pos.y + 1 }));
+    const newPositions = this.currentPiece().map(pos => ({ ...pos, y: pos.y + 1 }));
     if (this.isValidMove(newPositions)) {
-      this.currentPiece = newPositions;
-      this.updateDisplayBoard();
+      this.currentPiece.set(newPositions);
     } else {
       this.lockPiece();
       this.clearLines();
@@ -208,82 +234,79 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
   }
 
   drop() {
-    while (this.isValidMove(this.currentPiece.map(pos => ({ ...pos, y: pos.y + 1 })))) {
-      this.currentPiece = this.currentPiece.map(pos => ({ ...pos, y: pos.y + 1 }));
+    while (this.isValidMove(this.currentPiece().map(pos => ({ ...pos, y: pos.y + 1 })))) {
+      this.currentPiece.update(pieces => 
+        pieces.map(pos => ({ ...pos, y: pos.y + 1 }))
+      );
     }
-    this.updateDisplayBoard();
     this.lockPiece();
     this.clearLines();
     this.spawnPiece();
   }
 
   rotate() {
-    if (!this.currentPiece.length) return;
+    const currentPieces = this.currentPiece();
+    if (!currentPieces.length) return;
     
-    const center = this.currentPiece[1] || this.currentPiece[0]; // Use second block as rotation center, fall back to first
-    const newPositions = this.currentPiece.map(pos => ({
+    const center = currentPieces[1] || currentPieces[0];
+    const newPositions = currentPieces.map(pos => ({
       x: center.x - (pos.y - center.y),
       y: center.y + (pos.x - center.x)
     }));
     
     if (this.isValidMove(newPositions)) {
-      this.currentPiece = newPositions;
-      this.updateDisplayBoard();
+      this.currentPiece.set(newPositions);
     }
   }
 
-  isValidMove(positions: Position[]): boolean {
+  private isValidMove(positions: Position[]): boolean {
+    const currentBoard = this.board();
     return positions.every(pos => 
       pos.x >= 0 && 
       pos.x < this.BOARD_WIDTH &&
       pos.y >= 0 && 
       pos.y < this.BOARD_HEIGHT &&
-      !this.board[pos.y]?.[pos.x]
+      !currentBoard[pos.y]?.[pos.x]
     );
   }
 
-  checkCollision(): boolean {
-    return !this.isValidMove(this.currentPiece);
+  private checkCollision(): boolean {
+    return !this.isValidMove(this.currentPiece());
   }
 
-  updateDisplayBoard() {
-    // Copy the locked pieces board
-    this.displayBoard = this.board.map(row => [...row]);
-    
-    // Add current piece to display
-    this.currentPiece.forEach(pos => {
-      if (pos.y >= 0 && pos.y < this.BOARD_HEIGHT) {
-        this.displayBoard[pos.y][pos.x] = this.currentColor;
-      }
+  private lockPiece() {
+    this.board.update(currentBoard => {
+      const newBoard = currentBoard.map(row => [...row]);
+      this.currentPiece().forEach(pos => {
+        if (pos.y >= 0 && pos.y < this.BOARD_HEIGHT) {
+          newBoard[pos.y][pos.x] = this.currentColor();
+        }
+      });
+      return newBoard;
     });
   }
 
-  lockPiece() {
-    this.currentPiece.forEach(pos => {
-      if (pos.y >= 0 && pos.y < this.BOARD_HEIGHT) {
-        this.board[pos.y][pos.x] = this.currentColor;
-      }
-    });
-    this.updateDisplayBoard();
-  }
-
-  clearLines() {
+  private clearLines() {
     let linesCleared = 0;
     
-    for (let y = this.BOARD_HEIGHT - 1; y >= 0; y--) {
-      if (this.board[y].every(cell => cell !== '')) {
-        this.board.splice(y, 1);
-        this.board.unshift(Array(this.BOARD_WIDTH).fill(''));
-        linesCleared++;
-        y++; // Check the same line again
+    this.board.update(currentBoard => {
+      const newBoard = [...currentBoard];
+      
+      for (let y = this.BOARD_HEIGHT - 1; y >= 0; y--) {
+        if (newBoard[y].every(cell => cell !== '')) {
+          newBoard.splice(y, 1);
+          newBoard.unshift(Array(this.BOARD_WIDTH).fill(''));
+          linesCleared++;
+          y++; // Check the same line again
+        }
       }
-    }
+      
+      return newBoard;
+    });
 
     if (linesCleared > 0) {
-      this.score += Math.pow(2, linesCleared - 1) * 100;
+      this.lockedScore.update(score => score + Math.pow(2, linesCleared - 1) * 100);
     }
-    
-    this.updateDisplayBoard();
   }
 
   ngOnDestroy() {
