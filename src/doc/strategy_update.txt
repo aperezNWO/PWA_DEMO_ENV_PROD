@@ -396,6 +396,8 @@
 
         -- [_] modify SMTP note to customers (deepwiki link).
 
+        -- [_] add codewiki links from other repos.
+
   --[_] Vision Hub references update.
 
         --[_] links to code.
