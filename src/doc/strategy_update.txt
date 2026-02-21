@@ -315,15 +315,19 @@
 
         -- [_] datagrids row master / detail.     
 
+        -- [_] dynamic schenma.
+
+        -- [_] Merge Datagrids.
+
 --[_] git hub pages (single code base, different landing page)
 
         -- [>] FREE DISK SPACE.  
 
         -- [>] UNINSTALL PYTHON ANACONDA.  
 
-        --[_] https://apereznwo.github.io/NG_BOOTSTRAP_DEMO_ENV_DEV/#/Home -> PWA_DEMO_ENV_TF_OPEN_CV
+        -- [_] https://apereznwo.github.io/NG_BOOTSTRAP_DEMO_ENV_DEV/#/Home -> PWA_DEMO_ENV_TF_OPEN_CV
 
-        --[_] https://apereznwo.github.io/PWA_DEMO_ENV_DEV/#/              -> PWA_DEMO_ENV_CORE (MODULE FEDERATION)
+        -- [_] https://apereznwo.github.io/PWA_DEMO_ENV_DEV/#/              -> PWA_DEMO_ENV_CORE (MODULE FEDERATION)
 
         -- [>] PUBLISH ENV_PROD.  
 
@@ -369,6 +373,7 @@
 
         --[_] Angular Regular updates to latest version.
 
+        --[_] Check backends.
 
   --[_] FIX COMPONENT "pageurllist".
 
@@ -383,10 +388,6 @@
 
   --[_] Ask Gemini Angular UIX Questions with Images.
   
-  --[_] Check backends.
-
-  --[_] Merge Datagrids.
-
   --[_] code description.
 
         -- [_] Gemini CLI code description.
