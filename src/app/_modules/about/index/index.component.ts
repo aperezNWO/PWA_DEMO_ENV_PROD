@@ -1,219 +1,253 @@
-import { Component, PipeTransform, QueryList, ViewChildren } from '@angular/core';
-import { Directive, EventEmitter, Input, Output            } from '@angular/core';
-import { DecimalPipe                                       } from '@angular/common';
-import { _Route, routes                                    } from '../../../app-routing.module';
-import { BehaviorSubject, debounceTime, delay, Observable, of, Subject, switchMap, tap } from 'rxjs';
-//
-type SortDirection = 'asc' | 'desc' | '';
-//
-type SortColumn = keyof _Route | '';
-//
-//
-const pagerotate: { [key: string]: SortDirection } = { asc: 'desc', desc: '', '': 'asc' };
-//
-interface SearchState {
-      page          : number;
-      pageSize      : number;
-      searchTerm    : string;
-      sortColumn    : SortColumn;
-      sortDirection : SortDirection;
-}
-//
-interface BaseSortEvent {
-  column   : SortColumn;
-  direction: SortDirection;
-}
-//
-interface BaseSearchResult {
-  searchPages : _Route[];
-  total       : number;
-}   
-//
-function matches(netcoreConfigPagelist: _Route, term: string, pipe: PipeTransform) {
-    return (
-      netcoreConfigPagelist.caption?.toLowerCase().includes(term?.toLowerCase())        
-    );
-}
+// ANGULAR CORE
+import { 
+  Component, 
+  computed, 
+  Directive, 
+  effect, 
+  inject, 
+  input, 
+  model, 
+  output, 
+  signal, 
+  untracked, 
+  viewChildren 
+}                         from '@angular/core';
+import { DecimalPipe    } from '@angular/common';
+import { toSignal       } from '@angular/core/rxjs-interop';
+// GLOBAL
+import { _Route, routes } from '../../../app-routing.module';
+// THIRD PARTY
+import { debounceTime, delay, Observable, of, Subject, switchMap, tap } from 'rxjs';
+
+// ============================================================
+// TYPES - Exported to avoid naming collisions
+// ============================================================
 
 //
+export type Index_SortDirection                                     = 'asc' | 'desc' | '';
+export type Index_SortColumn                                        = keyof _Route | '';
+export const index_pagerotate: Record<Index_SortDirection, Index_SortDirection> = { 
+  asc: 'desc', 
+  desc: '', 
+  '': 'asc' 
+};
+//
+export interface Index_SearchState {
+  page: number;
+  pageSize: number;
+  searchTerm: string;
+  sortColumn: Index_SortColumn;
+  sortDirection: Index_SortDirection;
+}
+//
+export interface Index_SortEvent {
+  column: Index_SortColumn;
+  direction: Index_SortDirection;
+}
+
+export interface Index_SearchResult {
+  searchPages: _Route[];
+  total: number;
+}
+
+// ============================================================
+// HELPER FUNCTIONS
+// ============================================================
+
+function index_matches(route: _Route, term: string): boolean {
+  return route.caption?.toLowerCase().includes(term?.toLowerCase()) ?? false;
+}
+
+// ============================================================
+// SORTABLE HEADER DIRECTIVE
+// ============================================================
+
 @Directive({
-    selector: 'th[sortevent]',
-    host: {
-        '[class.asc]': 'direction === "asc"',
-        '[class.desc]': 'direction === "desc"',
-        '(click)': 'rotatePage()',
-    },
-    standalone: false
+  selector: 'th[appSortable]',
+  standalone: true,
+  host: {
+    '[class.asc]': 'direction() === "asc"',
+    '[class.desc]': 'direction() === "desc"',
+    '(click)': 'rotate()',
+  }
 })
-class BaseSortableHeader {
-  //
-  @Input() sortable   : SortColumn    = '';
-  @Input() direction  : SortDirection = '';
-  @Output() sortevent = new EventEmitter<BaseSortEvent>();
-  //
-  rotatePage() {
-    this.direction = pagerotate[this.direction];
-    this.sortevent.emit({
-       column   : this.sortable,
-       direction: this.direction
+export class IndexSortableHeader {
+  readonly sortable  = input<Index_SortColumn>('');
+  readonly direction = signal<Index_SortDirection>('');
+  
+  readonly sort = output<Index_SortEvent>();
+
+  rotate(): void {
+    const newDirection = index_pagerotate[this.direction()];
+    this.direction.set(newDirection);
+    this.sort.emit({
+      column: this.sortable(),
+      direction: newDirection
     });
   }
 }
 
+// ============================================================
+// INDEX COMPONENT
+// ============================================================
+
 @Component({
-    selector: 'app-index',
-    templateUrl: './index.component.html',
-    styleUrl: './index.component.css',
-    standalone: false
+  selector: 'app-index',
+  standalone: false,
+  templateUrl: './index.component.html',
+  styleUrl: './index.component.css'
 })
 export class IndexComponent {
-  //
-  @ViewChildren(BaseSortableHeader) headers: QueryList<BaseSortableHeader> | undefined;
-  //
-  public _loading = new BehaviorSubject<boolean>(true);
-  public _total   = new BehaviorSubject<number>(0);
-  public _search$ = new Subject<void>();
-  //
-  public _Pagelist = new BehaviorSubject<_Route[]>([]);
-  //
-  public _state: SearchState = {
+  // Dependencies
+  private pipe = inject(DecimalPipe);
+  
+  // View children
+  headers = viewChildren(IndexSortableHeader);
+  
+  // State
+  private state = signal<Index_SearchState>({
     page: 1,
     pageSize: 10,
     searchTerm: '',
     sortColumn: '',
     sortDirection: '',
-  };
-  //////////////////////////////////////////////////////////
-  //
-  constructor(
-    private pipe: DecimalPipe,
-  ) 
-  {
-    //
-    this._search$
-      .pipe(
-        tap(() => this._loading!.next(true)),
-        debounceTime(200),
-        switchMap(() => this._search()),
-        delay(200),
-        tap(() => this._loading!.next(false)),
-      )
-      .subscribe((result) => {
-        this._Pagelist!.next(result.searchPages);
-        this._total!.next(result.total);
+  });
+
+  // Readonly computed state
+  readonly currentPage = computed(() => this.state().page);
+  readonly pageSize    = computed(() => this.state().pageSize);
+  readonly searchTerm  = computed(() => this.state().searchTerm);
+  
+  // Model for ng-bootstrap two-way binding
+  page = model<number>(1);
+  
+  // Loading state
+  private loadingSignal     = signal<boolean>(true);
+  readonly loading          = this.loadingSignal.asReadonly();
+
+  // Search trigger
+  private searchTrigger     = new Subject<void>();
+
+  // Search result
+  private searchResult      = toSignal(
+    this.searchTrigger.pipe(
+      tap(() => this.loadingSignal.set(true)),
+      debounceTime(200),
+      switchMap(() => this.performSearch()),
+      delay(200),
+      tap(() => this.loadingSignal.set(false))
+    ),
+    { initialValue: { searchPages: [] as _Route[], total: 0 } }
+  );
+
+  // Computed results
+  readonly pagelist = computed(() => this.searchResult().searchPages);
+  readonly total    = computed(() => this.searchResult().total);
+
+  constructor() {
+    // Initial search
+    this.searchTrigger.next();
+    
+    // Sync model with state
+    effect(() => {
+      const currentPage = this.currentPage();
+      untracked(() => {
+        this.page.set(currentPage);
       });
-    //
-    this._search$.next();
+    });
+    
+    // Handle external page changes
+    effect(() => {
+      const modelPage = this.page();
+      untracked(() => {
+        if (modelPage !== this.state().page) {
+          this.state.update(s => ({ ...s, page: modelPage }));
+          this.searchTrigger.next();
+        }
+      });
+    });
+    
+    // Reset other headers when sorting changes
+    effect(() => {
+      const currentSort = this.state().sortColumn;
+      
+      untracked(() => {
+        this.headers().forEach(header => {
+          if (header.sortable() !== currentSort) {
+            header.direction.set('');
+          }
+        });
+      });
+    });
   }
-  //
-  private _search(): Observable<BaseSearchResult> {
-    //
-    let filteredRoutes: _Route[];
-    let _searchPages: any;
-    let _total: any;
-    let _searchResult: BaseSearchResult = { searchPages: _searchPages, total: _total };
 
-    // 0. get state
-    const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
-
-    // 1. get data - start with only routes that have captions
-    _searchPages   = routes.filter(route => 
+  private performSearch(): Observable<Index_SearchResult> {
+    const { sortColumn, sortDirection, pageSize, page, searchTerm } = this.state();
+    
+    // Filter routes with captions
+    let filteredRoutes = routes.filter(route => 
       route.caption && route.caption.trim() !== ''
     );
 
-    // 2. filter
-    _searchPages = _searchPages.filter((_searchPage: _Route) => matches(_searchPage, searchTerm, this.pipe));
-    _total       = _searchPages.length;
+    // Apply search filter
+    if (searchTerm) {
+      filteredRoutes = filteredRoutes.filter(route => index_matches(route, searchTerm));
+    }
 
-    // 3. paginate
-    _searchPages = _searchPages.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+    const total = filteredRoutes.length;
 
-    // 4. return
-    _searchResult = { searchPages: _searchPages, total: _total };
+    // Sort
+    if (sortColumn && sortDirection) {
+      filteredRoutes = [...filteredRoutes].sort((a, b) => {
+        const aVal = a[sortColumn];
+        const bVal = b[sortColumn];
+        
+        if (aVal === undefined || bVal === undefined) return 0;
+        
+        const comparison = String(aVal).localeCompare(String(bVal));
+        return sortDirection === 'asc' ? comparison : -comparison;
+      });
+    }
 
-    // 5. return
-    return of(_searchResult);
+    // Paginate
+    const paginatedRoutes = filteredRoutes.slice(
+      (page - 1) * pageSize, 
+      (page - 1) * pageSize + pageSize
+    );
+
+    return of({ searchPages: paginatedRoutes, total });
   }
-  //////////////////////////////////////////////////////////////////////
-  // PROPERTIES
-  //////////////////////////////////////////////////////////////////////
-  //
-  get total() {
-    return this._total!.asObservable();
+
+  // Public methods
+  setPage(page: number): void {
+    this.state.update(s => ({ ...s, page }));
+    this.searchTrigger.next();
   }
-  //
-  get loading() {
-    return this._loading!.asObservable();
+
+  setPageSize(pageSize: number): void {
+    this.state.update(s => ({ ...s, pageSize, page: 1 }));
+    this.searchTrigger.next();
   }
-  //
-  public get Pagelist() {
-    return this._Pagelist!.asObservable();
+
+  setSearchTerm(searchTerm: string): void {
+    this.state.update(s => ({ ...s, searchTerm, page: 1 }));
+    this.searchTrigger.next();
   }
-  //
-  public set Pagelist(value: any) {
-    this._Pagelist! = value;
+
+  onSort(event: Index_SortEvent): void {
+    this.state.update(s => ({
+      ...s,
+      sortColumn: event.column,
+      sortDirection: event.direction
+    }));
+    this.searchTrigger.next();
   }
-  //
-  get page() {
-    return this._state.page;
+
+  speakText(paramSearchTerm: string): void {
+    this.setSearchTerm(paramSearchTerm);
   }
-  //
-  set page(page: number) {
-    this._set({ page });
+
+  clearText(): void {
+    this.setSearchTerm('');
   }
-  //
-  public get pageSize() {
-    return this._state.pageSize;
-  }
-  //
-  set pageSize(pageSize: number) {
-    this._set({ pageSize });
-  }
-  //
-  get searchTerm() {
-    return this._state.searchTerm;
-  }
-  //
-  set searchTerm(searchTerm: string) {
-    this._set({ searchTerm });
-  }
-  //
-  set sortColumn(sortColumn: SortColumn) {
-    this._set({ sortColumn });
-  }
-  //
-  set sortDirection(sortDirection: SortDirection) {
-    this._set({ sortDirection });
-  }
-  //
-  private _set(patch: Partial<SearchState>) {
-    Object.assign(this._state, patch);
-    this._search$.next();
-  }
-  //
-  onSort({ column, direction }: BaseSortEvent) {
-    // resetting other headers
-    this.headers?.forEach((header) => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
-    });
-    //
-    this.sortColumn    = column;
-    this.sortDirection = direction;
-  }
-  //////////////////////////////////////////////////////////
-  speakText(param_searchTerm : string) : void 
-  {
-      //
-      //console.log("Speak Text. Caught Event");
-      
-      this.searchTerm = param_searchTerm;
-  }
-  //
-  clearText() : void
-  {
-      this.searchTerm = "";
-  }  
 }
-

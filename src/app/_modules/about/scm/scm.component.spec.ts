@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScmComponent } from './scm.component';
+import { SCMComponent              } from './scm.component';
 
 describe('ScmComponent', () => {
-  let component: ScmComponent;
-  let fixture: ComponentFixture<ScmComponent>;
+  let component: SCMComponent;
+  let fixture: ComponentFixture<SCMComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ScmComponent]
+      imports: [SCMComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(ScmComponent);
+    fixture = TestBed.createComponent(SCMComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
