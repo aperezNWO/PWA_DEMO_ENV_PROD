@@ -400,6 +400,12 @@
 
   -- [_] new curiculum angular 
 
+        -- [x] AppModule, App component v21 style.
+
+        -- [x] Index v21 style.
+
+        -- [x] TETRIS V21 STYLE.
+
         --[x] app version on nav module.
 
         --[_] Module Federation questions.
@@ -412,13 +418,9 @@
 
                 -- [_] autocreate pensum schema.
 
-        -- [x] AppModule, App component v21 style.
-
-        -- [x] Index v21 style.
-
         -- [_] ngbgrids custom (scm / angular curriculum) with custom schema.
 
-        -- [x] TETRIS V21 STYLE.
+        -- [_] TETRIS A.I. ENGINE.
 
   --[_] haonoi 3d -> add controls.
 
