@@ -35,6 +35,8 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+--[X] haonoi 3d -> add controls.
+
 --[_] PWA
 
         --[_] https://web.dev/learn/pwa/service-workers
@@ -421,8 +423,6 @@
         -- [_] ngbgrids custom (scm / angular curriculum) with custom schema.
 
         -- [_] TETRIS A.I. ENGINE.
-
-  --[_] haonoi 3d -> add controls.
 
   --[_] Landing Page Carrousel.
   
