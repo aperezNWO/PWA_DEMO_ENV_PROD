@@ -1,15 +1,244 @@
-<div align="center">
-  <!-- ENCABEZADO / INICIO  -->  
+<div class="hanoi-page" align="center">
+
+  <!-- ENCABEZADO / INICIO -->
   <app-base-reference></app-base-reference>
-  <!-- ENCABEZADO / FIN -->  
-    <hr>
-    <div #rendererContainer style="width: 300px; height: 300px;"></div>
-    <hr>
-    <button (click)="restart()" class="reset-button">
+  <!-- ENCABEZADO / FIN -->
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════
+       TITLE + STATS BAR
+  ════════════════════════════════════════════ -->
+  <div class="hanoi-header">
+    <h2 class="hanoi-title">
+      Tower of Hanoi <span class="accent">3D</span>
+    </h2>
+
+    <div class="stats-row">
+      <span class="stat-badge">Disks <strong>{{ numDisks() }}</strong></span>
+      <span class="stat-badge">Move <strong>{{ currentMove() }} / {{ totalMoves() }}</strong></span>
+      <span class="stat-badge">Progress <strong>{{ progressPct() }}%</strong></span>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-track">
+      <!-- v21 work: [style.width.%] bound to progressPct() computed signal -->
+      <div class="progress-fill" [style.width.%]="progressPct()"></div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN AREA: canvas + collapsible side panel
+  ════════════════════════════════════════════ -->
+  <div class="hanoi-layout" [class.panel-open]="showControls()">
+
+    <!-- THREE.js renderer — original #rendererContainer ref preserved -->
+    <div class="canvas-wrap">
+
+      <!-- v21 work: #rendererContainer is read in .ts via viewChild<ElementRef>('rendererContainer') signal -->
+      <div #rendererContainer class="renderer-container"></div>
+
+      <!-- SOLVED OVERLAY -->
+      <!-- v21 work: @if built-in control flow reads isSolved() computed signal -->
+      @if (isSolved()) {
+        <div class="solved-overlay">
+          <div class="overlay-card">
+            <div class="overlay-icon">🏆</div>
+            <h3>Puzzle Solved!</h3>
+            <p>Completed in <strong>{{ totalMoves() }}</strong> moves</p>
+            <button class="btn btn-primary" (click)="restart()">
+              <i class="fas fa-redo"></i> Play Again
+            </button>
+          </div>
+        </div>
+      }
+
+      <!-- PRE-START OVERLAY: visible until the user presses Start -->
+      <!-- v21 work: @if reads hasStarted() computed signal — false until startPuzzle() is called -->
+      @if (!hasStarted() && !isSolved()) {
+        <div class="solved-overlay start-overlay">
+          <div class="overlay-card">
+            <div class="overlay-icon">♟</div>
+            <h3>Tower of Hanoi</h3>
+            <p>Move all <strong>{{ numDisks() }}</strong> disks to the rightmost tower.</p>
+            <p class="hint">You may configure the scene in Controls before starting.</p>
+            <button class="btn btn-primary btn-start" (click)="startPuzzle()">
+              ▶ Start Puzzle
+            </button>
+          </div>
+        </div>
+      }
+
+    </div><!-- /canvas-wrap -->
+
+    <!-- ═══════════════════════════════════════════
+         CONTROLS SIDE PANEL (collapsible)
+         v21 work: @if reads showControls() computed signal — toggled by toggleControls()
+    ════════════════════════════════════════════ -->
+    @if (showControls()) {
+      <aside class="controls-panel">
+
+        <h4 class="panel-title">⚙ Scene Controls</h4>
+
+        <!-- PUZZLE -->
+        <section class="ctrl-section">
+          <h5 class="ctrl-heading">Puzzle</h5>
+
+          <label class="ctrl-row">
+            <span>Disks <em>{{ numDisks() }}</em></span>
+            <!-- v21 work: [value] binds to numDisks() computed signal -->
+            <!-- v21 work: (input) calls setNumDisks() which uses config signal.update() internally -->
+            <input type="range" min="2" max="7" step="1"
+                   [value]="numDisks()"
+                   (input)="setNumDisks(+$any($event.target).value)">
+          </label>
+        </section>
+
+        <!-- CAMERA -->
+        <section class="ctrl-section">
+          <h5 class="ctrl-heading">Camera</h5>
+
+          <label class="ctrl-row">
+            <span>FOV <em>{{ cameraFov() }}°</em></span>
+            <!-- v21 work: cameraFov() is a computed() derived from the config signal -->
+            <input type="range" min="30" max="120" step="1"
+                   [value]="cameraFov()"
+                   (input)="setCameraFov(+$any($event.target).value)">
+          </label>
+
+          <label class="ctrl-row">
+            <span>Height Y <em>{{ cameraY() }}</em></span>
+            <input type="range" min="1" max="30" step="0.5"
+                   [value]="cameraY()"
+                   (input)="setCameraY(+$any($event.target).value)">
+          </label>
+
+          <label class="ctrl-row">
+            <span>Distance Z <em>{{ cameraZ() }}</em></span>
+            <input type="range" min="5" max="40" step="0.5"
+                   [value]="cameraZ()"
+                   (input)="setCameraZ(+$any($event.target).value)">
+          </label>
+        </section>
+
+        <!-- LIGHTING -->
+        <section class="ctrl-section">
+          <h5 class="ctrl-heading">Lighting</h5>
+
+          <label class="ctrl-row">
+            <span>Ambient <em>{{ ambientIntensity() }}</em></span>
+            <input type="range" min="0" max="3" step="0.05"
+                   [value]="ambientIntensity()"
+                   (input)="setAmbientIntensity(+$any($event.target).value)">
+          </label>
+        </section>
+
+        <!-- ANIMATION / TWEEN -->
+        <section class="ctrl-section">
+          <h5 class="ctrl-heading">Animation (Tween)</h5>
+
+          <label class="ctrl-row">
+            <span>Speed ms <em>{{ tweenDuration() }}</em></span>
+            <input type="range" min="100" max="2000" step="50"
+                   [value]="tweenDuration()"
+                   (input)="setTweenDuration(+$any($event.target).value)">
+          </label>
+
+          <label class="ctrl-row">
+            <span>Lift Height <em>{{ tweenLiftHeight() }}</em></span>
+            <input type="range" min="4" max="16" step="0.5"
+                   [value]="tweenLiftHeight()"
+                   (input)="setTweenLiftHeight(+$any($event.target).value)">
+          </label>
+        </section>
+
+        <!-- COLORS -->
+        <!-- v21 work: all color inputs bind to config signal updater methods -->
+        <section class="ctrl-section">
+          <h5 class="ctrl-heading">Colors</h5>
+
+          <label class="ctrl-row ctrl-color-row">
+            <span>Background</span>
+            <!-- v21 work: bgColor() computed signal drives [value]; (input) calls setBgColor() → signal.update() -->
+            <input type="color"
+                   [value]="bgColor()"
+                   (input)="setBgColor($any($event.target).value)">
+          </label>
+
+          <label class="ctrl-row ctrl-color-row">
+            <span>Towers</span>
+            <input type="color"
+                   [value]="towerColor()"
+                   (input)="setTowerColor($any($event.target).value)">
+          </label>
+
+          <!-- v21 work: @for iterates diskColors() computed signal array -->
+          <!-- One native color picker rendered per disk, up to numDisks() -->
+          @for (color of diskColors(); track $index; let i = $index) {
+            @if (i < numDisks()) {
+              <label class="ctrl-row ctrl-color-row">
+                <span>Disk {{ i + 1 }}</span>
+                <input type="color"
+                       [value]="color"
+                       (input)="setDiskColor(i, $any($event.target).value)">
+              </label>
+            }
+          }
+        </section>
+
+      </aside>
+    }
+
+  </div><!-- /hanoi-layout -->
+
+  <hr>
+
+  <!-- ═══════════════════════════════════════════
+       ACTION TOOLBAR
+  ════════════════════════════════════════════ -->
+  <div class="hanoi-toolbar">
+
+    <!-- START — shown only before puzzle begins -->
+    <!-- v21 work: @if reads hasStarted() computed signal -->
+    @if (!hasStarted() && !isSolved()) {
+      <button class="btn btn-primary" (click)="startPuzzle()">
+        ▶ Start
+      </button>
+    }
+
+    <!-- PAUSE / RESUME — shown once started and not yet solved -->
+    @if (hasStarted() && !isSolved()) {
+      <button class="btn btn-secondary" (click)="togglePause()">
+        <!-- v21 work: isPaused() computed signal drives the label -->
+        {{ isPaused() ? '▶ Resume' : '⏸ Pause' }}
+      </button>
+    }
+
+    <!-- RESTART — original button preserved with original class -->
+    <button class="reset-button btn btn-danger" (click)="restart()">
       <i class="fas fa-redo"></i> Restart Game
     </button>
-    <hr />
-    <div align="right">
-        <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_GAMES_INDEX'}" >[Back to Menu]</a>
-    </div>
+
+    <!-- TOGGLE CONTROLS PANEL -->
+    <!-- v21 work: showControls() computed signal drives the label -->
+    <button class="btn btn-ghost" (click)="toggleControls()">
+      {{ showControls() ? '✕ Close Controls' : '⚙ Controls' }}
+    </button>
+
+    <!-- RESET TO DEFAULTS -->
+    <button class="btn btn-ghost" (click)="resetToDefaults()">
+      ↺ Defaults
+    </button>
+
+  </div>
+
+  <hr>
+
+  <div align="right">
+    <a [routerLink]="'/PageUrlList'"
+       [queryParams]="{pageName: 'PAGE_DEMOS_GAMES_INDEX'}">[Back to Menu]</a>
+  </div>
+
 </div>

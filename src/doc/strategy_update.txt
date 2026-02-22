@@ -380,14 +380,6 @@
                 index.component.html:36 NG0955: The provided track expression resulted in duplicated keys for a given collection. Adjust the tracking expression such that it uniquely identifies all the items in the collection. Duplicated keys were: 
                 key "PageUrlList" at index "3" and "4".
         
-  --[_] haonoi 3d -> add controls.
-
-  --[_] Landing Page Carrousel.
-  
-  --[_] Angular Marketing Questions.
-
-  --[_] Ask Gemini Angular UIX Questions with Images.
-  
   --[_] code description.
 
         -- [_] Gemini CLI code description.
@@ -418,12 +410,22 @@
         
         -- [_] whats new 17x to 21x.
 
-        -- [_] AppModule, App comonent v21 style.
+                -- [_] autocreate pensum schema.
 
-        -- [_] Index v21 style.
+        -- [x] AppModule, App component v21 style.
+
+        -- [x] Index v21 style.
 
         -- [_] ngbgrids custom (scm / angular curriculum) with custom schema.
 
-        -- [_] TETRIS V21 STYLE.
+        -- [x] TETRIS V21 STYLE.
+
+  --[_] haonoi 3d -> add controls.
+
+  --[_] Landing Page Carrousel.
+  
+  --[_] Angular Marketing Questions.
+
+  --[_] Ask Gemini Angular UIX Questions with Images.
 
 ////////////////////////////////////////////////////////////////////////////////

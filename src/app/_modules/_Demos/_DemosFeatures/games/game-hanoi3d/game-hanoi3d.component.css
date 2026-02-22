@@ -1,4 +1,417 @@
-#canvas-container {
-    width: 300px;
-    height: 300px;
+/* ═══════════════════════════════════════════
+   HANOI 3D — Component Styles
+   Mobile-first responsive layout
+════════════════════════════════════════════ */
+
+:host {
+  --accent:      #f0a000;
+  --danger:      #c0392b;
+  --surface:     #1e1e1e;
+  --surface-2:   #2a2a2a;
+  --surface-3:   #333333;
+  --border:      #3a3a3a;
+  --text:        #e8e0d0;
+  --text-muted:  #888880;
+  --radius:      6px;
+  --panel-width: 270px;
+  --toolbar-h:   56px;        /* mobile bottom toolbar height */
+  font-family:   'Courier New', Courier, monospace;
+  color:         var(--text);
+  display:       block;
+}
+
+/* ── PAGE WRAPPER ── */
+.hanoi-page {
+  background: var(--surface);
+  min-height: 100vh;
+  /* leave room for the fixed mobile toolbar */
+  padding: 0 8px calc(var(--toolbar-h) + 16px);
+  box-sizing: border-box;
+}
+
+/* ── HEADER ── */
+.hanoi-header {
+  padding: 10px 0 6px;
+}
+
+.hanoi-title {
+  margin: 0 0 4px;
+  /* scale down on very small screens */
+  font-size: clamp(1rem, 4vw, 1.35rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.stats-row {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.stat-badge {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2px 8px;
+  font-size: clamp(0.65rem, 2.5vw, 0.78rem);
+  color: var(--text-muted);
+}
+
+.stat-badge strong {
+  color: var(--accent);
+}
+
+/* Progress bar */
+.progress-track {
+  height: 4px;
+  background: var(--surface-3);
+  border-radius: 2px;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+/* ── MAIN LAYOUT ──
+   Mobile: single column, canvas on top, panel below.
+   Desktop (≥ 700px): side-by-side row.
+────────────────────────────────────────────── */
+.hanoi-layout {
+  display: flex;
+  flex-direction: column;       /* mobile: stack vertically */
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+@media (min-width: 700px) {
+  .hanoi-layout {
+    flex-direction: row;        /* desktop: side by side */
+    align-items: flex-start;
   }
+}
+
+/* ── CANVAS WRAP ── */
+.canvas-wrap {
+  position: relative;
+  width: 100%;                  /* fill the column on mobile */
+  max-width: 600px;
+}
+
+/* The THREE.js container: fluid width, fixed aspect ratio via padding trick */
+.renderer-container {
+  width: 100%;
+  /* 4:3 aspect on mobile; overridden by JS resize */
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #111;
+  /* touch-action: none lets OrbitControls handle all touch events cleanly */
+  touch-action: none;
+}
+
+.renderer-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* ── OVERLAYS ── */
+.solved-overlay,
+.start-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(3px);
+  border-radius: var(--radius);
+  z-index: 10;
+}
+
+.overlay-card {
+  background: var(--surface-2);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: clamp(16px, 5vw, 28px) clamp(16px, 6vw, 36px);
+  text-align: center;
+  box-shadow: 0 0 32px rgba(240, 160, 0, 0.2);
+  max-width: min(260px, 80vw);
+}
+
+.overlay-icon {
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  margin-bottom: 8px;
+}
+
+.overlay-card h3 {
+  margin: 0 0 8px;
+  font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.overlay-card p {
+  margin: 0 0 6px;
+  font-size: clamp(0.72rem, 2.5vw, 0.82rem);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.hint {
+  font-size: clamp(0.65rem, 2vw, 0.74rem) !important;
+  color: #666 !important;
+  font-style: italic;
+}
+
+/* ── CONTROLS PANEL ──
+   Mobile: full width below the canvas.
+   Desktop: fixed-width sidebar beside the canvas.
+────────────────────────────────────────────── */
+.controls-panel {
+  width: 100%;                  /* mobile: full width */
+  max-width: 600px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  text-align: left;
+  max-height: 55vh;             /* scrollable on mobile */
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+@media (min-width: 700px) {
+  .controls-panel {
+    width: var(--panel-width);  /* desktop: fixed sidebar width */
+    max-width: var(--panel-width);
+    max-height: 480px;
+    flex-shrink: 0;
+  }
+}
+
+.panel-title {
+  margin: 0 0 10px;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+
+.ctrl-section {
+  margin-bottom: 14px;
+}
+
+.ctrl-heading {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.ctrl-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: clamp(0.72rem, 2.5vw, 0.78rem);
+  margin-bottom: 8px;           /* slightly taller tap targets on mobile */
+  color: var(--text);
+}
+
+.ctrl-row span {
+  min-width: 100px;
+  white-space: nowrap;
+}
+
+.ctrl-row em {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.ctrl-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--accent);
+  cursor: pointer;
+  /* taller hit area — important for touch */
+  height: 20px;
+  min-width: 80px;
+}
+
+/* Color picker rows */
+.ctrl-color-row {
+  justify-content: space-between;
+}
+
+.ctrl-color-row input[type="color"] {
+  width: 40px;
+  height: 28px;                 /* larger tap target on mobile */
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* ── TOOLBAR ──
+   Mobile: fixed to the bottom of the viewport so it's always reachable.
+   Desktop: static flow position, centered.
+────────────────────────────────────────────── */
+.hanoi-toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;             /* scroll if buttons overflow on tiny screens */
+  background: var(--surface-2);
+  border-top: 1px solid var(--border);
+  padding: 8px 10px;
+  height: var(--toolbar-h);
+  align-items: center;
+  box-sizing: border-box;
+  /* hide scrollbar but keep scrollability */
+  scrollbar-width: none;
+}
+
+.hanoi-toolbar::-webkit-scrollbar { display: none; }
+
+@media (min-width: 700px) {
+  .hanoi-toolbar {
+    position: static;           /* desktop: back in normal flow */
+    background: transparent;
+    border-top: none;
+    padding: 4px 0;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .hanoi-page {
+    padding-bottom: 16px;       /* restore normal padding on desktop */
+  }
+}
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  /* mobile: taller tap target (min 44px) */
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-size: clamp(0.72rem, 2.5vw, 0.8rem);
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.1s;
+  white-space: nowrap;
+  min-height: 40px;
+  -webkit-tap-highlight-color: transparent; /* remove tap flash on iOS */
+}
+
+@media (min-width: 700px) {
+  .btn {
+    padding: 6px 14px;
+    min-height: auto;
+  }
+}
+
+.btn:hover   { opacity: 0.85; transform: translateY(-1px); }
+.btn:active  { transform: translateY(0); opacity: 0.7; }
+
+.btn-primary {
+  background: var(--accent);
+  color: #111;
+  border-color: var(--accent);
+  font-weight: bold;
+}
+
+.btn-start {
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  padding: 10px 22px;
+  margin-top: 10px;
+}
+
+.btn-secondary {
+  background: var(--surface-3);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-danger,
+.reset-button {
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+  font-family: inherit;
+  font-size: clamp(0.72rem, 2.5vw, 0.8rem);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 40px;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 700px) {
+  .btn-danger,
+  .reset-button {
+    padding: 6px 14px;
+    min-height: auto;
+  }
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.btn-ghost:hover { color: var(--text); border-color: var(--text-muted); }
+
+/* ── SCROLLBAR (panel) ── */
+.controls-panel::-webkit-scrollbar       { width: 4px; }
+.controls-panel::-webkit-scrollbar-track { background: var(--surface-2); }
+.controls-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ── LINKS ── */
+a {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+a:hover { color: var(--accent); }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 8px 0;
+}
