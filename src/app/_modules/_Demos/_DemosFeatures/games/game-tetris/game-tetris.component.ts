@@ -4,7 +4,7 @@ import { Component, HostListener, OnInit, OnDestroy, signal, computed, effect, C
 import { ActivatedRoute } from '@angular/router';
 import { interval, Subscription } from 'rxjs';
 import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
-import { PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
+import { PAGE_GAMES_TETRIS, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
 import { TetrisService } from 'src/app/_services/__Games/TetrisService/tetris.service';
 import { ConfigService } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { SpeechService } from 'src/app/_services/__Utils/SpeechService/speech.service';
@@ -27,7 +27,8 @@ type TetrominoType = 'I' | 'O' | 'T' | 'S' | 'Z' | 'J' | 'L';
   selector: 'app-game-tetris',
   templateUrl: './game-tetris.component.html',
   styleUrl: './game-tetris.component.css',
-  standalone : false // v21 work: standalone: false is still supported but standalone: true is now the Angular default
+  standalone : false, // v21 work: standalone: false is still supported but standalone: true is now the Angular default
+  providers:   [{ provide: PAGE_TITLE_LOG, useValue: PAGE_GAMES_TETRIS }],
 })
 export class GameTetrisComponent extends BaseReferenceComponent implements OnInit, OnDestroy {
   // Constants

@@ -13,8 +13,8 @@ import { ActivatedRoute }         from '@angular/router';
 import { BackendService }         from 'src/app/_services/BackendService/backend.service';
 import { SpeechService }          from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
-import { ConfigService }          from 'src/app/_services/__Utils/ConfigService/config.service';
-import { PAGE_TITLE_NO_SOUND }    from 'src/app/_models/common';
+import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { PAGE_GAMES_TETRIS_AI, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
 import { TetrisService }          from 'src/app/_services/__Games/TetrisService/tetris.service';
 
 // ============================================================
@@ -65,7 +65,8 @@ const DEFAULT_AI_WEIGHTS: AIWeights = {
   selector:    'app-game-tetris',
   templateUrl: './game-tetris-ai.component.html',
   styleUrl:    './game-tetris-ai.component.css',
-  standalone:  false  // v21 work: standalone: false — belongs to an NgModule
+  standalone:  false,  // v21 work: standalone: false — belongs to an NgModule
+  providers:   [{ provide: PAGE_TITLE_LOG, useValue: PAGE_GAMES_TETRIS_AI }],
 })
 export class GameTetrisAIComponent extends BaseReferenceComponent implements OnInit, OnDestroy {
 
@@ -115,6 +116,11 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
   readonly heightWeight    = computed(() => this.aiWeightsSignal().heightWeight);
   readonly holesWeight     = computed(() => this.aiWeightsSignal().holesWeight);
   readonly bumpinessWeight = computed(() => this.aiWeightsSignal().bumpinessWeight);
+
+  // v21 work: signal() — controls AI config panel visibility; hidden by default
+  private readonly showAiPanelSignal = signal<boolean>(false);
+  // v21 work: computed() — readonly public accessor consumed by @if in the template
+  readonly showAiPanel = computed(() => this.showAiPanelSignal());
 
   // Plain copy of weights for the AI hot-path (avoids signal() call per frame)
   // v21 work: effect() keeps this in sync whenever aiWeightsSignal changes
@@ -644,5 +650,11 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
       w.holesWeight     * holes           +
       w.bumpinessWeight * bumpiness
     );
+  }
+
+  /** Toggles the AI configuration panel visibility */
+  toggleAiPanel(): void {
+    // v21 work: signal.update() toggles showAiPanel immutably
+    this.showAiPanelSignal.update(v => !v);
   }
 }

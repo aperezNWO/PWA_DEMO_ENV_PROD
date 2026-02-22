@@ -83,13 +83,20 @@
                   (click)="toggleAutoPlay()">
             {{ tetrisService.isAutoPlaying() ? '⏹ Stop AI' : '▶ Start AI' }}
           </button>
+
+          <!-- v21 work: showAiPanel() computed signal drives label and @if below -->
+          <button class="ctrl-btn" (click)="toggleAiPanel()">
+            {{ showAiPanel() ? '✕ Hide Config' : '⚙ AI Config' }}
+          </button>
         </div>
 
       </div><!-- /board-section -->
 
       <!-- ── AI CONFIGURATION PANEL ── -->
-      <div class="ai-section">
-        <h3 class="ai-title">AI Configuration</h3>
+      <!-- v21 work: @if reads showAiPanel() computed signal — toggled by toggleAiPanel() -->
+      @if (showAiPanel()) {
+        <div class="ai-section">
+          <h3 class="ai-title">⚙ AI Configuration</h3>
 
         <div class="ai-buttons">
           <button class="ctrl-btn" (click)="trainAI()">Train New AI</button>
@@ -141,7 +148,8 @@
           <p>Negative = penalty &nbsp;|&nbsp; Positive = reward</p>
           <p>Height &amp; Holes should be negative.</p>
         </div>
-      </div><!-- /ai-section -->
+        </div><!-- /ai-section -->
+      }<!-- /@if showAiPanel -->
 
     </div><!-- /tetris-container -->
 
