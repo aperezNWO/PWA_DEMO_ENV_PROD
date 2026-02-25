@@ -655,19 +655,9 @@
                   "text" : "Groq"
               },
               {
-                  "id"   : 5,  
-                  "url"  : "https://pi.ai/talk",
-                  "text" : "Inflection - PI"
-              },
-              {
                   "id"   : 6,
                   "url"  : "https://www.meta.ai/",
                   "text" : "Meta - A.I."
-              },
-              {
-                  "id"   : 7,
-                  "url"  : "https://venice.ai/",
-                  "text" : "Venice"
               },
               {
                   "id"   : 8,
@@ -700,14 +690,24 @@
                   "text" : "Kimi"
               },
               {
+                  "id"   : 5,  
+                  "url"  : "https://pi.ai/talk",
+                  "text" : "Inflection - PI (does not allow large inpupts)"
+              },
+              {
                   "id"   : 14,
                   "url"  : "https://stackoverflow.ai/",
-                  "text" : "Stack Overflow"
+                  "text" : "Stack Overflow (does not allow large inpupts)"
               },
               {
                   "id"   : 15,
                   "url"  : "https://g.ai/",
-                  "text" : "Google a.i."
+                  "text" : "Google a.i. (banned on some search engines)"
+              },
+              {
+                  "id"   : 7,
+                  "url"  : "https://venice.ai/",
+                  "text" : "Venice (payed proxy for other llms. Not recommended)"
               }
         ]
       },
