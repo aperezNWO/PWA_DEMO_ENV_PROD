@@ -410,6 +410,8 @@
 
         --[x] app version on nav module.
 
+        --[x] typesacript new features vs angulr new features.
+
         --[_] Module Federation questions.
 
               --[_] Native Federation.

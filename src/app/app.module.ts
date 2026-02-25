@@ -98,7 +98,7 @@ export class CustomErrorHandler implements ErrorHandler {
     AlgorithmModule,
     MiscelaneousModule,
     AboutModule,
-    SpeechPanelComponent, // Standalone
+    SpeechPanelComponent,  // Standalone
     BaseSortableHeader,    // Standalone
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

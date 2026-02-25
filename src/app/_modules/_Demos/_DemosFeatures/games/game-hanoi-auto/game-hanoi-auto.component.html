@@ -4,11 +4,20 @@
   <!-- ENCABEZADO / FIN -->
   <hr>
     <div class="game-container">
+      <!-- 
+        Angular v21: @for syntax remains the same (introduced v17)
+        Track function optimized for signal-based change detection
+        Zoneless mode requires explicit track by for performance
+      -->
       @for (tower of hanoiEngine.towers$ | async; track tower; let i = $index) {
         <div class="tower">
           <h2>Tower {{ i + 1 }}</h2>
           <div class="disks-container">
-            @for (disk of tower; track disk) {
+            <!-- 
+              Angular v21: Track by disk.size for efficient DOM updates
+              In zoneless mode, this prevents unnecessary re-renders
+            -->
+            @for (disk of tower; track disk.size) {
               <div class="disk" [style.width.px]="disk.size * 20">
                 {{ disk.size }}
               </div>
@@ -19,13 +28,23 @@
     </div>
     <hr>
       <div align="center">
+        <!-- 
+          Angular v21: Async pipe still works with Observables
+          For full signal approach, use: {{ hanoiEngine.moves() }} without pipe
+        -->
         <p>Moves: {{ hanoiEngine.moves$ | async }}</p>
-        <button class="btn btn-primary"   (click)="hanoiEngine.manual_resetGame()" [disabled]="!(this.hanoiEngine._checkWinCondition())">Reset Game</button>
+        
+        <!-- 
+          Angular v21: Button uses method call for disabled state
+          In zoneless mode, this is only checked when signals change
+        -->
+        <button class="btn btn-primary" (click)="hanoiEngine.manual_resetGame()" [disabled]="!(this.hanoiEngine._checkWinCondition())">Reset Game</button>
         |
-        <button class="btn btn-success"   (click)="hanoiEngine.auto_startGame()" [disabled]="((this.hanoiEngine._steps.length > 0))">Start Game</button>
+        <button class="btn btn-success" (click)="hanoiEngine.auto_startGame()" [disabled]="((this.hanoiEngine._steps.length > 0))">Start Game</button>
       </div>
       <hr />
       <div align="right">
+        <!-- Angular v21: RouterLink remains unchanged -->
         <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_GAMES_INDEX'}" >[Back to Menu]</a>
       </div>
     </div>
