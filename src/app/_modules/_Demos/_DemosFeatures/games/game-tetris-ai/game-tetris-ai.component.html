@@ -1,99 +1,108 @@
 <div class="tetris-page" align="center">
 
-  <!-- ENCABEZADO / INICIO -->
   <app-base-reference></app-base-reference>
-  <!-- ENCABEZADO / FIN -->
 
   <hr>
 
-  <!-- ═══════════════════════════════════════════
-       GAME READY — v21 work: @if reads isGameReady() computed signal
-  ════════════════════════════════════════════ -->
   @if (isGameReady()) {
 
     <div class="tetris-container">
 
-      <!-- ── BOARD SECTION ── -->
       <div class="board-section">
 
-        <!-- Board -->
-        <!-- v21 work: @if reads boardMatrix() computed signal -->
         @if (boardMatrix().length > 0) {
-          <div class="board">
+          <div class="game-area">
+            
+            <!-- BOARD CONTAINER with dark background -->
+            <div class="board-container">
+              <div class="board">
+                @if (!gameOver()) {
+                  <div class="preview-row">
+                    @for (cell of boardMatrix()[0]; track $index) {
+                      <div class="cell preview">
+                        @if (cell !== 0) {
+                          <div class="preview-piece"></div>
+                        }
+                      </div>
+                    }
+                  </div>
+                }
 
-            <!-- Preview row — shown only while game is live -->
-            <!-- v21 work: @if reads gameOver() computed signal -->
-            @if (!gameOver()) {
-              <div class="preview-row">
-                <!-- v21 work: @for iterates boardMatrix()[0] computed signal -->
-                @for (cell of boardMatrix()[0]; track $index) {
-                  <div class="cell preview">
-                    @if (cell !== 0) {
-                      <div class="preview-piece"></div>
+                @for (row of boardMatrix(); track $index; let y = $index) {
+                  <div class="board-row">
+                    @for (cell of row; track $index; let x = $index) {
+                      <div class="cell"
+                        [class.empty]="cell === 0"
+                        [class.piece-1]="cell === 1"
+                        [class.piece-2]="cell === 2"
+                        [class.piece-3]="cell === 3"
+                        [class.piece-4]="cell === 4"
+                        [class.piece-5]="cell === 5"
+                        [class.piece-6]="cell === 6"
+                        [class.piece-7]="cell === 7"
+                        [title]="'(' + x + ',' + y + ')=' + cell">
+                      </div>
                     }
                   </div>
                 }
               </div>
-            }
 
-            <!-- Board rows -->
-            <!-- v21 work: @for iterates boardMatrix() computed signal -->
-            @for (row of boardMatrix(); track $index; let y = $index) {
-              <div class="row">
-                @for (cell of row; track $index; let x = $index) {
-                  <div class="cell"
-                    [class.empty]="cell === 0"
-                    [class.piece-1]="cell === 1"
-                    [class.piece-2]="cell === 2"
-                    [class.piece-3]="cell === 3"
-                    [class.piece-4]="cell === 4"
-                    [class.piece-5]="cell === 5"
-                    [class.piece-6]="cell === 6"
-                    [class.piece-7]="cell === 7"
-                    [title]="'(' + x + ',' + y + ')=' + cell">
+              <!-- FALLING PIECE with rotation support -->
+              <div class="falling-piece"
+                   [style.transform]="'translate3d(' + (currentPieceX * 22) + 'px, ' + (currentPieceY * 22) + 'px, 0) rotate(' + currentPieceRotation + 'deg)'"
+                   [class.animating]="animating"
+                   [style.transform-origin]="getRotationOrigin()">
+                
+                @for (row of getPieceMatrix(currentPieceType); track $index; let py = $index) {
+                  <div class="piece-row">
+                    @for (cell of row; track $index; let px = $index) {
+                      @if (cell) {
+                        <div class="cell piece-cell"
+                             [class.piece-1]="currentPieceType === 1"
+                             [class.piece-2]="currentPieceType === 2"
+                             [class.piece-3]="currentPieceType === 3"
+                             [class.piece-4]="currentPieceType === 4"
+                             [class.piece-5]="currentPieceType === 5"
+                             [class.piece-6]="currentPieceType === 6"
+                             [class.piece-7]="currentPieceType === 7">
+                        </div>
+                      } @else {
+                        <div class="cell piece-cell-empty"></div>
+                      }
+                    }
                   </div>
                 }
               </div>
-            }
+            </div>
 
           </div>
         }
 
-        <!-- Stats panel -->
-        <!-- v21 work: all bindings read computed() signals -->
         <div class="info">
           <div class="stat-row"><span class="stat-label">Score</span><span class="stat-value">{{ score() }}</span></div>
           <div class="stat-row"><span class="stat-label">Lines</span><span class="stat-value">{{ lines() }}</span></div>
           <div class="stat-row"><span class="stat-label">Level</span><span class="stat-value">{{ level() }}</span></div>
           <div class="stat-row"><span class="stat-label">Next</span> <span class="stat-value">{{ getPieceName(nextPiece()) }}</span></div>
 
-          <!-- v21 work: @if reads gameOver() computed signal -->
           @if (gameOver()) {
             <div class="game-over">GAME OVER</div>
           }
         </div>
 
-        <!-- Controls toolbar -->
         <div class="controls">
           <button class="ctrl-btn" (click)="reset()">↺ Reset</button>
-
-          <!-- v21 work: tetrisService.isAutoPlaying() is already a signal — read directly -->
           <button class="ctrl-btn"
                   [class.active]="tetrisService.isAutoPlaying()"
                   (click)="toggleAutoPlay()">
             {{ tetrisService.isAutoPlaying() ? '⏹ Stop AI' : '▶ Start AI' }}
           </button>
-
-          <!-- v21 work: showAiPanel() computed signal drives label and @if below -->
           <button class="ctrl-btn" (click)="toggleAiPanel()">
             {{ showAiPanel() ? '✕ Hide Config' : '⚙ AI Config' }}
           </button>
         </div>
 
-      </div><!-- /board-section -->
+      </div>
 
-      <!-- ── AI CONFIGURATION PANEL ── -->
-      <!-- v21 work: @if reads showAiPanel() computed signal — toggled by toggleAiPanel() -->
       @if (showAiPanel()) {
         <div class="ai-section">
           <h3 class="ai-title">⚙ AI Configuration</h3>
@@ -104,8 +113,6 @@
         </div>
 
         <div class="weights">
-
-          <!-- v21 work: [value] binds to computed() signal; (input) calls signal.update() setter -->
           <label class="weight-row">
             <span class="weight-label">Lines</span>
             <input type="number"
@@ -143,20 +150,17 @@
           </button>
         </div>
 
-        <!-- Weight guide -->
         <div class="weight-guide">
           <p>Negative = penalty &nbsp;|&nbsp; Positive = reward</p>
           <p>Height &amp; Holes should be negative.</p>
         </div>
-        </div><!-- /ai-section -->
-      }<!-- /@if showAiPanel -->
+        </div>
+      }
 
-    </div><!-- /tetris-container -->
+    </div>
 
   } @else {
 
-    <!-- ── LOADING / ERROR STATE ── -->
-    <!-- v21 work: @if reads initializationAttempted() signal -->
     <div class="loading-container">
       <h2>🎮 Initialising Tetris AI…</h2>
       <p>Please wait while we load the game engine.</p>
