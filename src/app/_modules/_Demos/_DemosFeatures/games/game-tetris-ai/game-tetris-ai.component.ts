@@ -41,12 +41,32 @@ const PIECE_NAMES: Record<number, string> = {
 const BOARD_COLS = 10;
 const BOARD_ROWS = 20;
 
-const DEFAULT_AI_WEIGHTS: AIWeights = {
+// ORIGINAL: Aggressive scoring (high risk, high reward)
+const AGGRESSIVE_AI_WEIGHTS: AIWeights = {
   linesWeight:     0.76,
   heightWeight:    -0.51,
   holesWeight:     -0.36,
   bumpinessWeight: -0.18,
 };
+
+// NEW: Balanced survival (moderate score, longer games)
+const BALANCED_AI_WEIGHTS: AIWeights = {
+  linesWeight:     0.40,
+  heightWeight:    -1.20,
+  holesWeight:     -0.80,
+  bumpinessWeight: -0.40,
+};
+
+// NEW: Ultra survival (boring but lasts forever)
+const SURVIVAL_AI_WEIGHTS: AIWeights = {
+  linesWeight:     0.20,
+  heightWeight:    -2.00,
+  holesWeight:     -1.50,
+  bumpinessWeight: -0.60,
+};
+
+// Default to balanced for demo
+const DEFAULT_AI_WEIGHTS: AIWeights = { ...BALANCED_AI_WEIGHTS };
 
 @Component({
   selector:    'app-game-tetris',
@@ -90,6 +110,10 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
   readonly holesWeight     = computed(() => this._aiWeights().holesWeight);
   readonly bumpinessWeight = computed(() => this._aiWeights().bumpinessWeight);
 
+  // NEW: Track current mode for UI
+  private readonly _currentMode = signal<'aggressive' | 'balanced' | 'survival'>('balanced');
+  readonly currentMode = computed(() => this._currentMode());
+
   private readonly _showAiPanel = signal<boolean>(false);
   readonly showAiPanel = computed(() => this._showAiPanel());
 
@@ -99,11 +123,8 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
   private board:         number[][] = [];
   private currentX:      number     = 0;
   private currentY:      number     = 0;
-  
-  // FIX: Store both visual (animated) and logical (actual) piece shapes
-  private currentPiece:  number[][] = [];   // Logical piece (for collision)
-  private visualPiece:   number[][] = [];   // Visual piece (for rendering during animation)
-  
+  private currentPiece:  number[][] = [];
+  private visualPiece:   number[][] = [];
   private currentType:   number     = 0;
   private nextPieceType: number     = 0;
   private score_:        number     = 0;
@@ -196,7 +217,7 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
     this.nextPieceType = this._randomPieceType();
     const newPiece = this.PIECES[this.currentType].map(r => [...r]);
     this.currentPiece = newPiece;
-    this.visualPiece = newPiece;  // Sync visual with logical
+    this.visualPiece = newPiece;
     this.currentX = Math.floor((BOARD_COLS - this.currentPiece[0].length) / 2);
     this.currentY = 0;
     this.visualY = 0;
@@ -208,13 +229,10 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
 
   // ── Public getters for template ───────────────────────────────────────────
 
-  // FIX: Return visual piece for rendering (may be animating)
   getPieceMatrix(type: number): number[][] {
-    // During animation, return the visual piece (which may be mid-rotation)
     if (type === this.currentType && this.isAnimating && this.visualPiece) {
       return this.visualPiece;
     }
-    // Otherwise return the logical piece
     if (type < 1 || type >= this.PIECES.length) return [];
     return this.PIECES[type] || [];
   }
@@ -238,7 +256,17 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
     return `${centerX}px ${centerY}px`;
   }
 
-  // ── Animation system with rotation support ───────────────────────────────
+    // Helper methods for piece positioning
+  getPieceTopPx(): number {
+    const previewOffset = (!this.gameOver() && this.boardMatrix().length > 0) ? 26 : 8;
+    return (this.currentPieceY * 22) + previewOffset;
+  }
+
+  getPieceLeftPx(): number {
+    return (this.currentPieceX * 22) + 8;
+  }
+  
+  // ── Animation system ─────────────────────────────────────────────────────
 
   private _startAnimation(fromY: number, toY: number, rotationSteps: number, onComplete: () => void): void {
     this._stopAnimation();
@@ -262,7 +290,6 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
       
       this.visualY = this.animationStartY + (this.animationTargetY - this.animationStartY) * eased;
       
-      // Animate rotation angle
       if (this.pendingRotation > 0) {
         const rotationProgress = Math.min(progress * 1.5, 1);
         const rotationEased = rotationProgress * (2 - rotationProgress);
@@ -275,7 +302,6 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
       if (progress < 1) {
         this.animationFrameId = requestAnimationFrame(animate);
       } else {
-        // Animation complete
         this.animationFrameId = null;
         this.isAnimating = false;
         this.visualY = toY;
@@ -299,7 +325,7 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
     this.animationOnComplete = null;
   }
 
-  // ── Game logic with rotation animation ───────────────────────────────────
+  // ── Game logic ────────────────────────────────────────────────────────────
 
   private _syncState(): void {
     const visual = this.board.map(r => [...r]);
@@ -348,12 +374,10 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
   }
 
   private _lockPiece(): void {
-    // Apply any pending rotation to logical piece
     while (this.pendingRotation > 0) {
       this.currentPiece = this._rotatePiece(this.currentPiece);
       this.pendingRotation--;
     }
-    // Sync visual with logical
     this.visualPiece = this.currentPiece.map(r => [...r]);
     this.visualRotation = 0;
     this.targetRotation = 0;
@@ -406,23 +430,17 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
 
   private _tryRotate(): void {
     if (this.isAnimating) {
-      // Queue rotation
       this.pendingRotation++;
       return;
     }
 
-    // Calculate new piece shape immediately (for collision)
     const rotated = this._rotatePiece(this.currentPiece);
     
-    // Find valid position for rotated piece
     for (const dx of [0, -1, 1, -2, 2]) {
       if (this._canPlace(rotated, this.currentX + dx, this.currentY)) {
-        // FIX: Apply rotation to logical piece immediately
         this.currentPiece = rotated;
-        // Set visual piece to the new shape for animation
         this.visualPiece = rotated.map(r => [...r]);
         
-        // Animate the rotation visually
         this._startAnimation(this.currentY, this.currentY, 1, () => {
           this.currentX += dx;
           this.visualRotation = 0;
@@ -432,7 +450,6 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
         return;
       }
     }
-    // Rotation blocked - do nothing
   }
 
   private _hardDrop(): void {
@@ -449,7 +466,6 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
     }
 
     this._startAnimation(this.currentY, targetY, this.pendingRotation, () => {
-      // Apply any pending rotations
       while (this.pendingRotation > 0) {
         this.currentPiece = this._rotatePiece(this.currentPiece);
         this.pendingRotation--;
@@ -526,10 +542,31 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
     return PIECE_NAMES[type] ?? '?';
   }
 
+  // ── Weight setters ─────────────────────────────────────────────────────────
+
   setLinesWeight(v: number):     void { this._aiWeights.update(w => ({ ...w, linesWeight:     v })); }
   setHeightWeight(v: number):    void { this._aiWeights.update(w => ({ ...w, heightWeight:    v })); }
   setHolesWeight(v: number):     void { this._aiWeights.update(w => ({ ...w, holesWeight:     v })); }
   setBumpinessWeight(v: number): void { this._aiWeights.update(w => ({ ...w, bumpinessWeight: v })); }
+
+  // NEW: Mode switching methods
+  loadAggressiveWeights(): void {
+    this._aiWeights.set({ ...AGGRESSIVE_AI_WEIGHTS });
+    this._currentMode.set('aggressive');
+    console.log('Mode: AGGRESSIVE - High score, high risk');
+  }
+
+  loadBalancedWeights(): void {
+    this._aiWeights.set({ ...BALANCED_AI_WEIGHTS });
+    this._currentMode.set('balanced');
+    console.log('Mode: BALANCED - Moderate survival');
+  }
+
+  loadSurvivalWeights(): void {
+    this._aiWeights.set({ ...SURVIVAL_AI_WEIGHTS });
+    this._currentMode.set('survival');
+    console.log('Mode: SURVIVAL - Maximum longevity');
+  }
 
   updateAIWeights(): void {
     console.log('AI weights active:', this._weights);
@@ -537,6 +574,7 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
 
   loadAIWeights(): void {
     this._aiWeights.set({ ...DEFAULT_AI_WEIGHTS });
+    this._currentMode.set('balanced');
   }
 
   trainAI(): void {

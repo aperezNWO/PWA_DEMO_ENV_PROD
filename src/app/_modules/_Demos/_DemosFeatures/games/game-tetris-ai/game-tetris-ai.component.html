@@ -10,74 +10,82 @@
 
       <div class="board-section">
 
-        @if (boardMatrix().length > 0) {
-          <div class="game-area">
+        <!-- Debug info -->
+        <div class="debug-info" style="color: #0ff; font-size: 10px; margin-bottom: 5px;">
+          Board: {{ boardMatrix().length }} rows × {{ boardMatrix()[0]?.length || 0 }} cols
+        </div>
+
+        <!-- BOARD AREA -->
+        <div class="game-area">
+          
+          <div class="board-wrapper">
             
-            <!-- BOARD CONTAINER with dark background -->
-            <div class="board-container">
-              <div class="board">
-                @if (!gameOver()) {
-                  <div class="preview-row">
-                    @for (cell of boardMatrix()[0]; track $index) {
-                      <div class="cell preview">
-                        @if (cell !== 0) {
-                          <div class="preview-piece"></div>
-                        }
-                      </div>
-                    }
-                  </div>
-                }
-
-                @for (row of boardMatrix(); track $index; let y = $index) {
-                  <div class="board-row">
-                    @for (cell of row; track $index; let x = $index) {
-                      <div class="cell"
-                        [class.empty]="cell === 0"
-                        [class.piece-1]="cell === 1"
-                        [class.piece-2]="cell === 2"
-                        [class.piece-3]="cell === 3"
-                        [class.piece-4]="cell === 4"
-                        [class.piece-5]="cell === 5"
-                        [class.piece-6]="cell === 6"
-                        [class.piece-7]="cell === 7"
-                        [title]="'(' + x + ',' + y + ')=' + cell">
-                      </div>
-                    }
-                  </div>
-                }
-              </div>
-
-              <!-- FALLING PIECE with rotation support -->
-              <div class="falling-piece"
-                   [style.transform]="'translate3d(' + (currentPieceX * 22) + 'px, ' + (currentPieceY * 22) + 'px, 0) rotate(' + currentPieceRotation + 'deg)'"
-                   [class.animating]="animating"
-                   [style.transform-origin]="getRotationOrigin()">
-                
-                @for (row of getPieceMatrix(currentPieceType); track $index; let py = $index) {
-                  <div class="piece-row">
-                    @for (cell of row; track $index; let px = $index) {
-                      @if (cell) {
-                        <div class="cell piece-cell"
-                             [class.piece-1]="currentPieceType === 1"
-                             [class.piece-2]="currentPieceType === 2"
-                             [class.piece-3]="currentPieceType === 3"
-                             [class.piece-4]="currentPieceType === 4"
-                             [class.piece-5]="currentPieceType === 5"
-                             [class.piece-6]="currentPieceType === 6"
-                             [class.piece-7]="currentPieceType === 7">
-                        </div>
-                      } @else {
-                        <div class="cell piece-cell-empty"></div>
+            <!-- Static board -->
+            <div class="board">
+              @if (!gameOver()) {
+                <div class="preview-row">
+                  @for (cell of boardMatrix()[0]; track $index) {
+                    <div class="cell preview">
+                      @if (cell !== 0) {
+                        <div class="preview-piece"></div>
                       }
+                    </div>
+                  }
+                </div>
+              }
+
+              @for (row of boardMatrix(); track $index; let y = $index) {
+                <div class="board-row">
+                  @for (cell of row; track $index; let x = $index) {
+                    <div class="cell"
+                      [class.empty]="cell === 0"
+                      [class.piece-1]="cell === 1"
+                      [class.piece-2]="cell === 2"
+                      [class.piece-3]="cell === 3"
+                      [class.piece-4]="cell === 4"
+                      [class.piece-5]="cell === 5"
+                      [class.piece-6]="cell === 6"
+                      [class.piece-7]="cell === 7">
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+
+            <!-- Falling piece -->
+            <div class="falling-piece"
+                 [style.top.px]="getPieceTopPx()"
+                 [style.left.px]="getPieceLeftPx()"
+                 [style.transform]="'rotate(' + currentPieceRotation + 'deg)'"
+                 [class.animating]="animating"
+                 [style.transform-origin]="getRotationOrigin()">
+              
+              @for (row of getPieceMatrix(currentPieceType); track $index; let py = $index) {
+                <div class="piece-row">
+                  @for (cell of row; track $index; let px = $index) {
+                    @if (cell) {
+                      <div class="cell piece-cell"
+                           [class.piece-1]="currentPieceType === 1"
+                           [class.piece-2]="currentPieceType === 2"
+                           [class.piece-3]="currentPieceType === 3"
+                           [class.piece-4]="currentPieceType === 4"
+                           [class.piece-5]="currentPieceType === 5"
+                           [class.piece-6]="currentPieceType === 6"
+                           [class.piece-7]="currentPieceType === 7">
+                      </div>
+                    } @else {
+                      <div class="cell piece-cell-empty"></div>
                     }
-                  </div>
-                }
-              </div>
+                  }
+                </div>
+              }
             </div>
 
           </div>
-        }
 
+        </div>
+
+        <!-- INFO PANEL -->
         <div class="info">
           <div class="stat-row"><span class="stat-label">Score</span><span class="stat-value">{{ score() }}</span></div>
           <div class="stat-row"><span class="stat-label">Lines</span><span class="stat-value">{{ lines() }}</span></div>
@@ -87,8 +95,13 @@
           @if (gameOver()) {
             <div class="game-over">GAME OVER</div>
           }
+          
+          <div class="mode-indicator" [class]="currentMode()">
+            Mode: {{ currentMode() | titlecase }}
+          </div>
         </div>
 
+        <!-- CONTROLS -->
         <div class="controls">
           <button class="ctrl-btn" (click)="reset()">↺ Reset</button>
           <button class="ctrl-btn"
@@ -103,57 +116,78 @@
 
       </div>
 
+      <!-- AI PANEL -->
       @if (showAiPanel()) {
         <div class="ai-section">
           <h3 class="ai-title">⚙ AI Configuration</h3>
 
-        <div class="ai-buttons">
-          <button class="ctrl-btn" (click)="trainAI()">Train New AI</button>
-          <button class="ctrl-btn" (click)="loadAIWeights()">↺ Reset Weights</button>
-        </div>
+          <div class="mode-buttons">
+            <button class="ctrl-btn mode-btn" 
+                    [class.active]="currentMode() === 'aggressive'"
+                    (click)="loadAggressiveWeights()">
+              🔥 Aggressive
+            </button>
+            <button class="ctrl-btn mode-btn" 
+                    [class.active]="currentMode() === 'balanced'"
+                    (click)="loadBalancedWeights()">
+              ⚖️ Balanced
+            </button>
+            <button class="ctrl-btn mode-btn" 
+                    [class.active]="currentMode() === 'survival'"
+                    (click)="loadSurvivalWeights()">
+              🛡️ Survival
+            </button>
+          </div>
 
-        <div class="weights">
-          <label class="weight-row">
-            <span class="weight-label">Lines</span>
-            <input type="number"
-                   [value]="linesWeight()"
-                   step="0.01"
-                   (change)="setLinesWeight(+$any($event.target).value)">
-          </label>
+          <div class="ai-buttons">
+            <button class="ctrl-btn" (click)="trainAI()">Train New AI</button>
+            <button class="ctrl-btn" (click)="loadAIWeights()">↺ Reset to Default</button>
+          </div>
 
-          <label class="weight-row">
-            <span class="weight-label">Height</span>
-            <input type="number"
-                   [value]="heightWeight()"
-                   step="0.01"
-                   (change)="setHeightWeight(+$any($event.target).value)">
-          </label>
+          <div class="weights">
+            <label class="weight-row">
+              <span class="weight-label">Lines</span>
+              <input type="number"
+                     [value]="linesWeight()"
+                     step="0.01"
+                     (change)="setLinesWeight(+$any($event.target).value)">
+            </label>
 
-          <label class="weight-row">
-            <span class="weight-label">Holes</span>
-            <input type="number"
-                   [value]="holesWeight()"
-                   step="0.01"
-                   (change)="setHolesWeight(+$any($event.target).value)">
-          </label>
+            <label class="weight-row">
+              <span class="weight-label">Height</span>
+              <input type="number"
+                     [value]="heightWeight()"
+                     step="0.01"
+                     (change)="setHeightWeight(+$any($event.target).value)">
+            </label>
 
-          <label class="weight-row">
-            <span class="weight-label">Bumpiness</span>
-            <input type="number"
-                   [value]="bumpinessWeight()"
-                   step="0.01"
-                   (change)="setBumpinessWeight(+$any($event.target).value)">
-          </label>
+            <label class="weight-row">
+              <span class="weight-label">Holes</span>
+              <input type="number"
+                     [value]="holesWeight()"
+                     step="0.01"
+                     (change)="setHolesWeight(+$any($event.target).value)">
+            </label>
 
-          <button class="ctrl-btn" style="width:100%;margin-top:8px;" (click)="updateAIWeights()">
-            Apply Weights
-          </button>
-        </div>
+            <label class="weight-row">
+              <span class="weight-label">Bumpiness</span>
+              <input type="number"
+                     [value]="bumpinessWeight()"
+                     step="0.01"
+                     (change)="setBumpinessWeight(+$any($event.target).value)">
+            </label>
 
-        <div class="weight-guide">
-          <p>Negative = penalty &nbsp;|&nbsp; Positive = reward</p>
-          <p>Height &amp; Holes should be negative.</p>
-        </div>
+            <button class="ctrl-btn" style="width:100%;margin-top:8px;" (click)="updateAIWeights()">
+              Apply Weights
+            </button>
+          </div>
+
+          <div class="weight-guide">
+            <p><strong>Mode Guide:</strong></p>
+            <p>🔥 <strong>Aggressive</strong>: Chases big clears, dies fast</p>
+            <p>⚖️ <strong>Balanced</strong>: Moderate score & survival</p>
+            <p>🛡️ <strong>Survival</strong>: Boring but lasts forever</p>
+          </div>
         </div>
       }
 
@@ -172,8 +206,7 @@
 
       @if (initializationAttempted()) {
         <p class="error-msg">
-          ⚠️ Initialisation failed. Check the console (F12) and ensure
-          TensorFlowAppCPP.dll is in the API directory.
+          ⚠️ Initialisation failed. Check the console (F12).
         </p>
       }
     </div>
