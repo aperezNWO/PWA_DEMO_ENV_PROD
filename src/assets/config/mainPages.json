@@ -645,11 +645,6 @@
                   "text": "Chat GTP"
               },
               {
-                  "id"   : 3,
-                  "url"  : "https://claude.ai/new",
-                  "text" : "Arthropic - Claude"
-              },
-              {
                   "id"   : 4,
                   "url"  : "https://groq.com/",
                   "text" : "Groq"
@@ -683,6 +678,11 @@
                   "id"   : 12,
                   "url"  : "https://manus.im/",
                   "text" : "Manus (META)"
+              },
+              {
+                  "id"   : 3,
+                  "url"  : "https://claude.ai/new",
+                  "text" : "Arthropic - Claude (free credits limited)"
               },
               {
                   "id"   : 13,
