@@ -1,17 +1,28 @@
+/**
+ * Angular v21: Component-scoped styles
+ * Uses CSS custom properties for theming (optional enhancement)
+ * No changes needed from v17 - CSS is framework-agnostic
+ */
 
 .game-container {
     display: flex;
     justify-content: space-around;
+    padding: 20px;
   }
+  
   .tower {
     text-align: center;
+    min-width: 120px;
   }
+  
   .disks-container {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     height: 100px;
+    margin-top: 10px;
   }
+  
   .disk {
     height: 20px;
     background-color: #007bff;
@@ -20,4 +31,23 @@
     justify-content: center;
     align-items: center;
     color: white;
+    border-radius: 4px;
+    transition: all 0.3s ease; /* Smooth animations for state changes */
+  }
+  
+  /* Optional: Hover effects for better UX */
+  .disk:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .game-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .tower {
+      margin-bottom: 20px;
+    }
   }

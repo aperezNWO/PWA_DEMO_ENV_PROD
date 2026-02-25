@@ -1,14 +1,15 @@
-import { Injectable, signal, computed, inject, resource, ResourceRef } from "@angular/core";
-import { toObservable } from '@angular/core/rxjs-interop';
-import { Observable } from "rxjs";
-import { ListItem } from "src/app/_models/entity.model";
+import { Injectable, signal, computed, ResourceRef, resource } from "@angular/core";
+import { ListItem } from "../_models/entity.model";
 
 /**
- * Angular v21 Update Notes:
- * - Replaced BehaviorSubject with Signals for better zoneless compatibility
- * - Added rxjs-interop imports for Observable compatibility
- * - Using computed() for derived state
- * - Resource API available for async operations (experimental in v21)
+ * Angular v21 - Fully Signal-Based Engine
+ * 
+ * Key Updates:
+ * - BehaviorSubject completely replaced with Signals
+ * - No RxJS needed - pure signals for state management
+ * - Computed signals for derived state (isWin)
+ * - Resource API available for async operations (v21 preview)
+ * - Zoneless change detection optimized
  */
 
 export class DiskInfo {
@@ -28,57 +29,62 @@ export interface Disk {
 })
 export class HanoiEngine {
     //////////////////////////////////////////////////////////////////////
-    // Angular v21: Migrated from BehaviorSubject to Signals
-    // Signals provide better performance in zoneless change detection
+    // Angular v21: Pure Signal-Based State Management
+    // No BehaviorSubject or Observables - signals only
     //////////////////////////////////////////////////////////////////////
     
-    // Using signals for state management (v21 best practice)
+    /** Signal holding current game state - three towers with disks */
     private readonly _gameState = signal<Disk[][]>([
         [{ size: 3 }, { size: 2 }, { size: 1 }],
         [],
         []
     ]);
     
-    // Angular v21: Expose as Observable via rxjs-interop for backward compatibility
-    // toObservable() converts signal to Observable for components using async pipe
-    public readonly towers$: Observable<Disk[][]> = toObservable(this._gameState);
-    
-    // Angular v21: Also expose as readonly signal for modern signal-based components
+    /** Public readonly signal for game state - use .towers() in templates */
     public readonly towers = this._gameState.asReadonly();
     
-    // Moves counter using signal
+    /** Signal for move counter */
     private readonly _moves = signal<number>(0);
-    public readonly moves$ = toObservable(this._moves);
+    
+    /** Public readonly signal for moves - use .moves() in templates */
     public readonly moves = this._moves.asReadonly();
     
-    // Angular v21: Computed signal for win condition (derived state)
+    /** 
+     * Angular v21: Computed signal for win condition
+     * Automatically recalculates when gameState changes
+     * No manual subscription or change detection needed
+     */
     public readonly isWin = computed(() => this._gameState()[2].length === 3);
     
-    // Legacy properties maintained for compatibility
+    // Legacy tower Maps for auto-solver visualization
     public towerA: Map<number, (DiskInfo | undefined)> = new Map<number, (DiskInfo | undefined)>();
     public towerB: Map<number, (DiskInfo | undefined)> = new Map<number, (DiskInfo | undefined)>();
     public towerC: Map<number, (DiskInfo | undefined)> = new Map<number, (DiskInfo | undefined)>();
+    
+    // Auto-solver state
     public steps: string[] = [];
     public _steps: HanoiStep[] = [];
     public _stepsIndex: number = 0;
     public _startGame: boolean = true;
     public _delayInMilliseconds: number = 1500;
     public _stepsAmt: number = 0;
+    
+    // RESTORED: Missing property that was accidentally removed
     public _diskAmt: number = 0;
+    
     public _timeoutId: any;
     public _diskAmtList: any;
     public tituloDiskAmtList: string = "Cantidad de Discos";
-    
-    // Angular v21: ViewChild replaced with viewChild() signal query (if needed)
-    // Keeping as any for backward compatibility
     public __diskAmtList: any;
     
     private selectedTower: (number | null) = null;
 
     //////////////////////////////////////////////////////////////////////
     // Angular v21: Resource API for async operations (Developer Preview)
-    // Useful for HTTP requests or async game state loading
+    // Useful for loading/saving game state from backend
     //////////////////////////////////////////////////////////////////////
+    
+    /** Example: Resource for async game state loading */
     public gameResource: ResourceRef<Disk[][]> | undefined;
 
     constructor() {
@@ -87,18 +93,22 @@ export class HanoiEngine {
         this._diskAmtList.push(new ListItem(3, "3", true));
         this._diskAmtList.push(new ListItem(4, "4", false));
         
-        // Angular v21: Example of Resource API usage (optional)
-        // Useful if loading game state from backend
+        // Angular v21: Resource API example - uncomment if loading from backend
         /*
         this.gameResource = resource({
             loader: async () => {
-                // Async loading logic here
-                return this._gameState();
+                // Replace with actual API call
+                const response = await fetch('/api/game-state');
+                return await response.json();
             }
         });
         */
     }
 
+    /**
+     * Handle tower selection for manual play
+     * First click selects source, second click selects destination
+     */
     manual_selectTower(towerIndex: number) {
         if (this.selectedTower === null) {
             this.selectedTower = towerIndex;
@@ -109,31 +119,41 @@ export class HanoiEngine {
     }
 
     /**
-     * Angular v21: Using signal update methods for immutable state changes
-     * update() creates new state reference triggering change detection
+     * Angular v21: Signal updates for state changes
+     * Uses update() for immutable modifications
+     * Zoneless change detection automatically notifies consumers
      */
     manual_moveDisk(fromTower: number, toTower: number) {
+        // Get current state (readonly snapshot)
         const currentState = this._gameState();
-        const diskToMove = currentState[fromTower].pop();
+        
+        // Create deep copy for immutable update
+        const newState = currentState.map(tower => [...tower]);
+        const diskToMove = newState[fromTower].pop();
 
         if (diskToMove) {
-            const targetTower = currentState[toTower];
+            const targetTower = newState[toTower];
             if (targetTower.length === 0 || targetTower[targetTower.length - 1].size > diskToMove.size) {
+                // Valid move - update target tower
                 targetTower.push(diskToMove);
                 
-                // Angular v21: Signal update - creates new array reference
-                this._gameState.set([...currentState]);
+                // Angular v21: Signal update triggers change detection
+                this._gameState.set(newState);
                 this._moves.update(m => m + 1);
                 
-                // Win condition now handled by computed signal
+                // Win condition automatically updated via computed signal
             } else {
-                currentState[fromTower].push(diskToMove);
+                // Invalid move - restore disk
+                newState[fromTower].push(diskToMove);
             }
         }
     }
 
+    /**
+     * Reset game to initial state
+     * Uses signal set() for complete replacement
+     */
     manual_resetGame() {
-        // Angular v21: Signal set for complete state replacement
         this._gameState.set([
             [{ size: 3 }, { size: 2 }, { size: 1 }],
             [],
@@ -146,16 +166,15 @@ export class HanoiEngine {
     }
 
     /**
-     * Angular v21: Win check maintained for template compatibility
-     * Consider using the computed isWin signal in templates instead
+     * Check win condition - maintained for template compatibility
+     * Prefer using isWin computed signal in new code
      */
     public _checkWinCondition(): boolean {
-        // Using signal value access via ()
-        return this._gameState()[2].length === 3;
+        return this.isWin(); // Delegate to computed signal
     }
 
     //////////////////////////////////////////////////////////////////////
-    // Auto-play methods remain largely unchanged
+    // Auto-solver methods (unchanged logic, signal integration)
     //////////////////////////////////////////////////////////////////////
 
     auto_printSteps() {
@@ -182,7 +201,7 @@ export class HanoiEngine {
             this.steps.push(message);
             this.auto_makeMove(hanoiStep);
 
-            let n_from: number = hanoiStep.from.charCodeAt(0) - 65
+            let n_from: number = hanoiStep.from.charCodeAt(0) - 65;
             let n_to: number = hanoiStep.to.charCodeAt(0) - 65;
 
             this.manual_moveDisk(n_from, n_to);

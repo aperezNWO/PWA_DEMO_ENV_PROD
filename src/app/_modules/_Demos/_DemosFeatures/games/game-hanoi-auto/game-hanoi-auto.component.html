@@ -5,18 +5,15 @@
   <hr>
     <div class="game-container">
       <!-- 
-        Angular v21: @for syntax remains the same (introduced v17)
-        Track function optimized for signal-based change detection
-        Zoneless mode requires explicit track by for performance
+        Angular v21: Using signals directly - no async pipe needed
+        Call .towers() to get current value from signal
+        Track by $index for optimal zoneless performance
       -->
-      @for (tower of hanoiEngine.towers$ | async; track tower; let i = $index) {
+      @for (tower of hanoiEngine.towers(); track $index; let i = $index) {
         <div class="tower">
           <h2>Tower {{ i + 1 }}</h2>
           <div class="disks-container">
-            <!-- 
-              Angular v21: Track by disk.size for efficient DOM updates
-              In zoneless mode, this prevents unnecessary re-renders
-            -->
+            <!-- Track by disk.size for efficient DOM updates in zoneless mode -->
             @for (disk of tower; track disk.size) {
               <div class="disk" [style.width.px]="disk.size * 20">
                 {{ disk.size }}
@@ -29,22 +26,22 @@
     <hr>
       <div align="center">
         <!-- 
-          Angular v21: Async pipe still works with Observables
-          For full signal approach, use: {{ hanoiEngine.moves() }} without pipe
+          Angular v21: Signal direct access - no pipe needed
+          .moves() returns current signal value
+          Change detection triggered automatically when signal updates
         -->
-        <p>Moves: {{ hanoiEngine.moves$ | async }}</p>
+        <p>Moves: {{ hanoiEngine.moves() }}</p>
         
         <!-- 
-          Angular v21: Button uses method call for disabled state
-          In zoneless mode, this is only checked when signals change
+          Angular v21: Computed signal for disabled state
+          .isWin() automatically updates when game state changes
         -->
-        <button class="btn btn-primary" (click)="hanoiEngine.manual_resetGame()" [disabled]="!(this.hanoiEngine._checkWinCondition())">Reset Game</button>
+        <button class="btn btn-primary" (click)="hanoiEngine.manual_resetGame()" [disabled]="!hanoiEngine.isWin()">Reset Game</button>
         |
-        <button class="btn btn-success" (click)="hanoiEngine.auto_startGame()" [disabled]="((this.hanoiEngine._steps.length > 0))">Start Game</button>
+        <button class="btn btn-success" (click)="hanoiEngine.auto_startGame()" [disabled]="hanoiEngine._steps.length > 0">Start Game</button>
       </div>
       <hr />
       <div align="right">
-        <!-- Angular v21: RouterLink remains unchanged -->
-        <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_GAMES_INDEX'}" >[Back to Menu]</a>
+        <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_GAMES_INDEX'}">[Back to Menu]</a>
       </div>
     </div>
