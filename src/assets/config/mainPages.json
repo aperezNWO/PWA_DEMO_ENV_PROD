@@ -692,12 +692,12 @@
               {
                   "id"   : 5,  
                   "url"  : "https://pi.ai/talk",
-                  "text" : "Inflection - PI (does not allow large inpupts)"
+                  "text" : "Inflection - PI (does not allow large inputs)"
               },
               {
                   "id"   : 14,
                   "url"  : "https://stackoverflow.ai/",
-                  "text" : "Stack Overflow (does not allow large inpupts)"
+                  "text" : "Stack Overflow (does not allow large inputs)"
               },
               {
                   "id"   : 15,
