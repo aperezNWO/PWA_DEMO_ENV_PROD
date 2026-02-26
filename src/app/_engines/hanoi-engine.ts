@@ -1,5 +1,5 @@
-import { Injectable, signal, computed, ResourceRef, resource } from "@angular/core";
-import { ListItem } from "../_models/entity.model";
+import { Injectable, signal, computed, ResourceRef } from "@angular/core";
+import { ListItem                                  } from "../_models/entity.model";
 
 /**
  * Angular v21 - Fully Signal-Based Engine

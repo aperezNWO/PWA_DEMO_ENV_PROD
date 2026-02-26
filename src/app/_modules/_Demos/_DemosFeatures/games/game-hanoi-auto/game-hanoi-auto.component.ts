@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+// ANGULAR CORE
+import { Component, OnInit      } from '@angular/core';
+import { ActivatedRoute         } from '@angular/router';
+// GLOBALS
+import { PAGE_GAMES_HANOI_2D, 
+         PAGE_GAMES_SUDOKU, 
+         PAGE_TITLE_LOG         } from 'src/app/_models/common';
+// COMPONENTS
 import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
-import { HanoiEngine } from 'src/app/_engines/hanoi-engine';
-import { BackendService } from 'src/app/_services/BackendService/backend.service';
-import { ConfigService } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { SpeechService } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { PAGE_GAMES_HANOI_2D, PAGE_GAMES_SUDOKU, PAGE_TITLE_LOG } from 'src/app/_models/common';
-import { RouterLink } from '@angular/router';
+// SERVICES / ENGINES
+import { HanoiEngine            } from 'src/app/_engines/hanoi-engine';
+import { BackendService         } from 'src/app/_services/BackendService/backend.service';
+import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { SpeechService          } from 'src/app/_services/__Utils/SpeechService/speech.service';
+
 
 /**
  * Angular v21 - Fully Modernized Component
@@ -31,16 +37,15 @@ import { RouterLink } from '@angular/router';
     standalone: false,
     // Angular v21: Direct imports for standalone components
     // No AsyncPipe needed since we use signals directly
-   // imports: [RouterLink]
 })
 export class GameHanoiAutoComponent extends BaseReferenceComponent implements OnInit {
 
     constructor(
-        public hanoiEngine: HanoiEngine,
-        public override configService: ConfigService,
-        public override route: ActivatedRoute,
-        public override speechService: SpeechService,
-        public override backendService: BackendService) 
+        public          hanoiEngine      : HanoiEngine,
+        public override configService    : ConfigService,
+        public override route            : ActivatedRoute,
+        public override speechService    : SpeechService,
+        public override backendService   : BackendService) 
     { 
         super(configService,
               backendService,
