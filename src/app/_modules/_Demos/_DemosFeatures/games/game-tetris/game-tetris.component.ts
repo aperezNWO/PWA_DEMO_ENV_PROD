@@ -1,14 +1,29 @@
-import { HttpClient } from '@angular/common/http';
-// v21 work: Importing signal-based primitives - signal, computed, effect are new Angular Signals API
-import { Component, HostListener, OnInit, OnDestroy, signal, computed, effect, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { interval, Subscription } from 'rxjs';
-import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
+// ANGULAR CORE
+import { HttpClient              } from '@angular/common/http';
+import { ActivatedRoute          } from '@angular/router';
+import {  Component              
+        , HostListener
+        , OnInit
+        , OnDestroy
+        , signal                 // v21 work: Importing signal-based primitives - signal, computed, effect are new Angular Signals API
+        , computed
+        , effect
+        , ChangeDetectorRef      } from '@angular/core';
+
+// SERVICES
+import { TetrisService           } from 'src/app/_services/__Games/TetrisService/tetris.service';
+import { ConfigService           } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { SpeechService           } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { BackendService          } from 'src/app/_services/BackendService/backend.service';
+
+// GLOBAL
 import { PAGE_GAMES_TETRIS, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
-import { TetrisService } from 'src/app/_services/__Games/TetrisService/tetris.service';
-import { ConfigService } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { SpeechService } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { BackendService } from 'src/app/_services/BackendService/backend.service';
+
+// THIRD PARTY
+import { interval, Subscription  } from 'rxjs';
+
+// COMPONENTS
+import { BaseReferenceComponent  } from 'src/app/_components/base-reference/base-reference.component';
 
 // Define interfaces
 interface Position {
@@ -62,10 +77,10 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
   });
   
   // v21 work: Exposing internal signals as readonly computed() signals to prevent external mutation
-  readonly score = computed(() => this.lockedScore());
+  readonly score     = computed(() => this.lockedScore());
   readonly isPlaying = computed(() => this.lockedIsPlaying());
-  readonly gameOver = computed(() => this.lockedGameOver());
-  readonly isMobile = computed(() => this.lockedIsMobile());
+  readonly gameOver  = computed(() => this.lockedGameOver());
+  readonly isMobile  = computed(() => this.lockedIsMobile());
   
   private gameLoop$?: Subscription;
 

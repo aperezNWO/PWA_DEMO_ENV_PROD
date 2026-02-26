@@ -1,3 +1,4 @@
+// ANGULAR CORE
 import {
   Component,
   OnInit,
@@ -8,15 +9,22 @@ import {
   computed,
   effect,
   afterNextRender
-} from '@angular/core';
-import { ActivatedRoute }         from '@angular/router';
-import { RouterLink }             from '@angular/router';
-import { BackendService }         from 'src/app/_services/BackendService/backend.service';
-import { SpeechService }          from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
+}                                 from '@angular/core';
+import { ActivatedRoute         } from '@angular/router';
+//  SERVICES
+import { BackendService         } from 'src/app/_services/BackendService/backend.service';
+import { SpeechService          } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { PAGE_GAMES_TETRIS_AI, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
-import { TetrisService }          from 'src/app/_services/__Games/TetrisService/tetris.service';
+import { TetrisService          } from 'src/app/_services/__Games/TetrisService/tetris.service';
+//   GLOBALS 
+import { 
+  PAGE_GAMES_TETRIS_AI, 
+  PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND
+}                                 from 'src/app/_models/common';
+//   COMPONENTS
+import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
+
+
 
 export interface TetrisState {
   boardMatrix: number[][];
@@ -43,7 +51,7 @@ const BOARD_ROWS = 20;
 
 // ORIGINAL: Aggressive scoring (high risk, high reward)
 const AGGRESSIVE_AI_WEIGHTS: AIWeights = {
-  linesWeight:     0.76,
+  linesWeight:      0.76,
   heightWeight:    -0.51,
   holesWeight:     -0.36,
   bumpinessWeight: -0.18,
@@ -51,7 +59,7 @@ const AGGRESSIVE_AI_WEIGHTS: AIWeights = {
 
 // NEW: Balanced survival (moderate score, longer games)
 const BALANCED_AI_WEIGHTS: AIWeights = {
-  linesWeight:     0.40,
+  linesWeight:      0.40,
   heightWeight:    -1.20,
   holesWeight:     -0.80,
   bumpinessWeight: -0.40,
@@ -59,7 +67,7 @@ const BALANCED_AI_WEIGHTS: AIWeights = {
 
 // NEW: Ultra survival (boring but lasts forever)
 const SURVIVAL_AI_WEIGHTS: AIWeights = {
-  linesWeight:     0.20,
+  linesWeight:      0.20,
   heightWeight:    -2.00,
   holesWeight:     -1.50,
   bumpinessWeight: -0.60,
@@ -73,7 +81,6 @@ const DEFAULT_AI_WEIGHTS: AIWeights = { ...BALANCED_AI_WEIGHTS };
   templateUrl: './game-tetris-ai.component.html',
   styleUrl:    './game-tetris-ai.component.css',
   standalone:  false,
-  //imports:     [RouterLink],
   providers:   [{ provide: PAGE_TITLE_LOG, useValue: PAGE_GAMES_TETRIS_AI }],
 })
 export class GameTetrisAIComponent extends BaseReferenceComponent implements OnInit, OnDestroy {
@@ -95,28 +102,30 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
     nextPiece:   0,
     gameOver:    false,
   });
-
+  //
   readonly boardMatrix = computed(() => this._state().boardMatrix);
   readonly score       = computed(() => this._state().score);
   readonly lines       = computed(() => this._state().lines);
   readonly level       = computed(() => this._state().level);
   readonly nextPiece   = computed(() => this._state().nextPiece);
   readonly gameOver    = computed(() => this._state().gameOver);
-
+  //
   private readonly _aiWeights = signal<AIWeights>({ ...DEFAULT_AI_WEIGHTS });
-  readonly aiWeights = this._aiWeights.asReadonly();
-  readonly linesWeight     = computed(() => this._aiWeights().linesWeight);
-  readonly heightWeight    = computed(() => this._aiWeights().heightWeight);
-  readonly holesWeight     = computed(() => this._aiWeights().holesWeight);
-  readonly bumpinessWeight = computed(() => this._aiWeights().bumpinessWeight);
+  readonly aiWeights          = this._aiWeights.asReadonly();
+  readonly linesWeight        = computed(() => this._aiWeights().linesWeight);
+  readonly heightWeight       = computed(() => this._aiWeights().heightWeight);
+  readonly holesWeight        = computed(() => this._aiWeights().holesWeight);
+  readonly bumpinessWeight    = computed(() => this._aiWeights().bumpinessWeight);
 
   // NEW: Track current mode for UI
   private readonly _currentMode = signal<'aggressive' | 'balanced' | 'survival'>('balanced');
   readonly currentMode = computed(() => this._currentMode());
 
+  //
   private readonly _showAiPanel = signal<boolean>(false);
   readonly showAiPanel = computed(() => this._showAiPanel());
 
+  //
   private _weights: AIWeights = { ...DEFAULT_AI_WEIGHTS };
 
   // ── Internal engine state ─────────────────────────────────────────────────
@@ -213,18 +222,18 @@ export class GameTetrisAIComponent extends BaseReferenceComponent implements OnI
   }
 
   private _spawnPiece(): void {
-    this.currentType   = this.nextPieceType || this._randomPieceType();
-    this.nextPieceType = this._randomPieceType();
-    const newPiece = this.PIECES[this.currentType].map(r => [...r]);
-    this.currentPiece = newPiece;
-    this.visualPiece = newPiece;
-    this.currentX = Math.floor((BOARD_COLS - this.currentPiece[0].length) / 2);
-    this.currentY = 0;
-    this.visualY = 0;
-    this.visualRotation = 0;
-    this.targetRotation = 0;
+    this.currentType     = this.nextPieceType || this._randomPieceType();
+    this.nextPieceType   = this._randomPieceType();
+    const newPiece       = this.PIECES[this.currentType].map(r => [...r]);
+    this.currentPiece    = newPiece;
+    this.visualPiece     = newPiece;
+    this.currentX        = Math.floor((BOARD_COLS - this.currentPiece[0].length) / 2);
+    this.currentY        = 0;
+    this.visualY         = 0;
+    this.visualRotation  = 0;
+    this.targetRotation  = 0;
     this.pendingRotation = 0;
-    this.isAnimating = false;
+    this.isAnimating     = false;
   }
 
   // ── Public getters for template ───────────────────────────────────────────

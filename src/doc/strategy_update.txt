@@ -426,6 +426,8 @@
 
         -- [_] TETRIS A.I. ENGINE.
 
+                -- [_] uix fix [----] tetronim.
+
                 -- [_] federated engine.
                 
                 -- [_] backwards construction for C++ ENDPOINT.
