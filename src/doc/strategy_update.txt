@@ -44,8 +44,7 @@
         --[_] https://angular.dev/ecosystem/service-workers
 
 
- -- [_] scm errors / warnings. 
-
+ 
  -- [_] Chess a.i. 
 
  -- [_] Go lang / rust demo.
@@ -321,6 +320,8 @@
 
         -- [_] Merge Datagrids.
 
+        -- [_] scm errors / warnings. 
+
 --[_] git hub pages (single code base, different landing page)
 
         -- [>] FREE DISK SPACE.  
@@ -344,8 +345,6 @@
 --[_] Module Federation.
 
      --[_] Independent deployment
-
---[_] Claude Code -> inspect git hub repo.
 
 --[_] Antigravity / Firebase / Gemini.
 
@@ -386,9 +385,11 @@
 
         -- [_] Gemini CLI code description.
 
+        --[_] Claude Code -> inspect git hub repo.
+
         -- [_] https://deepwiki.com/aperezNWO/PWA_DEMO_ENV_PROD.
 
-        -- [_] modify SMTP note to customers (deepwiki link).
+        -- [x] modify SMTP note to customers (deepwiki link).
 
         -- [_] add codewiki links from other backends/repos.
 
