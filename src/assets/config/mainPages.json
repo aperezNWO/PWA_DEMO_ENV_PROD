@@ -680,6 +680,11 @@
                   "text" : "Manus (META)"
               },
               {
+                  "id"   : 19,
+                  "url"  : "https://www.perplexity.ai/",
+                  "text" : "Perplexity"
+              },
+              {
                   "id"   : 3,
                   "url"  : "https://claude.ai/new",
                   "text" : "Arthropic - Claude (free credits limited)"
