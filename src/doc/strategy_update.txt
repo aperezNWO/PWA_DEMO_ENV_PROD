@@ -364,6 +364,8 @@
 
  --[_] Merge :
 
+        --[_] Improve hanoi 2d  and / or merge.
+
         --[_] Chat + tictactoe.
 
         --[_] Opencv + ocr.
@@ -440,5 +442,7 @@
   --[_] Ask Gemini Angular UIX Questions with Images.
 
        --[_] SCSS.   
+
+       --[_] https://apereznwo-pwa_demo_env_prod.mintlify.app/introduction 
 
 ////////////////////////////////////////////////////////////////////////////////
