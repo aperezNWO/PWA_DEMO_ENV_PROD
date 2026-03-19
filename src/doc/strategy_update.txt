@@ -454,5 +454,7 @@
   --[_] Merge Tetris2d / Tetris 3d engines on federation + expose other languages.
 
   --[_] pwa_demo_env_xxx -> LLM TESTING.
+
+  --[_] rubik cube.
   
 ////////////////////////////////////////////////////////////////////////////////
