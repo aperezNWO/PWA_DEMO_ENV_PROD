@@ -645,13 +645,8 @@
                   "text": "Chat GTP"
               },
               {
-                  "id"   : 3,
-                  "url"  : "https://claude.ai/new",
-                  "text" : "Arthropic - Claude"
-              },
-              {
                   "id"   : 4,
-                  "url"  : "https://groq.com/",
+                  "url"  : "https://chat.groq.com/",
                   "text" : "Groq"
               },
               {
@@ -685,6 +680,16 @@
                   "text" : "Manus (META)"
               },
               {
+                  "id"   : 19,
+                  "url"  : "https://www.perplexity.ai/",
+                  "text" : "Perplexity"
+              },
+              {
+                  "id"   : 3,
+                  "url"  : "https://claude.ai/new",
+                  "text" : "Arthropic - Claude (free credits limited)"
+              },
+              {
                   "id"   : 13,
                   "url"  : "https://kimi.com/",
                   "text" : "Kimi (3 hours limit per session)"
@@ -692,12 +697,12 @@
               {
                   "id"   : 5,  
                   "url"  : "https://pi.ai/talk",
-                  "text" : "Inflection - PI (does not allow large inpupts)"
+                  "text" : "Inflection - PI (does not allow large inputs)"
               },
               {
                   "id"   : 14,
                   "url"  : "https://stackoverflow.ai/",
-                  "text" : "Stack Overflow (does not allow large inpupts)"
+                  "text" : "Stack Overflow (does not allow large inputs)"
               },
               {
                   "id"   : 15,
