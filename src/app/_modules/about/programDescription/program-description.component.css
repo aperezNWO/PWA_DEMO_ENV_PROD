@@ -48,7 +48,7 @@
 
 .features-section li {
   margin-bottom: 0.1em !important;
-  line-height: 0.1 !important;
+  /*line-height: 0.1 !important;*/
   font-size: 0.95rem;
 }
 
@@ -62,7 +62,7 @@
 
 .content-block p {
   margin: 0;
-  line-height: 1.5;
+  /*line-height: 1.5;*/
   font-size: 1rem;
   padding : 0.5em;
 }
