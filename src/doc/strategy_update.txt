@@ -350,6 +350,8 @@
 
 --[_] Minify CSS.
 
+--[_] Merge Contact Form.
+
 --[_] ALGORITHM BIG O NOTATION / json.
 
         --[_] Comparisons, Swaps, Recursive Calls.

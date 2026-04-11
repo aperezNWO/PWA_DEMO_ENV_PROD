@@ -1,10 +1,215 @@
-.program-description
-{
-    text-align: left;
-    padding: 1em;
-    color:white;
+
+
+/* Base mobile-first styles */
+.content {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 0.5rem;
+  box-sizing: border-box;
 }
 
+.program-description {
+  text-align: left;
+  padding: 1rem;
+  color: white;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Mobile-first: using flexbox with gap */
+.program-description {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.intro-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.features-section {
+  margin: 0;
+}
+
+.features-section h5 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.1rem;
+}
+
+.features-section ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.features-section li {
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  font-size: 0.95rem;
+}
+
+.features-section li:last-child {
+  margin-bottom: 0;
+}
+
+.content-block {
+  margin: 0;
+}
+
+.content-block p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.navigation-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.navigation-links p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.note-box {
+  margin: 0;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid aqua;
+  border-radius: 4px;
+}
+
+.note-box strong {
+  color: aqua;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.note-box p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.back-navigation {
+  text-align: right;
+  padding: 0.5rem;
+}
+
+/* Links - larger touch targets for mobile */
 a {
-    color:aqua;
+  color: aqua;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  display: inline-block;
+  padding: 0.25rem 0;
+  /* Minimum touch target size for mobile */
+  min-height: 44px;
+  line-height: 44px;
+}
+
+a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* Make list items easier to tap on mobile */
+.features-section li {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 768px) {
+  .program-description {
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+  
+  .features-section li {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .note-box {
+    padding: 0.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    padding: 0 0.5rem;
+  }
+}
+
+/* Small phones (portrait) */
+@media (max-width: 480px) {
+  .program-description {
+    padding: 0.5rem;
+    gap: 0.875rem;
+  }
+  
+  .features-section ul {
+    padding-left: 1.25rem;
+  }
+  
+  .features-section li {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .note-box {
+    padding: 0.625rem;
+  }
+  
+  .note-box p {
+    font-size: 0.9rem;
+  }
+  
+  a {
+    min-height: 48px; /* Even larger touch target for small screens */
+    line-height: 48px;
+  }
+}
+
+/* Landscape mode optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .program-description {
+    gap: 0.75rem;
+  }
+  
+  .features-section li {
+    min-height: auto;
+    margin-bottom: 0.35rem;
+  }
+}
+
+/* Handle very long words (like URLs or code) */
+.program-description p,
+.features-section li,
+.note-box p {
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Improve scrolling experience on mobile */
+.content {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better touch feedback for interactive elements */
+a:active {
+  opacity: 0.6;
+  transform: scale(0.98);
+}
+
+/* Optional: Add subtle scroll indicators for better UX */
+.program-description {
+  scroll-margin-top: 1rem;
 }
