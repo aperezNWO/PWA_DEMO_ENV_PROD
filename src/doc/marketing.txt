@@ -50,6 +50,8 @@ Features :
 
 -- Usage of custom components like voice search panels and dynamic rendering components like datagrids and lists.
 
+-- Treat in a basic matter topics like algorithms, machine learning.
+
 -- Links to official references and topics.
 
 Most of the content of this site is structured via external configurable JSON files rendered by the mentioned dynamic rendering components.
