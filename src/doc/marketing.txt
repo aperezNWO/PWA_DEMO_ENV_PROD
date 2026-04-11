@@ -39,20 +39,17 @@ Contacto :  https://shorturl.at/2vr3t
 //////////////////////////////////////////////////
 
 
-
--- [_] PROGRAM DESCRIPTION
-
 The purpose of <program_name> is to showcase the latest features of the Angular web framework.
 
-Features:
+Program Features:
 
--- Interaction with several programming languages and backends.
+-- Interaction with several programming languages (C++, C#, JavaScript, TypeScript, Java, and Python) and backends (.NET Core, Node.js, Spring Boot, and Django).
 
--- Showcase of external third-party library usages like charts, Excel, PDF, and 3D.
+-- Usage of third-party libraries like OCR, charts, Excel, PDF, 2D graphics, 3D graphics, and machine learning (TensorFlow).
 
 -- Usage of custom components like voice search panels and dynamic rendering components like datagrids and lists.
 
--- Treats basic matter topics like algorithms and machine learning.
+-- Treats basic topics like fractals, algorithms, and machine learning using games, forms, and graphical visualizations as playgrounds.
 
 -- Links to official references and topics.
 
