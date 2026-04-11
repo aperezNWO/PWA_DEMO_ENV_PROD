@@ -64,7 +64,7 @@
   margin: 0;
   /*line-height: 1.5;*/
   font-size: 1rem;
-  padding : 0.5em;
+  padding : 0.25em;
 }
 
 .note-box {
@@ -98,8 +98,8 @@ a {
   color: aqua;
   text-decoration: none;
   transition: opacity 0.2s ease;
-  /*display: inline-block;
-  padding: 0.25rem 0;*/
+  /*display: inline-block;*/
+  /*padding: 0.25rem 0;*/
   /* Minimum touch target size for mobile */
   /*min-height: 44px;
   line-height: 44px;*/
