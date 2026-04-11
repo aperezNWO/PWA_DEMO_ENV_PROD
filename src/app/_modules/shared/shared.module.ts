@@ -24,4 +24,4 @@ import { BaseReferenceComponent             } from '../../_components/base-refer
 })
 export class SharedModule {
   
- }
+}

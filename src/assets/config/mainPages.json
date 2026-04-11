@@ -610,13 +610,19 @@
         "log_name"   : "PAGE_ABOUT_INDEX",
         "page_name"  : "[ABOUT]",
         "pages"      : [
-          { "id": 1, "url" : "/TechnicalSpecs"                                           , "text": "[TECHNICAL SPECS.]"                        },
-          { "id": 2, "url" : "/SCM"                                                      , "text": "[SOFTWARE CONFIGURATION MANAGEMENT]"       },
+          { "id": 0, "url" : "/ProgramDescription"                                       , "text": "[PROGRAM DESCRIPTION]"                       },
+          { "id": 1, "url" : "/TechnicalSpecs"                                           , "text": "[TECHNICAL SPECS.]"                          },
+          { "id": 2, "url" : "/SCM"                                                      , "text": "[SOFTWARE CONFIGURATION MANAGEMENT]"         },
           { "id": 3, "url" : "/PageUrlList"                                              , "text": "[LARGE LANGUAGE MODELS LIST]"                , "queryParams" : "{ pageName : 'PAGE_ABOUT_LLM_LIST'}"     },
           { "id": 4, "url" : "/PageUrlList"                                              , "text": "[EDUCATIONAL RESOURCES]"                     , "queryParams" : "{ pageName : 'PAGE_ABOUT_EDU_RESC'}"     },
-          { "id": 5, "url" : "/ContactForm"                                              , "text": "[CONTACT FORM]"                            },
-          { "id": 6, "url" : "/Index"                                                    , "text": "[INDEX]"                                   }
+          { "id": 5, "url" : "/ContactForm"                                              , "text": "[CONTACT FORM]"                              },
+          { "id": 6, "url" : "/Index"                                                    , "text": "[INDEX]"                                     }
         ]
+      },
+      {
+        "log_name"   : "PAGE_ABOUT_PROGRAM_DESCRIPTION",
+        "page_name"  : "[ABOUT - PROGRAM DESCRIPTION]",
+        "pages"      : []
       },
       {
         "log_name"   : "PAGE_ABOUT_TECHNICAL_SPECS",

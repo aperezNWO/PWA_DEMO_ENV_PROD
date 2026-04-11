@@ -6,16 +6,17 @@ import { RouterLink                           } from '@angular/router';
 // CUSTOM MODULES
 import { SharedModule            } from '../shared/shared.module';
 import { BaseSortableHeader      } from 'src/app/_directives/sortable.directive';
-import { CustomErrorHandler      }  from 'src/app/app.module';
+import { CustomErrorHandler      } from 'src/app/app.module';
 // CUSTOM COMPONENTS
 
 import { ContactformComponent                    } from './contactform/contactform.component';
-import { IndexComponent, IndexSortableHeader          } from './index/index.component';
+import { IndexComponent, IndexSortableHeader     } from './index/index.component';
 import { SCMComponent                            } from './scm/scm.component';
 import { TechnicalSpecsComponent                 } from './technicalspecs/technical-specs/technical-specs.component';
 import { SpeechPanelComponent                    } from 'src/app/_components/speech-panel/speech-panel.component';
 // THIRD PARTY
 import { NgbHighlight, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProgramDescriptionComponent                       } from './programDescription/program-description.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { NgbHighlight, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap
         SCMComponent,
         TechnicalSpecsComponent,
         ContactformComponent,
+        ProgramDescriptionComponent,
   ],
   imports: [
     CommonModule,

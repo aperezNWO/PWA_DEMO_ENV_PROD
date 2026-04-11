@@ -2,6 +2,7 @@ import { NgModule                        } from '@angular/core';
 import { Route, RouterModule             } from '@angular/router';
 import { HomeWebComponent                } from './_modules/home/home-web/home-web.component';
 import { PageNotFoundComponent           } from './_modules/home/page-not-found/page-not-found.component';
+import { ProgramDescriptionComponent     } from './_modules/about/programDescription/program-description.component';
 import { SCMComponent                    } from './_modules/about/scm/scm.component';
 import { TechnicalSpecsComponent         } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
 import { CurriculumAngularComponent      } from './_modules/_Demos/_DemosCurriculum/curriculumAngular/curriculumAngular.component';
@@ -30,6 +31,7 @@ import { PageUrlListComponent        } from './_components/page-url-list/page-ur
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
 import { LandingComponent            } from './_components/landing/landing.component';
 
+
 export interface _Route extends Route
 {  
     id      : number;
@@ -42,6 +44,7 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'Home'                  , component: HomeWebComponent                    , caption: ' Home'                                        , queryParams : 'PAGE_ANGULAR_DEMO_INDEX' },
   {  id: 0,  path: 'Index'                 , component: IndexComponent                      , caption: ' Index'                                       , queryParams : 'PAGE_HOME_INDEX'         },
   {  id: 0,  path:  ''                     , component: HomeWebComponent                    , caption: ''                                             , queryParams : '' },
+  {  id: 0,  path: 'ProgramDescription'    , component: ProgramDescriptionComponent         , caption: ' About  - Program Description'                , queryParams : '' },
   {  id: 0,  path: 'SCM'                   , component: SCMComponent                        , caption: ' About  - SCM'                                , queryParams : '' },
   {  id: 0,  path: 'PageUrlList'           , component: PageUrlListComponent                , caption: ' About  - LLM List'                           , queryParams : 'PAGE_ABOUT_LLM_LIST'     },
   {  id: 0,  path: 'PageUrlList'           , component: PageUrlListComponent                , caption: ' About  - Educational Resources'              , queryParams : 'PAGE_ABOUT_EDU_RESC'     },

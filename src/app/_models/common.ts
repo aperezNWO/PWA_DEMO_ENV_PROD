@@ -26,6 +26,8 @@ export const PAGE_TITLE_NO_SOUND                = "PAGE_TITLE_NO_SOUND";
 
 export const PAGE_ABOUT_INDEX                   = "PAGE_ABOUT_INDEX";
 
+export const PAGE_ABOUT_PROGRAM_DESCRIPTION     = "PAGE_ABOUT_PROGRAM_DESCRIPTION";
+
 export const PAGE_ABOUT_EDU_RESC                = "PAGE_ABOUT_EDU_RESC";
 
 export const PAGE_ABOUT_SCM                     = 'PAGE_ABOUT_SCM';

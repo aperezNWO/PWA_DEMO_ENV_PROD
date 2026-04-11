@@ -1,0 +1,41 @@
+<div class="content">
+  <div align="center"><h2>{{this.pageTitle}}</h2></div>
+  <hr>
+  <div class="program-description">
+    The purpose of this program is to showcase the latest features of the Angular web framework.
+    <br>  
+    <br>
+    <h5>Program Features:</h5>
+    <br>
+    <ul>
+      <li>Interaction with several programming languages (C++, C#, JavaScript, TypeScript, Java, and Python) and backends (.NET Core, Node.js, Spring Boot, and Django).</li>
+      <li>Usage of third-party libraries like OCR, charts, Excel, PDF, 2D graphics, 3D graphics, and machine learning (TensorFlow).</li>
+      <li>Usage of custom components like voice search panels and dynamic rendering components like datagrids and lists.</li>
+      <li>Treats basic topics like fractals, algorithms, and machine learning using games, forms, and graphical visualizations as playgrounds.</li>
+      <li>Links to official references and topics.</li>
+    </ul>    
+    <p>
+    Most of the content of this site relies on external configurable JSON files rendered by the mentioned dynamic rendering components.
+    <br>  
+    <br>
+    This program is neither a step-by-step tutorial nor a one-purpose program but rather a showcase and reference that may be useful for new Angular developers, 
+    and for potential customers, it shows the author's proficiency in the latest Angular features.
+    <br>
+    <br>
+    For more detailed information, go to the  <a [routerLink]="'/TechnicalSpecs'" >[Technical Specification]</a> section.
+    <br>
+    <br>
+    To send feedback to the author of the site, go to the <a [routerLink]="'/ContactForm'" >[Contact Form]</a>  section.
+    <br>
+    <br>
+    Note:
+
+    Due to the fact that the mentioned languages and backends evolve quickly and the programs written on them become frequently outdated, 
+    the main focus of the program is to showcase the latest Angular features.
+    </p>  
+  </div>
+  <hr>
+  <div align="right">
+      <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_ABOUT_INDEX'}" >[Back to Menu]</a>
+  </div>
+</div>
