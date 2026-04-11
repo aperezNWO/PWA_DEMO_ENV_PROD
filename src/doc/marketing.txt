@@ -38,11 +38,13 @@ Contacto :  https://shorturl.at/2vr3t
 
 //////////////////////////////////////////////////
 
+
+
 -- [_] PROGRAM DESCRIPTION
 
 The purpose of <program_name> is to showcase the latest features of the Angular web framework.
 
-Features :  
+Features:
 
 -- Interaction with several programming languages and backends.
 
@@ -50,11 +52,11 @@ Features :
 
 -- Usage of custom components like voice search panels and dynamic rendering components like datagrids and lists.
 
--- Treat in a basic matter topics like algorithms, machine learning.
+-- Treats basic matter topics like algorithms and machine learning.
 
 -- Links to official references and topics.
 
-Most of the content of this site is structured via external configurable JSON files rendered by the mentioned dynamic rendering components.
+Most of the content of this site relies on external configurable JSON files rendered by the mentioned dynamic rendering components.
 
 This program is neither a step-by-step tutorial nor a one-purpose program but rather a showcase and reference that may be useful for new Angular developers, and for potential customers, it shows the author's proficiency in the latest Angular features.
 
@@ -64,8 +66,6 @@ To send feedback to the author of the site, go to the [Contact Form] section.
 
 Note:
 
-Due to the fact that the mentioned languages and backends evolve quickly and the programs written on them become frequently outdated, 
-the main focus of the program is to showcase the latest Angular features.
-
+Due to the fact that the mentioned languages and backends evolve quickly and the programs written on them become frequently outdated, the main focus of the program is to showcase the latest Angular features.
 
 //////////////////////////////////////////////////
