@@ -32,6 +32,7 @@ import { BackendService         } from './_services/BackendService/backend.servi
 // THIRD PARTY
 import { NgbModule     } from '@ng-bootstrap/ng-bootstrap';
 import { tap, finalize } from 'rxjs';
+import { RubikCubeComponent } from './_modules/__Testing/rubik-cube/rubik-cube.component';
 /**
  * 1. GLOBAL HTTP INTERCEPTOR (Functional Style)
  * Captures all network traffic and logs it.
@@ -82,7 +83,8 @@ export class CustomErrorHandler implements ErrorHandler {
     NavComponent,
     PageNotFoundComponent,
     GridParamComponent,
-    PageUrlListComponent
+    PageUrlListComponent,
+    RubikCubeComponent,
   ],
   imports: [
     BrowserModule,

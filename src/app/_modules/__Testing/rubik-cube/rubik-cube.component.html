@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Cubo de Rubik 3D - Funcional</h2>
+  
+  <div class="controls">
+    <button (click)="shuffleCube()" [disabled]="!canShuffle" class="btn btn-primary">
+      🎲 Desordenar
+    </button>
+    <button (click)="solveCube()" [disabled]="!canSolve" class="btn btn-success">
+      ✨ Resolver
+    </button>
+    
+    <div class="status-info">
+      <span class="status-label">Estado:</span>
+      <span class="status-value" [class.solved]="cubeLogic.isSolved()" [class.scrambled]="!cubeLogic.isSolved()">
+        {{ cubeLogic.isSolved() ? '✅ Resuelto' : '🎲 Desordenado' }}
+      </span>
+      <!-- FIXED: Use safe navigation operator or provide default value -->
+      <span class="move-count" *ngIf="appliedMoves && appliedMoves.length > 0">
+        ({{ appliedMoves.length }} movimientos)
+      </span>
+    </div>
+    
+    <p class="instructions">🖱️ Arrastra para rotar el cubo | Mira la consola para depuración</p>
+  </div>
+
+  <div #rendererContainer class="renderer-container"></div>
+  
+  <div class="debug-info" *ngIf="isAnimating">
+    <div class="spinner"></div>
+    <span>Animando... por favor espera</span>
+  </div>
+</div>
