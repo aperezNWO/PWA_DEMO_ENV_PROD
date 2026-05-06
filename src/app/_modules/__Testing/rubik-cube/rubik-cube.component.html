@@ -2,28 +2,36 @@
   <h2>Rubik's Cube 3D</h2>
   <p class="instructions">🖱️ Drag to rotate view | ⌨️ Tap buttons to rotate faces</p>
   
-  <!-- The 3D Canvas Container -->
   <div #rendererContainer class="renderer-container"></div>
 
   <div class="controls">
-    <!-- Face Rotations Group -->
-    <div class="control-group">
-      <span>Face Moves</span>
-      <div class="button-row">
-        <button (click)="rotateFace('x', 1)">Right</button>
-        <button (click)="rotateFace('x', -1)">Left</button>
-      </div>
-      <div class="button-row">
-        <button (click)="rotateFace('y', 1)">Top</button>
-        <button (click)="rotateFace('y', -1)">Bottom</button>
-      </div>
-      <div class="button-row">
-        <button (click)="rotateFace('z', 1)">Front</button>
-        <button (click)="rotateFace('z', -1)">Back</button>
+    <!-- Direction Toggle -->
+    <div class="control-group full-width">
+      <span>Rotation Direction</span>
+      <div class="direction-toggle">
+        <button [class.active]="isClockwise" (click)="isClockwise = true">Clockwise ↻</button>
+        <button [class.active]="!isClockwise" (click)="isClockwise = false">Counter-CW ↺</button>
       </div>
     </div>
 
-    <!-- System Controls Group -->
+    <!-- Face Rotations -->
+    <div class="control-group">
+      <span>Face Moves</span>
+      <div class="button-row">
+        <button (click)="rotateFace('x', 1, isClockwise)">Right</button>
+        <button (click)="rotateFace('x', -1, isClockwise)">Left</button>
+      </div>
+      <div class="button-row">
+        <button (click)="rotateFace('y', 1, isClockwise)">Top</button>
+        <button (click)="rotateFace('y', -1, isClockwise)">Bottom</button>
+      </div>
+      <div class="button-row">
+        <button (click)="rotateFace('z', 1, isClockwise)">Front</button>
+        <button (click)="rotateFace('z', -1, isClockwise)">Back</button>
+      </div>
+    </div>
+
+    <!-- System Controls -->
     <div class="control-group system">
       <span>System</span>
       <button class="btn-secondary" (click)="resetView()">Reset View</button>

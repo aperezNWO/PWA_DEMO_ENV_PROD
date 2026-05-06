@@ -13,34 +13,29 @@
 .renderer-container {
   width: 100%;
   max-width: 600px;
-  height: 50vh; /* Responsive height for mobile */
+  height: 45vh;
   min-height: 320px;
   border: 2px solid #333;
   border-radius: 12px;
   overflow: hidden;
   background: #0d0d0d;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  
-  /* CRITICAL for Mobile: Prevents browser scroll/refresh while dragging the cube */
   touch-action: none; 
   user-select: none;
   -webkit-user-select: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .controls {
   margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(1, 1fr); /* Default 1 col for small phones */
+  grid-template-columns: repeat(1, 1fr);
   gap: 12px;
   width: 100%;
   max-width: 600px;
 }
 
-/* Tablet and Desktop: 2 columns */
 @media (min-width: 480px) {
-  .controls {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .controls { grid-template-columns: repeat(2, 1fr); }
 }
 
 .control-group {
@@ -53,13 +48,33 @@
   border: 1px solid #333;
 }
 
+.full-width { grid-column: 1 / -1; }
+
 .control-group span {
   font-size: 11px;
   font-weight: bold;
   color: #888;
   text-transform: uppercase;
-  letter-spacing: 1px;
   margin-bottom: 4px;
+}
+
+.direction-toggle {
+  display: flex;
+  gap: 10px;
+}
+
+.direction-toggle button {
+  flex: 1;
+  background: #2a2a2a;
+  border: 1px solid #444;
+  opacity: 0.6;
+}
+
+.direction-toggle button.active {
+  background: #007bff;
+  opacity: 1;
+  border-color: #00bfff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
 }
 
 .button-row {
@@ -67,31 +82,21 @@
   gap: 8px;
 }
 
-.button-row button {
-  flex: 1;
-}
+.button-row button { flex: 1; }
 
 button {
   background: #3a3a3a;
   color: white;
   border: none;
-  padding: 12px 8px; /* Larger tap target */
+  padding: 12px 8px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
-  font-size: 14px;
   transition: all 0.2s ease;
-  min-height: 44px; /* Mobile accessibility standard */
+  min-height: 44px;
 }
 
-button:hover {
-  background: #4a4a4a;
-}
-
-button:active {
-  background: #007bff;
-  transform: scale(0.98);
-}
+button:active { transform: scale(0.98); }
 
 .btn-secondary { background: #44475a; }
 .btn-danger { background: #ff5555; }

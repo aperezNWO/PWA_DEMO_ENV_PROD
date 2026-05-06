@@ -16,7 +16,8 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
   private cubes: THREE.Mesh[] = [];
   
   private isDragging = false;
-  private isAnimating = false;
+  public isAnimating = false;
+  public isClockwise = true;
   private previousPosition = { x: 0, y: 0 };
 
   ngAfterViewInit(): void {
@@ -28,9 +29,7 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.disposeCube();
-    if (this.renderer) {
-      this.renderer.dispose();
-    }
+    if (this.renderer) this.renderer.dispose();
     this.removeEventListeners();
   }
 
@@ -47,12 +46,10 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(window.devicePixelRatio); // Sharper on mobile
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.rendererContainer.nativeElement.appendChild(this.renderer.domElement);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-    this.scene.add(ambientLight);
-
+    this.scene.add(new THREE.AmbientLight(0xffffff, 0.7));
     const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
     dirLight.position.set(5, 5, 5);
     this.scene.add(dirLight);
@@ -78,7 +75,6 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
             new THREE.MeshLambertMaterial({ color: z === 1 ? colors.front : 0x111111 }),
             new THREE.MeshLambertMaterial({ color: z === -1 ? colors.back : 0x111111 })
           ];
-
           const cube = new THREE.Mesh(geometry, materials);
           cube.position.set(x, y, z);
           this.scene.add(cube);
@@ -88,19 +84,14 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  // --- ACTIONS ---
-
-  public rotateFace(axis: 'x' | 'y' | 'z', layer: number, clockwise: boolean = true): void {
+  public rotateFace(axis: 'x' | 'y' | 'z', layer: number, clockwise: boolean): void {
     if (this.isAnimating) return;
     this.isAnimating = true;
 
     const group = new THREE.Group();
     this.scene.add(group);
 
-    const cubesInFace = this.cubes.filter(cube => 
-      Math.abs(cube.position[axis] - layer) < 0.1
-    );
-
+    const cubesInFace = this.cubes.filter(cube => Math.abs(cube.position[axis] - layer) < 0.1);
     cubesInFace.forEach(cube => group.attach(cube));
 
     const targetRotation = clockwise ? -Math.PI / 2 : Math.PI / 2;
@@ -109,28 +100,21 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
 
     const animateMove = (now: number) => {
       const progress = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // Smooth Ease-out
-      
+      const eased = 1 - Math.pow(1 - progress, 3);
       group.rotation[axis] = targetRotation * eased;
 
       if (progress < 1) {
         requestAnimationFrame(animateMove);
       } else {
-        const children = [...group.children];
-        children.forEach(child => {
-          this.scene.attach(child);
-        });
+        [...group.children].forEach(child => this.scene.attach(child));
         this.scene.remove(group);
         this.isAnimating = false;
       }
     };
-
     requestAnimationFrame(animateMove);
   }
 
-  public resetView(): void {
-    this.scene.rotation.set(0, 0, 0);
-  }
+  public resetView(): void { this.scene.rotation.set(0, 0, 0); }
 
   public resetCube(): void {
     if (this.isAnimating) return;
@@ -142,14 +126,10 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
     this.cubes.forEach(cube => {
       this.scene.remove(cube);
       cube.geometry.dispose();
-      if (Array.isArray(cube.material)) {
-        cube.material.forEach(m => m.dispose());
-      }
+      (cube.material as THREE.Material[]).forEach(m => m.dispose());
     });
     this.cubes = [];
   }
-
-  // --- ENGINE & INPUT ---
 
   private animate = (): void => {
     requestAnimationFrame(this.animate);
@@ -172,34 +152,27 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
     window.removeEventListener('resize', this.onWindowResize);
   }
 
-  private onPointerDown = (event: PointerEvent): void => {
+  private onPointerDown = (e: PointerEvent): void => {
     this.isDragging = true;
-    this.previousPosition = { x: event.clientX, y: event.clientY };
+    this.previousPosition = { x: e.clientX, y: e.clientY };
   };
 
-  private onPointerMove = (event: PointerEvent): void => {
+  private onPointerMove = (e: PointerEvent): void => {
     if (!this.isDragging) return;
-    
-    // Stop browser interactions (like swipe-to-refresh)
-    if (event.cancelable) event.preventDefault();
-
-    const deltaX = event.clientX - this.previousPosition.x;
-    const deltaY = event.clientY - this.previousPosition.y;
-
+    if (e.cancelable) e.preventDefault();
+    const deltaX = e.clientX - this.previousPosition.x;
+    const deltaY = e.clientY - this.previousPosition.y;
     this.scene.rotation.y += deltaX * 0.007;
     this.scene.rotation.x += deltaY * 0.007;
-
-    this.previousPosition = { x: event.clientX, y: event.clientY };
+    this.previousPosition = { x: e.clientX, y: e.clientY };
   };
 
   private onPointerUp = (): void => { this.isDragging = false; };
 
   private onWindowResize = (): void => {
     const container = this.rendererContainer.nativeElement;
-    const width = container.clientWidth;
-    const height = container.clientHeight;
-    this.camera.aspect = width / height;
+    this.camera.aspect = container.clientWidth / container.clientHeight;
     this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height);
+    this.renderer.setSize(container.clientWidth, container.clientHeight);
   };
 }
