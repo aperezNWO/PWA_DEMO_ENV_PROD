@@ -6,206 +6,53 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 800px;
   margin: 0 auto;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: #121212;
+  color: #e0e0e0;
   min-height: 100vh;
 }
 
 .container h2 {
-  color: #2c3e50;
-  margin-bottom: 25px;
-  text-align: center;
-  font-size: 28px;
-  font-weight: 700;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-.controls {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 25px;
-  width: 100%;
-  padding: 0 10px;
-}
-
-.btn {
-  padding: 14px 28px;
-  font-size: 17px;
+  color: #ffffff;
+  margin-bottom: 12px;
   font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  min-width: 160px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: white;
-}
-
-.btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.btn:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-}
-
-.btn-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, #2980b9, #2573a7);
-}
-
-.btn-success {
-  background: linear-gradient(135deg, #2ecc71, #27ae60);
-}
-
-.btn-success:hover:not(:disabled) {
-  background: linear-gradient(135deg, #27ae60, #229954);
-}
-
-.status-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: white;
-  padding: 12px 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid #dee2e6;
-}
-
-.status-label {
-  font-weight: 600;
-  color: #495057;
-}
-
-.status-value {
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 15px;
-}
-
-.status-value.solved {
-  color: #28a745;
-  background: #d4edda;
-}
-
-.status-value.scrambled {
-  color: #dc3545;
-  background: #f8d7da;
-}
-
-.move-count {
-  color: #6c757d;
-  font-size: 14px;
-  font-style: italic;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .instructions {
-  color: #6c757d;
-  font-size: 14px;
-  margin-top: 8px;
-  text-align: center;
+  color: #a0a0a0;
+  margin-bottom: 20px;
   font-style: italic;
+  font-size: 14px;
+  text-align: center;
 }
 
 .renderer-container {
   width: 100%;
   max-width: 600px;
   height: 500px;
-  border: 3px solid #dee2e6;
-  border-radius: 16px;
+  border: 2px solid #333;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  margin-bottom: 20px;
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.5),
+    inset 0 0 10px rgba(0, 0, 0, 0.8);
+  background: #0d0d0d;
+  /* ✅ Critical for Chrome compatibility */
+  touch-action: none;
 }
 
-.debug-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: linear-gradient(135deg, #ff9800, #f57c00);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3); }
-  50% { box-shadow: 0 4px 16px rgba(255, 152, 0, 0.5); }
-  100% { box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3); }
-}
-
-.spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: white;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-  .container {
-    padding: 15px;
-  }
-  
-  .container h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .renderer-container {
-    height: 400px;
-  }
-  
-  .btn {
-    width: 100%;
-    max-width: 280px;
-    padding: 16px;
-    font-size: 16px;
-  }
-  
-  .status-info {
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .move-count {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-/* Ensure Three.js canvas displays properly */
 .renderer-container canvas {
   display: block;
   width: 100%;
   height: 100%;
+  /* ✅ Ensures no interference from browser gestures */
+  touch-action: none;
+}
+
+/* Optional: subtle hover effect */
+.renderer-container:hover {
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.7),
+    inset 0 0 15px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
