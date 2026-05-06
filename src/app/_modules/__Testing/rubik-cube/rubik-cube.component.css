@@ -2,57 +2,96 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  max-width: 800px;
-  margin: 0 auto;
+  padding: 15px;
+  font-family: 'Segoe UI', Roboto, sans-serif;
   background: #121212;
   color: #e0e0e0;
   min-height: 100vh;
-}
-
-.container h2 {
-  color: #ffffff;
-  margin-bottom: 12px;
-  font-weight: 600;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.instructions {
-  color: #a0a0a0;
-  margin-bottom: 20px;
-  font-style: italic;
-  font-size: 14px;
-  text-align: center;
+  box-sizing: border-box;
 }
 
 .renderer-container {
   width: 100%;
   max-width: 600px;
-  height: 500px;
+  height: 50vh; /* Responsive height for mobile */
+  min-height: 320px;
   border: 2px solid #333;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 
-    0 8px 30px rgba(0, 0, 0, 0.5),
-    inset 0 0 10px rgba(0, 0, 0, 0.8);
   background: #0d0d0d;
-  /* ✅ Critical for Chrome compatibility */
-  touch-action: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  
+  /* CRITICAL for Mobile: Prevents browser scroll/refresh while dragging the cube */
+  touch-action: none; 
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.renderer-container canvas {
-  display: block;
+.controls {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Default 1 col for small phones */
+  gap: 12px;
   width: 100%;
-  height: 100%;
-  /* ✅ Ensures no interference from browser gestures */
-  touch-action: none;
+  max-width: 600px;
 }
 
-/* Optional: subtle hover effect */
-.renderer-container:hover {
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.7),
-    inset 0 0 15px rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+/* Tablet and Desktop: 2 columns */
+@media (min-width: 480px) {
+  .controls {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #1e1e1e;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #333;
+}
+
+.control-group span {
+  font-size: 11px;
+  font-weight: bold;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.button-row {
+  display: flex;
+  gap: 8px;
+}
+
+.button-row button {
+  flex: 1;
+}
+
+button {
+  background: #3a3a3a;
+  color: white;
+  border: none;
+  padding: 12px 8px; /* Larger tap target */
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  min-height: 44px; /* Mobile accessibility standard */
+}
+
+button:hover {
+  background: #4a4a4a;
+}
+
+button:active {
+  background: #007bff;
+  transform: scale(0.98);
+}
+
+.btn-secondary { background: #44475a; }
+.btn-danger { background: #ff5555; }

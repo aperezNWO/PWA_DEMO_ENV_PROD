@@ -15,10 +15,9 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
   private renderer!: THREE.WebGLRenderer;
   private cubes: THREE.Mesh[] = [];
   
-  // Pointer interaction
   private isDragging = false;
+  private isAnimating = false;
   private previousPosition = { x: 0, y: 0 };
-  private rotation = { x: 0, y: 0 };
 
   ngAfterViewInit(): void {
     this.initThreeJS();
@@ -28,6 +27,7 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.disposeCube();
     if (this.renderer) {
       this.renderer.dispose();
     }
@@ -39,50 +39,44 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
     const height = this.rendererContainer.nativeElement.clientHeight;
 
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x0a0a0a); // Dark gray
+    this.scene.background = new THREE.Color(0x0a0a0a);
 
     this.camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
-    this.camera.position.z = 8;
+    this.camera.position.set(4, 4, 7);
+    this.camera.lookAt(0, 0, 0);
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setSize(width, height);
+    this.renderer.setPixelRatio(window.devicePixelRatio); // Sharper on mobile
     this.rendererContainer.nativeElement.appendChild(this.renderer.domElement);
+
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+    this.scene.add(ambientLight);
+
+    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    dirLight.position.set(5, 5, 5);
+    this.scene.add(dirLight);
   }
 
   private createRubiksCube(): void {
     const colors = {
-      up: 0xffffff,      // white
-      down: 0xffff00,    // yellow
-      front: 0xff0000,   // red
-      back: 0xffa500,    // orange
-      left: 0x00ff00,    // green
-      right: 0x0000ff    // blue
+      right: 0x0000ff, left: 0x00ff00, 
+      up: 0xffffff,    down: 0xffff00, 
+      front: 0xff0000, back: 0xffa500
     };
 
-    const geometry = new THREE.BoxGeometry(0.9, 0.9, 0.9);
+    const geometry = new THREE.BoxGeometry(0.95, 0.95, 0.95);
 
     for (let x = -1; x <= 1; x++) {
       for (let y = -1; y <= 1; y++) {
         for (let z = -1; z <= 1; z++) {
           const materials = [
-            new THREE.MeshLambertMaterial({ 
-              color: x === 1 ? colors.right : 0x222222 
-            }), // right
-            new THREE.MeshLambertMaterial({ 
-              color: x === -1 ? colors.left : 0x222222 
-            }), // left
-            new THREE.MeshLambertMaterial({ 
-              color: y === 1 ? colors.up : 0x222222 
-            }), // up
-            new THREE.MeshLambertMaterial({ 
-              color: y === -1 ? colors.down : 0x222222 
-            }), // down
-            new THREE.MeshLambertMaterial({ 
-              color: z === 1 ? colors.front : 0x222222 
-            }), // front
-            new THREE.MeshLambertMaterial({ 
-              color: z === -1 ? colors.back : 0x222222 
-            })  // back
+            new THREE.MeshLambertMaterial({ color: x === 1 ? colors.right : 0x111111 }),
+            new THREE.MeshLambertMaterial({ color: x === -1 ? colors.left : 0x111111 }),
+            new THREE.MeshLambertMaterial({ color: y === 1 ? colors.up : 0x111111 }),
+            new THREE.MeshLambertMaterial({ color: y === -1 ? colors.down : 0x111111 }),
+            new THREE.MeshLambertMaterial({ color: z === 1 ? colors.front : 0x111111 }),
+            new THREE.MeshLambertMaterial({ color: z === -1 ? colors.back : 0x111111 })
           ];
 
           const cube = new THREE.Mesh(geometry, materials);
@@ -92,28 +86,81 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
         }
       }
     }
-
-    // Lighting
-    const ambientLight = new THREE.AmbientLight(0x404040);
-    this.scene.add(ambientLight);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(2, 2, 2);
-    this.scene.add(directionalLight);
   }
+
+  // --- ACTIONS ---
+
+  public rotateFace(axis: 'x' | 'y' | 'z', layer: number, clockwise: boolean = true): void {
+    if (this.isAnimating) return;
+    this.isAnimating = true;
+
+    const group = new THREE.Group();
+    this.scene.add(group);
+
+    const cubesInFace = this.cubes.filter(cube => 
+      Math.abs(cube.position[axis] - layer) < 0.1
+    );
+
+    cubesInFace.forEach(cube => group.attach(cube));
+
+    const targetRotation = clockwise ? -Math.PI / 2 : Math.PI / 2;
+    const duration = 350; 
+    const startTime = performance.now();
+
+    const animateMove = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // Smooth Ease-out
+      
+      group.rotation[axis] = targetRotation * eased;
+
+      if (progress < 1) {
+        requestAnimationFrame(animateMove);
+      } else {
+        const children = [...group.children];
+        children.forEach(child => {
+          this.scene.attach(child);
+        });
+        this.scene.remove(group);
+        this.isAnimating = false;
+      }
+    };
+
+    requestAnimationFrame(animateMove);
+  }
+
+  public resetView(): void {
+    this.scene.rotation.set(0, 0, 0);
+  }
+
+  public resetCube(): void {
+    if (this.isAnimating) return;
+    this.disposeCube();
+    this.createRubiksCube();
+  }
+
+  private disposeCube(): void {
+    this.cubes.forEach(cube => {
+      this.scene.remove(cube);
+      cube.geometry.dispose();
+      if (Array.isArray(cube.material)) {
+        cube.material.forEach(m => m.dispose());
+      }
+    });
+    this.cubes = [];
+  }
+
+  // --- ENGINE & INPUT ---
 
   private animate = (): void => {
     requestAnimationFrame(this.animate);
     this.renderer.render(this.scene, this.camera);
   };
 
-  // === Pointer Event Handlers (Cross-browser compatible) ===
   private setupEventListeners(): void {
     const canvas = this.renderer.domElement;
     canvas.addEventListener('pointerdown', this.onPointerDown);
-    canvas.addEventListener('pointermove', this.onPointerMove);
+    canvas.addEventListener('pointermove', this.onPointerMove, { passive: false });
     canvas.addEventListener('pointerup', this.onPointerUp);
-    canvas.addEventListener('pointercancel', this.onPointerUp);
     window.addEventListener('resize', this.onWindowResize);
   }
 
@@ -122,41 +169,35 @@ export class RubikCubeComponent implements AfterViewInit, OnDestroy {
     canvas.removeEventListener('pointerdown', this.onPointerDown);
     canvas.removeEventListener('pointermove', this.onPointerMove);
     canvas.removeEventListener('pointerup', this.onPointerUp);
-    canvas.removeEventListener('pointercancel', this.onPointerUp);
     window.removeEventListener('resize', this.onWindowResize);
   }
 
   private onPointerDown = (event: PointerEvent): void => {
-    event.preventDefault();
     this.isDragging = true;
     this.previousPosition = { x: event.clientX, y: event.clientY };
   };
 
   private onPointerMove = (event: PointerEvent): void => {
     if (!this.isDragging) return;
-    event.preventDefault();
+    
+    // Stop browser interactions (like swipe-to-refresh)
+    if (event.cancelable) event.preventDefault();
 
     const deltaX = event.clientX - this.previousPosition.x;
     const deltaY = event.clientY - this.previousPosition.y;
 
-    this.rotation.y += deltaX * 0.01;
-    this.rotation.x += deltaY * 0.01;
-    this.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, this.rotation.x));
-
-    this.scene.rotation.y = this.rotation.y;
-    this.scene.rotation.x = this.rotation.x;
+    this.scene.rotation.y += deltaX * 0.007;
+    this.scene.rotation.x += deltaY * 0.007;
 
     this.previousPosition = { x: event.clientX, y: event.clientY };
   };
 
-  private onPointerUp = (event: PointerEvent): void => {
-    event.preventDefault();
-    this.isDragging = false;
-  };
+  private onPointerUp = (): void => { this.isDragging = false; };
 
   private onWindowResize = (): void => {
-    const width = this.rendererContainer.nativeElement.clientWidth;
-    const height = this.rendererContainer.nativeElement.clientHeight;
+    const container = this.rendererContainer.nativeElement;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
     this.camera.aspect = width / height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height);

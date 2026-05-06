@@ -1,5 +1,33 @@
 <div class="container">
   <h2>Rubik's Cube 3D</h2>
-  <p class="instructions">🖱️ Haz clic y arrastra para rotar | Funciona en Chrome, Brave y más</p>
+  <p class="instructions">🖱️ Drag to rotate view | ⌨️ Tap buttons to rotate faces</p>
+  
+  <!-- The 3D Canvas Container -->
   <div #rendererContainer class="renderer-container"></div>
+
+  <div class="controls">
+    <!-- Face Rotations Group -->
+    <div class="control-group">
+      <span>Face Moves</span>
+      <div class="button-row">
+        <button (click)="rotateFace('x', 1)">Right</button>
+        <button (click)="rotateFace('x', -1)">Left</button>
+      </div>
+      <div class="button-row">
+        <button (click)="rotateFace('y', 1)">Top</button>
+        <button (click)="rotateFace('y', -1)">Bottom</button>
+      </div>
+      <div class="button-row">
+        <button (click)="rotateFace('z', 1)">Front</button>
+        <button (click)="rotateFace('z', -1)">Back</button>
+      </div>
+    </div>
+
+    <!-- System Controls Group -->
+    <div class="control-group system">
+      <span>System</span>
+      <button class="btn-secondary" (click)="resetView()">Reset View</button>
+      <button class="btn-danger" (click)="resetCube()">Full Reset Cube</button>
+    </div>
+  </div>
 </div>
