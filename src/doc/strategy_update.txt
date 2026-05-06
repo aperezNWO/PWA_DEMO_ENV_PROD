@@ -458,5 +458,9 @@
   --[_] Merge Tetris2d / Tetris 3d engines on federation + expose other languages.
 
   --[_] rubik cube.
+
+        --[_]   Face rotation on click
+        --[_]   Shuffle functionality
+        --[_]   Step-by-step solving logic
   
 ////////////////////////////////////////////////////////////////////////////////
