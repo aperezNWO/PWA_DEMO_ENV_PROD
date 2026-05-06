@@ -66,7 +66,7 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'GamesHanoi3d'          , component: GameHanoi3dComponent                , caption: ' Games  - Hanoi 3d'                           , queryParams : '' },
   {  id: 0,  path: 'GamesTetris'           , component: GameTetrisComponent                 , caption: ' Games  - Tetris'                             , queryParams : '' },
   {  id: 0,  path: 'GamesTetrisAI'         , component: GameTetrisAIComponent               , caption: ' Games  - Tetris - A.I.'                      , queryParams : '' },
-  {  id: 0,  path: 'RubikCube'             , component: RubikCubeComponent                  , caption: ' Games  - Rubrik Cube'                        , queryParams : '' },
+  {  id: 0,  path: 'RubikCube'             , component: RubikCubeComponent                  , caption: ' Games  - Rubik Cube'                         , queryParams : '' },
   {  id: 0,  path: 'Chat'                  , component: ChatComponent                       , caption: ' MISCELLANEOUS - Chat Demo'                   , queryParams : '' },
   {  id: 0,  path: 'OcrPhotoCapture'       , component: VisionHUBComponent                  , caption: ' MISCELLANEOUS - Ocr / Computer Visiopn'      , queryParams : '' },
   {  id: 0,  path: 'FractalDemo'           , component: FractalDemoComponent                , caption: ' MISCELLANEOUS - Fractal Demo'                , queryParams : '' },
