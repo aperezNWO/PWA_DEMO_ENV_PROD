@@ -231,12 +231,13 @@
         "page_name"  : "[DEMOS - GAMES]",
         "pages"      : [
           { "id": 1, "url" : "/GamesSudoku"            , "text": "[GAMES - SUDOKU]"           },
-          { "id": 3, "url" : "/GamesHanoiAuto"         , "text": "[GAMES - HANOI 2d]"         },
-          { "id": 4, "url" : "/GamesHanoi3d"           , "text": "[GAMES - HANOI 3d]"         },
-          { "id": 2, "url" : "/GamesTicTacToe"         , "text": "[GAMES - TIC-TAC-TOE]"      }, 
+          { "id": 2, "url" : "/GamesHanoiAuto"         , "text": "[GAMES - HANOI 2d]"         },
+          { "id": 3, "url" : "/GamesHanoi3d"           , "text": "[GAMES - HANOI 3d]"         },
+          { "id": 4, "url" : "/GamesTicTacToe"         , "text": "[GAMES - TIC-TAC-TOE]"      }, 
           { "id": 5, "url" : "/GamesTicTacToeAI"       , "text": "[GAMES - TIC-TAC-TOE - AI]" },
           { "id": 6, "url" : "/GamesTetris"            , "text": "[GAMES - TETRIS]"           },
-          { "id": 7, "url" : "/GamesTetrisAI"          , "text": "[GAMES - TETRIS - AI]"      }   
+          { "id": 7, "url" : "/GamesTetrisAI"          , "text": "[GAMES - TETRIS - AI]"      },   
+          { "id": 8, "url" : "/RubikCube"              , "text": "[GAMES - RUBIK CUBE]"       }   
         ]
       },
       {
@@ -354,6 +355,21 @@
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/Tetris"                                      , "text" : "[Tetris]"                        , "routerLink" : "about:blank" , "queryParams" : "" },
           { "id" : 4, "url": "https://leeyiyuan.github.io/tetrisai/"                                     , "text" : "[Tetris A.I.]"                   , "routerLink" : "about:blank" , "queryParams" : "" }
         ]
+      },
+      {
+        "log_name"   : "PAGE_GAMES_RUBIK_CUBE",
+        "page_name"  : "[GAMES - RUBIK CUBE]",
+        "pages"      : [
+            { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+            { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
+            { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
+          ],
+        "pages_nested" : [
+            { "id" : 1, "url": "about:blank"                                                   , "text" : "[Angular]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '25b39bbe-17b7-454d-9937-118a2b506982' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+            { "id" : 3, "url": "https://www.npmjs.com/package/three-tween"                     , "text" : "[TWEEN / THREE]"              , "routerLink" : "about:blank" , "queryParams" : "" },
+            { "id" : 3, "url": "https://www.npmjs.com/package/cubejs"                          , "text" : "[CUBE.JS]"                    , "routerLink" : "about:blank" , "queryParams" : "" },
+            { "id" : 4, "url": "https://en.wikipedia.org/wiki/Rubik%27s_Cube"                  , "text" : "[Rubik Cube]"                 , "routerLink" : "about:blank" , "queryParams" : "" }
+          ]
       },
       {
         "log_name"   : "PAGE_DEMOS_FILE_GENREATION_INDEX",
