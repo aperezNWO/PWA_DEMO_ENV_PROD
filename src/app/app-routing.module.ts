@@ -30,7 +30,7 @@ import { FractalDemoComponent        } from './_modules/_Demos/_DemosFeatures/mi
 import { PageUrlListComponent        } from './_components/page-url-list/page-url-list.component';
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
 import { LandingComponent            } from './_components/landing/landing.component';
-import { RubikCubeComponent } from './_modules/__Testing/rubik-cube/rubik-cube.component';
+import { RubikCubeComponent } from './_modules/_Demos/_DemosFeatures/games/rubik-cube/rubik-cube.component';
 
 
 export interface _Route extends Route

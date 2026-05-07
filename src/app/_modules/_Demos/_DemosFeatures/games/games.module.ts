@@ -10,8 +10,8 @@ import { GameTetrisAIComponent     } from './game-tetris-ai/game-tetris-ai.compo
 import { GameTetrisComponent       } from './game-tetris/game-tetris.component';
 import { GameTictactoeComponent    } from './game-tictactoe/game-tictactoe.component';
 import { TicTacToeBoardAiComponent } from './tic-tac-toe-board-ai/tic-tac-toe-board-ai.component';
-import { CustomErrorHandler } from 'src/app/app.module';
-
+import { RubikCubeComponent        } from './rubik-cube/rubik-cube.component';
+import { CustomErrorHandler        } from 'src/app/app.module';
 @NgModule({
   declarations: [
     SudokuComponent,
@@ -21,7 +21,7 @@ import { CustomErrorHandler } from 'src/app/app.module';
     GameHanoi3dComponent,
     GameTetrisComponent,
     GameTetrisAIComponent,
-    
+    RubikCubeComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +37,7 @@ import { CustomErrorHandler } from 'src/app/app.module';
     GameHanoi3dComponent,
     GameTetrisComponent,
     GameTetrisAIComponent,
+    RubikCubeComponent,
   ], 
   providers : [
             // Referenciamos la clase que definimos arriba

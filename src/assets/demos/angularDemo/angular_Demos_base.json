@@ -179,6 +179,18 @@
         "field_6"          : "https://en.wikipedia.org/wiki/Genetic_algorithm" ,
         "field_10"         : "7aff06eb-556e-422e-aef5-6fadc241f4fd" 
     },
+        {
+		"id"               : 16,
+        "done"             : true,
+        "name"             : "Games - Rubik Cube",
+        "description"      : "Games - Rubik Cube",
+        "field_1"          : "v21,  cube.js",
+        "field_2"          : "./#/RubikCube",
+        "field_3"          : "",
+        "field_4"          : "./#/RubikCube",
+        "field_6"          : "https://en.wikipedia.org/wiki/Rubik%27s_Cube" ,
+        "field_10"         : "25b39bbe-17b7-454d-9937-118a2b506982" 
+    },
     {
 		"id"               : 17,
         "done"             : true,

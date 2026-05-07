@@ -1,0 +1,52 @@
+<div class="content">
+    <!-- ENCABEZADO / INICIO  -->
+    <app-base-reference></app-base-reference>
+    <!-- ENCABEZADO / FIN -->
+
+    <!-- CONTENIDO INICIO -->
+    <div class="container">
+
+        <h2>Rubik's Cube 3D</h2>
+        <p class="instructions">🖱️ Drag to rotate view | ⌨️ Tap buttons to rotate faces</p>
+        
+        <div #rendererContainer class="renderer-container"></div>
+
+        <div class="controls">
+
+          <!-- System Group -->
+          <div class="control-group full-width">
+            <span>System & AI</span>
+            <div class="system-grid">
+              <button class="btn-shuffle" (click)="shuffleCube(15)" [disabled]="isAnimating">Shuffle 🎲</button>
+              <button class="btn-solve" (click)="solveByHistory()" [disabled]="isAnimating || moveHistory.length === 0">Auto Solve ✨</button>
+              <button class="btn-secondary" (click)="resetView()">Reset View</button>
+              <button class="btn-danger" (click)="resetCube()">Full Reset</button>
+            </div>
+          </div>
+
+          <!-- Face Moves Group -->
+          <div class="control-group full-width">
+            <span>Face Moves</span>
+            <div class="moves-grid">
+              <button (click)="manualMove('x', 1, isClockwise)">Right (R)</button>
+              <button (click)="manualMove('x', -1, isClockwise)">Left (L)</button>
+              <button (click)="manualMove('y', 1, isClockwise)">Top (U)</button>
+              <button (click)="manualMove('y', -1, isClockwise)">Bottom (D)</button>
+              <button (click)="manualMove('z', 1, isClockwise)">Front (F)</button>
+              <button (click)="manualMove('z', -1, isClockwise)">Back (B)</button>
+            </div>
+          </div>
+
+          <!-- Direction Group -->
+          <div class="control-group full-width">
+            <span>Rotation Direction</span>
+            <div class="direction-toggle">
+              <button [class.active]="isClockwise" (click)="isClockwise = true">Clockwise ↻</button>
+              <button [class.active]="!isClockwise" (click)="isClockwise = false">Counter-CW ↺</button>
+            </div>
+          </div>
+
+        </div>
+    </div>
+    <!-- CONTENIDO FILN   -->
+</div>

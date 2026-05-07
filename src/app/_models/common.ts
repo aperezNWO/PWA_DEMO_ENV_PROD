@@ -78,6 +78,8 @@ export const PAGE_GAMES_HANOI_3D                = "PAGE_GAMES_HANOI_3D";
 
 export const PAGE_GAMES_HANOI_2D                = "PAGE_GAMES_HANOI_2D";
 
+export const PAGE_GAMES_RUBIK_CUBE              = 'PAGE_GAMES_RUBIK_CUBE';
+
 ////////////////////////////////////////////////////////////////////////////
 
 export const PAGE_DEMOS_FILE_GENREATION_INDEX   = "PAGE_DEMOS_FILE_GENREATION_INDEX";
