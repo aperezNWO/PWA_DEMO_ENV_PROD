@@ -186,7 +186,7 @@
         "description"      : "Games - Rubik Cube",
         "field_1"          : "v21,  cube.js",
         "field_2"          : "./#/RubikCube",
-        "field_3"          : "",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/games/rubik-cube/rubik-cube.component.ts",
         "field_4"          : "./#/RubikCube",
         "field_6"          : "https://en.wikipedia.org/wiki/Rubik%27s_Cube" ,
         "field_10"         : "25b39bbe-17b7-454d-9937-118a2b506982" 
