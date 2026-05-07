@@ -35,6 +35,14 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
+ --[x] rubik cube.
+
+        --[x]   Face rotation on click.
+
+        --[x]   Shuffle functionality.
+        
+        --[x]   Step-by-step solving logic.
+        
 --[X] haonoi 3d -> add controls.
 
 --[x] pwa_demo_env_xxx -> LLM TESTING. (__testing folder)
@@ -457,10 +465,5 @@
   
   --[_] Merge Tetris2d / Tetris 3d engines on federation + expose other languages.
 
-  --[_] rubik cube.
-
-        --[_]   Face rotation on click
-        --[_]   Shuffle functionality
-        --[_]   Step-by-step solving logic
   
 ////////////////////////////////////////////////////////////////////////////////
