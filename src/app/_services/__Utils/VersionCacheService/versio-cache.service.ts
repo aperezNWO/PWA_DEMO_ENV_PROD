@@ -1,12 +1,13 @@
 /* app-core/services/version-cache.service.ts */
-import { Injectable } from '@angular/core';
+import { Injectable                                             } from '@angular/core';
 import { Observable, shareReplay, of, map, catchError, forkJoin } from 'rxjs';
+// CUSTOM LIBRARIES
 import { ComputerVisionService } from '../../__AI/ComputerVisionService/Computer-Vision.service';
-import { OCRService } from '../../__AI/OCRService/ocr.service';
-import { TensorFlowService } from '../../__AI/TensorflowService/tensor-flow.service';
-import { AlgorithmService } from '../../AlgorithmService/algorithm.service';
-import { BackendService } from '../../BackendService/backend.service';
-import { ConfigService } from '../ConfigService/config.service';
+import { OCRService            } from '../../__AI/OCRService/ocr.service';
+import { TensorFlowService     } from '../../__AI/TensorflowService/tensor-flow.service';
+import { AlgorithmService      } from '../../AlgorithmService/algorithm.service';
+import { BackendService        } from '../../BackendService/backend.service';
+import { ConfigService         } from '../ConfigService/config.service';
 
 export interface VersionBundle {
   webApiApp     : string;

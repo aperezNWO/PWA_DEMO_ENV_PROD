@@ -834,7 +834,7 @@
 
                -- [x] ngb pad.
  
-        -- [_] computer visions / machine learning
+        -- [x] computer visions / machine learning
 
                 -- [x] tesseract.
 

@@ -68,7 +68,7 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'GamesTetrisAI'         , component: GameTetrisAIComponent               , caption: ' Games  - Tetris - A.I.'                      , queryParams : '' },
   {  id: 0,  path: 'RubikCube'             , component: RubikCubeComponent                  , caption: ' Games  - Rubik Cube'                         , queryParams : '' },
   {  id: 0,  path: 'Chat'                  , component: ChatComponent                       , caption: ' MISCELLANEOUS - Chat Demo'                   , queryParams : '' },
-  {  id: 0,  path: 'OcrPhotoCapture'       , component: VisionHUBComponent                  , caption: ' MISCELLANEOUS - Ocr / Computer Visiopn'      , queryParams : '' },
+  {  id: 0,  path: 'VisionHub'       , component: VisionHUBComponent                  , caption: ' MISCELLANEOUS - Ocr / Computer Visiopn'      , queryParams : '' },
   {  id: 0,  path: 'FractalDemo'           , component: FractalDemoComponent                , caption: ' MISCELLANEOUS - Fractal Demo'                , queryParams : '' },
   {  id: 0,  path: 'LinearRegression'      , component: LinearRegressionComponent           , caption: ' Machine Learning  - Linear Regression'       , queryParams : '' },
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Curriculum - Artificial Intelligence'        , queryParams : 'PAGE_CURRICULUM_AI'              },
