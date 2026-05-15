@@ -2,23 +2,17 @@
   <app-base-reference></app-base-reference>
 
   <div class="hub-header">
+
+    <!-- AI Feature Selection -->
     <div class="field">
       <label>AI Feature</label>
-      <select (change)="selectedFeature.set(+$any($event.target).value)">
+      <select [value]="selectedFeature()" (change)="selectedFeature.set(+$any($event.target).value)">
         <option value="1">OCR Recognition</option>
         <option value="2">Computer Vision</option>
       </select>
     </div>
 
-    <div class="field">
-      <label>Input Source</label>
-      <select (change)="onSourceChange($event)">
-        <option value="0">Select...</option>
-        <option value="1">Digital Canvas</option>
-        <option value="2">Camera Feed</option>
-      </select>
-    </div>
-
+    <!-- Dynamic Backend Engine Selection -->
     <div class="field">
       <label>Backend Engine</label>
       <select [value]="selectedEngine()" (change)="selectedEngine.set(+$any($event.target).value)">
@@ -27,9 +21,24 @@
         }
       </select>
     </div>
+
+
+
+
+
+    <!-- Input Source Selection -->
+    <div class="field">
+      <label>Input Source</label>
+      <select [value]="selectedSource()" (change)="onSourceChange($event)">
+        <option value="0">Select Source...</option>
+        <option value="1">Digital Canvas</option>
+        <option value="2">Camera Feed</option>
+      </select>
+    </div>
   </div>
 
   <div class="work-area">
+    <!-- SOURCE: DIGITAL CANVAS -->
     @if (selectedSource() === 1) {
       <div class="canvas-container">
         <ngx-signature-pad #signature [options]="options"></ngx-signature-pad>
@@ -42,6 +51,7 @@
       </div>
     }
 
+    <!-- SOURCE: CAMERA FEED -->
     @if (selectedSource() === 2) {
       <div class="camera-container">
         @if (!capturedImage()) {
@@ -54,21 +64,31 @@
         } @else {
           <img [src]="capturedImage()" class="media-box preview" />
           <div class="actions">
-            <button class="btn primary" (click)="processUpload(capturedImage()!)">Upload Snapshot</button>
+            <button class="btn primary" (click)="processUpload(capturedImage()!)" [disabled]="isParsing()">
+              {{ isParsing() ? 'Analyzing...' : 'Upload Snapshot' }}
+            </button>
             <button class="btn secondary" (click)="capturedImage.set(null); startCamera()">Retake</button>
           </div>
         }
       </div>
     }
+
+    @if (selectedSource() === 0) {
+      <p style="color: #666;">Waiting for source selection...</p>
+    }
   </div>
 
+  <!-- Status / Output Area -->
   <div class="hub-footer" [class.loading]="isParsing()">
     <div class="pulse-icon"></div>
-    <span class="msg">{{ status_message() }}</span>
+    <span class="msg">{{ status_message() || 'System Idle' }}</span>
   </div>
 
-  <hr />
+  <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;" />
+  
   <div align="right">
-        <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}" >[Back to Menu]</a>
+    <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}" style="color: #00ff00; text-decoration: none; font-size: 0.8rem;">
+      [ &laquo; Return to Menu ]
+    </a>
   </div>
 </div>

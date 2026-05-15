@@ -3,17 +3,16 @@ import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 
 // Services
-import { BackendService        } from 'src/app/_services/BackendService/backend.service';
-import { OCRService            } from 'src/app/_services/__AI/OCRService/ocr.service';
-import { ConfigService         } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { SpeechService         } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { BackendService } from 'src/app/_services/BackendService/backend.service';
+import { OCRService } from 'src/app/_services/__AI/OCRService/ocr.service';
+import { ConfigService } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { SpeechService } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ComputerVisionService } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
 
 // Models
-import { _languageName                                              } from 'src/app/_models/entity.model';
 import { PAGE_MISCELANEOUS_OCR, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
-import { BaseReferenceComponent                                     } from 'src/app/_components/base-reference/base-reference.component';
-import { NgxSignaturePadComponent, NgxSignatureOptions              } from '@eve-sama/ngx-signature-pad';
-import { ComputerVisionService                                      } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
+import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
+import { NgxSignaturePadComponent, NgxSignatureOptions } from '@eve-sama/ngx-signature-pad';
 
 @Component({
   selector: 'app-vision-hub',
@@ -23,15 +22,19 @@ import { ComputerVisionService                                      } from 'src/
   standalone: false 
 })
 export class VisionHUBComponent extends BaseReferenceComponent implements OnInit, OnDestroy {
+  // --- Services ---
   public readonly ocrService = inject(OCRService);
   public readonly cvService = inject(ComputerVisionService);
+  private readonly _route = inject(ActivatedRoute);
 
+  // --- Signals ---
   readonly selectedFeature = signal<number>(1); 
   readonly selectedSource = signal<number>(0);  
   readonly selectedEngine = signal<number>(1);  
   readonly isParsing = signal(false);
   readonly capturedImage = signal<string | null>(null);
   
+  // --- View Queries ---
   readonly signature = viewChild<NgxSignaturePadComponent>('signature');
   readonly videoElement = viewChild<ElementRef<HTMLVideoElement>>('video');
   readonly canvasElement = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
@@ -47,7 +50,7 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
   };
 
   /**
-   * [v21x] COMPUTED: Defines options for the 3rd dropdown
+   * Computed engine list based on feature selection
    */
   readonly engineList = computed(() => {
     return this.selectedFeature() === 1 
@@ -59,24 +62,68 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
     super(inject(ConfigService), inject(BackendService), inject(ActivatedRoute), inject(SpeechService), PAGE_TITLE_NO_SOUND);
 
     /**
-     * [v21x] AUTO-RESET EFFECT
-     * Resets the engine selection when Feature or Source changes
+     * Safety effect to prevent invalid states during manual UI toggles.
+     * It allows C++ (2 or 4) to persist if the feature matches.
      */
     effect(() => {
-      const feature = this.selectedFeature();
-      // Reset to first engine of the group
-      this.selectedEngine.set(feature === 1 ? 1 : 3);
-      this.status_message.set(`Engine reset to ${feature === 1 ? 'OCR' : 'CV'} defaults.`);
+      const feat = this.selectedFeature();
+      const eng = this.selectedEngine();
+
+      const invalidOcr = (feat === 1 && (eng < 1 || eng > 2));
+      const invalidCv = (feat === 2 && (eng < 3 || eng > 4));
+
+      if (invalidOcr) this.selectedEngine.set(1);
+      if (invalidCv) this.selectedEngine.set(3);
     });
   }
 
   ngOnInit(): void {
-    this.status_message.set("Ready. Select Feature and Source.");
+    this.status_message.set("Synchronizing with URL...");
+    this.syncStateFromUrl();
+  }
+
+  /**
+   * REFACTORED: Uses Observable to bypass Hash-routing race conditions
+   */
+  private async syncStateFromUrl() {
+    try {
+      // firstValueFrom ensures we get the parameters if they are present on load
+      const params = await firstValueFrom(this._route.queryParams);
+
+      // 1. Determine Feature
+      let targetFeat = 1;
+      if (params['aiFeature']) {
+        const f = params['aiFeature'].toString().toUpperCase();
+        if (f === 'CV') targetFeat = 2;
+      }
+
+      // 2. Determine Engine based on Feature + langName
+      let targetEng = (targetFeat === 1) ? 1 : 3; // Defaults
+      if (params['langName']) {
+        const l = params['langName'].toString().toUpperCase();
+        const wantsCpp = (l === 'CPP');
+
+        if (targetFeat === 1) {
+          targetEng = wantsCpp ? 2 : 1;
+        } else {
+          targetEng = wantsCpp ? 4 : 3;
+        }
+      }
+
+      // 3. Update Signals in one go
+      this.selectedFeature.set(targetFeat);
+      this.selectedEngine.set(targetEng);
+
+      this.status_message.set("System Ready.");
+    } catch (e) {
+      this.status_message.set("Ready (Default)");
+    }
   }
 
   ngOnDestroy(): void { this.stopCamera(); }
 
-  // UI Handlers
+  // --- Logic & Processors ---
+
   async onSourceChange(event: Event) {
     const val = Number((event.target as HTMLSelectElement).value);
     this.selectedSource.set(val);
@@ -89,36 +136,32 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
 
   async saveSignature(): Promise<void> {
     const pad = this.signature();
-    if (!pad || (pad as any).isEmpty()) {
-      this.status_message.set("Canvas is empty.");
-      return;
-    }
+    if (!pad || (pad as any).isEmpty()) return;
     await this.processUpload(pad.toDataURL());
   }
 
-  /**
-   * UPDATED: Routes data based on the dynamic selectedEngine()
-   */
   public async processUpload(base64: string) {
     this.isParsing.set(true);
     const engineId = this.selectedEngine();
-    this.status_message.set("Running AI Processing...");
+    this.status_message.set("Analyzing...");
 
     try {
       let result = "";
-      if (engineId === 1)        {
-        const res = await firstValueFrom(this.ocrService.uploadBase64ImageNodeJs(base64));
-        result = res.message;
-      } else if (engineId === 2) {
-        const res = await firstValueFrom(this.ocrService.uploadBase64ImageCPP(base64));
-        result = res.message;
-      } else if (engineId === 3) {
-        const img = await this.loadImage(base64);
-        const shapes = this.cvService._OpenCv_js_detectShapes(img);
-        result = shapes.length > 0 ? `Detected: ${shapes.join(', ')}` : "No shapes found.";
-      } else if (engineId === 4) {
-        const res = await firstValueFrom(this.cvService._OpenCv_CPP_uploadBase64Image(base64));
-        result = res.message;
+      switch (engineId) {
+        case 1: 
+          result = (await firstValueFrom(this.ocrService.uploadBase64ImageNodeJs(base64))).message;
+          break;
+        case 2: 
+          result = (await firstValueFrom(this.ocrService.uploadBase64ImageCPP(base64))).message;
+          break;
+        case 3: 
+          const img = await this.loadImage(base64);
+          const shapes = this.cvService._OpenCv_js_detectShapes(img);
+          result = shapes.length > 0 ? `Detected: ${shapes.join(', ')}` : "No shapes found.";
+          break;
+        case 4: 
+          result = (await firstValueFrom(this.cvService._OpenCv_CPP_uploadBase64Image(base64))).message;
+          break;
       }
       this.status_message.set(result);
     } catch (err: any) {
@@ -128,7 +171,6 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
     }
   }
 
-  // Camera & Image Utils
   private loadImage(base64: string): Promise<HTMLImageElement> {
     return new Promise((res, rej) => {
       const img = new Image();
@@ -147,17 +189,21 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
         const video = this.videoElement()?.nativeElement;
         if (video) video.srcObject = this.videoStream;
       }, 200);
-    } catch (err) { this.status_message.set("Camera permission denied."); }
+    } catch (err) { this.status_message.set("Camera error."); }
   }
 
-  stopCamera() { this.videoStream?.getTracks().forEach(t => t.stop()); this.videoStream = null; }
+  stopCamera() { 
+    this.videoStream?.getTracks().forEach(t => t.stop()); 
+    this.videoStream = null; 
+  }
 
   capturePhoto() {
     const video = this.videoElement()?.nativeElement;
     const canvas = this.canvasElement()?.nativeElement;
     if (video && canvas) {
       const ctx = canvas.getContext('2d');
-      canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+      canvas.width = video.videoWidth; 
+      canvas.height = video.videoHeight;
       ctx?.drawImage(video, 0, 0);
       this.capturedImage.set(canvas.toDataURL('image/png'));
       this.stopCamera();

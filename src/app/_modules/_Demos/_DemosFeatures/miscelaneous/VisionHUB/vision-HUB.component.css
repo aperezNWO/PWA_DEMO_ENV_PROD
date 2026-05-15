@@ -6,11 +6,12 @@
   color: #fff;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
 .hub-header {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 20px;
   flex-wrap: wrap;
 }
@@ -24,9 +25,10 @@
 
 .field label {
   font-size: 0.7rem;
-  color: #00ff00;
+  color: #00ff00; /* Neon Green */
   text-transform: uppercase;
   margin-bottom: 5px;
+  letter-spacing: 1px;
 }
 
 select {
@@ -35,6 +37,13 @@ select {
   border: 1px solid #444;
   padding: 10px;
   border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+select:focus {
+  border-color: #00ff00;
+  outline: none;
 }
 
 .work-area {
@@ -45,6 +54,8 @@ select {
   align-items: center;
   justify-content: center;
   border: 1px solid #333;
+  position: relative;
+  overflow: hidden;
 }
 
 .media-box {
@@ -69,37 +80,42 @@ select {
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
+  transition: opacity 0.2s;
 }
 
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .primary { background: #00ff00; color: #000; }
 .secondary { background: #444; color: #fff; }
 
 .hub-footer {
   margin-top: 20px;
-  padding: 10px;
+  padding: 12px;
   background: #000;
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #00ff00;
-  font-family: monospace;
+  gap: 12px;
+  color: #00ff41;
+  font-family: 'Consolas', monospace;
+  border-left: 4px solid #00ff00;
 }
 
 .pulse-icon {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   background: #00ff00;
   border-radius: 50%;
+  box-shadow: 0 0 8px #00ff00;
 }
 
 .loading .pulse-icon {
   background: #ffcc00;
+  box-shadow: 0 0 8px #ffcc00;
   animation: blink 0.8s infinite;
 }
 
 @keyframes blink { 
-  0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } 
+  0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } 
 }
 
-ngx-signature-pad { background: #fff; }
+ngx-signature-pad { background: #fff; border-radius: 8px; }
