@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1778814619129,
+  "timestamp": 1778814826668,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -91,7 +91,7 @@
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "930b1bb67aacd91a98c1613ff7fb92cce7367553",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base_.json": "32dcdb681d4d3c915b92cc72d1159e09d6201b9c",
-    "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Demos_base.json": "993bdd24145c93033525fc2b637fbe3d9f1a6948",
+    "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Demos_base.json": "a398bfa2cda00cf2594d76237c76664f020a72f7",
     "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Curriculum_base.json": "0e5133ca8dc03be725eb7874fd68251413735a6a",
     "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Demos_base.json": "f9f0c9c376c7ac03eef32bc3003faf2e371ee05c",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json": "c5cb47a936b0f9bc39bd5fcebfaf615e8cf8c497",
