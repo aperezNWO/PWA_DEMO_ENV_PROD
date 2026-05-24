@@ -480,4 +480,12 @@
   
         --[_] topics and libraries references.
   
+--[_] xls / csv demo .
+
+        --[_] zip file (with pwd).
+
+        --[_] check data and filters.
+
+--[_] code sandbox linux unattended installation.        
+
 ////////////////////////////////////////////////////////////////////////////////
