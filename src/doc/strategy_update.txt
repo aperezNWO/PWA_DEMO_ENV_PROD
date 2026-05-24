@@ -409,12 +409,6 @@
 
         -- [_] https://app.devin.ai/org/apereznwo/wiki
 
-  --[_] Vision Hub references update.
-
-        --[_] links to code.
-  
-        --[_] topics and libraries references.
-
   -- [_] new curiculum angular 
 
         -- [x] AppModule, App component v21 style.
@@ -467,6 +461,23 @@
 
   --[_] security measures / OWASP.
 
-  --[_] Error setlog method.
+  --[_] ErrorS: 
+  
+      -- [_] setlog method (RECURSIVITY).
+      
+      -- [_] IMAGE SIZE.
+    
+      -- [_] MASTER DETAIL / REFERENCES. INDEX ERROR.
+
+ -- [_] INDEX -> APP ROUTING -> QUERY PARAM RENDERING.
+
+
+  --[_] Vision Hub references update.
+
+        --[_] param url.
+
+        --[_] links to code.
+  
+        --[_] topics and libraries references.
   
 ////////////////////////////////////////////////////////////////////////////////
