@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1779677670704,
+  "timestamp": 1779678238835,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -86,20 +86,20 @@
   "dataGroups": [],
   "hashTable": {
     "/PWA_DEMO_ENV_PROD/assets/config/config.json": "1c637b59a06af6ec3425afac5dac88a4ec84091a",
-    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "862722999f1104d84684018ac45f3732546ce5a5",
+    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "7265aa6eb642dd6c19dc48b0ff06f7f99b5cf58a",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "322e77aa4398525af8feafcc43878bc6855315ac",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "930b1bb67aacd91a98c1613ff7fb92cce7367553",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base_.json": "32dcdb681d4d3c915b92cc72d1159e09d6201b9c",
-    "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Demos_base.json": "a398bfa2cda00cf2594d76237c76664f020a72f7",
+    "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Demos_base.json": "9c35bc5f5308da48a8c1d50e7d0c08bcea3dcb75",
     "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Curriculum_base.json": "0e5133ca8dc03be725eb7874fd68251413735a6a",
-    "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Demos_base.json": "f9f0c9c376c7ac03eef32bc3003faf2e371ee05c",
+    "/PWA_DEMO_ENV_PROD/assets/demos/cppDemo/cpp_Demos_base.json": "ddee7624236e0b84c1426db65b8da29a00ffc981",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json": "c5cb47a936b0f9bc39bd5fcebfaf615e8cf8c497",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "185162b4a94ee641c3dc7661c80db1cfcb5fa766",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_Curriculum_base.json": "989628b99da2028ff7ee8b8407d82420bf6b108a",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "bb2fbbaf736d5960323712e8c5cc8ddecbafbdb3",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Curriculum_base.json": "d9a5f04e6eb21310eab505a8c000ac28a6b050bb",
-    "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Demos_base.json": "9b1ec42e4bfda2850098c5805d65e300eb62daa0",
+    "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Demos_base.json": "383c0da0a39833a5c8b6892d103df12823ddac74",
     "/PWA_DEMO_ENV_PROD/assets/demos/springBootDemo/springBoot_Curriculum_base.json": "41a5121544c5c4227848ec6d2f60dbb8e2dfa5c2",
     "/PWA_DEMO_ENV_PROD/assets/demos/springBootDemo/springBoot_Demos_base.json": "a4d042789407b46e6f5be87c9e5b21662132e011",
     "/PWA_DEMO_ENV_PROD/assets/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",

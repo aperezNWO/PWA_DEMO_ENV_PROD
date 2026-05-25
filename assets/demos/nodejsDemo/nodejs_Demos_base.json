@@ -41,7 +41,7 @@
         "name"             : "OCR DEMO",
         "description"      : "OCR DEMO",
         "field_1"          : "NodeJs, codesandbox, OCR, Tesseract",
-        "field_2"          : "./#/VisionHub?aiFeature=OCR&langName=JS",
+        "field_2"          : "./#/VisionHub?aiFeature=OCR&langName=JS&source=cnv",
         "field_3"          : "https://github.com/aperezNWO/cs_nodejs_ocr_/blob/f5ceb18113f44880c70fe6592e6d1ab97d0a1ecd/index.js#L19",
         "field_4"          : "{{baseUrlNodeJsOcr}}upload",
         "field_6"          : "https://github.com/tesseract-ocr/tesseract",
