@@ -1,14 +1,11 @@
 import { Component                                                     } from '@angular/core';
 import { Router                                                        } from '@angular/router';
-import { ReactiveFormsModule                                           } from '@angular/forms';
 import { _BaseModel                                                    } from 'src/app/_models/entity.model';
-import { BaseSortableHeader                                            } from 'src/app/_directives/sortable.directive';
 import { PAGE_ID, PAGE_SIZE,SEARCH_TERM                                } from 'src/app/_models/common';
 import { _environment                                                  } from 'src/environments/environment';
 import { ConfigService                                                 } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { SearchService                                               } from 'src/app/_services/__Utils/SearchService/search.service';
-import { SpeechPanelComponent                                          } from '../speech-panel/speech-panel.component';
-import { SearchComponent                                             } from '../search/search.component';
+import { SearchService                                                 } from 'src/app/_services/__Utils/SearchService/search.service';
+import { SearchComponent                                               } from '../search/search.component';
 
 
 
