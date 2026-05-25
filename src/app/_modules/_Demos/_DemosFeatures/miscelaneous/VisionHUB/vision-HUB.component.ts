@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ElementRef, inject, signal, viewChild, computed, effect } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
+import { firstValueFrom, Subscription } from 'rxjs';
 
 // Services
 import { BackendService } from 'src/app/_services/BackendService/backend.service';
@@ -40,6 +40,7 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
   readonly canvasElement = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
 
   private videoStream: MediaStream | null = null;
+  private querySub: Subscription | null = null;
   public isFrontCamera = true;
 
   public options: NgxSignatureOptions = {
@@ -63,7 +64,7 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
 
     /**
      * Safety effect to prevent invalid states during manual UI toggles.
-     * It allows C++ (2 or 4) to persist if the feature matches.
+     * It strictly permits valid cross-combinations initialized via URL.
      */
     effect(() => {
       const feat = this.selectedFeature();
@@ -83,44 +84,70 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
   }
 
   /**
-   * REFACTORED: Uses Observable to bypass Hash-routing race conditions
+   * Listens to the parameter stream continually to handle asynchronous hash arrivals.
    */
-  private async syncStateFromUrl() {
-    try {
-      // firstValueFrom ensures we get the parameters if they are present on load
-      const params = await firstValueFrom(this._route.queryParams);
-
-      // 1. Determine Feature
-      let targetFeat = 1;
-      if (params['aiFeature']) {
-        const f = params['aiFeature'].toString().toUpperCase();
-        if (f === 'CV') targetFeat = 2;
-      }
-
-      // 2. Determine Engine based on Feature + langName
-      let targetEng = (targetFeat === 1) ? 1 : 3; // Defaults
-      if (params['langName']) {
-        const l = params['langName'].toString().toUpperCase();
-        const wantsCpp = (l === 'CPP');
-
-        if (targetFeat === 1) {
-          targetEng = wantsCpp ? 2 : 1;
-        } else {
-          targetEng = wantsCpp ? 4 : 3;
+  private syncStateFromUrl(): void {
+    this.querySub = this._route.queryParams.subscribe({
+      next: async (params) => {
+        // Skip execution if parameters haven't arrived or parsed yet
+        if (!params || Object.keys(params).length === 0) {
+          this.status_message.set("Ready (Defaults Loaded)");
+          return;
         }
+
+        // 1. Parse Feature
+        let targetFeat = 1;
+        if (params['aiFeature']) {
+          const f = params['aiFeature'].toString().toUpperCase();
+          if (f === 'CV') targetFeat = 2;
+        }
+
+        // 2. Parse Engine based on Feature Context + langName
+        let targetEng = (targetFeat === 1) ? 1 : 3; 
+        if (params['langName']) {
+          const l = params['langName'].toString().toUpperCase();
+          const wantsCpp = (l === 'CPP');
+
+          if (targetFeat === 1) {
+            targetEng = wantsCpp ? 2 : 1;
+          } else {
+            targetEng = wantsCpp ? 4 : 3;
+          }
+        }
+
+        // 3. Parse Input Source (CNV or CAM)
+        let targetSrc = 0;
+        if (params['SOURCE']) {
+          const s = params['SOURCE'].toString().toUpperCase();
+          if (s === 'CNV') targetSrc = 1;
+          if (s === 'CAM') targetSrc = 2;
+        }
+
+        // 4. Batch update all signals synchronously to keep effects from stepping on parameters
+        this.selectedFeature.set(targetFeat);
+        this.selectedEngine.set(targetEng);
+        
+        // Handle stream cycle changes if switching directly to camera
+        if (targetSrc !== this.selectedSource()) {
+          this.selectedSource.set(targetSrc);
+          this.stopCamera();
+          this.capturedImage.set(null);
+          if (targetSrc === 2) {
+            await this.startCamera();
+          }
+        }
+
+        this.status_message.set("Configuration loaded from URL query.");
       }
-
-      // 3. Update Signals in one go
-      this.selectedFeature.set(targetFeat);
-      this.selectedEngine.set(targetEng);
-
-      this.status_message.set("System Ready.");
-    } catch (e) {
-      this.status_message.set("Ready (Default)");
-    }
+    });
   }
 
-  ngOnDestroy(): void { this.stopCamera(); }
+  ngOnDestroy(): void {
+    this.stopCamera();
+    if (this.querySub) {
+      this.querySub.unsubscribe();
+    }
+  }
 
   // --- Logic & Processors ---
 
@@ -136,7 +163,10 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
 
   async saveSignature(): Promise<void> {
     const pad = this.signature();
-    if (!pad || (pad as any).isEmpty()) return;
+    if (!pad || (pad as any).isEmpty()) {
+      this.status_message.set("Canvas is empty.");
+      return;
+    }
     await this.processUpload(pad.toDataURL());
   }
 
@@ -193,8 +223,10 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
   }
 
   stopCamera() { 
-    this.videoStream?.getTracks().forEach(t => t.stop()); 
-    this.videoStream = null; 
+    if (this.videoStream) {
+      this.videoStream.getTracks().forEach(t => t.stop());
+      this.videoStream = null; 
+    }
   }
 
   capturePhoto() {

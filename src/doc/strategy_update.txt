@@ -471,11 +471,30 @@
 
  -- [_] INDEX -> APP ROUTING -> QUERY PARAM RENDERING.
 
-
-  --[_] Vision Hub references update.
+ --[_] Vision Hub references update.
 
         --[_] param url.
 
+                http://localhost:4200/#/VisionHub?aiFeature=OCR&langName=JS&source=CNV
+
+                <root_url>/#/VisionHub?aiFeature=OCR&langName=JS&source=CNV
+
+                aiFeature = 
+                
+                        OCR : OCR 
+                        CV  : Computer Vision
+
+                langName  = 
+
+                        JS  : Node Js / javascript
+                        CPP : C++ 
+
+                SOURCE    = 
+
+                        CNV  : CANVAS
+                        CAM  : camera
+                       
+ 
         --[_] links to code.
   
         --[_] topics and libraries references.
