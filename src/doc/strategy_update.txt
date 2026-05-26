@@ -479,22 +479,31 @@
 
                 <root_url>/#/VisionHub?aiFeature=OCR&langName=JS&source=CNV
 
-                aiFeature = 
-                
-                        OCR : OCR 
-                        CV  : Computer Vision
+                --[_] empty params (values by default).
 
-                langName  = 
+                --[_] from index.
 
-                        JS  : Node Js / javascript
-                        CPP : C++ 
+                --[_] from landing page.
 
-                SOURCE    = 
+                --[_] from url list.               
 
-                        CNV  : CANVAS
-                        CAM  : camera
+                --[_] CONVENTION:
+
+                        aiFeature = 
+                        
+                                OCR : OCR 
+                                CV  : Computer Vision
+
+                        langName  = 
+
+                                JS  : Node Js / javascript
+                                CPP : C++ 
+
+                        SOURCE    = 
+
+                                CNV  : CANVAS
+                                CAM  : camera
                        
- 
         --[_] links to code.
   
         --[_] topics and libraries references.
