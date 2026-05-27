@@ -35,7 +35,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
- --[x] rubik cube.
+ -- [x] Free disk space / one drive / personal / uv.  
+
+ -- [x] rubik cube.
 
         --[x]   Face rotation on click.
 
@@ -516,6 +518,6 @@
 
 --[_] code sandbox linux unattended installation.        
 
---[_] Free disk space / one drive / personal / uv.  
+
 
 ////////////////////////////////////////////////////////////////////////////////
