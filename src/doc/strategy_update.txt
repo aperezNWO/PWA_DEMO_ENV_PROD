@@ -487,11 +487,14 @@
 
         --[_] param url.
 
-                http://localhost:4200/#/VisionHub?aiFeature=OCR&langName=JS&source=CNV
+                http://localhost:4200/#/VisionHub?aiFeature=OCR&langName=JS
 
                 <root_url>/#/VisionHub?aiFeature=OCR&langName=JS&source=CNV
 
+                --[_] NESTED LISTS READONLY. CHANGES ONLY VIA QUERY PARAMS.
+
                 --[_] selectedFeacture -> syncronize effect()/customhandler() with query params.
+
                 --[_] enum types.
 
                 --[_] source list as nested list.

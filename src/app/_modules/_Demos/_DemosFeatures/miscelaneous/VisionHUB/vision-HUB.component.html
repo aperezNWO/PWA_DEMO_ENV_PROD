@@ -5,7 +5,7 @@
 
     <div class="field">
       <label>AI Feature</label>
-      <select [value]="selectedAiFeature()" (change)="selectedAiFeature.set(+$any($event.target).value)">
+      <select [value]="selectedAiFeature()" (change)="selectedAiFeature.set(+$any($event.target).value)" disabled="disabled">
         <option value="1">OCR Recognition</option>
         <option value="2">Computer Vision</option>
       </select>
@@ -13,9 +13,11 @@
 
     <div class="field">
       <label>Backend Engine</label>
-      <select [value]="selectedLangEngine()" (change)="selectedLangEngine.set(+$any($event.target).value)">
-        @for (eng of engineList(); track eng.id) {
-          <option [value]="eng.id">{{ eng.label }}</option>
+      <!--<select [value]="selectedLangEngine()" (change)="selectedLangEngine.set(+$any($event.target).value)" disabled="disabled">-->
+      <select id='EngineList' name="EngineList" disabled="disabled"  #_engineList>
+        @for (eng of this.engineList; track eng.id) {
+          <option [value]="eng.id" [selected]="eng.selected">{{ eng.label }}
+          </option>
         }
       </select>
     </div>

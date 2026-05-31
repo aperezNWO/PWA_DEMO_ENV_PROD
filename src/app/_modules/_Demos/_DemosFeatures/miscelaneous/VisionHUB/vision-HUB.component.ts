@@ -1,5 +1,5 @@
 // CORE
-import { Component, OnInit, OnDestroy, ElementRef, inject, signal, viewChild, computed, effect } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, inject, signal, viewChild, computed, effect, ViewChild } from '@angular/core';
 import { ActivatedRoute               } from '@angular/router';
 
 // Services
@@ -42,6 +42,7 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
   readonly signature     = viewChild<NgxSignaturePadComponent>('signature');
   readonly videoElement  = viewChild<ElementRef<HTMLVideoElement>>('video');
   readonly canvasElement = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
+  @ViewChild('_engineList')    _engineList       : any;
 
   //
   private videoStream  : MediaStream    | null = null;
@@ -58,14 +59,18 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
 
   /**
    * Computed engine list based on feature selection
-   * <SERVER_NAME>/#/VisionHub?aiFeature=OCR&langName=JS&source=CNV
+   * <SERVER_NAME>/#/VisionHub?aiFeature=OCR&langName=JS
    */
+  /*
   readonly engineList = computed(() => 
   {
     return this.selectedAiFeature() === 1 
       ? [{ id: 0, label: 'Please select \'Engine\'...' },{ id: 1, label: 'Tesseract -> Node.js' }, { id: 2, label: 'Tesseract -> C++' }]
       : [{ id: 0, label: 'Please select \'Engine\'...' },{ id: 3, label: 'OpenCV    -> Node.js' }, { id: 4, label: 'OpenCV    -> C++' }];
-  });
+  });*/
+
+  
+  public engineList  : any = [];
 
   constructor() {
     super(  inject(ConfigService)
@@ -76,28 +81,32 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
     /**
      * Safety effect to prevent invalid states during manual UI toggles.
      * It strictly permits valid cross-combinations initialized via URL.
-     * http://localhost:4200/#/VisionHub?aiFeature=OCR&langName=JS&source=CNV
+     * http://localhost:4200/#/VisionHub?aiFeature=OCR&langName=JS
      */  
+    /*
     effect(() => {
-      const feat = this.selectedAiFeature();
-      //const eng  = this.selectedLangEngine();
 
-      //const invalidOcr = (feat === 1 && (eng < 1 || eng > 2));
-      //const invalidCv  = (feat === 2 && (eng < 3 || eng > 4));
+      //
+      const aiFeat = this.selectedAiFeature();
+      console.log(` Changed Ai feature to :  ${aiFeat}`);
 
-      //if (invalidOcr) this.selectedLangEngine.set(1);
-      //if (invalidCv)  this.selectedLangEngine.set(3);
+      //
+      this.querySub = this._route.queryParams.subscribe({
+         next: async (params) => {
 
-      // URL QUERY PARAMS HERE
-      let urlQueryParams : boolean = false;
+          // Skip execution if parameters haven't arrived or parsed yet
+          if (!params || Object.keys(params).length === 0) {
 
-      if (urlQueryParams==false)
-      {
-          this.selectedLangEngine.set(0);
-          this.selectedSource.set(0);
-      }
+                this.selectedLangEngine.set(0);
+                this.selectedSource.set(0);
 
-    });
+                return;
+          }
+
+      }}); // end of queryParams function 
+
+    }); // end of effect functio0n 
+    */
   }
 
   ngOnInit(): void {
@@ -114,61 +123,78 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
 
         // Skip execution if parameters haven't arrived or parsed yet
         if (!params || Object.keys(params).length === 0) {
+
+          //
           this.status_message.set("Ready (Defaults Loaded)");
 
+          // Nested list changed by effect() (langEngine, Source)
           this.selectedAiFeature.set(1);
-          // Nested list changed by effect()
-            // this.selectedSource.set(0);
-            // this.selectedLangEngine(0);
+          //this.selectedLangEngine.set(0);    
+          this.selectedSource.set(0);
 
           return;
         }
 
-        // 1. Parse 'Ai Feature' : OCR | CV
+        console.log(` evaluating url parms ...`);
 
+        //--------------------------------------
+        // 1. Parse 'Ai Feature' : OCR | CV
+        //--------------------------------------
         let targetFeat = 1; // OCR
         //
         if (params['aiFeature']) {
-          
+          //
           const f = params['aiFeature'].toString().toUpperCase();
-
+          //  
           if (f === 'CV') targetFeat = 2; // CV
-
-
         }
-
-        /*
-        
-        // 2. Parse [langName + Engine] based on 'AI Feature'
-        ' 
-        let targetEng = (targetFeat === 1) ? 1 : 3; 
-        if (params['langName']) {
-          const l          = params['langName'].toString().toUpperCase();
-          const wantsCpp   = (l === 'CPP');
-
-          if (targetFeat === 1) {
-            targetEng = wantsCpp ? 2 : 1;
-          } else {
-            targetEng = wantsCpp ? 4 : 3;
-          }
-        }
-        */
-
-        // 3. Parse Input Source (CNV | CAM)
-        let targetSrc = 0;
-        /*
-        if (params['source']) {
-          const s = params['source'].toString().toUpperCase();
-          if (s === 'CNV')                    targetSrc = 1;
-          if (s === 'CAM')                    targetSrc = 2;
-
-        }*/
-
-        // 4. Batch update all signals synchronously to keep effects from stepping on parameters
+        // 
         this.selectedAiFeature.set(targetFeat);
-        //this.selectedSource.set(targetSrc);
-        //this.selectedLangEngine.set(targetEng);
-    
+
+        //--------------------------------------------------------  
+        // 2. Parse [langName + Engine] based on 'AI Feature
+        //--------------------------------------------------------  
+
+        // feature : 'OCR'? 'language values' = 1 (tesseract node.js) else 'language values' = 3 (opencv node.js)
+        let targetLangEng = (targetFeat === 1) ? 1 : 3;  
+        if (params['langName']) {
+            //
+            const l          = params['langName'].toString().toUpperCase();
+            const wantsCpp   = (l === 'CPP');
+
+            // if feature is 'OCR'
+            if (targetFeat === 1) { 
+              // if langName is 'CPP' engine== 2 'tesseract for c++' else  engine= 1 'tesseract for node.js'
+              targetLangEng = wantsCpp ? 2 : 1;
+            } else {
+              // if langName is 'CPP' engine== 4 'opencv for c++'    else  engine= 3 'opencv    for node.js'
+              targetLangEng = wantsCpp ? 4 : 3;
+            }
+
+            //
+            if  (this.selectedAiFeature() === 1) 
+            {
+               this.engineList =  [  { id: 0, label: 'Please select \'Engine\'...' , selected: false }
+                                   , { id: 1, label: 'Tesseract -> Node.js'        , selected: !wantsCpp }
+                                   , { id: 2, label: 'Tesseract -> C++'            , selected: wantsCpp } ];
+            } else 
+            {
+               this.engineList =  [ { id: 0, label: 'Please select \'Engine\'...' , selected: false }
+                                   ,{ id: 3, label: 'OpenCV    -> Node.js'        , selected: !wantsCpp }
+                                   ,{ id: 4, label: 'OpenCV    -> C++'            , selected: wantsCpp }];
+            }
+            //
+            this.selectedLangEngine.set(targetLangEng); 
+            //
+            console.log(` Changed lang/engine to  :  ${targetLangEng}`);
+
+        } // end of 'langName' param evaluation 
+
+        //---------------------------------------------------------------
+        // 3. Parse Input Source (CNV | CAM)
+        //---------------------------------------------------------------
+        let targetSrc = 0;
+        
         // Handle stream cycle changes if switching directly to camera
         if (targetSrc !== this.selectedSource()) {
           this.selectedSource.set(targetSrc);
