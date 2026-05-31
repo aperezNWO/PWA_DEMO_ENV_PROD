@@ -5,7 +5,7 @@
 
     <div class="field">
       <label>AI Feature</label>
-      <select [value]="selectedFeature()" (change)="selectedFeature.set(+$any($event.target).value)">
+      <select [value]="selectedAiFeature()" (change)="selectedAiFeature.set(+$any($event.target).value)">
         <option value="1">OCR Recognition</option>
         <option value="2">Computer Vision</option>
       </select>
@@ -13,7 +13,7 @@
 
     <div class="field">
       <label>Backend Engine</label>
-      <select [value]="selectedEngine()" (change)="selectedEngine.set(+$any($event.target).value)">
+      <select [value]="selectedLangEngine()" (change)="selectedLangEngine.set(+$any($event.target).value)">
         @for (eng of engineList(); track eng.id) {
           <option [value]="eng.id">{{ eng.label }}</option>
         }
@@ -23,7 +23,7 @@
     <div class="field">
       <label>Input Source</label>
       <select [value]="selectedSource()" (change)="onSourceChange($event)">
-        <option value="0">Select Source...</option>
+        <option value="0">Select 'Input Source'...</option>
         <option value="1">Digital Canvas</option>
         <option value="2">Camera Feed</option>
       </select>

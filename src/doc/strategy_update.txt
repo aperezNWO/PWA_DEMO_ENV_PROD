@@ -49,6 +49,10 @@
 
 --[x] pwa_demo_env_xxx -> LLM TESTING. (__testing folder)
 
+-- [_] SCM
+
+        --[_] code sandbox linux unattended installation.    
+
 --[_] PWA
 
         --[_] https://web.dev/learn/pwa/service-workers
@@ -473,7 +477,13 @@
 
  -- [_] INDEX -> APP ROUTING -> QUERY PARAM RENDERING.
 
- --[_] Vision Hub references update.
+ --[_] xls / csv demo .
+
+        --[_] zip file (with pwd).
+
+        --[_] check data and filters.
+
+--[_] Vision Hub references update.
 
         --[_] param url.
 
@@ -481,13 +491,20 @@
 
                 <root_url>/#/VisionHub?aiFeature=OCR&langName=JS&source=CNV
 
+                --[_] selectedFeacture -> syncronize effect()/customhandler() with query params.
+                --[_] enum types.
+
+                --[_] source list as nested list.
+
                 --[_] empty params (values by default).
 
-                --[_] from index.
+                --[_] external visualization.
 
-                --[_] from landing page.
+                        --[_] from index.
 
-                --[_] from url list.               
+                        --[_] from landing page.
+
+                        --[_] from url list.               
 
                 --[_] CONVENTION:
 
@@ -510,14 +527,5 @@
   
         --[_] topics and libraries references.
   
---[_] xls / csv demo .
-
-        --[_] zip file (with pwd).
-
-        --[_] check data and filters.
-
---[_] code sandbox linux unattended installation.        
-
-
 
 ////////////////////////////////////////////////////////////////////////////////

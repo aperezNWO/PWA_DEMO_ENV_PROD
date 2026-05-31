@@ -1,19 +1,23 @@
+// CORE
 import { Component, OnInit, OnDestroy, ElementRef, inject, signal, viewChild, computed, effect } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { firstValueFrom, Subscription } from 'rxjs';
+import { ActivatedRoute               } from '@angular/router';
 
 // Services
-import { BackendService } from 'src/app/_services/BackendService/backend.service';
-import { OCRService } from 'src/app/_services/__AI/OCRService/ocr.service';
-import { ConfigService } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { SpeechService } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { ComputerVisionService } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
+import { BackendService         } from 'src/app/_services/BackendService/backend.service';
+import { OCRService             } from 'src/app/_services/__AI/OCRService/ocr.service';
+import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
+import { SpeechService          } from 'src/app/_services/__Utils/SpeechService/speech.service';
+import { ComputerVisionService  } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
 
 // Models
 import { PAGE_MISCELANEOUS_OCR, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
-import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
-import { NgxSignaturePadComponent, NgxSignatureOptions } from '@eve-sama/ngx-signature-pad';
 
+// Components
+import { BaseReferenceComponent                        } from 'src/app/_components/base-reference/base-reference.component';
+
+// Librariesa
+import { NgxSignaturePadComponent, NgxSignatureOptions } from '@eve-sama/ngx-signature-pad';
+import { firstValueFrom, Subscription                  } from 'rxjs';
 @Component({
   selector: 'app-vision-hub',
   templateUrl: './vision-HUB.component.html',
@@ -23,58 +27,69 @@ import { NgxSignaturePadComponent, NgxSignatureOptions } from '@eve-sama/ngx-sig
 })
 export class VisionHUBComponent extends BaseReferenceComponent implements OnInit, OnDestroy {
   // --- Services ---
-  public readonly ocrService = inject(OCRService);
-  public readonly cvService = inject(ComputerVisionService);
-  private readonly _route = inject(ActivatedRoute);
+  public readonly ocrService  = inject(OCRService);
+  public readonly cvService   = inject(ComputerVisionService);
+  private readonly _route     = inject(ActivatedRoute);
 
   // --- Signals ---
-  readonly selectedFeature = signal<number>(1); 
-  readonly selectedSource = signal<number>(0);  
-  readonly selectedEngine = signal<number>(1);  
-  readonly isParsing = signal(false);
-  readonly capturedImage = signal<string | null>(null);
+  readonly selectedAiFeature  = signal<number>(0); 
+  readonly selectedLangEngine = signal<number>(0);  
+  readonly selectedSource     = signal<number>(0);  
+  readonly isParsing          = signal(false);
+  readonly capturedImage      = signal<string | null>(null);
   
   // --- View Queries ---
-  readonly signature = viewChild<NgxSignaturePadComponent>('signature');
-  readonly videoElement = viewChild<ElementRef<HTMLVideoElement>>('video');
+  readonly signature     = viewChild<NgxSignaturePadComponent>('signature');
+  readonly videoElement  = viewChild<ElementRef<HTMLVideoElement>>('video');
   readonly canvasElement = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
 
-  private videoStream: MediaStream | null = null;
-  private querySub: Subscription | null = null;
-  public isFrontCamera = true;
+  //
+  private videoStream  : MediaStream    | null = null;
+  private querySub     : Subscription   | null = null;
+  public isFrontCamera : boolean               = true;
 
-  public options: NgxSignatureOptions = {
+  //
+  public options   : NgxSignatureOptions = {
     backgroundColor: '#FFFFFF',
-    width: 340,
-    height: 240,
-    css: { 'border': '2px solid #444', 'border-radius': '8px' }
+    width          : 340,
+    height         : 240,
+    css            : { 'border': '2px solid #444', 'border-radius': '8px' }
   };
 
   /**
    * Computed engine list based on feature selection
+   * <SERVER_NAME>/#/VisionHub?aiFeature=OCR&langName=JS&source=CNV
    */
-  readonly engineList = computed(() => {
-    return this.selectedFeature() === 1 
-      ? [{ id: 1, label: 'Tesseract -> Node.js' }, { id: 2, label: 'Tesseract -> C++' }]
-      : [{ id: 3, label: 'OpenCV -> Node.js' }, { id: 4, label: 'OpenCV -> C++' }];
+  readonly engineList = computed(() => 
+  {
+    return this.selectedAiFeature() === 1 
+      ? [{ id: 0, label: 'Please select \'Engine\'...' },{ id: 1, label: 'Tesseract -> Node.js' }, { id: 2, label: 'Tesseract -> C++' }]
+      : [{ id: 0, label: 'Please select \'Engine\'...' },{ id: 3, label: 'OpenCV    -> Node.js' }, { id: 4, label: 'OpenCV    -> C++' }];
   });
 
   constructor() {
-    super(inject(ConfigService), inject(BackendService), inject(ActivatedRoute), inject(SpeechService), PAGE_TITLE_NO_SOUND);
+    super(  inject(ConfigService)
+          , inject(BackendService)
+          , inject(ActivatedRoute)
+          , inject(SpeechService), PAGE_TITLE_NO_SOUND);
 
     /**
      * Safety effect to prevent invalid states during manual UI toggles.
      * It strictly permits valid cross-combinations initialized via URL.
-     */
+     * http://localhost:4200/#/VisionHub?aiFeature=OCR&langName=JS&source=CNV
+     */  
     effect(() => {
-      const feat = this.selectedFeature();
-      const eng = this.selectedEngine();
+      const feat = this.selectedAiFeature();
+      //const eng  = this.selectedLangEngine();
 
-      const invalidOcr = (feat === 1 && (eng < 1 || eng > 2));
-      const invalidCv = (feat === 2 && (eng < 3 || eng > 4));
+      //const invalidOcr = (feat === 1 && (eng < 1 || eng > 2));
+      //const invalidCv  = (feat === 2 && (eng < 3 || eng > 4));
 
-      if (invalidOcr) this.selectedEngine.set(1);
-      if (invalidCv) this.selectedEngine.set(3);
+      //if (invalidOcr) this.selectedLangEngine.set(1);
+      //if (invalidCv)  this.selectedLangEngine.set(3);
+
+      this.selectedLangEngine.set(0);
+      this.selectedSource.set(0);
     });
   }
 
@@ -89,24 +104,40 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
   private syncStateFromUrl(): void {
     this.querySub = this._route.queryParams.subscribe({
       next: async (params) => {
+
         // Skip execution if parameters haven't arrived or parsed yet
         if (!params || Object.keys(params).length === 0) {
           this.status_message.set("Ready (Defaults Loaded)");
+
+          this.selectedAiFeature.set(1);
+          // Nested list changed by effect()
+            // this.selectedSource.set(0);
+            // this.selectedLangEngine(0);
+
           return;
         }
 
-        // 1. Parse Feature
-        let targetFeat = 1;
+        // 1. Parse 'Ai Feature' : OCR | CV
+
+        let targetFeat = 1; // OCR
+        //
         if (params['aiFeature']) {
+          
           const f = params['aiFeature'].toString().toUpperCase();
-          if (f === 'CV') targetFeat = 2;
+
+          if (f === 'CV') targetFeat = 2; // CV
+
+
         }
 
-        // 2. Parse Engine based on Feature Context + langName
+        /*
+        
+        // 2. Parse [langName + Engine] based on 'AI Feature'
+        ' 
         let targetEng = (targetFeat === 1) ? 1 : 3; 
         if (params['langName']) {
-          const l = params['langName'].toString().toUpperCase();
-          const wantsCpp = (l === 'CPP');
+          const l          = params['langName'].toString().toUpperCase();
+          const wantsCpp   = (l === 'CPP');
 
           if (targetFeat === 1) {
             targetEng = wantsCpp ? 2 : 1;
@@ -114,19 +145,23 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
             targetEng = wantsCpp ? 4 : 3;
           }
         }
+        */
 
-        // 3. Parse Input Source (CNV or CAM)
+        // 3. Parse Input Source (CNV | CAM)
         let targetSrc = 0;
-        if (params['SOURCE']) {
-          const s = params['SOURCE'].toString().toUpperCase();
-          if (s === 'CNV') targetSrc = 1;
-          if (s === 'CAM') targetSrc = 2;
-        }
+        /*
+        if (params['source']) {
+          const s = params['source'].toString().toUpperCase();
+          if (s === 'CNV')                    targetSrc = 1;
+          if (s === 'CAM')                    targetSrc = 2;
+
+        }*/
 
         // 4. Batch update all signals synchronously to keep effects from stepping on parameters
-        this.selectedFeature.set(targetFeat);
-        this.selectedEngine.set(targetEng);
-        
+        this.selectedAiFeature.set(targetFeat);
+        //this.selectedSource.set(targetSrc);
+        //this.selectedLangEngine.set(targetEng);
+    
         // Handle stream cycle changes if switching directly to camera
         if (targetSrc !== this.selectedSource()) {
           this.selectedSource.set(targetSrc);
@@ -172,24 +207,24 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
 
   public async processUpload(base64: string) {
     this.isParsing.set(true);
-    const engineId = this.selectedEngine();
+    const engineId = this.selectedLangEngine();
     this.status_message.set("Analyzing...");
 
     try {
       let result = "";
       switch (engineId) {
-        case 1: 
+        case 1: // NODE.JS  --> OCR
           result = (await firstValueFrom(this.ocrService.uploadBase64ImageNodeJs(base64))).message;
           break;
-        case 2: 
+        case 2:  // C++     --> CPP
           result = (await firstValueFrom(this.ocrService.uploadBase64ImageCPP(base64))).message;
           break;
-        case 3: 
+        case 3:  // NODE.JS --> CV
           const img = await this.loadImage(base64);
           const shapes = this.cvService._OpenCv_js_detectShapes(img);
           result = shapes.length > 0 ? `Detected: ${shapes.join(', ')}` : "No shapes found.";
           break;
-        case 4: 
+        case 4: // CPP     --> CV
           result = (await firstValueFrom(this.cvService._OpenCv_CPP_uploadBase64Image(base64))).message;
           break;
       }
