@@ -88,8 +88,15 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
       //if (invalidOcr) this.selectedLangEngine.set(1);
       //if (invalidCv)  this.selectedLangEngine.set(3);
 
-      this.selectedLangEngine.set(0);
-      this.selectedSource.set(0);
+      // URL QUERY PARAMS HERE
+      let urlQueryParams : boolean = false;
+
+      if (urlQueryParams==false)
+      {
+          this.selectedLangEngine.set(0);
+          this.selectedSource.set(0);
+      }
+
     });
   }
 
