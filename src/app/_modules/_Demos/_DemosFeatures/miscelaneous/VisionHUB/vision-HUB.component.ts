@@ -26,6 +26,7 @@ import { firstValueFrom, Subscription                  } from 'rxjs';
   standalone: false 
 })
 export class VisionHUBComponent extends BaseReferenceComponent implements OnInit, OnDestroy {
+  
   // --- Services ---
   public readonly ocrService  = inject(OCRService);
   public readonly cvService   = inject(ComputerVisionService);
@@ -56,59 +57,19 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
     height         : 240,
     css            : { 'border': '2px solid #444', 'border-radius': '8px' }
   };
-
-  /**
-   * Computed engine list based on feature selection
-   * <SERVER_NAME>/#/VisionHub?aiFeature=OCR&langName=JS
-   */
-  /*
-  readonly engineList = computed(() => 
-  {
-    return this.selectedAiFeature() === 1 
-      ? [{ id: 0, label: 'Please select \'Engine\'...' },{ id: 1, label: 'Tesseract -> Node.js' }, { id: 2, label: 'Tesseract -> C++' }]
-      : [{ id: 0, label: 'Please select \'Engine\'...' },{ id: 3, label: 'OpenCV    -> Node.js' }, { id: 4, label: 'OpenCV    -> C++' }];
-  });*/
-
   
+  //
   public engineList  : any = [];
 
+  //
   constructor() {
     super(  inject(ConfigService)
           , inject(BackendService)
           , inject(ActivatedRoute)
           , inject(SpeechService), PAGE_TITLE_NO_SOUND);
-
-    /**
-     * Safety effect to prevent invalid states during manual UI toggles.
-     * It strictly permits valid cross-combinations initialized via URL.
-     * http://localhost:4200/#/VisionHub?aiFeature=OCR&langName=JS
-     */  
-    /*
-    effect(() => {
-
-      //
-      const aiFeat = this.selectedAiFeature();
-      console.log(` Changed Ai feature to :  ${aiFeat}`);
-
-      //
-      this.querySub = this._route.queryParams.subscribe({
-         next: async (params) => {
-
-          // Skip execution if parameters haven't arrived or parsed yet
-          if (!params || Object.keys(params).length === 0) {
-
-                this.selectedLangEngine.set(0);
-                this.selectedSource.set(0);
-
-                return;
-          }
-
-      }}); // end of queryParams function 
-
-    }); // end of effect functio0n 
-    */
   }
 
+  //
   ngOnInit(): void {
     this.status_message.set("Synchronizing with URL...");
     this.syncStateFromUrl();
@@ -124,13 +85,23 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
         // Skip execution if parameters haven't arrived or parsed yet
         if (!params || Object.keys(params).length === 0) {
 
+          // default value = ocr
+          this.selectedAiFeature.set(1);
+          
+          // default language = c++
+          let wantsCpp: boolean = true;
+
+          this.engineList =  [ { id: 0, label: 'Please select \'Engine\'...' , selected: false     }
+                    ,{ id: 3, label: 'OpenCV    -> Node.js'                  , selected: !wantsCpp }
+                    ,{ id: 4, label: 'OpenCV    -> C++'                      , selected: wantsCpp  }];
+          
+          this.selectedLangEngine.set(1);
+
+          // force user to choose a source
+          this.selectedSource.set(0);
+
           //
           this.status_message.set("Ready (Defaults Loaded)");
-
-          // Nested list changed by effect() (langEngine, Source)
-          this.selectedAiFeature.set(1);
-          //this.selectedLangEngine.set(0);    
-          this.selectedSource.set(0);
 
           return;
         }
@@ -174,9 +145,9 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
             //
             if  (this.selectedAiFeature() === 1) 
             {
-               this.engineList =  [  { id: 0, label: 'Please select \'Engine\'...' , selected: false }
+               this.engineList =  [  { id: 0, label: 'Please select \'Engine\'...' , selected: false     }
                                    , { id: 1, label: 'Tesseract -> Node.js'        , selected: !wantsCpp }
-                                   , { id: 2, label: 'Tesseract -> C++'            , selected: wantsCpp } ];
+                                   , { id: 2, label: 'Tesseract -> C++'            , selected: wantsCpp  } ];
             } else 
             {
                this.engineList =  [ { id: 0, label: 'Please select \'Engine\'...' , selected: false }

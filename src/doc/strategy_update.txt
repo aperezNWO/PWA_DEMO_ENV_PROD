@@ -483,7 +483,11 @@
 
         --[_] check data and filters.
 
---[_] Vision Hub references update.
+--[_] Vision Hub.
+
+        --[_] check c++ opencv functionality (only takes first element on array of result).
+
+        --[_] draw pad instruction.
 
         --[_] update references.
 
@@ -493,36 +497,37 @@
 
         --[_] param url.
 
-                --[_] <root_url>/#/VisionHub?aiFeature=OCR&langName=JS
+                --[x] <root_url>/#/VisionHub?aiFeature=OCR&langName=JS
+
+                        --[x] CONVENTION:
+
+                                        aiFeature = 
+                                        
+                                                OCR : OCR 
+                                                CV  : Computer Vision
+
+                                        langName  = 
+
+                                                JS  : Node Js / javascript
+                                                CPP : C++ 
 
                 --[x] NESTED LISTS READONLY. CHANGES ONLY VIA QUERY PARAMS.
                 
                 --[x] source list as nested list.
 
-                --[_] selectedFeacture -> syncronize effect()/customhandler() with query params.
+                --[x] selectedFeacture -> syncronize effect()/customhandler() with query params.
+
+                --[x] empty params (values by default).
 
                 --[_] enum types.
 
-                --[_] empty params (values by default).
-
                 --[_] external visualization.
+
+                        --[x] from url list.   
+
+                        --[_] from custom landing page.    
 
                         --[_] from index.
 
-                        --[_] from landing page.
-
-                        --[_] from url list.               
-
-                --[_] CONVENTION:
-
-                        aiFeature = 
-                        
-                                OCR : OCR 
-                                CV  : Computer Vision
-
-                        langName  = 
-
-                                JS  : Node Js / javascript
-                                CPP : C++ 
 
 ////////////////////////////////////////////////////////////////////////////////
