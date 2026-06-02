@@ -485,19 +485,23 @@
 
 --[_] Vision Hub references update.
 
+        --[_] update references.
+
+                --[_] links to code.
+        
+                --[_] links to topics and libraries.
+
         --[_] param url.
 
-                http://localhost:4200/#/VisionHub?aiFeature=OCR&langName=JS
+                --[_] <root_url>/#/VisionHub?aiFeature=OCR&langName=JS
 
-                <root_url>/#/VisionHub?aiFeature=OCR&langName=JS&source=CNV
-
-                --[_] NESTED LISTS READONLY. CHANGES ONLY VIA QUERY PARAMS.
+                --[x] NESTED LISTS READONLY. CHANGES ONLY VIA QUERY PARAMS.
+                
+                --[x] source list as nested list.
 
                 --[_] selectedFeacture -> syncronize effect()/customhandler() with query params.
 
                 --[_] enum types.
-
-                --[_] source list as nested list.
 
                 --[_] empty params (values by default).
 
@@ -520,15 +524,5 @@
 
                                 JS  : Node Js / javascript
                                 CPP : C++ 
-
-                        SOURCE    = 
-
-                                CNV  : CANVAS
-                                CAM  : camera
-                       
-        --[_] links to code.
-  
-        --[_] topics and libraries references.
-  
 
 ////////////////////////////////////////////////////////////////////////////////
