@@ -16,6 +16,7 @@
       {
         "comment"      : "DYNAMIC LANDING. 'page_name' has the selected landing page",
         "log_name"     : "PAGE_ANGULAR_DEMO_LANDING",
+        "_page_name"   : "PAGE_DEMOS_LIBRARIES_INDEX",
         "page_name"    : "PAGE_DEMOS_LENGUAJES_INDEX",
         "pages"        : [
 
@@ -57,12 +58,12 @@
         "page_name"  : "[DEMOS - LIBRARIES / FRAMEWORKS]",
         "pages"      : [
             { "id": 1, "url" : "/GridParam"           , "text": "[LIBRARIES - ANGULAR    / TYPESCRIPT]"        , "queryParams" : "{ pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT'}"                    },
-            { "id": 2, "url" : "/LinearRegression"    , "text": "[LIBRARIES - TENSORFLOW / MACHINE LEARNING]"  , "queryParams" : "{ langName : 'PY'  }"                                             },
-            { "id": 3, "url" : "/VisionHub"           , "text": "[LIBRARIES - OPEN CV    / COMPUTER VISION]"   , "queryParams" : "{ aiFeature : 'CV', langName : 'CPP', source : 'CNV' }"           },
-            { "id": 4, "url" : "/VisionHub"           , "text": "[LIBRARIES - TESSERACT  / OCR]"               , "queryParams" : "{ aiFeature : 'CV', langName : 'CPP', source : 'CNV' }"           },
-            { "id": 5, "url" : "/FilesGenerationXLS"  , "text": "[LIBRARIES - EXCEL      / EPP PLUS]"          , "queryParams" : ""                                                 },
-            { "id": 6, "url" : "/FilesGenerationPDF"  , "text": "[LIBRARIES - PDF        / iTextSharp]"        , "queryParams" : ""                                                 },
-            { "id": 7, "url" : "/Chart"               , "text": "[LIBRARIES - CHART      / Chart.js ]"         , "queryParams" : ""                                                 }
+            { "id": 2, "url" : "/LinearRegression"    , "text": "[LIBRARIES - TENSORFLOW / MACHINE LEARNING]"  , "queryParams" : "{ langName : 'PY'                   }"                            },
+            { "id": 3, "url" : "/VisionHub"           , "text": "[LIBRARIES - OPEN CV    / COMPUTER VISION]"   , "queryParams" : "{ aiFeature : 'CV' , langName : 'CPP'}"                           },
+            { "id": 4, "url" : "/VisionHub"           , "text": "[LIBRARIES - TESSERACT  / OCR]"               , "queryParams" : "{ aiFeature : 'OCR', langName : 'CPP'}"                           },
+            { "id": 5, "url" : "/FilesGenerationXLS"  , "text": "[LIBRARIES - EXCEL      / EPP PLUS]"          , "queryParams" : ""                                                                 },
+            { "id": 6, "url" : "/FilesGenerationPDF"  , "text": "[LIBRARIES - PDF        / iTextSharp]"        , "queryParams" : ""                                                                 },
+            { "id": 7, "url" : "/Chart"               , "text": "[LIBRARIES - CHART      / Chart.js ]"         , "queryParams" : ""                                                                 }
         ],
         "comment_2"        : "'page_nested' values for  dynamic landing. No queryParam explicit 'pageName' param requiered for /Gridparam.",
         "pages_nested"     : [
@@ -149,9 +150,10 @@
         "log_name"   : "PAGE_DEMOS_MISCELLANEOUS_INDEX",
         "page_name"  : "[DEMOS - MISCELLANEOUS]",
         "pages"      : [
-            { "id": 1, "url" : "/VisionHub"             , "text": "[MISCELLANEOUS - VISION HUB]"        },
-            { "id": 2, "url" : "/Chat"                  , "text": "[MISCELLANEOUS - CHAT]"              },
-            { "id": 3, "url" : "/FractalDemo"           , "text": "[MISCELLANEOUS - FRACTAL DEMO]"      }
+            { "id": 1, "url" : "/VisionHub"             , "text": "[MISCELLANEOUS - OCR]"                  , "queryParams" : "{ aiFeature : 'OCR' , langName : 'CPP' }"  },
+            { "id": 2, "url" : "/VisionHub"             , "text": "[MISCELLANEOUS - COMPUTER VISION]"      , "queryParams" : "{ aiFeature : 'CV'  , langName : 'CPP' }"  },
+            { "id": 3, "url" : "/Chat"                  , "text": "[MISCELLANEOUS - CHAT]"           },
+            { "id": 3, "url" : "/FractalDemo"           , "text": "[MISCELLANEOUS - FRACTAL DEMO]"   }
           ]
       },
       {
