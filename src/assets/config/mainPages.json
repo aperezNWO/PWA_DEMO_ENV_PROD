@@ -16,7 +16,8 @@
       {
         "comment"      : "DYNAMIC LANDING. 'page_name' has the selected landing page",
         "log_name"     : "PAGE_ANGULAR_DEMO_LANDING",
-        "page_name"    : "PAGE_DEMOS_LENGUAJES_INDEX",
+        "page_name"    : "PAGE_DEMOS_LIBRARIES_INDEX",
+        "_page_name"   : "PAGE_DEMOS_LENGUAJES_INDEX",
         "pages"        : [
 
         ],
@@ -149,8 +150,9 @@
         "log_name"   : "PAGE_DEMOS_MISCELLANEOUS_INDEX",
         "page_name"  : "[DEMOS - MISCELLANEOUS]",
         "pages"      : [
-            { "id": 1, "url" : "/VisionHub"             , "text": "[MISCELLANEOUS - VISION HUB]"      , "queryParams" : "{ aiFeature : 'OCR' , langName : 'CPP' }"  },
-            { "id": 2, "url" : "/Chat"                  , "text": "[MISCELLANEOUS - CHAT]"           },
+            { "id": 1, "url" : "/VisionHub"             , "text": "[MISCELLANEOUS - OCR]"                  , "queryParams" : "{ aiFeature : 'OCR' , langName : 'CPP' }"  },
+            { "id": 2, "url" : "/VisionHub"             , "text": "[MISCELLANEOUS - COMPUTER VISION]"      , "queryParams" : "{ aiFeature : 'CV'  , langName : 'CPP' }"  },
+            { "id": 3, "url" : "/Chat"                  , "text": "[MISCELLANEOUS - CHAT]"           },
             { "id": 3, "url" : "/FractalDemo"           , "text": "[MISCELLANEOUS - FRACTAL DEMO]"   }
           ]
       },

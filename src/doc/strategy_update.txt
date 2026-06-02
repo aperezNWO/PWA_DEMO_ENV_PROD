@@ -521,11 +521,11 @@
 
                 --[_] enum types.
 
-                --[_] external visualization.
+                --[>] external visualization.
 
                         --[x] from url list.   
 
-                        --[_] from custom landing page.    
+                        --[X] from custom landing page.    
 
                         --[_] from index.
 
