@@ -10,7 +10,7 @@ import { SpeechService          } from 'src/app/_services/__Utils/SpeechService/
 import { ComputerVisionService  } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
 
 // Models
-import { PAGE_MISCELANEOUS_OCR, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
+import { PAGE_MISCELANEOUS_VISION_HUB, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
 
 // Components
 import { BaseReferenceComponent                        } from 'src/app/_components/base-reference/base-reference.component';
@@ -57,7 +57,7 @@ langName  =
   selector: 'app-vision-hub',
   templateUrl: './vision-HUB.component.html',
   styleUrl: './vision-HUB.component.css',
-  providers: [{ provide: PAGE_TITLE_LOG, useValue: PAGE_MISCELANEOUS_OCR }],
+  providers: [{ provide: PAGE_TITLE_LOG, useValue: PAGE_MISCELANEOUS_VISION_HUB }],
   standalone: false 
 })
 export class VisionHUBComponent extends BaseReferenceComponent implements OnInit, OnDestroy {

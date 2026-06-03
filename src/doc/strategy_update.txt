@@ -493,15 +493,7 @@
 
         --[x] check c++ opencv functionality (only takes first element on array of result).
 
-        --[_] draw pad instruction.
-
-        --[_] update references.
-
-                --[_] links to code.
-        
-                --[_] links to topics and libraries.
-
-                --[_] dynamic reference.
+        --[x] draw pad instruction.
 
         --[_] param url.
 
@@ -537,5 +529,12 @@
 
                         --[_] from index.
 
+        --[_] update references.
+
+                --[x] links to code.
+        
+                --[x] links to topics and libraries.
+
+                --[_] dynamic reference.
 
 ////////////////////////////////////////////////////////////////////////////////

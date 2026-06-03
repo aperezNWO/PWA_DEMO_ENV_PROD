@@ -35,6 +35,7 @@
   <div class="work-area">
     @if (selectedSource() === 1) {
       <div class="canvas-container">
+        <div class="canvas_title" align="center">Please use the finger or the mouse pointer to draw</div>
         <ngx-signature-pad #signature [options]="options"></ngx-signature-pad>
         <div class="actions">
           <button class="btn primary" (click)="saveSignature()" [disabled]="isParsing()">
@@ -52,7 +53,6 @@
           <canvas #canvas hidden></canvas>
           <div class="actions">
             <button class="btn primary" (click)="capturePhoto()">Capture Photo</button>
-            <!--<button class="btn secondary" (click)="isFrontCamera = !isFrontCamera; startCamera()">Flip</button>-->
             <button class="btn secondary" (click)="flipCamera()">Flip Camera</button>
           </div>
         } @else {
