@@ -447,6 +447,10 @@
                 
                 -- [_] backwards construction for C++ ENDPOINT.
 
+                -- [_] Delete cvurrent backend code c++.
+
+                -- [_] Delete cvurrent backend code .NET CORE.
+
   --[_] Landing Page Carrousel.
   
   --[_] Angular Marketing Questions.

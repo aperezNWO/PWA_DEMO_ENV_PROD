@@ -85,8 +85,8 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
         // Skip execution if parameters haven't arrived or parsed yet
         if (!params || Object.keys(params).length === 0) {
 
-          // default value = ocr
-          this.selectedAiFeature.set(1);
+          // default value = CV
+          this.selectedAiFeature.set(2);
           
           // default language = c++
           let wantsCpp: boolean = true;
@@ -229,6 +229,7 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
           result = shapes.length > 0 ? `Detected: ${shapes.join(', ')}` : "No shapes found.";
           break;
         case 4: // CPP     --> CV
+          //console.log('returning value from opencv c++ : ' + firstValueFrom(this.cvService._OpenCv_CPP_uploadBase64Image(base64)));
           result = (await firstValueFrom(this.cvService._OpenCv_CPP_uploadBase64Image(base64))).message;
           break;
       }
