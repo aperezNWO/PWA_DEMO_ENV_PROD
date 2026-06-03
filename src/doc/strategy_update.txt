@@ -487,6 +487,8 @@
 
         --[_] check data and filters.
 
+ --[_] node.js ocr --> size 10mb.
+
 --[_] Vision Hub.
 
         --[_] check c++ opencv functionality (only takes first element on array of result).
