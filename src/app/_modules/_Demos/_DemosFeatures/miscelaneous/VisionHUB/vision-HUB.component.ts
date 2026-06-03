@@ -95,7 +95,7 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
                     ,{ id: 3, label: 'OpenCV    -> Node.js'                  , selected: !wantsCpp }
                     ,{ id: 4, label: 'OpenCV    -> C++'                      , selected: wantsCpp  }];
           
-          this.selectedLangEngine.set(1);
+          this.selectedLangEngine.set(4);
 
           // force user to choose a source
           this.selectedSource.set(0);
