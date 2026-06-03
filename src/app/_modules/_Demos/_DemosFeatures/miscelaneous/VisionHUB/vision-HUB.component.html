@@ -52,7 +52,8 @@
           <canvas #canvas hidden></canvas>
           <div class="actions">
             <button class="btn primary" (click)="capturePhoto()">Capture Photo</button>
-            <button class="btn secondary" (click)="isFrontCamera = !isFrontCamera; startCamera()">Flip</button>
+            <!--<button class="btn secondary" (click)="isFrontCamera = !isFrontCamera; startCamera()">Flip</button>-->
+            <button class="btn secondary" (click)="flipCamera()">Flip Camera</button>
           </div>
         } @else {
           <img [src]="capturedImage()" class="media-box preview" />

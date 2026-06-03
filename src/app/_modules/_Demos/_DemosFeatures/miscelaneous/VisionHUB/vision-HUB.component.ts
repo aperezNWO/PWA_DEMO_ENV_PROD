@@ -281,4 +281,12 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
       this.stopCamera();
     }
   }
+
+  //
+  async flipCamera() : Promise<void> {
+    //
+    this.isFrontCamera = !this.isFrontCamera;
+    this.stopCamera();
+    await this.startCamera();
+  }
 }
