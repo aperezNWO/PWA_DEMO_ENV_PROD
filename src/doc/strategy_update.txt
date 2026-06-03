@@ -491,7 +491,7 @@
 
 --[_] Vision Hub.
 
-        --[_] check c++ opencv functionality (only takes first element on array of result).
+        --[x] check c++ opencv functionality (only takes first element on array of result).
 
         --[_] draw pad instruction.
 
@@ -500,6 +500,8 @@
                 --[_] links to code.
         
                 --[_] links to topics and libraries.
+
+                --[_] dynamic reference.
 
         --[_] param url.
 
@@ -525,7 +527,7 @@
 
                 --[x] empty params (values by default).
 
-                --[_] enum types.
+                --[x] enum types.
 
                 --[>] external visualization.
 
