@@ -48,6 +48,18 @@
         "field_10"         : "894ab07b-45d4-4a87-b9d7-a59e78a73e79" 
     },
     {
+		"id"               : 0,
+        "done"             : true,
+        "name"             : "COMPUTER VISION DEMO",
+        "description"      : "COMPUTER VISION DEMO",
+        "field_1"          : "NodeJs, codesandbox, Computer Vision, Open Cv",
+        "field_2"          : "./#/VisionHub?aiFeature=CV&langName=JS",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PUBLIC/blob/main/src/app/_services/__AI/ComputerVisionService/Computer-Vision.service.ts",
+        "field_4"          : "./#/VisionHub?aiFeature=CV&langName=JS",
+        "field_6"          : "https://docs.opencv.org/4.x/d5/d10/tutorial_js_root.html",
+        "field_10"         : "348d2d81-a9d7-4f22-9f92-03bb24388f73" 
+    },
+    {
 		"id"               : 2,
         "done"             : true,
         "name"             : "CHAT DEMO",

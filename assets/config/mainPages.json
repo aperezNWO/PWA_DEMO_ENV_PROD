@@ -157,8 +157,35 @@
           ]
       },
       {
-        "log_name"   : "PAGE_MISCELANEOUS_OCR",
+        "log_name"   : "PAGE_MISCELANEOUS_VISION_HUB",
         "page_name"  : "[MISCELLANEOUS - VISION HUB]",
+        "pages"      : [
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+          { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
+          { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }      
+        ],
+        "pages_nested" : [
+          { "id" : 1, "url": "about:blank"                                                       , "text" : "[Angular]"                       , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '5640c548-8aa6-4f15-bcf9-b10b8cb7fd0d' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+          { "id" : 2, "url": "about:blank"                                                       , "text" : "(OCR)[C++ / DLL Scource]"        , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '59c5ba46-4a63-4468-b8e4-409ace1f025e' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
+          { "id" : 2, "url": "about:blank"                                                       , "text" : "(OCR)[C++ / .Net Core Endpoint]" , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '9d7836ed-cd9b-4152-b298-18be6ed9b437' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
+          { "id" : 2, "url": "about:blank"                                                       , "text" : "(OCR)[Node.js / Javascript]"     , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '894ab07b-45d4-4a87-b9d7-a59e78a73e79' , pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'  }"},
+          { "id" : 2, "url": "about:blank"                                                       , "text" : "(CV)[C++ / DLL Scource]"         , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '40dd1cce-91b6-4fa3-bb64-053130fd1ff6' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
+          { "id" : 2, "url": "about:blank"                                                       , "text" : "(CV)[C++ / .Net Core Endpoint] " , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'ae1c7a78-3fd5-4e41-965f-0bfd091c4a1d' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
+          { "id" : 2, "url": "about:blank"                                                       , "text" : "(CV)[Node.js / Javascript]"      , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '348d2d81-a9d7-4f22-9f92-03bb24388f73' , pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'  }"},
+          { "id" : 3, "url": "https://www.npmjs.com/package/ngx-signaturepad"                    , "text" : "[ngx-signaturepad]"              , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 3, "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"   , "text" : "[HTML Video]"                    , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 3, "url": "https://www.npmjs.com/package/tesseract.js/v/2.1.1"                , "text" : "[Tesseract / Node.js]"           , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 3, "url": "https://github.com/tesseract-ocr/tesseract"                        , "text" : "[Tesseract / C++]"               , "routerLink" : "about:blank" , "queryParams" : ""},          
+          { "id" : 3, "url": "https://docs.opencv.org/4.x/d5/d10/tutorial_js_root.html"          , "text" : "[OpenCv / Javascript]"         , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 3, "url": "https://docs.opencv.org/4.x/d1/dfb/intro.html"                     , "text" : "[Open CV/ C++]"                , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 4, "url": "https://en.wikipedia.org/wiki/Optical_character_recognition"       , "text" : "[OCR]"                         , "routerLink" : "about:blank" , "queryParams" : ""},
+          { "id" : 4, "url": "https://en.wikipedia.org/wiki/Computer_vision"                     , "text" : "[Computer Vision]"             , "routerLink" : "about:blank" , "queryParams" : ""}
+        ]        
+      },
+      {
+        "log_name"   : "PAGE_MISCELANEOUS_OCR",
+        "page_name"  : "[MISCELLANEOUS - OCR]",
         "pages"      : [
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
           { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
@@ -190,6 +217,7 @@
           { "id" : 1, "url": "about:blank"                                                       , "text" : "[Angular]"                     , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'c094e0c5-c29b-4bdf-91ea-8204bb6e8942' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
           { "id" : 2, "url": "about:blank"                                                       , "text" : "[C++ / DLL Scource]"           , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '40dd1cce-91b6-4fa3-bb64-053130fd1ff6' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
           { "id" : 2, "url": "about:blank"                                                       , "text" : "[C++ / .Net Core Endpoint] "   , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'ae1c7a78-3fd5-4e41-965f-0bfd091c4a1d' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
+          { "id" : 2, "url": "about:blank"                                                       , "text" : "[Node.js / Javascript]"        , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '348d2d81-a9d7-4f22-9f92-03bb24388f73' , pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'  }"},
           { "id" : 3, "url": "https://www.npmjs.com/package/ngx-signaturepad"                    , "text" : "[ngx-signaturepad]"            , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"   , "text" : "[HTML Video]"                  , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://docs.opencv.org/4.x/d5/d10/tutorial_js_root.html"          , "text" : "[OpenCv / Javascript]"         , "routerLink" : "about:blank" , "queryParams" : ""},
