@@ -66,7 +66,7 @@ export class OCRService extends BaseService {
   }
 
   uploadBase64ImageNodeJs(base64Image: string): Observable<OCRResponse> {
-    const nodeUrl = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}upload`;
+    const nodeUrl = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}uploadOCR`;
     return this.http.post<OCRResponse>(nodeUrl, { base64Image });
   }
 }

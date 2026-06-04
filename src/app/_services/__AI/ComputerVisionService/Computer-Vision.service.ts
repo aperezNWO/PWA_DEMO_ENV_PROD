@@ -63,4 +63,9 @@ export class ComputerVisionService extends BaseService {
     src.delete(); gray.delete(); edges.delete(); contours.delete(); hierarchy.delete();
     return shapes;
   }
+
+  uploadBase64ImageNodeJs(base64Image: string): Observable<OCRResponse> {
+    const nodeUrl = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}uploadCV`;
+    return this.http.post<OCRResponse>(nodeUrl, { base64Image });
+  }
 }
