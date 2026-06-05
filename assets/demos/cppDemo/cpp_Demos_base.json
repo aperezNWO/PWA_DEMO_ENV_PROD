@@ -122,8 +122,8 @@
     {
 		"id"               : 11,
         "done"             : true,
-        "name"             : "OPEN CV Demo / C++ DLL",
-        "description"      : "OPEN CV Demo / C++ DLL",
+        "name"             : "Computer Vision Demo / C++ DLL",
+        "description"      : "Computer Vision Demo / C++ DLL",
         "field_1"          : "Computer Vision, OPEN CV, C++",
         "field_2"          : "./#/VisionHub?aiFeature=CV&langName=CPP",
         "field_3"          : "https://github.com/aperezNWO/CPP_GCC_OPEN_CV/blob/92076cb4b69103b4e2015ff838c0d46d4c740439/mingwin/OpenCvDll.cpp#L252",
@@ -134,8 +134,8 @@
     {
 		"id"               : 12,
         "done"             : true,
-        "name"             : "OPEN CV Demo / .net core endpoint",
-        "description"      : "OPEN CV Demo / .net core endpoint",
+        "name"             : "Computer Vision Demo / .net core endpoint",
+        "description"      : "Computer Vision Demo / .net core endpoint",
         "field_1"          : "Computer Vision, OPEN CV, .net core",
         "field_2"          : "./#/VisionHub?aiFeature=CV&langName=CPP",
         "field_3"          : "https://github.com/aperezNWO/ASP_NET_CORE_CPP_ENTRY/blob/4730e7d045f0153b4ff9d33aa4c8c477a914e009/ASP_NET_CORE_CPP_ENTRY/Controllers/ComputerVisionController.cs#L173",
