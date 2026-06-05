@@ -43,7 +43,7 @@
         "field_1"          : "NodeJs, codesandbox, OCR, Tesseract",
         "field_2"          : "./#/VisionHub?aiFeature=OCR&langName=JS",
         "field_3"          : "https://github.com/aperezNWO/cs_nodejs_ocr_/blob/14f75a2df00637d1188644142ea3938febc543db/services/VisionHubService.js#L85",
-        "field_4"          : "{{baseUrlNodeJsOcr}}upload",
+        "field_4"          : "{{baseUrlNodeJsOcr}}health",
         "field_6"          : "https://github.com/tesseract-ocr/tesseract",
         "field_10"         : "894ab07b-45d4-4a87-b9d7-a59e78a73e79" 
     },
@@ -55,7 +55,7 @@
         "field_1"          : "NodeJs, codesandbox, Computer Vision, Open Cv",
         "field_2"          : "./#/VisionHub?aiFeature=CV&langName=JS",
         "field_3"          : "https://github.com/aperezNWO/cs_nodejs_ocr_/blob/14f75a2df00637d1188644142ea3938febc543db/services/VisionHubService.js#L178",
-        "field_4"          : "./#/VisionHub?aiFeature=CV&langName=JS",
+        "field_4"          : "{{baseUrlNodeJsOcr}}health",
         "field_6"          : "https://docs.opencv.org/4.x/d5/d10/tutorial_js_root.html",
         "field_10"         : "348d2d81-a9d7-4f22-9f92-03bb24388f73" 
     },
