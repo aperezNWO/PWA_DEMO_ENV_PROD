@@ -268,7 +268,8 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
           */
           const shapes = (await firstValueFrom(this.cvService.uploadBase64ImageNodeJs(base64))).message;
           console.log('returning value from opencv js : ' + shapes);
-          result       = shapes.length > 0 ? `Detected: ${JSON.stringify(shapes)}` : "No shapes found.";
+          //result       = shapes.length > 0 ? `Detected: ${JSON.stringify(shapes)}` : "No shapes found.";
+          result         = shapes.length > 0 ? ` ${JSON.stringify(shapes)}` : "No shapes found.";
           break;
         case engineLang.OpenCv_CPP      : // CPP     --> CV
           result = (await firstValueFrom(this.cvService._OpenCv_CPP_uploadBase64Image(base64))).message;
