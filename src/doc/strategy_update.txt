@@ -493,8 +493,8 @@
 
         --[x] draw pad instruction.
 
-        --[_] node.js ocr --> update repos to visionhub.
-
+        --[>] node.js ocr --> update repos to visionhub.
+        
         --[_] param url.
 
                 --[x] <root_url>/#/VisionHub?aiFeature=OCR&langName=JS
