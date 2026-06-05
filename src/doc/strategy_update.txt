@@ -493,7 +493,7 @@
 
         --[x] draw pad instruction.
 
-        --[>] node.js ocr --> update repos to visionhub.
+        --[x] node.js ocr --> update repos to visionhub.
         
         --[_] param url.
 
