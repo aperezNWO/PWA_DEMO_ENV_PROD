@@ -487,13 +487,13 @@
 
         --[_] check data and filters.
 
- --[_] node.js ocr --> update repos to visionhub.
-
---[_] Vision Hub.
+ --[_] Vision Hub.
 
         --[x] check c++ opencv functionality (only takes first element on array of result).
 
         --[x] draw pad instruction.
+
+        --[_] node.js ocr --> update repos to visionhub.
 
         --[_] param url.
 
