@@ -38,7 +38,9 @@ enum engineLang
    Tesseract_NodeJs   = 1,
    Tesseract_CPP      = 2,
    OpenCV_NodeJs      = 3,
-   OpenCv_CPP         = 4
+   OpenCv_CPP         = 4,
+   OpenCv_Typescript     = 5,
+   Tesseract_Typescript  = 6
 }
 
 /*
@@ -51,6 +53,7 @@ langName  =
 
           JS  : Node Js / javascript
           CPP : C++ 
+          TS  : Angular / Typescript
 */
 
 @Component({
@@ -123,14 +126,16 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
           // default value = CV
           this.selectedAiFeature.set(aiFeature.CV);
           
-          // default language = c++
-          let wantsCpp: boolean = true;
+          // default language -> -> Typescript
+          let wantsTS: boolean = true;
 
           this.engineList =  [ { id: 0, label: 'Please select \'Engine\'...' , selected: false     }
-                    ,{ id: engineLang.OpenCV_NodeJs , label: 'OpenCV    -> Node.js'                  , selected: !wantsCpp }
-                    ,{ id: engineLang.OpenCv_CPP    , label: 'OpenCV    -> C++'                      , selected: wantsCpp  }];
+                    ,{ id: engineLang.OpenCV_NodeJs     , label: 'OpenCV    -> Node.js'                  , selected: !wantsTS  }
+                    ,{ id: engineLang.OpenCv_CPP        , label: 'OpenCV    -> C++'                      , selected: !wantsTS  },
+                    ,{ id: engineLang.OpenCv_Typescript , label: 'OpenCV    -> Typescript'               , selected: wantsTS   }];
           
-          this.selectedLangEngine.set(engineLang.OpenCv_CPP);
+          // Default Language -> Typescript
+          this.selectedLangEngine.set(engineLang.OpenCv_Typescript);
 
           // force user to choose a source
           this.selectedSource.set(captureSource.NonSelected);
@@ -172,7 +177,10 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
             if (targetFeat === aiFeature.OCR) { 
               // if langName is 'CPP' engine== 2 'tesseract for c++' else  engine= 1 'tesseract for node.js'
               targetEngLang = wantsCpp ? engineLang.Tesseract_CPP  : engineLang.Tesseract_NodeJs;
-            } else {
+            } 
+            
+            // if feature is 'CV' 2
+            if (targetFeat === aiFeature.CV) {          
               // if langName is 'CPP' engine== 4 'opencv for c++'    else  engine= 3 'opencv    for node.js'
               targetEngLang = wantsCpp ? engineLang.OpenCv_CPP     : engineLang.OpenCV_NodeJs;
             }
@@ -181,13 +189,17 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
             if  (this.selectedAiFeature() === aiFeature.OCR) 
             {
                this.engineList =  [  { id: 0, label: 'Please select \'Engine\'...' , selected: false     }
-                                   , { id: engineLang.Tesseract_NodeJs, label: 'Tesseract -> Node.js'        , selected: !wantsCpp }
-                                   , { id: engineLang.Tesseract_CPP   , label: 'Tesseract -> C++'            , selected: wantsCpp  } ];
-            } else 
+                                   , { id: engineLang.Tesseract_NodeJs     , label: 'Tesseract -> Node.js'     , selected: !wantsCpp  }
+                                   , { id: engineLang.Tesseract_CPP        , label: 'Tesseract -> C++'         , selected: wantsCpp   }, 
+                                   , { id: engineLang.Tesseract_Typescript , label: 'Tesseract -> Typescript'  , selected: !wantsCpp  } ];
+            } 
+            //
+            if  (this.selectedAiFeature() === aiFeature.CV)  
             {
-               this.engineList =  [ { id: 0, label: 'Please select \'Engine\'...' , selected: false }
-                                   ,{ id: engineLang.OpenCV_NodeJs, label: 'OpenCV    -> Node.js'        , selected: !wantsCpp }
-                                   ,{ id: engineLang.OpenCv_CPP   , label: 'OpenCV    -> C++'            , selected: wantsCpp }];
+              this.engineList  =  [ { id: 0, label: 'Please select \'Engine\'...' , selected: false     }
+                      ,{ id: engineLang.OpenCV_NodeJs     , label: 'OpenCV    -> Node.js'                  , selected: !wantsCpp   }
+                      ,{ id: engineLang.OpenCv_CPP        , label: 'OpenCV    -> C++'                      , selected: wantsCpp    },
+                      ,{ id: engineLang.OpenCv_Typescript , label: 'OpenCV    -> Tyupescript'              , selected: !wantsCpp   }];
             }
             //
             this.selectedLangEngine.set(targetEngLang); 
@@ -195,23 +207,7 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
             console.log(` Changed lang/engine to  :  ${targetEngLang}`);
 
         } // end of 'langName' param evaluation 
-
-        //---------------------------------------------------------------
-        // 3. Parse Input Source (CNV | CAM)
-        //---------------------------------------------------------------
-        /*
-        let targetSrc = captureSource.NonSelected;
-        
-        // Handle stream cycle changes if switching directly to camera
-        if (targetSrc !== this.selectedSource()) {
-          this.selectedSource.set(targetSrc);
-          this.stopCamera();
-          this.capturedImage.set(null);
-          if (targetSrc === captureSource.Camera) {
-            await this.startCamera();
-          }
-        }*/
-
+  
         this.status_message.set("Configuration loaded from URL query.");
       }
     });
@@ -260,20 +256,26 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
           result = (await firstValueFrom(this.ocrService.uploadBase64ImageCPP(base64))).message;
           break;
         case engineLang.OpenCV_NodeJs   :  // NODE.JS --> CV
-          /*
-            onst img    = await this.loadImage(base64);
-            const shapes = this.cvService._OpenCv_js_detectShapes(img);
-            result       = shapes.length > 0 ? `Detected: ${shapes.join(', ')}` : "No shapes found.";
-            break;
-          */
-          const shapes = (await firstValueFrom(this.cvService.uploadBase64ImageNodeJs(base64))).message;
+
+        const shapes = (await firstValueFrom(this.cvService.uploadBase64ImageNodeJs(base64))).message;
           console.log('returning value from opencv js : ' + shapes);
-          //result       = shapes.length > 0 ? `Detected: ${JSON.stringify(shapes)}` : "No shapes found.";
           result         = shapes.length > 0 ? ` ${JSON.stringify(shapes)}` : "No shapes found.";
           break;
         case engineLang.OpenCv_CPP      : // CPP     --> CV
           result = (await firstValueFrom(this.cvService._OpenCv_CPP_uploadBase64Image(base64))).message;
           break;
+        case engineLang.OpenCv_Typescript  :    // Angular --> CV
+
+            const img_ts_cv     = await this.loadImage(base64);
+            const shapes_ts_cv  = this.cvService._OpenCv_ts_detectShapes(img_ts_cv);
+            result              = shapes_ts_cv.length > 0 ? `Detected: ${shapes_ts_cv.join(', ')}` : "No shapes found.";
+            break;
+        case engineLang.Tesseract_Typescript  :  // Angular --> OCR
+
+            const img_ts_ocr     = await this.loadImage(base64);
+            const shapes_ts_ocr  = this.cvService._OpenCv_ts_detectText(img_ts_ocr);
+            result               = shapes_ts_ocr.length > 0 ? `Detected: ${shapes_ts_ocr.join(', ')}` : "No shapes found.";
+            break;  
       }
       this.status_message.set(result);
     } catch (err: any) {

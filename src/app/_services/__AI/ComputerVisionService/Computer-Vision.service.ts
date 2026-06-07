@@ -35,9 +35,38 @@ export class ComputerVisionService extends BaseService {
     return this.http.post<OCRResponse>(`${this.__baseUrl}uploadOpenCv`, { base64Image });
   }
 
-  // --- OPENCV.JS LOCAL LOGIC ---
+   // --- TESSERACT TYPESCRIPT LOCAL LOGIC ---
 
-  _OpenCv_js_detectShapes(imageElement: HTMLImageElement): string[] {
+  _OpenCv_ts_detectText(imageElement: HTMLImageElement): string[] {
+    const shapes: string[] = [];
+    const cv = (window as any).cv;
+    if (!cv) return ['OpenCV not loaded'];
+
+    const src = cv.imread(imageElement);
+    const gray = new cv.Mat();
+    const edges = new cv.Mat();
+    cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
+    cv.Canny(gray, edges, 50, 150, 3, false);
+
+    const contours = new cv.MatVector();
+    const hierarchy = new cv.Mat();
+    cv.findContours(edges, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+
+    for (let i = 0; i < contours.size(); i++) {
+      const approx = new cv.Mat();
+      cv.approxPolyDP(contours.get(i), approx, 0.04 * cv.arcLength(contours.get(i), true), true);
+      if (approx.rows === 3) shapes.push('[Triangle]');
+      else if (approx.rows === 4) shapes.push('[Rectangle/Square]');
+      else if (approx.rows > 4) shapes.push('[Circle]');
+      approx.delete();
+    }
+    src.delete(); gray.delete(); edges.delete(); contours.delete(); hierarchy.delete();
+    return shapes;
+  }
+
+  // --- OPENCV TYPESCRIPT LOCAL LOGIC ---
+
+  _OpenCv_ts_detectShapes(imageElement: HTMLImageElement): string[] {
     const shapes: string[] = [];
     const cv = (window as any).cv;
     if (!cv) return ['OpenCV not loaded'];

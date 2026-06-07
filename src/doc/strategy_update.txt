@@ -537,7 +537,7 @@
 
                 --[_] dynamic reference.
         
-        --[_] tesseract for angular.
+        --[>] tesseract for angular.
 
         --[_] opencv    for angular.
 

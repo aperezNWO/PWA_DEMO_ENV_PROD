@@ -1,7 +1,7 @@
 {
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "3.7.19",
+    "appVersion"                                   : "3.7.20",
     "baseUrlNetCoreCPPEntry_local"                 : "http://localhost:83/",
     "baseUrlNetCoreCPPEntry_remote"                : "https://tensorflownetcore64.tryasp.net/",
     "baseUrlNetCoreCPPEntry"                       : "https://tensorflownetcore64.tryasp.net/",
