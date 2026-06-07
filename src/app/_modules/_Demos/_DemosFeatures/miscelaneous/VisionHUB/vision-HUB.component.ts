@@ -35,10 +35,10 @@ enum captureSource
 
 enum engineLang
 {
-   Tesseract_NodeJs   = 1,
-   Tesseract_CPP      = 2,
-   OpenCV_NodeJs      = 3,
-   OpenCv_CPP         = 4,
+   Tesseract_NodeJs      = 1,
+   Tesseract_CPP         = 2,
+   OpenCV_NodeJs         = 3,
+   OpenCv_CPP            = 4,
    OpenCv_Typescript     = 5,
    Tesseract_Typescript  = 6
 }
@@ -131,11 +131,12 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
 
           this.engineList =  [ { id: 0, label: 'Please select \'Engine\'...' , selected: false     }
                     ,{ id: engineLang.OpenCV_NodeJs     , label: 'OpenCV    -> Node.js'                  , selected: !wantsTS  }
-                    ,{ id: engineLang.OpenCv_CPP        , label: 'OpenCV    -> C++'                      , selected: !wantsTS  },
+                    ,{ id: engineLang.OpenCv_CPP        , label: 'OpenCV    -> C++'                      , selected:  wantsTS  },
                     ,{ id: engineLang.OpenCv_Typescript , label: 'OpenCV    -> Typescript'               , selected: wantsTS   }];
           
           // Default Language -> Typescript
           this.selectedLangEngine.set(engineLang.OpenCv_Typescript);
+          //this.selectedLangEngine.set(engineLang.OpenCv_CPP);
 
           // force user to choose a source
           this.selectedSource.set(captureSource.NonSelected);
@@ -190,16 +191,16 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
             {
                this.engineList =  [  { id: 0, label: 'Please select \'Engine\'...' , selected: false     }
                                    , { id: engineLang.Tesseract_NodeJs     , label: 'Tesseract -> Node.js'     , selected: !wantsCpp  }
-                                   , { id: engineLang.Tesseract_CPP        , label: 'Tesseract -> C++'         , selected: wantsCpp   }, 
-                                   , { id: engineLang.Tesseract_Typescript , label: 'Tesseract -> Typescript'  , selected: !wantsCpp  } ];
+                                   , { id: engineLang.Tesseract_CPP        , label: 'Tesseract -> C++'         , selected: wantsCpp   }]//, 
+                                   //, { id: engineLang.Tesseract_Typescript , label: 'Tesseract -> Typescript'  , selected: !wantsCpp  } ];
             } 
             //
             if  (this.selectedAiFeature() === aiFeature.CV)  
             {
               this.engineList  =  [ { id: 0, label: 'Please select \'Engine\'...' , selected: false     }
                       ,{ id: engineLang.OpenCV_NodeJs     , label: 'OpenCV    -> Node.js'                  , selected: !wantsCpp   }
-                      ,{ id: engineLang.OpenCv_CPP        , label: 'OpenCV    -> C++'                      , selected: wantsCpp    },
-                      ,{ id: engineLang.OpenCv_Typescript , label: 'OpenCV    -> Tyupescript'              , selected: !wantsCpp   }];
+                      ,{ id: engineLang.OpenCv_CPP        , label: 'OpenCV    -> C++'                      , selected: wantsCpp    }]//,
+                      //,{ id: engineLang.OpenCv_Typescript , label: 'OpenCV    -> Tyupescript'              , selected: !wantsCpp   };
             }
             //
             this.selectedLangEngine.set(targetEngLang); 
