@@ -223,7 +223,7 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
               this.engineList  =  [ { id: 0                            , label: 'Please select \'Engine\'...'           , selected: false       }
                                    ,{ id: engineLang.OpenCV_NodeJs     , label: 'OpenCV    -> Node.js'                  , selected: (targetEngLang == engineLang.OpenCV_NodeJs)         }
                                    ,{ id: engineLang.OpenCv_CPP        , label: 'OpenCV    -> C++'                      , selected: (targetEngLang == engineLang.OpenCv_CPP   )         }   
-                                   ,{ id: engineLang.OpenCv_Typescript , label: 'OpenCV    -> Tyupescript'              , selected: (targetEngLang == engineLang.OpenCv_Typescript)     }  ] ;
+                                   ,{ id: engineLang.OpenCv_Typescript , label: 'OpenCV    -> Typescript'               , selected: (targetEngLang == engineLang.OpenCv_Typescript)     }  ] ;
             }
             //
             this.selectedLangEngine.set(targetEngLang); 
@@ -281,8 +281,8 @@ export class VisionHUBComponent extends BaseReferenceComponent implements OnInit
           break;
         case engineLang.Tesseract_Typescript  :  // Angular --> OCR
              const img_ts_ocr     = await this.loadImage(base64);
-             const shapes_ts_ocr  = this.ocrService._Tesseract_ts_detectText(img_ts_ocr);
-             result               = shapes_ts_ocr.length > 0 ? `Detected Text: ${shapes_ts_ocr.join(', ')}` : "No Text found.";
+             const text_ts_ocr    = await this.ocrService._Tesseract_ts_detectText(img_ts_ocr);
+             result               = text_ts_ocr.length > 0 ? `Detected Text: ${text_ts_ocr}` : "No Text found.";
           break;  
         case engineLang.OpenCV_NodeJs   :  // NODE.JS --> CV
             const shapes = (await firstValueFrom(this.cvService.uploadBase64ImageNodeJs(base64))).message;

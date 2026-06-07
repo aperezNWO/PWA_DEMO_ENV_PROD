@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core'; // [v21x] 'inject' is the modern standard for Functional DI
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { ConfigService } from '../../__Utils/ConfigService/config.service';
-import { BaseService } from '../../__baseService/base.service';
+import { HttpClient         } from '@angular/common/http';
+import { Observable         } from 'rxjs';
+import { ConfigService      } from '../../__Utils/ConfigService/config.service';
+import { BaseService        } from '../../__baseService/base.service';
+import * as Tesseract         from 'tesseract.js';
 
 /** * [v21x] STRONGLY TYPED INTERFACES
  * While interfaces aren't new, modern Angular strictly enforces types in templates.
@@ -61,41 +62,66 @@ export class OCRService extends BaseService {
    * the shape of the data before the server even responds. This is vital 
    * for v21 template type checking (Strict Mode).
    */
+  //
   uploadBase64ImageCPP(base64Image: string): Observable<OCRResponse> {
     return this.http.post<OCRResponse>(`${this.__baseUrl}upload`, { base64Image });
   }
 
+  //
   uploadBase64ImageNodeJs(base64Image: string): Observable<OCRResponse> {
     const nodeUrl = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}uploadOCR`;
     return this.http.post<OCRResponse>(nodeUrl, { base64Image });
   }
 
+  /*
+  // --- TESSERACT TYPESCRIPT LOCAL LOGIC ---
+  _Tesseract_ts_detectText(imageElement: HTMLImageElement): string {
+    //
+    let extractedText: string = '';
+    let loading: boolean      = false;
+
+    // BEGIN OCR LOGIC
+
+    // END OCR LOGIN 
+   return  extractedText;
+  }*/
+
    // --- TESSERACT TYPESCRIPT LOCAL LOGIC ---
-
-  _Tesseract_ts_detectText(imageElement: HTMLImageElement): string[] {
-    const shapes: string[] = [];
-    const cv = (window as any).cv;
-    if (!cv) return ['OpenCV not loaded'];
-
-    const src = cv.imread(imageElement);
-    const gray = new cv.Mat();
-    const edges = new cv.Mat();
-    cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY, 0);
-    cv.Canny(gray, edges, 50, 150, 3, false);
-
-    const contours = new cv.MatVector();
-    const hierarchy = new cv.Mat();
-    cv.findContours(edges, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
-
-    for (let i = 0; i < contours.size(); i++) {
-      const approx = new cv.Mat();
-      cv.approxPolyDP(contours.get(i), approx, 0.04 * cv.arcLength(contours.get(i), true), true);
-      if (approx.rows === 3) shapes.push('[Triangle]');
-      else if (approx.rows === 4) shapes.push('[Rectangle/Square]');
-      else if (approx.rows > 4) shapes.push('[Circle]');
-      approx.delete();
+  async _Tesseract_ts_detectText(imageElement: HTMLImageElement): Promise<string> {
+    let extractedText: string = '';
+    let worker: any = null;
+    
+    try {
+      // Create worker
+      worker = await Tesseract.createWorker();
+      
+      // Set custom tessdata path using setParameters
+      await worker.setParameters({
+        tessdata_prefix: window.location.origin + '/assets/tessdata/'
+      });
+      
+      // Load Spanish language
+      //await worker.loadLanguage('spa');
+      //await worker.initialize('spa');
+      
+      // Set logger with proper typing
+      //worker.setLogger((m: any) => {
+      //  console.log(`OCR Progress: ${Math.round(m.progress * 100)}%`);
+      //});
+      
+      // Recognize text
+      const { data: { text } } = await worker.recognize(imageElement);
+      extractedText = text.trim();
+      
+      // Clean up
+      await worker.terminate();
+      
+    } catch (error) {
+        console.error('Error during OCR processing:', error);
+        extractedText = '';
+        if (worker) await worker.terminate();
     }
-    src.delete(); gray.delete(); edges.delete(); contours.delete(); hierarchy.delete();
-    return shapes;
+    
+    return extractedText;
   }
 }
