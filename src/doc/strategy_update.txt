@@ -536,5 +536,9 @@
                 --[x] links to topics and libraries.
 
                 --[_] dynamic reference.
+        
+        --[_] tesseract for angular.
+
+        --[_] opencv    for angular.
 
 ////////////////////////////////////////////////////////////////////////////////
