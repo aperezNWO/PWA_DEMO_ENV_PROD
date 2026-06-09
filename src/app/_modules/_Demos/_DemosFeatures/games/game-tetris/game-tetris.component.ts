@@ -5,10 +5,11 @@ import {  Component
         , HostListener
         , OnInit
         , OnDestroy
-        , signal                 // v21 work: Importing signal-based primitives - signal, computed, effect are new Angular Signals API
+        , signal                 
         , computed
         , effect
         , ChangeDetectorRef      } from '@angular/core';
+import { toObservable            } from '@angular/core/rxjs-interop'; // v21 work: Essential interop for plain property tracking
 
 // SERVICES
 import { TetrisService           } from 'src/app/_services/__Games/TetrisService/tetris.service';
@@ -37,12 +38,13 @@ interface Tetromino {
 }
 
 type TetrominoType = 'I' | 'O' | 'T' | 'S' | 'Z' | 'J' | 'L';
+type ControlMode = 'MANUAL' | 'VOICE';
 
 @Component({
   selector: 'app-game-tetris',
   templateUrl: './game-tetris.component.html',
   styleUrl: './game-tetris.component.css',
-  standalone : false, // v21 work: standalone: false is still supported but standalone: true is now the Angular default
+  standalone : false, 
   providers:   [{ provide: PAGE_TITLE_LOG, useValue: PAGE_GAMES_TETRIS }],
 })
 export class GameTetrisComponent extends BaseReferenceComponent implements OnInit, OnDestroy {
@@ -51,7 +53,7 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
   private readonly BOARD_HEIGHT = 20;
   private readonly TICK_INTERVAL = 500;
   
-  // v21 work: Using signal() to create reactive state primitives - replaces traditional class properties + manual change detection
+  // --- Signals ---
   private board = signal<string[][]>([]);
   private currentPiece = signal<Position[]>([]);
   private currentColor = signal<string>('');
@@ -60,29 +62,30 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
   private lockedGameOver = signal<boolean>(false);
   private lockedIsMobile = signal<boolean>(false);
   
-  // v21 work: computed() automatically derives values from signals - recalculates only when dependent signals change
-  // This replaces manual getter methods or ngOnChanges logic
+  // Input strategies and match status management primitives
+  readonly controlMode = signal<ControlMode>('MANUAL'); 
+  readonly hasStarted = signal<boolean>(false); 
+  
+  // --- State Indicators ---
+  private isListening = false; // Guard flag to prevent duplicate WebSpeech recognition instances
+  private gameLoop$?: Subscription;
+  private voiceSpeechSub$?: Subscription; // Explicit stream subscription for processing spoken commands
+
+  // --- Computed States ---
   readonly displayBoard = computed(() => {
     const boardCopy = this.board().map(row => [...row]);
-    
-    // Add current piece to display
-    // v21 work: Accessing signal values by calling them as functions e.g. this.board(), this.currentPiece()
     this.currentPiece().forEach(pos => {
       if (pos.y >= 0 && pos.y < this.BOARD_HEIGHT) {
         boardCopy[pos.y][pos.x] = this.currentColor();
       }
     });
-    
     return boardCopy;
   });
   
-  // v21 work: Exposing internal signals as readonly computed() signals to prevent external mutation
   readonly score     = computed(() => this.lockedScore());
   readonly isPlaying = computed(() => this.lockedIsPlaying());
   readonly gameOver  = computed(() => this.lockedGameOver());
   readonly isMobile  = computed(() => this.lockedIsMobile());
-  
-  private gameLoop$?: Subscription;
 
   private readonly TETROMINOS: Record<TetrominoType, Tetromino> = {
     I: { shape: [[1, 1, 1, 1]], color: '#00f0f0' },
@@ -102,33 +105,75 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
                   public  override backendService   : BackendService,
                   public  tetrisService: TetrisService) 
   { 
-    super(configService,
-          backendService,
-          route,
-          speechService,
-          PAGE_TITLE_NO_SOUND,
-    )
+    super(configService, backendService, route, speechService, PAGE_TITLE_NO_SOUND);
     
-    // v21 work: effect() runs a side effect whenever its dependent signals change - replaces manual subscriptions
-    // or ngDoCheck for reactive side effects. Automatically tracks signal dependencies.
     effect(() => {
       if (this.gameOver()) {
         console.log('Game Over! Final score:', this.score());
+        this.stopVoiceRecognition(); 
+      }
+    });
+
+    /**
+     * Effect 1: Hardware Stream Toggle
+     * Handles hardware mic activation or teardown explicitly tracking dependencies.
+     */
+    effect(() => {
+      const isVoiceMode = this.controlMode() === 'VOICE';
+      const isGameActive = this.isPlaying();
+
+      if (isVoiceMode && isGameActive) {
+        this.startVoiceRecognition();
+      } else {
+        this.stopVoiceRecognition();
+      }
+    });
+
+    /**
+     * Interop Stream Bridge:
+     * Converts the static SpeechService property changes into a running observable stream.
+     * This registers data transitions flawlessly inside the component lifecycle.
+     */
+    const transcript$ = toObservable(computed(() => this.speechService.transcript));
+
+    this.voiceSpeechSub$ = transcript$.subscribe((rawText) => {
+      const mode = this.controlMode();
+      const playing = this.isPlaying();
+      const isOver = this.gameOver();
+
+      if (mode === 'VOICE' && playing && !isOver && rawText) {
+
+        //
+        const command = rawText.toLowerCase().trim();
+
+        //
+        console.log('command : ' + command);
+        
+        //
+        if (command.includes('left') || command.includes('izquierda')) {
+          this.moveLeft();
+        } else if (command.includes('right') || command.includes('derecha')) {
+          this.moveRight();
+        } else if (command.includes('rotate') || command.includes('girar') || command.includes('up')) {
+          this.rotate();
+        } else if (command.includes('down') || command.includes('abajo')) {
+          this.moveDown();
+        } else if (command.includes('drop') || command.includes('caer') || command.includes('space')) {
+          this.drop();
+        }
       }
     });
   }  
  
   ngOnInit() {
-    // v21 work: signal.set() replaces direct property assignment - notifies all dependents automatically
     this.lockedIsMobile.set(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
-    this.startGame();
+    this.initBoard(); 
   }
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    // v21 work: Reading signal values via function call syntax e.g. this.isPlaying(), this.gameOver()
-    if (!this.isPlaying() || this.gameOver()) return;
-    
+    if (!this.isPlaying() || this.gameOver() || this.controlMode() === 'VOICE') return;
+
     switch(event.key) {
       case 'ArrowLeft':
         event.preventDefault();
@@ -153,31 +198,50 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
     }
   }
 
+  onControlModeChange(event: Event) {
+    const selectedMode = (event.target as HTMLSelectElement).value as ControlMode;
+    this.controlMode.set(selectedMode);
+  }
+
+  private startVoiceRecognition() {
+    if (this.isListening) return; // Safeguard against redundant start requests
+
+    if (this.speechService.startListening) {
+      try {
+        this.speechService.startListening();
+        this.isListening = true;
+      } catch (err) {
+        console.warn("Speech engine initialization conflict handled securely:", err);
+      }
+    }
+  }
+
+  private stopVoiceRecognition() {
+    if (this.speechService.stopListening) {
+      this.speechService.stopListening();
+    }
+    this.isListening = false;
+  }
+
   private initBoard() {
-    const newBoard = Array(this.BOARD_HEIGHT).fill(null)
-      .map(() => Array(this.BOARD_WIDTH).fill(''));
-    // v21 work: signal.set() to replace the entire signal value immutably
+    const newBoard = Array(this.BOARD_HEIGHT).fill(null).map(() => Array(this.BOARD_WIDTH).fill(''));
     this.board.set(newBoard);
   }
 
   startGame() {
-    if (this.gameLoop$) {
-      this.gameLoop$.unsubscribe();
-    }
+    if (this.gameLoop$) this.gameLoop$.unsubscribe();
     
     this.initBoard();
-    // v21 work: signal.set() calls below replace what would previously be separate component properties
-    // with manual change detection or Subject/BehaviorSubject observables
     this.lockedScore.set(0);
     this.lockedGameOver.set(false);
     this.lockedIsPlaying.set(true);
+    this.hasStarted.set(true); 
     this.currentPiece.set([]);
     this.currentColor.set('');
     
     this.spawnPiece();
-    
+
     this.gameLoop$ = interval(this.TICK_INTERVAL).subscribe(() => {
-      // v21 work: Reading gameOver signal value inside an RxJS subscription - signals and RxJS coexist
       if (!this.gameOver()) {
         this.moveDown();
       }
@@ -185,24 +249,12 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
   }
 
   resetGame() {
-    if (this.gameLoop$) {
-      this.gameLoop$.unsubscribe();
-    }
-    
-    this.initBoard();
-    this.lockedScore.set(0);
+    this.hasStarted.set(false);
+    this.lockedIsPlaying.set(false);
     this.lockedGameOver.set(false);
-    this.lockedIsPlaying.set(true);
-    this.currentPiece.set([]);
-    this.currentColor.set('');
-    
-    this.spawnPiece();
-    
-    this.gameLoop$ = interval(this.TICK_INTERVAL).subscribe(() => {
-      if (!this.gameOver()) {
-        this.moveDown();
-      }
-    });
+    if (this.gameLoop$) this.gameLoop$.unsubscribe();
+    this.stopVoiceRecognition();
+    this.initBoard();
   }
 
   private spawnPiece() {
@@ -214,32 +266,25 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
       row.map((cell, x) => cell ? { x: x + Math.floor(this.BOARD_WIDTH/2) - 1, y } : null)
     ).filter((pos): pos is Position => pos !== null);
     
-    // v21 work: signal.set() to update currentPiece and currentColor signals
     this.currentPiece.set(newPiece);
     this.currentColor.set(piece.color);
     
     if (this.checkCollision()) {
-      // v21 work: Multiple signal.set() calls - each triggers reactive updates downstream
       this.lockedGameOver.set(true);
       this.lockedIsPlaying.set(false);
-      if (this.gameLoop$) {
-        this.gameLoop$.unsubscribe();
-      }
+      if (this.gameLoop$) this.gameLoop$.unsubscribe();
+      this.stopVoiceRecognition();
     }
   }
 
   moveLeft() {
     const newPositions = this.currentPiece().map(pos => ({ ...pos, x: pos.x - 1 }));
-    if (this.isValidMove(newPositions)) {
-      this.currentPiece.set(newPositions);
-    }
+    if (this.isValidMove(newPositions)) this.currentPiece.set(newPositions);
   }
 
   moveRight() {
     const newPositions = this.currentPiece().map(pos => ({ ...pos, x: pos.x + 1 }));
-    if (this.isValidMove(newPositions)) {
-      this.currentPiece.set(newPositions);
-    }
+    if (this.isValidMove(newPositions)) this.currentPiece.set(newPositions);
   }
 
   moveDown() {
@@ -255,11 +300,7 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
 
   drop() {
     while (this.isValidMove(this.currentPiece().map(pos => ({ ...pos, y: pos.y + 1 })))) {
-      // v21 work: signal.update() derives the new value from the current value - more efficient than set()
-      // when the new value depends on the old one. Replaces read-then-write patterns.
-      this.currentPiece.update(pieces => 
-        pieces.map(pos => ({ ...pos, y: pos.y + 1 }))
-      );
+      this.currentPiece.update(pieces => pieces.map(pos => ({ ...pos, y: pos.y + 1 })));
     }
     this.lockPiece();
     this.clearLines();
@@ -267,7 +308,6 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
   }
 
   rotate() {
-    // v21 work: Reading signal value into a local variable for use in non-reactive context
     const currentPieces = this.currentPiece();
     if (!currentPieces.length) return;
     
@@ -277,13 +317,10 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
       y: center.y + (pos.x - center.x)
     }));
     
-    if (this.isValidMove(newPositions)) {
-      this.currentPiece.set(newPositions);
-    }
+    if (this.isValidMove(newPositions)) this.currentPiece.set(newPositions);
   }
 
   private isValidMove(positions: Position[]): boolean {
-    // v21 work: Reading board signal value - this.board() - in a regular (non-reactive) method
     const currentBoard = this.board();
     return positions.every(pos => 
       pos.x >= 0 && 
@@ -299,8 +336,6 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
   }
 
   private lockPiece() {
-    // v21 work: signal.update() used to immutably update complex state (2D array)
-    // The callback receives current value and must return the new value
     this.board.update(currentBoard => {
       const newBoard = currentBoard.map(row => [...row]);
       this.currentPiece().forEach(pos => {
@@ -314,12 +349,8 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
 
   private clearLines() {
     let linesCleared = 0;
-    
-    // v21 work: signal.update() with complex board transformation logic
-    // All computed() signals that depend on board() will automatically recalculate after this update
     this.board.update(currentBoard => {
       const newBoard = [...currentBoard];
-      
       for (let y = this.BOARD_HEIGHT - 1; y >= 0; y--) {
         if (newBoard[y].every(cell => cell !== '')) {
           newBoard.splice(y, 1);
@@ -328,19 +359,17 @@ export class GameTetrisComponent extends BaseReferenceComponent implements OnIni
           y++;
         }
       }
-      
       return newBoard;
     });
 
     if (linesCleared > 0) {
-      // v21 work: signal.update() to increment score based on lines cleared
       this.lockedScore.update(score => score + Math.pow(2, linesCleared - 1) * 100);
     }
   }
 
   ngOnDestroy() {
-    if (this.gameLoop$) {
-      this.gameLoop$.unsubscribe();
-    }
+    if (this.gameLoop$) this.gameLoop$.unsubscribe();
+    if (this.voiceSpeechSub$) this.voiceSpeechSub$.unsubscribe();
+    this.stopVoiceRecognition();
   }
 }

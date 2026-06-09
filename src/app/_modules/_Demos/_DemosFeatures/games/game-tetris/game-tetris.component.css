@@ -9,6 +9,7 @@
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  position: relative;
 }
 
 /* El tablero de juego con un borde de neón sutil */
@@ -17,6 +18,7 @@
   background: #1e1e1e;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
   display: inline-block;
+  margin-top: 10px;
 }
 
 .row {
@@ -36,6 +38,126 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.1);
   transition: background-color 0.1s ease;
+}
+
+/* --- NUEVO: Tablero de inicialización previa --- */
+.setup-dashboard-overlay {
+  background: #181818;
+  border: 2px dashed #333;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.setup-dashboard-overlay h3 {
+  margin: 0 0 8px 0;
+  color: #00e5ff;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+.setup-dashboard-overlay p {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0 0 20px 0;
+}
+
+/* Botón especial lanzador del juego */
+.btn-launcher-action {
+  background-color: #00e5ff;
+  color: #000000;
+  border: none;
+  width: 85%;
+  padding: 14px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  border-radius: 8px;
+  margin-top: 10px;
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.4);
+}
+
+.btn-launcher-action:hover {
+  background-color: #00b3cc;
+  box-shadow: 0 0 25px rgba(0, 229, 255, 0.7);
+  transform: scale(1.02);
+}
+
+/* Panel de control adaptable */
+.control-selection-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 20px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+}
+
+.control-selection-panel.inline-setup {
+  margin: 10px auto;
+  border: none;
+  background: #222;
+}
+
+.control-selection-panel.mini-hud {
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 320px;
+  font-size: 0.85rem;
+}
+
+.active-mode-tag {
+  color: #aaa;
+}
+
+.active-mode-tag strong {
+  color: #00e5ff;
+}
+
+.control-selection-panel label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #a0a0a0;
+}
+
+.control-selection-panel select {
+  background-color: #252525;
+  color: #ffffff;
+  border: 1px solid #444;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.control-selection-panel select:focus,
+.control-selection-panel select:hover {
+  border-color: #00e5ff;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+
+/* Indicador de escucha por micrófono */
+.voice-indicator {
+  color: #00ff88;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+  animation: voice-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes voice-pulse {
+  0% { opacity: 0.6; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0.6; transform: scale(0.98); }
 }
 
 .controls {
@@ -67,6 +189,18 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button.secondary {
+  background-color: #1a1a1a;
+  color: #888;
+  border-color: #333;
+}
+
+button.secondary:hover {
+  color: #fff;
+  border-color: #ff1744;
+  box-shadow: 0 0 12px rgba(255, 23, 68, 0.2);
 }
 
 button:hover {
@@ -107,12 +241,15 @@ button:active {
 .game-over::after {
   content: 'GAME OVER';
   position: absolute;
-  top: 40%;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 40px;
   font-weight: 900;
   color: #ff1744;
   text-shadow: 0 0 20px rgba(255, 23, 68, 0.6);
   pointer-events: none;
+  white-space: nowrap;
 }
 
 /* Ajustes para pantallas pequeñas */
@@ -129,12 +266,19 @@ button:active {
   .score {
     font-size: 22px;
   }
+
+  .control-selection-panel {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 300px;
+  }
 }
 
 /* Estilos adicionales para enlaces y HR en modo oscuro */
 hr {
   border: 0;
-  border-top: 1px solid #333;
+  border-top: 1px solid rgba(163, 51, 51, 0.2);
   margin: 20px 0;
   width: 100%;
 }

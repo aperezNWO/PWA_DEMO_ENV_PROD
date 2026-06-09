@@ -213,14 +213,22 @@
  
  -- [_] check errors / improvements (section).   
     
-    --[_] httpinterceptor global not working.
+    --[_] httpinterceptor global
+    
+          --[_] remoge log endless recursion on http fail.
 
     -- [_] global error handlling (check SharedModule).
 
     --[_] computer vision c++ fix (reads only one shape).
 
-     --[_] fix hanoid 3d demo (disks are not moving). 
+     --[_] fix hanoid 3d demo 
 
+             --[_] 6 discs by default.
+             
+             --[_] high speed by default.
+             
+             --[_] chekc uix.
+              
      --[_] UIX IMPROVEMENT (BASED UP ON SWAGGER UIX).
 
      --[_] angular curriculum FIX 
@@ -260,6 +268,8 @@
         -- [_] ABOUT TECH SPECS
 
                 -- [_] .NET CORE FREE SPACE BUTTON.  
+
+                -- [_] .NET CORE SQL SERVER FREE SPACE BUTTON.  
 
                 -- [_]  END POINT RESTFUL VERSIONS.       
 
@@ -368,12 +378,6 @@
 
 --[_] Merge Contact Form.
 
---[_] ALGORITHM BIG O NOTATION / json.
-
-        --[_] Comparisons, Swaps, Recursive Calls.
-
-        --[_] Pick up using Linear Regression related techniques.
-
  --[_] xls / csv modification.
 
          --[_] zip file.
@@ -382,11 +386,7 @@
 
  --[_] Merge :
 
-        --[_] Improve hanoi 2d  and / or merge.
-
-        --[_] Chat + tictactoe.
-
-        --[_] Opencv + ocr.
+        --[_] remove hanoi 2d  and and merge  [Chat + tictactoe].
 
         --[_] Sudoku solve from camera capture.
  
@@ -463,8 +463,6 @@
 
   --[_] Dijkstra 3d.
 
-  --[_] bigO Notation.
-
   --[_] Merge hanoi2d / hanoi 3d engines on federation + expose other languages.
   
   --[_] Merge Tetris2d / Tetris 3d engines on federation + expose other languages.
@@ -540,6 +538,32 @@
                 --[x] links to topics and libraries.
 
                 --[_] dynamic reference.
-        
 
+
+  --[_] fractal demo.
+ 
+         --[_] Opencv -> Typescript.
+ 
+         --[_] Opencv -> Node.js.
+
+         --[_] Opencv -> C++.
+
+--[_] ALGORITHM BIG O NOTATION / json.
+
+        --[_] j2se code.
+
+        --[_] Comparisons, Swaps, Recursive Calls.
+
+        --[_] Pick up using Linear Regression related techniques.
+
+
+ --[_] tetris 2d voice command.
+
+        --[_] Speech recognition unint testing. 
+
+ --[_] section apps (unified solutions).
+
+        --[_] partially or totally integrate [Voice + chat + export formats + opencv + ocr + tensorflow + (others)].
+
+ 
 ////////////////////////////////////////////////////////////////////////////////

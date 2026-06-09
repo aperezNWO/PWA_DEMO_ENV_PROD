@@ -23,7 +23,8 @@ export class SpeechService {
           this.recognition.onresult = (event: any) => {
             //
             this.transcript = event.results[0][0].transcript;
-            //console.log('Transcript:', this.transcript);
+            //
+            console.log('Transcript:', this.transcript);
           };
     
           this.recognition.onerror = (event: any) => {
