@@ -477,8 +477,6 @@
     
       -- [_] MASTER DETAIL / REFERENCES. INDEX ERROR.
 
- -- [_] INDEX -> APP ROUTING -> QUERY PARAM RENDERING.
-
  --[_] xls / csv demo .
 
         --[_] zip file (with pwd).
@@ -529,7 +527,7 @@
 
                         --[X] from custom landing page.    
 
-                        --[_] from index.
+                        --[_] INDEX -> APP ROUTING -> QUERY PARAM RENDERING..
 
         --[_] update references.
 
