@@ -458,7 +458,7 @@
 
   --[_] Dijkstra 3d.
 
-  --[_] LIBRARIES.
+  --[_] LIBRARIES MENU.
 
         --[_] SMTP.
 
