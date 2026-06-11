@@ -556,6 +556,8 @@
 
         --[_] Pick up using Linear Regression related techniques.
 
+        --[_] https://gemini.google.com/app/19625a475ad0cbfe
+
 
  --[_] tetris 2d voice command.
 
