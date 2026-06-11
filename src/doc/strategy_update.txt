@@ -540,14 +540,6 @@
                 --[_] dynamic reference.
 
 
-  --[_] fractal demo.
- 
-         --[_] Opencv -> Typescript.
- 
-         --[_] Opencv -> Node.js.
-
-         --[_] Opencv -> C++.
-
 --[_] ALGORITHM BIG O NOTATION / json.
 
         --[_] j2se code.
@@ -567,5 +559,12 @@
 
         --[_] partially or totally integrate [Voice + chat + export formats + opencv + ocr + tensorflow + (others)].
 
+   --[_] fractal demo.
  
+         --[_] Opencv -> Typescript.
+ 
+         --[_] Opencv -> Node.js.
+
+         --[_] Opencv -> C++.
+        
 ////////////////////////////////////////////////////////////////////////////////
