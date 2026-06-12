@@ -33,7 +33,8 @@ export class OCRService extends BaseService {
    * Using 'readonly' with 'inject' ensures these values are immutable 
    * once the service is instantiated, improving thread safety and predictability.
    */
-  private readonly __baseUrl = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;
+  private readonly __baseUrlNodeJsOcr       = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/Ocr/`;
+  private readonly __baseUrlCpp             = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;
 
   // --- GET METHODS (Return Observables for VersionCacheService compatibility) ---
 
@@ -43,15 +44,15 @@ export class OCRService extends BaseService {
    * v21 features like 'rxResource' and 'toSignal' used in your components.
    */
   _GetTesseract_CPPSTDVersion(): Observable<string> {
-    return this.http.get<string>(`${this.__baseUrl}GetCPPSTDVersion`, this.HTTPOptions_Text);
+    return this.http.get<string>(`${this.__baseUrlCpp}GetCPPSTDVersion`, this.HTTPOptions_Text);
   }
 
   _GetTesseract_AppVersion(): Observable<string> {
-    return this.http.get<string>(`${this.__baseUrl}GetAppVersion`, this.HTTPOptions_Text);
+    return this.http.get<string>(`${this.__baseUrlCpp}GetAppVersion`, this.HTTPOptions_Text);
   }
 
   _GetTesseract_APIVersion(): Observable<string> {
-    return this.http.get<string>(`${this.__baseUrl}GetAPIVersion`, this.HTTPOptions_Text);
+    return this.http.get<string>(`${this.__baseUrlCpp}GetAPIVersion`, this.HTTPOptions_Text);
   }
 
   // --- POST METHODS (Typed for Property Safety) ---
@@ -64,29 +65,16 @@ export class OCRService extends BaseService {
    */
   //
   uploadBase64ImageCPP(base64Image: string): Observable<OCRResponse> {
-    return this.http.post<OCRResponse>(`${this.__baseUrl}upload`, { base64Image });
+    return this.http.post<OCRResponse>(`${this.__baseUrlCpp}upload`, { base64Image });
   }
 
   //
   uploadBase64ImageNodeJs(base64Image: string): Observable<OCRResponse> {
-    const nodeUrl = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}uploadOCR`;
-    return this.http.post<OCRResponse>(nodeUrl, { base64Image });
+        return this.http.post<OCRResponse>(`${this.__baseUrlNodeJsOcr}uploadOCR`, { base64Image });
   }
 
-  /*
+ 
   // --- TESSERACT TYPESCRIPT LOCAL LOGIC ---
-  _Tesseract_ts_detectText(imageElement: HTMLImageElement): string {
-    //
-    let extractedText: string = '';
-    let loading: boolean      = false;
-
-    // BEGIN OCR LOGIC
-
-    // END OCR LOGIN 
-   return  extractedText;
-  }*/
-
-   // --- TESSERACT TYPESCRIPT LOCAL LOGIC ---
   async _Tesseract_ts_detectText(imageElement: HTMLImageElement): Promise<string> {
     let extractedText: string = '';
     let worker: any = null;

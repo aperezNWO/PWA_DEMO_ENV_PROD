@@ -9,12 +9,11 @@ import { OCRResponse        } from '../OCRService/ocr.service';
 export class ComputerVisionService extends BaseService {
 
   //
-  private readonly http            = inject(HttpClient);
-  private readonly _configService  = inject(ConfigService);
-  private readonly __baseUrlCPP    = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
-  private readonly __baseUrlNodeJs = `${this._configService.getConfigValue('baseUrlNodeJs')}api/fractals/`;
-
-
+  private readonly http                  = inject(HttpClient);
+  private readonly _configService        = inject(ConfigService);
+  private readonly __baseUrlCPP          = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
+  private readonly __baseUrlNodeJsOpenCv = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/OpenCv/`;
+  
   //////////////////////////////////////////////////////////////
   // --- OPENCV -- SHAPES -- CPP LOGIC ---
   //////////////////////////////////////////////////////////////
@@ -67,7 +66,7 @@ export class ComputerVisionService extends BaseService {
   }
 
   uploadBase64ImageNodeJs(base64Image: string): Observable<OCRResponse> {
-    const nodeUrl = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}uploadCV`;
+    const nodeUrl     = `${this.__baseUrlNodeJsOpenCv}uploadCV`;
     return this.http.post<OCRResponse>(nodeUrl, { base64Image });
   }
 
@@ -85,7 +84,7 @@ export class ComputerVisionService extends BaseService {
   ///////////////////////////////////////////////////////////////////
   
   _OpenCv_GetFractal_NodeJs(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
-    const url = `${this.__baseUrlNodeJs}generatejuliaparams/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
+    const url = `${this.__baseUrlNodeJsOpenCv}generatejuliaImage/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
     return this.http.get(url, { responseType: 'blob' });
   }
 }
