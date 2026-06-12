@@ -64,7 +64,7 @@ export class FractalDemoComponent  extends BaseReferenceComponent {
     this.status_message.set("[Generating please wait...]");
     //
     // Fetch the image as a blob
-    this.computervisionService._OpenCv_GetFractal(this.maxIterations,this.realPart,this.imagPart).subscribe(
+    this.computervisionService._OpenCv_GetFractal_CPP(this.maxIterations,this.realPart,this.imagPart).subscribe(
       (response: Blob) => {
         // Convert the blob into an object URL
         this.imageUrl = URL.createObjectURL(response);
