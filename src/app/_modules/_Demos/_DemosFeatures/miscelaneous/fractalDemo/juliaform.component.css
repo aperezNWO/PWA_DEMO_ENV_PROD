@@ -1,6 +1,6 @@
 /* Form Container */
 .form-container {
-  max-width: 400px; /* Adjust width as needed */
+  max-width: 500px; /* Increased from 400px for better text display */
   margin: 50px auto; /* Center the form horizontally */
   padding: 20px;
   /*background-color: #6a0dc0;*/
@@ -10,11 +10,13 @@
   font-size: x-small;
 }
 
-/* Form Title */
+/* Form Title - Updated with moderate contrast */
 .form-container h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: #2c3e50; /* Changed from #333 - softer dark blue-gray */
+  font-weight: 600; /* Slightly bolder for better readability */
+  letter-spacing: 0.5px; /* Improved spacing */
 }
 
 /* Input Fields (Text Boxes) */
@@ -68,12 +70,23 @@
   cursor: not-allowed;
 }
 
-/* Label Styling */
+/* Label Styling - Updated with moderate contrast */
 .form-container label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333;
+  margin-bottom: 8px;
+  font-weight: 600; /* Slightly bolder */
+  color: #4a5568; /* Changed from #333 - softer gray-blue */
+  font-size: x-small;
+  letter-spacing: 0.3px;
+}
+
+/* Section headers within form */
+.form-container h3 {
+  color: #2c3e50;
+  font-weight: 500;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: small;
 }
 
 /* Alignment for Form Elements */
@@ -103,8 +116,8 @@
 .form-group label {
   display: block;
   margin-bottom: 8px;
-  font-weight: bold;
-  color: #333;
+  font-weight: 600;
+  color: #4a5568; /* Consistent label color */
 }
 
 .slider {
@@ -178,4 +191,249 @@
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+}
+
+/* ==================== NEW STYLES FOR IMPLEMENTATION SELECTOR ==================== */
+
+/* Implementation Select - Matches input field styles */
+.implementation-select {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  font-size: x-small;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+  color: #2d3748; /* Added text color for better contrast */
+}
+
+.implementation-select:hover {
+  border-color: #007bff;
+}
+
+.implementation-select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Dropdown options styling */
+.implementation-select option {
+  padding: 8px;
+  font-size: x-small;
+  white-space: normal;
+  word-wrap: break-word;
+  color: #2d3748;
+}
+
+/* Form Text Helper - Improved visibility */
+.form-text {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 5px;
+  font-size: x-small;
+  color: #718096; /* Softer gray for helper text */
+  line-height: 1.5;
+  padding: 4px 0;
+}
+
+/* Button Group - Maintains original button layout */
+.button-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.button-group button {
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Performance Alert - Subtle integration */
+.alert-performance {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: x-small;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.alert-performance.performance-success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+
+.alert-performance.performance-warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+}
+
+.alert-performance.performance-info {
+  background-color: #d1ecf1;
+  border: 1px solid #bee5eb;
+  color: #0c5460;
+}
+
+/* Implementation Info Box (Optional - for expanded descriptions) */
+.implementation-info {
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-left: 3px solid #007bff;
+  border-radius: 4px;
+}
+
+.implementation-info .form-text {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Ensure consistent spacing */
+.form-container .form-group:first-child {
+  margin-top: 0;
+}
+
+/* Generated Image Title */
+#_fractal_image h3 {
+  color: #2c3e50;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: small;
+}
+
+/* Status message styling */
+.alert-secondary {
+  color: #4a5568;
+  background-color: #f8f9fa;
+  border-color: #e2e8f0;
+  font-weight: 500;
+}
+
+/* Responsive adjustments for new elements */
+@media (max-width: 768px) {
+  .form-container {
+    max-width: 95%;
+    padding: 15px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .button-group button {
+    width: 100%;
+    margin-bottom: 8px;
+    white-space: normal;
+  }
+  
+  .implementation-select {
+    font-size: x-small;
+    padding: 8px;
+  }
+  
+  .form-text {
+    font-size: x-small;
+    line-height: 1.4;
+  }
+  
+  .alert-performance {
+    padding: 8px;
+    font-size: x-small;
+  }
+  
+  .form-container label {
+    font-size: x-small;
+  }
+  
+  .form-container h2 {
+    font-size: medium;
+  }
+}
+
+/* Small screens (phones) */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 12px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .implementation-select {
+    padding: 6px;
+  }
+  
+  .form-text {
+    font-size: xx-small;
+    line-height: 1.3;
+  }
+  
+  .alert-performance {
+    font-size: xx-small;
+    padding: 6px;
+  }
+  
+  .form-container label {
+    font-size: xx-small;
+  }
+  
+  .form-container h2 {
+    font-size: small;
+  }
+}
+
+/* Maintain original button secondary style */
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #5a6268;
+}
+
+.btn-secondary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Additional contrast improvements for better accessibility */
+.form-container input,
+.form-container select,
+.form-container textarea {
+  color: #2d3748;
+}
+
+/* Slider value display (if any) */
+.slider-value {
+  color: #4a5568;
+  font-weight: 500;
+  font-size: x-small;
+}
+
+/* Navigation link styling */
+.content a {
+  color: #4a5568;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.content a:hover {
+  color: #2c3e50;
+  text-decoration: underline;
 }

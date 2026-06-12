@@ -1,91 +1,115 @@
 <div class="content" align="center">
-  <!-- REFERENCIAS INICIO -->
-  <app-base-reference></app-base-reference>
-  <!-- REFERENCIAS FIN -->
-
-  <!-- FORMULARIO INICIO -->
-  <hr>
+    <!-- REFERENCIAS INICIO -->
+    <app-base-reference></app-base-reference>
+    <!-- REFERENCIAS FIN -->
+    
+    <!-- FORMULARIO INICIO -->
+    <hr>
     <div class="form-container">
-      <h2>Fractal Parameters</h2>
-      <form (ngSubmit)="onSubmit()">
-
-        <!-- Max Iterations -->
-        <div class="form-group">
-          <label for="maxIterations">Max Iterations: {{maxIterations}}</label>
-          <input type="range" id="maxIterations" name="maxIterations"
-            [(ngModel)]="maxIterations"
-            [min]="100" [max]="2000" [step]="50"
-            required class="slider">
-          </div>
-
-          <!-- Real Part -->
-          <div class="form-group">
-            <label for="realPart">Real Part: {{realPart.toFixed(3)}}</label>
-            <input type="range" id="realPart" name="realPart"
-              [(ngModel)]="realPart"
-              [min]="-2.0" [max]="2.0" [step]="0.01"
-              required class="slider">
+        <h2>Fractal Parameters</h2>
+        <form (ngSubmit)="onSubmit()">
+            
+            <!-- Implementation Selection (NEW - Maintains consistency) -->
+            <div class="form-group">
+                <label for="implementation">Implementation:</label>
+                <select id="implementation" name="implementation" 
+                        [(ngModel)]="selectedImplementation"
+                        class="implementation-select"
+                        (change)="status_message.set('')">
+                    <option *ngFor="let option of implementationOptions" [value]="option.value">
+                        {{option.icon}} {{option.label}} - {{option.description}}
+                    </option>
+                </select>
+                <small class="form-text">
+                    Currently using: {{getSelectedImplementationIcon()}} {{getSelectedImplementationDescription()}}
+                </small>
             </div>
-
+            
+            <!-- Max Iterations -->
+            <div class="form-group">
+                <label for="maxIterations">Max Iterations: {{maxIterations}}</label>
+                <input type="range" id="maxIterations" name="maxIterations" 
+                       [(ngModel)]="maxIterations" 
+                       [min]="100" [max]="2000" [step]="50"
+                       required class="slider">
+            </div>
+            
+            <!-- Real Part -->
+            <div class="form-group">
+                <label for="realPart">Real Part: {{realPart.toFixed(3)}}</label>
+                <input type="range" id="realPart" name="realPart" 
+                       [(ngModel)]="realPart" 
+                       [min]="-2.0" [max]="2.0" [step]="0.01"
+                       required class="slider">
+            </div>
+            
             <!-- Imaginary Part -->
             <div class="form-group">
-              <label for="imagPart">Imaginary Part: {{imagPart.toFixed(3)}}</label>
-              <input type="range" id="imagPart" name="imagPart"
-                [(ngModel)]="imagPart"
-                [min]="-2.0" [max]="2.0" [step]="0.01"
-                required class="slider">
-              </div>
-
-              <!-- CONTROLS -->
-              <button type="submit" class="btn btn-primary"
-                [disabled]="status_message() === '[...Generating please wait...]'" >
-                {{submitTitle}}
-              </button>
-
-              @if (imageUrl) {
-                <button type="button" class="btn btn-secondary"
-                  [disabled]="status_message() === '[...Generating PDF...]'"
-                  (click)="GeneratePDF()">
-                  {{pdfButtonCaption}}
+                <label for="imagPart">Imaginary Part: {{imagPart.toFixed(3)}}</label>
+                <input type="range" id="imagPart" name="imagPart" 
+                       [(ngModel)]="imagPart" 
+                       [min]="-2.0" [max]="2.0" [step]="0.01"
+                       required class="slider">
+            </div>
+            
+            <!-- CONTROLS -->
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary" 
+                        [disabled]="status_message() === '[...Generating please wait...]'">
+                    {{submitTitle}}
                 </button>
-              }
-
-              <!-- RESET BUTTON -->
-              <button type="button" class="btn btn-outline-danger"
-                (click)="resetToDefaults()">
-                Reset to Defaults
-              </button>
-
-              <hr>
-
-                <!-- STATUS MESSAGE -->
-                @if (status_message()) {
-                  <div class="alert alert-secondary" role="alert" align="center">
-                    {{ status_message() }}
-                  </div>
-                }
-
-              </form>
-
-              <hr>
-
-                <!-- GENERATED IMAGE -->
-                @if (imageUrl) {
-                  <div #_fractal_image>
-                    <h3>Generated Fractal Image:</h3>
-                    <img [src]="imageUrl" alt="Julia Fractal" width="350px" height="350px"/>
-                  </div>
-                }
-
-              </div>
-
-              <hr>
-
-                <!-- NAVIGATION -->
-                <div align="right">
-                  <a [routerLink]="'/PageUrlList'"
-                    [queryParams]="{pageName: 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}">
-                    [Back to Menu]
-                  </a>
-                </div>
-              </div>
+                
+                <button type="button" class="btn btn-secondary" 
+                        [disabled]="status_message() === '[...Generating PDF...]'" 
+                        *ngIf="imageUrl" (click)="GeneratePDF()">
+                    {{pdfButtonCaption}}
+                </button>
+                
+                <!-- RESET BUTTON -->
+                <button type="button" class="btn btn-outline-danger" 
+                        (click)="resetToDefaults()">
+                    Reset to Defaults
+                </button>
+            </div>
+            
+            <hr>
+            
+            <!-- STATUS MESSAGE -->
+            <div *ngIf="status_message()" class="alert alert-secondary" role="alert" align="center">
+                {{ status_message() }}
+            </div>
+            
+            <!-- PERFORMANCE INDICATOR (NEW - Subtle integration) -->
+            <div *ngIf="generationTime && lastImplementationUsed" 
+                 class="alert-performance" 
+                 [ngClass]="{
+                   'performance-success': getPerformanceColor() === 'success',
+                   'performance-warning': getPerformanceColor() === 'warning',
+                   'performance-info': getPerformanceColor() === 'info'
+                 }"
+                 align="center">
+                ⏱️ Generation time: {{generationTime.toFixed(2)}}ms using {{lastImplementationUsed}}
+            </div>
+            
+        </form>
+        
+        <hr>
+        
+        <!-- GENERATED IMAGE -->
+        <div *ngIf="imageUrl" #_fractal_image>
+            <h3>Generated Fractal Image:</h3>
+            <img [src]="imageUrl" alt="Julia Fractal" width="350px" height="350px"/>
+        </div>
+        
+    </div>
+    
+    <hr>
+    
+    <!-- NAVIGATION -->
+    <div align="right">
+        <a [routerLink]="'/PageUrlList'" 
+           [queryParams]="{pageName: 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}">
+           [Back to Menu]
+        </a>
+    </div>
+</div>
