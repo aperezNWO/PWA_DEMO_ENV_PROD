@@ -65,14 +65,15 @@ export class FractalDemoComponent  extends BaseReferenceComponent {
     //
     // Fetch the image as a blob
     //this.computervisionService._OpenCv_GetFractal_CPP(this.maxIterations,this.realPart,this.imagPart).subscribe(
-    this.computervisionService._OpenCv_GetFractal_NodeJs(this.maxIterations,this.realPart,this.imagPart).subscribe(
+    //this.computervisionService._OpenCv_GetFractal_NodeJs(this.maxIterations,this.realPart,this.imagPart).subscribe(
+    this.computervisionService._OpenCv_GetFractal_Typescript(this.maxIterations,this.realPart,this.imagPart).subscribe(
       (response: Blob) => {
         // Convert the blob into an object URL
         this.imageUrl = URL.createObjectURL(response);
         //
         this.status_message.set("[Image generated correctly]");
       },
-      (error) => {
+      (error: any) => {
         //
         console.error('Error fetching the image:', error);
         //
