@@ -581,4 +581,6 @@
 
         --[_] https://chat.qwen.ai/c/8c0dc255-d4d8-4859-88d3-952cf30813bd
 
+        --[_] https://www.kimi.com/chat/19ebeca8-bc52-862b-8000-092902edd122?chat_enter_method=new_chat
+
 ////////////////////////////////////////////////////////////////////////////////
