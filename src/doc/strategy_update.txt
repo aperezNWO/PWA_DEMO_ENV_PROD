@@ -551,10 +551,16 @@
         --[_] https://gemini.google.com/app/19625a475ad0cbfe
 
 
- --[_] tetris 2d voice command.
+ --[_] voice command.
 
         --[_] Speech recognition unint testing. 
 
+        --[_] tetris 2d.
+
+        --[_] chat / online game.
+
+        --[_] Hanoi 2d / generic component.
+        
  --[_] section apps (unified solutions).
 
         --[_] partially or totally integrate [Voice + chat + export formats + opencv + ocr + tensorflow + (others)].
@@ -569,6 +575,10 @@
 
          --[_] Update references.
 
+         --[_] Update menu access.
+
+         --[_] Update index.
+         
    --[_] tensorflow demo.
 
         --[_] Sentimient Analysis.
