@@ -568,5 +568,17 @@
          --[_] Opencv -> C++.
 
          --[_] Update references.
-        
+
+   --[_] tensorflow demo.
+
+        --[_] Sentimient Analysis.
+
+        --[_] https://claude.ai/chat/519754d4-5e76-4084-a53d-f33e1000cf68
+
+        --[_] https://gemini.google.com/app/812f0270dbfd9950
+
+        --[_] https://chat.deepseek.com/a/chat/s/38750b4a-f9c7-464b-9ec3-ad8e0aac2de7
+
+        --[_] https://chat.qwen.ai/c/8c0dc255-d4d8-4859-88d3-952cf30813bd
+
 ////////////////////////////////////////////////////////////////////////////////
