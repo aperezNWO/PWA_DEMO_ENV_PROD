@@ -573,6 +573,8 @@
 
          --[_] Opencv -> C++.
 
+         --[_] Modify pdf header.
+
          --[_] Update references.
 
          --[_] Update menu access.
