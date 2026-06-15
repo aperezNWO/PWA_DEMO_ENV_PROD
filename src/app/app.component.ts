@@ -5,10 +5,10 @@ import { AlgorithmService                  } from './_services/AlgorithmService/
 import { ConfigService                     } from './_services/__Utils/ConfigService/config.service';
 
 @Component({
-  selector:    'app-root',
-  templateUrl: './app.component.html',
-  styleUrls:  ['./app.component.css'],
-  standalone: false // Siguiendo tu preferencia de usar AppModule
+  selector    :    'app-root',
+  templateUrl : './app.component.html',
+  styleUrls   :  ['./app.component.css'],
+  standalone  : false // Siguiendo tu preferencia de usar AppModule
 })
 export class AppComponent implements OnInit {
   // Inyección de servicios (v21 Style)

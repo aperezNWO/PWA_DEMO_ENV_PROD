@@ -400,7 +400,6 @@
 
         --[_] Angular Regular updates to latest version.
 
-        --[_] Check backends.
 
   --[_] code description.
 
@@ -461,6 +460,12 @@
        --[_] SCSS.   
 
        --[_] https://apereznwo-pwa_demo_env_prod.mintlify.app/introduction 
+
+  --[_] About > Diagnostics.
+
+        --[_] Check backends.
+
+        --[_] Free db space buttons.
 
   --[_] Dijkstra 3d.
 
@@ -566,6 +571,8 @@
         --[_] chat / online game.
 
         --[_] Hanoi 2d / generic component.
+
+        --[_] Random Mace.
         
  --[_] section apps (unified solutions).
 
