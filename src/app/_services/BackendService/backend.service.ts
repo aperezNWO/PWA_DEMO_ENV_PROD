@@ -23,6 +23,8 @@ import { takeUntilDestroyed       } from '@angular/core/rxjs-interop';
 })
 export class BackendService extends BaseService implements OnInit {
 
+
+
   // v21: Inyección funcional (Reemplaza al constructor)
   public readonly http           = inject(HttpClient);
   public readonly _configService = inject(ConfigService);

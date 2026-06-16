@@ -41,6 +41,8 @@ export const loggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>,
   const backend = inject(BackendService); // Injecting service inside function
   let status: string = 'pending';
 
+  const isLoggingRequest = req.url.includes('api/Demos/SetLog');
+
   return next(req).pipe(
     tap({
       next: (event) => {
@@ -49,7 +51,9 @@ export const loggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>,
       error: (error: HttpErrorResponse) => {
         status = 'failed';
         // Auto-report network errors to your backend log
-        backend.SetLog("[HTTP ERROR]", `URL: ${req.url} - Status: ${error.status}`, LogType.Error);
+        if (!isLoggingRequest) {
+          backend.SetLog("[HTTP ERROR]", `URL: ${req.url} - Status: ${error.status}`, LogType.Error);
+        }
       }
     }),
     finalize(() => {
