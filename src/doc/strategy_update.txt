@@ -612,4 +612,6 @@
 
    --[_] Write an article / book.
 
+      --[_] https://practicaldev-herokuapp-com.global.ssl.fastly.net/dipakahirav/the-power-of-machine-learning-in-angular-a-developers-guide-4l2
+
 ////////////////////////////////////////////////////////////////////////////////
