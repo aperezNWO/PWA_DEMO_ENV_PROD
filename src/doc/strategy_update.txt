@@ -574,9 +574,25 @@
 
         --[_] Random Mace.
         
- --[_] section apps (unified solutions).
+   --[_] tensorflow demo.
 
-        --[_] partially or totally integrate [Voice + chat + export formats + opencv + ocr + tensorflow + (others)].
+        --[_] Sentimient Analysis.
+
+                --[_] https://claude.ai/chat/519754d4-5e76-4084-a53d-f33e1000cf68
+
+                --[_] https://gemini.google.com/app/812f0270dbfd9950
+
+                --[_] https://chat.deepseek.com/a/chat/s/38750b4a-f9c7-464b-9ec3-ad8e0aac2de7
+
+                --[_] https://chat.qwen.ai/c/8c0dc255-d4d8-4859-88d3-952cf30813bd
+
+                --[_] https://www.kimi.com/chat/19ebeca8-bc52-862b-8000-092902edd122?chat_enter_method=new_chat
+
+   --[_] Read a Book.
+
+   --[_] Write an article / book.
+
+      --[_] https://practicaldev-herokuapp-com.global.ssl.fastly.net/dipakahirav/the-power-of-machine-learning-in-angular-a-developers-guide-4l2
 
    --[_] fractal demo.
  
@@ -593,25 +609,9 @@
          --[_] Update menu access.
 
          --[_] Update index.
-         
-   --[_] tensorflow demo.
 
-        --[_] Sentimient Analysis.
+--[_] section apps (unified solutions).
 
-        --[_] https://claude.ai/chat/519754d4-5e76-4084-a53d-f33e1000cf68
-
-        --[_] https://gemini.google.com/app/812f0270dbfd9950
-
-        --[_] https://chat.deepseek.com/a/chat/s/38750b4a-f9c7-464b-9ec3-ad8e0aac2de7
-
-        --[_] https://chat.qwen.ai/c/8c0dc255-d4d8-4859-88d3-952cf30813bd
-
-        --[_] https://www.kimi.com/chat/19ebeca8-bc52-862b-8000-092902edd122?chat_enter_method=new_chat
-
-   --[_] Read a Book.
-
-   --[_] Write an article / book.
-
-      --[_] https://practicaldev-herokuapp-com.global.ssl.fastly.net/dipakahirav/the-power-of-machine-learning-in-angular-a-developers-guide-4l2
+        --[_] partially or totally integrate [Voice + chat + export formats + opencv + ocr + tensorflow + (others)].
 
 ////////////////////////////////////////////////////////////////////////////////
