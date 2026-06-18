@@ -376,7 +376,9 @@
 
 --[_] Minify CSS.
 
---[_] Merge Contact Form.
+--[_] Contact Form.
+
+        --[_] Merge with ENV_PROD. 
 
         --[_] smtp reference.
 
