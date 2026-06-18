@@ -272,7 +272,7 @@
 
                 --  [x] tictactoe.
 
-                --  [_] sudoku.
+                --  [_] sudoku ocr.
 
                 --  [_] haoni.
 

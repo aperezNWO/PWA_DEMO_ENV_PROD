@@ -237,7 +237,7 @@
 
                 --[_] field_2 : [routerLink]  + [queryParams] + parse from string to  queryParamsObj.
 
-     -- [_] chheck method "sudoku_upload_file". or block the option.
+     -- [x] check method "sudoku_upload_file". or block the option.
 
      -- [_] chat demo exception handling.
 
@@ -395,6 +395,8 @@
         --[_] remove hanoi 2d  and and merge  [Chat + tictactoe].
 
         --[_] Sudoku solve from camera capture.
+
+                --[_] https://chat.qwen.ai/c/8c0dc255-d4d8-4859-88d3-952cf30813bd
  
   --[_] MATCH PWA_DEMO_ENV_PUBLIC.
 
@@ -592,7 +594,7 @@
 
    --[_] Write an article / book.
 
-      --[_] https://practicaldev-herokuapp-com.global.ssl.fastly.net/dipakahirav/the-power-of-machine-learning-in-angular-a-developers-guide-4l2
+         --[_] https://practicaldev-herokuapp-com.global.ssl.fastly.net/dipakahirav/the-power-of-machine-learning-in-angular-a-developers-guide-4l2
 
    --[_] fractal demo.
  
