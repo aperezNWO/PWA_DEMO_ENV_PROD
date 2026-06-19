@@ -397,16 +397,6 @@
 
              --[_] Hanoi 2d / generic voice component.
 
-   --[_] TIC TAC TOE 
-        
-                --[_]  option "user vs. online user" merge  [Chat + tictactoe].
-
-                --[_]  option "machine vs. machine" -- c++ neural network.
-
-                --[_]  option "machine vs. machine" -- tensorflow.
-
-                --[_]  option "user vs. machine" -- current form -- check min max -- tic tac toe engine.
-
    --[_] Sudoku solve from camera capture.
 
                 --[_] https://chat.qwen.ai/c/8c0dc255-d4d8-4859-88d3-952cf30813bd
@@ -621,6 +611,16 @@
 
          --[_] Update index.
 
+   --[_] TIC TAC TOE 
+        
+                --[_]  option "user vs. online user" merge  [Chat + tictactoe].
+
+                --[_]  option "machine vs. machine" -- c++ neural network.
+
+                --[_]  option "machine vs. machine" -- tensorflow.
+
+                --[_]  option "user vs. machine" -- current form -- check min max -- tic tac toe engine
+                
 --[_] section apps (unified solutions).
 
         --[_] partially or totally integrate [Voice + chat + export formats + opencv + ocr + tensorflow + (others)].
