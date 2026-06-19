@@ -220,15 +220,7 @@
     -- [_] global error handlling (check SharedModule).
 
     --[_] computer vision c++ fix (reads only one shape).
-
-     --[_] fix hanoid 3d demo 
-
-             --[_] 6 discs by default.
-             
-             --[_] high speed by default.
-             
-             --[_] chekc uix.
-              
+                
      --[_] UIX IMPROVEMENT (BASED UP ON SWAGGER UIX).
 
      --[_] angular curriculum FIX 
@@ -392,11 +384,30 @@
 
          --[_] chart demo.
 
- --[_] Merge :
 
-        --[_] remove hanoi 2d  and and merge  [Chat + tictactoe].
+  --[_] hanoid 3d demo 
 
-        --[_] Sudoku solve from camera capture.
+             --[_] 6 discs by default.
+             
+             --[_] high speed by default.
+             
+             --[_] chekc uix.
+
+             --[_] Merge hanoi2d / hanoi 3d engines on federation + expose other languages.
+
+             --[_] Hanoi 2d / generic voice component.
+
+   --[_] TIC TAC TOE 
+        
+                --[_]  option "user vs. online user" merge  [Chat + tictactoe].
+
+                --[_]  option "machine vs. machine" -- c++ neural network.
+
+                --[_]  option "machine vs. machine" -- tensorflow.
+
+                --[_]  option "user vs. machine" -- current form -- check min max -- tic tac toe engine.
+
+   --[_] Sudoku solve from camera capture.
 
                 --[_] https://chat.qwen.ai/c/8c0dc255-d4d8-4859-88d3-952cf30813bd
  
@@ -477,8 +488,6 @@
 
         --[_] SMTP.
 
-  --[_] Merge hanoi2d / hanoi 3d engines on federation + expose other languages.
-  
   --[_] Merge Tetris2d / Tetris 3d engines on federation + expose other languages.
 
   --[_] security measures / OWASP.
@@ -573,8 +582,6 @@
         --[_] tetris 2d.
 
         --[_] chat / online game.
-
-        --[_] Hanoi 2d / generic component.
 
         --[_] Random Mace.
         
