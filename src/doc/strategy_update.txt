@@ -591,10 +591,6 @@
 
    --[_] Read a Book.
 
-   --[_] Write an article / book.
-
-         --[_] https://practicaldev-herokuapp-com.global.ssl.fastly.net/dipakahirav/the-power-of-machine-learning-in-angular-a-developers-guide-4l2
-
    --[_] fractal demo.
  
          --[_] Opencv -> Typescript.
@@ -624,5 +620,17 @@
 --[_] section apps (unified solutions).
 
         --[_] partially or totally integrate [Voice + chat + export formats + opencv + ocr + tensorflow + (others)].
+
+--[_] Write an article / book.
+
+     --[_] Samples :
+
+            --[_] https://practicaldev-herokuapp-com.global.ssl.fastly.net/dipakahirav/the-power-of-machine-learning-in-angular-a-developers-guide-4l2
+     
+     --[_] On Language Spec.
+
+     --[_] On Libraries / Algorithms.
+
+     --[_] On Specific Solutions.
 
 ////////////////////////////////////////////////////////////////////////////////

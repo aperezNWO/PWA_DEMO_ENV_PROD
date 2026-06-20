@@ -198,7 +198,7 @@
         "description"      : "Linear Regression / C++ DLL",
         "field_1"          : "Linear Regression, C++, Machine Learning",
         "field_2"          : "./#/LinearRegression?langeName=CPP",
-        "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TENSORFLOW/blob/ca60dd4427167e74d05ec1e03a76df39bc03f099/src/_tensorflow_cpp/_tensorflow/tensorFlowApp.cpp#L100",
+        "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TENSORFLOW/blob/8c9a82b4b8d613c1b2faf96cca8bf1bb9c03d868/src/_tensorflow_cpp/_tensorflow/tensorFlowApp.cpp#L97",
         "field_4"          : "{{baseUrlNetCoreCPPEntry}}api/linearregression/predict?missionNumberToPredict=18" ,
         "field_6"          : "https://en.wikipedia.org/wiki/Linear_regression",
         "field_10"         : "ddfc8e21-fc68-4531-b176-62a7589a3cb1"  
