@@ -619,7 +619,7 @@
                 
                 --[_]  app - open cv color detection.
                 
-                --[_]  app - ocr derection.
+                --[_]  app - sudoku image board ocr detection / open cv image processing.
 
 
 
