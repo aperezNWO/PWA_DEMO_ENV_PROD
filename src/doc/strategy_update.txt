@@ -609,9 +609,11 @@
 
          --[_]  further plans : 
                 
-                https://claude.ai/chat/519754d4-5e76-4084-a53d-f33e1000cf68
-
                 --[_]  add j2s3/springbot pure math option.
+
+                        --[_] https://claude.ai/chat/519754d4-5e76-4084-a53d-f33e1000cf68
+
+                        --[_] https://gemini.google.com/app/349346894b769c9a
 
                 --[_]  add a infinite zoom option.
 
@@ -621,9 +623,7 @@
                 
                 --[_]  app - sudoku image board ocr detection / open cv image processing.
 
-
-
-   --[_] TIC TAC TOE 
+--[_] TIC TAC TOE 
         
                 --[_]  option "user vs. online user" merge  [Chat + tictactoe].
 
