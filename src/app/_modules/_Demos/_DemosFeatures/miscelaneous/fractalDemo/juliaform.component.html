@@ -1,15 +1,10 @@
 <div class="content" align="center">
-    <!-- REFERENCIAS INICIO -->
     <app-base-reference></app-base-reference>
-    <!-- REFERENCIAS FIN -->
-    
-    <!-- FORMULARIO INICIO -->
     <hr>
     <div class="form-container">
         <h2>Fractal Parameters</h2>
         <form (ngSubmit)="onSubmit()">
             
-            <!-- Implementation Selection (NEW - Maintains consistency) -->
             <div class="form-group">
                 <label for="implementation">Implementation:</label>
                 <select id="implementation" name="implementation" 
@@ -25,7 +20,6 @@
                 </small>
             </div>
             
-            <!-- Max Iterations -->
             <div class="form-group">
                 <label for="maxIterations">Max Iterations: {{maxIterations}}</label>
                 <input type="range" id="maxIterations" name="maxIterations" 
@@ -34,7 +28,6 @@
                        required class="slider">
             </div>
             
-            <!-- Real Part -->
             <div class="form-group">
                 <label for="realPart">Real Part: {{realPart.toFixed(3)}}</label>
                 <input type="range" id="realPart" name="realPart" 
@@ -43,7 +36,6 @@
                        required class="slider">
             </div>
             
-            <!-- Imaginary Part -->
             <div class="form-group">
                 <label for="imagPart">Imaginary Part: {{imagPart.toFixed(3)}}</label>
                 <input type="range" id="imagPart" name="imagPart" 
@@ -52,7 +44,6 @@
                        required class="slider">
             </div>
             
-            <!-- CONTROLS -->
             <div class="button-group">
                 <button type="submit" class="btn btn-primary" 
                         [disabled]="status_message() === '[...Generating please wait...]'">
@@ -65,7 +56,6 @@
                     {{pdfButtonCaption}}
                 </button>
                 
-                <!-- RESET BUTTON -->
                 <button type="button" class="btn btn-outline-danger" 
                         (click)="resetToDefaults()">
                     Reset to Defaults
@@ -74,12 +64,10 @@
             
             <hr>
             
-            <!-- STATUS MESSAGE -->
             <div *ngIf="status_message()" class="alert alert-secondary" role="alert" align="center">
                 {{ status_message() }}
             </div>
             
-            <!-- PERFORMANCE INDICATOR (NEW - Subtle integration) -->
             <div *ngIf="generationTime && lastImplementationUsed" 
                  class="alert-performance" 
                  [ngClass]="{
@@ -95,7 +83,6 @@
         
         <hr>
         
-        <!-- GENERATED IMAGE -->
         <div *ngIf="imageUrl" #_fractal_image>
             <h3>Generated Fractal Image:</h3>
             <img [src]="imageUrl" alt="Julia Fractal" width="350px" height="350px"/>
@@ -105,11 +92,10 @@
     
     <hr>
     
-    <!-- NAVIGATION -->
     <div align="right">
         <a [routerLink]="'/PageUrlList'" 
            [queryParams]="{pageName: 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}">
-           [Back to Menu]
+            [Back to Menu]
         </a>
     </div>
 </div>

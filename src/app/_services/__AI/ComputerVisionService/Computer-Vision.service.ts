@@ -231,7 +231,7 @@ export class ComputerVisionService extends BaseService {
    * @param maxIterations - Maximum iterations
    * @returns RGB color object
    */
-  private _getFractalColorRGB(iteration: number, maxIterations: number): { r: number; g: number; b: number } {
+  public _getFractalColorRGB(iteration: number, maxIterations: number): { r: number; g: number; b: number } {
     if (iteration === maxIterations) {
       return { r: 0, g: 0, b: 0 }; // Black for points inside the set
     }
