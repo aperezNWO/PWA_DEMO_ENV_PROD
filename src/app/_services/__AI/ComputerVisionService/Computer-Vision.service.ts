@@ -359,5 +359,138 @@ export class ComputerVisionService extends BaseService {
         .catch(error => observer.error(error));
     });
   }
+  //-------------------------------------------------------------------
+  // J2SE
+  //-------------------------------------------------------------------
+  // --- NUEVO FLUJO EXCLUSIVO PARA J2SE (SPRING BOOT) ---
+  /*
+    if (this.selectedImplementation === 'j2se') {
+      const url = `https://9cdspc-8081.csb.app/api/fractals/generate?kind=2&zoomInOut=false&zoomStep=1`;
+      
+      this.http.get<any[]>(url).subscribe({
+        next: (points) => {
+          const endTime = performance.now();
+          this.generationTime = endTime - startTime;
+          this.lastImplementationUsed = this.selectedImplementation;
+
+          // Renderiza la matriz JSON en un Canvas bidimensional
+          this.renderPointsToImageUrl(points);
+
+          const implLabel = this.implementationOptions.find(opt => opt.value === this.selectedImplementation)?.label;
+          this.status_message.set(`[✓ Image generated correctly using ${implLabel} in ${this.generationTime.toFixed(2)}ms]`);
+          localStorage.setItem('fractal_implementation', this.selectedImplementation);
+        },
+        error: (error) => {
+          console.error('Error fetching fractal points from Spring Boot:', error);
+          this.imageUrl = null;
+          this.status_message.set(`[✗ Error occurred with Java J2SE. Please verify port 8081]`);
+        }
+      });
+      return; 
+    }
+  */
+  _OpenCv_GetFractal_j2se(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
+    // Create an observable that generates the fractal locally
+    return new Observable<Blob>((observer) => {
+      try {
+        // Set canvas dimensions (matching typical fractal size)
+        const width = 800;
+        const height = 600;
+        
+        // Create an offscreen canvas
+        const canvas  = document.createElement('canvas');
+        canvas.width  = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        
+        if (!ctx) {
+          observer.error(new Error('Could not get canvas context'));
+          return;
+        }
+        
+        // Get image data for direct pixel manipulation
+        const imageData = ctx.createImageData(width, height);
+        const data      = imageData.data;
+        
+        // Define the complex plane bounds
+        const xMin = -1.5;
+        const xMax = 1.5;
+        const yMin = -1.5;
+        const yMax = 1.5;
+        
+        // Pre-calculate step sizes for better performance
+        const xStep = (xMax - xMin) / width;
+        const yStep = (yMax - yMin) / height;
+        
+        // Use the parameters passed to the function
+        const maxIterations = p_maxIterations;
+        const cReal = p_realPart;
+        const cImag = p_imagPart;
+        
+        console.log(`[TypeScript] Generating fractal locally: ${width}x${height}, maxIterations: ${maxIterations}, c: ${cReal} + ${cImag}i`);
+        
+        const startTime = performance.now();
+        
+        // Iterate over each pixel
+        for (let y = 0; y < height; y++) {
+          for (let x = 0; x < width; x++) {
+            // Map pixel position to a point in the complex plane
+            const zx = xMin + x * xStep;
+            const zy = yMin + y * yStep;
+            
+            let zReal = zx;
+            let zImag = zy;
+            let iteration = 0;
+            
+            // Iterate the Julia set formula: z = z^2 + c
+            while (iteration < maxIterations) {
+              // Check if point has escaped (magnitude > 2)
+              if ((zReal * zReal + zImag * zImag) > 4.0) {
+                break;
+              }
+              
+              // Calculate z^2 + c
+              const newReal = zReal * zReal - zImag * zImag + cReal;
+              const newImag = 2 * zReal * zImag + cImag;
+              
+              zReal = newReal;
+              zImag = newImag;
+              iteration++;
+            }
+            
+            // Get color based on iteration count
+            const pixelIndex = (y * width + x) * 4;
+            const color = this._getFractalColorRGB(iteration, maxIterations);
+            
+            data[pixelIndex] = color.r;     // Red
+            data[pixelIndex + 1] = color.g; // Green
+            data[pixelIndex + 2] = color.b; // Blue
+            data[pixelIndex + 3] = 255;     // Alpha
+          }
+        }
+        
+        // Put the image data onto the canvas
+        ctx.putImageData(imageData, 0, 0);
+        
+        const endTime = performance.now();
+        console.log(`[TypeScript] Fractal generated in ${(endTime - startTime).toFixed(2)}ms`);
+        
+        // Convert canvas to Blob (PNG format)
+        canvas.toBlob((blob) => {
+          if (blob) {
+            console.log(`[TypeScript] Fractal blob created, size: ${(blob.size / 1024).toFixed(2)} KB`);
+            observer.next(blob);
+            observer.complete();
+          } else {
+            observer.error(new Error('Failed to convert canvas to blob'));
+          }
+        }, 'image/png');
+        
+      } catch (error) {
+        console.error('[TypeScript] Error generating fractal:', error);
+        observer.error(error);
+      }
+    });
+  }
   
 }

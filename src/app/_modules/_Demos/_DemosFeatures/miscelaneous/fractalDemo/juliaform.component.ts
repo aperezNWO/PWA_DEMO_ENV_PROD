@@ -79,37 +79,12 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   }
 
   onSubmit() {
+    //
     this.status_message.set("[...Generating please wait...]");
     this.generationTime = null;
-    
-    const startTime = performance.now();
-    
-    // --- NUEVO FLUJO EXCLUSIVO PARA J2SE (SPRING BOOT) ---
-    if (this.selectedImplementation === 'j2se') {
-      const url = `https://9cdspc-8081.csb.app/api/fractals/generate?kind=2&zoomInOut=false&zoomStep=1`;
-      
-      this.http.get<any[]>(url).subscribe({
-        next: (points) => {
-          const endTime = performance.now();
-          this.generationTime = endTime - startTime;
-          this.lastImplementationUsed = this.selectedImplementation;
-
-          // Renderiza la matriz JSON en un Canvas bidimensional
-          this.renderPointsToImageUrl(points);
-
-          const implLabel = this.implementationOptions.find(opt => opt.value === this.selectedImplementation)?.label;
-          this.status_message.set(`[✓ Image generated correctly using ${implLabel} in ${this.generationTime.toFixed(2)}ms]`);
-          localStorage.setItem('fractal_implementation', this.selectedImplementation);
-        },
-        error: (error) => {
-          console.error('Error fetching fractal points from Spring Boot:', error);
-          this.imageUrl = null;
-          this.status_message.set(`[✗ Error occurred with Java J2SE. Please verify port 8081]`);
-        }
-      });
-      return; 
-    }
-
+    //
+    const startTime     = performance.now();
+ 
     // --- FLUJO TRADICIONAL DE BLOBS (TypeScript, Node.js, C++) ---
     let serviceCall;
     
@@ -122,6 +97,9 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
         break;
       case 'cpp':
         serviceCall = this.computervisionService._OpenCv_GetFractal_CPP(this.maxIterations, this.realPart, this.imagPart);
+        break;
+      case 'j2se' :
+        serviceCall = this.computervisionService._OpenCv_GetFractal_j2se(this.maxIterations, this.realPart, this.imagPart);
         break;
       default:
         serviceCall = this.computervisionService._OpenCv_GetFractal_Typescript(this.maxIterations, this.realPart, this.imagPart);
