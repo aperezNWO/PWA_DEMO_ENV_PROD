@@ -389,6 +389,60 @@ export class ComputerVisionService extends BaseService {
       return; 
     }
   */
+  /**
+   * Procesa de manera eficiente la matriz de puntos JSON de Spring Boot adaptando
+   * las dimensiones y aplicando la misma paleta de color azul claro que el resto de opciones
+   */
+  /*
+  private renderPointsToImageUrl(points: any[]): void {
+    const canvas = document.createElement('canvas');
+    canvas.width = 800; 
+    canvas.height = 600;
+    const ctx = canvas.getContext('2d');
+
+    if (ctx && points && points.length > 0) {
+      // Fondo negro absoluto
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Creamos un contenedor de ImageData para que el procesamiento de píxeles sea ultra rápido
+      const imageData = ctx.createImageData(canvas.width, canvas.height);
+      const data = imageData.data;
+
+      points.forEach(point => {
+        // Validamos que el punto caiga dentro de los límites por seguridad
+        if (point.x >= 0 && point.x < canvas.width && point.y >= 0 && point.y < canvas.height) {
+          
+          // 1. Reconstruimos el número de iteraciones aproximado a partir de la intensidad recibida
+          // En Java: intensity = (iter * 255 / maxIterations) -> iter = (intensity * maxIterations) / 255
+          const calculatedIteration = Math.round((point.intensity * this.maxIterations) / 255);
+          
+          // Si la intensidad es 0, significa que alcanzó el maxIterations (centro del fractal)
+          const finalIteration = point.intensity === 0 ? this.maxIterations : calculatedIteration;
+
+          // 2. Usamos TU método existente para obtener exactamente el mismo tono azul claro
+          const color = this.computervisionService._getFractalColorRGB(finalIteration, this.maxIterations);
+
+          // 3. Posicionamos el píxel en el array binario del ImageData
+          const pixelIndex = (point.y * canvas.width + point.x) * 4;
+          data[pixelIndex]     = color.r; // Red
+          data[pixelIndex + 1] = color.g; // Green
+          data[pixelIndex + 2] = color.b; // Blue
+          data[pixelIndex + 3] = 255;     // Alpha (Opaco)
+        }
+      });
+
+      // Pintamos los píxeles restaurados en el lienzo
+      ctx.putImageData(imageData, 0, 0);
+
+      if (this.imageUrl) {
+        URL.revokeObjectURL(this.imageUrl);
+      }
+      this.imageUrl = canvas.toDataURL('image/png');
+    }
+  }
+  */
+  //
   _OpenCv_GetFractal_j2se(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
     // Create an observable that generates the fractal locally
     return new Observable<Blob>((observer) => {
