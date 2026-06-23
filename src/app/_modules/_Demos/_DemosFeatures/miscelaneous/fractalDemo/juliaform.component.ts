@@ -90,7 +90,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     
     switch (this.selectedImplementation) {
       case 'typescript':
-        serviceCall = this.computervisionService._OpenCv_GetFractal_Typescript(this.maxIterations, this.realPart, this.imagPart);
+        serviceCall = this.computervisionService.GetFractal_Typescript(this.maxIterations, this.realPart, this.imagPart);
         break;
       case 'nodejs':
         serviceCall = this.computervisionService._OpenCv_GetFractal_NodeJs(this.maxIterations, this.realPart, this.imagPart);
@@ -99,31 +99,42 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
         serviceCall = this.computervisionService._OpenCv_GetFractal_CPP(this.maxIterations, this.realPart, this.imagPart);
         break;
       case 'j2se' :
-        serviceCall = this.computervisionService._OpenCv_GetFractal_j2se(this.maxIterations, this.realPart, this.imagPart);
+        serviceCall = this.computervisionService.GetFractal_j2se(this.maxIterations);
         break;
       default:
-        serviceCall = this.computervisionService._OpenCv_GetFractal_Typescript(this.maxIterations, this.realPart, this.imagPart);
+        serviceCall = this.computervisionService.GetFractal_Typescript(this.maxIterations, this.realPart, this.imagPart);
     }
     
     serviceCall.subscribe(
       (response: Blob) => {
-        const endTime = performance.now();
-        this.generationTime = endTime - startTime;
+
+        //
+        const endTime               = performance.now();
+        this.generationTime         = endTime - startTime;
         this.lastImplementationUsed = this.selectedImplementation;
         
+        //
         if (this.imageUrl) {
           URL.revokeObjectURL(this.imageUrl);
         }
         this.imageUrl = URL.createObjectURL(response);
         
+        //
         const implLabel = this.implementationOptions.find(opt => opt.value === this.selectedImplementation)?.label || this.selectedImplementation;
         this.status_message.set(`[✓ Image generated correctly using ${implLabel} in ${this.generationTime.toFixed(2)}ms]`);
+        
+        //
         localStorage.setItem('fractal_implementation', this.selectedImplementation);
       },
       (error: any) => {
+        //
         console.error('Error fetching the image:', error);
-        this.imageUrl = null;
-        const implLabel = this.implementationOptions.find(opt => opt.value === this.selectedImplementation)?.label || this.selectedImplementation;
+
+        //
+        this.imageUrl    = null;
+        const implLabel  = this.implementationOptions.find(opt => opt.value === this.selectedImplementation)?.label || this.selectedImplementation;
+
+        //
         this.status_message.set(`[✗ Error occurred with ${implLabel}. Please try again or switch implementation]`);
       }
     );
@@ -155,23 +166,30 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     });
   }
   
+  //
   resetToDefaults(): void {
-    this.maxIterations = this.defaultValues.maxIterations;
-    this.realPart = this.defaultValues.realPart;
-    this.imagPart = this.defaultValues.imagPart;
+    //
+    this.maxIterations          = this.defaultValues.maxIterations;
+    this.realPart               = this.defaultValues.realPart;
+    this.imagPart               = this.defaultValues.imagPart;
     this.selectedImplementation = this.defaultValues.implementation;
     
+    //
     if (this.imageUrl) {
       URL.revokeObjectURL(this.imageUrl);
       this.imageUrl = null;
     }
     
+    //
     this.status_message.set("");
     this.generationTime = null;
     this.lastImplementationUsed = null;
+
+    //
     localStorage.setItem('fractal_implementation', this.selectedImplementation);
   }
 
+  //
   isAtDefaultValues(): boolean {
     return this.maxIterations === this.defaultValues.maxIterations &&
       Math.abs(this.realPart - this.defaultValues.realPart) < 0.001 &&
@@ -179,16 +197,19 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       this.selectedImplementation === this.defaultValues.implementation;
   }
   
+  //
   getSelectedImplementationIcon(): string {
     const option = this.implementationOptions.find(opt => opt.value === this.selectedImplementation);
     return option ? option.icon : '🟡';
   }
   
+  //
   getSelectedImplementationDescription(): string {
     const option = this.implementationOptions.find(opt => opt.value === this.selectedImplementation);
     return option ? option.description : '';
   }
   
+  //
   getPerformanceColor(): string {
     if (!this.generationTime) return 'secondary';
     if (this.generationTime < 200) return 'success';

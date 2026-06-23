@@ -101,7 +101,7 @@ export class ComputerVisionService extends BaseService {
    * @param p_imagPart - Imaginary part of the complex constant
    * @returns Observable<Blob> - Blob containing the PNG image
    */
-  _OpenCv_GetFractal_Typescript(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
+  GetFractal_Typescript(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
     // Create an observable that generates the fractal locally
     return new Observable<Blob>((observer) => {
       try {
@@ -218,7 +218,7 @@ export class ComputerVisionService extends BaseService {
     p_imagPart: number
   ): Promise<Blob> {
     return new Promise((resolve, reject) => {
-      this._OpenCv_GetFractal_Typescript(p_maxIterations, p_realPart, p_imagPart).subscribe({
+      this.GetFractal_Typescript(p_maxIterations, p_realPart, p_imagPart).subscribe({
         next: (blob) => resolve(blob),
         error: (error) => reject(error)
       });
@@ -262,14 +262,14 @@ export class ComputerVisionService extends BaseService {
   }): Observable<Blob> {
     return new Observable<Blob>((observer) => {
       try {
-        const width = params.width || 800;
-        const height = params.height || 600;
+        const width         = params.width || 800;
+        const height        = params.height || 600;
         const maxIterations = params.maxIterations;
-        const cReal = params.realPart;
-        const cImag = params.imagPart;
-        const zoom = params.zoom || 1.0;
-        const centerX = params.centerX || 0.0;
-        const centerY = params.centerY || 0.0;
+        const cReal         = params.realPart;
+        const cImag         = params.imagPart;
+        const zoom          = params.zoom || 1.0;
+        const centerX       = params.centerX || 0.0;
+        const centerY       = params.centerY || 0.0;
         
         // Calculate complex plane bounds with zoom and pan
         const rangeX = 3.0 / zoom;
@@ -279,8 +279,8 @@ export class ComputerVisionService extends BaseService {
         const yMin = centerY - rangeY / 2;
         const yMax = centerY + rangeY / 2;
         
-        const canvas = document.createElement('canvas');
-        canvas.width = width;
+        const canvas  = document.createElement('canvas');
+        canvas.width  = width;
         canvas.height = height;
         const ctx = canvas.getContext('2d');
         
@@ -290,31 +290,37 @@ export class ComputerVisionService extends BaseService {
         }
         
         const imageData = ctx.createImageData(width, height);
-        const data = imageData.data;
-        const xStep = (xMax - xMin) / width;
-        const yStep = (yMax - yMin) / height;
+        const data      = imageData.data;
+        const xStep     = (xMax - xMin) / width;
+        const yStep     = (yMax - yMin) / height;
         
         for (let y = 0; y < height; y++) {
           for (let x = 0; x < width; x++) {
+
+            //
             const zx = xMin + x * xStep;
             const zy = yMin + y * yStep;
             
+            //
             let zReal = zx;
             let zImag = zy;
             let iteration = 0;
             
+            //
             while (iteration < maxIterations && (zReal * zReal + zImag * zImag) <= 4.0) {
               const newReal = zReal * zReal - zImag * zImag + cReal;
               const newImag = 2 * zReal * zImag + cImag;
-              zReal = newReal;
-              zImag = newImag;
+              zReal         = newReal;
+              zImag         = newImag;
               iteration++;
             }
             
+            //
             const pixelIndex = (y * width + x) * 4;
-            const color = this._getFractalColorRGB(iteration, maxIterations);
+            const color      = this._getFractalColorRGB(iteration, maxIterations);
             
-            data[pixelIndex] = color.r;
+            //
+            data[pixelIndex]     = color.r;
             data[pixelIndex + 1] = color.g;
             data[pixelIndex + 2] = color.b;
             data[pixelIndex + 3] = 255;
@@ -347,7 +353,7 @@ export class ComputerVisionService extends BaseService {
     params: Array<{maxIterations: number, realPart: number, imagPart: number}>
   ): Observable<Blob[]> {
     const requests = params.map(param => 
-      this._OpenCv_GetFractal_Typescript(param.maxIterations, param.realPart, param.imagPart).toPromise()
+      this.GetFractal_Typescript(param.maxIterations, param.realPart, param.imagPart).toPromise()
     );
     
     return new Observable<Blob[]>((observer) => {
@@ -443,108 +449,93 @@ export class ComputerVisionService extends BaseService {
   }
   */
   //
-  _OpenCv_GetFractal_j2se(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
-    // Create an observable that generates the fractal locally
+  /**
+   * Fetches fractal coordinate points from Spring Boot (J2SE Engine)
+   * and renders them to a local binary Blob for uniform frontend rendering.
+   * @param p_maxIterations - Passed along to sync the local color mapping palette
+   * @returns Observable<Blob> - Blob containing the unified PNG image
+   */
+  GetFractal_j2se(p_maxIterations: number): Observable<Blob> {
     return new Observable<Blob>((observer) => {
-      try {
-        // Set canvas dimensions (matching typical fractal size)
-        const width = 800;
-        const height = 600;
-        
-        // Create an offscreen canvas
-        const canvas  = document.createElement('canvas');
-        canvas.width  = width;
-        canvas.height = height;
-        const ctx = canvas.getContext('2d');
-        
-        if (!ctx) {
-          observer.error(new Error('Could not get canvas context'));
-          return;
-        }
-        
-        // Get image data for direct pixel manipulation
-        const imageData = ctx.createImageData(width, height);
-        const data      = imageData.data;
-        
-        // Define the complex plane bounds
-        const xMin = -1.5;
-        const xMax = 1.5;
-        const yMin = -1.5;
-        const yMax = 1.5;
-        
-        // Pre-calculate step sizes for better performance
-        const xStep = (xMax - xMin) / width;
-        const yStep = (yMax - yMin) / height;
-        
-        // Use the parameters passed to the function
-        const maxIterations = p_maxIterations;
-        const cReal = p_realPart;
-        const cImag = p_imagPart;
-        
-        console.log(`[TypeScript] Generating fractal locally: ${width}x${height}, maxIterations: ${maxIterations}, c: ${cReal} + ${cImag}i`);
-        
-        const startTime = performance.now();
-        
-        // Iterate over each pixel
-        for (let y = 0; y < height; y++) {
-          for (let x = 0; x < width; x++) {
-            // Map pixel position to a point in the complex plane
-            const zx = xMin + x * xStep;
-            const zy = yMin + y * yStep;
-            
-            let zReal = zx;
-            let zImag = zy;
-            let iteration = 0;
-            
-            // Iterate the Julia set formula: z = z^2 + c
-            while (iteration < maxIterations) {
-              // Check if point has escaped (magnitude > 2)
-              if ((zReal * zReal + zImag * zImag) > 4.0) {
-                break;
-              }
-              
-              // Calculate z^2 + c
-              const newReal = zReal * zReal - zImag * zImag + cReal;
-              const newImag = 2 * zReal * zImag + cImag;
-              
-              zReal = newReal;
-              zImag = newImag;
-              iteration++;
+      const width = 800;
+      const height = 600;
+
+      // 1. Build the endpoint URL pointing to your Spring Boot Sandboxed environment
+      // LEAF
+      //const url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=2&zoomInOut=false&zoomStep=1`;
+      const url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=3&zoomInOut=false&zoomStep=1`;
+
+      // 2. Perform the HTTP Request to fetch the raw data coordinate array
+      this.http.get<any[]>(url).subscribe({
+        next: (points) => {
+          try {
+            // Create an offscreen canvas identical to the TypeScript pattern
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+
+            if (!ctx) {
+              observer.error(new Error('Could not get canvas context'));
+              return;
             }
-            
-            // Get color based on iteration count
-            const pixelIndex = (y * width + x) * 4;
-            const color = this._getFractalColorRGB(iteration, maxIterations);
-            
-            data[pixelIndex] = color.r;     // Red
-            data[pixelIndex + 1] = color.g; // Green
-            data[pixelIndex + 2] = color.b; // Blue
-            data[pixelIndex + 3] = 255;     // Alpha
+
+            // Initialize background with solid black
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, width, height);
+
+            // Initialize direct pixel buffer manipulation for native speeds
+            const imageData = ctx.createImageData(width, height);
+            const data = imageData.data;
+
+            // Pre-fill alpha channel to 255 across the full binary buffer
+            for (let i = 3; i < data.length; i += 4) {
+              data[i] = 255;
+            }
+
+            // 3. Process the backend collection array
+            points.forEach(point => {
+              // Safety boundary check
+              if (point.x >= 0 && point.x < width && point.y >= 0 && point.y < height) {
+                
+                // Reverse-engineer the iteration index using your specific scale formula
+                const calculatedIteration = Math.round((point.intensity * p_maxIterations) / 255);
+                const finalIteration = point.intensity === 0 ? p_maxIterations : calculatedIteration;
+
+                // Call your internal color palette builder
+                const color = this._getFractalColorRGB(finalIteration, p_maxIterations);
+
+                // Compute binary offset index
+                const pixelIndex = (point.y * width + point.x) * 4;
+                data[pixelIndex]     = color.r; // Red
+                data[pixelIndex + 1] = color.g; // Green
+                data[pixelIndex + 2] = color.b; // Blue
+                // Alpha remains 255
+              }
+            });
+
+            // Write modified pixels to the canvas context
+            ctx.putImageData(imageData, 0, 0);
+
+            // 4. Transform canvas layer into a production-ready PNG Blob
+            canvas.toBlob((blob) => {
+              if (blob) {
+                observer.next(blob);
+                observer.complete();
+              } else {
+                observer.error(new Error('Failed to convert J2SE canvas grid to blob'));
+              }
+            }, 'image/png');
+
+          } catch (innerError) {
+            observer.error(innerError);
           }
+        },
+        error: (networkError) => {
+          console.error('[J2SE Service] Http fetching operation failed:', networkError);
+          observer.error(networkError);
         }
-        
-        // Put the image data onto the canvas
-        ctx.putImageData(imageData, 0, 0);
-        
-        const endTime = performance.now();
-        console.log(`[TypeScript] Fractal generated in ${(endTime - startTime).toFixed(2)}ms`);
-        
-        // Convert canvas to Blob (PNG format)
-        canvas.toBlob((blob) => {
-          if (blob) {
-            console.log(`[TypeScript] Fractal blob created, size: ${(blob.size / 1024).toFixed(2)} KB`);
-            observer.next(blob);
-            observer.complete();
-          } else {
-            observer.error(new Error('Failed to convert canvas to blob'));
-          }
-        }, 'image/png');
-        
-      } catch (error) {
-        console.error('[TypeScript] Error generating fractal:', error);
-        observer.error(error);
-      }
+      });
     });
   }
-  
 }
