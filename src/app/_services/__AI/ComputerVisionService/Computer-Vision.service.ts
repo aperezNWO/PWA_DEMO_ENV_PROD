@@ -421,10 +421,10 @@ export class ComputerVisionService extends BaseService {
                 
                 // Reverse-engineer the iteration index using your specific scale formula
                 const calculatedIteration = Math.round((point.intensity * p_maxIterations) / 255);
-                const finalIteration = point.intensity === 0 ? p_maxIterations : calculatedIteration;
+                const finalIteration      = point.intensity === 0 ? p_maxIterations : calculatedIteration;
 
                 // Call your internal color palette builder
-                const color = this._getFractalColorRGB(finalIteration, p_maxIterations);
+                const color      = this._getFractalColorRGB(finalIteration, p_maxIterations);
 
                 // Compute binary offset index
                 const pixelIndex = (point.y * width + point.x) * 4;
