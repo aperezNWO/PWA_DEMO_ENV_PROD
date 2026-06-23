@@ -368,91 +368,11 @@ export class ComputerVisionService extends BaseService {
   //-------------------------------------------------------------------
   // J2SE
   //-------------------------------------------------------------------
-  // --- NUEVO FLUJO EXCLUSIVO PARA J2SE (SPRING BOOT) ---
-  /*
-    if (this.selectedImplementation === 'j2se') {
-      const url = `https://9cdspc-8081.csb.app/api/fractals/generate?kind=2&zoomInOut=false&zoomStep=1`;
-      
-      this.http.get<any[]>(url).subscribe({
-        next: (points) => {
-          const endTime = performance.now();
-          this.generationTime = endTime - startTime;
-          this.lastImplementationUsed = this.selectedImplementation;
-
-          // Renderiza la matriz JSON en un Canvas bidimensional
-          this.renderPointsToImageUrl(points);
-
-          const implLabel = this.implementationOptions.find(opt => opt.value === this.selectedImplementation)?.label;
-          this.status_message.set(`[✓ Image generated correctly using ${implLabel} in ${this.generationTime.toFixed(2)}ms]`);
-          localStorage.setItem('fractal_implementation', this.selectedImplementation);
-        },
-        error: (error) => {
-          console.error('Error fetching fractal points from Spring Boot:', error);
-          this.imageUrl = null;
-          this.status_message.set(`[✗ Error occurred with Java J2SE. Please verify port 8081]`);
-        }
-      });
-      return; 
-    }
-  */
-  /**
-   * Procesa de manera eficiente la matriz de puntos JSON de Spring Boot adaptando
-   * las dimensiones y aplicando la misma paleta de color azul claro que el resto de opciones
-   */
-  /*
-  private renderPointsToImageUrl(points: any[]): void {
-    const canvas = document.createElement('canvas');
-    canvas.width = 800; 
-    canvas.height = 600;
-    const ctx = canvas.getContext('2d');
-
-    if (ctx && points && points.length > 0) {
-      // Fondo negro absoluto
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Creamos un contenedor de ImageData para que el procesamiento de píxeles sea ultra rápido
-      const imageData = ctx.createImageData(canvas.width, canvas.height);
-      const data = imageData.data;
-
-      points.forEach(point => {
-        // Validamos que el punto caiga dentro de los límites por seguridad
-        if (point.x >= 0 && point.x < canvas.width && point.y >= 0 && point.y < canvas.height) {
-          
-          // 1. Reconstruimos el número de iteraciones aproximado a partir de la intensidad recibida
-          // En Java: intensity = (iter * 255 / maxIterations) -> iter = (intensity * maxIterations) / 255
-          const calculatedIteration = Math.round((point.intensity * this.maxIterations) / 255);
-          
-          // Si la intensidad es 0, significa que alcanzó el maxIterations (centro del fractal)
-          const finalIteration = point.intensity === 0 ? this.maxIterations : calculatedIteration;
-
-          // 2. Usamos TU método existente para obtener exactamente el mismo tono azul claro
-          const color = this.computervisionService._getFractalColorRGB(finalIteration, this.maxIterations);
-
-          // 3. Posicionamos el píxel en el array binario del ImageData
-          const pixelIndex = (point.y * canvas.width + point.x) * 4;
-          data[pixelIndex]     = color.r; // Red
-          data[pixelIndex + 1] = color.g; // Green
-          data[pixelIndex + 2] = color.b; // Blue
-          data[pixelIndex + 3] = 255;     // Alpha (Opaco)
-        }
-      });
-
-      // Pintamos los píxeles restaurados en el lienzo
-      ctx.putImageData(imageData, 0, 0);
-
-      if (this.imageUrl) {
-        URL.revokeObjectURL(this.imageUrl);
-      }
-      this.imageUrl = canvas.toDataURL('image/png');
-    }
-  }
-  */
   //
   /**
    * Fetches fractal coordinate points from Spring Boot (J2SE Engine)
    * and renders them to a local binary Blob for uniform frontend rendering.
-   * @param p_maxIterations - Passed along to sync the local color mapping palette
+   * @param p_maxIterations    - Passed along to sync the local color mapping palette
    * @returns Observable<Blob> - Blob containing the unified PNG image
    */
   GetFractal_j2se(p_maxIterations: number): Observable<Blob> {
@@ -463,7 +383,8 @@ export class ComputerVisionService extends BaseService {
       // 1. Build the endpoint URL pointing to your Spring Boot Sandboxed environment
       // LEAF
       //const url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=2&zoomInOut=false&zoomStep=1`;
-      const url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=3&zoomInOut=false&zoomStep=1`;
+      // JULIA
+      const url   = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=3&zoomInOut=false&zoomStep=1`;
 
       // 2. Perform the HTTP Request to fetch the raw data coordinate array
       this.http.get<any[]>(url).subscribe({

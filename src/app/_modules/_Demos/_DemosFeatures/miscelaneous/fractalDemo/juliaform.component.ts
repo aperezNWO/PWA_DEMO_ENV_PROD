@@ -82,12 +82,14 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     //
     this.status_message.set("[...Generating please wait...]");
     this.generationTime = null;
+
     //
     const startTime     = performance.now();
  
-    // --- FLUJO TRADICIONAL DE BLOBS (TypeScript, Node.js, C++) ---
+    // 
     let serviceCall;
     
+    //
     switch (this.selectedImplementation) {
       case 'typescript':
         serviceCall = this.computervisionService.GetFractal_Typescript(this.maxIterations, this.realPart, this.imagPart);
