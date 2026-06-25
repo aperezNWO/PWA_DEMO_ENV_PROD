@@ -49,7 +49,7 @@
             </div>
             
             <div class="button-group">
-                <button type="submit" class="btn btn-primary" 
+                <button type="submit" class="btn btn-outline-danger" 
                         [disabled]="status_message() === '[...Generating please wait...]'">
                     {{submitTitle}}
                 </button>
@@ -60,7 +60,7 @@
                     {{pdfButtonCaption}}
                 </button>
                 
-                <button type="button" class="btn btn-outline-danger" 
+                <button type="button" class="btn btn-primary" 
                         (click)="resetFractalsToDefaults()">
                     Reset Dashboard
                 </button>
