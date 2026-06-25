@@ -93,135 +93,144 @@ export class ComputerVisionService extends BaseService {
   ///////////////////////////////////////////////////////////////////
 
   /**
-   * Local TypeScript implementation of fractal generation (runs entirely in browser)
-   * Generates a Julia set fractal directly in the browser and returns it as a Blob
-   * This is a drop-in replacement for the Node.js version but runs locally
-   * @param p_maxIterations - Maximum iterations for the Julia set calculation
-   * @param p_realPart - Real part of the complex constant
-   * @param p_imagPart - Imaginary part of the complex constant
-   * @returns Observable<Blob> - Blob containing the PNG image
+   * Router/Proxy Method for Local Browser TypeScript Engine.
+   * Dispatches the calculation task to the target topology method.
    */
-  GetFractal_Typescript(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
-    // Create an observable that generates the fractal locally
+  GetFractal_Typescript(
+    p_maxIterations: number, 
+    p_realPart: number, 
+    p_imagPart: number, 
+    p_fractalType: number
+  ): Observable<Blob> {
+    switch (p_fractalType) {
+      case 1: // Mandelbrot Set
+        return this.GetFractal_Typescript_Manderblot(p_maxIterations);
+      case 2: // Julia Set
+        return this.GetFractal_Typescript_Julia(p_maxIterations, p_realPart, p_imagPart);
+      default:
+        console.warn(`[TS Proxy] Unhandled fractal type: ${p_fractalType}. Falling back to Julia.`);
+        return this.GetFractal_Typescript_Julia(p_maxIterations, p_realPart, p_imagPart);
+    }
+  }
+
+  /**
+   * Specialized Loop Engine for the Julia Fractal Formula
+   */
+  GetFractal_Typescript_Julia(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
+    return this._renderTSCanvasPipeline(p_maxIterations, (zx, zy) => {
+      let zReal = zx;
+      let zImag = zy;
+      let iteration = 0;
+
+      while (iteration < p_maxIterations) {
+        if ((zReal * zReal + zImag * zImag) > 4.0) break;
+
+        const newReal = zReal * zReal - zImag * zImag + p_realPart;
+        const newImag = 2 * zReal * zImag + p_imagPart;
+
+        zReal = newReal;
+        zImag = newImag;
+        iteration++;
+      }
+      return iteration;
+    });
+  }
+
+  /**
+   * Specialized Loop Engine for the Mandelbrot Fractal Formula
+   */
+  GetFractal_Typescript_Manderblot(p_maxIterations: number): Observable<Blob> {
+    // Standard Mandelbrot view boundaries to fit the frame properly
+    const customBounds = { xMin: -2.0, xMax: 1.0, yMin: -1.2, yMax: 1.2 };
+
+    return this._renderTSCanvasPipeline(p_maxIterations, (cx, cy) => {
+      let zReal = 0.0;
+      let zImag = 0.0;
+      let iteration = 0;
+
+      while (iteration < p_maxIterations) {
+        if ((zReal * zReal + zImag * zImag) > 4.0) break;
+
+        // Formula: z = z^2 + c where c is the pixel mapping position
+        const newReal = zReal * zReal - zImag * zImag + cx;
+        const newImag = 2 * zReal * zImag + cy;
+
+        zReal = newReal;
+        zImag = newImag;
+        iteration++;
+      }
+      return iteration;
+    }, customBounds);
+  }
+
+  /**
+   * Private Shared Web-Canvas Buffer Pipeline. Handles coordinate translations, 
+   * custom equation injections, color conversions, and image generation.
+   */
+  private _renderTSCanvasPipeline(
+    p_maxIterations: number,
+    p_pixelFormula: (xCoord: number, yCoord: number) => number,
+    p_bounds = { xMin: -1.5, xMax: 1.5, yMin: -1.5, yMax: 1.5 }
+  ): Observable<Blob> {
     return new Observable<Blob>((observer) => {
       try {
-        // Set canvas dimensions (matching typical fractal size)
         const width = 800;
         const height = 600;
-        
-        // Create an offscreen canvas
+
         const canvas = document.createElement('canvas');
         canvas.width = width;
         canvas.height = height;
         const ctx = canvas.getContext('2d');
-        
+
         if (!ctx) {
           observer.error(new Error('Could not get canvas context'));
           return;
         }
-        
-        // Get image data for direct pixel manipulation
+
         const imageData = ctx.createImageData(width, height);
         const data = imageData.data;
-        
-        // Define the complex plane bounds
-        const xMin = -1.5;
-        const xMax = 1.5;
-        const yMin = -1.5;
-        const yMax = 1.5;
-        
-        // Pre-calculate step sizes for better performance
-        const xStep = (xMax - xMin) / width;
-        const yStep = (yMax - yMin) / height;
-        
-        // Use the parameters passed to the function
-        const maxIterations = p_maxIterations;
-        const cReal = p_realPart;
-        const cImag = p_imagPart;
-        
-        console.log(`[TypeScript] Generating fractal locally: ${width}x${height}, maxIterations: ${maxIterations}, c: ${cReal} + ${cImag}i`);
-        
+
+        const xStep = (p_bounds.xMax - p_bounds.xMin) / width;
+        const yStep = (p_bounds.yMax - p_bounds.yMin) / height;
+
         const startTime = performance.now();
-        
-        // Iterate over each pixel
+
         for (let y = 0; y < height; y++) {
           for (let x = 0; x < width; x++) {
-            // Map pixel position to a point in the complex plane
-            const zx = xMin + x * xStep;
-            const zy = yMin + y * yStep;
-            
-            let zReal = zx;
-            let zImag = zy;
-            let iteration = 0;
-            
-            // Iterate the Julia set formula: z = z^2 + c
-            while (iteration < maxIterations) {
-              // Check if point has escaped (magnitude > 2)
-              if ((zReal * zReal + zImag * zImag) > 4.0) {
-                break;
-              }
-              
-              // Calculate z^2 + c
-              const newReal = zReal * zReal - zImag * zImag + cReal;
-              const newImag = 2 * zReal * zImag + cImag;
-              
-              zReal = newReal;
-              zImag = newImag;
-              iteration++;
-            }
-            
-            // Get color based on iteration count
+            // Translate layout locations into complex points
+            const compX = p_bounds.xMin + x * xStep;
+            const compY = p_bounds.yMin + y * yStep;
+
+            // Execute the specific structural algorithm
+            const iterationsExecuted = p_pixelFormula(compX, compY);
+
+            // Build binary color indices
             const pixelIndex = (y * width + x) * 4;
-            const color = this._getFractalColorRGB(iteration, maxIterations);
-            
-            data[pixelIndex] = color.r;     // Red
-            data[pixelIndex + 1] = color.g; // Green
-            data[pixelIndex + 2] = color.b; // Blue
-            data[pixelIndex + 3] = 255;     // Alpha
+            const color = this._getFractalColorRGB(iterationsExecuted, p_maxIterations);
+
+            data[pixelIndex]     = color.r;
+            data[pixelIndex + 1] = color.g;
+            data[pixelIndex + 2] = color.b;
+            data[pixelIndex + 3] = 255;
           }
         }
-        
-        // Put the image data onto the canvas
+
         ctx.putImageData(imageData, 0, 0);
-        
         const endTime = performance.now();
-        console.log(`[TypeScript] Fractal generated in ${(endTime - startTime).toFixed(2)}ms`);
-        
-        // Convert canvas to Blob (PNG format)
+        console.log(`[TS Engine] Execution cycle completed in ${(endTime - startTime).toFixed(2)}ms`);
+
         canvas.toBlob((blob) => {
           if (blob) {
-            console.log(`[TypeScript] Fractal blob created, size: ${(blob.size / 1024).toFixed(2)} KB`);
             observer.next(blob);
             observer.complete();
           } else {
-            observer.error(new Error('Failed to convert canvas to blob'));
+            observer.error(new Error('Failed to assemble canvas image stream data'));
           }
         }, 'image/png');
-        
+
       } catch (error) {
-        console.error('[TypeScript] Error generating fractal:', error);
         observer.error(error);
       }
-    });
-  }
-  
-  /**
-   * Promise-based version of the TypeScript fractal generator
-   * @param p_maxIterations - Maximum iterations
-   * @param p_realPart - Real part of constant
-   * @param p_imagPart - Imaginary part of constant
-   * @returns Promise<Blob>
-   */
-  async _OpenCv_GetFractal_Typescript_Promise(
-    p_maxIterations: number, 
-    p_realPart: number, 
-    p_imagPart: number
-  ): Promise<Blob> {
-    return new Promise((resolve, reject) => {
-      this.GetFractal_Typescript(p_maxIterations, p_realPart, p_imagPart).subscribe({
-        next: (blob) => resolve(blob),
-        error: (error) => reject(error)
-      });
     });
   }
   
@@ -353,7 +362,7 @@ export class ComputerVisionService extends BaseService {
     params: Array<{maxIterations: number, realPart: number, imagPart: number}>
   ): Observable<Blob[]> {
     const requests = params.map(param => 
-      this.GetFractal_Typescript(param.maxIterations, param.realPart, param.imagPart).toPromise()
+      this.GetFractal_Typescript_Julia(param.maxIterations, param.realPart, param.imagPart).toPromise()
     );
     
     return new Observable<Blob[]>((observer) => {
@@ -370,27 +379,52 @@ export class ComputerVisionService extends BaseService {
   //-------------------------------------------------------------------
   //
   /**
-   * Fetches fractal coordinate points from Spring Boot (J2SE Engine)
-   * and renders them to a local binary Blob for uniform frontend rendering.
-   * @param p_maxIterations    - Passed along to sync the local color mapping palette
-   * @returns Observable<Blob> - Blob containing the unified PNG image
+   * Router/Proxy Method for J2SE Spring Boot Engine.
+   * Dispatches the request to the specific renderer based on the selected fractal type.
+   * @param p_maxIterations - Maximum execution iterations for color scaling
+   * @param p_fractalType - The active type selection from the form (Enum matching FractalType)
    */
-  GetFractal_j2se(p_maxIterations: number): Observable<Blob> {
+  GetFractal_j2se(p_maxIterations: number, p_fractalType: number): Observable<Blob> {
+    console.info(`selected fractal for j2se : ${p_fractalType}`)
+    switch (p_fractalType) {
+      case 2: // Julia Set
+        return this.GetFractal_Julia_j2se(p_maxIterations);
+      case 3: // Barnsley Leaf Set
+        return this.GenerateFractal_Leaf_j2se(p_maxIterations);
+      default:
+        console.warn(`[J2SE Proxy] Unhandled fractal type: ${p_fractalType}. Falling back to Julia.`);
+        return this.GetFractal_Julia_j2se(p_maxIterations);
+    }
+  }
+
+  /**
+   * Specialized Renderer for the Julia Fractal Engine (kind=2)
+   */
+  GetFractal_Julia_j2se(p_maxIterations: number): Observable<Blob> {
+    const url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=2&zoomInOut=false&zoomStep=1`;
+    return this._renderJ2SECanvasPipeline(url, p_maxIterations);
+  }
+
+  /**
+   * Specialized Renderer for the Iterated Function System Leaf Fractal Engine (kind=3)
+   */
+  GenerateFractal_Leaf_j2se(p_maxIterations: number): Observable<Blob> {
+    const url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=3&zoomInOut=false&zoomStep=1`;
+    return this._renderJ2SECanvasPipeline(url, p_maxIterations);
+  }
+
+  /**
+   * Private Shared Pipeline Utility
+   * Prevents code duplication by handling the uniform canvas rendering loop and Blob creation.
+   */
+  private _renderJ2SECanvasPipeline(p_url: string, p_maxIterations: number): Observable<Blob> {
     return new Observable<Blob>((observer) => {
       const width = 800;
       const height = 600;
 
-      // 1. Build the endpoint URL pointing to your Spring Boot Sandboxed environment
-      // LEAF
-      //const url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=2&zoomInOut=false&zoomStep=1`;
-      // JULIA
-      const url   = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=3&zoomInOut=false&zoomStep=1`;
-
-      // 2. Perform the HTTP Request to fetch the raw data coordinate array
-      this.http.get<any[]>(url).subscribe({
+      this.http.get<any[]>(p_url).subscribe({
         next: (points) => {
           try {
-            // Create an offscreen canvas identical to the TypeScript pattern
             const canvas = document.createElement('canvas');
             canvas.width = width;
             canvas.height = height;
@@ -401,50 +435,41 @@ export class ComputerVisionService extends BaseService {
               return;
             }
 
-            // Initialize background with solid black
+            // Fill background
             ctx.fillStyle = '#000000';
             ctx.fillRect(0, 0, width, height);
 
-            // Initialize direct pixel buffer manipulation for native speeds
             const imageData = ctx.createImageData(width, height);
             const data = imageData.data;
 
-            // Pre-fill alpha channel to 255 across the full binary buffer
+            // Fill Alpha
             for (let i = 3; i < data.length; i += 4) {
               data[i] = 255;
             }
 
-            // 3. Process the backend collection array
+            // Process coordinates
             points.forEach(point => {
-              // Safety boundary check
               if (point.x >= 0 && point.x < width && point.y >= 0 && point.y < height) {
-                
-                // Reverse-engineer the iteration index using your specific scale formula
                 const calculatedIteration = Math.round((point.intensity * p_maxIterations) / 255);
-                const finalIteration      = point.intensity === 0 ? p_maxIterations : calculatedIteration;
+                const finalIteration = point.intensity === 0 ? p_maxIterations : calculatedIteration;
 
-                // Call your internal color palette builder
-                const color      = this._getFractalColorRGB(finalIteration, p_maxIterations);
-
-                // Compute binary offset index
+                const color = this._getFractalColorRGB(finalIteration, p_maxIterations);
                 const pixelIndex = (point.y * width + point.x) * 4;
-                data[pixelIndex]     = color.r; // Red
-                data[pixelIndex + 1] = color.g; // Green
-                data[pixelIndex + 2] = color.b; // Blue
-                // Alpha remains 255
+
+                data[pixelIndex]     = color.r;
+                data[pixelIndex + 1] = color.g;
+                data[pixelIndex + 2] = color.b;
               }
             });
 
-            // Write modified pixels to the canvas context
             ctx.putImageData(imageData, 0, 0);
 
-            // 4. Transform canvas layer into a production-ready PNG Blob
             canvas.toBlob((blob) => {
               if (blob) {
                 observer.next(blob);
                 observer.complete();
               } else {
-                observer.error(new Error('Failed to convert J2SE canvas grid to blob'));
+                observer.error(new Error('Failed to convert canvas to blob'));
               }
             }, 'image/png');
 
@@ -453,7 +478,7 @@ export class ComputerVisionService extends BaseService {
           }
         },
         error: (networkError) => {
-          console.error('[J2SE Service] Http fetching operation failed:', networkError);
+          console.error('[J2SE Pipeline] Fetching error:', networkError);
           observer.error(networkError);
         }
       });

@@ -6,48 +6,34 @@
         <form (ngSubmit)="onSubmit()">
             
             <div class="form-group">
-                <label for="implementation">Implementation:</label>
+                <label for="implementation">Implementation Backend Engine:</label>
                 <select id="implementation" name="implementation" 
                         [(ngModel)]="selectedImplementation"
                         class="implementation-select"
-                        (change)="status_message.set('')">
-                    <option *ngFor="let option of implementationOptions" [value]="option.value">
-                        {{option.icon}} {{option.label}} - {{option.description}}
+                        (change)="onLanguageChange()">
+                    <option *ngFor="let option of backendCapabilities" [value]="option.languageCode">
+                        {{option.icon}} {{option.label}}
                     </option>
                 </select>
                 <small class="form-text">
                     Currently using: {{getSelectedImplementationIcon()}} {{getSelectedImplementationDescription()}}
                 </small>
             </div>
-            
-            <!--           
-            <div class="form-group">
-                <label for="maxIterations">Max Iterations: {{maxIterations}}</label>
-                <input type="range" id="maxIterations" name="maxIterations" 
-                       [(ngModel)]="maxIterations" 
-                       [min]="100" [max]="2000" [step]="50"
-                       required class="slider">
-            </div>
 
             <div class="form-group">
-                <label for="realPart">Real Part: {{realPart.toFixed(3)}}</label>
-                <input type="range" id="realPart" name="realPart" 
-                       [(ngModel)]="realPart" 
-                       [min]="-2.0" [max]="2.0" [step]="0.01"
-                       required class="slider">
+                <label for="fractalType">Target Fractal Architecture:</label>
+                <select id="fractalType" name="fractalType" 
+                        [ngModel]="selectedFractal"
+                        (ngModelChange)="onFractalChange($event)"
+                        class="implementation-select">
+                    <option *ngFor="let option of getAvailableFractals()" [value]="option.id">
+                        {{option.icon}} {{option.label}}
+                    </option>
+                </select>
             </div>
             
-            <div class="form-group">
-                <label for="imagPart">Imaginary Part: {{imagPart.toFixed(3)}}</label>
-                <input type="range" id="imagPart" name="imagPart" 
-                       [(ngModel)]="imagPart" 
-                       [min]="-2.0" [max]="2.0" [step]="0.01"
-                       required class="slider">
-            </div>
-            -->
-
             <div class="button-group">
-                <button type="submit" class="btn btn-primary" 
+                <button type="submit" class="btn btn-outline-danger" 
                         [disabled]="status_message() === '[...Generating please wait...]'">
                     {{submitTitle}}
                 </button>
@@ -58,9 +44,9 @@
                     {{pdfButtonCaption}}
                 </button>
                 
-                <button type="button" class="btn btn-outline-danger" 
+                <button type="button" class="btn btn-primary" 
                         (click)="resetToDefaults()">
-                    Reset to Defaults
+                    Reset
                 </button>
             </div>
             
@@ -97,7 +83,7 @@
     <div align="right">
         <a [routerLink]="'/PageUrlList'" 
            [queryParams]="{pageName: 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}">
-            [Back to Menu]
+             [Back to Menu]
         </a>
     </div>
 </div>
