@@ -89,28 +89,75 @@ export class ComputerVisionService extends BaseService {
   }
 
   ///////////////////////////////////////////////////////////////////
-  // OPEN CV -- FRACTALS -- Typescript (Using OpenCV.js)
+  // FRACTALS -- Typescript (Using pure math)
   ///////////////////////////////////////////////////////////////////
-
+   /**
+   * Helper method to get RGB color for fractal (same algorithm as C++ code)
+   * @param iteration - Current iteration count
+   * @param maxIterations - Maximum iterations
+   * @returns RGB color object
+   */
+  public _getFractalColorRGB(iteration: number, maxIterations: number): { r: number; g: number; b: number } {
+    if (iteration === maxIterations) {
+      return { r: 0, g: 0, b: 0 }; // Black for points inside the set
+    }
+    
+    // Map iteration count to RGB (same algorithm as C++ code)
+    const t = iteration / maxIterations;
+    const r = Math.floor(9 * (1 - t) * t * t * t * 255);
+    const g = Math.floor(15 * (1 - t) * (1 - t) * t * t * 255);
+    const b = Math.floor(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+    
+    return { r, g, b };
+  }
+  
   /**
    * Router/Proxy Method for Local Browser TypeScript Engine.
-   * Dispatches the calculation task to the target topology method.
    */
   GetFractal_Typescript(
     p_maxIterations: number, 
     p_realPart: number, 
     p_imagPart: number, 
-    p_fractalType: number
+    p_fractalType: number,
+    p_bounds?: { xMin: number, xMax: number, yMin: number, yMax: number }
   ): Observable<Blob> {
     switch (p_fractalType) {
       case 1: // Mandelbrot Set
-        return this.GetFractal_Typescript_Manderblot(p_maxIterations);
+        return this.GetFractal_Typescript_Manderblot(p_maxIterations, p_bounds);
       case 2: // Julia Set
         return this.GetFractal_Typescript_Julia(p_maxIterations, p_realPart, p_imagPart);
       default:
-        console.warn(`[TS Proxy] Unhandled fractal type: ${p_fractalType}. Falling back to Julia.`);
         return this.GetFractal_Typescript_Julia(p_maxIterations, p_realPart, p_imagPart);
     }
+  }
+
+  /**
+   * Specialized Loop Engine for the Mandelbrot Fractal Formula
+   */
+  GetFractal_Typescript_Manderblot(
+    p_maxIterations: number,
+    p_bounds?: { xMin: number, xMax: number, yMin: number, yMax: number }
+  ): Observable<Blob> {
+    const defaultBounds = { xMin: -2.0, xMax: 1.0, yMin: -1.2, yMax: 1.2 };
+    const activeBounds = p_bounds || defaultBounds;
+
+    return this._renderTSCanvasPipeline(p_maxIterations, (cx, cy) => {
+      let zReal = 0.0;
+      let zImag = 0.0;
+      let iteration = 0;
+
+      while (iteration < p_maxIterations) {
+        if ((zReal * zReal + zImag * zImag) > 4.0) break;
+
+        const newReal = zReal * zReal - zImag * zImag + cx;
+        const newImag = 2 * zReal * zImag + cy;
+
+        zReal = newReal;
+        zImag = newImag;
+        iteration++;
+      }
+      return iteration;
+    }, activeBounds);
   }
 
   /**
@@ -137,35 +184,7 @@ export class ComputerVisionService extends BaseService {
   }
 
   /**
-   * Specialized Loop Engine for the Mandelbrot Fractal Formula
-   */
-  GetFractal_Typescript_Manderblot(p_maxIterations: number): Observable<Blob> {
-    // Standard Mandelbrot view boundaries to fit the frame properly
-    const customBounds = { xMin: -2.0, xMax: 1.0, yMin: -1.2, yMax: 1.2 };
-
-    return this._renderTSCanvasPipeline(p_maxIterations, (cx, cy) => {
-      let zReal = 0.0;
-      let zImag = 0.0;
-      let iteration = 0;
-
-      while (iteration < p_maxIterations) {
-        if ((zReal * zReal + zImag * zImag) > 4.0) break;
-
-        // Formula: z = z^2 + c where c is the pixel mapping position
-        const newReal = zReal * zReal - zImag * zImag + cx;
-        const newImag = 2 * zReal * zImag + cy;
-
-        zReal = newReal;
-        zImag = newImag;
-        iteration++;
-      }
-      return iteration;
-    }, customBounds);
-  }
-
-  /**
-   * Private Shared Web-Canvas Buffer Pipeline. Handles coordinate translations, 
-   * custom equation injections, color conversions, and image generation.
+   * Private Shared Web-Canvas Buffer Pipeline.
    */
   private _renderTSCanvasPipeline(
     p_maxIterations: number,
@@ -197,14 +216,11 @@ export class ComputerVisionService extends BaseService {
 
         for (let y = 0; y < height; y++) {
           for (let x = 0; x < width; x++) {
-            // Translate layout locations into complex points
             const compX = p_bounds.xMin + x * xStep;
             const compY = p_bounds.yMin + y * yStep;
 
-            // Execute the specific structural algorithm
             const iterationsExecuted = p_pixelFormula(compX, compY);
 
-            // Build binary color indices
             const pixelIndex = (y * width + x) * 4;
             const color = this._getFractalColorRGB(iterationsExecuted, p_maxIterations);
 
@@ -232,26 +248,6 @@ export class ComputerVisionService extends BaseService {
         observer.error(error);
       }
     });
-  }
-  
-  /**
-   * Helper method to get RGB color for fractal (same algorithm as C++ code)
-   * @param iteration - Current iteration count
-   * @param maxIterations - Maximum iterations
-   * @returns RGB color object
-   */
-  public _getFractalColorRGB(iteration: number, maxIterations: number): { r: number; g: number; b: number } {
-    if (iteration === maxIterations) {
-      return { r: 0, g: 0, b: 0 }; // Black for points inside the set
-    }
-    
-    // Map iteration count to RGB (same algorithm as C++ code)
-    const t = iteration / maxIterations;
-    const r = Math.floor(9 * (1 - t) * t * t * t * 255);
-    const g = Math.floor(15 * (1 - t) * (1 - t) * t * t * 255);
-    const b = Math.floor(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
-    
-    return { r, g, b };
   }
   
   /**

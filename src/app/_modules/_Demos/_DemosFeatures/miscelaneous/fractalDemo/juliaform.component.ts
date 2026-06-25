@@ -11,14 +11,12 @@ import { SpeechService } from 'src/app/_services/__Utils/SpeechService/speech.se
 import { PdfService } from 'src/app/_services/__FileGeneration/pdf.service';
 import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
 
-// 1. Core Architecture Enum Configuration
 export enum FractalType {
   MANDELBROT = 1,
   JULIA = 2,
   LEAF = 3
 }
 
-// 2. Strongly Typed Matrix Interfaces
 export interface LanguageCapability {
   languageCode: string;
   label: string;
@@ -55,25 +53,27 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   realPart: number = -0.4;
   imagPart: number = 0.6;
   
-  selectedImplementation: string = 'typescript'; // Primary Dropdown Target
-  selectedFractal: FractalType = FractalType.JULIA; // Nested Dropdown Target
+  selectedImplementation: string = 'typescript';
+  selectedFractal: FractalType = FractalType.JULIA;
 
   imageUrl: string | null = null;
   submitTitle: string = "[Generate Fractal]";
   pdfButtonCaption: string = "[Generate PDF]";
 
-  // 3. Centralized Feature Toggle Dictionary Map 
+  // --- MANDELBROT INTERACTIVE ZOOM VIEWPORT STATE ---
+  centerX: number = -0.5;
+  centerY: number = 0.0;
+  zoomFactor: number = 1.0;
+  readonly baseXRange: number = 3.0; // View boundary standard spans
+  readonly baseYRange: number = 2.4;
+
   backendCapabilities: LanguageCapability[] = [
     {
       languageCode: 'typescript',
       label: 'TypeScript (Local)',
       icon: '🟡',
       description: 'Runs in browser - Fastest',
-      supportedFractals: { 
-        [FractalType.MANDELBROT]: true,  // Now enabled locally!
-        [FractalType.JULIA]: true, 
-        [FractalType.LEAF]: false 
-      }
+      supportedFractals: { [FractalType.MANDELBROT]: true, [FractalType.JULIA]: true, [FractalType.LEAF]: false }
     },
     {
       languageCode: 'nodejs',
@@ -98,7 +98,6 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     }
   ];
 
-  // 4. Fractal Metadata Configuration Master List
   fractalOptions = [
     { id: FractalType.MANDELBROT, label: 'Mandelbrot Set', icon: '🌀' },
     { id: FractalType.JULIA, label: 'Julia Set', icon: '❄️' },
@@ -130,14 +129,12 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     this.onLanguageChange();
   }
 
-  // Helper method used by HTML templates to extract child lists based on matrix constraints
   getAvailableFractals() {
     const currentLang = this.backendCapabilities.find(opt => opt.languageCode === this.selectedImplementation);
     if (!currentLang) return [];
     return this.fractalOptions.filter(fractal => currentLang.supportedFractals[fractal.id]);
   }
 
-  // Automatic recovery fallback if selected fractal isn't available under the new language context
   onLanguageChange() {
     this.status_message.set('');
     const available = this.getAvailableFractals();
@@ -146,30 +143,78 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     if (!isStillValid && available.length > 0) {
       this.selectedFractal = available[0].id;
     }
+    // Reset view tracking constraints on engine/fractal transformations
+    this.resetZoomViewport();
   }
 
-  // Explicit typecasting handler to avoid native HTML value string-coercion bugs
   onFractalChange(newValue: any) {
     this.selectedFractal = Number(newValue) as FractalType;
     this.status_message.set('');
+    this.resetZoomViewport();
+  }
+
+  resetZoomViewport() {
+    this.centerX = -0.5;
+    this.centerY = 0.0;
+    this.zoomFactor = 1.0;
+  }
+
+  onCanvasClick(event: MouseEvent): void {
+    // Only perform interactive coordinate zoom on local TypeScript Mandelbrot operations
+    if (this.selectedImplementation !== 'typescript' || this.selectedFractal !== FractalType.MANDELBROT) return;
+
+    const imgElement = event.target as HTMLImageElement;
+    const rect = imgElement.getBoundingClientRect();
+
+    const clickXRatio = (event.clientX - rect.left) / rect.width;
+    const clickYRatio = (event.clientY - rect.top) / rect.height;
+
+    const currentXRange = this.baseXRange / this.zoomFactor;
+    const currentYRange = this.baseYRange / this.zoomFactor;
+    
+    const currentXMin = this.centerX - currentXRange / 2;
+    const currentYMin = this.centerY - currentYRange / 2;
+
+    this.centerX = currentXMin + clickXRatio * currentXRange;
+    this.centerY = currentYMin + clickYRatio * currentYRange;
+
+    if (event.shiftKey) {
+      this.zoomFactor = Math.max(1, this.zoomFactor / 2);
+    } else {
+      this.zoomFactor *= 2;
+    }
+
+    this.onSubmit();
   }
 
   onSubmit() {
-    //
     this.status_message.set("[...Generating please wait...]");
     this.generationTime = null;
     const startTime = performance.now();
     let serviceCall;
     
-    switch (this.selectedImplementation) {
-        case 'typescript':
+
+
+      switch (this.selectedImplementation) {
+        case 'typescript': {
+          const currentXRange = this.baseXRange / this.zoomFactor;
+          const currentYRange = this.baseYRange / this.zoomFactor;
+          const dynamicBounds = {
+            xMin: this.centerX - currentXRange / 2,
+            xMax: this.centerX + currentXRange / 2,
+            yMin: this.centerY - currentYRange / 2,
+            yMax: this.centerY + currentYRange / 2
+          };
+
           serviceCall = this.computervisionService.GetFractal_Typescript(
             this.maxIterations, 
             this.realPart, 
             this.imagPart, 
-            this.selectedFractal
+            this.selectedFractal,
+            dynamicBounds
           );
           break;
+        }
         case 'nodejs':
           serviceCall = this.computervisionService._OpenCv_GetFractal_NodeJs(this.maxIterations, this.realPart, this.imagPart);
           break;
@@ -177,11 +222,12 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
           serviceCall = this.computervisionService._OpenCv_GetFractal_CPP(this.maxIterations, this.realPart, this.imagPart);
           break;
         case 'j2se' :
-          serviceCall = this.computervisionService.GetFractal_j2se(this.maxIterations, this.selectedFractal);
+                serviceCall = this.computervisionService.GetFractal_j2se(this.maxIterations, this.selectedFractal);
           break;
         default:
           serviceCall = this.computervisionService.GetFractal_Typescript(this.maxIterations, this.realPart, this.imagPart, this.selectedFractal);
-    };
+      }
+
     
     serviceCall.subscribe({
       next: (response: Blob) => {
@@ -225,12 +271,13 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     });
   }
   
-  resetToDefaults(): void {
+  resetFractalsToDefaults(): void {
     this.maxIterations = this.defaultValues.maxIterations;
     this.realPart = this.defaultValues.realPart;
     this.imagPart = this.defaultValues.imagPart;
     this.selectedImplementation = this.defaultValues.implementation;
     this.selectedFractal = this.defaultValues.fractalType;
+    this.resetZoomViewport();
     
     if (this.imageUrl) {
       URL.revokeObjectURL(this.imageUrl);
@@ -248,7 +295,8 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       Math.abs(this.realPart - this.defaultValues.realPart) < 0.001 &&
       Math.abs(this.imagPart - this.defaultValues.imagPart) < 0.001 &&
       this.selectedImplementation === this.defaultValues.implementation &&
-      this.selectedFractal === this.defaultValues.fractalType;
+      this.selectedFractal === this.defaultValues.fractalType &&
+      this.zoomFactor === 1.0;
   }
   
   getSelectedImplementationIcon(): string {

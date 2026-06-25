@@ -2,7 +2,7 @@
     <app-base-reference></app-base-reference>
     <hr>
     <div class="form-container">
-        <h2>Fractal Parameters</h2>
+        <h2>Fractal Parameters Master Dashboard</h2>
         <form (ngSubmit)="onSubmit()">
             
             <div class="form-group">
@@ -31,9 +31,25 @@
                     </option>
                 </select>
             </div>
+
+            <div class="parametric-box" *ngIf="selectedFractal === 2">
+                <div class="form-group">
+                    <label for="realPart">Real Constant Part (Cr):</label>
+                    <input type="number" step="0.01" id="realPart" name="realPart" [(ngModel)]="realPart" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="imagPart">Imaginary Constant Part (Ci):</label>
+                    <input type="number" step="0.01" id="imagPart" name="imagPart" [(ngModel)]="imagPart" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="maxIterations">Max Resolution Iterations:</label>
+                <input type="number" id="maxIterations" name="maxIterations" [(ngModel)]="maxIterations" class="form-control" />
+            </div>
             
             <div class="button-group">
-                <button type="submit" class="btn btn-outline-danger" 
+                <button type="submit" class="btn btn-primary" 
                         [disabled]="status_message() === '[...Generating please wait...]'">
                     {{submitTitle}}
                 </button>
@@ -44,9 +60,9 @@
                     {{pdfButtonCaption}}
                 </button>
                 
-                <button type="button" class="btn btn-primary" 
-                        (click)="resetToDefaults()">
-                    Reset
+                <button type="button" class="btn btn-outline-danger" 
+                        (click)="resetFractalsToDefaults()">
+                    Reset Dashboard
                 </button>
             </div>
             
@@ -61,19 +77,28 @@
                  [ngClass]="{
                    'performance-success': getPerformanceColor() === 'success',
                    'performance-warning': getPerformanceColor() === 'warning',
-                   'performance-info': getPerformanceColor() === 'info'
+                   'performance-danger': getPerformanceColor() === 'danger'
                  }"
                  align="center">
-                ⏱️ Generation time: {{generationTime.toFixed(2)}}ms using {{lastImplementationUsed}}
+                ⏱️ Execution Matrix: {{generationTime.toFixed(2)}}ms using [{{lastImplementationUsed}}]
             </div>
             
         </form>
         
         <hr>
         
-        <div *ngIf="imageUrl" #_fractal_image>
-            <h3>Generated Fractal Image:</h3>
-            <img [src]="imageUrl" alt="Fractal Image" width="350px" height="350px"/>
+        <div *ngIf="imageUrl" #_fractal_image class="canvas-display-container">
+            <h3>Generated Viewport Result:</h3>
+            <img [src]="imageUrl" 
+                 alt="Fractal Viewport Graphic" 
+                 (click)="onCanvasClick($event)"
+                 [class.interactive-lens]="selectedImplementation === 'typescript' && selectedFractal === 1"
+                 [title]="(selectedImplementation === 'typescript' && selectedFractal === 1) ? 'Click to center & zoom IN | Shift + Click to zoom OUT' : 'Static Viewport'"
+                 width="350px" height="350px"/>
+            
+            <div *ngIf="selectedImplementation === 'typescript' && selectedFractal === 1" class="zoom-badge">
+                🔍 Current Zoom Magnification: <strong>{{zoomFactor}}x</strong>
+            </div>
         </div>
         
     </div>
@@ -81,8 +106,7 @@
     <hr>
     
     <div align="right">
-        <a [routerLink]="'/PageUrlList'" 
-           [queryParams]="{pageName: 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}">
+        <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName: 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}">
              [Back to Menu]
         </a>
     </div>
