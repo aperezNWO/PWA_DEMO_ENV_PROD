@@ -157,140 +157,60 @@ export class ComputerVisionService extends BaseService {
   // OPEN CV -- FRACTALS -- Node.js
   ///////////////////////////////////////////////////////////////////
 
-  //
-  GetFractal_NodeJs(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
+  // DISABLED
+  _GetFractal_NodeJs(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
     const url = `${this.__baseUrlNodeJsOpenCv}generatejuliaImage/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
     return this.http.get(url, { responseType: 'blob' });
   }
 
-  // DISABLED
-  _GetFractal_NodeJs(p_maxIterations: number, p_fractalType: number): Observable<Blob> {
-    console.info(`selected fractal for j2se : ${p_fractalType}`);
-    switch (p_fractalType) {
-      case FractalType.MANDELBROT   :  return this.GenerateFractal_Mandelbrot_NodeJs(p_maxIterations);
-      case FractalType.JULIA        :  return this.GetFractal_Julia_NodeJs(p_maxIterations);
-      case FractalType.BARNSLEY_FERN:  return this.GenerateFractal_Leaf_NodeJs(p_maxIterations);
-      default:
-        console.warn(`[J2SE Proxy] Unhandled fractal type: ${p_fractalType}. Falling back to Mandelbrot.`);
-        return this.GenerateFractal_Mandelbrot_NodeJs(p_maxIterations);
-    }
-  }
-
+  // 1. Update the signature to accept zoom parameters
+GetFractal_NodeJs(
+    p_maxIterations : number,
+    p_realPart      : number,
+    p_imagPart      : number,
+    p_fractalType   : number,
+    p_bounds?       : { xMin: number; xMax: number; yMin: number; yMax: number }
+): Observable<Blob> {
   //
-  GenerateFractal_Mandelbrot_NodeJs(p_maxIterations: number): Observable<Blob> {
-    const url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/fractal/generateMandelbrotPureMath`;
-    return this._renderFractalPipelineNodeJs(url, p_maxIterations);
-  }
-
+  console.info(`selected fractal: ${p_fractalType}, zoom: ${p_bounds}`);
   //
-  GetFractal_Julia_NodeJs(p_maxIterations: number): Observable<Blob> {
-    const url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/Fractal/generateJuliaPureMath`;
-    return this._renderFractalPipelineNodeJs(url, p_maxIterations);
+  switch (p_fractalType) {
+    case FractalType.JULIA:
+      return this.GetFractal_Julia_NodeJs(p_maxIterations, p_realPart, p_imagPart, p_bounds);
+    case FractalType.BARNSLEY_FERN:
+      return this.GenerateFractal_Leaf_NodeJs(p_maxIterations);
+    default:
+      return this.GetFractal_Julia_NodeJs(p_maxIterations, p_realPart, p_imagPart, p_bounds);
+  }
+}
+
+// 2. Update the Julia method to construct the URL with query params
+GetFractal_Julia_NodeJs(
+    p_maxIterations : number,
+    p_realPart      : number,
+    p_imagPart      : number,
+    p_bounds?       : { xMin: number; xMax: number; yMin: number; yMax: number }
+  ): Observable<Blob> 
+  {
+    //
+    let zoomStep     = 2.0;
+    //
+    console.info(`node.js julia fractal, zoom: ${p_bounds}, step: ${zoomStep} , realPart : ${p_realPart}, imagPart : ${p_imagPart}`);
+    
+    const activeBounds = p_bounds ?? { xMin: -1.5, xMax: 1.5, yMin: -1.5, yMax: 1.5 };
+    const baseUrl      = this._configService.getConfigValue('baseUrlNodeJsOcr');
+    // Append query parameters to the URL
+    //const url          = `${baseUrl}api/fractal/julia?zoomInOut=${p_bounds}&zoomStep=${zoomStep}`;
+    const url          = `${baseUrl}api/fractal/julia`;
+    return this._renderFractalPipelinej2se(url, p_maxIterations);
   }
 
   //
   GenerateFractal_Leaf_NodeJs(p_maxIterations: number): Observable<Blob> {
-    const url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/fractal/generateBarnsleyFernPureMath`;
-    return this._renderFractalPipelineNodeJs(url, p_maxIterations);
+    const url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/fractal/leaf`;
+    return this._renderFractalPipelinej2se(url, p_maxIterations);
   }
 
-  /**
-   * Converts the JSON Julia matrix structure into an optimized display Blob
-   */
-  private _renderFractalPipelineNodeJs(p_url: string, p_maxIterations: number): Observable<Blob> {
-    return new Observable<Blob>((observer) => {
-      
-      this.http.get<NodeJsFractalResponse>(p_url).subscribe({
-        next: (response) => {
-          try {
-            if (!response.success || !response.matrix) {
-              observer.error(new Error('Invalid or failed matrix payload from Node.js service'));
-              return;
-            }
-
-            // Extract canvas boundaries dynamically from server response parameters
-            const width = response.width;
-            const height = response.height;
-
-            const canvas = document.createElement('canvas');
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-
-            if (!ctx) {
-              observer.error(new Error('Could not get canvas context'));
-              return;
-            }
-
-            // Reset image buffer layout matrix
-            ctx.fillStyle = '#000000';
-            ctx.fillRect(0, 0, width, height);
-
-            const imageData = ctx.createImageData(width, height);
-            const data = imageData.data;
-
-            // Pre-fill the alpha channel opacity (A) loop
-            for (let i = 3; i < data.length; i += 4) {
-              data[i] = 255;
-            }
-
-            // Inside your _renderFractalPipelineNodeJs loop:
-
-            for (let y = 0; y < height; y++) {
-              for (let x = 0; x < width; x++) {
-                
-                // Read raw math counts directly from response rows
-                const intensity = response.matrix[y][x];
-
-                // Calculate the smooth 't' ratio directly using floating-point math.
-                // Do NOT use Math.round() here.
-                const t = intensity / response.maxIterations;
-
-                // Pass the exact float ratio directly to the color calculator
-                const color = this._getFractalColorRGB_NodeJs(t);
-
-                const idx = (y * width + x) * 4;
-                data[idx]     = color.r; // R
-                data[idx + 1] = color.g; // G
-                data[idx + 2] = color.b; // B
-              }
-            }
-            // Commit graphic array buffers directly onto template context surface
-            ctx.putImageData(imageData, 0, 0);
-
-            // Export pure PNG stream chunks back to component bindings
-            canvas.toBlob((blob) => {
-              if (blob) {
-                observer.next(blob);
-                observer.complete();
-              } else {
-                observer.error(new Error('Failed to convert canvas matrix layout to blob'));
-              }
-            }, 'image/png');
-
-          } catch (error) {
-            observer.error(error);
-          }
-        },
-        error: (err) => {
-          console.error('[Node.js Matrix Pipeline] Fetching error:', err);
-          observer.error(err);
-        }
-      });
-    });
-  }
-
- public _getFractalColorRGB_NodeJs(t: number): { r: number; g: number; b: number } {
-  // If the point never escaped, it remains pure black
-  if (t >= 1.0) return { r: 0, g: 0, b: 0 };
-  
-  // Apply the Bernstein polynomials exactly as originally written
-  return {
-    r: Math.floor(9   * (1 - t) * t * t * t * 255),
-    g: Math.floor(15  * (1 - t) * (1 - t) * t * t * 255),
-    b: Math.floor(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255)
-  };
-}
   ///////////////////////////////////////////////////////////////////
   // FRACTALS -- TypeScript (pure math)
   ///////////////////////////////////////////////////////////////////
