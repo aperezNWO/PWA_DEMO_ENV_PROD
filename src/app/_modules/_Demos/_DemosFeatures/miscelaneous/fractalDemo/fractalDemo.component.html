@@ -1,13 +1,16 @@
 <div class="content" align="center">
     <app-base-reference></app-base-reference>
     <hr>
+
     <div class="form-container">
         <h2>Fractal Parameters Master Dashboard</h2>
+
         <form (ngSubmit)="onSubmit()">
-            
+
+            <!-- Backend engine selector -->
             <div class="form-group">
                 <label for="implementation">Implementation Backend Engine:</label>
-                <select id="implementation" name="implementation" 
+                <select id="implementation" name="implementation"
                         [(ngModel)]="selectedImplementation"
                         class="implementation-select"
                         (change)="onLanguageChange()">
@@ -20,9 +23,10 @@
                 </small>
             </div>
 
+            <!-- Fractal type selector -->
             <div class="form-group">
                 <label for="fractalType">Target Fractal Architecture:</label>
-                <select id="fractalType" name="fractalType" 
+                <select id="fractalType" name="fractalType"
                         [ngModel]="selectedFractal"
                         (ngModelChange)="onFractalChange($event)"
                         class="implementation-select">
@@ -32,82 +36,184 @@
                 </select>
             </div>
 
-            <div class="parametric-box" *ngIf="selectedFractal === 2">
+            <!-- Julia-only parameters -->
+            <div class="parametric-box" *ngIf="selectedFractal === FractalType.JULIA">
                 <div class="form-group">
                     <label for="realPart">Real Constant Part (Cr):</label>
-                    <input type="number" step="0.01" id="realPart" name="realPart" [(ngModel)]="realPart" class="form-control" />
+                    <input type="number" step="0.01" id="realPart" name="realPart"
+                           [(ngModel)]="realPart" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label for="imagPart">Imaginary Constant Part (Ci):</label>
-                    <input type="number" step="0.01" id="imagPart" name="imagPart" [(ngModel)]="imagPart" class="form-control" />
+                    <input type="number" step="0.01" id="imagPart" name="imagPart"
+                           [(ngModel)]="imagPart" class="form-control" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="maxIterations">Max Resolution Iterations:</label>
-                <input type="number" id="maxIterations" name="maxIterations" [(ngModel)]="maxIterations" class="form-control" />
+                <input type="number" id="maxIterations" name="maxIterations"
+                       [(ngModel)]="maxIterations" class="form-control" />
             </div>
-            
+
+            <!-- Action buttons -->
             <div class="button-group">
-                <button type="submit" class="btn btn-outline-danger" 
+                <button type="submit" class="btn btn-outline-danger"
                         [disabled]="status_message() === '[...Generating please wait...]'">
                     {{submitTitle}}
                 </button>
-                
-                <button type="button" class="btn btn-secondary" 
-                        [disabled]="status_message() === '[...Generating PDF...]'" 
+
+                <button type="button" class="btn btn-secondary"
+                        [disabled]="status_message() === '[...Generating PDF...]'"
                         *ngIf="imageUrl" (click)="GeneratePDF()">
                     {{pdfButtonCaption}}
                 </button>
-                
-                <button type="button" class="btn btn-primary" 
+
+                <button type="button" class="btn btn-primary"
                         (click)="resetFractalsToDefaults()">
                     Reset Dashboard
                 </button>
             </div>
-            
+
             <hr>
-            
+
+            <!-- Status message -->
             <div *ngIf="status_message()" class="alert alert-secondary" role="alert" align="center">
                 {{ status_message() }}
             </div>
-            
-            <div *ngIf="generationTime && lastImplementationUsed" 
-                 class="alert-performance" 
+
+            <!-- Performance badge -->
+            <div *ngIf="generationTime && lastImplementationUsed"
+                 class="alert-performance"
                  [ngClass]="{
                    'performance-success': getPerformanceColor() === 'success',
                    'performance-warning': getPerformanceColor() === 'warning',
-                   'performance-danger': getPerformanceColor() === 'danger'
+                   'performance-danger' : getPerformanceColor() === 'danger'
                  }"
                  align="center">
                 ⏱️ Execution Matrix: {{generationTime.toFixed(2)}}ms using [{{lastImplementationUsed}}]
             </div>
-            
+
         </form>
-        
+
         <hr>
-        
+
+        <!-- ═══════════════════════════════════════════════════════════════
+             FRACTAL IMAGE DISPLAY + RETICLE OVERLAY
+             ═══════════════════════════════════════════════════════════════ -->
         <div *ngIf="imageUrl" #_fractal_image class="canvas-display-container">
+
             <h3>Generated Viewport Result:</h3>
-            <img [src]="imageUrl" 
-                 alt="Fractal Viewport Graphic" 
-                 (click)="onCanvasClick($event)"
-                 [class.interactive-lens]="selectedImplementation === 'typescript' && selectedFractal === 1"
-                 [title]="(selectedImplementation === 'typescript' && selectedFractal === 1) ? 'Click to center & zoom IN | Shift + Click to zoom OUT' : 'Static Viewport'"
-                 width="350px" height="350px"/>
-            
-            <div *ngIf="selectedImplementation === 'typescript' && selectedFractal === 1" class="zoom-badge">
-                🔍 Current Zoom Magnification: <strong>{{zoomFactor}}x</strong>
+
+            <!-- Wrapper holds both the image and the reticle overlay -->
+            <div class="fractal-img-wrapper" #fractalImgWrapper>
+
+                <!-- The rendered fractal image -->
+                <img [src]="imageUrl"
+                     alt="Fractal Viewport Graphic"
+                     (click)="onCanvasClick($event)"
+                     [class.interactive-lens]="isZoomable"
+                     [title]="zoomHint"
+                     class="fractal-img"
+                     width="350" height="350" />
+
+                <!-- ── RETICLE OVERLAY (visible only when toggled) ─────────── -->
+                <div class="reticle-overlay" *ngIf="reticleVisible && isZoomable"
+                     (touchmove)="onReticleTouchMove($event)"
+                     (touchend)="onReticleTouchEnd()">
+
+                    <!-- Draggable crosshair -->
+                    <div class="reticle"
+                         [style.left.%]="reticleX"
+                         [style.top.%]="reticleY"
+                         (mousedown)="onReticleMouseDown($event)"
+                         (touchstart)="onReticleTouchStart($event)">
+                        <!-- Crosshair arms -->
+                        <span class="reticle-h"></span>
+                        <span class="reticle-v"></span>
+                        <!-- Center dot -->
+                        <span class="reticle-dot"></span>
+                    </div>
+
+                    <!-- Reticle instruction label -->
+                    <div class="reticle-hint">
+                        Drag crosshair · tap Apply
+                    </div>
+                </div>
+                <!-- ── END RETICLE OVERLAY ─────────────────────────────────── -->
+
             </div>
+            <!-- /fractal-img-wrapper -->
+
+            <!-- ── ZOOM CONTROLS BAR ────────────────────────────────────────── -->
+            <div class="zoom-controls-bar" *ngIf="isZoomable">
+
+                <!-- Desktop zoom badge -->
+                <div class="zoom-badge desktop-only">
+                    🔍 Zoom: <strong>{{zoomFactor}}x</strong>
+                    <span class="zoom-hint">{{ zoomHint }}</span>
+                </div>
+
+                <!-- Mobile minifab cluster -->
+                <div class="minifab-cluster mobile-only">
+
+                    <!-- Toggle reticle button -->
+                    <button type="button"
+                            class="minifab minifab-toggle"
+                            [class.active]="reticleVisible"
+                            (click)="toggleReticle()"
+                            title="Toggle zoom reticle">
+                        {{ reticleVisible ? '✕' : '⊕' }}
+                    </button>
+
+                    <!-- Zoom-in pill -->
+                    <button type="button"
+                            class="minifab minifab-in"
+                            [class.active]="activeZoomMode === 'in'"
+                            [disabled]="!reticleVisible"
+                            (click)="setZoomMode('in')"
+                            title="Zoom in at reticle">
+                        +
+                    </button>
+
+                    <!-- Zoom-out pill -->
+                    <button type="button"
+                            class="minifab minifab-out"
+                            [class.active]="activeZoomMode === 'out'"
+                            [disabled]="!reticleVisible || zoomFactor <= 1"
+                            (click)="setZoomMode('out')"
+                            title="Zoom out from reticle">
+                        −
+                    </button>
+
+                    <!-- Apply button -->
+                    <button type="button"
+                            class="minifab minifab-apply"
+                            [disabled]="!reticleVisible || !activeZoomMode"
+                            (click)="applyReticleZoom()"
+                            title="Apply zoom at crosshair position">
+                        ✓ Apply
+                    </button>
+
+                    <!-- Zoom level badge -->
+                    <span class="zoom-badge-mobile">🔍 {{zoomFactor}}x</span>
+
+                </div>
+                <!-- /minifab-cluster -->
+
+            </div>
+            <!-- /zoom-controls-bar -->
+
         </div>
-        
+        <!-- /canvas-display-container -->
+
     </div>
-    
+
     <hr>
-    
+
     <div align="right">
         <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName: 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}">
-             [Back to Menu]
+            [Back to Menu]
         </a>
     </div>
 </div>
