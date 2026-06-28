@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 // CUSTOM MODULES 
 import { SharedModule               } from 'src/app/_modules/shared/shared.module';
 import { ChatComponent              } from './chat/chat/chat.component';
-import { FractalDemoComponent       } from './fractalDemo/juliaform.component';
+import { FractalDemoComponent       } from './fractalDemo/fractalDemo.component';
 import { VisionHUBComponent         } from './VisionHUB/vision-HUB.component';
 // THIRD PARTY 
 import { NgxSignaturePadModule      } from '@eve-sama/ngx-signature-pad';

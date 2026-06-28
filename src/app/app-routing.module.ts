@@ -26,7 +26,7 @@ import { VisionHUBComponent          } from './_modules/_Demos/_DemosFeatures/mi
 import { LinearRegressionComponent   } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
 import { ContactformComponent        } from './_modules/about/contactform/contactform.component';
 import { IndexComponent              } from './_modules/about/index/index.component';
-import { FractalDemoComponent        } from './_modules/_Demos/_DemosFeatures/miscelaneous/fractalDemo/juliaform.component';
+import { FractalDemoComponent        } from './_modules/_Demos/_DemosFeatures/miscelaneous/fractalDemo/fractalDemo.component';
 import { PageUrlListComponent        } from './_components/page-url-list/page-url-list.component';
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
 import { LandingComponent            } from './_components/landing/landing.component';

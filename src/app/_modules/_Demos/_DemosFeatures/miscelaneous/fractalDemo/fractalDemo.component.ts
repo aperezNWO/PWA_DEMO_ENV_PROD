@@ -28,9 +28,9 @@ export interface LanguageCapability {
 }
 
 @Component({
-    selector: 'app-juliaform',
-    templateUrl: './juliaform.component.html',
-    styleUrl: './juliaform.component.css',
+    selector: 'app-fractalDemo',
+    templateUrl: './fractalDemo.component.html',
+    styleUrl: './fractalDemo.component.css',
     providers: [
         {
             provide: PAGE_TITLE_LOG,

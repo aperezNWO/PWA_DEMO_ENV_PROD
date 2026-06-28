@@ -616,7 +616,34 @@
 
    --[_] Read a Book.
 
-   --[_] fractal demo / OCR Demo.
+ 
+--[_] TIC TAC TOE 
+        
+                --[_]  option "user vs. online user" merge  [Chat + tictactoe].
+
+                --[_]  option "machine vs. machine" -- c++ neural network.
+
+                --[_]  option "machine vs. machine" -- tensorflow.
+
+                --[_]  option "user vs. machine" -- current form -- check min max -- tic tac toe engine
+                
+--[_] section apps (unified solutions).
+
+        --[_] partially or totally integrate [Voice + chat + export formats + opencv + ocr + tensorflow + (others)].
+
+--[_] Write an article / book.
+
+     --[_] Samples :
+
+            --[_] https://practicaldev-herokuapp-com.global.ssl.fastly.net/dipakahirav/the-power-of-machine-learning-in-angular-a-developers-guide-4l2
+     
+     --[_] On Language Spec.
+
+     --[_] On Libraries / Algorithms.
+
+     --[_] On Specific Solutions.
+
+ --[_] fractal demo / OCR Demo.
  
          --[_] Opencv -> Typescript.
  
@@ -650,30 +677,6 @@
                 
                 --[_]  app - sudoku image board ocr detection / open cv image processing.
 
---[_] TIC TAC TOE 
-        
-                --[_]  option "user vs. online user" merge  [Chat + tictactoe].
-
-                --[_]  option "machine vs. machine" -- c++ neural network.
-
-                --[_]  option "machine vs. machine" -- tensorflow.
-
-                --[_]  option "user vs. machine" -- current form -- check min max -- tic tac toe engine
-                
---[_] section apps (unified solutions).
-
-        --[_] partially or totally integrate [Voice + chat + export formats + opencv + ocr + tensorflow + (others)].
-
---[_] Write an article / book.
-
-     --[_] Samples :
-
-            --[_] https://practicaldev-herokuapp-com.global.ssl.fastly.net/dipakahirav/the-power-of-machine-learning-in-angular-a-developers-guide-4l2
-     
-     --[_] On Language Spec.
-
-     --[_] On Libraries / Algorithms.
-
-     --[_] On Specific Solutions.
+        --[_] Julia Fracal Zoom typescript.
 
 ////////////////////////////////////////////////////////////////////////////////
