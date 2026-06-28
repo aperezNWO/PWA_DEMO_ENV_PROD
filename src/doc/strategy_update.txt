@@ -653,6 +653,24 @@
 
         --[_] Export report : xls, csv, pdf. 
 
+ --[_] open cv image processing demo.
+
+        --[_] replaces hanoi 2d.
+
+        --[_] saves images to database.
+
+        --[_] upload image / draw image / take photo capture image.
+
+ --[_] open cv video processing demo.
+
+        --[_] replaces chat demo.
+
+        --[_] shapes recognition.
+
+        --[_] gestures recognition.
+
+        --[_] saves to db.
+
  --[_] fractal demo / OCR Demo.
  
          --[_] Opencv -> Typescript.
