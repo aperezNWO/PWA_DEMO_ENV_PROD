@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1782644835635,
+  "timestamp": 1782656840866,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -19,7 +19,7 @@
         "/PWA_DEMO_ENV_PROD/chunk-WWX6BADO.js",
         "/PWA_DEMO_ENV_PROD/favicon.ico",
         "/PWA_DEMO_ENV_PROD/index.html",
-        "/PWA_DEMO_ENV_PROD/main-4OCGFBSA.js",
+        "/PWA_DEMO_ENV_PROD/main-MYGIJTTC.js",
         "/PWA_DEMO_ENV_PROD/manifest.webmanifest",
         "/PWA_DEMO_ENV_PROD/polyfills-NS4656QS.js",
         "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css"
@@ -86,8 +86,8 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "05edb5a4c2a9673ddeb8d8f0a25f081dd33caefc",
-    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "0777fffbc5c007abff420a2ae71a301752a7b2d4",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "43d6aeb56c562088d61a949a9f500107d0ed505c",
+    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "61725d3568d71943883856005513d3c7bd1adf4e",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "322e77aa4398525af8feafcc43878bc6855315ac",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "930b1bb67aacd91a98c1613ff7fb92cce7367553",
@@ -139,8 +139,8 @@
     "/PWA_DEMO_ENV_PROD/chunk-NFG2OQJS.js": "d3e4d7548839b072c804e232bfa9e31bbac99f50",
     "/PWA_DEMO_ENV_PROD/chunk-WWX6BADO.js": "cf7aac42b93d52979f1c92de60f44de3a4cbc74a",
     "/PWA_DEMO_ENV_PROD/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/PWA_DEMO_ENV_PROD/index.html": "0551ef363dc0e47d0467e4a28e6a8a41bbbe5adb",
-    "/PWA_DEMO_ENV_PROD/main-4OCGFBSA.js": "778963b9ef80761ae17d1273c75203c9f02edb79",
+    "/PWA_DEMO_ENV_PROD/index.html": "3530506d5523256a39c2f4ab5b2415df19d9c918",
+    "/PWA_DEMO_ENV_PROD/main-MYGIJTTC.js": "33505e19f5f1417f4fe3acc5cf4f2ad7338ef2be",
     "/PWA_DEMO_ENV_PROD/manifest.webmanifest": "4c4fda145c554fe9a7ed086f63fa914267022e67",
     "/PWA_DEMO_ENV_PROD/polyfills-NS4656QS.js": "d92ccbd77dd00b2583aa8731a15b08b13ab445fb",
     "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css": "b4b303773c164ca15ba4f7f09c5ce83918d24668"
