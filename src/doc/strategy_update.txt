@@ -655,6 +655,8 @@
 
         --[_] Export report : xls, csv, pdf. 
 
+        --[_] Version 3.8.x. 
+
  --[_] open cv image processing demo.
 
         --[_] replaces hanoi 2d.

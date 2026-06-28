@@ -119,7 +119,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       supportedFractals: {
         [FractalType.MANDELBROT]   : true,
         [FractalType.JULIA]        : true,
-        [FractalType.BARNSLEY_FERN]: true   // ← NEW
+        [FractalType.BARNSLEY_FERN]: true   
       }
     },
     {
@@ -316,9 +316,8 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
         break;
 
       case 'nodejs':
-        serviceCall = this.computervisionService._OpenCv_GetFractal_NodeJs(
-          this.maxIterations, this.realPart, this.imagPart
-        );
+        serviceCall = this.computervisionService.GetFractal_NodeJs(
+          this.maxIterations, this.realPart, this.imagPart);
         break;
 
       case 'cpp':

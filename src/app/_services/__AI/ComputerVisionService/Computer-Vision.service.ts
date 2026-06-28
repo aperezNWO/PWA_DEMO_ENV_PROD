@@ -6,6 +6,21 @@ import { BaseService        } from '../../__baseService/base.service';
 import { OCRResponse        } from '../OCRService/ocr.service';
 import { FractalType        } from 'src/app/_modules/_Demos/_DemosFeatures/miscelaneous/fractalDemo/fractalDemo.component';
 
+// 1. ADD THIS STRUCTURAL INTERFACE CONTRACT HERE (Outside the class)
+interface NodeJsFractalResponse {
+  success: boolean;
+  width: number;
+  height: number;
+  maxIterations: number;
+  bounds: { 
+    xMin: number; 
+    xMax: number; 
+    yMin: number; 
+    yMax: number; 
+  };
+  matrix: number[][];
+}
+
 @Injectable({ providedIn: 'root' })
 export class ComputerVisionService extends BaseService {
 
@@ -69,26 +84,9 @@ export class ComputerVisionService extends BaseService {
     return this.http.post<OCRResponse>(`${this.__baseUrlNodeJsOpenCv}uploadCV`, { base64Image });
   }
 
+  
   ///////////////////////////////////////////////////////////////////
-  // OPEN CV -- FRACTALS -- CPP
-  ///////////////////////////////////////////////////////////////////
-
-  _OpenCv_GetFractal_CPP(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
-    const url = `${this.__baseUrlCPP}generatejuliaparams/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
-    return this.http.get(url, { responseType: 'blob' });
-  }
-
-  ///////////////////////////////////////////////////////////////////
-  // OPEN CV -- FRACTALS -- Node.js
-  ///////////////////////////////////////////////////////////////////
-
-  _OpenCv_GetFractal_NodeJs(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
-    const url = `${this.__baseUrlNodeJsOpenCv}generatejuliaImage/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
-    return this.http.get(url, { responseType: 'blob' });
-  }
-
-  ///////////////////////////////////////////////////////////////////
-  // FRACTALS -- TypeScript (pure math)
+  // FRACTALS - HELPER FUNCTIONS 
   ///////////////////////////////////////////////////////////////////
 
   /**
@@ -106,6 +104,196 @@ export class ComputerVisionService extends BaseService {
       b: Math.floor(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255),
     };
   }
+
+  //
+  private _renderFractalPipelinej2se(p_url: string, p_maxIterations: number): Observable<Blob> {
+    return new Observable<Blob>((observer) => {
+      const width = 800, height = 600;
+      this.http.get<any[]>(p_url).subscribe({
+        next: (points) => {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = width; canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) { observer.error(new Error('Could not get canvas context')); return; }
+
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, width, height);
+            const imageData = ctx.createImageData(width, height);
+            const data      = imageData.data;
+            for (let i = 3; i < data.length; i += 4) data[i] = 255;
+
+            points.forEach(point => {
+              if (point.x >= 0 && point.x < width && point.y >= 0 && point.y < height) {
+                const calcIter  = Math.round((point.intensity * p_maxIterations) / 255);
+                const finalIter = point.intensity === 0 ? p_maxIterations : calcIter;
+                const color     = this._getFractalColorRGB(finalIter, p_maxIterations);
+                const idx       = (point.y * width + point.x) * 4;
+                data[idx] = color.r; data[idx+1] = color.g; data[idx+2] = color.b;
+              }
+            });
+            ctx.putImageData(imageData, 0, 0);
+            canvas.toBlob((blob) => {
+              if (blob) { observer.next(blob); observer.complete(); }
+              else        observer.error(new Error('Failed to convert canvas to blob'));
+            }, 'image/png');
+          } catch (e) { observer.error(e); }
+        },
+        error: (e) => { console.error('[J2SE Pipeline] Fetching error:', e); observer.error(e); }
+      });
+    });
+  }
+  
+  ///////////////////////////////////////////////////////////////////
+  // OPEN CV -- FRACTALS -- CPP
+  ///////////////////////////////////////////////////////////////////
+
+  _OpenCv_GetFractal_CPP(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
+    const url = `${this.__baseUrlCPP}generatejuliaparams/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
+  ///////////////////////////////////////////////////////////////////
+  // OPEN CV -- FRACTALS -- Node.js
+  ///////////////////////////////////////////////////////////////////
+
+  //
+  GetFractal_NodeJs(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
+    const url = `${this.__baseUrlNodeJsOpenCv}generatejuliaImage/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
+    return this.http.get(url, { responseType: 'blob' });
+  }
+
+  // DISABLED
+  _GetFractal_NodeJs(p_maxIterations: number, p_fractalType: number): Observable<Blob> {
+    console.info(`selected fractal for j2se : ${p_fractalType}`);
+    switch (p_fractalType) {
+      case FractalType.MANDELBROT   :  return this.GenerateFractal_Mandelbrot_NodeJs(p_maxIterations);
+      case FractalType.JULIA        :  return this.GetFractal_Julia_NodeJs(p_maxIterations);
+      case FractalType.BARNSLEY_FERN:  return this.GenerateFractal_Leaf_NodeJs(p_maxIterations);
+      default:
+        console.warn(`[J2SE Proxy] Unhandled fractal type: ${p_fractalType}. Falling back to Mandelbrot.`);
+        return this.GenerateFractal_Mandelbrot_NodeJs(p_maxIterations);
+    }
+  }
+
+  //
+  GenerateFractal_Mandelbrot_NodeJs(p_maxIterations: number): Observable<Blob> {
+    const url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/fractal/generateMandelbrotPureMath`;
+    return this._renderFractalPipelineNodeJs(url, p_maxIterations);
+  }
+
+  //
+  GetFractal_Julia_NodeJs(p_maxIterations: number): Observable<Blob> {
+    const url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/Fractal/generateJuliaPureMath`;
+    return this._renderFractalPipelineNodeJs(url, p_maxIterations);
+  }
+
+  //
+  GenerateFractal_Leaf_NodeJs(p_maxIterations: number): Observable<Blob> {
+    const url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/fractal/generateBarnsleyFernPureMath`;
+    return this._renderFractalPipelineNodeJs(url, p_maxIterations);
+  }
+
+  /**
+   * Converts the JSON Julia matrix structure into an optimized display Blob
+   */
+  private _renderFractalPipelineNodeJs(p_url: string, p_maxIterations: number): Observable<Blob> {
+    return new Observable<Blob>((observer) => {
+      
+      this.http.get<NodeJsFractalResponse>(p_url).subscribe({
+        next: (response) => {
+          try {
+            if (!response.success || !response.matrix) {
+              observer.error(new Error('Invalid or failed matrix payload from Node.js service'));
+              return;
+            }
+
+            // Extract canvas boundaries dynamically from server response parameters
+            const width = response.width;
+            const height = response.height;
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+
+            if (!ctx) {
+              observer.error(new Error('Could not get canvas context'));
+              return;
+            }
+
+            // Reset image buffer layout matrix
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, width, height);
+
+            const imageData = ctx.createImageData(width, height);
+            const data = imageData.data;
+
+            // Pre-fill the alpha channel opacity (A) loop
+            for (let i = 3; i < data.length; i += 4) {
+              data[i] = 255;
+            }
+
+            // Inside your _renderFractalPipelineNodeJs loop:
+
+            for (let y = 0; y < height; y++) {
+              for (let x = 0; x < width; x++) {
+                
+                // Read raw math counts directly from response rows
+                const intensity = response.matrix[y][x];
+
+                // Calculate the smooth 't' ratio directly using floating-point math.
+                // Do NOT use Math.round() here.
+                const t = intensity / response.maxIterations;
+
+                // Pass the exact float ratio directly to the color calculator
+                const color = this._getFractalColorRGB_NodeJs(t);
+
+                const idx = (y * width + x) * 4;
+                data[idx]     = color.r; // R
+                data[idx + 1] = color.g; // G
+                data[idx + 2] = color.b; // B
+              }
+            }
+            // Commit graphic array buffers directly onto template context surface
+            ctx.putImageData(imageData, 0, 0);
+
+            // Export pure PNG stream chunks back to component bindings
+            canvas.toBlob((blob) => {
+              if (blob) {
+                observer.next(blob);
+                observer.complete();
+              } else {
+                observer.error(new Error('Failed to convert canvas matrix layout to blob'));
+              }
+            }, 'image/png');
+
+          } catch (error) {
+            observer.error(error);
+          }
+        },
+        error: (err) => {
+          console.error('[Node.js Matrix Pipeline] Fetching error:', err);
+          observer.error(err);
+        }
+      });
+    });
+  }
+
+ public _getFractalColorRGB_NodeJs(t: number): { r: number; g: number; b: number } {
+  // If the point never escaped, it remains pure black
+  if (t >= 1.0) return { r: 0, g: 0, b: 0 };
+  
+  // Apply the Bernstein polynomials exactly as originally written
+  return {
+    r: Math.floor(9   * (1 - t) * t * t * t * 255),
+    g: Math.floor(15  * (1 - t) * (1 - t) * t * t * 255),
+    b: Math.floor(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255)
+  };
+}
+  ///////////////////////////////////////////////////////////////////
+  // FRACTALS -- TypeScript (pure math)
+  ///////////////////////////////////////////////////////////////////
 
   /**
    * Router/Proxy for the local TypeScript engine.
@@ -409,73 +597,6 @@ export class ComputerVisionService extends BaseService {
     });
   }
 
-  _OpenCv_GetFractal_Typescript_Advanced(params: {
-    maxIterations : number;
-    realPart      : number;
-    imagPart      : number;
-    width?        : number;
-    height?       : number;
-    zoom?         : number;
-    centerX?      : number;
-    centerY?      : number;
-  }): Observable<Blob> {
-    return new Observable<Blob>((observer) => {
-      try {
-        const width  = params.width  ?? 800;
-        const height = params.height ?? 600;
-        const zoom   = params.zoom   ?? 1.0;
-        const cx     = params.centerX ?? 0.0;
-        const cy     = params.centerY ?? 0.0;
-        const rangeX = 3.0 / zoom, rangeY = 3.0 / zoom;
-        const bounds = { xMin: cx - rangeX/2, xMax: cx + rangeX/2, yMin: cy - rangeY/2, yMax: cy + rangeY/2 };
-
-        const canvas = document.createElement('canvas');
-        canvas.width = width; canvas.height = height;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) { observer.error(new Error('Could not get canvas context')); return; }
-
-        const imageData = ctx.createImageData(width, height);
-        const data      = imageData.data;
-        const xStep = (bounds.xMax - bounds.xMin) / width;
-        const yStep = (bounds.yMax - bounds.yMin) / height;
-
-        for (let y = 0; y < height; y++) {
-          for (let x = 0; x < width; x++) {
-            let zReal = bounds.xMin + x * xStep;
-            let zImag = bounds.yMin + y * yStep;
-            let iter  = 0;
-            while (iter < params.maxIterations && zReal*zReal + zImag*zImag <= 4.0) {
-              const nr = zReal*zReal - zImag*zImag + params.realPart;
-              zImag    = 2*zReal*zImag + params.imagPart;
-              zReal    = nr; iter++;
-            }
-            const idx   = (y * width + x) * 4;
-            const color = this._getFractalColorRGB(iter, params.maxIterations);
-            data[idx] = color.r; data[idx+1] = color.g; data[idx+2] = color.b; data[idx+3] = 255;
-          }
-        }
-        ctx.putImageData(imageData, 0, 0);
-        canvas.toBlob((blob) => {
-          if (blob) { observer.next(blob); observer.complete(); }
-          else        observer.error(new Error('Failed to convert canvas to blob'));
-        }, 'image/png');
-      } catch (e) { observer.error(e); }
-    });
-  }
-
-  _OpenCv_GetFractal_Typescript_Batch(
-    params: Array<{ maxIterations: number; realPart: number; imagPart: number }>
-  ): Observable<Blob[]> {
-    const requests = params.map(p =>
-      this.GetFractal_Typescript_Julia(p.maxIterations, p.realPart, p.imagPart).toPromise()
-    );
-    return new Observable<Blob[]>((observer) => {
-      Promise.all(requests)
-        .then(blobs => { observer.next(blobs as Blob[]); observer.complete(); })
-        .catch(e    => observer.error(e));
-    });
-  }
-
   //-------------------------------------------------------------------
   // J2SE
   //-------------------------------------------------------------------
@@ -493,49 +614,11 @@ export class ComputerVisionService extends BaseService {
 
   GetFractal_Julia_j2se(p_maxIterations: number): Observable<Blob> {
     const url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=2&zoomInOut=false&zoomStep=1`;
-    return this._renderJ2SECanvasPipeline(url, p_maxIterations);
+    return this._renderFractalPipelinej2se(url, p_maxIterations);
   }
 
   GenerateFractal_Leaf_j2se(p_maxIterations: number): Observable<Blob> {
     const url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=3&zoomInOut=false&zoomStep=1`;
-    return this._renderJ2SECanvasPipeline(url, p_maxIterations);
-  }
-
-  private _renderJ2SECanvasPipeline(p_url: string, p_maxIterations: number): Observable<Blob> {
-    return new Observable<Blob>((observer) => {
-      const width = 800, height = 600;
-      this.http.get<any[]>(p_url).subscribe({
-        next: (points) => {
-          try {
-            const canvas = document.createElement('canvas');
-            canvas.width = width; canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            if (!ctx) { observer.error(new Error('Could not get canvas context')); return; }
-
-            ctx.fillStyle = '#000000';
-            ctx.fillRect(0, 0, width, height);
-            const imageData = ctx.createImageData(width, height);
-            const data      = imageData.data;
-            for (let i = 3; i < data.length; i += 4) data[i] = 255;
-
-            points.forEach(point => {
-              if (point.x >= 0 && point.x < width && point.y >= 0 && point.y < height) {
-                const calcIter  = Math.round((point.intensity * p_maxIterations) / 255);
-                const finalIter = point.intensity === 0 ? p_maxIterations : calcIter;
-                const color     = this._getFractalColorRGB(finalIter, p_maxIterations);
-                const idx       = (point.y * width + point.x) * 4;
-                data[idx] = color.r; data[idx+1] = color.g; data[idx+2] = color.b;
-              }
-            });
-            ctx.putImageData(imageData, 0, 0);
-            canvas.toBlob((blob) => {
-              if (blob) { observer.next(blob); observer.complete(); }
-              else        observer.error(new Error('Failed to convert canvas to blob'));
-            }, 'image/png');
-          } catch (e) { observer.error(e); }
-        },
-        error: (e) => { console.error('[J2SE Pipeline] Fetching error:', e); observer.error(e); }
-      });
-    });
+    return this._renderFractalPipelinej2se(url, p_maxIterations);
   }
 }
