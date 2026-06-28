@@ -4,6 +4,7 @@ import { Observable         } from 'rxjs';
 import { ConfigService      } from '../../__Utils/ConfigService/config.service';
 import { BaseService        } from '../../__baseService/base.service';
 import { OCRResponse        } from '../OCRService/ocr.service';
+import { FractalType        } from 'src/app/_modules/_Demos/_DemosFeatures/miscelaneous/fractalDemo/fractalDemo.component';
 
 @Injectable({ providedIn: 'root' })
 export class ComputerVisionService extends BaseService {
@@ -90,20 +91,30 @@ export class ComputerVisionService extends BaseService {
   // FRACTALS -- TypeScript (pure math)
   ///////////////////////////////////////////////////////////////////
 
+  /**
+   * Helper — maps iteration count to RGB using the same smooth-coloring
+   * polynomial used by the C++ backend, so visual output is comparable
+   * across engines for Mandelbrot / Julia.
+   * NOTE: Not used by the Barnsley Fern (which has its own green palette).
+   */
   public _getFractalColorRGB(iteration: number, maxIterations: number): { r: number; g: number; b: number } {
     if (iteration === maxIterations) return { r: 0, g: 0, b: 0 };
     const t = iteration / maxIterations;
     return {
-      r: Math.floor(9  * (1 - t) * t * t * t * 255),
-      g: Math.floor(15 * (1 - t) * (1 - t) * t * t * 255),
+      r: Math.floor(9   * (1 - t) * t * t * t * 255),
+      g: Math.floor(15  * (1 - t) * (1 - t) * t * t * 255),
       b: Math.floor(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255),
     };
   }
 
   /**
    * Router/Proxy for the local TypeScript engine.
-   * Now accepts an optional `bounds` parameter so both Mandelbrot AND Julia
-   * support zoom/pan from the component layer.
+   * Dispatches to the correct renderer based on fractal type.
+   * Passes optional bounds so Mandelbrot and Julia support zoom/pan.
+   *
+   * case 1 → Mandelbrot
+   * case 2 → Julia
+   * case 4 → Barnsley Fern (IFS, TypeScript-only)
    */
   GetFractal_Typescript(
     p_maxIterations : number,
@@ -113,8 +124,9 @@ export class ComputerVisionService extends BaseService {
     p_bounds?       : { xMin: number; xMax: number; yMin: number; yMax: number }
   ): Observable<Blob> {
     switch (p_fractalType) {
-      case 1:  return this.GetFractal_Typescript_Manderblot(p_maxIterations, p_bounds);
-      case 2:  return this.GetFractal_Typescript_Julia(p_maxIterations, p_realPart, p_imagPart, p_bounds);
+      case FractalType.MANDELBROT    :  return this.GetFractal_Typescript_Manderblot(p_maxIterations, p_bounds);
+      case FractalType.JULIA         :  return this.GetFractal_Typescript_Julia(p_maxIterations, p_realPart, p_imagPart, p_bounds);
+      case FractalType.BARNSLEY_FERN :  return this.GetFractal_Typescript_BarnsleyFern(p_maxIterations);
       default: return this.GetFractal_Typescript_Julia(p_maxIterations, p_realPart, p_imagPart, p_bounds);
     }
   }
@@ -137,8 +149,8 @@ export class ComputerVisionService extends BaseService {
   }
 
   /**
-   * Julia renderer — now accepts optional bounds for zoom/pan.
-   * Default bounds show the classic [-1.5, 1.5] x [-1.5, 1.5] view.
+   * Julia renderer — accepts optional bounds for zoom/pan.
+   * Default bounds: classic [-1.5, 1.5] × [-1.5, 1.5] view.
    */
   GetFractal_Typescript_Julia(
     p_maxIterations : number,
@@ -159,7 +171,201 @@ export class ComputerVisionService extends BaseService {
     }, activeBounds);
   }
 
-  /** Shared canvas pipeline — used by both Mandelbrot and Julia. */
+  ///////////////////////////////////////////////////////////////////
+  // BARNSLEY FERN  — Iterated Function System (IFS), TypeScript
+  ///////////////////////////////////////////////////////////////////
+  /**
+   * Renders the Barnsley Fern fractal using the classic four-affine-
+   * transformation IFS algorithm (Michael Barnsley, 1988).
+   *
+   * Algorithm overview
+   * ──────────────────
+   * Starting from (x=0, y=0) we repeatedly apply one of four affine
+   * transformations chosen by a weighted random roll.  After a short
+   * warm-up the orbit traces the attractor — the fern shape.
+   *
+   * The four transformations and their probabilities:
+   *
+   *  f1  (p = 1%)   — stem:    maps everything to the base stalk
+   *  f2  (p = 85%)  — leaflet: the main self-similar frond
+   *  f3  (p = 7%)   — left sub-frond
+   *  f4  (p = 7%)   — right sub-frond
+   *
+   * Coordinate mapping
+   * ──────────────────
+   * The IFS attractor lives in the real plane roughly:
+   *   x ∈ [-2.6, 2.6]   y ∈ [0, 10]
+   * We map that linearly onto the canvas pixels with a small padding,
+   * then mirror the y-axis (canvas y grows downward, math y grows up).
+   *
+   * Coloring
+   * ────────
+   * Each point is colored with a green gradient that varies with the
+   * normalized y-coordinate of the attractor point, giving the fern
+   * a natural depth from dark roots to bright frond tips.
+   *
+   * @param p_numPoints  Number of IFS iterations (default used: p_maxIterations
+   *                     is repurposed as a multiplier → actual points =
+   *                     p_maxIterations * 20, capped at 1 000 000).
+   *                     Higher values produce a denser, smoother fern.
+   */
+  GetFractal_Typescript_BarnsleyFern(p_maxIterations: number): Observable<Blob> {
+    return new Observable<Blob>((observer) => {
+      try {
+        const width     = 800;
+        const height    = 600;
+        const canvas    = document.createElement('canvas');
+        canvas.width    = width;
+        canvas.height   = height;
+        const ctx       = canvas.getContext('2d');
+        if (!ctx) { observer.error(new Error('Could not get canvas context')); return; }
+
+        // Black background
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(0, 0, width, height);
+
+        const imageData = ctx.createImageData(width, height);
+        const data      = imageData.data;
+
+        // Fill alpha channel — all pixels fully opaque
+        for (let i = 3; i < data.length; i += 4) data[i] = 255;
+
+        // ── IFS attractor bounds (real plane) ───────────────────────────
+        // Matches the Java renderer bounds exactly for consistent output.
+        const xMin = -2.182, xMax = 2.655;
+        const yMin =  0.0,   yMax = 9.96;
+        const padding = 20;
+
+        // Map attractor coords → canvas pixels (Y-axis inverted: math grows up, canvas grows down)
+        const toPixelX = (ax: number) =>
+          Math.round(padding + ((ax - xMin) / (xMax - xMin)) * (width  - 2 * padding));
+        const toPixelY = (ay: number) =>
+          Math.round(height - padding - ((ay - yMin) / (yMax - yMin)) * (height - 2 * padding));
+
+        // ── IFS parameters ───────────────────────────────────────────────
+        // Each row: [a, b, c, d, e, f, probability]
+        // Transformation: x' = a*x + b*y + e
+        //                 y' = c*x + d*y + f
+        const transforms: [number, number, number, number, number, number, number][] = [
+          //   a       b       c       d      e      f      p
+          [  0.00,   0.00,   0.00,   0.16,  0.00,  0.00,  0.01 ],  // f1 — stem
+          [  0.85,   0.04,  -0.04,   0.85,  0.00,  1.60,  0.85 ],  // f2 — main frond
+          [  0.20,  -0.26,   0.23,   0.22,  0.00,  1.60,  0.07 ],  // f3 — left sub-frond
+          [ -0.15,   0.28,   0.26,   0.24,  0.00,  0.44,  0.07 ],  // f4 — right sub-frond
+        ];
+
+        // Pre-compute cumulative probability thresholds
+        const thresholds: number[] = [];
+        let cumulative = 0;
+        for (const t of transforms) {
+          cumulative += t[6];
+          thresholds.push(cumulative);
+        }
+
+        // ── Pixel grid buffer (mirrors Java's pixelGrid[][]) ─────────────
+        // Stores a normalized y value (0–1) per hit pixel instead of
+        // accumulating RGB directly. This eliminates the bloom/washout
+        // problem caused by heavily-visited pixels overflowing to white.
+        // Un-hit pixels remain -1.
+        const pixelNormY = new Float32Array(width * height).fill(-1);
+
+        // ── Main IFS iteration loop ──────────────────────────────────────
+        const numPoints = Math.max(150_000, Math.min(p_maxIterations * 20, 1_000_000));
+        const t0        = performance.now();
+
+        let ax = 0, ay = 0;
+
+        // Warm-up: discard first 20 iterations so the orbit settles onto
+        // the attractor before painting begins.
+        for (let w = 0; w < 20; w++) {
+          const roll = Math.random();
+          let ti = 0;
+          while (ti < thresholds.length - 1 && roll > thresholds[ti]) ti++;
+          const [a, b, c, d, e, f] = transforms[ti];
+          const nx = a * ax + b * ay + e;
+          const ny = c * ax + d * ay + f;
+          ax = nx; ay = ny;
+        }
+
+        for (let i = 0; i < numPoints; i++) {
+          const roll = Math.random();
+          let ti = 0;
+          while (ti < thresholds.length - 1 && roll > thresholds[ti]) ti++;
+          const [ta, tb, tc, td, te, tf] = transforms[ti];
+
+          const nx = ta * ax + tb * ay + te;
+          const ny = tc * ax + td * ay + tf;
+          ax = nx; ay = ny;
+
+          const px = toPixelX(ax);
+          const py = toPixelY(ay);
+          if (px < 0 || px >= width || py < 0 || py >= height) continue;
+
+          // Record the normalized height of the first visit to each pixel.
+          // First-visit wins (like Java's flat 200): no accumulation bloom.
+          const bufIdx = py * width + px;
+          if (pixelNormY[bufIdx] < 0) {
+            pixelNormY[bufIdx] = Math.min(1, Math.max(0, (ay - yMin) / (yMax - yMin)));
+          }
+        }
+
+        // ── Palette pass — paint buffered pixels ──────────────────────────
+        // Two palettes are available; swap the comment to switch:
+        //
+        //  A) OCHRE  — matches the Java/_getFractalColorRGB warm amber tone.
+        //              Uses the same polynomial as the escape-time fractals,
+        //              with a fixed mid-range t so the output sits in the
+        //              ochre/amber band (t ≈ 0.35–0.65 maps to warm tones).
+        //
+        //  B) GREEN  — natural botanical gradient, high-contrast version.
+        //              More legible than the original because it starts at
+        //              a much higher base brightness (80 instead of 60)
+        //              and spans a wider range (80→230 instead of 60→210).
+
+        const fernColor = (normY: number): [number, number, number] => {
+
+          // ── Palette A: OCHRE (mirrors Java output) ──────────────────
+          // Map normY into the warm region of the escape-time polynomial.
+          // t ∈ [0.25, 0.70] keeps us in the amber/gold band.
+          const t  = 0.25 + normY * 0.45;
+          const cr = Math.min(255, Math.floor(9   * (1 - t) * t * t * t * 255 * 3.5));
+          const cg = Math.min(255, Math.floor(15  * (1 - t) * (1 - t) * t * t * 255 * 2.0));
+          const cb = Math.min(255, Math.floor(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255 * 1.2));
+          return [cr, cg, cb];
+
+          // ── Palette B: HIGH-CONTRAST GREEN (uncomment to use) ───────
+          // const cr = Math.floor(15  + normY * 40);   //  15 →  55
+          // const cg = Math.floor(80  + normY * 150);  //  80 → 230
+          // const cb = Math.floor(15  + normY * 25);   //  15 →  40
+          // return [cr, cg, cb];
+        };
+
+        for (let py = 0; py < height; py++) {
+          for (let px = 0; px < width; px++) {
+            const normY = pixelNormY[py * width + px];
+            if (normY < 0) continue;                    // un-hit pixel — leave black
+            const [cr, cg, cb] = fernColor(normY);
+            const idx = (py * width + px) * 4;
+            data[idx    ] = cr;
+            data[idx + 1] = cg;
+            data[idx + 2] = cb;
+            // alpha already set to 255 in the fill pass above
+          }
+        }
+
+        ctx.putImageData(imageData, 0, 0);
+        console.log(`[TS Barnsley Fern] ${numPoints} points in ${(performance.now() - t0).toFixed(2)}ms`);
+
+        canvas.toBlob((blob) => {
+          if (blob) { observer.next(blob); observer.complete(); }
+          else        observer.error(new Error('Failed to assemble Barnsley Fern canvas stream'));
+        }, 'image/png');
+
+      } catch (e) { observer.error(e); }
+    });
+  }
+
+  /** Shared canvas pipeline — used by Mandelbrot and Julia (per-pixel iteration). */
   private _renderTSCanvasPipeline(
     p_maxIterations : number,
     p_pixelFormula  : (x: number, y: number) => number,
@@ -277,8 +483,8 @@ export class ComputerVisionService extends BaseService {
   GetFractal_j2se(p_maxIterations: number, p_fractalType: number): Observable<Blob> {
     console.info(`selected fractal for j2se : ${p_fractalType}`);
     switch (p_fractalType) {
-      case 2:  return this.GetFractal_Julia_j2se(p_maxIterations);
-      case 3:  return this.GenerateFractal_Leaf_j2se(p_maxIterations);
+      case FractalType.JULIA        :  return this.GetFractal_Julia_j2se(p_maxIterations);
+      case FractalType.BARNSLEY_FERN:  return this.GenerateFractal_Leaf_j2se(p_maxIterations);
       default:
         console.warn(`[J2SE Proxy] Unhandled fractal type: ${p_fractalType}. Falling back to Julia.`);
         return this.GetFractal_Julia_j2se(p_maxIterations);

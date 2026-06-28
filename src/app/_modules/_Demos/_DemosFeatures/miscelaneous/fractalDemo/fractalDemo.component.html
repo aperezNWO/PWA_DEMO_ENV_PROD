@@ -36,7 +36,7 @@
                 </select>
             </div>
 
-            <!-- Julia-only parameters -->
+            <!-- Julia-only: complex constant inputs -->
             <div class="parametric-box" *ngIf="selectedFractal === FractalType.JULIA">
                 <div class="form-group">
                     <label for="realPart">Real Constant Part (Cr):</label>
@@ -50,10 +50,32 @@
                 </div>
             </div>
 
+            <!-- Barnsley Fern: algorithm info panel -->
+            <div class="fern-info-box" *ngIf="selectedFractal === FractalType.BARNSLEY_FERN">
+                <div class="fern-info-header">🍃 Barnsley Fern — IFS Algorithm</div>
+                <div class="fern-info-body">
+                    Uses <strong>4 affine transformations</strong> chosen by weighted random roll,
+                    iterated from (0, 0). The orbit traces the fern attractor entirely in-browser
+                    with no backend required.
+                    <div class="fern-transform-grid">
+                        <span class="fern-transform">f1 · 1% → stem</span>
+                        <span class="fern-transform">f2 · 85% → main frond</span>
+                        <span class="fern-transform">f3 · 7% → left sub-frond</span>
+                        <span class="fern-transform">f4 · 7% → right sub-frond</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Iterations / density slider -->
             <div class="form-group">
-                <label for="maxIterations">Max Resolution Iterations:</label>
+                <label for="maxIterations">{{ iterationsLabel }}:</label>
                 <input type="number" id="maxIterations" name="maxIterations"
-                       [(ngModel)]="maxIterations" class="form-control" />
+                       [(ngModel)]="maxIterations" class="form-control"
+                       [min]="selectedFractal === FractalType.BARNSLEY_FERN ? 100 : 50"
+                       [max]="selectedFractal === FractalType.BARNSLEY_FERN ? 50000 : 5000" />
+                <small class="form-text fern-hint" *ngIf="iterationsHint">
+                    {{ iterationsHint }}
+                </small>
             </div>
 
             <!-- Action buttons -->
@@ -98,108 +120,72 @@
 
         <hr>
 
-        <!-- ═══════════════════════════════════════════════════════════════
-             FRACTAL IMAGE DISPLAY + RETICLE OVERLAY
-             ═══════════════════════════════════════════════════════════════ -->
+        <!-- ═══════════════════════════════════════════════════════════
+             FRACTAL IMAGE + RETICLE OVERLAY
+             ═══════════════════════════════════════════════════════════ -->
         <div *ngIf="imageUrl" #_fractal_image class="canvas-display-container">
 
             <h3>Generated Viewport Result:</h3>
 
-            <!-- Wrapper holds both the image and the reticle overlay -->
             <div class="fractal-img-wrapper" #fractalImgWrapper>
 
-                <!-- The rendered fractal image -->
                 <img [src]="imageUrl"
                      alt="Fractal Viewport Graphic"
                      (click)="onCanvasClick($event)"
                      [class.interactive-lens]="isZoomable"
                      [title]="zoomHint"
                      class="fractal-img"
-                     width="350" height="350" />
+                     />
 
-                <!-- ── RETICLE OVERLAY (visible only when toggled) ─────────── -->
+                <!-- Reticle overlay — only for zoomable fractals -->
                 <div class="reticle-overlay" *ngIf="reticleVisible && isZoomable"
                      (touchmove)="onReticleTouchMove($event)"
                      (touchend)="onReticleTouchEnd()">
 
-                    <!-- Draggable crosshair -->
                     <div class="reticle"
                          [style.left.%]="reticleX"
                          [style.top.%]="reticleY"
                          (mousedown)="onReticleMouseDown($event)"
                          (touchstart)="onReticleTouchStart($event)">
-                        <!-- Crosshair arms -->
                         <span class="reticle-h"></span>
                         <span class="reticle-v"></span>
-                        <!-- Center dot -->
                         <span class="reticle-dot"></span>
                     </div>
 
-                    <!-- Reticle instruction label -->
-                    <div class="reticle-hint">
-                        Drag crosshair · tap Apply
-                    </div>
+                    <div class="reticle-hint">Drag crosshair · tap Apply</div>
                 </div>
-                <!-- ── END RETICLE OVERLAY ─────────────────────────────────── -->
 
             </div>
             <!-- /fractal-img-wrapper -->
 
-            <!-- ── ZOOM CONTROLS BAR ────────────────────────────────────────── -->
+            <!-- Zoom controls bar -->
             <div class="zoom-controls-bar" *ngIf="isZoomable">
 
-                <!-- Desktop zoom badge -->
                 <div class="zoom-badge desktop-only">
                     🔍 Zoom: <strong>{{zoomFactor}}x</strong>
                     <span class="zoom-hint">{{ zoomHint }}</span>
                 </div>
 
-                <!-- Mobile minifab cluster -->
                 <div class="minifab-cluster mobile-only">
-
-                    <!-- Toggle reticle button -->
-                    <button type="button"
-                            class="minifab minifab-toggle"
+                    <button type="button" class="minifab minifab-toggle"
                             [class.active]="reticleVisible"
                             (click)="toggleReticle()"
                             title="Toggle zoom reticle">
                         {{ reticleVisible ? '✕' : '⊕' }}
                     </button>
-
-                    <!-- Zoom-in pill -->
-                    <button type="button"
-                            class="minifab minifab-in"
+                    <button type="button" class="minifab minifab-in"
                             [class.active]="activeZoomMode === 'in'"
                             [disabled]="!reticleVisible"
-                            (click)="setZoomMode('in')"
-                            title="Zoom in at reticle">
-                        +
-                    </button>
-
-                    <!-- Zoom-out pill -->
-                    <button type="button"
-                            class="minifab minifab-out"
+                            (click)="setZoomMode('in')" title="Zoom in">+</button>
+                    <button type="button" class="minifab minifab-out"
                             [class.active]="activeZoomMode === 'out'"
                             [disabled]="!reticleVisible || zoomFactor <= 1"
-                            (click)="setZoomMode('out')"
-                            title="Zoom out from reticle">
-                        −
-                    </button>
-
-                    <!-- Apply button -->
-                    <button type="button"
-                            class="minifab minifab-apply"
+                            (click)="setZoomMode('out')" title="Zoom out">−</button>
+                    <button type="button" class="minifab minifab-apply"
                             [disabled]="!reticleVisible || !activeZoomMode"
-                            (click)="applyReticleZoom()"
-                            title="Apply zoom at crosshair position">
-                        ✓ Apply
-                    </button>
-
-                    <!-- Zoom level badge -->
+                            (click)="applyReticleZoom()" title="Apply zoom">✓ Apply</button>
                     <span class="zoom-badge-mobile">🔍 {{zoomFactor}}x</span>
-
                 </div>
-                <!-- /minifab-cluster -->
 
             </div>
             <!-- /zoom-controls-bar -->

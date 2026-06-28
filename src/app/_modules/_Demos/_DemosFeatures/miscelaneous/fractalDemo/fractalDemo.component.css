@@ -1,11 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    FRACTAL DEMO — Component Styles
-   Additions vs. original:
-     · .fractal-img-wrapper  — relative container for overlay positioning
-     · .reticle-overlay      — full-size transparent touch surface
-     · .reticle              — draggable crosshair
-     · .minifab-cluster      — mobile zoom control row
-     · .desktop-only / .mobile-only — responsive visibility helpers
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ── Form container ─────────────────────────────────────────────────────── */
@@ -36,11 +30,10 @@
   border-radius: 4px;
   transition: border-color .3s;
 }
-
 .form-container input[type="text"]:hover,
-.form-container input[type="number"]:hover  { border-color: #007bff; }
+.form-container input[type="number"]:hover { border-color: #007bff; }
 .form-container input[type="text"]:focus,
-.form-container input[type="number"]:focus  {
+.form-container input[type="number"]:focus {
   border-color: #007bff;
   outline: none;
   box-shadow: 0 0 5px rgba(0,123,255,.5);
@@ -54,8 +47,8 @@
   cursor: pointer;
   transition: background-color .3s;
 }
-.form-container button:hover        { background-color: #0056b3; }
-.form-container button:disabled     { background-color: #ccc; cursor: not-allowed; }
+.form-container button:hover    { background-color: #0056b3; }
+.form-container button:disabled { background-color: #ccc; cursor: not-allowed; }
 
 .form-container label {
   display: block;
@@ -91,11 +84,7 @@
   color: #2d3748;
 }
 .implementation-select:hover  { border-color: #007bff; }
-.implementation-select:focus  {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 0 5px rgba(0,123,255,.5);
-}
+.implementation-select:focus  { border-color: #007bff; outline: none; box-shadow: 0 0 5px rgba(0,123,255,.5); }
 .implementation-select option { padding: 8px; font-size: x-small; color: #2d3748; }
 
 .form-text {
@@ -104,6 +93,55 @@
   font-size: x-small;
   color: #718096;
   line-height: 1.5;
+}
+
+/* ── Barnsley Fern info panel ───────────────────────────────────────────── */
+.fern-info-box {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 1px solid #86efac;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.fern-info-header {
+  background: #16a34a;
+  color: white;
+  font-weight: 600;
+  font-size: x-small;
+  padding: 8px 12px;
+  letter-spacing: .3px;
+}
+
+.fern-info-body {
+  padding: 10px 12px;
+  font-size: x-small;
+  color: #14532d;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.fern-transform-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 10px;
+  margin-top: 8px;
+}
+
+.fern-transform {
+  background: rgba(22, 163, 74, .12);
+  border: 1px solid #86efac;
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-family: monospace;
+  font-size: 10px;
+  color: #166534;
+  white-space: nowrap;
+}
+
+.fern-hint {
+  color: #16a34a !important;
+  font-style: italic;
 }
 
 /* ── Button row ─────────────────────────────────────────────────────────── */
@@ -171,86 +209,76 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .fractal-img-wrapper {
-  position: relative;          /* anchor for absolute children */
-  display: inline-block;       /* shrink-wrap to the image */
-  line-height: 0;              /* remove phantom whitespace under <img> */
-  touch-action: none;          /* let our handlers own all touch events */
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+  touch-action: none;
   user-select: none;
 }
 
-/* The fractal image itself */
 .fractal-img {
   display: block;
-  max-width: 100%;
+  /* Constrain display width — canvas is always 800×600 internally.
+     The browser must scale it down to fit the container.
+     image-rendering: pixelated prevents bilinear blur on downscale,
+     keeping the 1px IFS dots crisp rather than smeared. */
+  width: 100%;
+  max-width: 800px;
   height: auto;
   border-radius: 4px;
+  image-rendering: pixelated;       /* Chrome, Edge, Firefox 93+ */
+  image-rendering: -moz-crisp-edges; /* Firefox < 93 fallback    */
 }
-
 .fractal-img.interactive-lens { cursor: crosshair; }
 
 /* ── Reticle overlay ────────────────────────────────────────────────────── */
 .reticle-overlay {
   position: absolute;
-  inset: 0;                    /* fill the wrapper exactly */
+  inset: 0;
   cursor: crosshair;
   touch-action: none;
 }
 
-/* Draggable crosshair */
 .reticle {
   position: absolute;
   width: 60px;
   height: 60px;
-  transform: translate(-50%, -50%);   /* center on the % coordinates */
+  transform: translate(-50%, -50%);
   pointer-events: all;
   cursor: grab;
   touch-action: none;
 }
 .reticle:active { cursor: grabbing; }
 
-/* Horizontal arm */
 .reticle-h {
   position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
+  top: 50%; left: 0; right: 0;
   height: 1.5px;
   background: rgba(255,255,255,.9);
   box-shadow: 0 0 3px rgba(0,0,0,.8);
   transform: translateY(-50%);
 }
-
-/* Vertical arm */
 .reticle-v {
   position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
+  left: 50%; top: 0; bottom: 0;
   width: 1.5px;
   background: rgba(255,255,255,.9);
   box-shadow: 0 0 3px rgba(0,0,0,.8);
   transform: translateX(-50%);
 }
-
-/* Center dot */
 .reticle-dot {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 8px;
-  height: 8px;
+  top: 50%; left: 50%;
+  width: 8px; height: 8px;
   background: #ff4b4b;
   border-radius: 50%;
   border: 1.5px solid white;
   transform: translate(-50%, -50%);
 }
 
-/* Hint label at bottom of overlay */
 .reticle-hint {
   position: absolute;
-  bottom: 6px;
-  left: 0;
-  right: 0;
+  bottom: 6px; left: 0; right: 0;
   text-align: center;
   font-size: 10px;
   color: rgba(255,255,255,.85);
@@ -271,7 +299,6 @@
   flex-wrap: wrap;
 }
 
-/* ── Desktop zoom badge ─────────────────────────────────────────────────── */
 .zoom-badge {
   display: inline-flex;
   align-items: center;
@@ -283,12 +310,8 @@
   padding: 4px 10px;
   color: #2c3e50;
 }
-.zoom-hint {
-  color: #718096;
-  font-size: 10px;
-}
+.zoom-hint { color: #718096; font-size: 10px; }
 
-/* ── Mobile minifab cluster ─────────────────────────────────────────────── */
 .minifab-cluster {
   display: flex;
   align-items: center;
@@ -297,7 +320,6 @@
   justify-content: center;
 }
 
-/* Base minifab pill */
 .minifab {
   display: inline-flex;
   align-items: center;
@@ -319,38 +341,18 @@
 .minifab:active:not(:disabled) { transform: scale(.92); }
 .minifab:disabled { opacity: .4; cursor: not-allowed; }
 
-/* Toggle (⊕ / ✕) */
-.minifab-toggle {
-  background: #e8f4fd;
-  border-color: #90cdf4;
-  color: #2b6cb0;
-  font-size: 20px;
-}
-.minifab-toggle.active {
-  background: #2b6cb0;
-  color: white;
-  border-color: #2b6cb0;
-}
+.minifab-toggle { background: #e8f4fd; border-color: #90cdf4; color: #2b6cb0; font-size: 20px; }
+.minifab-toggle.active { background: #2b6cb0; color: white; border-color: #2b6cb0; }
 
-/* Zoom-in + */
 .minifab-in  { background: #e6ffed; border-color: #68d391; color: #276749; }
 .minifab-in.active  { background: #276749; color: white; border-color: #276749; }
 
-/* Zoom-out − */
 .minifab-out { background: #fff5f5; border-color: #fc8181; color: #9b2c2c; }
 .minifab-out.active { background: #9b2c2c; color: white; border-color: #9b2c2c; }
 
-/* Apply ✓ */
-.minifab-apply {
-  background: #2b6cb0;
-  color: white;
-  border-color: #2b6cb0;
-  font-size: 13px;
-  padding: 0 14px;
-}
+.minifab-apply { background: #2b6cb0; color: white; border-color: #2b6cb0; font-size: 13px; padding: 0 14px; }
 .minifab-apply:hover:not(:disabled) { background: #2c5282; }
 
-/* Zoom level badge (mobile) */
 .zoom-badge-mobile {
   font-size: 11px;
   color: #4a5568;
@@ -361,23 +363,21 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   RESPONSIVE — desktop-only / mobile-only helpers
+   RESPONSIVE
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* On desktop (≥ 769 px): show click-hint badge, hide minifabs */
 @media (min-width: 769px) {
   .mobile-only  { display: none !important; }
   .desktop-only { display: inline-flex; }
 }
 
-/* On mobile (≤ 768 px): hide click-hint badge, show minifabs */
 @media (max-width: 768px) {
   .desktop-only { display: none !important; }
   .mobile-only  { display: flex; }
-
   .form-container { max-width: 95%; padding: 15px; }
   .button-group   { flex-direction: column; }
   .button-group button { width: 100%; margin-bottom: 8px; white-space: normal; }
+  .fern-transform-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
@@ -388,31 +388,15 @@
 /* ── Misc ────────────────────────────────────────────────────────────────── */
 .slider {
   -webkit-appearance: none;
-  width: 100%;
-  height: 10px;
+  width: 100%; height: 10px;
   border-radius: 5px;
   background: #d3d3d3;
-  outline: none;
-  opacity: .8;
+  outline: none; opacity: .8;
   transition: opacity .2s;
 }
 .slider:hover { opacity: 1; }
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  background: #4285F4;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,.2);
-}
-.slider::-moz-range-thumb {
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  background: #4285F4;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 2px 5px rgba(0,0,0,.2);
-}
+.slider::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: #4285F4; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,.2); }
+.slider::-moz-range-thumb     { width: 20px; height: 20px; border-radius: 50%; background: #4285F4; cursor: pointer; border: none; box-shadow: 0 2px 5px rgba(0,0,0,.2); }
 
 .form-container input,
 .form-container select,
