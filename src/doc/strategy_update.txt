@@ -420,7 +420,7 @@
 
              --[_] Merge hanoi2d / hanoi 3d engines on federation + expose other languages.
 
-             --[_] Hanoi 2d / generic voice component.
+             --[_] Hanoi 2d / generic voice component / module federation.
 
    --[_] Sudoku solve from camera capture.
 
