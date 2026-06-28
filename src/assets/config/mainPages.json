@@ -858,6 +858,11 @@
                   "id"   : 17,
                   "url"  : "https://www.theodinproject.com/",
                   "text" : "The Odin Project"
+              },
+              {
+                  "id"   : 18,
+                  "url"  : "https://www.netacad.com/catalogs/learn/programming",
+                  "text" : "cISCO Networking Academy - Programming"
               }
          ]
       },
