@@ -157,60 +157,45 @@ export class ComputerVisionService extends BaseService {
   // OPEN CV -- FRACTALS -- Node.js
   ///////////////////////////////////////////////////////////////////
 
-  // DISABLED
-  _GetFractal_NodeJs(p_maxIterations: number, p_realPart: number, p_imagPart: number): Observable<Blob> {
-    const url = `${this.__baseUrlNodeJsOpenCv}generatejuliaImage/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
-    return this.http.get(url, { responseType: 'blob' });
+  //
+  GetFractal_NodeJs(
+    p_maxIterations : number,
+    p_fractalType   : FractalType,
+    zoomInOut       : boolean,
+    zoomStep        : number
+  ): Observable<Blob> {
+    console.info(`selected fractal: ${p_fractalType}, zoom: ${zoomInOut}, step: ${zoomStep}`);
+
+    switch (p_fractalType) {
+      case FractalType.JULIA:
+        return this.GetFractal_Julia_NodeJs(p_maxIterations, zoomInOut, zoomStep);
+      case FractalType.BARNSLEY_FERN:
+        return this.GenerateFractal_Leaf_NodeJs(p_maxIterations);
+      default:
+        return this.GetFractal_Julia_NodeJs(p_maxIterations, zoomInOut, zoomStep);
+    }
   }
 
-  // 1. Update the signature to accept zoom parameters
-GetFractal_NodeJs(
+  //
+  GetFractal_Julia_NodeJs(
     p_maxIterations : number,
-    p_realPart      : number,
-    p_imagPart      : number,
-    p_fractalType   : number,
-    p_bounds?       : { xMin: number; xMax: number; yMin: number; yMax: number }
-): Observable<Blob> {
-  //
-  console.info(`selected fractal: ${p_fractalType}, zoom: ${p_bounds}`);
-  //
-  switch (p_fractalType) {
-    case FractalType.JULIA:
-      return this.GetFractal_Julia_NodeJs(p_maxIterations, p_realPart, p_imagPart, p_bounds);
-    case FractalType.BARNSLEY_FERN:
-      return this.GenerateFractal_Leaf_NodeJs(p_maxIterations);
-    default:
-      return this.GetFractal_Julia_NodeJs(p_maxIterations, p_realPart, p_imagPart, p_bounds);
-  }
-}
+    zoomInOut       : boolean,
+    zoomStep        : number
+  ): Observable<Blob> {
+    console.info(`node.js julia fractal, zoom: ${zoomInOut}, step: ${zoomStep}`);
 
-// 2. Update the Julia method to construct the URL with query params
-GetFractal_Julia_NodeJs(
-    p_maxIterations : number,
-    p_realPart      : number,
-    p_imagPart      : number,
-    p_bounds?       : { xMin: number; xMax: number; yMin: number; yMax: number }
-  ): Observable<Blob> 
-  {
-    //
-    let zoomStep     = 2.0;
-    //
-    console.info(`node.js julia fractal, zoom: ${p_bounds}, step: ${zoomStep} , realPart : ${p_realPart}, imagPart : ${p_imagPart}`);
+    const baseUrl = this._configService.getConfigValue('baseUrlNodeJsOcr');
     
-    const activeBounds = p_bounds ?? { xMin: -1.5, xMax: 1.5, yMin: -1.5, yMax: 1.5 };
-    const baseUrl      = this._configService.getConfigValue('baseUrlNodeJsOcr');
-    // Append query parameters to the URL
-    //const url          = `${baseUrl}api/fractal/julia?zoomInOut=${p_bounds}&zoomStep=${zoomStep}`;
-    const url          = `${baseUrl}api/fractal/julia`;
+    const url     = `${baseUrl}api/fractal/julia?zoominout=${zoomInOut}&zoomStep=${zoomStep}`;  // ← no inversion
+    
+
     return this._renderFractalPipelinej2se(url, p_maxIterations);
   }
 
-  //
   GenerateFractal_Leaf_NodeJs(p_maxIterations: number): Observable<Blob> {
     const url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/fractal/leaf`;
     return this._renderFractalPipelinej2se(url, p_maxIterations);
   }
-
   ///////////////////////////////////////////////////////////////////
   // FRACTALS -- TypeScript (pure math)
   ///////////////////////////////////////////////////////////////////

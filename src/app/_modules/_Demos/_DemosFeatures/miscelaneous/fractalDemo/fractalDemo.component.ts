@@ -6,8 +6,8 @@ import { Component
         , HostListener                    } from '@angular/core';
 import { ActivatedRoute                   } from '@angular/router';
 import { HttpClient                       } from '@angular/common/http';
-import { PAGE_MISCELANEOUS_FRACTAL_DEMO, 
-         PAGE_TITLE_LOG, 
+import { PAGE_MISCELANEOUS_FRACTAL_DEMO,
+         PAGE_TITLE_LOG,
          PAGE_TITLE_NO_SOUND    } from 'src/app/_models/common';
 import { BackendService         } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
@@ -19,7 +19,7 @@ import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-
 export enum FractalType {
   MANDELBROT     = 1,
   JULIA          = 2,
-  BARNSLEY_FERN  = 3, 
+  BARNSLEY_FERN  = 3,
 }
 
 export interface LanguageCapability {
@@ -64,7 +64,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   generationTime         : number | null = null;
   lastImplementationUsed : string | null = null;
 
-  // ── Zoom / pan viewport (Mandelbrot + Julia only) ─────────────────────────
+  // ── Zoom / pan viewport (TypeScript engine — bounds-based) ────────────────
   centerX    : number = 0.0;
   centerY    : number = 0.0;
   zoomFactor : number = 1.0;
@@ -72,38 +72,62 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   private get baseXRange(): number { return this.selectedFractal === FractalType.MANDELBROT ? 3.0 : 3.0; }
   private get baseYRange(): number { return this.selectedFractal === FractalType.MANDELBROT ? 2.4 : 3.0; }
 
+  // ── Node.js zoom state (step-based) ───────────────────────────────────────
+  /** Cumulative zoom steps sent to the Node.js backend.
+   *  Incremented on zoom-in clicks, decremented (floor 0) on zoom-out.
+   *  Reset whenever the user switches engine, fractal, or hits Reset. */
+  public  nodejsZoomStep : number  = 0;
+  public  nodejsZoomIn   : boolean = true;
+
   // ── Mobile reticle ────────────────────────────────────────────────────────
-  reticleVisible  : boolean   = false;
-  reticleX        : number    = 50;
-  reticleY        : number    = 50;
-  activeZoomMode  : ZoomMode  = null;
-  isDragging      : boolean   = false;
+  reticleVisible  : boolean  = false;
+  reticleX        : number   = 50;
+  reticleY        : number   = 50;
+  activeZoomMode  : ZoomMode = null;
+  isDragging      : boolean  = false;
 
   // ── Computed flags ────────────────────────────────────────────────────────
 
-  /** Zoom/pan is only meaningful for the two escape-time fractals on TS engine. */
+  /** Zoom is available on:
+   *  - TypeScript → Mandelbrot + Julia  (bounds-based, click-to-pan)
+   *  - Node.js    → Julia only          (step-based, click increments step) */
   get isZoomable(): boolean {
-    return this.selectedImplementation === 'typescript' &&
-           (this.selectedFractal === FractalType.MANDELBROT ||
-            this.selectedFractal === FractalType.JULIA);
+    if (this.selectedFractal === FractalType.MANDELBROT) {
+      return this.selectedImplementation === 'typescript';
+    }
+    if (this.selectedFractal === FractalType.JULIA) {
+      return this.selectedImplementation === 'typescript' ||
+             this.selectedImplementation === 'nodejs';
+    }
+    return false;
   }
 
-  /** The Barnsley Fern uses maxIterations as a point-density multiplier, not an escape limit.
-   *  Show a distinct label in the UI so the user understands the slider meaning. */
+  /** True when the active engine+fractal pair uses step-based zoom
+   *  (Node.js Julia) rather than bounds-based click-to-pan. */
+  get isNodejsZoom(): boolean {
+    return this.selectedImplementation === 'nodejs' &&
+           this.selectedFractal        === FractalType.JULIA;
+  }
+
   get iterationsLabel(): string {
     return this.selectedFractal === FractalType.BARNSLEY_FERN
       ? 'Point Density (×20 iterations)'
       : 'Max Resolution Iterations';
   }
 
-  /** Tooltip shown under the iterations input. */
   get iterationsHint(): string {
     if (this.selectedFractal !== FractalType.BARNSLEY_FERN) return '';
     const pts = Math.min(this.maxIterations * 20, 1_000_000).toLocaleString();
     return `≈ ${pts} IFS points will be plotted (cap: 1 000 000)`;
   }
 
-  // ── Expose enum to template ───────────────────────────────────────────────
+  get zoomHint(): string {
+    if (!this.isZoomable) return '';
+    if (this.isNodejsZoom)
+      return `Click to zoom IN · Shift+click to zoom OUT · Step: ${this.nodejsZoomStep}`;
+    return 'Click to zoom IN · Shift+click to zoom OUT';
+  }
+
   readonly FractalType = FractalType;
 
   @ViewChild('_fractal_image')    _fractal_image!: any;
@@ -119,7 +143,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       supportedFractals: {
         [FractalType.MANDELBROT]   : true,
         [FractalType.JULIA]        : true,
-        [FractalType.BARNSLEY_FERN]: true   
+        [FractalType.BARNSLEY_FERN]: true
       }
     },
     {
@@ -164,7 +188,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   ];
 
   constructor(
-    public  computervisionService : ComputerVisionService,
+    public  computervisionService  : ComputerVisionService,
     public  override configService : ConfigService,
     public  override backendService: BackendService,
     public  override route         : ActivatedRoute,
@@ -178,11 +202,8 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   // ── Lifecycle ─────────────────────────────────────────────────────────────
 
   ngOnInit(): void {
-     // Force TypeScript as the default engine on page mount
     this.selectedImplementation = 'typescript';
-    //
     this.onLanguageChange();
-    //
   }
 
   ngOnDestroy(): void {
@@ -204,7 +225,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     }
     this.resetZoomViewport();
     this.hideReticle();
-    this.imageUrl = null; // Optional: clears the old image so the user knows they need to click render again
+    this.imageUrl = null;
     this.status_message.set("[Engine swapped — Viewport initialized]");
   }
 
@@ -212,17 +233,21 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     this.selectedFractal = Number(newValue) as FractalType;
     this.resetZoomViewport();
     this.hideReticle();
-    this.imageUrl = null; 
+    this.imageUrl = null;
     this.status_message.set(`[Switched to ${this.getFractalLabel(this.selectedFractal)} — Viewport initialized]`);
   }
 
   resetZoomViewport(): void {
+    // TypeScript bounds-based zoom
     this.centerX    = this.selectedFractal === FractalType.MANDELBROT ? -0.5 : 0.0;
     this.centerY    = 0.0;
     this.zoomFactor = 1.0;
+    // Node.js step-based zoom — always reset direction to 'in'
+    this.nodejsZoomStep = 0;
+    this.nodejsZoomIn   = true;
   }
 
-  // ── Complex-plane bounds from current viewport ────────────────────────────
+  // ── Complex-plane bounds (TypeScript engine only) ─────────────────────────
 
   private _buildBounds(): { xMin: number; xMax: number; yMin: number; yMax: number } {
     const xRange = this.baseXRange / this.zoomFactor;
@@ -235,16 +260,47 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     };
   }
 
-  // ── Desktop click-to-zoom ─────────────────────────────────────────────────
+  // ── Node.js step-based zoom ───────────────────────────────────────────────
+
+  nodejsZoomInStep(): void {
+    this.nodejsZoomStep++;
+    this.nodejsZoomIn = true;
+    this.onSubmit();
+  }
+
+  //
+  nodejsZoomOutStep(): void {
+      // Send the current step with zoominout=false to exactly undo the last zoom-in
+      this.nodejsZoomIn = this.nodejsZoomStep <= 1 ? true : false;
+      this.onSubmit();
+      // Decrement AFTER submit so the URL carries the correct step
+      if (this.nodejsZoomStep > 0) this.nodejsZoomStep--;
+  }
+
+  // ── Desktop click handler ─────────────────────────────────────────────────
 
   onCanvasClick(event: MouseEvent): void {
     if (!this.isZoomable) return;
+
+    // Node.js Julia: translate click into a zoom step (no pan — backend limitation)
+    if (this.isNodejsZoom) {
+      if (event.shiftKey) {
+        this.nodejsZoomOutStep();  // shift+click = zoom out
+      } else {
+        this.nodejsZoomInStep();   // plain click  = zoom in
+      }
+      return;
+    }
+
+    // TypeScript: full bounds-based click-to-pan + zoom
     const img    = event.target as HTMLImageElement;
     const rect   = img.getBoundingClientRect();
     const bounds = this._buildBounds();
     this.centerX    = bounds.xMin + ((event.clientX - rect.left)  / rect.width)  * (bounds.xMax - bounds.xMin);
     this.centerY    = bounds.yMin + ((event.clientY - rect.top)   / rect.height) * (bounds.yMax - bounds.yMin);
-    this.zoomFactor = event.shiftKey ? Math.max(1, this.zoomFactor / 2) : this.zoomFactor * 2;
+    this.zoomFactor = event.shiftKey
+      ? Math.max(1, this.zoomFactor / 2)
+      : this.zoomFactor * 2;
     this.onSubmit();
   }
 
@@ -252,32 +308,57 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
 
   toggleReticle(): void {
     this.reticleVisible = !this.reticleVisible;
-    if (this.reticleVisible) { this.reticleX = 50; this.reticleY = 50; this.activeZoomMode = 'in'; }
-    else                       this.activeZoomMode = null;
+    if (this.reticleVisible) {
+      this.reticleX       = 50;
+      this.reticleY       = 50;
+      this.activeZoomMode = 'in';
+    } else {
+      this.activeZoomMode = null;
+    }
   }
 
-  hideReticle(): void { this.reticleVisible = false; this.activeZoomMode = null; }
+  hideReticle(): void {
+    this.reticleVisible = false;
+    this.activeZoomMode = null;
+  }
 
   setZoomMode(mode: ZoomMode): void { this.activeZoomMode = mode; }
 
   applyReticleZoom(): void {
     if (!this.isZoomable || !this.activeZoomMode) return;
-    const bounds     = this._buildBounds();
-    this.centerX     = bounds.xMin + (this.reticleX / 100) * (bounds.xMax - bounds.xMin);
-    this.centerY     = bounds.yMin + (this.reticleY / 100) * (bounds.yMax - bounds.yMin);
-    this.zoomFactor  = this.activeZoomMode === 'in' ? this.zoomFactor * 2 : Math.max(1, this.zoomFactor / 2);
-    this.reticleX    = 50;
-    this.reticleY    = 50;
+
+    // Node.js Julia: reticle direction maps to a zoom step (no pan)
+    if (this.isNodejsZoom) {
+      this.activeZoomMode === 'in'
+        ? this.nodejsZoomInStep()
+        : this.nodejsZoomOutStep();
+      this.reticleX = 50;
+      this.reticleY = 50;
+      return;
+    }
+
+    // TypeScript: full bounds-based pan + zoom
+    const bounds    = this._buildBounds();
+    this.centerX    = bounds.xMin + (this.reticleX / 100) * (bounds.xMax - bounds.xMin);
+    this.centerY    = bounds.yMin + (this.reticleY / 100) * (bounds.yMax - bounds.yMin);
+    this.zoomFactor = this.activeZoomMode === 'in'
+      ? this.zoomFactor * 2
+      : Math.max(1, this.zoomFactor / 2);
+    this.reticleX   = 50;
+    this.reticleY   = 50;
     this.onSubmit();
   }
 
-  onReticleTouchStart(event: TouchEvent): void { event.preventDefault(); this.isDragging = true; this._updateReticleFromTouch(event.touches[0]); }
+  onReticleTouchStart(event: TouchEvent): void { event.preventDefault(); this.isDragging = true;  this._updateReticleFromTouch(event.touches[0]); }
   onReticleTouchMove(event: TouchEvent):  void { if (!this.isDragging) return; event.preventDefault(); this._updateReticleFromTouch(event.touches[0]); }
   onReticleTouchEnd():                    void { this.isDragging = false; }
   onReticleMouseDown(event: MouseEvent):  void { event.preventDefault(); this.isDragging = true; }
 
   @HostListener('document:mousemove', ['$event'])
-  onDocMouseMove(event: MouseEvent): void { if (!this.isDragging || !this.fractalImgWrapper) return; this._updateReticleFromMouse(event); }
+  onDocMouseMove(event: MouseEvent): void {
+    if (!this.isDragging || !this.fractalImgWrapper) return;
+    this._updateReticleFromMouse(event);
+  }
 
   @HostListener('document:mouseup')
   onDocMouseUp(): void { this.isDragging = false; }
@@ -305,25 +386,26 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     let serviceCall;
 
     switch (this.selectedImplementation) {
+
       case 'typescript':
         serviceCall = this.computervisionService.GetFractal_Typescript(
           this.maxIterations,
           this.realPart,
           this.imagPart,
           this.selectedFractal,
-          this.isZoomable ? this._buildBounds() : undefined  // Fern doesn't use bounds
+          this.isZoomable ? this._buildBounds() : undefined
         );
         break;
 
       case 'nodejs':
-       serviceCall = this.computervisionService.GetFractal_NodeJs(
+
+      serviceCall = this.computervisionService.GetFractal_NodeJs(
           this.maxIterations,
-          this.realPart,
-          this.imagPart,
           this.selectedFractal,
-          this.isZoomable ? this._buildBounds() : undefined  // Fern doesn't use bounds
+          this.nodejsZoomIn,    // true = zoom in, false = zoom out
+          this.nodejsZoomStep   // cumulative step count
         );
-        break;
+      break;
 
       case 'cpp':
         serviceCall = this.computervisionService._OpenCv_GetFractal_CPP(
@@ -349,28 +431,34 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
         this.lastImplementationUsed = this.selectedImplementation;
         if (this.imageUrl) URL.revokeObjectURL(this.imageUrl);
         this.imageUrl = URL.createObjectURL(blob);
-        const label   = this.backendCapabilities.find(o => o.languageCode === this.selectedImplementation)?.label
-                        ?? this.selectedImplementation;
+        const label = this.backendCapabilities
+          .find(o => o.languageCode === this.selectedImplementation)?.label
+          ?? this.selectedImplementation;
         this.status_message.set(`[✓ Generated using ${label} in ${this.generationTime.toFixed(2)}ms]`);
         localStorage.setItem('fractal_implementation', this.selectedImplementation);
       },
       error: (err: any) => {
         console.error('Fractal generation error:', err);
         this.imageUrl = null;
-        const label   = this.backendCapabilities.find(o => o.languageCode === this.selectedImplementation)?.label
-                        ?? this.selectedImplementation;
+        const label = this.backendCapabilities
+          .find(o => o.languageCode === this.selectedImplementation)?.label
+          ?? this.selectedImplementation;
         this.status_message.set(`[✗ Error with ${label}. Please try again or switch implementation]`);
       }
     });
   }
 
+  // ── PDF ───────────────────────────────────────────────────────────────────
+
   GeneratePDF(): void {
     this.pdfEngine._GetPDF(this.pageTitle, this._fractal_image, this._fractal_image, 'FRACTAL_IMAGE').subscribe({
-      next     : ()                    => { this.status_message.set('[...Generating PDF...]'); this.pdfButtonCaption = '[...Generating PDF...]'; },
-      error    : (e: {message:string}) => { this.status_message.set('Error: ' + e.message);   this.pdfButtonCaption = '[Generate PDF]'; },
-      complete : ()                    => { this.status_message.set('[PDF generated correctly]');                     this.pdfButtonCaption = '[Generate PDF]'; }
+      next     : ()                     => { this.status_message.set('[...Generating PDF...]');    this.pdfButtonCaption = '[...Generating PDF...]'; },
+      error    : (e: {message:string}) => { this.status_message.set('Error: ' + e.message);       this.pdfButtonCaption = '[Generate PDF]'; },
+      complete : ()                     => { this.status_message.set('[PDF generated correctly]'); this.pdfButtonCaption = '[Generate PDF]'; }
     });
   }
+
+  // ── Reset ─────────────────────────────────────────────────────────────────
 
   resetFractalsToDefaults(): void {
     this.maxIterations          = this.defaultValues.maxIterations;
@@ -388,35 +476,33 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   }
 
   isAtDefaultValues(): boolean {
-    return this.maxIterations === this.defaultValues.maxIterations
-      && Math.abs(this.realPart - this.defaultValues.realPart) < 0.001
-      && Math.abs(this.imagPart - this.defaultValues.imagPart) < 0.001
+    return this.maxIterations        === this.defaultValues.maxIterations
+      && Math.abs(this.realPart      -   this.defaultValues.realPart) < 0.001
+      && Math.abs(this.imagPart      -   this.defaultValues.imagPart) < 0.001
       && this.selectedImplementation === this.defaultValues.implementation
       && this.selectedFractal        === this.defaultValues.fractalType
-      && this.zoomFactor             === 1.0;
+      && this.zoomFactor             === 1.0
+      && this.nodejsZoomStep         === 0;
   }
+
+  // ── Helpers ───────────────────────────────────────────────────────────────
 
   getSelectedImplementationIcon():        string { return this.backendCapabilities.find(o => o.languageCode === this.selectedImplementation)?.icon        ?? '🟡'; }
   getSelectedImplementationDescription(): string { return this.backendCapabilities.find(o => o.languageCode === this.selectedImplementation)?.description ?? ''; }
 
   getPerformanceColor(): string {
-    if (!this.generationTime)       return 'secondary';
-    if (this.generationTime < 200)  return 'success';
-    if (this.generationTime < 500)  return 'warning';
+    if (!this.generationTime)      return 'secondary';
+    if (this.generationTime < 200) return 'success';
+    if (this.generationTime < 500) return 'warning';
     return 'danger';
   }
 
-  get zoomHint(): string {
-    return this.isZoomable ? 'Click to zoom IN · Shift+click to zoom OUT' : '';
-  }
-
-  // Quick helper to keep status messages elegant
   private getFractalLabel(type: FractalType): string {
-    switch(type) {
-      case FractalType.MANDELBROT: return 'Mandelbrot';
-      case FractalType.JULIA: return 'Julia';
+    switch (type) {
+      case FractalType.MANDELBROT:    return 'Mandelbrot';
+      case FractalType.JULIA:         return 'Julia';
       case FractalType.BARNSLEY_FERN: return 'Barnsley Leaf';
-      default: return 'Fractal';
+      default:                        return 'Fractal';
     }
   }
 }

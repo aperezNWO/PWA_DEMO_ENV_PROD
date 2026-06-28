@@ -134,8 +134,7 @@
                      (click)="onCanvasClick($event)"
                      [class.interactive-lens]="isZoomable"
                      [title]="zoomHint"
-                     class="fractal-img"
-                     />
+                     class="fractal-img" />
 
                 <!-- Reticle overlay — only for zoomable fractals -->
                 <div class="reticle-overlay" *ngIf="reticleVisible && isZoomable"
@@ -161,11 +160,14 @@
             <!-- Zoom controls bar -->
             <div class="zoom-controls-bar" *ngIf="isZoomable">
 
+                <!-- Desktop zoom badge -->
                 <div class="zoom-badge desktop-only">
-                    🔍 Zoom: <strong>{{zoomFactor}}x</strong>
+                    🔍 Zoom:
+                    <strong>{{ isNodejsZoom ? nodejsZoomStep + ' steps' : zoomFactor + 'x' }}</strong>
                     <span class="zoom-hint">{{ zoomHint }}</span>
                 </div>
 
+                <!-- Mobile reticle cluster -->
                 <div class="minifab-cluster mobile-only">
                     <button type="button" class="minifab minifab-toggle"
                             [class.active]="reticleVisible"
@@ -176,15 +178,20 @@
                     <button type="button" class="minifab minifab-in"
                             [class.active]="activeZoomMode === 'in'"
                             [disabled]="!reticleVisible"
-                            (click)="setZoomMode('in')" title="Zoom in">+</button>
+                            (click)="setZoomMode('in')"
+                            title="Zoom in">+</button>
                     <button type="button" class="minifab minifab-out"
                             [class.active]="activeZoomMode === 'out'"
-                            [disabled]="!reticleVisible || zoomFactor <= 1"
-                            (click)="setZoomMode('out')" title="Zoom out">−</button>
+                            [disabled]="!reticleVisible || (isNodejsZoom ? nodejsZoomStep <= 0 : zoomFactor <= 1)"
+                            (click)="setZoomMode('out')"
+                            title="Zoom out">−</button>
                     <button type="button" class="minifab minifab-apply"
                             [disabled]="!reticleVisible || !activeZoomMode"
-                            (click)="applyReticleZoom()" title="Apply zoom">✓ Apply</button>
-                    <span class="zoom-badge-mobile">🔍 {{zoomFactor}}x</span>
+                            (click)="applyReticleZoom()"
+                            title="Apply zoom">✓ Apply</button>
+                    <span class="zoom-badge-mobile">
+                        🔍 {{ isNodejsZoom ? nodejsZoomStep + ' steps' : zoomFactor + 'x' }}
+                    </span>
                 </div>
 
             </div>
