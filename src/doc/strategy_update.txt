@@ -647,6 +647,8 @@
 
  --[_] about - language benchmark 
 
+        --[_] MERGE llm list / edu resources --> 'Resources'.  
+
         --[_] bar chart language best performance.  
 
         --[_] Pie chart lang implementations. 
