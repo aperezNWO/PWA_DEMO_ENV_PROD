@@ -669,7 +669,7 @@
 
                 --[_]  add a infinite zoom in / out  option.
 
-                        --[_]  https://gemini.google.com/app/349346894b769c9a
+                        --[_]  minifab and target reticle  https://gemini.google.com/app/349346894b769c9a
 
                 --[_]  perform opencv operation over generated image.
                 
