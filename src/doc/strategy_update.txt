@@ -651,6 +651,8 @@
 
         --[_] Pie chart lang implementations. 
 
+        --[_] Export report : xls, csv, pdf. 
+
  --[_] fractal demo / OCR Demo.
  
          --[_] Opencv -> Typescript.
