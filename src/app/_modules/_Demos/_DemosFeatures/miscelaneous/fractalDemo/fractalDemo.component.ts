@@ -11,16 +11,10 @@ import { PAGE_MISCELANEOUS_FRACTAL_DEMO,
          PAGE_TITLE_NO_SOUND    } from 'src/app/_models/common';
 import { BackendService         } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { ComputerVisionService  } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
+import { ComputerVisionService, FractalType  } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
 import { SpeechService          } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { PdfService             } from 'src/app/_services/__FileGeneration/pdf.service';
 import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
-
-export enum FractalType {
-  MANDELBROT     = 1,
-  JULIA          = 2,
-  BARNSLEY_FERN  = 3,
-}
 
 export interface LanguageCapability {
   languageCode: string;

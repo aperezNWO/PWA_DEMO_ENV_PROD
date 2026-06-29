@@ -556,3 +556,41 @@ Flow*ngIf, *ngFor@if, @for, @switchLarge LibrariesStandard Lazy Loading@defer + 
 a specific code example for the resource() implementation to connect your Angular frontend to the .NET DllImport backend?
 
 /////////////////////////////////////////////
+
+Hi Claude. I have an angualar application which showcases the display of several fractals under a variety of languages / backends (angular-typescript, node.js, .net core - c++ and j2se ).
+
+The fractals shown are : Mandelbrot, Jula and Barnsley Fern.
+
+Some of them comes from pure backend math and are rendered with angular html canvas, except c++ which is made with opencv.
+
+Not all fractals are written for all backends / languages. I have the following completion list:
+
+1) Typescript : Manderblot (with zoom), Jula (with Zoom), Barnsley Fern (zoom does not apply) 2) Node.js      : Barnsley Fern (zoom does not apply).
+
+3)  .net Core / c++ :  Julia (no zoom implemented, made with opencv).
+
+4) J2se            :  Julia (zoom Pending), Barnsley Fern (zoom does not apply).
+
+The backend gets a json based list of points extracted on a angular service.  All of backends are expected to usea a unique function having the json plots as input and retunr a homogeneus blob object to the angular uix
+so its rendered equally for all fractals using html canvas.  On the same way the zomm processing bsased on math is made by a unique function.
+
+The plan ahead for programming is as follows
+
+1) Complete all fractals for all languages / backend.
+2) Where the fractals are made with opencv, change it for pure math.
+3) Complete the zoom functionality on the pure math fractals pending for it.
+
+The inmediate tasks are 
+
+1) On typescript unify the fractals drawing/rendering functions which require zoom and also make it parametrizable
+   so they can receive the plot arrays from other backends like j2se.
+
+2) Add the Manderblot fractal to j2se including the math zoom functionality and draw it using the mentioned drawing/rendering funcitons.
+
+3) Modify the current j2se Julia Fractal if needed to add zoom math and render it on client as been done for Manderblot.
+
+Please allow me in other message to begin with task 1) and bring you the needed code for modification.
+
+/////////////////////////////////////////////
+
+
