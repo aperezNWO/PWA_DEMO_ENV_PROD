@@ -677,6 +677,10 @@
 
  --[_] fractal demo / OCR Demo.
  
+        --[_] performance benchmark.
+
+                --[_] write execution time in seconds (pipe).
+
          --[_] Opencv -> Typescript.
  
          --[_] Opencv -> Node.js.
@@ -713,8 +717,9 @@
 
         --[_] Julia Fracal Zoom typescript.
 
-        --[_] performance benchmark.
+        --[_] Julia Fracal Zoom node.js.
 
-                --[_] write execution time in seconds (pipe).
+                --[_] generic functions.
+
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -153,7 +153,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       description: 'Runs on server — Stable',
       supportedFractals: {
         [FractalType.MANDELBROT]   : false,
-        [FractalType.JULIA]        : true,
+        [FractalType.JULIA]        : false,
         [FractalType.BARNSLEY_FERN]: true
       }
     },
