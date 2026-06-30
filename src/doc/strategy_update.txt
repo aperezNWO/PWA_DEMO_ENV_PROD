@@ -725,4 +725,6 @@
 
         --[_] typescript -- mandelbrot.
 
+        --[_] ditch "IsZoomable" function and add it as a property of the languages array.
+
 ////////////////////////////////////////////////////////////////////////////////

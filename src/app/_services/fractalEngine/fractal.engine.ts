@@ -1,8 +1,8 @@
-import { map, Observable, of, switchMap    } from "rxjs";
-import { BaseService   } from "../__baseService/base.service";
-import { HttpClient    } from "@angular/common/http";
-import { inject, Injectable        } from "@angular/core";
-import { ConfigService } from "../__Utils/ConfigService/config.service";
+import { Observable, of, switchMap    } from "rxjs";
+import { BaseService                  } from "../__baseService/base.service";
+import { HttpClient                   } from "@angular/common/http";
+import { inject, Injectable           } from "@angular/core";
+import { ConfigService                } from "../__Utils/ConfigService/config.service";
 
 export enum FractalType {
   MANDELBROT     = 1,
@@ -201,7 +201,7 @@ export class FractalEngine extends BaseService {
   //  C++ / .NET CORE BACKEND
   // ═══════════════════════════════════════════════════════════════════════════
 
-  _OpenCv_GetFractal_CPP(
+  GetFractal_CPP(
     p_maxIterations : number,
     p_realPart      : number,
     p_imagPart      : number
@@ -211,17 +211,9 @@ export class FractalEngine extends BaseService {
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
-  //  TYPESCRIPT PURE-MATH ENGINE
-  // ═══════════════════════════════════════════════════════════════════════════
-
- // ═══════════════════════════════════════════════════════════════════════════
   //  UNIFIED RENDERING PIPELINE
   // ═══════════════════════════════════════════════════════════════════════════
 
-  /**
-   * The single source of truth for rendering. 
-   * Takes a stream of points and renders them to the canvas.
-   */
   private _renderPipeline(
     points$: Observable<FractalPoint[]>, 
     maxIterations: number
@@ -269,92 +261,56 @@ export class FractalEngine extends BaseService {
     }));
   }
 
-  /*
+  //
   private _generateTSBarnsley(p_maxIterations: number): Observable<FractalPoint[]> {
-    const width   = CANVAS_WIDTH;
-    const height  = CANVAS_HEIGHT;
-    const padding = 20;
-
-    // IFS attractor bounds (real plane) — matches Java renderer
-    const xMin = -2.182, xMax = 2.655;
-    const yMin =  0.0,   yMax = 9.96;
-
-    const toPixelX = (ax: number) =>
-      Math.round(padding + ((ax - xMin) / (xMax - xMin)) * (width  - 2 * padding));
-    const toPixelY = (ay: number) =>
-      Math.round(height - padding - ((ay - yMin) / (yMax - yMin)) * (height - 2 * padding));
-
-    // IFS transforms: [a, b, c, d, e, f, probability]
-    const transforms: [number, number, number, number, number, number, number][] = [
-      [  0.00,  0.00,  0.00,  0.16, 0.00, 0.00, 0.01 ],
-      [  0.85,  0.04, -0.04,  0.85, 0.00, 1.60, 0.85 ],
-      [  0.20, -0.26,  0.23,  0.22, 0.00, 1.60, 0.07 ],
-      [ -0.15,  0.28,  0.26,  0.24, 0.00, 0.44, 0.07 ],
-    ];
-
-    const thresholds: number[] = [];
-    let cumulative = 0;
-    for (const t of transforms) { cumulative += t[6]; thresholds.push(cumulative); }
-
-    // Pixel visit map — tracks first-visit normY per pixel to avoid bloom
-    const pixelNormY = new Float32Array(width * height).fill(-1);
-
-    const numPoints = Math.max(150_000, Math.min(p_maxIterations * 20, 1_000_000));
-    const t0        = performance.now();
-
-    let ax = 0, ay = 0;
-    // Warm-up: let the orbit settle onto the attractor
-    for (let w = 0; w < 20; w++) {
-      const roll = Math.random();
-      let ti = 0;
-      while (ti < thresholds.length - 1 && roll > thresholds[ti]) ti++;
-      const [a, b, c, d, e, f] = transforms[ti];
-      const nx = a * ax + b * ay + e;
-      ax = c * ax + d * ay + f; ay = nx; // BUG-FIX NOTE: intentional swap removed — see below
-      ax = nx; ay = c * ax + d * ay + f;
-    }
-
-    // Correct warm-up (avoids the variable-swap mistake above)
-    ax = 0; ay = 0;
-    for (let w = 0; w < 20; w++) {
-      const roll = Math.random();
-      let ti = 0;
-      while (ti < thresholds.length - 1 && roll > thresholds[ti]) ti++;
-      const [ta, tb, tc, td, te, tf] = transforms[ti];
-      const nx = ta * ax + tb * ay + te;
-      const ny = tc * ax + td * ay + tf;
-      ax = nx; ay = ny;
-    }
-
-    for (let i = 0; i < numPoints; i++) {
-      const roll = Math.random();
-      let ti = 0;
-      while (ti < thresholds.length - 1 && roll > thresholds[ti]) ti++;
-      const [ta, tb, tc, td, te, tf] = transforms[ti];
-      const nx = ta * ax + tb * ay + te;
-      const ny = tc * ax + td * ay + tf;
-      ax = nx; ay = ny;
-
-      const px = toPixelX(ax);
-      const py = toPixelY(ay);
-      if (px < 0 || px >= width || py < 0 || py >= height) continue;
-
-      const bufIdx = py * width + px;
-      if (pixelNormY[bufIdx] < 0) {
-        pixelNormY[bufIdx] = Math.min(1, Math.max(0, (ay - yMin) / (yMax - yMin)));
-      }
-    }
-
     const points: FractalPoint[] = [];
-    for (let py = 0; py < height; py++) {
-      for (let px = 0; px < width; px++) {
-        if (pixelNormY[py * width + px] >= 0) {
-          points.push({ x: px, y: py, value: FERN_SENTINEL });
-        }
+    
+    // FIX 1: Ensure enough iterations for a dense render
+    const iterations = Math.max(p_maxIterations, 50000);
+
+    let x = 0;
+    let y = 0;
+
+    // FIX 2: Better Scaling. 
+    // Fern Width range is roughly 4.84 units, Height is roughly 10 units.
+    // Multiply by 0.95 to add a small margin so it doesn't touch edges.
+    const scale = Math.min(CANVAS_WIDTH / 4.84, CANVAS_HEIGHT / 10) * 0.95;
+
+    for (let i = 0; i < iterations; i++) {
+      let nextX, nextY;
+      const rand = Math.random();
+
+      // Standard Barnsley IFS transformation matrices
+      if (rand < 0.01) {
+        nextX = 0;
+        nextY = 0.16 * y;
+      } else if (rand < 0.86) {
+        nextX = 0.85 * x + 0.04 * y;
+        nextY = -0.04 * x + 0.85 * y + 1.6;
+      } else if (rand < 0.93) {
+        nextX = 0.2 * x - 0.26 * y;
+        nextY = 0.23 * x + 0.22 * y + 1.6;
+      } else {
+        nextX = -0.15 * x + 0.28 * y;
+        nextY = 0.26 * x + 0.24 * y + 0.44;
+      }
+
+      x = nextX;
+      y = nextY;
+
+      // FIX 3: Centering logic. 
+      // The horizontal center of the fern is at roughly 0.24.
+      const px = Math.floor(CANVAS_WIDTH / 2 + (x - 0.24) * scale);
+      const py = Math.floor(CANVAS_HEIGHT - y * scale); // Flip Y for canvas
+
+      // Only push valid points to ensure the array stays clean
+      if (px >= 0 && px < CANVAS_WIDTH && py >= 0 && py < CANVAS_HEIGHT) {
+        points.push({ x: px, y: py, value: FERN_SENTINEL });
       }
     }
+
+    return of(points);
   }
-  */
 
   private _runEscapeTimeEngine(
     maxIterations : number,
@@ -385,17 +341,7 @@ export class FractalEngine extends BaseService {
   }
   
   // ═══════════════════════════════════════════════════════════════════════════
-  //  REMOTE DATA FETCHERS (All backends now conform to this pattern)
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  private _fetchRemotePoints(url: string, fractalType: FractalType, maxIterations: number): Observable<FractalPoint[]> {
-    return this.http.get<{ x: number; y: number; intensity: number }[]>(url).pipe(
-      map(raw => this._adaptRemotePoints(raw, fractalType, maxIterations))
-    );
-  }
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  //  PUBLIC API (The Orchestrators)
+  //  TYPESCRIPT PURE-MATH ENGINE
   // ═══════════════════════════════════════════════════════════════════════════
 
   GetFractal_Typescript(
@@ -408,9 +354,17 @@ export class FractalEngine extends BaseService {
     let points$: Observable<FractalPoint[]>;
     
     switch (p_fractalType) {
-      case FractalType.MANDELBROT: points$    = this._generateTSMandelbrot(p_maxIterations, p_bounds); break;
-      case FractalType.JULIA:      points$    = this._generateTSJulia(p_maxIterations, p_realPart, p_imagPart, p_bounds); break;
-      default: points$ = this._generateTSJulia(p_maxIterations, p_realPart, p_imagPart, p_bounds);
+      case FractalType.MANDELBROT: 
+        points$ = this._generateTSMandelbrot(p_maxIterations, p_bounds); 
+        break;
+      case FractalType.JULIA:      
+        points$ = this._generateTSJulia(p_maxIterations, p_realPart, p_imagPart, p_bounds); 
+        break;
+      case FractalType.BARNSLEY_FERN: 
+        points$ = this._generateTSBarnsley(p_maxIterations); 
+        break;
+      default: 
+        points$ = this._generateTSJulia(p_maxIterations, p_realPart, p_imagPart, p_bounds);
     }
     
     return this._renderPipeline(points$, p_maxIterations);
@@ -454,28 +408,11 @@ export class FractalEngine extends BaseService {
       console.info(`[J2SE] fractal=${p_fractalType}, zoomIn=${zoomInOut}, step=${zoomStep}`);
       
       switch (p_fractalType) {
-        case FractalType.MANDELBROT   : return this._J2SE_Mandelbrot(p_maxIterations);
-        case FractalType.JULIA        : return this._J2SE_Julia(p_maxIterations, zoomInOut, zoomStep);
         case FractalType.BARNSLEY_FERN: return this._J2SE_BarnsleyFern(p_maxIterations);
         default:
           console.warn(`[J2SE] Unknown fractal type ${p_fractalType} — falling back to Julia`);
-          return this._J2SE_Julia(p_maxIterations, zoomInOut, zoomStep);
+          return this._J2SE_BarnsleyFern(p_maxIterations);
       }
-  }
-
-  //
-  private _J2SE_Mandelbrot(p_maxIterations : number): Observable<Blob> {
-    const url = this._buildJ2SEUrl(FractalType.MANDELBROT);
-    return this._fetchAndRender(url, FractalType.MANDELBROT, p_maxIterations);
-  }
-
-  //
-  private _J2SE_Julia(p_maxIterations: number, zoomInOut: boolean, zoomStep: number): Observable<Blob> {
-    // Ensure URL uses 'kind' to match @RequestParam int kind in Java
-    const url_base = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate`;
-    const url      = `${url_base}?kind=${FractalType.JULIA}&maxIterations=${p_maxIterations}&zoomInOut=${zoomInOut}&zoomStep=${Math.pow(2.0, zoomStep)}`;
-    
-    return this._fetchAndRender(url, FractalType.JULIA, p_maxIterations);
   }
 
   //

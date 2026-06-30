@@ -3,7 +3,7 @@ import { Component
        , OnInit
        , OnDestroy
        , ElementRef
-       , HostListener                    } from '@angular/core';
+       , HostListener                     } from '@angular/core';
 import { ActivatedRoute                   } from '@angular/router';
 import { HttpClient                       } from '@angular/common/http';
 import { PAGE_MISCELANEOUS_FRACTAL_DEMO, 
@@ -14,15 +14,20 @@ import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/
 import { SpeechService          } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { PdfService             } from 'src/app/_services/__FileGeneration/pdf.service';
 import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
-import { FractalEngine, FractalType            } from 'src/app/_services/fractalEngine/fractal.engine';
-import { ComputerVisionService  } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
+import { FractalEngine, 
+         FractalType            } from 'src/app/_services/fractalEngine/fractal.engine';
+
+export interface FractalCapability {
+  supported: boolean;
+  zoomable: boolean;
+}
 
 export interface LanguageCapability {
   languageCode: string;
   label: string;
   icon: string;
   description: string;
-  supportedFractals: { [key in FractalType]: boolean };
+  supportedFractals: { [key in FractalType]: FractalCapability };
 }
 
 export type ZoomMode = 'in' | 'out' | null;
@@ -82,20 +87,19 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   isDragging      : boolean  = false;
 
   // ── Computed flags ────────────────────────────────────────────────────────
-
-  /** Zoom is available on:
-   * - TypeScript → Mandelbrot + Julia  (bounds-based, click-to-pan)
-   * - Server (Node/J2SE) → Julia only  (step-based, click increments step) */
+// NEW: Simplified getter using the config object
   get isZoomable(): boolean {
-    if (this.selectedFractal === FractalType.MANDELBROT) {
-      return this.selectedImplementation === 'typescript';
-    }
-    if (this.selectedFractal === FractalType.JULIA) {
-      return this.selectedImplementation === 'typescript' ||
-             this.selectedImplementation === 'nodejs' ||
-             this.selectedImplementation === 'j2se';
-    }
-    return false;
+    const lang = this.backendCapabilities.find(b => b.languageCode === this.selectedImplementation);
+    return lang?.supportedFractals[this.selectedFractal].zoomable ?? false;
+  }
+
+  // UPDATED: Check 'supported' property instead of boolean directly
+  getAvailableFractals() {
+    const lang = this.backendCapabilities.find(o => o.languageCode === this.selectedImplementation);
+    if (!lang) return [];
+    
+    // Filter by the .supported property
+    return this.fractalOptions.filter(f => lang.supportedFractals[f.id].supported);
   }
 
   /** True when the active engine+fractal pair uses step-based zoom
@@ -129,54 +133,52 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   @ViewChild('_fractal_image')    _fractal_image!: any;
   @ViewChild('fractalImgWrapper') fractalImgWrapper!: ElementRef<HTMLDivElement>;
 
-  // ── Backend capability matrix ─────────────────────────────────────────────
   backendCapabilities: LanguageCapability[] = [
-    {
-      languageCode: 'typescript',
-      label: 'TypeScript (Local)',
-      icon: '🟡',
-      description: 'Runs in browser — Fastest',
-      supportedFractals: {
-        [FractalType.MANDELBROT]   : true,
-        [FractalType.JULIA]        : true,
-        [FractalType.BARNSLEY_FERN]: false
-      }
-    },
-    {
-      languageCode: 'nodejs',
-      label: 'Node.js (Server)',
-      icon: '🟢',
-      description: 'Runs on server — Stable',
-      supportedFractals: {
-        [FractalType.MANDELBROT]   : false,
-        [FractalType.JULIA]        : false,
-        [FractalType.BARNSLEY_FERN]: true
-      }
-    },
-    {
-      languageCode: 'cpp',
-      label: 'C++ (Native)',
-      icon: '🔵',
-      description: 'Native performance — Most accurate',
-      supportedFractals: {
-        [FractalType.MANDELBROT]   : false,
-        [FractalType.JULIA]        : true,
-        [FractalType.BARNSLEY_FERN]: false
-      }
-    },
-    {
-      languageCode: 'j2se',
-      label: 'Java J2SE (Spring Boot)',
-      icon: '☕',
-      description: 'Runs on Spring Boot Engine',
-      supportedFractals: {
-        [FractalType.MANDELBROT]   : false,
-        [FractalType.JULIA]        : false,
-        [FractalType.BARNSLEY_FERN]: true
-      }
+  {
+    languageCode: 'typescript',
+    label: 'TypeScript (Local)',
+    icon: '🟡',
+    description: 'Runs in browser — Fastest',
+    supportedFractals: {
+      [FractalType.MANDELBROT]   : { supported: true, zoomable: true },
+      [FractalType.JULIA]        : { supported: true, zoomable: true },
+      [FractalType.BARNSLEY_FERN]: { supported: true, zoomable: false }
     }
-  ];
-
+  },
+  {
+    languageCode: 'nodejs',
+    label: 'Node.js (Server)',
+    icon: '🟢',
+    description: 'Runs on server — Stable',
+    supportedFractals: {
+      [FractalType.MANDELBROT]   : { supported: false, zoomable: false },
+      [FractalType.JULIA]        : { supported: true, zoomable: true },
+      [FractalType.BARNSLEY_FERN]: { supported: true, zoomable: false }
+    }
+  },
+  {
+    languageCode: 'cpp',
+    label: 'C++ (Native)',
+    icon: '🔵',
+    description: 'Native performance — Most accurate',
+    supportedFractals: {
+      [FractalType.MANDELBROT]   : { supported: false, zoomable: false },
+      [FractalType.JULIA]        : { supported: true, zoomable: false }, // Assuming zoom not implemented in CPP
+      [FractalType.BARNSLEY_FERN]: { supported: false, zoomable: false }
+    }
+  },
+  {
+    languageCode: 'j2se',
+    label: 'Java J2SE (Spring Boot)',
+    icon: '☕',
+    description: 'Runs on Spring Boot Engine',
+    supportedFractals: {
+      [FractalType.MANDELBROT]   : { supported: false, zoomable: false },
+      [FractalType.JULIA]        : { supported: true, zoomable: true },
+      [FractalType.BARNSLEY_FERN]: { supported: true, zoomable: false }
+    }
+  }
+];
   fractalOptions = [
     { id: FractalType.MANDELBROT,    label: 'Mandelbrot Set',           icon: '🌀' },
     { id: FractalType.JULIA,         label: 'Julia Set',                icon: '❄️' },
@@ -204,14 +206,6 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
 
   ngOnDestroy(): void {
     if (this.imageUrl) URL.revokeObjectURL(this.imageUrl);
-  }
-
-  // ── Form helpers ──────────────────────────────────────────────────────────
-
-  getAvailableFractals() {
-    const lang = this.backendCapabilities.find(o => o.languageCode === this.selectedImplementation);
-    if (!lang) return [];
-    return this.fractalOptions.filter(f => lang.supportedFractals[f.id]);
   }
 
   onLanguageChange(): void {
@@ -412,7 +406,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
           break;
 
       case 'cpp':
-        serviceCall = this.fractalEngine._OpenCv_GetFractal_CPP(
+        serviceCall = this.fractalEngine.GetFractal_CPP(
           this.maxIterations, this.realPart, this.imagPart
         );
         break;
