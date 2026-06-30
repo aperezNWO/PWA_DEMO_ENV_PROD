@@ -147,7 +147,7 @@
 
                 <div class="zoom-badge desktop-only">
                     🔍 Zoom:
-                    <strong>{{ isServerZoom ? serverZoomStep + ' steps' : zoomFactor + 'x' }}</strong>
+                    <strong>{{ isServerZoom ? serverZoomFactor + ' steps' : zoomFactor + 'x' }}</strong>
                     <span class="zoom-hint">{{ zoomHint }}</span>
                 </div>
 
@@ -165,7 +165,7 @@
                             title="Zoom in">+</button>
                     <button type="button" class="minifab minifab-out"
                             [class.active]="activeZoomMode === 'out'"
-                            [disabled]="!reticleVisible || (isServerZoom ? serverZoomStep <= 0 : zoomFactor <= 1)"
+                            [disabled]="!reticleVisible || (isServerZoom ? serverZoomFactor <= 0 : zoomFactor <= 1)"
                             (click)="setZoomMode('out')"
                             title="Zoom out">−</button>
                     <button type="button" class="minifab minifab-apply"
@@ -173,7 +173,7 @@
                             (click)="applyReticleZoom()"
                             title="Apply zoom">✓ Apply</button>
                     <span class="zoom-badge-mobile">
-                        🔍 {{ isServerZoom ? serverZoomStep + ' steps' : zoomFactor + 'x' }}
+                        🔍 {{ isServerZoom ? serverZoomFactor + ' steps' : zoomFactor + 'x' }}
                     </span>
                 </div>
 

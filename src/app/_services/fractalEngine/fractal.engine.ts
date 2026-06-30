@@ -356,20 +356,37 @@ export class FractalEngine extends BaseService {
   ): Observable<Blob> {
     console.info(`[Node.js] fractal=${p_fractalType} zoom=${zoomInOut} step=${zoomStep}`);
 
-    //
     let points$: Observable<FractalPoint[]>;
 
     switch (p_fractalType) {
       case FractalType.BARNSLEY_FERN: 
-         points$ = this._NodeJs_BarnsleyFern(p_maxIterations);
-      break;
+        points$ = this._NodeJs_BarnsleyFern(p_maxIterations);
+        break;
+      case FractalType.JULIA: 
+        points$ = this._NodeJs_Julia(p_maxIterations, zoomInOut, zoomStep);
+        break;
       default: 
         points$ = this._NodeJs_BarnsleyFern(p_maxIterations);
     };
 
-    // 
     return this._renderPipeline(points$, p_maxIterations);
   }
+
+  //
+  private _NodeJs_Julia(
+    p_maxIterations: number, 
+    zoomInOut: boolean, 
+    zoomStep: number // This is your current zoomFactor (e.g., 1, 2, 4, 8...)
+  ): Observable<FractalPoint[]> {
+    // 
+    const url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/fractal/julia?zoominout=${zoomInOut}&scale=${zoomStep}`;
+    
+    const rawData$ = this.http.get<{ x: number; y: number; intensity: number }[]>(url);
+
+    return rawData$.pipe(
+      map(raw => this._adaptRemotePoints(raw, FractalType.JULIA, p_maxIterations))
+    );
+  }  
 
   //
   private _NodeJs_BarnsleyFern(p_maxIterations: number): Observable<FractalPoint[]>{

@@ -72,11 +72,15 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   private get baseXRange(): number { return this.selectedFractal === FractalType.MANDELBROT ? 3.0 : 3.0; }
   private get baseYRange(): number { return this.selectedFractal === FractalType.MANDELBROT ? 2.4 : 3.0; }
 
-  // ── Server zoom state (step-based for Node.js & J2SE) ─────────────────────
-  /** Cumulative zoom steps sent to the backend.
-   * Incremented on zoom-in clicks, decremented (floor 0) on zoom-out.
-   * Reset whenever the user switches engine, fractal, or hits Reset. */
-  public  serverZoomStep : number  = 0;
+  public serverZoomFactor: number = 1.0;
+
+  serverZoomOutStep(): void {
+    if (this.serverZoomFactor > 1) {
+      this.serverZoomFactor /= 2; // Halve the zoom
+    }
+    this.serverZoomIn = false;
+    this.onSubmit();
+  }
   public  serverZoomIn   : boolean = true;
 
   // ── Mobile reticle ────────────────────────────────────────────────────────
@@ -124,7 +128,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   get zoomHint(): string {
     if (!this.isZoomable) return '';
     if (this.isServerZoom)
-      return `Click to zoom IN · Shift+click to zoom OUT · Step: ${this.serverZoomStep}`;
+      return `Click to zoom IN · Shift+click to zoom OUT · Step: ${this.serverZoomFactor}`;
     return 'Click to zoom IN · Shift+click to zoom OUT';
   }
 
@@ -237,7 +241,7 @@ constructor(
     this.zoomFactor = 1.0;
     
     // Server step-based zoom — always reset direction to 'in'
-    this.serverZoomStep = 0;
+    this.serverZoomFactor = 0;
     this.serverZoomIn   = true;
   }
 
@@ -257,17 +261,9 @@ constructor(
   // ── Server step-based zoom ────────────────────────────────────────────────
 
   serverZoomInStep(): void {
-    this.serverZoomStep++;
+    this.serverZoomFactor++;
     this.serverZoomIn = true;
     this.onSubmit();
-  }
-
-  serverZoomOutStep(): void {
-    // Send the current step with zoominout=false to exactly undo the last zoom-in
-    this.serverZoomIn = this.serverZoomStep <= 1 ? true : false;
-    this.onSubmit();
-    // Decrement AFTER submit so the URL carries the correct step
-    if (this.serverZoomStep > 0) this.serverZoomStep--;
   }
 
   // ── Desktop click handler ─────────────────────────────────────────────────
@@ -395,7 +391,7 @@ constructor(
           this.maxIterations,
           this.selectedFractal,
           this.serverZoomIn,    
-          this.serverZoomStep   
+          this.serverZoomFactor   
         );
         break;
 
@@ -404,7 +400,7 @@ constructor(
             this.maxIterations, 
             this.selectedFractal,
             this.serverZoomIn, 
-            this.serverZoomStep
+            this.serverZoomFactor
           );
           break;
 
@@ -477,7 +473,7 @@ constructor(
       && this.selectedImplementation === this.defaultValues.implementation
       && this.selectedFractal        === this.defaultValues.fractalType
       && this.zoomFactor             === 1.0
-      && this.serverZoomStep         === 0; // Updated to match the new generic state
+      && this.serverZoomFactor       === 0; // Updated to match the new generic state
   }
 
   // ── Helpers ───────────────────────────────────────────────────────────────
