@@ -593,4 +593,35 @@ Please allow me in other message to begin with task 1) and bring you the needed 
 
 /////////////////////////////////////////////
 
+Hi Gemini.
 
+
+
+I have an angular v21 appication which showcases several fractals under a variety of languages/backends.
+
+Attached is the code of the service
+
+The featured fractals are : Mandelbrot, Julia and Barnsley Fern.
+
+
+
+The languages/backend used are : Typescript (angular), node.js, c++ (with .net core) and j2se/springboot
+
+
+
+the form uses a service for the backend callbacks. All the backends related functins invokes a restful end point, processes the json data and returns a unified blob data so the angular form renders the blob data usng html canvas.
+
+
+
+Could you please hep me to modify the application with the following changes:
+
+
+
+1) for the typescript fracal generation, create a mocking function which renders the point to a JSON format and the rendering function takes only the json data as parameters.
+
+
+
+2) the idea is that the implementation of other languaes/backends uses the unified rendering and optional zoom mentioned funcion which initially was for typescript. So all of the backend endpoints takes the json data as input for rendering and returns the unfied blob for the angular form. 
+
+
+/////////////////////////////////////////////

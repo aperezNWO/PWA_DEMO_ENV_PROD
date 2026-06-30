@@ -11,10 +11,11 @@ import { PAGE_MISCELANEOUS_FRACTAL_DEMO,
          PAGE_TITLE_NO_SOUND    } from 'src/app/_models/common';
 import { BackendService         } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { ComputerVisionService, FractalType  } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
 import { SpeechService          } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { PdfService             } from 'src/app/_services/__FileGeneration/pdf.service';
 import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
+import { FractalEngine, FractalType            } from 'src/app/_services/fractalEngine/fractal.engine';
+import { ComputerVisionService  } from 'src/app/_services/__AI/ComputerVisionService/Computer-Vision.service';
 
 export interface LanguageCapability {
   languageCode: string;
@@ -183,7 +184,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   ];
 
   constructor(
-    public  computervisionService  : ComputerVisionService,
+    public  fractalEngine  : FractalEngine,
     public  override configService : ConfigService,
     public  override backendService: BackendService,
     public  override route         : ActivatedRoute,
@@ -383,7 +384,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     switch (this.selectedImplementation) {
 
       case 'typescript':
-        serviceCall = this.computervisionService.GetFractal_Typescript(
+        serviceCall = this.fractalEngine.GetFractal_Typescript(
           this.maxIterations,
           this.realPart,
           this.imagPart,
@@ -393,7 +394,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
         break;
 
       case 'nodejs':
-        serviceCall = this.computervisionService.GetFractal_NodeJs(
+        serviceCall = this.fractalEngine.GetFractal_NodeJs(
           this.maxIterations,
           this.selectedFractal,
           this.serverZoomIn,    
@@ -402,7 +403,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
         break;
 
         case 'j2se':
-          serviceCall = this.computervisionService.GetFractal_j2se(
+          serviceCall = this.fractalEngine.GetFractal_j2se(
             this.maxIterations, 
             this.selectedFractal,
             this.serverZoomIn, 
@@ -411,13 +412,13 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
           break;
 
       case 'cpp':
-        serviceCall = this.computervisionService._OpenCv_GetFractal_CPP(
+        serviceCall = this.fractalEngine._OpenCv_GetFractal_CPP(
           this.maxIterations, this.realPart, this.imagPart
         );
         break;
 
       default:
-        serviceCall = this.computervisionService.GetFractal_Typescript(
+        serviceCall = this.fractalEngine.GetFractal_Typescript(
           this.maxIterations, this.realPart, this.imagPart, this.selectedFractal
         );
     }
