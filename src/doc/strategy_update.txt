@@ -721,5 +721,6 @@
 
                 --[_] generic functions.
 
+        --[_] mock typescript as resftul endpoint transforming to json and adoptiing the j2se format.
 
 ////////////////////////////////////////////////////////////////////////////////
