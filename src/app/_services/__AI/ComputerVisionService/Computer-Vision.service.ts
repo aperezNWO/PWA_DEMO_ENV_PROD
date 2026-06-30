@@ -620,27 +620,93 @@ export class ComputerVisionService extends BaseService {
   //  J2SE / SPRING BOOT BACKEND
   // ═══════════════════════════════════════════════════════════════════════════
 
-  GetFractal_j2se(p_maxIterations: number, p_fractalType: number): Observable<Blob> {
-    console.info(`[J2SE] fractal=${p_fractalType}`);
-    switch (p_fractalType) {
-      case FractalType.JULIA        : return this._J2SE_Julia(p_maxIterations);
-      case FractalType.BARNSLEY_FERN: return this._J2SE_BarnsleyFern(p_maxIterations);
-      default:
-        console.warn(`[J2SE] Unknown fractal type ${p_fractalType} — falling back to Julia`);
-        return this._J2SE_Julia(p_maxIterations);
-    }
+  //
+  GetFractal_j2se(
+      p_maxIterations : number,
+      p_fractalType   : number,
+      p_bounds?       : FractalBounds   // NEW — optional zoom bounds from applyZoomToBounds()
+    ): Observable<Blob> {
+      console.info(`[J2SE] fractal=${p_fractalType}`);
+      switch (p_fractalType) {
+        case FractalType.MANDELBROT   : return this._J2SE_Mandelbrot(p_maxIterations, p_bounds);
+        case FractalType.JULIA        : return this._J2SE_Julia(p_maxIterations, p_bounds);
+        case FractalType.BARNSLEY_FERN: return this._J2SE_BarnsleyFern(p_maxIterations);
+        default:
+          console.warn(`[J2SE] Unknown fractal type ${p_fractalType} — falling back to Julia`);
+          return this._J2SE_Julia(p_maxIterations, p_bounds);
+      }
   }
 
-  private _J2SE_Julia(p_maxIterations: number): Observable<Blob> {
-    const url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=2&zoomInOut=false&zoomStep=1`;
+  //
+  private _J2SE_Mandelbrot(
+    p_maxIterations : number,
+    p_bounds?       : FractalBounds
+  ): Observable<Blob> {
+    const url = this._buildJ2SEUrl(FractalType.MANDELBROT, p_bounds);
+    return this._fetchAndRender(url, FractalType.MANDELBROT, p_maxIterations);
+  }
+
+  //
+  private _J2SE_Julia(
+    p_maxIterations : number,
+    p_bounds?       : FractalBounds
+  ): Observable<Blob> {
+    const url = this._buildJ2SEUrl(FractalType.JULIA, p_bounds);
     return this._fetchAndRender(url, FractalType.JULIA, p_maxIterations);
   }
 
+  //
   private _J2SE_BarnsleyFern(p_maxIterations: number): Observable<Blob> {
-    const url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate?kind=3&zoomInOut=false&zoomStep=1`;
+    const url = this._buildJ2SEUrl(FractalType.BARNSLEY_FERN);
     return this._fetchAndRender(url, FractalType.BARNSLEY_FERN, p_maxIterations);
   }
 
+  // ── ADD: URL builder — single place where J2SE query params are assembled ────
+  //
+  // Translates FractalBounds (from applyZoomToBounds) into the query params
+  // the Spring Boot endpoint expects:
+  //   zoomInOut  — true  when either dimension has narrowed  (zoom IN)
+  //   zoomStep   — ratio of the original half-width to the new half-width
+  //   centerX/Y  — midpoint of the new bounds = where the reticle was placed
+  //
+  // When no bounds are supplied (first load / no zoom) zoomStep=1.0 is sent
+  // and the Java side applies no transform, returning the default view.
+
+  private _buildJ2SEUrl(
+    fractalType : FractalType,
+    bounds?     : FractalBounds
+  ): string {
+    const base = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate`;
+
+    if (!bounds) {
+      // No zoom — send neutral params; Java uses its default window
+      return `${base}?kind=${fractalType}&zoomInOut=false&zoomStep=1.0`;
+    }
+
+    // Derive zoom params from the bounds produced by applyZoomToBounds()
+    const centerX   = (bounds.xMin + bounds.xMax) / 2;
+    const centerY   = (bounds.yMin + bounds.yMax) / 2;
+
+    // Original default half-widths per fractal type
+    // (must match Java's defaults and Angular's DEFAULT_BOUNDS_*)
+    const originalHalfW = fractalType === FractalType.MANDELBROT
+      ? (1.0  - (-2.0)) / 2   // 1.5  — Mandelbrot default Re half-width
+      : (1.5  - (-1.5)) / 2;  // 1.5  — Julia / others default Re half-width
+
+    const currentHalfW  = (bounds.xMax - bounds.xMin) / 2;
+
+    // zoomStep = ratio of original to current half-width
+    //   > 1 → window narrowed  → zoom IN
+    //   < 1 → window widened   → zoom OUT
+    const zoomStep  = originalHalfW / currentHalfW;
+    const zoomInOut = zoomStep > 1.0;
+
+    return `${base}?kind=${fractalType}`
+        + `&zoomInOut=${zoomInOut}`
+        + `&zoomStep=${zoomStep.toFixed(6)}`
+        + `&centerX=${centerX.toFixed(6)}`
+        + `&centerY=${centerY.toFixed(6)}`;
+  }
 
   // ═══════════════════════════════════════════════════════════════════════════
   //  C++ / .NET CORE BACKEND
