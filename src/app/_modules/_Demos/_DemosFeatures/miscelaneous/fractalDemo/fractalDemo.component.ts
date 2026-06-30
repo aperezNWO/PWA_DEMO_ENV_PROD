@@ -1,13 +1,13 @@
 import { Component
-        , ViewChild
-        , OnInit
-        , OnDestroy
-        , ElementRef
-        , HostListener                    } from '@angular/core';
+       , ViewChild
+       , OnInit
+       , OnDestroy
+       , ElementRef
+       , HostListener                    } from '@angular/core';
 import { ActivatedRoute                   } from '@angular/router';
 import { HttpClient                       } from '@angular/common/http';
-import { PAGE_MISCELANEOUS_FRACTAL_DEMO,
-         PAGE_TITLE_LOG,
+import { PAGE_MISCELANEOUS_FRACTAL_DEMO, 
+         PAGE_TITLE_LOG, 
          PAGE_TITLE_NO_SOUND    } from 'src/app/_models/common';
 import { BackendService         } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
@@ -66,12 +66,12 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   private get baseXRange(): number { return this.selectedFractal === FractalType.MANDELBROT ? 3.0 : 3.0; }
   private get baseYRange(): number { return this.selectedFractal === FractalType.MANDELBROT ? 2.4 : 3.0; }
 
-  // ── Node.js zoom state (step-based) ───────────────────────────────────────
-  /** Cumulative zoom steps sent to the Node.js backend.
-   *  Incremented on zoom-in clicks, decremented (floor 0) on zoom-out.
-   *  Reset whenever the user switches engine, fractal, or hits Reset. */
-  public  nodejsZoomStep : number  = 0;
-  public  nodejsZoomIn   : boolean = true;
+  // ── Server zoom state (step-based for Node.js & J2SE) ─────────────────────
+  /** Cumulative zoom steps sent to the backend.
+   * Incremented on zoom-in clicks, decremented (floor 0) on zoom-out.
+   * Reset whenever the user switches engine, fractal, or hits Reset. */
+  public  serverZoomStep : number  = 0;
+  public  serverZoomIn   : boolean = true;
 
   // ── Mobile reticle ────────────────────────────────────────────────────────
   reticleVisible  : boolean  = false;
@@ -83,23 +83,24 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   // ── Computed flags ────────────────────────────────────────────────────────
 
   /** Zoom is available on:
-   *  - TypeScript → Mandelbrot + Julia  (bounds-based, click-to-pan)
-   *  - Node.js    → Julia only          (step-based, click increments step) */
+   * - TypeScript → Mandelbrot + Julia  (bounds-based, click-to-pan)
+   * - Server (Node/J2SE) → Julia only  (step-based, click increments step) */
   get isZoomable(): boolean {
     if (this.selectedFractal === FractalType.MANDELBROT) {
       return this.selectedImplementation === 'typescript';
     }
     if (this.selectedFractal === FractalType.JULIA) {
       return this.selectedImplementation === 'typescript' ||
-             this.selectedImplementation === 'nodejs';
+             this.selectedImplementation === 'nodejs' ||
+             this.selectedImplementation === 'j2se';
     }
     return false;
   }
 
   /** True when the active engine+fractal pair uses step-based zoom
-   *  (Node.js Julia) rather than bounds-based click-to-pan. */
-  get isNodejsZoom(): boolean {
-    return this.selectedImplementation === 'nodejs' &&
+   * (Node.js or J2SE Julia) rather than bounds-based click-to-pan. */
+  get isServerZoom(): boolean {
+    return (this.selectedImplementation === 'nodejs' || this.selectedImplementation === 'j2se') &&
            this.selectedFractal        === FractalType.JULIA;
   }
 
@@ -117,8 +118,8 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
 
   get zoomHint(): string {
     if (!this.isZoomable) return '';
-    if (this.isNodejsZoom)
-      return `Click to zoom IN · Shift+click to zoom OUT · Step: ${this.nodejsZoomStep}`;
+    if (this.isServerZoom)
+      return `Click to zoom IN · Shift+click to zoom OUT · Step: ${this.serverZoomStep}`;
     return 'Click to zoom IN · Shift+click to zoom OUT';
   }
 
@@ -169,7 +170,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       description: 'Runs on Spring Boot Engine',
       supportedFractals: {
         [FractalType.MANDELBROT]   : false,
-        [FractalType.JULIA]        : true,
+        [FractalType.JULIA]        : false,
         [FractalType.BARNSLEY_FERN]: true
       }
     }
@@ -236,9 +237,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     this.centerX    = this.selectedFractal === FractalType.MANDELBROT ? -0.5 : 0.0;
     this.centerY    = 0.0;
     this.zoomFactor = 1.0;
-    // Node.js step-based zoom — always reset direction to 'in'
-    this.nodejsZoomStep = 0;
-    this.nodejsZoomIn   = true;
+    
+    // Server step-based zoom — always reset direction to 'in'
+    this.serverZoomStep = 0;
+    this.serverZoomIn   = true;
   }
 
   // ── Complex-plane bounds (TypeScript engine only) ─────────────────────────
@@ -254,21 +256,20 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     };
   }
 
-  // ── Node.js step-based zoom ───────────────────────────────────────────────
+  // ── Server step-based zoom ────────────────────────────────────────────────
 
-  nodejsZoomInStep(): void {
-    this.nodejsZoomStep++;
-    this.nodejsZoomIn = true;
+  serverZoomInStep(): void {
+    this.serverZoomStep++;
+    this.serverZoomIn = true;
     this.onSubmit();
   }
 
-  //
-  nodejsZoomOutStep(): void {
-      // Send the current step with zoominout=false to exactly undo the last zoom-in
-      this.nodejsZoomIn = this.nodejsZoomStep <= 1 ? true : false;
-      this.onSubmit();
-      // Decrement AFTER submit so the URL carries the correct step
-      if (this.nodejsZoomStep > 0) this.nodejsZoomStep--;
+  serverZoomOutStep(): void {
+    // Send the current step with zoominout=false to exactly undo the last zoom-in
+    this.serverZoomIn = this.serverZoomStep <= 1 ? true : false;
+    this.onSubmit();
+    // Decrement AFTER submit so the URL carries the correct step
+    if (this.serverZoomStep > 0) this.serverZoomStep--;
   }
 
   // ── Desktop click handler ─────────────────────────────────────────────────
@@ -276,12 +277,12 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   onCanvasClick(event: MouseEvent): void {
     if (!this.isZoomable) return;
 
-    // Node.js Julia: translate click into a zoom step (no pan — backend limitation)
-    if (this.isNodejsZoom) {
+    // Server (Node/J2SE) Julia: translate click into a zoom step
+    if (this.isServerZoom) {
       if (event.shiftKey) {
-        this.nodejsZoomOutStep();  // shift+click = zoom out
+        this.serverZoomOutStep();  // shift+click = zoom out
       } else {
-        this.nodejsZoomInStep();   // plain click  = zoom in
+        this.serverZoomInStep();   // plain click  = zoom in
       }
       return;
     }
@@ -321,11 +322,11 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   applyReticleZoom(): void {
     if (!this.isZoomable || !this.activeZoomMode) return;
 
-    // Node.js Julia: reticle direction maps to a zoom step (no pan)
-    if (this.isNodejsZoom) {
+    // Server (Node/J2SE) Julia: reticle direction maps to a zoom step
+    if (this.isServerZoom) {
       this.activeZoomMode === 'in'
-        ? this.nodejsZoomInStep()
-        : this.nodejsZoomOutStep();
+        ? this.serverZoomInStep()
+        : this.serverZoomOutStep();
       this.reticleX = 50;
       this.reticleY = 50;
       return;
@@ -392,24 +393,26 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
         break;
 
       case 'nodejs':
-
-      serviceCall = this.computervisionService.GetFractal_NodeJs(
+        serviceCall = this.computervisionService.GetFractal_NodeJs(
           this.maxIterations,
           this.selectedFractal,
-          this.nodejsZoomIn,    // true = zoom in, false = zoom out
-          this.nodejsZoomStep   // cumulative step count
+          this.serverZoomIn,    
+          this.serverZoomStep   
         );
-      break;
+        break;
+
+        case 'j2se':
+          serviceCall = this.computervisionService.GetFractal_j2se(
+            this.maxIterations, 
+            this.selectedFractal,
+            this.serverZoomIn, 
+            this.serverZoomStep
+          );
+          break;
 
       case 'cpp':
         serviceCall = this.computervisionService._OpenCv_GetFractal_CPP(
           this.maxIterations, this.realPart, this.imagPart
-        );
-        break;
-
-      case 'j2se':
-        serviceCall = this.computervisionService.GetFractal_j2se(
-          this.maxIterations, this.selectedFractal
         );
         break;
 
@@ -476,7 +479,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       && this.selectedImplementation === this.defaultValues.implementation
       && this.selectedFractal        === this.defaultValues.fractalType
       && this.zoomFactor             === 1.0
-      && this.nodejsZoomStep         === 0;
+      && this.serverZoomStep         === 0; // Updated to match the new generic state
   }
 
   // ── Helpers ───────────────────────────────────────────────────────────────

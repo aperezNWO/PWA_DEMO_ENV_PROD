@@ -621,37 +621,36 @@ export class ComputerVisionService extends BaseService {
   // ═══════════════════════════════════════════════════════════════════════════
 
   //
-  GetFractal_j2se(
+ GetFractal_j2se(
       p_maxIterations : number,
       p_fractalType   : number,
-      p_bounds?       : FractalBounds   // NEW — optional zoom bounds from applyZoomToBounds()
+      zoomInOut       : boolean = true, // Replaces p_bounds
+      zoomStep        : number  = 0     // Replaces p_bounds
     ): Observable<Blob> {
-      console.info(`[J2SE] fractal=${p_fractalType}`);
+      console.info(`[J2SE] fractal=${p_fractalType}, zoomIn=${zoomInOut}, step=${zoomStep}`);
+      
       switch (p_fractalType) {
-        case FractalType.MANDELBROT   : return this._J2SE_Mandelbrot(p_maxIterations, p_bounds);
-        case FractalType.JULIA        : return this._J2SE_Julia(p_maxIterations, p_bounds);
+        case FractalType.MANDELBROT   : return this._J2SE_Mandelbrot(p_maxIterations);
+        case FractalType.JULIA        : return this._J2SE_Julia(p_maxIterations, zoomInOut, zoomStep);
         case FractalType.BARNSLEY_FERN: return this._J2SE_BarnsleyFern(p_maxIterations);
         default:
           console.warn(`[J2SE] Unknown fractal type ${p_fractalType} — falling back to Julia`);
-          return this._J2SE_Julia(p_maxIterations, p_bounds);
+          return this._J2SE_Julia(p_maxIterations, zoomInOut, zoomStep);
       }
   }
 
   //
-  private _J2SE_Mandelbrot(
-    p_maxIterations : number,
-    p_bounds?       : FractalBounds
-  ): Observable<Blob> {
-    const url = this._buildJ2SEUrl(FractalType.MANDELBROT, p_bounds);
+  private _J2SE_Mandelbrot(p_maxIterations : number): Observable<Blob> {
+    const url = this._buildJ2SEUrl(FractalType.MANDELBROT);
     return this._fetchAndRender(url, FractalType.MANDELBROT, p_maxIterations);
   }
 
   //
-  private _J2SE_Julia(
-    p_maxIterations : number,
-    p_bounds?       : FractalBounds
-  ): Observable<Blob> {
-    const url = this._buildJ2SEUrl(FractalType.JULIA, p_bounds);
+  private _J2SE_Julia(p_maxIterations: number, zoomInOut: boolean, zoomStep: number): Observable<Blob> {
+    // Ensure URL uses 'kind' to match @RequestParam int kind in Java
+    const url_base = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate`;
+    const url      = `${url_base}?kind=${FractalType.JULIA}&maxIterations=${p_maxIterations}&zoomInOut=${zoomInOut}&zoomStep=${Math.pow(2.0, zoomStep)}`;
+    
     return this._fetchAndRender(url, FractalType.JULIA, p_maxIterations);
   }
 

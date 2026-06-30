@@ -7,7 +7,6 @@
 
         <form (ngSubmit)="onSubmit()">
 
-            <!-- Backend engine selector -->
             <div class="form-group">
                 <label for="implementation">Implementation Backend Engine:</label>
                 <select id="implementation" name="implementation"
@@ -23,7 +22,6 @@
                 </small>
             </div>
 
-            <!-- Fractal type selector -->
             <div class="form-group">
                 <label for="fractalType">Target Fractal Architecture:</label>
                 <select id="fractalType" name="fractalType"
@@ -36,7 +34,6 @@
                 </select>
             </div>
 
-            <!-- Julia-only: complex constant inputs -->
             <div class="parametric-box" *ngIf="selectedFractal === FractalType.JULIA">
                 <div class="form-group">
                     <label for="realPart">Real Constant Part (Cr):</label>
@@ -50,7 +47,6 @@
                 </div>
             </div>
 
-            <!-- Barnsley Fern: algorithm info panel -->
             <div class="fern-info-box" *ngIf="selectedFractal === FractalType.BARNSLEY_FERN">
                 <div class="fern-info-header">🍃 Barnsley Fern — IFS Algorithm</div>
                 <div class="fern-info-body">
@@ -66,7 +62,6 @@
                 </div>
             </div>
 
-            <!-- Iterations / density slider -->
             <div class="form-group">
                 <label for="maxIterations">{{ iterationsLabel }}:</label>
                 <input type="number" id="maxIterations" name="maxIterations"
@@ -78,7 +73,6 @@
                 </small>
             </div>
 
-            <!-- Action buttons -->
             <div class="button-group">
                 <button type="submit" class="btn btn-outline-danger"
                         [disabled]="status_message() === '[...Generating please wait...]'">
@@ -99,12 +93,10 @@
 
             <hr>
 
-            <!-- Status message -->
             <div *ngIf="status_message()" class="alert alert-secondary" role="alert" align="center">
                 {{ status_message() }}
             </div>
 
-            <!-- Performance badge -->
             <div *ngIf="generationTime && lastImplementationUsed"
                  class="alert-performance"
                  [ngClass]="{
@@ -120,9 +112,6 @@
 
         <hr>
 
-        <!-- ═══════════════════════════════════════════════════════════
-             FRACTAL IMAGE + RETICLE OVERLAY
-             ═══════════════════════════════════════════════════════════ -->
         <div *ngIf="imageUrl" #_fractal_image class="canvas-display-container">
 
             <h3>Generated Viewport Result:</h3>
@@ -136,7 +125,6 @@
                      [title]="zoomHint"
                      class="fractal-img" />
 
-                <!-- Reticle overlay — only for zoomable fractals -->
                 <div class="reticle-overlay" *ngIf="reticleVisible && isZoomable"
                      (touchmove)="onReticleTouchMove($event)"
                      (touchend)="onReticleTouchEnd()">
@@ -155,19 +143,14 @@
                 </div>
 
             </div>
-            <!-- /fractal-img-wrapper -->
-
-            <!-- Zoom controls bar -->
             <div class="zoom-controls-bar" *ngIf="isZoomable">
 
-                <!-- Desktop zoom badge -->
                 <div class="zoom-badge desktop-only">
                     🔍 Zoom:
-                    <strong>{{ isNodejsZoom ? nodejsZoomStep + ' steps' : zoomFactor + 'x' }}</strong>
+                    <strong>{{ isServerZoom ? serverZoomStep + ' steps' : zoomFactor + 'x' }}</strong>
                     <span class="zoom-hint">{{ zoomHint }}</span>
                 </div>
 
-                <!-- Mobile reticle cluster -->
                 <div class="minifab-cluster mobile-only">
                     <button type="button" class="minifab minifab-toggle"
                             [class.active]="reticleVisible"
@@ -182,7 +165,7 @@
                             title="Zoom in">+</button>
                     <button type="button" class="minifab minifab-out"
                             [class.active]="activeZoomMode === 'out'"
-                            [disabled]="!reticleVisible || (isNodejsZoom ? nodejsZoomStep <= 0 : zoomFactor <= 1)"
+                            [disabled]="!reticleVisible || (isServerZoom ? serverZoomStep <= 0 : zoomFactor <= 1)"
                             (click)="setZoomMode('out')"
                             title="Zoom out">−</button>
                     <button type="button" class="minifab minifab-apply"
@@ -190,17 +173,13 @@
                             (click)="applyReticleZoom()"
                             title="Apply zoom">✓ Apply</button>
                     <span class="zoom-badge-mobile">
-                        🔍 {{ isNodejsZoom ? nodejsZoomStep + ' steps' : zoomFactor + 'x' }}
+                        🔍 {{ isServerZoom ? serverZoomStep + ' steps' : zoomFactor + 'x' }}
                     </span>
                 </div>
 
             </div>
-            <!-- /zoom-controls-bar -->
-
+            </div>
         </div>
-        <!-- /canvas-display-container -->
-
-    </div>
 
     <hr>
 
