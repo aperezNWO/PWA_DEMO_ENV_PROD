@@ -1,11 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// SHARED TYPES
-// Centralised here so every backend adapter and the unified renderer
-// speak the same language.  When you standardise the Node.js escape-time
-// JSON later, only the adapter functions at the bottom need to change —
-// the renderer and zoom logic stay untouched.
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { Observable    } from "rxjs";
 import { BaseService   } from "../__baseService/base.service";
 import { HttpClient    } from "@angular/common/http";
@@ -17,32 +9,14 @@ export enum FractalType {
   JULIA          = 2,
   BARNSLEY_FERN  = 3,
 }
-
-/**
- * Canonical point format used internally by the Angular layer.
- * Backends may return a different wire format; convert with an adapter
- * (see _adaptRemotePoints) before passing to the renderer.
- *
- * x, y        — pixel coordinates (0…width-1, 0…height-1)
- * value       — escape iteration count  (escape-time fractals)
- *               OR a fixed sentinel (IFS/scatter fractals, see FERN_SENTINEL)
- * kind        — drives the renderer's coloring branch
- */
 export interface FractalPoint {
   x     : number;
   y     : number;
   value : number;          // iteration count or FERN_SENTINEL
 }
 
-/**
- * Sentinel value used for Barnsley-Fern / IFS scatter points.
- * The renderer sees this and switches to the fern color palette
- * instead of the escape-time polynomial.
- * Value chosen to be clearly outside the [0…maxIterations] range.
- */
 export const FERN_SENTINEL = -1;
 
-/** Complex-plane view window — drives both generation and zoom math. */
 export interface FractalBounds {
   xMin: number;
   xMax: number;
@@ -50,32 +24,18 @@ export interface FractalBounds {
   yMax: number;
 }
 
-/** Options passed to the unified canvas renderer. */
 export interface FractalRenderOptions {
   width         : number;          // canvas width  in pixels  (default 800)
   height        : number;          // canvas height in pixels  (default 600)
   maxIterations : number;          // only meaningful for escape-time fractals
 }
 
-/** Parameters for the unified zoom function. */
 export interface ZoomParams {
-  /** Current view window before zoom is applied. */
   currentBounds  : FractalBounds;
-  /**
-   * Zoom factor per step.
-   * > 1 → zoom IN  (narrow the window around the center)
-   * < 1 → zoom OUT (widen the window)
-   * A typical UI step is 1.5 or 2.0.
-   */
   factor         : number;
-  /**
-   * Complex-plane coordinate to zoom towards / away from.
-   * If omitted the current center of the bounds is used.
-   */
   centerReal?    : number;
   centerImag?    : number;
 }
-
 
 // Default canvas dimensions — single source of truth
 const CANVAS_WIDTH  = 800;
@@ -93,38 +53,6 @@ export class FractalEngine extends BaseService {
       private readonly __baseUrlCPP          = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
       private readonly __baseUrlNodeJsOpenCv = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/OpenCv/`;
 
-     // ═══════════════════════════════════════════════════════════════════════════
-      //  UNIFIED FRACTAL RENDERING LAYER
-      //  ─────────────────────────────────────────────────────────────────────────
-      //  Two public functions cover every fractal / every backend:
-      //
-      //    applyZoomToBounds   — pure math, no canvas, no HTTP
-      //    renderPointsToBlob  — pure rendering, no math, no HTTP
-      //
-      //  Backend-specific methods (TS pure math, Node.js, J2SE, C++) live below
-      //  and all funnel into renderPointsToBlob for the final canvas step.
-      // ═══════════════════════════════════════════════════════════════════════════
-    
-      /**
-       * UNIFIED ZOOM MATH
-       * ─────────────────
-       * Pure coordinate transform — no canvas, no HTTP, no fractal math.
-       * Call this whenever the user zooms in or out; pass the returned bounds
-       * back to the fractal generator as the new view window.
-       *
-       * Works identically for Mandelbrot and Julia (both are escape-time
-       * fractals defined on the complex plane).
-       * Do NOT call for Barnsley Fern — zoom does not apply to IFS attractors.
-       *
-       * @param params  ZoomParams — see interface definition above
-       * @returns       New FractalBounds narrowed/widened around the target point
-       *
-       * Example — zoom in 2× towards the center of the current view:
-       *   const newBounds = this.applyZoomToBounds({
-       *     currentBounds : { xMin: -2, xMax: 1, yMin: -1.2, yMax: 1.2 },
-       *     factor        : 2.0,
-       *   });
-       */
       applyZoomToBounds(params: ZoomParams): FractalBounds {
         const { currentBounds, factor } = params;
     
@@ -150,26 +78,6 @@ export class FractalEngine extends BaseService {
         };
       }
     
-      /**
-       * UNIFIED CANVAS RENDERER
-       * ───────────────────────
-       * Accepts any array of FractalPoint (escape-time OR IFS scatter) and
-       * renders it to a PNG Blob via an offscreen HTML canvas.
-       *
-       * Coloring branches:
-       *   point.value === FERN_SENTINEL  → fern/IFS ochre palette
-       *   point.value  <  maxIterations  → escape-time smooth polynomial
-       *   point.value === maxIterations  → inside the set → black
-       *
-       * This is the ONLY place in the service that touches a canvas or
-       * produces a Blob.  Every backend path must convert its data to
-       * FractalPoint[] first (use _adaptRemotePoints for remote JSON),
-       * then call this function.
-       *
-       * @param points   Canonical FractalPoint array
-       * @param options  Canvas size + maxIterations
-       * @returns        Observable<Blob> PNG image
-       */
       renderPointsToBlob(
         points  : FractalPoint[],
         options : FractalRenderOptions
@@ -202,11 +110,6 @@ export class FractalEngine extends BaseService {
               let r: number, g: number, b: number;
     
               if (point.value === FERN_SENTINEL) {
-                // ── IFS / Barnsley Fern branch ──────────────────────────────
-                // value carries no iteration information; color is determined
-                // by y position, which is encoded in the pixel coordinate.
-                // We re-derive a normalised [0,1] height from the pixel y so
-                // the palette reads naturally root-to-tip.
                 const normY  = 1 - (point.y / height);   // 0 = bottom, 1 = top
                 const t      = 0.25 + normY * 0.45;       // keep in ochre band
                 r = Math.min(255, Math.floor(9   * (1 - t) * t * t * t         * 255 * 3.5));
@@ -235,35 +138,6 @@ export class FractalEngine extends BaseService {
         });
       }
     
-      /**
-       * REMOTE JSON ADAPTER
-       * ───────────────────
-       * Converts the wire format returned by Node.js and J2SE backends
-       * into the canonical FractalPoint[] expected by renderPointsToBlob.
-       *
-       * Current wire format (identical for both backends):
-       *   { x: number, y: number, intensity: number }
-       *
-       * Mapping rules
-       * ─────────────
-       * Barnsley Fern (IFS scatter):
-       *   intensity is always 200 — a fixed "hit" marker, not a real value.
-       *   → value = FERN_SENTINEL  (tells renderer to use the fern palette)
-       *
-       * Escape-time fractals (Mandelbrot / Julia — future backends):
-       *   intensity encodes the iteration count scaled to [0…255].
-       *   → value = round(intensity * maxIterations / 255)
-       *
-       * NOTE: when you add escape-time fractals to Node.js / J2SE and
-       * standardise the JSON, you may want to change the wire format to
-       * carry `iteration` directly instead of `intensity` to avoid the
-       * lossy round-trip through [0…255].  Only this adapter needs to
-       * change when that happens — renderPointsToBlob is unaffected.
-       *
-       * @param raw             Raw JSON array from the backend
-       * @param fractalType     Determines which mapping rule to apply
-       * @param maxIterations   Used only for escape-time back-calculation
-       */
       private _adaptRemotePoints(
         raw           : { x: number; y: number; intensity: number }[],
         fractalType   : FractalType,
@@ -282,12 +156,6 @@ export class FractalEngine extends BaseService {
         });
       }
     
-      // ─────────────────────────────────────────────────────────────────────────
-      // SHARED COLOR HELPER
-      // Used by the TS pure-math engine only — renderPointsToBlob has its own
-      // inline copy so it doesn't depend on `this` context in the pixel loop.
-      // ─────────────────────────────────────────────────────────────────────────
-    
       public _getFractalColorRGB(
         iteration     : number,
         maxIterations : number
@@ -301,13 +169,6 @@ export class FractalEngine extends BaseService {
         };
       }
     
-      /**
-   * Fetches a JSON point array from any remote backend, adapts it to
-   * FractalPoint[] via _adaptRemotePoints, then renders via renderPointsToBlob.
-   *
-   * This is the single replacement for the old _renderFractalPipeline.
-   * Adding a new backend is: build the URL, call _fetchAndRender.
-   */
   private _fetchAndRender(
     url           : string,
     fractalType   : FractalType,
@@ -336,13 +197,6 @@ export class FractalEngine extends BaseService {
     });
   }
 
-  
-  // ═══════════════════════════════════════════════════════════════════════════
-  //  PRIVATE SHARED FETCH + RENDER PIPELINE
-  //  Used by all remote backends that return { x, y, intensity }[] JSON.
-  //  C++ is excluded — it returns a raw PNG blob, not a point array.
-  // ═══════════════════════════════════════════════════════════════════════════
-
   // ═══════════════════════════════════════════════════════════════════════════
   //  C++ / .NET CORE BACKEND
   // ═══════════════════════════════════════════════════════════════════════════
@@ -352,24 +206,14 @@ export class FractalEngine extends BaseService {
     p_realPart      : number,
     p_imagPart      : number
   ): Observable<Blob> {
-    // C++ backend returns a raw PNG blob directly — no JSON point array.
-    // It bypasses renderPointsToBlob entirely and goes straight to the UI.
-    // When you replace OpenCV with pure math on the C++ side, wire the
-    // JSON output through _fetchAndRender the same way as Node.js / J2SE.
     const url = `${this.__baseUrlCPP}generatejuliaparams/?maxIterations=${p_maxIterations}&realPart=${p_realPart}&imagPart=${p_imagPart}`;
     return this.http.get(url, { responseType: 'blob' });
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
   //  TYPESCRIPT PURE-MATH ENGINE
-  //  Each generator runs the fractal math locally, builds FractalPoint[],
-  //  then calls renderPointsToBlob — same final step as remote backends.
   // ═══════════════════════════════════════════════════════════════════════════
 
-  /**
-   * Router — dispatches to the correct TS generator by fractal type.
-   * p_bounds is optional; when omitted each generator uses its default view.
-   */
   GetFractal_Typescript(
     p_maxIterations : number,
     p_realPart      : number,
@@ -453,17 +297,6 @@ export class FractalEngine extends BaseService {
     });
   }
 
-  /**
-   * SHARED ESCAPE-TIME ENGINE
-   * ─────────────────────────
-   * Iterates every pixel in the canvas, applies the formula callback,
-   * and returns a FractalPoint[] ready for renderPointsToBlob.
-   *
-   * This replaces _renderTSCanvasPipeline — the formula is still a
-   * callback so Mandelbrot and Julia stay separate, but the output is
-   * now a data array instead of going straight to the canvas, making
-   * it consistent with the remote-backend path.
-   */
   private _runEscapeTimeEngine(
     maxIterations : number,
     bounds        : FractalBounds,
@@ -572,11 +405,6 @@ export class FractalEngine extends BaseService {
       }
     }
 
-    // Convert pixelNormY buffer into canonical FractalPoint[]
-    // value = FERN_SENTINEL signals the renderer to use the fern palette.
-    // We encode normY in a separate field by temporarily repurposing the
-    // pixel y coordinate approach inside renderPointsToBlob (renderer
-    // re-derives normY from point.y / height, which is equivalent).
     const points: FractalPoint[] = [];
     for (let py = 0; py < height; py++) {
       for (let px = 0; px < width; px++) {
@@ -660,17 +488,6 @@ export class FractalEngine extends BaseService {
     const url = this._buildJ2SEUrl(FractalType.BARNSLEY_FERN);
     return this._fetchAndRender(url, FractalType.BARNSLEY_FERN, p_maxIterations);
   }
-
-  // ── ADD: URL builder — single place where J2SE query params are assembled ────
-  //
-  // Translates FractalBounds (from applyZoomToBounds) into the query params
-  // the Spring Boot endpoint expects:
-  //   zoomInOut  — true  when either dimension has narrowed  (zoom IN)
-  //   zoomStep   — ratio of the original half-width to the new half-width
-  //   centerX/Y  — midpoint of the new bounds = where the reticle was placed
-  //
-  // When no bounds are supplied (first load / no zoom) zoomStep=1.0 is sent
-  // and the Java side applies no transform, returning the default view.
 
   private _buildJ2SEUrl(
     fractalType : FractalType,
