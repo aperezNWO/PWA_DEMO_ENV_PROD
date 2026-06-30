@@ -139,7 +139,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       supportedFractals: {
         [FractalType.MANDELBROT]   : true,
         [FractalType.JULIA]        : true,
-        [FractalType.BARNSLEY_FERN]: true
+        [FractalType.BARNSLEY_FERN]: false
       }
     },
     {

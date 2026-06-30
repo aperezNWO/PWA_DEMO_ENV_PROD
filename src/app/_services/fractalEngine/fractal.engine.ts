@@ -1,4 +1,4 @@
-import { Observable    } from "rxjs";
+import { map, Observable, of, switchMap    } from "rxjs";
 import { BaseService   } from "../__baseService/base.service";
 import { HttpClient    } from "@angular/common/http";
 import { inject, Injectable        } from "@angular/core";
@@ -214,123 +214,63 @@ export class FractalEngine extends BaseService {
   //  TYPESCRIPT PURE-MATH ENGINE
   // ═══════════════════════════════════════════════════════════════════════════
 
-  GetFractal_Typescript(
-    p_maxIterations : number,
-    p_realPart      : number,
-    p_imagPart      : number,
-    p_fractalType   : number,
-    p_bounds?       : FractalBounds
+ // ═══════════════════════════════════════════════════════════════════════════
+  //  UNIFIED RENDERING PIPELINE
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  /**
+   * The single source of truth for rendering. 
+   * Takes a stream of points and renders them to the canvas.
+   */
+  private _renderPipeline(
+    points$: Observable<FractalPoint[]>, 
+    maxIterations: number
   ): Observable<Blob> {
-    switch (p_fractalType) {
-      case FractalType.MANDELBROT   : return this._TS_Mandelbrot(p_maxIterations, p_bounds);
-      case FractalType.JULIA        : return this._TS_Julia(p_maxIterations, p_realPart, p_imagPart, p_bounds);
-      case FractalType.BARNSLEY_FERN: return this._TS_BarnsleyFern(p_maxIterations);
-      default                       : return this._TS_Julia(p_maxIterations, p_realPart, p_imagPart, p_bounds);
-    }
+    return points$.pipe(
+      switchMap(points => 
+        this.renderPointsToBlob(points, {
+          width: CANVAS_WIDTH,
+          height: CANVAS_HEIGHT,
+          maxIterations
+        })
+      )
+    );
   }
 
-  // ── Mandelbrot ─────────────────────────────────────────────────────────────
-  GetFractal_Typescript_Manderblot(
-    p_maxIterations : number,
-    p_bounds?       : FractalBounds
-  ): Observable<Blob> {
-    return this._TS_Mandelbrot(p_maxIterations, p_bounds);
-  }
+  // ═══════════════════════════════════════════════════════════════════════════
+  //  TYPESCRIPT DATA GENERATION (The "Mocking/Pure" functions)
+  // ═══════════════════════════════════════════════════════════════════════════
 
-  private _TS_Mandelbrot(
-    p_maxIterations : number,
-    p_bounds?       : FractalBounds
-  ): Observable<Blob> {
+  private _generateTSMandelbrot(p_maxIterations: number, p_bounds?: FractalBounds): Observable<FractalPoint[]> {
     const bounds = p_bounds ?? DEFAULT_BOUNDS_MANDELBROT;
-    const points = this._runEscapeTimeEngine(
-      p_maxIterations,
-      bounds,
-      (cx, cy) => {
-        let zr = 0, zi = 0, i = 0;
-        while (i < p_maxIterations) {
-          if (zr * zr + zi * zi > 4.0) break;
-          const nr = zr * zr - zi * zi + cx;
-          const ni = 2 * zr * zi + cy;
-          zr = nr; zi = ni; i++;
-        }
-        return i;
+    return of(this._runEscapeTimeEngine(p_maxIterations, bounds, (cx, cy) => {
+      let zr = 0, zi = 0, i = 0;
+      while (i < p_maxIterations) {
+        if (zr * zr + zi * zi > 4.0) break;
+        const nr = zr * zr - zi * zi + cx;
+        const ni = 2 * zr * zi + cy;
+        zr = nr; zi = ni; i++;
       }
-    );
-    return this.renderPointsToBlob(points, {
-      width: CANVAS_WIDTH, height: CANVAS_HEIGHT, maxIterations: p_maxIterations
-    });
+      return i;
+    }));
   }
 
-  // ── Julia ──────────────────────────────────────────────────────────────────
-  GetFractal_Typescript_Julia(
-    p_maxIterations : number,
-    p_realPart      : number,
-    p_imagPart      : number,
-    p_bounds?       : FractalBounds
-  ): Observable<Blob> {
-    return this._TS_Julia(p_maxIterations, p_realPart, p_imagPart, p_bounds);
-  }
-
-  private _TS_Julia(
-    p_maxIterations : number,
-    p_realPart      : number,
-    p_imagPart      : number,
-    p_bounds?       : FractalBounds
-  ): Observable<Blob> {
+  private _generateTSJulia(p_maxIterations: number, p_realPart: number, p_imagPart: number, p_bounds?: FractalBounds): Observable<FractalPoint[]> {
     const bounds = p_bounds ?? DEFAULT_BOUNDS_JULIA;
-    const points = this._runEscapeTimeEngine(
-      p_maxIterations,
-      bounds,
-      (zx, zy) => {
-        let zr = zx, zi = zy, i = 0;
-        while (i < p_maxIterations) {
-          if (zr * zr + zi * zi > 4.0) break;
-          const nr = zr * zr - zi * zi + p_realPart;
-          const ni = 2 * zr * zi + p_imagPart;
-          zr = nr; zi = ni; i++;
-        }
-        return i;
+    return of(this._runEscapeTimeEngine(p_maxIterations, bounds, (zx, zy) => {
+      let zr = zx, zi = zy, i = 0;
+      while (i < p_maxIterations) {
+        if (zr * zr + zi * zi > 4.0) break;
+        const nr = zr * zr - zi * zi + p_realPart;
+        const ni = 2 * zr * zi + p_imagPart;
+        zr = nr; zi = ni; i++;
       }
-    );
-    return this.renderPointsToBlob(points, {
-      width: CANVAS_WIDTH, height: CANVAS_HEIGHT, maxIterations: p_maxIterations
-    });
+      return i;
+    }));
   }
 
-  private _runEscapeTimeEngine(
-    maxIterations : number,
-    bounds        : FractalBounds,
-    formula       : (x: number, y: number) => number
-  ): FractalPoint[] {
-    const width  = CANVAS_WIDTH;
-    const height = CANVAS_HEIGHT;
-    const xStep  = (bounds.xMax - bounds.xMin) / width;
-    const yStep  = (bounds.yMax - bounds.yMin) / height;
-
-    const t0     = performance.now();
-    const points : FractalPoint[] = new Array(width * height);
-
-    let idx = 0;
-    for (let y = 0; y < height; y++) {
-      for (let x = 0; x < width; x++) {
-        points[idx++] = {
-          x,
-          y,
-          value: formula(bounds.xMin + x * xStep, bounds.yMin + y * yStep),
-        };
-      }
-    }
-
-    console.log(`[TS Engine] ${width * height} points in ${(performance.now() - t0).toFixed(2)}ms`);
-    return points;
-  }
-
-  // ── Barnsley Fern ──────────────────────────────────────────────────────────
-  GetFractal_Typescript_BarnsleyFern(p_maxIterations: number): Observable<Blob> {
-    return this._TS_BarnsleyFern(p_maxIterations);
-  }
-
-  private _TS_BarnsleyFern(p_maxIterations: number): Observable<Blob> {
+  /*
+  private _generateTSBarnsley(p_maxIterations: number): Observable<FractalPoint[]> {
     const width   = CANVAS_WIDTH;
     const height  = CANVAS_HEIGHT;
     const padding = 20;
@@ -413,12 +353,67 @@ export class FractalEngine extends BaseService {
         }
       }
     }
+  }
+  */
 
-    console.log(`[TS Barnsley Fern] ${numPoints} IFS iterations → ${points.length} pixels in ${(performance.now() - t0).toFixed(2)}ms`);
+  private _runEscapeTimeEngine(
+    maxIterations : number,
+    bounds        : FractalBounds,
+    formula       : (x: number, y: number) => number
+  ): FractalPoint[] {
+    const width  = CANVAS_WIDTH;
+    const height = CANVAS_HEIGHT;
+    const xStep  = (bounds.xMax - bounds.xMin) / width;
+    const yStep  = (bounds.yMax - bounds.yMin) / height;
 
-    return this.renderPointsToBlob(points, {
-      width, height, maxIterations: p_maxIterations
-    });
+    const t0     = performance.now();
+    const points : FractalPoint[] = new Array(width * height);
+
+    let idx = 0;
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        points[idx++] = {
+          x,
+          y,
+          value: formula(bounds.xMin + x * xStep, bounds.yMin + y * yStep),
+        };
+      }
+    }
+
+    console.log(`[TS Engine] ${width * height} points in ${(performance.now() - t0).toFixed(2)}ms`);
+    return points;
+  }
+  
+  // ═══════════════════════════════════════════════════════════════════════════
+  //  REMOTE DATA FETCHERS (All backends now conform to this pattern)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  private _fetchRemotePoints(url: string, fractalType: FractalType, maxIterations: number): Observable<FractalPoint[]> {
+    return this.http.get<{ x: number; y: number; intensity: number }[]>(url).pipe(
+      map(raw => this._adaptRemotePoints(raw, fractalType, maxIterations))
+    );
+  }
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  //  PUBLIC API (The Orchestrators)
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  GetFractal_Typescript(
+    p_maxIterations : number,
+    p_realPart      : number,
+    p_imagPart      : number,
+    p_fractalType   : FractalType,
+    p_bounds?       : FractalBounds
+  ): Observable<Blob> {
+    let points$: Observable<FractalPoint[]>;
+    
+    switch (p_fractalType) {
+      case FractalType.MANDELBROT: points$    = this._generateTSMandelbrot(p_maxIterations, p_bounds); break;
+      case FractalType.JULIA:      points$    = this._generateTSJulia(p_maxIterations, p_realPart, p_imagPart, p_bounds); break;
+      default: points$ = this._generateTSJulia(p_maxIterations, p_realPart, p_imagPart, p_bounds);
+    }
+    
+    return this._renderPipeline(points$, p_maxIterations);
   }
 
 
