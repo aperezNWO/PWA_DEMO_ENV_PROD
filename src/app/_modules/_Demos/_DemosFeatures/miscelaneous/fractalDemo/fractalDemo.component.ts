@@ -140,8 +140,8 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     icon: '🟡',
     description: 'Runs in browser — Fastest',
     supportedFractals: {
-      [FractalType.MANDELBROT]   : { supported: true, zoomable: true },
-      [FractalType.JULIA]        : { supported: true, zoomable: true },
+      [FractalType.MANDELBROT]   : { supported: true, zoomable: true  },
+      [FractalType.JULIA]        : { supported: true, zoomable: true  },
       [FractalType.BARNSLEY_FERN]: { supported: true, zoomable: false }
     }
   },
@@ -151,9 +151,9 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     icon: '🟢',
     description: 'Runs on server — Stable',
     supportedFractals: {
-      [FractalType.MANDELBROT]   : { supported: false, zoomable: false },
-      [FractalType.JULIA]        : { supported: true, zoomable: true },
-      [FractalType.BARNSLEY_FERN]: { supported: true, zoomable: false }
+      [FractalType.MANDELBROT]   : { supported: false, zoomable : true  },
+      [FractalType.JULIA]        : { supported: false, zoomable : true  },
+      [FractalType.BARNSLEY_FERN]: { supported: true , zoomable : false }
     }
   },
   {
@@ -162,9 +162,9 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     icon: '🔵',
     description: 'Native performance — Most accurate',
     supportedFractals: {
-      [FractalType.MANDELBROT]   : { supported: false, zoomable: false },
-      [FractalType.JULIA]        : { supported: true, zoomable: false }, // Assuming zoom not implemented in CPP
-      [FractalType.BARNSLEY_FERN]: { supported: false, zoomable: false }
+      [FractalType.MANDELBROT]   : { supported: false, zoomable: false  },
+      [FractalType.JULIA]        : { supported: true,  zoomable: false  }, 
+      [FractalType.BARNSLEY_FERN]: { supported: false, zoomable: false  }
     }
   },
   {
@@ -173,19 +173,22 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     icon: '☕',
     description: 'Runs on Spring Boot Engine',
     supportedFractals: {
-      [FractalType.MANDELBROT]   : { supported: false, zoomable: false },
-      [FractalType.JULIA]        : { supported: true, zoomable: true },
-      [FractalType.BARNSLEY_FERN]: { supported: true, zoomable: false }
+      [FractalType.MANDELBROT]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
     }
   }
 ];
-  fractalOptions = [
+
+//
+fractalOptions = [
     { id: FractalType.MANDELBROT,    label: 'Mandelbrot Set',           icon: '🌀' },
     { id: FractalType.JULIA,         label: 'Julia Set',                icon: '❄️' },
     { id: FractalType.BARNSLEY_FERN, label: 'Barnsley Fern (IFS — TS)', icon: '🍃' }
-  ];
+];
 
-  constructor(
+//
+constructor(
     public  fractalEngine  : FractalEngine,
     public  override configService : ConfigService,
     public  override backendService: BackendService,
