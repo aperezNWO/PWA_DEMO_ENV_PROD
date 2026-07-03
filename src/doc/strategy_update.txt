@@ -723,10 +723,12 @@
 
                 --[_] generic functions.
 
-        --[_] mock typescript as resftul endpoint transforming to json and adoptiing the j2se format.
-
         --[_] typescript -- mandelbrot.
 
         --[_] ditch "IsZoomable" function and add it as a property of the languages array.
+
+        --[_] mock typescript as json resftul endpoint --? mandatory for j2se format and others.
+
+        --[_] (alternative) write/read to database.
 
 ////////////////////////////////////////////////////////////////////////////////
