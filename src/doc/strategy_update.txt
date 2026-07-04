@@ -676,7 +676,11 @@
         --[_] saves to db.
 
  --[_] fractal demo / OCR Demo.
- 
+  
+        --[x] Julia Fracal Zoom typescript.
+
+        --[x] typescript -- mandelbrot.
+
         --[_] C# / python.
 
         --[_] performance benchmark.
@@ -717,13 +721,9 @@
                 
                 --[_]  app - sudoku image board ocr detection / open cv image processing.
 
-        --[_] Julia Fracal Zoom typescript.
-
         --[_] Julia Fracal Zoom node.js.
 
                 --[_] generic functions.
-
-        --[_] typescript -- mandelbrot.
 
         --[_] ditch "IsZoomable" function and add it as a property of the languages array.
 
