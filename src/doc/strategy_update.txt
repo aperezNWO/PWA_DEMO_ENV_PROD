@@ -711,6 +711,14 @@
 
          --[_] Update menu access.
 
+                --[_] typescript.
+
+                --[_] c++.
+
+                --[_] node.js.
+
+                --[_] j2se.
+
          --[_] Update index.
 
          --[_]  further plans : 
