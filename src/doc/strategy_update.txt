@@ -674,12 +674,28 @@
         --[_] gestures recognition.
 
         --[_] saves to db.
+ 
+ --[_]  app - open cv color detection.
+
+ --[_]  app - sudoku image board ocr detection / open cv image processing.
 
  --[_] fractal demo / OCR Demo.
   
+        --[x] ditch "IsZoomable" function and add it as a property of the languages array.
+
+        --[x]  add a infinite zoom in / out  option.
+
+                --[x]  minifab and target reticle  https://gemini.google.com/app/349346894b769c9a
+
         --[x] Julia Fracal Zoom typescript.
 
         --[x] typescript -- mandelbrot.
+
+                 --[x] Opencv -> Typescript.
+ 
+         --[x] Opencv -> Node.js.
+
+         --[x] Opencv -> C++.
 
         --[_] C# / python.
 
@@ -687,11 +703,7 @@
 
                 --[_] write execution time in seconds (pipe).
 
-         --[_] Opencv -> Typescript.
- 
-         --[_] Opencv -> Node.js.
-
-         --[_] Opencv -> C++.
+         --[_] Add option puremath fractals.
 
          --[_] Modify pdf header.
 
@@ -703,32 +715,24 @@
 
          --[_]  further plans : 
                 
-                --[_]  Python option. 
-
-                --[_]  add j2s3/springbot pure math option.
+                 --[_]  add j2s3/springbot pure math option.
 
                         --[_] https://claude.ai/chat/519754d4-5e76-4084-a53d-f33e1000cf68
 
                         --[_] https://gemini.google.com/app/349346894b769c9a
 
-                --[_]  add a infinite zoom in / out  option.
-
-                        --[_]  minifab and target reticle  https://gemini.google.com/app/349346894b769c9a
-
                 --[_]  perform opencv operation over generated image.
-                
-                --[_]  app - open cv color detection.
-                
-                --[_]  app - sudoku image board ocr detection / open cv image processing.
 
-        --[_] Julia Fracal Zoom node.js.
+        --[_] Julia Fracal Zoomin/out j2se.
+
+                --[_] check menu error (optoin generates barnsley fern fractal)                
+
+        --[_] Julia Fracal Zoomin/out node.js.
 
                 --[_] generic functions.
 
-        --[_] ditch "IsZoomable" function and add it as a property of the languages array.
-
         --[_] mock typescript as json resftul endpoint --? mandatory for j2se format and others.
 
-        --[_] (alternative) write/read to database.
+                --[_] (alternative) write/read to database.
 
 ////////////////////////////////////////////////////////////////////////////////
