@@ -625,3 +625,29 @@ Could you please hep me to modify the application with the following changes:
 
 
 /////////////////////////////////////////////
+
+Manus : (BLANK APP QUESTION) --> https://manus.im/ 
+
+https://manus.im/app/Lm5ms5b2mTNIFUhIHfWHav
+
+Hi Manus.
+
+
+Let's say I have the availability of the following software resources.
+
+
+
+1) A blank angular v21 app. 
+
+2) Five empty ready for programming (node.js, .net core, C++ though .net core iterop, j2se springboot, python)
+
+3) A empty sql server database.
+
+4) A configured  SMTP client.
+
+
+
+I want to impress a potential employer or recruiter. ¿What kind of application do you advise me to do?
+
+
+/////////////////////////////////////////////

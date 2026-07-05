@@ -633,6 +633,8 @@
 
         --[_] partially or totally integrate [Voice + chat + export formats + opencv + ocr + tensorflow + (others)].
 
+--[_] service / engine / view.
+
 --[_] Write an article / book.
 
      --[_] Samples :
@@ -742,5 +744,7 @@
         --[_] mock typescript as json resftul endpoint --? mandatory for j2se format and others.
 
                 --[_] (alternative) write/read to database.
+
+        --[_] service / engine / view.
 
 ////////////////////////////////////////////////////////////////////////////////
