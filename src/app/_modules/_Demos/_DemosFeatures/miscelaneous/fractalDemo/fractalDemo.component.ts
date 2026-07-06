@@ -14,23 +14,11 @@ import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/
 import { SpeechService          } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { PdfService             } from 'src/app/_services/__FileGeneration/pdf.service';
 import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-reference.component';
-import { FractalEngine, 
-         FractalType            } from 'src/app/_services/fractalEngine/fractal.engine';
+import { FractalService         } from 'src/app/_services/fractalService/fractalService';
+import { FractalType
+        , ZoomMode
+        , LanguageCapability    } from './fractalDemo.Engine';
 
-export interface FractalCapability {
-  supported: boolean;
-  zoomable: boolean;
-}
-
-export interface LanguageCapability {
-  languageCode: string;
-  label: string;
-  icon: string;
-  description: string;
-  supportedFractals: { [key in FractalType]: FractalCapability };
-}
-
-export type ZoomMode = 'in' | 'out' | null;
 
 @Component({
   selector: 'app-fractalDemo',
@@ -193,7 +181,7 @@ fractalOptions = [
 
 //
 constructor(
-    public  fractalEngine  : FractalEngine,
+    public  fractalService         : FractalService,
     public  override configService : ConfigService,
     public  override backendService: BackendService,
     public  override route         : ActivatedRoute,
@@ -377,7 +365,7 @@ constructor(
     switch (this.selectedImplementation) {
 
       case 'typescript':
-        serviceCall = this.fractalEngine.GetFractal_Typescript(
+        serviceCall = this.fractalService.GetFractal_Typescript(
           this.maxIterations,
           this.realPart,
           this.imagPart,
@@ -387,7 +375,7 @@ constructor(
         break;
 
       case 'nodejs':
-        serviceCall = this.fractalEngine.GetFractal_NodeJs(
+        serviceCall = this.fractalService.GetFractal_NodeJs(
           this.maxIterations,
           this.selectedFractal,
           this.serverZoomIn,    
@@ -396,7 +384,7 @@ constructor(
         break;
 
         case 'j2se':
-          serviceCall = this.fractalEngine.GetFractal_j2se(
+          serviceCall = this.fractalService.GetFractal_j2se(
             this.maxIterations, 
             this.selectedFractal,
             this.serverZoomIn, 
@@ -405,13 +393,13 @@ constructor(
           break;
 
       case 'cpp':
-        serviceCall = this.fractalEngine.GetFractal_CPP(
+        serviceCall = this.fractalService.GetFractal_CPP(
           this.maxIterations, this.realPart, this.imagPart
         );
         break;
 
       default:
-        serviceCall = this.fractalEngine.GetFractal_Typescript(
+        serviceCall = this.fractalService.GetFractal_Typescript(
           this.maxIterations, this.realPart, this.imagPart, this.selectedFractal
         );
     }
