@@ -741,10 +741,10 @@
 
                 --[_] generic functions.
 
-        --[_] mock typescript as json resftul endpoint --? mandatory for j2se format and others.
+        --[_] service / engine / view.
 
                 --[_] (alternative) write/read to database.
 
-        --[_] service / engine / view.
+                --[_] mock typescript as json resftul endpoint --? mandatory for j2se format and others.
 
 ////////////////////////////////////////////////////////////////////////////////
