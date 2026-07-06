@@ -1,6 +1,5 @@
 import { map
-        , Observable
-        , of                          } from "rxjs";
+        , Observable                  } from "rxjs";
 import { BaseService                  } from "../__baseService/base.service";
 import { HttpClient                   } from "@angular/common/http";
 import { inject, Injectable           } from "@angular/core";
@@ -61,6 +60,14 @@ export class FractalService extends BaseService {
             `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
             `&maxIterations=${p_fractalParams.maxIterations}`;
       break;
+      case BackendLanguage.J2SE:
+          url =
+            `${this.__baseUrlJ2seFractal}` +
+            `?kind=${FractalType.JULIA}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}`;
+      break;
       default : 
           url =
             `${this.__baseUrlNodeJsFractal}julia` +
@@ -96,6 +103,14 @@ export class FractalService extends BaseService {
             `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
             `&maxIterations=${p_fractalParams.maxIterations}`;
       break;
+      case BackendLanguage.J2SE:
+          url =
+            `${this.__baseUrlJ2seFractal}` +
+            `?kind=${FractalType.MANDELBROT}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}`;
+      break;
       default :
           url =
             `${this.__baseUrlNodeJsFractal}mandelbrot` +
@@ -123,6 +138,9 @@ export class FractalService extends BaseService {
       case BackendLanguage.NODEJS:
             url = `${this.__baseUrlNodeJsFractal}leaf`;      
       break;
+      case BackendLanguage.J2SE:
+            url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.BARNSLEY_FERN}`;
+      break;
       default : 
             url = `${this.__baseUrlNodeJsFractal}leaf`;      
     }
@@ -134,81 +152,5 @@ export class FractalService extends BaseService {
     return rawData$.pipe(
       map(raw => FractalEngine._adaptRemotePoints(raw, FractalType.BARNSLEY_FERN, p_fractalParams.maxIterations))
     );
-  }
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  //  J2SE / SPRING BOOT BACKEND
-  // ═══════════════════════════════════════════════════════════════════════════
-
-  GetFractal_j2se(
-      p_maxIterations : number,
-      p_fractalType   : FractalType,
-      zoomInOut       : boolean = true,
-      zoomStep        : number  = 0
-    ): Observable<Blob> {
-      console.info(`[J2SE] fractal=${p_fractalType}, zoomIn=${zoomInOut}, step=${zoomStep}`);
-    
-      //
-      let points$: Observable<FractalPoint[]>;
-
-      switch (p_fractalType) {
-        case FractalType.BARNSLEY_FERN: 
-          points$ =  this._J2SE_BarnsleyFern(p_maxIterations);
-        break;
-        default:
-          console.warn(`[J2SE] Unknown fractal type ${p_fractalType} — falling back to Barnsley`);
-          points$ =  this._J2SE_BarnsleyFern(p_maxIterations);
-      }
-
-      // 
-      return FractalEngine._renderPipeline(points$, p_maxIterations);
-
-  }
-
-  private _J2SE_BarnsleyFern(p_maxIterations: number): Observable<FractalPoint[]>{
-    const url = this._buildJ2SEUrl(FractalType.BARNSLEY_FERN);
-    
-    // 1. Fetch raw data from the Java backend
-    const rawData$ = this.http.get<{ x: number; y: number; intensity: number }[]>(url);
-
-    // 2. Map raw data to internal FractalPoint[] format
-    return rawData$.pipe(
-      map(raw => FractalEngine._adaptRemotePoints(raw, FractalType.BARNSLEY_FERN, p_maxIterations))
-    );
-  }
-
-  private _buildJ2SEUrl(
-    fractalType : FractalType,
-    bounds?     : FractalBounds
-  ): string {
-
-    if (!bounds) {
-      // No zoom — send neutral params; Java uses its default window
-      return `${this.__baseUrlJ2seFractal}?kind=${fractalType}&zoomInOut=false&zoomStep=1.0`;
-    }
-
-    // Derive zoom params from the bounds produced by applyZoomToBounds()
-    const centerX   = (bounds.xMin + bounds.xMax) / 2;
-    const centerY   = (bounds.yMin + bounds.yMax) / 2;
-
-    // Original default half-widths per fractal type
-    // (must match Java's defaults and Angular's DEFAULT_BOUNDS_*)
-    const originalHalfW = fractalType === FractalType.MANDELBROT
-      ? (1.0  - (-2.0)) / 2   // 1.5  — Mandelbrot default Re half-width
-      : (1.5  - (-1.5)) / 2;  // 1.5  — Julia / others default Re half-width
-
-    const currentHalfW  = (bounds.xMax - bounds.xMin) / 2;
-
-    // zoomStep = ratio of original to current half-width
-    //   > 1 → window narrowed  → zoom IN
-    //   < 1 → window widened   → zoom OUT
-    const zoomStep  = originalHalfW / currentHalfW;
-    const zoomInOut = zoomStep > 1.0;
-
-    return `${this.__baseUrlJ2seFractal}?kind=${fractalType}`
-        + `&zoomInOut=${zoomInOut}`
-        + `&zoomStep=${zoomStep.toFixed(6)}`
-        + `&centerX=${centerX.toFixed(6)}`
-        + `&centerY=${centerY.toFixed(6)}`;
   }
 }

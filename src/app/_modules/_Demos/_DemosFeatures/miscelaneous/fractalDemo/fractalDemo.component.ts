@@ -162,6 +162,18 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     }
   },
   {
+    backendLanguage   : BackendLanguage.J2SE,
+    languageCode      : 'j2se',
+    label             : 'Java J2SE (Spring Boot)',
+    icon              : '☕',
+    description       : 'Runs on Spring Boot Engine',
+    supportedFractals : {
+      [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
+    }
+  },
+  {
     backendLanguage   : BackendLanguage.CPP, 
     languageCode      : 'cpp',
     label             : 'C++ (Native)',
@@ -173,18 +185,6 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.BARNSLEY_FERN]: { supported: false, zoomable: false  }
     }
   },
-  {
-    backendLanguage   : BackendLanguage.J2SE,
-    languageCode      : 'j2se',
-    label             : 'Java J2SE (Spring Boot)',
-    icon              : '☕',
-    description       : 'Runs on Spring Boot Engine',
-    supportedFractals : {
-      [FractalType.MANDELBROT]   : { supported: false,  zoomable: true   },
-      [FractalType.JULIA]        : { supported: false,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
-    }
-  }
 ];
 
 //
@@ -420,12 +420,20 @@ constructor(
         break;
 
         case 'j2se':
-          serviceCall = this.fractalService.GetFractal_j2se(
-            this.maxIterations, 
-            this.selectedFractal,
-            this.serverZoomIn, 
-            this.serverZoomFactor
-          );
+
+        fractalParams = { 
+            ...DEFAULT_FRACTAL_PARAMS 
+            ,selectedBackend  : BackendLanguage.J2SE
+            ,selectedFractal  : this.selectedFractal
+            ,maxIterations    : this.maxIterations
+            ,isZoomable       : this._buildBounds()
+            ,serverZoomIn     : this.serverZoomIn
+            ,serverZoomFactor : this.serverZoomFactor
+        };
+
+        serviceCall = this._fractalEngine.GetFractal(
+          fractalParams
+        );
           break;
 
       case 'cpp':
