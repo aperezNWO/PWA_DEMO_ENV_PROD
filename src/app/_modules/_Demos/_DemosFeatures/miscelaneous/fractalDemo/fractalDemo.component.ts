@@ -102,14 +102,12 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     return this.fractalOptions.filter(f => lang.supportedFractals[f.id].supported);
   }
 
-  /** True when the active engine+fractal pair uses step-based zoom
-   * (J2SE Julia only) rather than bounds-based click-to-pan.
-   * Node.js Julia now shares the bounds-based model with TypeScript,
-   * since the Node.js endpoint/engine were rebuilt to accept xMin/xMax/yMin/yMax
-   * instead of zoominout/scale. */
+  /** Legacy flag for the old step-based zoom model. Both Node.js and J2SE
+   * Julia are now fully bounds-based server-side (xMin/xMax/yMin/yMax),
+   * matching TypeScript's click-to-pan model — so this is always false
+   * until/unless a future backend genuinely needs step-based zoom again. */
   get isServerZoom(): boolean {
-    return this.selectedImplementation === 'j2se' &&
-           this.selectedFractal        === FractalType.JULIA;
+    return false;
   }
 
   get iterationsLabel(): string {
@@ -169,7 +167,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     description       : 'Runs on Spring Boot Engine',
     supportedFractals : {
       [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]        : { supported: false,  zoomable: true   },
+      [FractalType.JULIA]        : { supported: true ,  zoomable: true   },
       [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
     }
   },
