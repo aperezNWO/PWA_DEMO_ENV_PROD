@@ -747,4 +747,6 @@
 
                 --[_] mock typescript as json resftul endpoint --? mandatory for j2se format and others.
 
+        --[_] coloured fractal info panel.                
+
 ////////////////////////////////////////////////////////////////////////////////

@@ -359,10 +359,10 @@ export class FractalEngine{
   }
 
   // ═══════════════════════════════════════════════════════════════════════════
-  //  TYPESCRIPT ENTRY POINT
+  //  CLIENT ENTRY POINT
   // ═══════════════════════════════════════════════════════════════════════════
 
-  public static GetFractal_Typescript(
+  public GetFractalClient(
       p_fractalParams : FractalParams
     ): Observable<FractalPoint[]> {
       let points$: Observable<FractalPoint[]>;
@@ -386,50 +386,41 @@ export class FractalEngine{
     }
 
   // ═══════════════════════════════════════════════════════════════════════════
-  //  NODE.JS ENTERY POINT 
+  //  SERVER  ENTERY POINT 
   // ═══════════════════════════════════════════════════════════════════════════
-  public GetFractal_NodeJs(
+  public GetFractalServer(
       p_fractalParams : FractalParams
 
     ): Observable<FractalPoint[]> {
-      console.info(`[Node.js] fractal=${p_fractalParams.selectedFractal} zoom=${p_fractalParams.serverZoomIn} factor=${p_fractalParams.serverZoomFactor}`);
+
+      //
+      console.info(`[Server] backend=${p_fractalParams.selectedBackend?.toString()} fractal=${p_fractalParams.selectedFractal} zoom=${p_fractalParams.serverZoomIn} factor=${p_fractalParams.serverZoomFactor}`);
   
-      let points$: Observable<FractalPoint[]>;
-  
-      switch (p_fractalParams.selectedFractal) {
-        case FractalType.JULIA: 
-          points$ = this._fractalService._NodeJs_Julia(p_fractalParams.maxIterations, p_fractalParams.isZoomable);
+      //
+      switch (p_fractalParams.selectedFractal)
+      {
+        case FractalType.JULIA         :
+            return this._fractalService.GenerateFractalServerJulia(p_fractalParams);
         break;
-        case FractalType.BARNSLEY_FERN: 
-          points$ = this._fractalService._NodeJs_BarnsleyFern(p_fractalParams.maxIterations);
+        case FractalType.BARNSLEY_FERN :
+            return this._fractalService.GenerateFractalServerBarnsleyFern(p_fractalParams);
         break;
-        default: 
-          points$ = this._fractalService._NodeJs_BarnsleyFern(p_fractalParams.maxIterations);
-      };
-  
-      return points$;
+        default :
+            return this._fractalService.GenerateFractalServerJulia(p_fractalParams);
+      }
   }
     
   // ═══════════════════════════════════════════════════════════════════════════
   //  PROXY FUNCTION
   // ═══════════════════════════════════════════════════════════════════════════
 
-  GetFractal(
+  public GetFractal(
       p_fractalParams : FractalParams
   ): Observable<Blob>  {
       //
-      let points$: Observable<FractalPoint[]>;
-      //
-      switch (p_fractalParams.selectedBackend) {
-        case BackendLanguage.TYPESCRIPT: 
-              points$ = FractalEngine.GetFractal_Typescript(p_fractalParams); 
-          break;
-        case BackendLanguage.NODEJS: 
-              points$ = this.GetFractal_NodeJs(p_fractalParams); 
-          break;
-        default: 
-              points$ = FractalEngine.GetFractal_Typescript(p_fractalParams); 
-      }
+      let points$: Observable<FractalPoint[]> = (p_fractalParams.selectedBackend == BackendLanguage.TYPESCRIPT)? 
+                                                this.GetFractalClient(p_fractalParams) : 
+                                                this.GetFractalServer(p_fractalParams); 
       //
       return FractalEngine._renderPipeline(points$, p_fractalParams.maxIterations);
    }
