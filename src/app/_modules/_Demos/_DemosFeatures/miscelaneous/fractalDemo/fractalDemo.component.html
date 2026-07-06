@@ -121,11 +121,11 @@
                 <img [src]="imageUrl"
                      alt="Fractal Viewport Graphic"
                      (click)="onCanvasClick($event)"
-                     [class.interactive-lens]="isZoomable"
+                     [class.interactive-lens]="isZoomable && !isGenerating"
                      [title]="zoomHint"
                      class="fractal-img" />
 
-                <div class="reticle-overlay" *ngIf="reticleVisible && isZoomable"
+                <div class="reticle-overlay" *ngIf="reticleVisible && isZoomable && !isGenerating"
                      (touchmove)="onReticleTouchMove($event)"
                      (touchend)="onReticleTouchEnd()">
 
@@ -142,6 +142,11 @@
                     <div class="reticle-hint">Drag crosshair · tap Apply</div>
                 </div>
 
+                <div class="processing-overlay" *ngIf="isGenerating">
+                    <div class="processing-spinner"></div>
+                    <div class="processing-text">... processing</div>
+                </div>
+
             </div>
             <div class="zoom-controls-bar" *ngIf="isZoomable">
 
@@ -154,22 +159,23 @@
                 <div class="minifab-cluster mobile-only">
                     <button type="button" class="minifab minifab-toggle"
                             [class.active]="reticleVisible"
+                            [disabled]="isGenerating"
                             (click)="toggleReticle()"
                             title="Toggle zoom reticle">
                         {{ reticleVisible ? '✕' : '⊕' }}
                     </button>
                     <button type="button" class="minifab minifab-in"
                             [class.active]="activeZoomMode === 'in'"
-                            [disabled]="!reticleVisible"
+                            [disabled]="!reticleVisible || isGenerating"
                             (click)="setZoomMode('in')"
                             title="Zoom in">+</button>
                     <button type="button" class="minifab minifab-out"
                             [class.active]="activeZoomMode === 'out'"
-                            [disabled]="!reticleVisible || (isServerZoom ? serverZoomFactor <= 0 : zoomFactor <= 1)"
+                            [disabled]="!reticleVisible || isGenerating || (isServerZoom ? serverZoomFactor <= 0 : zoomFactor <= 1)"
                             (click)="setZoomMode('out')"
                             title="Zoom out">−</button>
                     <button type="button" class="minifab minifab-apply"
-                            [disabled]="!reticleVisible || !activeZoomMode"
+                            [disabled]="!reticleVisible || !activeZoomMode || isGenerating"
                             (click)="applyReticleZoom()"
                             title="Apply zoom">✓ Apply</button>
                     <span class="zoom-badge-mobile">

@@ -37,53 +37,6 @@ export class FractalService extends BaseService {
   //  NODE.JS BACKEND
   // ═══════════════════════════════════════════════════════════════════════════
   
-  /*
-    public static _runEscapeTimeEngine(
-          maxIterations : number,
-          bounds        : FractalBounds,
-          formula       : (x: number, y: number) => number
-      ): FractalPoint[] {
-      
-          const width  = CANVAS_WIDTH;
-          const height = CANVAS_HEIGHT;
-          const xStep  = (bounds.xMax - bounds.xMin) / width;
-          const yStep  = (bounds.yMax - bounds.yMin) / height;
-      
-          const t0     = performance.now();
-          const points : FractalPoint[] = new Array(width * height);
-      
-          let idx = 0;
-          for (let y = 0; y < height; y++) {
-            for (let x = 0; x < width; x++) {
-              points[idx++] = {
-                x,
-                y,
-                value: formula(bounds.xMin + x * xStep, bounds.yMin + y * yStep),
-              };
-            }
-          }
-      
-          console.log(`[TS Engine] ${width * height} points in ${(performance.now() - t0).toFixed(2)}ms`);
-          return points;
-        }
-
-    // JULIA
-    public static _generateTSJulia(p_maxIterations: number, p_realPart: number, p_imagPart: number, p_bounds?: FractalBounds): Observable<FractalPoint[]> {
-      const bounds = p_bounds ?? DEFAULT_BOUNDS_JULIA;
-      return of(FractalEngine._runEscapeTimeEngine(p_maxIterations, bounds, (zx, zy) => {
-        let zr = zx, zi = zy, i = 0;
-        while (i < p_maxIterations) {
-          if (zr * zr + zi * zi > 4.0) break;
-          const nr = zr * zr - zi * zi + p_realPart;
-          const ni = 2 * zr * zi + p_imagPart;
-          zr = nr; zi = ni; i++;
-        }
-        return i;
-      }));
-    }
-
-  */
-  
   //
     public _NodeJs_Julia(
     p_maxIterations: number,
@@ -97,7 +50,8 @@ export class FractalService extends BaseService {
     const url =
       `${this.__baseUrlNodeJsFractal}julia` +
       `?xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
-      `&yMin=${bounds.yMin}&yMax=${bounds.yMax}`;
+      `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+      `&maxIterations=${p_maxIterations}`;
 
     const rawData$ = this.http.get<{ x: number; y: number; intensity: number }[]>(url);
 
@@ -196,7 +150,3 @@ export class FractalService extends BaseService {
         + `&centerY=${centerY.toFixed(6)}`;
   }
 }
-
-
-
-

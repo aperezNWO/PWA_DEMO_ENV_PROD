@@ -58,6 +58,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   pdfButtonCaption       : string = '[Generate PDF]';
   generationTime         : number | null = null;
   lastImplementationUsed : string | null = null;
+  isGenerating           : boolean = false;
 
   // ── Zoom / pan viewport (TypeScript engine — bounds-based) ────────────────
   centerX    : number = 0.0;
@@ -102,9 +103,12 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   }
 
   /** True when the active engine+fractal pair uses step-based zoom
-   * (Node.js or J2SE Julia) rather than bounds-based click-to-pan. */
+   * (J2SE Julia only) rather than bounds-based click-to-pan.
+   * Node.js Julia now shares the bounds-based model with TypeScript,
+   * since the Node.js endpoint/engine were rebuilt to accept xMin/xMax/yMin/yMax
+   * instead of zoominout/scale. */
   get isServerZoom(): boolean {
-    return (this.selectedImplementation === 'nodejs' || this.selectedImplementation === 'j2se') &&
+    return this.selectedImplementation === 'j2se' &&
            this.selectedFractal        === FractalType.JULIA;
   }
 
@@ -244,7 +248,7 @@ constructor(
     this.serverZoomIn   = true;
   }
 
-  // ── Complex-plane bounds (TypeScript engine only) ─────────────────────────
+  // ── Complex-plane bounds  ─────────────────────────
 
   private _buildBounds(): { xMin: number; xMax: number; yMin: number; yMax: number } {
     const xRange = this.baseXRange / this.zoomFactor;
@@ -268,7 +272,7 @@ constructor(
   // ── Desktop click handler ─────────────────────────────────────────────────
 
   onCanvasClick(event: MouseEvent): void {
-    if (!this.isZoomable) return;
+    if (!this.isZoomable || this.isGenerating) return;
 
     // Server (Node/J2SE) Julia: translate click into a zoom step
     if (this.isServerZoom) {
@@ -313,7 +317,7 @@ constructor(
   setZoomMode(mode: ZoomMode): void { this.activeZoomMode = mode; }
 
   applyReticleZoom(): void {
-    if (!this.isZoomable || !this.activeZoomMode) return;
+    if (!this.isZoomable || !this.activeZoomMode || this.isGenerating) return;
 
     // Server (Node/J2SE) Julia: reticle direction maps to a zoom step
     if (this.isServerZoom) {
@@ -369,6 +373,7 @@ constructor(
   onSubmit(): void {
     this.status_message.set('[...Generating please wait...]');
     this.generationTime = null;
+    this.isGenerating   = true;
     const t0            = performance.now();
 
     let serviceCall      : any = null;
@@ -394,16 +399,7 @@ constructor(
           fractalParams
         );
 
-        /*
-        serviceCall = this.fractalService.GetFractal_Typescript(
-          this.maxIterations,
-          this.realPart,
-          this.imagPart,
-          this.selectedFractal,
-          this.isZoomable ? this._buildBounds() : undefined
-        );*/
-
-        break;
+      break;
 
       case 'nodejs':
 
@@ -421,16 +417,6 @@ constructor(
           fractalParams
         );
 
-
-
-        /*
-        serviceCall = this.fractalService.GetFractal_NodeJs(
-          this.maxIterations,
-          this.selectedFractal,
-          this.serverZoomIn,    
-          this.serverZoomFactor   
-        );
-        */
         break;
 
         case 'j2se':
@@ -466,6 +452,7 @@ constructor(
       next: (blob: Blob) => {
         this.generationTime         = performance.now() - t0;
         this.lastImplementationUsed = this.selectedImplementation;
+        this.isGenerating           = false;
         if (this.imageUrl) URL.revokeObjectURL(this.imageUrl);
         this.imageUrl = URL.createObjectURL(blob);
         const label = this.backendCapabilities
@@ -476,6 +463,7 @@ constructor(
       },
       error: (err: any) => {
         console.error('Fractal generation error:', err);
+        this.isGenerating = false;
         this.imageUrl = null;
         const label = this.backendCapabilities
           .find(o => o.languageCode === this.selectedImplementation)?.label
