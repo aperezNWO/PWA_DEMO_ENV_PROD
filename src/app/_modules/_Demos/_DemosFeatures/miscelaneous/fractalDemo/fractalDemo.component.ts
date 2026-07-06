@@ -156,7 +156,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     icon: '🟢',
     description: 'Runs on server — Stable',
     supportedFractals: {
-      [FractalType.MANDELBROT]   : { supported: false, zoomable : true  },
+      [FractalType.MANDELBROT]   : { supported: true,  zoomable : true  },
       [FractalType.JULIA]        : { supported: true , zoomable : true  },
       [FractalType.BARNSLEY_FERN]: { supported: true , zoomable : false }
     }

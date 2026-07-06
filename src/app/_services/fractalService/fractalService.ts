@@ -5,8 +5,13 @@ import { BaseService                  } from "../__baseService/base.service";
 import { HttpClient                   } from "@angular/common/http";
 import { inject, Injectable           } from "@angular/core";
 import { ConfigService                } from "../__Utils/ConfigService/config.service";
-import { BackendLanguage, DEFAULT_BOUNDS_JULIA, FractalBounds
-       , FractalEngine, FractalParams, FractalPoint
+import { BackendLanguage
+       , DEFAULT_BOUNDS_JULIA
+       , DEFAULT_BOUNDS_MANDELBROT
+       , FractalBounds
+       , FractalEngine
+       , FractalParams
+       , FractalPoint
        , FractalType                  } from "src/app/_engines/fractal.engine";
 
 
@@ -70,6 +75,41 @@ export class FractalService extends BaseService {
     //
     return rawData$.pipe(
       map(raw => FractalEngine._adaptRemotePoints(raw, FractalType.JULIA, p_fractalParams.maxIterations))
+    );
+  }
+
+  //
+  public GenerateFractalServerMandelbrot(
+      p_fractalParams : FractalParams
+  ): Observable<FractalPoint[]> {
+
+    //
+    const bounds : FractalBounds | undefined = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
+    let   url    : string                    = "";
+
+    // Bounds-based, same contract as GenerateFractalServerJulia — no zoomInOut/zoomStep.
+    switch(p_fractalParams.selectedBackend){
+      case BackendLanguage.NODEJS:
+          url =
+            `${this.__baseUrlNodeJsFractal}mandelbrot` +
+            `?xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}`;
+      break;
+      default :
+          url =
+            `${this.__baseUrlNodeJsFractal}mandelbrot` +
+            `?xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}`;
+    }
+
+    //
+    const rawData$ = this.http.get<{ x: number; y: number; intensity: number }[]>(url);
+
+    //
+    return rawData$.pipe(
+      map(raw => FractalEngine._adaptRemotePoints(raw, FractalType.MANDELBROT, p_fractalParams.maxIterations))
     );
   }
 

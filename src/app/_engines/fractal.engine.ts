@@ -399,6 +399,9 @@ export class FractalEngine{
       //
       switch (p_fractalParams.selectedFractal)
       {
+        case FractalType.MANDELBROT    :
+            return this._fractalService.GenerateFractalServerMandelbrot(p_fractalParams);
+        break;
         case FractalType.JULIA         :
             return this._fractalService.GenerateFractalServerJulia(p_fractalParams);
         break;
@@ -425,5 +428,3 @@ export class FractalEngine{
       return FractalEngine._renderPipeline(points$, p_fractalParams.maxIterations);
    }
 }
-
-
