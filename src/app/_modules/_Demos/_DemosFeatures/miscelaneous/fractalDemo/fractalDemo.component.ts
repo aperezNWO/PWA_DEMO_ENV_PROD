@@ -3,7 +3,8 @@ import { Component
        , OnInit
        , OnDestroy
        , ElementRef
-       , HostListener                     } from '@angular/core';
+       , HostListener,                     
+         inject                           } from '@angular/core';
 import { ActivatedRoute                   } from '@angular/router';
 import { HttpClient                       } from '@angular/common/http';
 import { PAGE_MISCELANEOUS_FRACTAL_DEMO, 
@@ -17,7 +18,11 @@ import { BaseReferenceComponent } from 'src/app/_components/base-reference/base-
 import { FractalService         } from 'src/app/_services/fractalService/fractalService';
 import { FractalType
         , ZoomMode
-        , LanguageCapability    } from './fractalDemo.Engine';
+        , LanguageCapability
+        , FractalEngine         
+        , BackendLanguage
+        , FractalParams,         
+        DEFAULT_FRACTAL_PARAMS} from '../../../../../_engines/fractal.engine';
 
 
 @Component({
@@ -28,6 +33,8 @@ import { FractalType
   standalone: false
 })
 export class FractalDemoComponent extends BaseReferenceComponent implements OnInit, OnDestroy {
+
+  private readonly _fractalEngine        = inject(FractalEngine);
 
   // ── Default parameter snapshot ────────────────────────────────────────────
   private readonly defaultValues = {
@@ -60,7 +67,8 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   private get baseXRange(): number { return this.selectedFractal === FractalType.MANDELBROT ? 3.0 : 3.0; }
   private get baseYRange(): number { return this.selectedFractal === FractalType.MANDELBROT ? 2.4 : 3.0; }
 
-  public serverZoomFactor: number = 1.0;
+  public  serverZoomFactor: number = 1.0;
+  public  serverZoomIn    : boolean = true;
 
   serverZoomOutStep(): void {
     if (this.serverZoomFactor > 1) {
@@ -69,8 +77,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     this.serverZoomIn = false;
     this.onSubmit();
   }
-  public  serverZoomIn   : boolean = true;
-
+  
   // ── Mobile reticle ────────────────────────────────────────────────────────
   reticleVisible  : boolean  = false;
   reticleX        : number   = 50;
@@ -122,11 +129,12 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
 
   readonly FractalType = FractalType;
 
-  @ViewChild('_fractal_image')    _fractal_image!: any;
+  @ViewChild('_fractal_image')    _fractal_image!   : any;
   @ViewChild('fractalImgWrapper') fractalImgWrapper!: ElementRef<HTMLDivElement>;
 
   backendCapabilities: LanguageCapability[] = [
   {
+    backendLanguage : BackendLanguage.TYPESCRIPT,
     languageCode: 'typescript',
     label: 'TypeScript (Local)',
     icon: '🟡',
@@ -138,33 +146,36 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     }
   },
   {
+    backendLanguage : BackendLanguage.NODEJS,
     languageCode: 'nodejs',
     label: 'Node.js (Server)',
     icon: '🟢',
     description: 'Runs on server — Stable',
     supportedFractals: {
       [FractalType.MANDELBROT]   : { supported: false, zoomable : true  },
-      [FractalType.JULIA]        : { supported: false, zoomable : true  },
+      [FractalType.JULIA]        : { supported: true , zoomable : true  },
       [FractalType.BARNSLEY_FERN]: { supported: true , zoomable : false }
     }
   },
   {
-    languageCode: 'cpp',
-    label: 'C++ (Native)',
-    icon: '🔵',
-    description: 'Native performance — Most accurate',
-    supportedFractals: {
+    backendLanguage   : BackendLanguage.CPP, 
+    languageCode      : 'cpp',
+    label             : 'C++ (Native)',
+    icon              : '🔵',
+    description       : 'Native performance — Most accurate',
+    supportedFractals : {
       [FractalType.MANDELBROT]   : { supported: false, zoomable: false  },
       [FractalType.JULIA]        : { supported: true,  zoomable: false  }, 
       [FractalType.BARNSLEY_FERN]: { supported: false, zoomable: false  }
     }
   },
   {
-    languageCode: 'j2se',
-    label: 'Java J2SE (Spring Boot)',
-    icon: '☕',
-    description: 'Runs on Spring Boot Engine',
-    supportedFractals: {
+    backendLanguage   : BackendLanguage.J2SE,
+    languageCode      : 'j2se',
+    label             : 'Java J2SE (Spring Boot)',
+    icon              : '☕',
+    description       : 'Runs on Spring Boot Engine',
+    supportedFractals : {
       [FractalType.MANDELBROT]   : { supported: false,  zoomable: true   },
       [FractalType.JULIA]        : { supported: false,  zoomable: true   },
       [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
@@ -358,29 +369,68 @@ constructor(
   onSubmit(): void {
     this.status_message.set('[...Generating please wait...]');
     this.generationTime = null;
-    const t0 = performance.now();
+    const t0            = performance.now();
 
-    let serviceCall;
+    let serviceCall      : any = null;
+    let fractalParams    : FractalParams = { 
+        ...DEFAULT_FRACTAL_PARAMS 
+    };
 
     switch (this.selectedImplementation) {
 
       case 'typescript':
+
+        fractalParams = { 
+            ...DEFAULT_FRACTAL_PARAMS 
+            ,selectedBackend : BackendLanguage.TYPESCRIPT
+            ,selectedFractal : this.selectedFractal
+            ,maxIterations   : this.maxIterations
+            ,realPart        : this.realPart
+            ,imagPart        : this.imagPart            
+            ,isZoomable      : this._buildBounds()
+        };
+
+        serviceCall = this._fractalEngine.GetFractal(
+          fractalParams
+        );
+
+        /*
         serviceCall = this.fractalService.GetFractal_Typescript(
           this.maxIterations,
           this.realPart,
           this.imagPart,
           this.selectedFractal,
           this.isZoomable ? this._buildBounds() : undefined
-        );
+        );*/
+
         break;
 
       case 'nodejs':
+
+       fractalParams = { 
+            ...DEFAULT_FRACTAL_PARAMS 
+            ,selectedBackend  : BackendLanguage.NODEJS
+            ,selectedFractal  : this.selectedFractal
+            ,maxIterations    : this.maxIterations
+            ,isZoomable       : this._buildBounds()
+            ,serverZoomIn     : this.serverZoomIn
+            ,serverZoomFactor : this.serverZoomFactor
+        };
+
+        serviceCall = this._fractalEngine.GetFractal(
+          fractalParams
+        );
+
+
+
+        /*
         serviceCall = this.fractalService.GetFractal_NodeJs(
           this.maxIterations,
           this.selectedFractal,
           this.serverZoomIn,    
           this.serverZoomFactor   
         );
+        */
         break;
 
         case 'j2se':
@@ -399,9 +449,17 @@ constructor(
         break;
 
       default:
-        serviceCall = this.fractalService.GetFractal_Typescript(
-          this.maxIterations, this.realPart, this.imagPart, this.selectedFractal
-        );
+        {
+              fractalParams = { 
+                  ...DEFAULT_FRACTAL_PARAMS 
+                  ,isZoomable : this._buildBounds()
+              };
+
+              serviceCall = this._fractalEngine.GetFractal(
+                fractalParams
+              );
+        }
+        
     }
 
     serviceCall.subscribe({
