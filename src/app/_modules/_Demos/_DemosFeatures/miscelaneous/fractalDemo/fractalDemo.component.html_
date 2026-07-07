@@ -5,19 +5,6 @@
     <div class="form-container">
         <h2>Fractal Parameters Master Dashboard</h2>
 
-        <div class="tab-bar" role="tablist">
-            <button type="button" class="tab-button" [class.active]="activeTab === 'fractals'"
-                    (click)="switchTab('fractals')" role="tab">
-                🌀 Fractals
-            </button>
-            <button type="button" class="tab-button" [class.active]="activeTab === 'benchmark'"
-                    (click)="switchTab('benchmark')" role="tab">
-                📊 Language Benchmark
-            </button>
-        </div>
-
-        <div *ngIf="activeTab === 'fractals'">
-
         <form (ngSubmit)="onSubmit()">
 
             <div class="form-group">
@@ -26,7 +13,7 @@
                         [(ngModel)]="selectedImplementation"
                         class="implementation-select"
                         (change)="onLanguageChange()">
-                    <option *ngFor="let option of getAvailableBackends()" [value]="option.languageCode">
+                    <option *ngFor="let option of backendCapabilities" [value]="option.languageCode">
                         {{option.icon}} {{option.label}}
                     </option>
                 </select>
@@ -198,58 +185,6 @@
 
             </div>
             </div>
-        </div>
-
-        <!-- ── /Fractals tab ──────────────────────────────────────────────── -->
-
-        <div *ngIf="activeTab === 'benchmark'" class="benchmark-panel">
-
-            <div class="benchmark-intro">
-                <p>
-                    Every time a fractal finishes generating, its execution time is
-                    compared against the fastest time previously recorded for that
-                    exact <strong>backend + fractal</strong> pair. Only improvements
-                    (lower times) replace the stored value — slower runs are discarded.
-                    Go generate a few fractals across different backends on the
-                    <strong>Fractals</strong> tab, then come back here.
-                </p>
-            </div>
-
-            <div *ngIf="!hasBenchmarkData" class="benchmark-empty">
-                📭 No benchmark data recorded yet. Generate at least one fractal to populate this panel.
-            </div>
-
-            <div *ngIf="hasBenchmarkData">
-
-                <h3>Combined Performance Share (by fractal)</h3>
-                <p class="form-text">
-                    Click a slice to see the raw best times per backend for that fractal below.
-                    This is a blended, approximate measure — it mixes fractals of different
-                    complexity, so treat proportions as directional, not precise.
-                </p>
-                <div class="chart-container pie-container">
-                    <canvas #pieCanvas></canvas>
-                </div>
-
-                <div *ngIf="selectedBenchmarkFractal !== null" class="bar-section">
-                    <h3>Best Times — {{ fractalLabel(selectedBenchmarkFractal) }}</h3>
-                    <p class="form-text">Lower bar = faster = higher performance.</p>
-                    <div class="chart-container bar-container">
-                        <canvas #barCanvas></canvas>
-                    </div>
-                </div>
-
-                <div class="button-group">
-                    <button type="button" class="btn btn-secondary" (click)="clearBenchmarkData()">
-                        Clear Benchmark Data
-                    </button>
-                </div>
-
-            </div>
-
-        </div>
-        <!-- ── /Language Benchmark tab ────────────────────────────────────── -->
-
         </div>
 
     <hr>

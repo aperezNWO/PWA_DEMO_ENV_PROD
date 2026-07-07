@@ -7,7 +7,6 @@ import { Component
          inject                           } from '@angular/core';
 import { ActivatedRoute                   } from '@angular/router';
 import { HttpClient                       } from '@angular/common/http';
-import { Chart, registerables             } from 'chart.js';
 import { PAGE_MISCELANEOUS_FRACTAL_DEMO, 
          PAGE_TITLE_LOG, 
          PAGE_TITLE_NO_SOUND    } from 'src/app/_models/common';
@@ -23,10 +22,7 @@ import { FractalType
         , FractalEngine         
         , BackendLanguage
         , FractalParams,         
-        DEFAULT_FRACTAL_PARAMS
-        , FractalBenchmark } from '../../../../../_engines/fractal.engine';
-
-Chart.register(...registerables);
+        DEFAULT_FRACTAL_PARAMS} from '../../../../../_engines/fractal.engine';
 
 
 @Component({
@@ -106,13 +102,6 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     return this.fractalOptions.filter(f => lang.supportedFractals[f.id].supported);
   }
 
-  // Backends with enabled:false (e.g. C++, on hold) are hidden from the
-  // dropdown entirely but stay in backendCapabilities so re-enabling later
-  // is a one-line flip, not a re-write.
-  getAvailableBackends(): LanguageCapability[] {
-    return this.backendCapabilities.filter(b => b.enabled);
-  }
-
   /** Legacy flag for the old step-based zoom model. Both Node.js and J2SE
    * Julia are now fully bounds-based server-side (xMin/xMax/yMin/yMax),
    * matching TypeScript's click-to-pan model — so this is always false
@@ -145,19 +134,6 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   @ViewChild('_fractal_image')    _fractal_image!   : any;
   @ViewChild('fractalImgWrapper') fractalImgWrapper!: ElementRef<HTMLDivElement>;
 
-  // ── Tabs ──────────────────────────────────────────────────────────────────
-  activeTab: 'fractals' | 'benchmark' = 'fractals';
-
-  // ── Language benchmark ───────────────────────────────────────────────────
-  @ViewChild('pieCanvas') pieCanvasRef?: ElementRef<HTMLCanvasElement>;
-  @ViewChild('barCanvas') barCanvasRef?: ElementRef<HTMLCanvasElement>;
-
-  private _pieChart?: Chart<'pie', number[], string>;
-  private _barChart?: Chart<'bar', number[], string>;
-
-  selectedBenchmarkFractal : FractalType | null = null;
-  hasBenchmarkData         : boolean            = false;
-
   backendCapabilities: LanguageCapability[] = [
   {
     backendLanguage : BackendLanguage.TYPESCRIPT,
@@ -165,7 +141,6 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     label: 'TypeScript (Local)',
     icon: '🟡',
     description: 'Runs in browser — Fastest',
-    enabled: true,
     supportedFractals: {
       [FractalType.MANDELBROT]   : { supported: true, zoomable: true  },
       [FractalType.JULIA]        : { supported: true, zoomable: true  },
@@ -178,7 +153,6 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     label: 'Node.js (Server)',
     icon: '🟢',
     description: 'Runs on server — Stable',
-    enabled: true,
     supportedFractals: {
       [FractalType.MANDELBROT]   : { supported: true,  zoomable : true  },
       [FractalType.JULIA]        : { supported: true , zoomable : true  },
@@ -191,7 +165,6 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     label             : 'Java J2SE (Spring Boot)',
     icon              : '☕',
     description       : 'Runs on Spring Boot Engine',
-    enabled           : true,
     supportedFractals : {
       [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
       [FractalType.JULIA]        : { supported: true ,  zoomable: true   },
@@ -203,8 +176,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     languageCode      : 'cpp',
     label             : 'C++ (Native)',
     icon              : '🔵',
-    description       : 'Native performance — On hold (pending pure-math migration)',
-    enabled           : false,   // ← disabled: hidden from the dropdown, config kept for when work resumes
+    description       : 'Native performance — Most accurate',
     supportedFractals : {
       [FractalType.MANDELBROT]   : { supported: false, zoomable: false  },
       [FractalType.JULIA]        : { supported: true,  zoomable: false  }, 
@@ -242,25 +214,6 @@ constructor(
 
   ngOnDestroy(): void {
     if (this.imageUrl) URL.revokeObjectURL(this.imageUrl);
-    this._pieChart?.destroy();
-    this._barChart?.destroy();
-  }
-
-  // ── Tabs ──────────────────────────────────────────────────────────────────
-
-  switchTab(tab: 'fractals' | 'benchmark'): void {
-    this.activeTab = tab;
-    if (tab === 'benchmark') {
-      // Canvas must exist in the DOM (post-*ngIf) before Chart.js can size
-      // itself against it — defer one tick. Re-render the bar chart too if
-      // a fractal was already selected, since *ngIf destroyed its old canvas.
-      setTimeout(() => {
-        this._renderPieChart();
-        if (this.selectedBenchmarkFractal !== null) {
-          this._renderBarChart(this.selectedBenchmarkFractal);
-        }
-      }, 0);
-    }
   }
 
   onLanguageChange(): void {
@@ -513,7 +466,6 @@ constructor(
           ?? this.selectedImplementation;
         this.status_message.set(`[✓ Generated using ${label} in ${this.generationTime.toFixed(2)}ms]`);
         localStorage.setItem('fractal_implementation', this.selectedImplementation);
-        FractalBenchmark.record(this.selectedImplementation, this.selectedFractal, this.generationTime);
       },
       error: (err: any) => {
         console.error('Fractal generation error:', err);
@@ -583,104 +535,5 @@ constructor(
       case FractalType.BARNSLEY_FERN: return 'Barnsley Leaf';
       default:                        return 'Fractal';
     }
-  }
-
-  // ── Language benchmark ───────────────────────────────────────────────────
-
-  /** Template-facing wrapper — private getFractalLabel() can't be called directly from HTML. */
-  fractalLabel(type: FractalType): string { return this.getFractalLabel(type); }
-
-  private _renderPieChart(): void {
-    if (!this.pieCanvasRef) return;
-
-    const store        = FractalBenchmark.load();
-    const enabledCodes = this.getAvailableBackends().map(b => b.languageCode);
-    const fractalIds   = this.fractalOptions.map(o => o.id);
-
-    const slices = FractalBenchmark
-      .computeSliceScores(store, enabledCodes, fractalIds)
-      .filter(s => s.score > 0);
-
-    this.hasBenchmarkData = slices.length > 0;
-    this._pieChart?.destroy();
-    if (!this.hasBenchmarkData) return;
-
-    const colors = ['#4285F4', '#34a853', '#fbbc05', '#ea4335', '#9c27b0'];
-
-    this._pieChart = new Chart(this.pieCanvasRef.nativeElement, {
-      type: 'pie',
-      data: {
-        labels: slices.map(s => this.getFractalLabel(s.fractalType)),
-        datasets: [{
-          data           : slices.map(s => s.score),
-          backgroundColor: slices.map((_, i) => colors[i % colors.length]),
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend : { position: 'bottom' },
-          tooltip: {
-            callbacks: {
-              label: (ctx) => `${ctx.label}: ${(ctx.raw as number).toFixed(2)} pts`
-            }
-          }
-        },
-        onClick: (_evt, elements) => {
-          if (!elements.length) return;
-          const idx     = elements[0].index;
-          const clicked = slices[idx].fractalType;
-          this.selectedBenchmarkFractal = clicked;
-          this._renderBarChart(clicked);
-        }
-      }
-    });
-  }
-
-  private _renderBarChart(fractalType: FractalType): void {
-    if (!this.barCanvasRef) return;
-
-    const store    = FractalBenchmark.load();
-    const backends = this.getAvailableBackends().map(b => ({ code: b.languageCode, label: b.label }));
-    const bars     = FractalBenchmark.computeBackendTimeBars(store, backends, fractalType);
-
-    this._barChart?.destroy();
-
-    this._barChart = new Chart(this.barCanvasRef.nativeElement, {
-      type: 'bar',
-      data: {
-        labels: bars.map(b => b.label),
-        datasets: [{
-          label          : `Best time (ms) — ${this.getFractalLabel(fractalType)}`,
-          data           : bars.map(b => b.bestTimeMs ?? 0),
-          backgroundColor: '#4285F4',
-        }]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: { beginAtZero: true, title: { display: true, text: 'Milliseconds (lower = faster)' } }
-        },
-        plugins: {
-          legend : { display: false },
-          tooltip: {
-            callbacks: {
-              label: (ctx) => {
-                const bar = bars[ctx.dataIndex];
-                return bar.bestTimeMs === null ? 'No data recorded yet' : `${bar.bestTimeMs.toFixed(2)}ms`;
-              }
-            }
-          }
-        }
-      }
-    });
-  }
-
-  clearBenchmarkData(): void {
-    FractalBenchmark.clear();
-    this.selectedBenchmarkFractal = null;
-    this._barChart?.destroy();
-    this._barChart = undefined;
-    this._renderPieChart();
   }
 }

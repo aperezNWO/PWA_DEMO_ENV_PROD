@@ -69,66 +69,6 @@
 
 .form-group { margin-bottom: 25px; text-align: left; }
 
-/* ── Tab bar ────────────────────────────────────────────────────────────── */
-.tab-bar {
-  display: flex;
-  gap: 6px;
-  border-bottom: 2px solid #e2e8f0;
-  margin-bottom: 20px;
-}
-
-.tab-button {
-  flex: 1;
-  background: none;
-  border: none;
-  border-bottom: 3px solid transparent;
-  padding: 10px 8px;
-  font-size: x-small;
-  font-weight: 600;
-  color: #718096;
-  cursor: pointer;
-  transition: color .2s, border-color .2s;
-}
-.tab-button:hover  { color: #2c3e50; }
-.tab-button.active { color: #007bff; border-bottom-color: #007bff; }
-
-/* ── Language benchmark panel ──────────────────────────────────────────── */
-.benchmark-intro p {
-  font-size: x-small;
-  color: #4a5568;
-  line-height: 1.6;
-  text-align: left;
-}
-
-.benchmark-empty {
-  text-align: center;
-  padding: 30px 15px;
-  color: #718096;
-  font-size: x-small;
-  background: #f8f9fa;
-  border: 1px dashed #cbd5e0;
-  border-radius: 8px;
-}
-
-.benchmark-panel h3 {
-  color: #2c3e50;
-  font-weight: 600;
-  font-size: small;
-  margin-top: 20px;
-  margin-bottom: 6px;
-  text-align: left;
-}
-
-.chart-container {
-  position: relative;
-  margin: 10px auto 20px;
-  max-width: 480px;
-}
-.pie-container { height: 300px; }
-.bar-container { height: 260px; }
-
-.bar-section { margin-top: 10px; }
-
 /* ── Dropdowns ──────────────────────────────────────────────────────────── */
 .implementation-select {
   width: 100%;

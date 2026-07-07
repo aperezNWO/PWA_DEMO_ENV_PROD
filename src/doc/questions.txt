@@ -655,3 +655,51 @@ I want to impress a potential employer or recruiter. ¿What kind of application 
 
 
 /////////////////////////////////////////////
+
+Hi Claude. I decided to put on hold the c++ development of this form by now.  could you help me to modify the fractal showcase app I was working on with you with the following changes:
+
+
+
+
+
+
+
+Disable de c++ option.
+
+
+
+Cut the current form into a tab named "fractals" inside a tab panel. 
+
+
+
+Create other tab named "language benchmark".
+
+
+
+The benchmark is based on the minimun execution time which is qualified as higher performance. every time the user clicks on a defined language/fractal a time is saved in the local storage. if a late click has a inferior execution time, such data replace the prior value.
+
+
+
+The "language benchmark" will have two chart.js graphs: 
+
+
+
+a) a Pie chart in which each slice is a kind of fractal.  The proportion of the slice is measured by all the execution times recorded by language/backend pondered by the average of  higher performance (lowest execution time) the all the fractals by language. This measure is a bit unprecise given the fact mixes the execution of fractals with different kinds of complexities. However this data is shown that way only as an aproximate representation 
+
+
+
+b) clicking in a slice (fractal) of the picechart will show a barchart with all available backends of the app in the x axis.  The y axis shows a bar with the highest performance meaning the specific lowest time by fractal/language.
+
+
+
+¿Could you please help me to create a measure for performance which sounds logic the highest the performance the lowest the execution time.?
+
+
+
+Attached is the current files which compose the app (css, html, typescript for uix, engine and service).
+
+
+
+Any suggestion or correction over the requirement of this excersise is appreciated.
+
+/////////////////////////////////////////////
