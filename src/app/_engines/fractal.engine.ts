@@ -474,24 +474,28 @@ export class FractalBenchmark {
     localStorage.setItem(BENCHMARK_STORAGE_KEY, JSON.stringify(store));
   }
 
-  /**
-   * Records a new execution time for a backend/fractal pair.
-   * "Best time wins" — only overwrites the stored value if the new time is
-   * strictly lower (faster) than whatever's currently on record. A slower
-   * run is simply discarded, never averaged in.
-   */
-  static record(backendCode: string, fractalType: FractalType, timeMs: number): void {
-    const store    = FractalBenchmark.load();
-    const existing = store[backendCode]?.[fractalType]?.bestTimeMs;
+// Inside FractalBenchmark class in fractal.engine.ts
+static record(backendCode: string, fractalType: FractalType, timeMs: number): void {
+    const store = FractalBenchmark.load();
+    
+    // Explicitly convert to number to ensure consistency
+    const id = Number(fractalType); 
+    
+    if (!store[backendCode]) {
+        store[backendCode] = {};
+    }
+    
+    const existing = store[backendCode][id]?.bestTimeMs;
 
     if (existing === undefined || timeMs < existing) {
-      store[backendCode] ??= {};
-      store[backendCode][fractalType] = { bestTimeMs: timeMs, lastUpdated: Date.now() };
+      store[backendCode][id] = { bestTimeMs: timeMs, lastUpdated: Date.now() };
       FractalBenchmark.save(store);
+      console.log(`[Benchmark] Stored ${timeMs.toFixed(2)}ms for ${backendCode} / ID ${id}`);
     }
-  }
+}
 
-  static clear(): void {
+//
+static clear(): void {
     if (typeof localStorage === 'undefined') return;
     localStorage.removeItem(BENCHMARK_STORAGE_KEY);
   }

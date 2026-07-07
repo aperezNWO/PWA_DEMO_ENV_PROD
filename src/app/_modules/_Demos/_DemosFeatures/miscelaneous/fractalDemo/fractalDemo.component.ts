@@ -511,9 +511,18 @@ constructor(
         const label = this.backendCapabilities
           .find(o => o.languageCode === this.selectedImplementation)?.label
           ?? this.selectedImplementation;
+        
+        // Inside onSubmit() -> next() block:
         this.status_message.set(`[✓ Generated using ${label} in ${this.generationTime.toFixed(2)}ms]`);
         localStorage.setItem('fractal_implementation', this.selectedImplementation);
-        FractalBenchmark.record(this.selectedImplementation, this.selectedFractal, this.generationTime);
+
+        // Ensure we pass the numeric value of the enum
+        FractalBenchmark.record(
+            this.selectedImplementation, 
+            Number(this.selectedFractal), 
+            this.generationTime
+        );
+
       },
       error: (err: any) => {
         console.error('Fractal generation error:', err);
