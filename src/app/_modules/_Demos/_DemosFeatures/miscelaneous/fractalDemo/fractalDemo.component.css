@@ -122,10 +122,9 @@
 .chart-container {
   position: relative;
   margin: 10px auto 20px;
-  max-width: 480px;
 }
-.pie-container { height: 300px; }
-.bar-container { height: 260px; }
+.pie-container { height: 260px; max-width: 480px; }
+.bar-container { height: 260px; max-width: 480px; }
 
 .bar-section { margin-top: 10px; }
 

@@ -453,6 +453,7 @@ export interface BackendTimeBar {
   backendCode : string;
   label       : string;
   bestTimeMs  : number | null;  // null = no time recorded yet for this backend/fractal pair
+  score       : number;         // performanceScore(bestTimeMs) — 0 when bestTimeMs is null
 }
 
 export class FractalBenchmark {
@@ -575,22 +576,27 @@ static clear(): void {
     });
   }
 
-  // ── Bar chart: raw best time per backend, for ONE fractal ───────────────
+  // ── Bar chart: performance score per backend, for ONE fractal ───────────
 
   /**
    * Returns the best (lowest) recorded time for a single fractal, one entry
-   * per backend. Unlike the pie chart's blended score, this is the literal
-   * millisecond figure — shorter bar = faster = better, no weighting at all.
+   * per backend — plus its performanceScore so the chart can plot with the
+   * SAME "taller = better" convention as the pie chart. bestTimeMs is kept
+   * alongside for the tooltip, since the score alone isn't human-readable.
    */
   static computeBackendTimeBars(
     store       : BenchmarkStore,
     backends    : { code: string; label: string }[],
     fractalType : FractalType
   ): BackendTimeBar[] {
-    return backends.map(b => ({
-      backendCode : b.code,
-      label       : b.label,
-      bestTimeMs  : store[b.code]?.[fractalType]?.bestTimeMs ?? null,
-    }));
+    return backends.map(b => {
+      const bestTimeMs = store[b.code]?.[fractalType]?.bestTimeMs ?? null;
+      return {
+        backendCode : b.code,
+        label       : b.label,
+        bestTimeMs,
+        score       : bestTimeMs !== null ? FractalBenchmark.performanceScore(bestTimeMs) : 0,
+      };
+    });
   }
 }

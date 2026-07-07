@@ -219,7 +219,7 @@
                 📭 No benchmark data recorded yet. Generate at least one fractal to populate this panel.
             </div>
 
-            <div *ngIf="hasBenchmarkData">
+            <div [hidden]="!hasBenchmarkData">
 
                 <h3>Combined Performance Share (by fractal)</h3>
                 <p class="form-text">
@@ -233,7 +233,7 @@
 
                 <div *ngIf="selectedBenchmarkFractal !== null" class="bar-section">
                     <h3>Best Times — {{ fractalLabel(selectedBenchmarkFractal) }}</h3>
-                    <p class="form-text">Lower bar = faster = higher performance.</p>
+                    <p class="form-text">Taller bar = faster = higher performance.</p>
                     <div class="chart-container bar-container">
                         <canvas #barCanvas></canvas>
                     </div>

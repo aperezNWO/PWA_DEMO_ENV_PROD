@@ -24,7 +24,8 @@ import { FractalType
         , BackendLanguage
         , FractalParams,         
         DEFAULT_FRACTAL_PARAMS
-        , FractalBenchmark } from '../../../../../_engines/fractal.engine';
+        , FractalBenchmark
+        , FractalSliceScore } from '../../../../../_engines/fractal.engine';
 
 Chart.register(...registerables);
 
@@ -511,18 +512,9 @@ constructor(
         const label = this.backendCapabilities
           .find(o => o.languageCode === this.selectedImplementation)?.label
           ?? this.selectedImplementation;
-        
-        // Inside onSubmit() -> next() block:
         this.status_message.set(`[✓ Generated using ${label} in ${this.generationTime.toFixed(2)}ms]`);
         localStorage.setItem('fractal_implementation', this.selectedImplementation);
-
-        // Ensure we pass the numeric value of the enum
-        FractalBenchmark.record(
-            this.selectedImplementation, 
-            Number(this.selectedFractal), 
-            this.generationTime
-        );
-
+        FractalBenchmark.record(this.selectedImplementation, this.selectedFractal, this.generationTime);
       },
       error: (err: any) => {
         console.error('Fractal generation error:', err);
@@ -600,8 +592,6 @@ constructor(
   fractalLabel(type: FractalType): string { return this.getFractalLabel(type); }
 
   private _renderPieChart(): void {
-    if (!this.pieCanvasRef) return;
-
     const store        = FractalBenchmark.load();
     const enabledCodes = this.getAvailableBackends().map(b => b.languageCode);
     const fractalIds   = this.fractalOptions.map(o => o.id);
@@ -610,9 +600,25 @@ constructor(
       .computeSliceScores(store, enabledCodes, fractalIds)
       .filter(s => s.score > 0);
 
+    // Compute the flag FIRST, independent of whether the canvas exists yet —
+    // the canvas is only mounted/visible once hasBenchmarkData is true, so
+    // checking for it before this point created a deadlock (canvas never
+    // appears because the flag that reveals it was never set).
     this.hasBenchmarkData = slices.length > 0;
     this._pieChart?.destroy();
+    this._pieChart = undefined;
+
     if (!this.hasBenchmarkData) return;
+
+    // Defer the actual draw one more tick: [hidden]="!hasBenchmarkData" was
+    // just flipped above, but Angular hasn't flushed that to the DOM yet in
+    // this same synchronous call — drawing immediately would measure a
+    // still-hidden (0×0) canvas.
+    setTimeout(() => this._drawPieChart(slices), 0);
+  }
+
+  private _drawPieChart(slices: FractalSliceScore[]): void {
+    if (!this.pieCanvasRef) return;
 
     const colors = ['#4285F4', '#34a853', '#fbbc05', '#ea4335', '#9c27b0'];
 
@@ -627,6 +633,7 @@ constructor(
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
           legend : { position: 'bottom' },
           tooltip: {
@@ -640,7 +647,9 @@ constructor(
           const idx     = elements[0].index;
           const clicked = slices[idx].fractalType;
           this.selectedBenchmarkFractal = clicked;
-          this._renderBarChart(clicked);
+          // *ngIf="selectedBenchmarkFractal !== null" just flipped — defer
+          // so the bar-section/canvas exists before we try to draw into it.
+          setTimeout(() => this._renderBarChart(clicked), 0);
         }
       }
     });
@@ -660,15 +669,16 @@ constructor(
       data: {
         labels: bars.map(b => b.label),
         datasets: [{
-          label          : `Best time (ms) — ${this.getFractalLabel(fractalType)}`,
-          data           : bars.map(b => b.bestTimeMs ?? 0),
+          label          : `Performance score — ${this.getFractalLabel(fractalType)}`,
+          data           : bars.map(b => b.score),
           backgroundColor: '#4285F4',
         }]
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
-          y: { beginAtZero: true, title: { display: true, text: 'Milliseconds (lower = faster)' } }
+          y: { beginAtZero: true, title: { display: true, text: 'Performance score (higher = faster)' } }
         },
         plugins: {
           legend : { display: false },
@@ -676,7 +686,9 @@ constructor(
             callbacks: {
               label: (ctx) => {
                 const bar = bars[ctx.dataIndex];
-                return bar.bestTimeMs === null ? 'No data recorded yet' : `${bar.bestTimeMs.toFixed(2)}ms`;
+                return bar.bestTimeMs === null
+                  ? 'No data recorded yet'
+                  : `${bar.bestTimeMs.toFixed(2)}ms (score: ${bar.score.toFixed(2)})`;
               }
             }
           }
