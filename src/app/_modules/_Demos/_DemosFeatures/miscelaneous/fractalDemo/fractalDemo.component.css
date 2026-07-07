@@ -499,3 +499,66 @@
 
 .content a { color: #4a5568; text-decoration: none; transition: color .2s; }
 .content a:hover { color: #2c3e50; text-decoration: underline; }
+
+/* ── Blue-themed Fractal Info Boxes ─────────────────────────────────────── */
+
+/* Shared structure */
+.info-box {
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border: 1px solid;
+}
+.info-header {
+  color: white;
+  font-weight: 600;
+  font-size: x-small;
+  padding: 8px 12px;
+  letter-spacing: .3px;
+}
+.info-body {
+  padding: 10px 12px;
+  font-size: x-small;
+  line-height: 1.6;
+  text-align: left;
+}
+.info-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 10px;
+  margin-top: 8px;
+}
+.info-detail {
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-family: monospace;
+  font-size: 10px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Mandelbrot (Deep Blue) */
+.mandelbrot-info-box {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-color: #93c5fd;
+}
+.mandelbrot-info-box .info-header { background: #1e40af; }
+.mandelbrot-info-box .info-body { color: #1e3a8a; }
+.mandelbrot-info-box .info-detail { 
+  background: rgba(30, 64, 175, .12); 
+  border: 1px solid #93c5fd; 
+  color: #1e3a8a; 
+}
+
+/* Julia (Light/Cyan Blue) */
+.julia-info-box {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-color: #7dd3fc;
+}
+.julia-info-box .info-header { background: #0369a1; }
+.julia-info-box .info-body { color: #0c4a6e; }
+.julia-info-box .info-detail { 
+  background: rgba(3, 105, 161, .12); 
+  border: 1px solid #7dd3fc; 
+  color: #0c4a6e; 
+}

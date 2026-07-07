@@ -60,6 +60,36 @@
                 </div>
             </div>
 
+            <div class="info-box mandelbrot-info-box" *ngIf="selectedFractal === FractalType.MANDELBROT">
+                <div class="info-header">🌀 Mandelbrot Set — Escape-Time Algorithm</div>
+                <div class="info-body">
+                    Defined by the sequence <strong>z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</strong>, 
+                    starting with z = 0. Points that do not escape to infinity after a set 
+                    number of iterations belong to the set.
+                    <div class="info-details-grid">
+                        <span class="info-detail">Complex plane</span>
+                        <span class="info-detail">Iterative divergence</span>
+                        <span class="info-detail">Self-similar edges</span>
+                        <span class="info-detail">Backend-calculated</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box julia-info-box" *ngIf="selectedFractal === FractalType.JULIA">
+                <div class="info-header">🎨 Julia Set — Constant Parametric Mapping</div>
+                <div class="info-body">
+                    Generated using the same iterative function as Mandelbrot, but with a fixed 
+                    <strong>constant C (Cr + Ci)</strong>. Varying C creates wildly different 
+                    morphologies for the set.
+                    <div class="info-details-grid">
+                        <span class="info-detail">Cr: {{ realPart }}</span>
+                        <span class="info-detail">Ci: {{ imagPart }}</span>
+                        <span class="info-detail">Parametric focus</span>
+                        <span class="info-detail">Complex dynamics</span>
+                    </div>
+                </div>
+            </div>
+            
             <div class="fern-info-box" *ngIf="selectedFractal === FractalType.BARNSLEY_FERN">
                 <div class="fern-info-header">🍃 Barnsley Fern — IFS Algorithm</div>
                 <div class="fern-info-body">
