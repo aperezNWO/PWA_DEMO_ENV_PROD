@@ -300,9 +300,7 @@
 
         -- [_] docker hosting.
 
-                -- [_] render.
-
-                -- [_] vercel.
+                -- [x] vercel.
 
                 -- [_] unique restful endpoint.
 
@@ -748,5 +746,8 @@
                 --[_] mock typescript as json resftul endpoint --? mandatory for j2se format and others.
 
         --[_] coloured fractal info panel.                
+
+
+ -- [_] hosting : render.
 
 ////////////////////////////////////////////////////////////////////////////////
