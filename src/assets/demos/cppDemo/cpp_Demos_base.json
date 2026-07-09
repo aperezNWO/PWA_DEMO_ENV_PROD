@@ -144,30 +144,6 @@
         "field_10"         : "ae1c7a78-3fd5-4e41-965f-0bfd091c4a1d"  
     },
     {
-		"id"               : 13,
-        "done"             : true,
-        "name"             : "FRACTAL Demo / C++ dll",
-        "description"      : "FRACTAL Demo / C++ dll",
-        "field_1"          : "Fractal , Julia",
-        "field_2"          : "./#/FractalDemo",
-        "field_3"          : "https://github.com/aperezNWO/CPP_GCC_OPEN_CV/blob/4d162f3c80cf1ec28bbcf50321ff997a8fbc8efd/mingwin/OpenCvDll.cpp#L436",
-        "field_4"          : "{{baseUrlNetCoreCPPEntry}}api/computervision/generatejuliaparams/?maxIterations=500&realPart=-0.4&imagPart=0.6",
-        "field_6"          : "https://en.wikipedia.org/wiki/Fractal",
-        "field_10"         : "5e5bfdf8-6876-43a5-a2ea-858628bf0dae"  
-    },
-    {
-        "id"               : 14,
-        "done"             : true,
-        "name"             : "Fractal Demo / .net core endpoint",
-        "description"      : "Fractal Demo / .net core endpoint",
-        "field_1"          : ".net core, c++, Fractal, opencv, julia",
-        "field_2"          : "./#/FractalDemo",
-        "field_3"          : "https://github.com/aperezNWO/ASP_NET_CORE_CPP_ENTRY/blob/8a465f7d3c40159b1d75c528291da7dcf764868a/ASP_NET_CORE_CPP_ENTRY/Controllers/HomeController.cs#L497",
-        "field_4"          : "{{baseUrlNetCoreCPPEntry}}api/computervision/generatejuliaparams/?maxIterations=500&realPart=-0.4&imagPart=0.6",
-        "field_6"          : "https://learn.microsoft.com/es-es/dotnet/api/system.runtime.interopservices.dllimportattribute?view=net-9.0",
-        "field_10"         : "97411cbf-d80a-4d7a-92dc-f88d158ae552"
-    },
-    {
 		"id"               : 15,
         "done"             : true,
         "name"             : "Tic-Tac Toe Game A.I. / c++ dll",
