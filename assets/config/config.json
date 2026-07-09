@@ -1,7 +1,7 @@
 {
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "3.7.69",
+    "appVersion"                                   : "3.7.70",
     "baseUrlNetCoreCPPEntry_local"                 : "http://localhost:83/",
     "baseUrlNetCoreCPPEntry_remote"                : "https://tensorflownetcore64.tryasp.net/",
     "baseUrlNetCoreCPPEntry"                       : "https://tensorflownetcore64.tryasp.net/",
@@ -15,6 +15,7 @@
     "baseUrlNodeJs_aperezNWO"                      : "https://fxh4m2-4000.csb.app/",
     "baseUrlNodeJs_aperezNWOGmail"                 : "https://xx9q24-4000.csb.app/",
     "baseUrlNodeJs_df149032"                       : "https://k5khgz-4000.csb.app/",
+    "baseUrlNodeJs_render"                         : "https://cs-nodejs.onrender.com/",
     "baseUrlNodeJs"                                : "https://cs-nodejs.onrender.com/",
     "baseUrlNodeJsOcr_local"                       : "http://localhost:3000/upload",
     "baseUrlNodeJsOcr_aperezNWO"                   : "https://8qkygk-3000.csb.app/",
