@@ -66,7 +66,9 @@ export class FractalService extends BaseService {
             `?kind=${FractalType.JULIA}` +
             `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
             `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
-            `&maxIterations=${p_fractalParams.maxIterations}`;
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
       break;
       default : 
           url =
@@ -109,7 +111,9 @@ export class FractalService extends BaseService {
             `?kind=${FractalType.MANDELBROT}` +
             `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
             `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
-            `&maxIterations=${p_fractalParams.maxIterations}`;
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
       break;
       default :
           url =
@@ -131,7 +135,9 @@ export class FractalService extends BaseService {
   //
   public GenerateFractalServerBarnsleyFern(p_fractalParams : FractalParams): Observable<FractalPoint[]>{
     //
-    let url : string = "";
+    const bounds : FractalBounds | undefined = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
+    let   url    : string                    = "";
+
 
     //
     switch(p_fractalParams.selectedBackend){
@@ -139,7 +145,13 @@ export class FractalService extends BaseService {
             url = `${this.__baseUrlNodeJsFractal}leaf`;      
       break;
       case BackendLanguage.J2SE:
-            url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.BARNSLEY_FERN}`;
+            url = `${this.__baseUrlJ2seFractal}` +
+            `?kind=${FractalType.BARNSLEY_FERN}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
       break;
       default : 
             url = `${this.__baseUrlNodeJsFractal}leaf`;      

@@ -752,4 +752,6 @@
 
  -- [_] check dynamic pages on index.
 
+https://java2-ee-sb-demo-latest.onrender.com/api/fractals/generate?kind=1&xMin=-2&xMax=1&yMin=-1.2&yMax=1.2&maxIterations=500&zoomInOut=true&zoomStep=1
+
 ////////////////////////////////////////////////////////////////////////////////
