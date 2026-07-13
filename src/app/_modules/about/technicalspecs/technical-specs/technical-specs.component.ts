@@ -97,6 +97,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
           this._TensorFlowCPPSTDVersion = v.tfCpp            ?? '(..loading..)';
           this._JavaVersion             = v.javaVersion      ?? '(..loading..)';
           this._NodeVersion             = v.nodeVersion      ?? '(..loading..)';
+          this._NodeVersionOcr          = v.nodeVersionOcr   ?? '(..loading..)';
         });
     }
     //
