@@ -1,7 +1,7 @@
 // chat.service.ts
 import { Injectable          } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ConfigService      } from '../ConfigService/config.service';
+import { ConfigService       } from '../ConfigService/config.service';
 import { of                  } from 'rxjs';
 import io from 'socket.io-client';
 
@@ -15,7 +15,7 @@ export class ChatService {
   //
   constructor(configService : ConfigService) {
     //
-    let url =  configService.getConfigValue("baseUrlNodeJsChat");
+    let url =  configService.getConfigValue("baseUrlNodeJs");
     //
     //console.log("Setting chat from url : " + url);
     //
