@@ -33,11 +33,10 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _tesseractAppVersion       = this.fromCache('tesseractApp');
     _tesseractAPIVersion       = this.fromCache('tesseractApi');
     _tesseractCPPSTDVersion    = this.fromCache('tesseractCpp');
-
-;
     _TensorFlowAPPVersion      = this.fromCache('tfApp');;
     _TensorFlowAPIVersion      = this.fromCache('tfApi');;
     _TensorFlowCPPSTDVersion   = this.fromCache('tfCpp');;
+    _JavaAppVersion            = this.fromCache('javaVersion');
     //
     guid = signal<string>(''); // Signal to hold the GUID
     //
@@ -94,6 +93,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
           this._TensorFlowAPPVersion    = v.tfApp            ?? '(..loading..)';
           this._TensorFlowAPIVersion    = v.tfApi            ?? '(..loading..)';
           this._TensorFlowCPPSTDVersion = v.tfCpp            ?? '(..loading..)';
+          this._JavaAppVersion          = v.javaVersion      ?? '(..loading..)';
         });
     }
     //

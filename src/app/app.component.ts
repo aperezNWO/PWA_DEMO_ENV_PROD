@@ -3,6 +3,7 @@ import { Title                             } from '@angular/platform-browser';
 import { BackendService                    } from './_services/BackendService/backend.service';
 import { AlgorithmService                  } from './_services/AlgorithmService/algorithm.service';
 import { ConfigService                     } from './_services/__Utils/ConfigService/config.service';
+import { VersionCacheService } from './_services/__Utils/VersionCacheService/versio-cache.service';
 
 @Component({
   selector    :    'app-root',
@@ -12,10 +13,11 @@ import { ConfigService                     } from './_services/__Utils/ConfigSer
 })
 export class AppComponent implements OnInit {
   // Inyección de servicios (v21 Style)
-  private readonly _configService   = inject(ConfigService);
-  private readonly backendService   = inject(BackendService);
-  private readonly titleService     = inject(Title);
-  private readonly algorithmService = inject(AlgorithmService);
+  private readonly _configService      = inject(ConfigService);
+  private readonly backendService      = inject(BackendService);
+  private readonly titleService        = inject(Title);
+  private readonly algorithmService    = inject(AlgorithmService);
+  private readonly versionCacheService = inject(VersionCacheService);
 
   // Propiedades reactivas usando Signals
   public readonly title      = signal<string>('');

@@ -168,4 +168,13 @@ export class BackendService extends BaseService implements OnInit {
         error: (err) => console.error('_SetSTATBarCache ERROR: ', err.message)
       });
   } 
+
+  ////////////////////////////////////////////////////////////////  
+  // J2SE / JAVA SPRING BOOT
+  ////////////////////////////////////////////////////////////////  
+  getJavaVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getJavaVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  ////////////////////////////////////////////////////////////////  
 }
