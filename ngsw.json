@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1783974805941,
+  "timestamp": 1783975161335,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -100,7 +100,7 @@
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_Curriculum_base.json": "989628b99da2028ff7ee8b8407d82420bf6b108a",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "bb2fbbaf736d5960323712e8c5cc8ddecbafbdb3",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Curriculum_base.json": "d9a5f04e6eb21310eab505a8c000ac28a6b050bb",
-    "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Demos_base.json": "9d88f4e86cba96aed4762a91efec93f406693226",
+    "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Demos_base.json": "2069d478fbc9e79adf6ec9782d4c822963a0e2e9",
     "/PWA_DEMO_ENV_PROD/assets/demos/springBootDemo/springBoot_Curriculum_base.json": "41a5121544c5c4227848ec6d2f60dbb8e2dfa5c2",
     "/PWA_DEMO_ENV_PROD/assets/demos/springBootDemo/springBoot_Demos_base.json": "a4d042789407b46e6f5be87c9e5b21662132e011",
     "/PWA_DEMO_ENV_PROD/assets/icons/icon-128x128.png": "f912963bdc6d5a38d8f1dd0afbaab2ce8d657acb",

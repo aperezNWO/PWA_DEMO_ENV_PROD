@@ -35,7 +35,19 @@
         "field_6"          : "https://www.geeksforgeeks.org/sudoku-backtracking-7/",
         "field_10"         : "f1f0af0b-4032-49b7-9df0-80e578168fa3"
     },
-    	{
+    {
+		"id"               : 0,
+        "done"             : true,
+        "name"             : "CHAT DEMO",
+        "description"      : "CHAT DEMO",
+        "field_1"          : "NodeJs, codesandbox, Chat, Socket.io",
+        "field_2"          : "./#/Chat",
+        "field_3"          : "https://github.com/aperezNWO/cs_node_js_test_chat/blob/048868fdf1a3f770233dab4493df296e37ec2d61/index.js#L61",
+        "field_4"          : "{{baseUrlNodeJsChat}}",
+        "field_6"          : "https://socket.io/",
+        "field_10"         : "1996fa99-4e01-42eb-ac45-98e2918208d9"   
+    },
+    {
 		"id"               : 1,
         "done"             : true,
         "name"             : "OCR DEMO",
@@ -58,17 +70,5 @@
         "field_4"          : "{{baseUrlNodeJsOcr}}health",
         "field_6"          : "https://docs.opencv.org/4.x/d5/d10/tutorial_js_root.html",
         "field_10"         : "348d2d81-a9d7-4f22-9f92-03bb24388f73" 
-    },
-    {
-		"id"               : 2,
-        "done"             : true,
-        "name"             : "CHAT DEMO",
-        "description"      : "CHAT DEMO",
-        "field_1"          : "NodeJs, codesandbox, Chat, Socket.io",
-        "field_2"          : "./#/Chat",
-        "field_3"          : "https://github.com/aperezNWO/cs_node_js_test_chat/blob/048868fdf1a3f770233dab4493df296e37ec2d61/index.js#L61",
-        "field_4"          : "{{baseUrlNodeJsChat}}",
-        "field_6"          : "https://socket.io/",
-        "field_10"         : "1996fa99-4e01-42eb-ac45-98e2918208d9"   
     }
 ]	
