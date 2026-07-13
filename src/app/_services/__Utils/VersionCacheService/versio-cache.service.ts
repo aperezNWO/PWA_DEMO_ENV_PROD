@@ -20,6 +20,7 @@ import { ConfigService         } from '../ConfigService/config.service';
 
 export interface VersionBundle {
   nodeVersion     : string;
+  nodeVersionOcr  : string;
   javaVersion     : string;
   webApiApp       : string;
   algorithmApp    : string;
@@ -56,6 +57,7 @@ export class VersionCacheService implements OnDestroy {
   private loadAll(): Observable<VersionBundle> {
     return forkJoin({
       nodeVersion     : this.back.getNodeVersion(),
+      nodeVersionOcr  : this.back.getNodeVersionOcr(),
       javaVersion     : this.back.getJavaVersion(),
       webApiApp       : this.back._GetWebApiAppVersion(),
       algorithmApp    : this.algo._Algorithm_GetAppVersion(),
@@ -90,7 +92,8 @@ export class VersionCacheService implements OnDestroy {
         // Use forkJoin to execute both requests in parallel
         forkJoin({
           java: this.back.getJavaVersion(),
-          node: this.back.getNodeVersion()
+          node: this.back.getNodeVersion(),
+          nodeOcr : this.back.getNodeVersionOcr()
         })
       )
     )
@@ -98,6 +101,7 @@ export class VersionCacheService implements OnDestroy {
       next: (results) => {
         console.log(`[Heartbeat] Java version: ${results.java}`);
         console.log(`[Heartbeat] Node version: ${results.node}`);
+        console.log(`[Heartbeat] Node OCR version: ${results.nodeOcr}`);
       },
       error: (err) => console.error('[Heartbeat] Ping failed for one or more backends', err)
     });
