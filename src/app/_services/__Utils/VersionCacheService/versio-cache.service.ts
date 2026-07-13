@@ -83,15 +83,24 @@ export class VersionCacheService implements OnDestroy {
   }
 
   private startHeartbeat() {
-    /* Ping every 10 minutes (600,000ms) to keep the Render instance active */
-    this.pingerSubscription = interval(600000)
-      .pipe(
-        switchMap(() => this.back.getJavaVersion())
+  /* Ping every 10 minutes (600,000ms) to keep both instances active */
+  this.pingerSubscription = interval(600000)
+    .pipe(
+      switchMap(() => 
+        // Use forkJoin to execute both requests in parallel
+        forkJoin({
+          java: this.back.getJavaVersion(),
+          node: this.back.getNodeVersion()
+        })
       )
-      .subscribe({
-        next: (version) => console.log(`[Heartbeat] Server active, Java version: ${version}`),
-        error: (err) => console.error('[Heartbeat] Ping failed', err)
-      });
+    )
+    .subscribe({
+      next: (results) => {
+        console.log(`[Heartbeat] Java version: ${results.java}`);
+        console.log(`[Heartbeat] Node version: ${results.node}`);
+      },
+      error: (err) => console.error('[Heartbeat] Ping failed for one or more backends', err)
+    });
   }
 
   ngOnDestroy() {
