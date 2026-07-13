@@ -1,16 +1,25 @@
 /* app-core/services/version-cache.service.ts */
-import { Injectable, OnDestroy } from '@angular/core';
-import { Observable, shareReplay, of, map, catchError, forkJoin, interval, Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import {  Injectable
+        , OnDestroy   } from '@angular/core';
+import { Observable
+       , shareReplay
+       , of
+       , map
+       , catchError
+       , forkJoin
+       , interval
+       , Subscription } from 'rxjs';
+import { switchMap    } from 'rxjs/operators';
 // CUSTOM LIBRARIES
 import { ComputerVisionService } from '../../__AI/ComputerVisionService/Computer-Vision.service';
-import { OCRService } from '../../__AI/OCRService/ocr.service';
-import { TensorFlowService } from '../../__AI/TensorflowService/tensor-flow.service';
-import { AlgorithmService } from '../../AlgorithmService/algorithm.service';
-import { BackendService } from '../../BackendService/backend.service';
-import { ConfigService } from '../ConfigService/config.service';
+import { OCRService            } from '../../__AI/OCRService/ocr.service';
+import { TensorFlowService     } from '../../__AI/TensorflowService/tensor-flow.service';
+import { AlgorithmService      } from '../../AlgorithmService/algorithm.service';
+import { BackendService        } from '../../BackendService/backend.service';
+import { ConfigService         } from '../ConfigService/config.service';
 
 export interface VersionBundle {
+  nodeVersion     : string;
   javaVersion     : string;
   webApiApp       : string;
   algorithmApp    : string;
@@ -46,6 +55,7 @@ export class VersionCacheService implements OnDestroy {
 
   private loadAll(): Observable<VersionBundle> {
     return forkJoin({
+      nodeVersion     : this.back.getNodeVersion(),
       javaVersion     : this.back.getJavaVersion(),
       webApiApp       : this.back._GetWebApiAppVersion(),
       algorithmApp    : this.algo._Algorithm_GetAppVersion(),

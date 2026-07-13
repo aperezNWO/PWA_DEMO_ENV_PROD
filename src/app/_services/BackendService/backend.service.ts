@@ -22,9 +22,6 @@ import { takeUntilDestroyed       } from '@angular/core/rxjs-interop';
   providedIn: 'root'
 })
 export class BackendService extends BaseService implements OnInit {
-
-
-
   // v21: Inyección funcional (Reemplaza al constructor)
   public readonly http           = inject(HttpClient);
   public readonly _configService = inject(ConfigService);
@@ -170,11 +167,18 @@ export class BackendService extends BaseService implements OnInit {
   } 
 
   ////////////////////////////////////////////////////////////////  
-  // J2SE / JAVA SPRING BOOT
+  // BACKEND VERSIONS 
   ////////////////////////////////////////////////////////////////  
+  // J2SE / JAVA SPRING BOOT
   getJavaVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getJavaVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
+  // NODE.JS 
+  getNodeVersion(): Observable<string>{
+    const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}getNodeVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+
   ////////////////////////////////////////////////////////////////  
 }
