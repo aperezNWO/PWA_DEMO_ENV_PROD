@@ -19,6 +19,7 @@ import { BackendService        } from '../../BackendService/backend.service';
 import { ConfigService         } from '../ConfigService/config.service';
 
 export interface VersionBundle {
+  pythonVersion   : string;
   nodeVersion     : string;
   nodeVersionOcr  : string;
   javaVersion     : string;
@@ -56,6 +57,7 @@ export class VersionCacheService implements OnDestroy {
 
   private loadAll(): Observable<VersionBundle> {
     return forkJoin({
+      pythonVersion   : this.back.getPythonVersion(),
       nodeVersion     : this.back.getNodeVersion(),
       nodeVersionOcr  : this.back.getNodeVersionOcr(),
       javaVersion     : this.back.getJavaVersion(),
