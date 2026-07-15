@@ -3,7 +3,7 @@ import { Title                             } from '@angular/platform-browser';
 import { BackendService                    } from './_services/BackendService/backend.service';
 import { AlgorithmService                  } from './_services/AlgorithmService/algorithm.service';
 import { ConfigService                     } from './_services/__Utils/ConfigService/config.service';
-import { VersionCacheService } from './_services/__Utils/VersionCacheService/versio-cache.service';
+import { VersionCacheService } from './_services/__Utils/VersionCacheService/version-cache.service';
 
 @Component({
   selector    :    'app-root',

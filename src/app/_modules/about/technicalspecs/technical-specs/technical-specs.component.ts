@@ -4,7 +4,7 @@ import { PAGE_ABOUT_TECHNICAL_SPECS         } from 'src/app/_models/common';
 import { BaseComponent                      } from 'src/app/_components/base/base.component';
 import { SpeechService                      } from 'src/app/_services/__Utils/SpeechService/speech.service';
 import { ConfigService                      } from 'src/app/_services/__Utils/ConfigService/config.service'
-import { VersionBundle, VersionCacheService } from 'src/app/_services/__Utils/VersionCacheService/versio-cache.service';
+import { VersionBundle, VersionCacheService } from 'src/app/_services/__Utils/VersionCacheService/version-cache.service';
 import { BackendService                     } from '../../../../_services/BackendService/backend.service';
 //
 @Component({
@@ -111,6 +111,16 @@ export class TechnicalSpecsComponent extends BaseComponent {
         const v = JSON.parse(raw) as VersionBundle;
         return v[key] ?? '(..loading..)';
       } catch { return '(..loading..)'; }
+    }
+    //
+    // Creamos un getter para filtrar la versión limpia
+    public get cleanPythonVersion(): string {
+        if (!this._PythonVersion) return '';
+        
+        // Busca una secuencia de números separados por puntos al inicio del texto
+        const match = this._PythonVersion.match(/^(\d+\.\d+\.\d+)/);
+        
+        return match ? match[1] : this._PythonVersion;
     }
     ////////////////////////////////////////////////////////////////  
     // [METODOS COMUNES]

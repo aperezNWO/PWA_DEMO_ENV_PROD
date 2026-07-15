@@ -95,7 +95,8 @@ export class VersionCacheService implements OnDestroy {
         forkJoin({
           java: this.back.getJavaVersion(),
           node: this.back.getNodeVersion(),
-          nodeOcr : this.back.getNodeVersionOcr()
+          nodeOcr : this.back.getNodeVersionOcr(),
+          python  : this.back.getPythonVersion(),
         })
       )
     )
