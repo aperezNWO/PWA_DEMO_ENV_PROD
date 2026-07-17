@@ -17,11 +17,26 @@ npm install -g @angular/cli
 http://localhost:4200/
 https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/
 
-npx ngh --user="aperezNWO" --token="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"
 
 https://github.com/settings/tokens
 
-generate token with
+git config --global core.longpaths true
+
+$env:GH_TOKEN = "YOUR TOKEN"
+
+npx angular-cli-ghpages --dir=dist\PWA_DEMO_ENV_PROD\browser --name="aperezNWO" --email="alejandro.perez.acosta@hotmail.com"
+
+
+*****************************************************************
+*********** GENERATE DOC ****************************************
+*****************************************************************
+
+https://github.com/aperezNWO/pwa_demo_env_prod
+
+https://deepwiki.com/aperezNWO/pwa_demo_env_prod
+
+https://app.devin.ai/org/pablo-alejandro-perez-acosta/wiki/aperezNWO/PWA_DEMO_ENV_PROD?branch=main
+
 *****************************************************************
 *********** HOSTING *********************************************
 *****************************************************************
