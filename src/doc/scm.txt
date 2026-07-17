@@ -37,6 +37,8 @@ https://deepwiki.com/aperezNWO/pwa_demo_env_prod
 
 https://app.devin.ai/org/pablo-alejandro-perez-acosta/wiki/aperezNWO/PWA_DEMO_ENV_PROD?branch=main
 
+ALWAYS INDEX RECENTLY IMPORTED GITHUB REPOSTORIES AND REPEAT IMPORT USING REPO_00XX NOMENCLATURE
+
 *****************************************************************
 *********** HOSTING *********************************************
 *****************************************************************
