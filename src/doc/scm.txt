@@ -17,6 +17,11 @@ npm install -g @angular/cli
 http://localhost:4200/
 https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/
 
+npx ngh --user="aperezNWO" --token="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"
+
+https://github.com/settings/tokens
+
+generate token with
 *****************************************************************
 *********** HOSTING *********************************************
 *****************************************************************

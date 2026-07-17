@@ -10,6 +10,7 @@
     "_package": "ng build --c=production --base-href=\"/PWA_DEMO_ENV_PROD\"",
     "_publish": "npx ngh --dir=dist\\PWA_DEMO_ENV_PROD\\browser",
     "package-and-publish": "ng build --c=production --base-href=\"/PWA_DEMO_ENV_PROD/\" && npx ngh --dir=dist\\PWA_DEMO_ENV_PROD\\browser",
+    "package-and-publish-token": "ng build --c=production --base-href=\"/PWA_DEMO_ENV_PROD/\" && npx ngh --user=\"aperezNWO\" --token=\"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\" --dir=dist\\PWA_DEMO_ENV_PROD\\browser",
     "git-update-strategy": "git add * && git commit -m \"strategy update\" -a && git push && git pull"
   },
   "private": true,
