@@ -758,4 +758,6 @@
 
 -- [_] disable / check opencv - computer vision - node.js.
 
+-- [_] update readme.md -- devin link
+
 ////////////////////////////////////////////////////////////////////////////////
