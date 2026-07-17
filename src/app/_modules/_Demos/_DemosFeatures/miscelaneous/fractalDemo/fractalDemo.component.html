@@ -51,12 +51,12 @@
                 <div class="form-group">
                     <label for="realPart">Real Constant Part (Cr):</label>
                     <input type="number" step="0.01" id="realPart" name="realPart"
-                           [(ngModel)]="realPart" class="form-control" />
+                           [(ngModel)]="realPart" class="form-control" disabled="disabled"/>
                 </div>
                 <div class="form-group">
                     <label for="imagPart">Imaginary Constant Part (Ci):</label>
                     <input type="number" step="0.01" id="imagPart" name="imagPart"
-                           [(ngModel)]="imagPart" class="form-control" />
+                           [(ngModel)]="imagPart" class="form-control"disabled="disabled" />
                 </div>
             </div>
 
@@ -110,7 +110,7 @@
                 <input type="number" id="maxIterations" name="maxIterations"
                        [(ngModel)]="maxIterations" class="form-control"
                        [min]="selectedFractal === FractalType.BARNSLEY_FERN ? 100 : 50"
-                       [max]="selectedFractal === FractalType.BARNSLEY_FERN ? 50000 : 5000" />
+                       [max]="selectedFractal === FractalType.BARNSLEY_FERN ? 50000 : 5000"  disabled="disabled"/>
                 <small class="form-text fern-hint" *ngIf="iterationsHint">
                     {{ iterationsHint }}
                 </small>
