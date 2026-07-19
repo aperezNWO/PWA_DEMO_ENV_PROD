@@ -758,6 +758,14 @@
 
 -- [_] disable / check opencv - computer vision - node.js.
 
--- [_] update readme.md -- devin link
+-- [x] update readme.md -- devin link
+
+-- [_] merge contact form. 
+
+-- [_] python updates. 
+
+        -- [_] status message on predict.
+
+        -- [_] status message on tic tac toe training.
 
 ////////////////////////////////////////////////////////////////////////////////
