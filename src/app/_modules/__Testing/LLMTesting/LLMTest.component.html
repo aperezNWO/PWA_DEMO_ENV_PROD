@@ -1,0 +1,30 @@
+<div class="card">
+    <h2>Prueba de Modelo Groq en Angular</h2>
+    
+    <div class="form-group">
+        <label for="apiKey">Groq API Key:</label>
+        <input 
+            type="password" 
+            id="apiKey" 
+            [(ngModel)]="apiKey" 
+            placeholder="gsk_..." 
+            value="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"
+        />
+    </div>
+    
+    <div class="form-group">
+        <label for="prompt">Mensaje:</label>
+        <input 
+            type="text" 
+            id="prompt" 
+            [(ngModel)]="prompt" 
+        />
+    </div>
+    
+    <button (click)="testGroq()" [disabled]="isLoading()">
+        {{ isLoading() ? 'Procesando...' : 'Enviar petición con Streaming' }}
+    </button>
+
+    <h3>Respuesta en tiempo real:</h3>
+    <pre class="output-box">{{ responseStream() }}</pre>
+</div>

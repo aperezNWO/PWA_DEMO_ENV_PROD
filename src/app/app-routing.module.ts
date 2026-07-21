@@ -30,7 +30,8 @@ import { FractalDemoComponent        } from './_modules/_Demos/_DemosFeatures/mi
 import { PageUrlListComponent        } from './_components/page-url-list/page-url-list.component';
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
 import { LandingComponent            } from './_components/landing/landing.component';
-import { RubikCubeComponent } from './_modules/_Demos/_DemosFeatures/games/rubik-cube/rubik-cube.component';
+import { RubikCubeComponent          } from './_modules/_Demos/_DemosFeatures/games/rubik-cube/rubik-cube.component';
+import { LLMTest                     } from './_modules/__Testing/LLMTesting/LLMTest.component';
 
 
 export interface _Route extends Route
@@ -85,6 +86,7 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Demos / Language - SpringBoot / Java'        , queryParams : 'PAGE_DEMOS_SPRING_BOOT_JAVA'     },
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Demos / Language - Django / Python'          , queryParams : 'PAGE_DEMOS_DJANGO_PYTHON'        },
   {  id: 0,  path: 'PageUrlList'           , component: PageUrlListComponent                , caption: ''                                             , queryParams : '' },
+  {  id: 0,  path: 'LLMTest'               , component: LLMTest                             , caption: ''                                             , queryParams : '' },
   {  id: 0,  path: 'Landing'               , component: LandingComponent                    , caption: ''                                             , queryParams : '' }, 
   {  id: 0,  path: '**'                    , component: PageNotFoundComponent               , caption: ''                                             , queryParams : '' },
 ];
