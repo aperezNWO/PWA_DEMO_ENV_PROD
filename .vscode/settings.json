@@ -9,5 +9,6 @@
             }
         ]
     },
-    "editor.fontVariations": true
+    "editor.fontVariations": true,
+    "python-envs.defaultEnvManager": "ms-python.python:system"
 }
