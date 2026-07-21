@@ -64,4 +64,16 @@ export class LLMTesting  extends BaseReferenceComponent  {
       this.isLoading.set(false);
     }
   }
+
+  clearApiKey() {
+    this.apiKey.set('');
+  }
+
+  clearPrompt() {
+    this.prompt.set('');
+  }
+
+  clearResults() {
+    this.responseStream.set('');
+  }
 }
