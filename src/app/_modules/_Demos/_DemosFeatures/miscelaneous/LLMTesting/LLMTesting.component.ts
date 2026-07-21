@@ -1,18 +1,18 @@
-import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Groq } from 'groq-sdk';
+import { Component, signal        } from '@angular/core';
+import { Groq                     } from 'groq-sdk';
+import { BaseReferenceComponent   } from 'src/app/_components/base-reference/base-reference.component';
+import { PAGE_MISCELANEOUS_LLM_TESTING, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
 
 @Component({
-  selector: 'app-LLMTest',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './LLMTest.component.html',
-  styleUrls: ['./LLMTest.component.css']
+  selector: 'app-LLMTesting',
+  templateUrl: './LLMTesting.component.html',
+  styleUrls: ['./LLMTesting.component.css'],
+  providers: [{ provide: PAGE_TITLE_LOG, useValue: PAGE_MISCELANEOUS_LLM_TESTING }],
+  standalone: false 
 })
-export class LLMTest {
-  apiKey = signal<string>('');
-  prompt = signal<string>('Escribe un poema corto sobre la programacion');
+export class LLMTesting  extends BaseReferenceComponent  {
+  apiKey = signal<string>('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');
+  prompt = signal<string>('List of the best programming languages in 2026 - Stack Overflow or TIOBE');
   responseStream = signal<string>('');
   isLoading = signal<boolean>(false);
 
