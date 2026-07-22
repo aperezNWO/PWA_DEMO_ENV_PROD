@@ -152,9 +152,9 @@
         "pages"      : [
             { "id": 1, "url" : "/VisionHub"             , "text": "[MISCELLANEOUS - OCR]"                  , "queryParams" : "{ aiFeature : 'OCR' , langName : 'CPP' }"  },
             { "id": 2, "url" : "/VisionHub"             , "text": "[MISCELLANEOUS - COMPUTER VISION]"      , "queryParams" : "{ aiFeature : 'CV'  , langName : 'CPP' }"  },
-            { "id": 3, "url" : "/Chat"                  , "text": "[MISCELLANEOUS - CHAT]"           },
-            { "id": 4, "url" : "/FractalDemo"           , "text": "[MISCELLANEOUS - FRACTAL DEMO]"   },
-            { "id": 5, "url" : "/LLMTesting"            , "text": "[MISCELLANEOUS - LLM TESTING]"    }
+            { "id": 3, "url" : "/Chat"                  , "text": "[MISCELLANEOUS - CHAT]"               },
+            { "id": 4, "url" : "/FractalDemo"           , "text": "[MISCELLANEOUS - FRACTAL DEMO]"       },
+            { "id": 5, "url" : "/LLMApiTesting"         , "text": "[MISCELLANEOUS - LLM API TESTING]"    }
           ]
       },
       {
