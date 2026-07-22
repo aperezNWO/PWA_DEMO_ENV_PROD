@@ -245,15 +245,10 @@
         "page_name"  : "[MISCELLANEOUS - FRACTAL DEMO]",
         "pages"      : [
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
-          { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
-          { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
           { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }      
         ],
         "pages_nested" : [
           { "id" : 1, "url": "about:blank"                                              , "text" : "[Angular]"                     , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'ace5fb03-bc8c-43c5-8650-181bf581b2a4' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
-          { "id" : 2, "url": "about:blank"                                              , "text" : "[C++ / DLL Scource]"           , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '5e5bfdf8-6876-43a5-a2ea-858628bf0dae' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
-          { "id" : 2, "url": "about:blank"                                              , "text" : "[C++ / .Net Core Endpoint] "   , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '97411cbf-d80a-4d7a-92dc-f88d158ae552' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
-          { "id" : 3, "url": "https://opencv.org/"                                      , "text" : "[Open CV/ C++]"                , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/Fractal"                    , "text" : "[Fractal]"                     , "routerLink" : "about:blank" , "queryParams" : ""}
         ]        
       },
@@ -261,8 +256,12 @@
         "log_name"   : "PAGE_MISCELANEOUS_LLM_TESTING",
         "page_name"  : "[MISCELLANEOUS - LLM TESTING]",
         "pages"      : [
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
         ],
         "pages_nested" : [
+          { "id" : 1, "url": "about:blank"                                          , "text" : "[Angular]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '5e5bfdf8-6876-43a5-a2ea-858628bf0dae' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+          { "id" : 4, "url": "https://en.wikipedia.org/wiki/Large_language_model"   , "text" : "[LARGE LANGUAGE MODELS LLM]"  , "routerLink" : "about:blank" , "queryParams" : "" }
         ]        
       },
       {

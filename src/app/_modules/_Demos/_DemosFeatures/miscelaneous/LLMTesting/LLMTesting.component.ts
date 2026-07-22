@@ -21,12 +21,12 @@ export class LLMTesting  extends BaseReferenceComponent  {
     const promptText = this.prompt().trim();
 
     if (!key) {
-      alert('Por favor, introduce tu API Key de Groq.');
+      alert('Please, introduce your Groq API Key.');
       return;
     }
 
     this.isLoading.set(true);
-    this.responseStream.set('Conectando y generando respuesta...');
+    this.responseStream.set('Connecting and getting response from Groq API...');
 
     try {
       const groq = new Groq({

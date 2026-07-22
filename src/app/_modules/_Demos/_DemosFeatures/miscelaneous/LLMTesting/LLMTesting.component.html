@@ -6,7 +6,7 @@
     <hr>
 
     <div class="form-group">
-        <label for="apiKey">Groq API Key:</label>
+        <label for="apiKey">Groq API Key:  (get it from <a href="https://console.groq.com/keys" target="_blank" style="color:black;">Groq Console</a>)</label>
         <div class="input-wrapper">
             <input 
                 type="password" 
@@ -15,7 +15,7 @@
                 placeholder="gsk_..." 
             />
             @if (apiKey()) {
-                <button type="button" class="clear-btn" (click)="clearApiKey()" title="Limpiar API Key">×</button>
+                <button type="button" class="clear-btn" (click)="clearApiKey()" title="Clean API Key">×</button>
             }
         </div>
     </div>

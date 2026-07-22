@@ -40,12 +40,24 @@
         "done"             : true,
         "name"             : "MISCELLANEOUS - Fractal Demo",
         "description"      : "Fractal, Julia",
-        "field_1"          : "v17, Fractal, Julia, OpenCv, C++",
+        "field_1"          : "v17, Fractal, Julia, Mandelbrot,  Barnsley Fern",
         "field_2"          : "./#/FractalDemo",
-        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/d4d2acd061ec8785aca77f75ef3fbbb110585c81/src/app/_services/__AI/ComputerVisionService/Computer-Vision.service.ts#L104",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/miscelaneous/fractalDemo/fractalDemo.component.ts",
         "field_4"          : "./#/FractalDemo",
-        "field_6"          : "https://opencv.org/"  ,
+        "field_6"          : "https://en.wikipedia.org/wiki/Fractal"  ,
         "field_10"         : "ace5fb03-bc8c-43c5-8650-181bf581b2a4"
+    },
+    {
+	    "id"               : 13,
+        "done"             : true,
+        "name"             : "LLM TESTING - API",
+        "description"      : "LLM TESTING - API",
+        "field_1"          : "LLM, Groq, API ",
+        "field_2"          : "./#/LLMTesting",
+        "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/miscelaneous/LLMTesting/LLMTesting.component.ts",
+        "field_4"          : "./#/LLMTesting",
+        "field_6"          : "https://en.wikipedia.org/wiki/LLM",
+        "field_10"         : "5e5bfdf8-6876-43a5-a2ea-858628bf0dae"  
     },
     {
 		"id"               : 6,
