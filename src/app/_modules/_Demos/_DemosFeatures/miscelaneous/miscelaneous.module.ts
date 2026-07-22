@@ -6,7 +6,7 @@ import { SharedModule               } from 'src/app/_modules/shared/shared.modul
 import { ChatComponent              } from './chat/chat/chat.component';
 import { FractalDemoComponent       } from './fractalDemo/fractalDemo.component';
 import { VisionHUBComponent         } from './VisionHUB/vision-HUB.component';
-import { LLMTesting                 } from './LLMTesting/LLMTesting.component';
+import { LLMApiTestingComponent     } from './LLMApiTesting/LLMApiTesting.component';
 // THIRD PARTY 
 import { NgxSignaturePadModule      } from '@eve-sama/ngx-signature-pad';
 import { CustomErrorHandler         } from 'src/app/app.module';
@@ -17,7 +17,7 @@ import { CustomErrorHandler         } from 'src/app/app.module';
         VisionHUBComponent,
         ChatComponent,
         FractalDemoComponent,
-        LLMTesting
+        LLMApiTestingComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +28,7 @@ import { CustomErrorHandler         } from 'src/app/app.module';
         VisionHUBComponent,
         ChatComponent,
         FractalDemoComponent,
-        LLMTesting
+        LLMApiTestingComponent
   ],
   providers : [
       // Referenciamos la clase que definimos arriba

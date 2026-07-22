@@ -31,7 +31,7 @@ import { PageUrlListComponent        } from './_components/page-url-list/page-ur
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
 import { LandingComponent            } from './_components/landing/landing.component';
 import { RubikCubeComponent          } from './_modules/_Demos/_DemosFeatures/games/rubik-cube/rubik-cube.component';
-import { LLMTesting as LLMTesting                     } from './_modules/_Demos/_DemosFeatures/miscelaneous/LLMTesting/LLMTesting.component';
+import { LLMApiTestingComponent as LLMApiTestingComponent                     } from './_modules/_Demos/_DemosFeatures/miscelaneous/LLMApiTesting/LLMApiTesting.component';
 
 
 export interface _Route extends Route
@@ -71,7 +71,7 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'Chat'                  , component: ChatComponent                       , caption: ' MISCELLANEOUS - Chat Demo'                   , queryParams : '' },
   {  id: 0,  path: 'VisionHub'             , component: VisionHUBComponent                  , caption: ' MISCELLANEOUS - OCR / Computer Visiopn'      , queryParams : '' },
   {  id: 0,  path: 'FractalDemo'           , component: FractalDemoComponent                , caption: ' MISCELLANEOUS - Fractal Demo'                , queryParams : '' },
-  {  id: 0,  path: 'LLMTesting'            , component: LLMTesting                          , caption: ' MISCELLANEOUS - LLM Testing'                 , queryParams : '' },
+  {  id: 0,  path: 'LLMApiTesting'         , component: LLMApiTestingComponent              , caption: ' MISCELLANEOUS - LLM API TESTING'             , queryParams : '' },
   {  id: 0,  path: 'LinearRegression'      , component: LinearRegressionComponent           , caption: ' Machine Learning  - Linear Regression'       , queryParams : '' },
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Curriculum - Artificial Intelligence'        , queryParams : 'PAGE_CURRICULUM_AI'              },
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Curriculum - C++'                            , queryParams : 'PAGE_CURRICULUM_CPP'             },

@@ -12,13 +12,13 @@ interface GroqModel {
 }
 
 @Component({
-  selector: 'app-LLMTesting',
-  templateUrl: './LLMTesting.component.html',
-  styleUrls: ['./LLMTesting.component.css'],
+  selector: 'app-LLMApiTesting',
+  templateUrl: './LLMApiTesting.component.html',
+  styleUrls: ['./LLMApiTesting.component.css'],
   providers: [{ provide: PAGE_TITLE_LOG, useValue: PAGE_MISCELANEOUS_LLM_TESTING }],
   standalone: false 
 })
-export class LLMTesting  extends BaseReferenceComponent  {
+export class LLMApiTestingComponent  extends BaseReferenceComponent  {
   apiKey = signal<string>('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');
   prompt = signal<string>('Latest Stable C++ Version');
   responseStream = signal<string>('');
