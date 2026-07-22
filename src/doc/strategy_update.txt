@@ -773,6 +773,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
         -- [_] LLM FUNCTIONALITY ACCROSS ANGULAR APP.
 
+        -- [_] EXPORT ANSWER TO PDF/ WORD.
+
  -- [_] hosting : render.
 
         -- [_] trick render inactivity timeout.
