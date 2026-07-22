@@ -51,7 +51,7 @@
 	    "id"               : 13,
         "done"             : true,
         "name"             : "MISCELLANEOUS - LLM TESTING - API",
-        "description"      : "LLM TESTING - API",
+        "description"      : "MISCELLANEOUS - LLM TESTING - API",
         "field_1"          : "LLM, Groq, API ",
         "field_2"          : "./#/LLMTesting",
         "field_3"          : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD/blob/main/src/app/_modules/_Demos/_DemosFeatures/miscelaneous/LLMTesting/LLMTesting.component.ts",
