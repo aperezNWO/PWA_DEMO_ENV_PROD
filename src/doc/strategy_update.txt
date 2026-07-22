@@ -749,9 +749,6 @@ r///////////////////////////////////////////////////////////////////////////////
 
         --[_] coloured fractal info panel.                
 
-
- -- [_] hosting : render.
-
  -- [_] check dynamic pages on index.
 
  -- [_] check backend versions for render time span.
@@ -775,5 +772,9 @@ r///////////////////////////////////////////////////////////////////////////////
         -- [_] TEST MULTIPLE MODELS
 
         -- [_] LLM FUNCTIONALITY ACCROSS ANGULAR APP.
+
+ -- [_] hosting : render.
+
+        -- [_] trick render inactivity timeout.
 
 ////////////////////////////////////////////////////////////////////////////////
