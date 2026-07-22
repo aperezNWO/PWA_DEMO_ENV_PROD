@@ -3,6 +3,14 @@ import { Groq                     } from 'groq-sdk';
 import { BaseReferenceComponent   } from 'src/app/_components/base-reference/base-reference.component';
 import { PAGE_MISCELANEOUS_LLM_TESTING, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } from 'src/app/_models/common';
 
+interface GroqModel {
+  id: string;
+  name: string;
+  isGptOss?: boolean;
+  isCompound?: boolean;
+  isAudio?: boolean;
+}
+
 @Component({
   selector: 'app-LLMTesting',
   templateUrl: './LLMTesting.component.html',
@@ -11,59 +19,26 @@ import { PAGE_MISCELANEOUS_LLM_TESTING, PAGE_TITLE_LOG, PAGE_TITLE_NO_SOUND } fr
   standalone: false 
 })
 export class LLMTesting  extends BaseReferenceComponent  {
-  apiKey = signal<string>('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');
+  apiKey = signal<string>('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');
   prompt = signal<string>('List of the best programming languages in 2026 - Stack Overflow or TIOBE');
   responseStream = signal<string>('');
   isLoading = signal<boolean>(false);
 
-  async testGroq() {
-    const key = this.apiKey().trim();
-    const promptText = this.prompt().trim();
+  // Complete model inventory matching Groq specifications
+  models: GroqModel[] = [
+    { id: 'groq/compound', name: 'Groq Compound (Managed Web Search & Tools)', isCompound: true },
+    { id: 'groq/compound-mini', name: 'Groq Compound Mini (Fast Tool Orchestration)', isCompound: true },
+    { id: 'openai/gpt-oss-120b', name: 'GPT-OSS 120B (Native Browser Search)', isGptOss: true },
+    { id: 'openai/gpt-oss-20b', name: 'GPT-OSS 20B (Native Browser Search)', isGptOss: true },
+    { id: 'qwen/qwen3.6-27b', name: 'Qwen 3.6 27B (Streaming)' },
+    //{ id: 'canopylabs/orpheus-v1-english', name: 'Orpheus v1 English (TTS)' },  // DOES NOT SUPPORT CHAT COMPLETIONS
+    //{ id: 'meta-llama/llama-prompt-guard-2-86m', name: 'Llama Prompt Guard 2 86M' },  // TEXT CLASSIFICATIONS DOES NOT SUPPORT STREAMING
+    //{ id: 'meta-llama/llama-prompt-guard-2-22m', name: 'Llama Prompt Guard 2 22M' },  // TEXT CLASSIFICATIONS DOES NOT SUPPORT STREAMING 
+    //{ id: 'whisper-large-v3', name: 'Whisper Large V3 (Speech-to-Text)', isAudio: true },      // NEEDS AUDIO FILE UPLOAD
+    //{ id: 'whisper-large-v3-turbo', name: 'Whisper Large V3 Turbo (Fast STT)', isAudio: true } // NEEDS AUDIO FILE UPLOAD
+  ];
 
-    if (!key) {
-      alert('Please, introduce your Groq API Key.');
-      return;
-    }
-
-    this.isLoading.set(true);
-    this.responseStream.set('Connecting and getting response from Groq API...');
-
-    try {
-      const groq = new Groq({
-        apiKey: key,
-        dangerouslyAllowBrowser: true // Requerido para ejecución en cliente web
-      });
-
-      const chatCompletion = await groq.chat.completions.create({
-        messages: [
-          {
-            role: 'user',
-            content: promptText
-          }
-        ],
-        model: 'openai/gpt-oss-120b',
-        temperature: 1,
-        max_completion_tokens: 2048,
-        top_p: 1,
-        stream: true,
-        reasoning_effort: 'medium',
-        stop: null
-      });
-
-      this.responseStream.set(''); // Limpiar antes de recibir el stream
-
-      for await (const chunk of chatCompletion) {
-        const content = chunk.choices[0]?.delta?.content || '';
-        // Actualizamos la señal acumulando el texto en tiempo real
-        this.responseStream.update(current => current + content);
-      }
-    } catch (error: any) {
-      console.error(error);
-      this.responseStream.set('Error: ' + error.message);
-    } finally {
-      this.isLoading.set(false);
-    }
-  }
+  selectedModel = signal<string>(this.models[0].id);
 
   clearApiKey() {
     this.apiKey.set('');
@@ -75,5 +50,101 @@ export class LLMTesting  extends BaseReferenceComponent  {
 
   clearResults() {
     this.responseStream.set('');
+  }
+
+  async testGroq() {
+    if (!this.apiKey() || !this.prompt()) return;
+
+    this.isLoading.set(true);
+    this.responseStream.set('');
+
+    const currentModelId = this.selectedModel();
+    const modelConfig = this.models.find(m => m.id === currentModelId);
+
+    if (modelConfig?.isAudio) {
+      this.responseStream.set('Note: Whisper speech-to-text models require an audio file upload payload (FormData), not a text prompt.');
+      this.isLoading.set(false);
+      return;
+    }
+
+    const payload: any = {
+      model: currentModelId,
+      messages: [{ role: 'user', content: this.prompt() }]
+    };
+
+    if (modelConfig?.isGptOss) {
+      payload.stream = false;
+      payload.tool_choice = 'required';
+      payload.tools = [{ type: 'browser_search' }];
+      payload.reasoning_effort = 'low';
+      payload.temperature = 1;
+      payload.max_completion_tokens = 2048;
+    } else if (modelConfig?.isCompound) {
+      payload.stream = false;
+    } else {
+      payload.stream = true;
+    }
+
+    try {
+      
+      this.responseStream.set('Searching...'); // Clear previous response
+
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${this.apiKey()}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error?.message || `HTTP error! status: ${response.status}`);
+      }
+
+      if (modelConfig?.isGptOss || modelConfig?.isCompound) {
+        const data = await response.json();
+        const content = data.choices?.[0]?.message?.content ?? '';
+        const clean = content.replace(/【\d+†[^\】]*】/g, '').trim();
+        this.responseStream.set(clean);
+        this.isLoading.set(false);
+      } else {
+        const reader = response.body?.getReader();
+        if (!reader) throw new Error('Response body reader not available');
+
+        const decoder = new TextDecoder('utf-8');
+        let accumulatedText = '';
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split('\n');
+
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (trimmed.startsWith('data: ')) {
+              const jsonStr = trimmed.replace('data: ', '');
+              if (jsonStr === '[done]' || jsonStr === '[DONE]') continue;
+
+              try {
+                const parsed = JSON.parse(jsonStr);
+                const content = parsed.choices?.[0]?.delta?.content || '';
+                accumulatedText += content;
+                this.responseStream.set(accumulatedText);
+              } catch (e) {
+                // Ignore parsing errors on partial chunks
+              }
+            }
+          }
+        }
+        this.isLoading.set(false);
+      }
+    } catch (error: any) {
+      this.responseStream.set(`Error: ${error.message || error}`);
+      this.isLoading.set(false);
+    }
   }
 }

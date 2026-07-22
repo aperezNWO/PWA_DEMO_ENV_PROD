@@ -6,7 +6,7 @@
     <hr>
 
     <div class="form-group">
-        <label for="apiKey">Groq API Key:  (get it from <a href="https://console.groq.com/keys" target="_blank" style="color:black;">Groq Console</a>)</label>
+        <label for="apiKey">Groq API Key: (get it from <a href="https://console.groq.com/keys" target="_blank" style="color:black;">Groq Console</a>)</label>
         <div class="input-wrapper">
             <input 
                 type="password" 
@@ -18,6 +18,19 @@
                 <button type="button" class="clear-btn" (click)="clearApiKey()" title="Clean API Key">×</button>
             }
         </div>
+    </div>
+
+    <div class="form-group">
+        <label for="modelSelect">Select Model:</label>
+        <select id="modelSelect" [(ngModel)]="selectedModel" class="model-select">
+            @for (m of models; track m.id) {
+                <option [value]="m.id">{{ m.name }}</option>
+            }
+        </select>
+        <hr>
+        <small class="helper-text">
+            * <em>GPT-OSS models</em> automatically trigger web search with non-streaming execution. <em>Other models</em> utilize real-time chunk streaming.
+        </small>
     </div>
     
     <div class="form-group">
@@ -36,7 +49,7 @@
     
     <div class="button-group">
         <button (click)="testGroq()" [disabled]="isLoading()">
-            {{ isLoading() ? 'Processing...' : 'Send Request with Streaming' }}
+            {{ isLoading() ? 'Processing...' : 'Send Request' }}
         </button>
         @if (responseStream()) {
             <button class="clear-results-btn" (click)="clearResults()">Clear Results</button>
@@ -55,6 +68,4 @@
       [ &laquo; Return to Menu ]
     </a>
   </div>
-
 </div>
-
