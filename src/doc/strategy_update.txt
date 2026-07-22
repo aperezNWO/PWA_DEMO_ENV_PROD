@@ -705,6 +705,8 @@
 
          --[_] Add option puremath fractals.
 
+        -- [_] Fractal demo - complete backend information. 
+
          --[_] Modify pdf header.
 
          --[_] Update references (dynamic references).
