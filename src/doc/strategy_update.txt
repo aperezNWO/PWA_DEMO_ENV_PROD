@@ -699,11 +699,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
         --[_] C# / python.
 
-        --[_] performance benchmark.
+        --[x] performance benchmark.
 
-                --[_] write execution time in seconds (pipe).
-
-         --[_] Add option puremath fractals.
+                --[x] write execution time in seconds (pipe).
 
         -- [_] Fractal demo - complete backend information. 
 
@@ -723,7 +721,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
          --[_] Update index.
 
-         --[_]  further plans : 
+         --[_] further plans : 
                 
                  --[_]  add j2s3/springbot pure math option.
 
@@ -733,21 +731,23 @@ r///////////////////////////////////////////////////////////////////////////////
 
                 --[_]  perform opencv operation over generated image.
 
-        --[_] Julia Fracal Zoomin/out j2se.
+        -- [x] Julia Fracal Zoomin/out j2se.
 
-                --[_] check menu error (optoin generates barnsley fern fractal)                
+                --[x] check menu error (optoin generates barnsley fern fractal)                
 
-        --[_] Julia Fracal Zoomin/out node.js.
+        --[x] Julia Fracal Zoomin/out node.js.
 
-                --[_] generic functions.
+                --[x] generic functions.
 
-        --[_] service / engine / view.
+        --[x] service / engine / view.
 
-                --[_] (alternative) write/read to database.
+                --[x] (alternative) write/read to database.
 
-                --[_] mock typescript as json resftul endpoint --? mandatory for j2se format and others.
+                --[x] mock typescript as json resftul endpoint --? mandatory for j2se format and others.
 
-        --[_] coloured fractal info panel.                
+        --[x] coloured fractal info panel.                
+
+        --[_] Add option C++ puremath fractals.
 
  -- [_] check dynamic pages on index.
 
@@ -776,5 +776,7 @@ r///////////////////////////////////////////////////////////////////////////////
  -- [_] hosting : render.
 
         -- [_] trick render inactivity timeout.
+
+ --[_] Add option C++ puremath fractals.
 
 ////////////////////////////////////////////////////////////////////////////////
