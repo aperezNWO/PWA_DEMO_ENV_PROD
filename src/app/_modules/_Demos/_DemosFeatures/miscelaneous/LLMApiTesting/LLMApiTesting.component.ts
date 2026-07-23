@@ -27,7 +27,7 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
   // Complete model inventory matching Groq specifications
   models: GroqModel[] = [
     { id: 'qwen/qwen3.6-27b'   , name: 'Qwen 3.6 27B (Web Search)'                   , isCompound : true   },
-    { id: 'groq/compound'      , name: 'Groq Compound (Managed Web Search & Tools)'  , isCompound : true   },
+    //{ id: 'groq/compound'      , name: 'Groq Compound (Managed Web Search & Tools)'  , isCompound : true   }, // OVERFLOWS RATE LIMITS
     { id: 'groq/compound-mini' , name: 'Groq Compound Mini (Fast Tool Orchestration)', isCompound : true   },
     { id: 'openai/gpt-oss-120b', name: 'GPT-OSS 120B (Native Browser Search)'        , isGptOss   : true   },
     { id: 'openai/gpt-oss-20b' , name: 'GPT-OSS 20B (Native Browser Search)'         , isGptOss   : true   },
@@ -86,21 +86,21 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
     }
 
     const payload: any = {
-      model: currentModelId,
-      messages: [{ role: 'user', content: this.prompt() }]
+      model                 : currentModelId,
+      messages              : [{ role: 'user', content: this.prompt() }],
+      max_completion_tokens : 1024,
     };
 
     if (modelConfig?.isGptOss) {
-      payload.stream = false;
-      payload.tool_choice = 'required';
-      payload.tools = [{ type: 'browser_search' }];
-      payload.reasoning_effort = 'low';
-      payload.temperature = 1;
-      payload.max_completion_tokens = 2048;
+      payload.stream                = false;
+      payload.tool_choice           = 'auto';
+      payload.tools                 = [{ type: 'browser_search' }];
+      payload.reasoning_effort      = 'low';
+      payload.temperature           = 1;
     } else if (modelConfig?.isCompound) {
       payload.stream = false;
     } else {
-      payload.stream = true;
+      payload.stream                = true;
     }
 
     try {
