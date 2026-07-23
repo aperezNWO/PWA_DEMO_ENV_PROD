@@ -19,7 +19,7 @@ interface GroqModel {
   standalone: false 
 })
 export class LLMApiTestingComponent  extends BaseReferenceComponent  {
-  apiKey = signal<string>('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');
+  apiKey = signal<string>('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');
   prompt = signal<string>('Latest Stable C++ Version');
   responseStream = signal<string>('');
   isLoading = signal<boolean>(false);
@@ -52,21 +52,16 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
     this.responseStream.set('');
   }
 
-  // Helper method to convert HTML elements and entities to plain text equivalents
   private convertHtmlToPlainText(htmlText: string): string {
     if (!htmlText) return '';
 
-    // 1. Replace various forms of <br> tags with a newline character
+    // Only target explicit HTML line break tags, leaving code angle-brackets intact
     let processed = htmlText.replace(/<br\s*[\/]?>/gi, '\n');
 
-    // 2. Decode HTML entities and strip unwanted HTML tags safely using DOMParser
-    const doc = new DOMParser().parseFromString(processed, 'text/html');
-    let plainText = doc.documentElement.textContent || '';
+    // Clean up search citation artifacts if present
+    processed = processed.replace(/【\d+†[^\】]*】/g, '').trim();
 
-    // 3. Clean up search citation artifacts if present
-    plainText = plainText.replace(/【\d+†[^\】]*】/g, '').trim();
-
-    return plainText;
+    return processed;
   }
 
   //
@@ -88,7 +83,7 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
     const payload: any = {
       model                 : currentModelId,
       messages              : [{ role: 'user', content: this.prompt() }],
-      max_completion_tokens : 1024,
+      //max_completion_tokens : 2048,
     };
 
     if (modelConfig?.isGptOss) {
