@@ -310,6 +310,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
  -- [_] python linear regression correction.
 
+        -- [_] ng progress bar - status.
+
  -- [_] tetris 
  
        -- [_] a.i. correction.

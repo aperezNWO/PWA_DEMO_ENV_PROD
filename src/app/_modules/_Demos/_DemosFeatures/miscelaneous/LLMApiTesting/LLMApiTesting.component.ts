@@ -26,11 +26,11 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
 
   // Complete model inventory matching Groq specifications
   models: GroqModel[] = [
+    { id: 'qwen/qwen3.6-27b'   , name: 'Qwen 3.6 27B (Web Search)'                   , isCompound : true   },
     { id: 'groq/compound'      , name: 'Groq Compound (Managed Web Search & Tools)'  , isCompound : true   },
     { id: 'groq/compound-mini' , name: 'Groq Compound Mini (Fast Tool Orchestration)', isCompound : true   },
     { id: 'openai/gpt-oss-120b', name: 'GPT-OSS 120B (Native Browser Search)'        , isGptOss   : true   },
     { id: 'openai/gpt-oss-20b' , name: 'GPT-OSS 20B (Native Browser Search)'         , isGptOss   : true   },
-    { id: 'qwen/qwen3.6-27b'   , name: 'Qwen 3.6 27B (Web Search)'                   , isCompound : true   },
     //{ id: 'canopylabs/orpheus-v1-english', name: 'Orpheus v1 English (TTS)' },  // DOES NOT SUPPORT CHAT COMPLETIONS
     //{ id: 'meta-llama/llama-prompt-guard-2-86m', name: 'Llama Prompt Guard 2 86M' },  // TEXT CLASSIFICATIONS DOES NOT SUPPORT STREAMING
     //{ id: 'meta-llama/llama-prompt-guard-2-22m', name: 'Llama Prompt Guard 2 22M' },  // TEXT CLASSIFICATIONS DOES NOT SUPPORT STREAMING 
@@ -52,6 +52,24 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
     this.responseStream.set('');
   }
 
+  // Helper method to convert HTML elements and entities to plain text equivalents
+  private convertHtmlToPlainText(htmlText: string): string {
+    if (!htmlText) return '';
+
+    // 1. Replace various forms of <br> tags with a newline character
+    let processed = htmlText.replace(/<br\s*[\/]?>/gi, '\n');
+
+    // 2. Decode HTML entities and strip unwanted HTML tags safely using DOMParser
+    const doc = new DOMParser().parseFromString(processed, 'text/html');
+    let plainText = doc.documentElement.textContent || '';
+
+    // 3. Clean up search citation artifacts if present
+    plainText = plainText.replace(/【\d+†[^\】]*】/g, '').trim();
+
+    return plainText;
+  }
+
+  //
   async testGroq() {
     if (!this.apiKey() || !this.prompt()) return;
 
@@ -59,7 +77,7 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
     this.responseStream.set('');
 
     const currentModelId = this.selectedModel();
-    const modelConfig    = this.models.find(m => m.id === currentModelId);
+    const modelConfig = this.models.find(m => m.id === currentModelId);
 
     if (modelConfig?.isAudio) {
       this.responseStream.set('Note: Whisper speech-to-text models require an audio file upload payload (FormData), not a text prompt.');
@@ -73,11 +91,11 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
     };
 
     if (modelConfig?.isGptOss) {
-      payload.stream                = false;
-      payload.tool_choice           = 'required';
-      payload.tools                 = [{ type: 'browser_search' }];
-      payload.reasoning_effort      = 'low';
-      payload.temperature           = 1;
+      payload.stream = false;
+      payload.tool_choice = 'required';
+      payload.tools = [{ type: 'browser_search' }];
+      payload.reasoning_effort = 'low';
+      payload.temperature = 1;
       payload.max_completion_tokens = 2048;
     } else if (modelConfig?.isCompound) {
       payload.stream = false;
@@ -86,9 +104,6 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
     }
 
     try {
-      
-      this.responseStream.set('Searching...'); // Clear previous response
-
       const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -104,17 +119,17 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
       }
 
       if (modelConfig?.isGptOss || modelConfig?.isCompound) {
-        const data      = await response.json();
-        const content   = data.choices?.[0]?.message?.content ?? '';
-        const clean     = content.replace(/【\d+†[^\】]*】/g, '').trim();
+        const data    = await response.json();
+        const content = data.choices?.[0]?.message?.content ?? '';
+        const clean   = this.convertHtmlToPlainText(content);
         this.responseStream.set(clean);
         this.isLoading.set(false);
       } else {
         const reader = response.body?.getReader();
         if (!reader) throw new Error('Response body reader not available');
 
-        const decoder        = new TextDecoder('utf-8');
-        let accumulatedText  = '';
+        const decoder = new TextDecoder('utf-8');
+        let accumulatedText = '';
 
         while (true) {
           const { done, value } = await reader.read();
@@ -130,10 +145,11 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
               if (jsonStr === '[done]' || jsonStr === '[DONE]') continue;
 
               try {
-                const parsed    = JSON.parse(jsonStr);
-                const content   = parsed.choices?.[0]?.delta?.content || '';
+                const parsed     = JSON.parse(jsonStr);
+                const content    = parsed.choices?.[0]?.delta?.content || '';
                 accumulatedText += content;
-                this.responseStream.set(accumulatedText);
+                // Parse and format stream chunks to handle HTML tags/entities gracefully
+                this.responseStream.set(this.convertHtmlToPlainText(accumulatedText));
               } catch (e) {
                 // Ignore parsing errors on partial chunks
               }
