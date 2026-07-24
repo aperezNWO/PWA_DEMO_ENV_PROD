@@ -369,7 +369,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
         -- [>] FREE DISK SPACE.  
 
-        -- [>] UNINSTALL PYTHON ANACONDA.  
+        -- [x] UNINSTALL PYTHON ANACONDA.  
 
         -- [_] https://apereznwo.github.io/NG_BOOTSTRAP_DEMO_ENV_DEV/#/Home -> PWA_DEMO_ENV_TF_OPEN_CV
 
@@ -477,9 +477,9 @@ r///////////////////////////////////////////////////////////////////////////////
                 
                 -- [_] backwards construction for C++ ENDPOINT.
 
-                -- [_] Delete cvurrent backend code c++.
+                -- [x] Delete cvurrent backend code c++.
 
-                -- [_] Delete cvurrent backend code .NET CORE.
+                -- [x] Delete cvurrent backend code .NET CORE.
 
   --[_] Landing Page Carrousel.
   
@@ -491,11 +491,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
        --[_] https://apereznwo-pwa_demo_env_prod.mintlify.app/introduction 
 
-  --[_] About > Diagnostics.
+  --[x] About > Diagnostics.
 
-        --[_] Check backends.
-
-        --[_] Free db space buttons.
+        --[x] Check backends.
 
   --[_] Dijkstra 2d / 3d.
 
@@ -579,7 +577,9 @@ r///////////////////////////////////////////////////////////////////////////////
                 --[_] dynamic reference.
 
 
---[_] ALGORITHM BIG O NOTATION / json.
+  --[_] SORT BENCHMARK.
+
+        --[_] ALGORITHM BIG O NOTATION / json.
 
         --[_] j2se code.
 
@@ -588,6 +588,8 @@ r///////////////////////////////////////////////////////////////////////////////
         --[_] Pick up using Linear Regression related techniques.
 
         --[_] https://gemini.google.com/app/19625a475ad0cbfe
+
+        --[_] https://gemini.google.com/app/4ba9363e7780efc5
 
 
  --[_] collision 2d / 3d.
@@ -791,5 +793,16 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] community reachout.
 
+ --[_] render timeout workaroud
+
+      --[_] https://gemini.google.com/app/19625a475ad0cbfe
+
+      --[_] cron job -- document on scm. 
+
+      --[_] dockerized service :
+
+      --[_] Free db space.
+      
+      --[_] Free disk space.
 
 ////////////////////////////////////////////////////////////////////////////////
