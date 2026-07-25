@@ -799,10 +799,12 @@ r///////////////////////////////////////////////////////////////////////////////
 
       --[_] cron job -- document on scm. 
 
+                --[_] "ping" endpoint with 0kb. 
+
       --[_] dockerized service :
 
-      --[_] Free db space.
-      
-      --[_] Free disk space.
+                --[_] Free db space.
+                
+                --[_] Free disk space.
 
 ////////////////////////////////////////////////////////////////////////////////
