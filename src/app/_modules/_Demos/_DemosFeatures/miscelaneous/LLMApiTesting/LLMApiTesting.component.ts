@@ -19,10 +19,11 @@ interface GroqModel {
   standalone: false 
 })
 export class LLMApiTestingComponent  extends BaseReferenceComponent  {
+  //
   apiKey = signal<string>('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');
-  prompt = signal<string>('Latest Stable C++ Version');
+  prompt         = signal<string>('Latest Stable C++ Version');
   responseStream = signal<string>('');
-  isLoading = signal<boolean>(false);
+  isLoading      = signal<boolean>(false);
 
   // Complete model inventory matching Groq specifications
   models: GroqModel[] = [
@@ -72,7 +73,7 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
     this.responseStream.set('');
 
     const currentModelId = this.selectedModel();
-    const modelConfig = this.models.find(m => m.id === currentModelId);
+    const modelConfig    = this.models.find(m => m.id === currentModelId);
 
     if (modelConfig?.isAudio) {
       this.responseStream.set('Note: Whisper speech-to-text models require an audio file upload payload (FormData), not a text prompt.');
@@ -95,15 +96,20 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
     } else if (modelConfig?.isCompound) {
       payload.stream = false;
     } else {
-      payload.stream                = true;
+      payload.stream = true;
     }
 
     try {
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      //
+      let apiUrl = 'https://api.groq.com/openai/v1/chat/completions';
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${this.apiKey()}`,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          //'HTTP-Referer': window.location.origin, // Required by OpenRouter
+          //'X-Title': 'Angular Inkling Test'
         },
         body: JSON.stringify(payload)
       });

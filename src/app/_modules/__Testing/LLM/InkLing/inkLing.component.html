@@ -1,0 +1,24 @@
+<div style="padding: 20px; max-width: 600px;">
+      <h2>Testing Inkling AI</h2>
+      
+      <textarea 
+        [(ngModel)]="prompt" 
+        rows="4" 
+        style="width: 100%;" 
+        placeholder="Type a prompt for Inkling...">
+      </textarea>
+      
+      <button 
+        (click)="testApi()" 
+        [disabled]="loading()" 
+        style="margin-top: 10px;">
+        {{ loading() ? 'Thinking...' : 'Send Request' }}
+      </button>
+
+      @if (response()) {
+        <div style="margin-top: 20px; background: #f4f4f4; padding: 15px; border-radius: 6px;">
+          <h3>Response:</h3>
+          <p>{{ response() }}</p>
+        </div>
+      }
+    </div>

@@ -31,7 +31,8 @@ import { PageUrlListComponent        } from './_components/page-url-list/page-ur
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
 import { LandingComponent            } from './_components/landing/landing.component';
 import { RubikCubeComponent          } from './_modules/_Demos/_DemosFeatures/games/rubik-cube/rubik-cube.component';
-import { LLMApiTestingComponent as LLMApiTestingComponent                     } from './_modules/_Demos/_DemosFeatures/miscelaneous/LLMApiTesting/LLMApiTesting.component';
+import { LLMApiTestingComponent as LLMApiTestingComponent } from './_modules/_Demos/_DemosFeatures/miscelaneous/LLMApiTesting/LLMApiTesting.component';
+import { inkLingComponent                                 } from './_modules/__Testing/LLM/InkLing/inkLing.component';
 
 
 export interface _Route extends Route
@@ -88,8 +89,10 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Demos / Language - Django / Python'          , queryParams : 'PAGE_DEMOS_DJANGO_PYTHON'        },
   {  id: 0,  path: 'PageUrlList'           , component: PageUrlListComponent                , caption: ''                                             , queryParams : '' },
   {  id: 0,  path: 'Landing'               , component: LandingComponent                    , caption: ''                                             , queryParams : '' }, 
+  {  id: 0,  path: 'inkLing'               , component: inkLingComponent                    , caption: ''                                             , queryParams : '' },
   {  id: 0,  path: '**'                    , component: PageNotFoundComponent               , caption: ''                                             , queryParams : '' },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)], 
