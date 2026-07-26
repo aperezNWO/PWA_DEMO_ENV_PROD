@@ -767,6 +767,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
 -- [_] python updates. 
 
+        -- [_] predict / pretrain models.
+
         -- [_] status message on predict.
 
         -- [_] status message on tic tac toe training.
