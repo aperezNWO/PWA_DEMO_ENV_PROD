@@ -22,7 +22,7 @@ export class inkLingComponent extends BaseComponent {
     // OpenRouter Endpoint
     // get key at : https://openrouter.ai/workspaces/default/keys
     apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
-    apiKey = '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'; // Must start with sk-or-v1-
+    apiKey = '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'; // Must start with sk-or-v1-
     
     //
     prompt = 'Hello!';
