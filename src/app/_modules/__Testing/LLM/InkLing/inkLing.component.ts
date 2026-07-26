@@ -75,8 +75,12 @@ export class inkLingComponent extends BaseComponent {
 
     this.http.post<any>(this.apiUrl, body, { headers }).subscribe({
       next: (res) => {
-        const text = res.choices?.[0]?.message?.content || JSON.stringify(res);
-        this.response.set(text);
+        
+        const text    = res.choices?.[0]?.message?.content || JSON.stringify(res);
+        const clean   = this.convertHtmlToPlainText(text);
+
+
+        this.response.set(clean);
         this.loading.set(false);
       },
       error: (err) => {
@@ -85,5 +89,17 @@ export class inkLingComponent extends BaseComponent {
         this.loading.set(false);
       }
     });
+  }
+  //
+  private convertHtmlToPlainText(htmlText: string): string {
+    if (!htmlText) return '';
+
+    // Only target explicit HTML line break tags, leaving code angle-brackets intact
+    let processed = htmlText.replace(/<br\s*[\/]?>/gi, '\n');
+
+    // Clean up search citation artifacts if present
+    processed = processed.replace(/【\d+†[^\】]*】/g, '').trim();
+
+    return processed;
   }
 }
