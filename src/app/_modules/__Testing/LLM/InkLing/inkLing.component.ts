@@ -22,7 +22,8 @@ export class inkLingComponent extends BaseComponent {
     // OpenRouter Endpoint
     // get key at : https://openrouter.ai/workspaces/default/keys
     apiUrl = 'https://openrouter.ai/api/v1/chat/completions';
-    apiKey = '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'; // Must start with sk-or-v1-
+    //
+    apiKey = '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'; // Must start with sk-or-v1-
     
     //
     prompt = 'Hello!';
@@ -70,7 +71,7 @@ export class inkLingComponent extends BaseComponent {
         { role: 'user', content: this.prompt }
       ],
       temperature: 0.7,
-      max_tokens: 1000,
+      max_tokens: 750,
       // 🟢 Enable Real-Time Web Search across OpenRouter
       tools: [
           { type: 'openrouter:web_search' }
