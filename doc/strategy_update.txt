@@ -779,10 +779,6 @@ r///////////////////////////////////////////////////////////////////////////////
 
         -- [_] EXPORT ANSWER TO PDF/ WORD.
 
- -- [_] hosting : render.
-
-        -- [_] trick render inactivity timeout.
-
  --[_] Add option C++ puremath fractals.
 
  --[_] sub menu radio buttons.
@@ -808,5 +804,9 @@ r///////////////////////////////////////////////////////////////////////////////
                 --[_] Free db space.
                 
                 --[_] Free disk space.
+
+-- [_] LLM EVAL.
+
+        -- [_] merge LLM Evals.
 
 ////////////////////////////////////////////////////////////////////////////////
