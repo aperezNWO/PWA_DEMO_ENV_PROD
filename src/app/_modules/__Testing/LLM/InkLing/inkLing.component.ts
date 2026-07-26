@@ -70,7 +70,11 @@ export class inkLingComponent extends BaseComponent {
         { role: 'user', content: this.prompt }
       ],
       temperature: 0.7,
-      max_tokens: 1000
+      max_tokens: 1000,
+      // 🟢 Enable Real-Time Web Search across OpenRouter
+      tools: [
+          { type: 'openrouter:web_search' }
+      ]   
     };
 
     this.http.post<any>(this.apiUrl, body, { headers }).subscribe({
