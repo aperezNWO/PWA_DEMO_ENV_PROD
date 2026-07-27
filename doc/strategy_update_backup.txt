@@ -1305,5 +1305,5 @@
         --[x] coloured fractal info panel.                
 
         --[_] Add option C++ puremath fractals.
-        
+ 
 /////////////////////////////////////////////////////////

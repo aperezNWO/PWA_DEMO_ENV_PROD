@@ -51,4 +51,19 @@ r///////////////////////////////////////////////////////////////////////////////
 
         -- [_] merge LLM Evals.
 
+
+ --[_] Tech specs about
+
+        --[_] Server version - lang version.
+ 
+        --[_] database version.
+
+ --[_] language benchmark.
+
+         --[_] Export results xls / pdf.
+
+ --[_] Angular SSR Deplooy on Docker - Render.
+
+ --[_] Baidu OCR.
+
 ////////////////////////////////////////////////////////////////////////////////
