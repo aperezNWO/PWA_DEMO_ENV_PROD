@@ -773,13 +773,6 @@ r///////////////////////////////////////////////////////////////////////////////
 
         -- [_] status message on tic tac toe training.
 
--- [_] LLM TEST
-
-        -- [_] TEST MULTIPLE MODELS
-
-        -- [_] LLM FUNCTIONALITY ACCROSS ANGULAR APP.
-
-        -- [_] EXPORT ANSWER TO PDF/ WORD.
 
  --[_] Add option C++ puremath fractals.
 
@@ -807,8 +800,14 @@ r///////////////////////////////////////////////////////////////////////////////
                 
                 --[_] Free disk space.
 
--- [_] LLM EVAL.
+-- [_] LLM TEST
 
+        -- [_] TEST MULTIPLE MODELS
+
+        -- [_] LLM FUNCTIONALITY ACCROSS ANGULAR APP.
+
+        -- [_] EXPORT ANSWER TO PDF/ WORD.
+        
         -- [_] merge LLM Evals.
 
 ////////////////////////////////////////////////////////////////////////////////
