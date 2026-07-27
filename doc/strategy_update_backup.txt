@@ -2,6 +2,33 @@
 // TODO LIST 
 ////////////////////////////////////////////////////////////////////////////////
 
+
+ ////////////////////////////////////////////////////////////////////////////////
+ // MARKTETING STRATEGY
+ ////////////////////////////////////////////////////////////////////////////////
+
+ -- [_] ver archivo "marketing.txt"
+
+ ////////////////////////////////////////////////////////////////////////////////
+ // SCM STRATEGY
+ ////////////////////////////////////////////////////////////////////////////////
+      
+ -- [_] ver archivo "scm.txt"
+
+ ////////////////////////////////////////////////////////////////////////////////
+ // LEARNING STRATEGY / CURRICULUM
+ ////////////////////////////////////////////////////////////////////////////////
+
+ -- [_] procedimiento
+
+        -- [_] INVESTIGAR EN C++
+        
+        -- [_] REPLICAR EN ORDEN A : JAVA / JAVSACXRIPT / Python
+
+        -- [_] Replicar en cada lenguaje a Curriculum. 
+
+        -- [_] Replicate to docs and social media. 
+
  -- [_] ALGOITHM curriculum.
  
      --  [_]  Kruskal / Prim algos / sedgewick / coursera.
@@ -45,6 +72,12 @@
 
          -- [_] Grid Index empty rows error.
          
+
+////////////////////////////////////////////////////////////////////////////////
+
+-- [_] TODO LIST.
+
+////////////////////////////////////////////////////////////////////////////////
 
 -- [_] CMS 
 
@@ -388,15 +421,7 @@
       -- [_] https://gemini.google.com/app/ebedc87978d91d09.
 
 
--- [_] miscelaneous.
-
-      -- [X] move a.i. prompts from ENV_LANDING.
-
-      -- [X] SPLIT "STABLE RELEASES" FROM "DEV".
-
-      -- [x] BACK TO HOME LINK ON FOOTER.
-
-      -- [>] read config from database.
+ -- [_] read config from database.
 
 -- [_] file generation zip / xls | zip / csv.      
 
@@ -578,4 +603,707 @@
 --[_] sudoku from photo capture
 
 
+
+-- [_] SCM
+
+        --[_] update docker links.    
+
+--[_] PWA
+
+        --[_] https://web.dev/learn/pwa/service-workers
+
+        --[_] https://angular.dev/ecosystem/service-workers
+
+
+ 
+ -- [_] Chess a.i. 
+
+ -- [_] Go lang / rust demo.
+
+ -- [_] programa omar -> owasp.
+
+--[_] ASP_MET_CORE_CPP_ENTRY swagger.
+
+        --[_] INative.
+
+        --[x] ABOUT / TECHNICAL SPECES SECTION.
+        
+--[_] ASP_MET_CORE_CSHARP_DEMO  swagger.
+
+        --[_] INative.
+
+        --[x] Controller Overhauling.
+
+        --[x] ABOUT / TECHNICAL SPECES SECTION.
+
+ -- [_] curriculum update.
+
+        -- [_] c++ curriculum.
+
+                -- [_]  Smart Pointers.
+        
+                -- [_] TESSERACT.      
+
+                        -- [_]  ONLINE TRANSLATION.
+
+                -- [_] OPEN CV.
+
+                        -- [_]  EXPLORE API.
+
+                -- [_] TENSORFLOW 
+
+                        -- [_]  EXPLORE API.
+
+                        -- [_]  https://www.freecodecamp.org/news/tag/tensorflow/
+
+                        -- [_]  WORD CLASIFICATION
+
+                                -- [_] https://chat.qwen.ai/c/c70ffaa5-78dc-4eeb-87db-3b8f7879fd77
+
+                        -- [_]  MACHINE LEARNING, ARTIFICIAL INTELLIGENCE, NEURAL NETWORKS CONCEPTS.
+
+                                -- [_]  https://chat.qwen.ai/c/2370354d-1564-4778-b141-ca63c678014a
+
+                        -- [_]  LICENSE PLATE RECOGNITION
+
+                                -- [_] https://chat.qwen.ai/c/1bd6717f-364c-450d-909d-e67e58088c5c
+
+                                -- [_] https://chat.qwen.ai/c/0ad6b5a1-5d93-4b70-ac12-7067ffaebf9b
+                                
+                                -- [_]  https://chat.qwen.ai/c/c127093a-9ae5-4fcb-8e6e-95b02e739f9c
+
+                        -- [_] explore main features by std release.
+
+        -- [_] c# sql curriculum.
+
+                --  [_]  (freecodecamp) c# certification.
+
+                --  [_] sql.
+
+                --  [_] stored procedures.
+
+                --  [_] delete "page_index"... from log entries.
+
+                -- [_] .NET dllimport.
+
+        -- [_] Angular.
+
+                -- [x] typescript reference.
+                
+                -- [x] effect.
+                
+                -- [x] sound wtk.
+
+                -- [_] ngFor, ngIf (other) directives.
+
+                -- [_] interpolation {{}}.
+
+                -- [_] Param.
+
+                -- [_] Component, Service, Application.
+
+                -- [_] OOP : Properties, Inheritance.
+
+                -- [_] Split content by topics.
+
+                -- [_] @INPUT / @OUTPUT.
+
+                --[_] ng generate enum.
+
+                -- [_] scss.
+
+                -- [_] @Input, @Eventemitter.
+                
+                -- [_] i18n.
+                
+                -- [_] Dynamic Forms.
+
+                -- [_] Module federation.
+
+                --  [_] ANGULAR LOG HANDLING BEST PRACTICES.
+
+                --  [_] ANGULAR ERROR HANDLING BEST PRACTICES.
+
+                --  [_] Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering).
+
+                --  [_] Angular Unit Testing.
+
+                -- [_] PWA / SPA.
+
+                --  [_] Tetris engine.
+
+                -- [_] Angular CDN.
+                                        
+        -- [_] DJANGO / Python
+
+                --  [_]  (freecodecamp) Datascience.    
+
+                --  [_]  how can I use qwen and python to ask for any list and generate an output in excel?    
+
+                --  [_] djanto setup windows  : listado xls / csv
+                        https://codesandbox.io/p/github/aperezNWO/django_setup_windows/main
+
+
+                -- [_] djanto setup linux    : freecode camp curso de ciencia de datos.
+                        https://codesandbox.io/p/github/aperezNWO/django_setup_linux/main
+                        
+                -- [_] MACHINGE LEARNING / neural networks -> curriculum.
+
+                -- [_]  https://www.freecodecamp.org/learn/machine-learning-with-python/#machine-learning-with-python-projects
+                
+                -- [_] datascience curriculum.
+                
+                -- [_] python tensorflow create/train model.
+        
+         -- [_] node.js curriculum      
+ 
+                -- [_] smtp sample / contact form.     
+                
+                -- [_] node.js smpt.
+
+                -- [_] backend->create sql query.
+        
+                -- [_] backend->create restful point.
+
+ 
+ -- [_] check errors / improvements (section).   
+    
+    --[_] tscript errors : 
+                [{
+                        "resource": "/c:/Users/pablo.perez/dev/_Angular/BaseLine/PWA_DEMO_ENV_PROD/PWA_DEMO_ENV_PROD/tsconfig.json",
+                        "owner": "typescript",
+                        "severity": 8,
+                        "message": "Option 'baseUrl' is deprecated and will stop functioning in TypeScript 7.0. Specify compilerOption '\"ignoreDeprecations\": \"6.0\"' to silence this error.\n  Visit https://aka.ms/ts6 for migration information.",
+                        "source": "ts",
+                        "startLineNumber": 5,
+                        "startColumn": 5,
+                        "endLineNumber": 5,
+                        "endColumn": 14,
+                        "origin": "extHost1"
+                },{
+                        "resource": "/c:/Users/pablo.perez/dev/_Angular/BaseLine/PWA_DEMO_ENV_PROD/PWA_DEMO_ENV_PROD/tsconfig.json",
+                        "owner": "typescript",
+                        "severity": 8,
+                        "message": "The common source directory of 'tsconfig.json' is './src'. The 'rootDir' setting must be explicitly set to this or another path to adjust your output's file layout.\n  Visit https://aka.ms/ts6 for migration information.",
+                        "source": "ts",
+                        "startLineNumber": 6,
+                        "startColumn": 5,
+                        "endLineNumber": 6,
+                        "endColumn": 13,
+                        "origin": "extHost1"
+                }]
+
+    --[_] httpinterceptor global
+    
+          --[_] remoge log endless recursion on http fail.
+
+    -- [_] global error handlling (check SharedModule).
+
+    --[_] computer vision c++ fix (reads only one shape).
+                
+     --[_] UIX IMPROVEMENT (BASED UP ON SWAGGER UIX).
+
+     --[_] angular curriculum FIX 
+
+                --[_] backend : javascript:void(0);
+
+                --[_] field_2 : [routerLink]  + [queryParams] + parse from string to  queryParamsObj.
+
+     -- [x] check method "sudoku_upload_file". or block the option.
+
+     -- [_] chat demo exception handling.
+
+     -- [_] check error install TWEEN module.   
+
+     -- [_] Check logic TETRIS -- A.I.   
+
+          -- [_] save score.   
+
+          -- [_] get highest score.   
+
+          -- [_] game by navigation session.   
+
+          -- [_] stop game process when leave page.   
+
+          -- [_] console app stateless benchmark.   
+
+          -- [_] desktop app stateless benchmark.   
+
+          -- [_] memory management.   
+
+     -- [_] References alignment on firerox.   
+
+     -- [_] TRANSLATE DATABASE FIELDS TO ENGLISH.      
+ 
+ -- [_] backend url standarization / .net controller standarization. 
+
+        -- [_] ABOUT TECH SPECS
+
+                -- [_] .NET CORE FREE SPACE BUTTON.  
+
+                -- [_] .NET CORE SQL SERVER FREE SPACE BUTTON.  
+
+                -- [_]  END POINT RESTFUL VERSIONS.       
+
+                -- [_]  CACHING TECHNICAL SPECS INFO AT START.       
+
+        -- [_]  .NET core Controllers.  
+
+                 -- [_] Algorithm, FileManager 
+
+                 -- [_] .zip demo.
+
+        -- [_] docker hosting.
+
+                -- [x] vercel.
+
+                -- [_] unique restful endpoint.
+
+                -- [_] google antigravity.
+
+                -- [_] google idx / firebase.
+
+ -- [_] python linear regression correction.
+
+        -- [_] ng progress bar - status.
+
+ -- [_] tetris 
+ 
+       -- [_] a.i. correction.
+
+       -- [_] save score.
+
+ -- [_] architecture overhauling.
+
+        -- [_] global error handlling (check SharedModule).
+
+        -- [_] jwt and security.
+
+        -- [_] angular solid principles.
+
+        -- [_] caching STRATEGY
+
+                -- [_] diagnose internet connection.
+
+                -- [_] caching objects.
+
+        -- [_] deployment doc.
+
+                        -- [_] BY CONTAINER / LANGUAGE.
+
+                        -- [_] GIT HUB README.
+
+-- [_] pdf demo.
+
+        -- [x] NG STATUS BAR / HttpEventType.DownloadProgress.
+
+        -- [x] ITEXTPDF.
+
+        -- [_] missing jspdf references.
+
+        -- [_] pdf libraries demo as datagrid.
+
+
+-- [_] Grid modifications.    
+
+        -- [x] restart grid numbers at start.
+
+        -- [x] Codesadbox dynamic refernce of endpoints inside datagrids.      
+
+        -- [x] dynamic codesandbox values {{}}.     
+
+        -- [_] datagrids row master / detail.     
+
+        -- [_] dynamic schenma.
+
+        -- [_] Merge Datagrids.
+
+        -- [_] scm errors / warnings. 
+
+--[_] git hub pages (single code base, different landing page)
+
+        -- [>] FREE DISK SPACE.  
+
+        -- [x] UNINSTALL PYTHON ANACONDA.  
+
+        -- [_] https://apereznwo.github.io/NG_BOOTSTRAP_DEMO_ENV_DEV/#/Home -> PWA_DEMO_ENV_TF_OPEN_CV
+
+        -- [_] https://apereznwo.github.io/PWA_DEMO_ENV_DEV/#/              -> PWA_DEMO_ENV_CORE (MODULE FEDERATION)
+
+        -- [>] PUBLISH ENV_PROD.  
+
+--[_] gesture based app.
+
+--[_] paypal button.
+
+--[_] ALGORITHM apps / json.
+
+--[_] ask i.a. about marketing.
+
+--[_] Module Federation.
+
+     --[_] Independent deployment
+
+--[_] Antigravity / Firebase / Gemini.
+
+--[_] Minify CSS.
+
+--[_] Contact Form.
+
+        --[_] Merge with ENV_PROD. 
+
+        --[_] smtp reference.
+
+        --[_] oAuth.
+
+        --[_] JWT.
+
+ --[_] xls / csv modification.
+
+         --[_] zip file.
+
+         --[_] chart demo.
+
+
+  --[_] hanoid 3d demo 
+
+             --[_] 6 discs by default.
+             
+             --[_] high speed by default.
+             
+             --[_] chekc uix.
+
+             --[_] Merge hanoi2d / hanoi 3d engines on federation + expose other languages.
+
+             --[_] Hanoi 2d / 3d merge plus generic voice component / module federation.
+
+   --[_] Sudoku solve from camera capture.
+
+                --[_] https://chat.qwen.ai/c/8c0dc255-d4d8-4859-88d3-952cf30813bd
+ 
+  --[_] MATCH PWA_DEMO_ENV_PUBLIC.
+
+        --[_] Angular Regular updates to latest version.
+
+
+  --[_] code description.
+
+        -- [_] Gemini CLI code description.
+
+        --[_] Claude Code -> inspect git hub repo.
+
+        -- [_] https://deepwiki.com/aperezNWO/PWA_DEMO_ENV_PROD.
+
+        -- [x] modify SMTP note to customers (deepwiki link).
+
+        -- [_] add codewiki links from other backends/repos.
+
+        -- [_] https://app.devin.ai/org/apereznwo/wiki
+
+  -- [_] new curiculum angular 
+
+        -- [x] AppModule, App component v21 style.
+
+        -- [x] Index v21 style.
+
+        -- [x] TETRIS V21 STYLE.
+
+        --[x] app version on nav module.
+
+        --[x] typesacript new features vs angulr new features.
+
+        --[_] Module Federation questions.
+
+              --[_] Native Federation.
+
+                   --[_] PWA_DEMO_ENV_CORE.
+        
+        -- [_] whats new 17x to 21x.
+
+                -- [_] autocreate pensum schema.
+
+        -- [_] ngbgrids custom (scm / angular curriculum) with custom schema.
+
+        -- [_] TETRIS A.I. ENGINE.
+
+                -- [_] uix fix [----] tetronim.
+
+                -- [_] federated engine.
+                
+                -- [_] backwards construction for C++ ENDPOINT.
+
+                -- [x] Delete cvurrent backend code c++.
+
+                -- [x] Delete cvurrent backend code .NET CORE.
+
+  --[_] Landing Page Carrousel.
+
+        --[_] vertical / horiziontal rotatation - aviation gyroscope style.
+
+        --[_] holographic hover.
+
+        --[_] sub menu radio buttons.
+  
+  --[_] Ask Gemini Angular UIX Questions with Images.
+
+       --[_] SCSS.   
+
+       --[_] https://apereznwo-pwa_demo_env_prod.mintlify.app/introduction 
+
+  --[_] Dijkstra 2d / 3d.
+
+  --[_] LIBRARIES MENU.
+
+        --[_] SMTP.
+
+  --[_] Merge Tetris2d / Tetris 3d engines on federation + expose other languages.
+
+  --[_] security measures / OWASP.
+
+  --[_] ErrorS: 
+  
+      -- [_] setlog method (RECURSIVITY).
+      
+      -- [_] IMAGE SIZE.
+    
+      -- [_] MASTER DETAIL / REFERENCES. INDEX ERROR.
+
+                -- [_] index.component.html:36 NG0955: The provided track expression resulted in duplicated keys for a given collection. Adjust the tracking expression such that it uniquely identifies all the items in the collection. Duplicated keys were: 
+                key "PageUrlList" at index "3" and "4".
+
+ --[_] xls / csv demo .
+
+        --[_] zip file (with pwd).
+
+        --[_] check data and filters.
+
+ --[_] Vision Hub.
+
+        --[x] check c++ opencv functionality (only takes first element on array of result).
+
+        --[x] draw pad instruction.
+
+        --[x] node.js ocr --> update repos to visionhub.
+        
+        --[x] tesseract for typescript/angular.
+
+        --[x] opencv    for typescript/angular.
+        
+        --[_] param url.
+
+                --[x] <root_url>/#/VisionHub?aiFeature=OCR&langName=JS
+
+                        --[x] CONVENTION:
+
+                                        aiFeature = 
+                                        
+                                                OCR : OCR 
+                                                CV  : Computer Vision
+
+                                        langName  = 
+
+                                                JS  : Node Js / javascript
+                                                CPP : C++ 
+
+                --[x] NESTED LISTS READONLY. CHANGES ONLY VIA QUERY PARAMS.
+                
+                --[x] source list as nested list.
+
+                --[x] selectedFeacture -> syncronize effect()/customhandler() with query params.
+
+                --[x] empty params (values by default).
+
+                --[x] enum types.
+
+                --[>] external visualization.
+
+                        --[x] from url list.   
+
+                        --[X] from custom landing page.    
+
+                        --[_] INDEX -> APP ROUTING -> QUERY PARAM RENDERING..
+
+        --[_] update references.
+
+                --[x] links to code.
+        
+                --[x] links to topics and libraries.
+
+                --[_] dynamic reference.
+
+
+  --[_] SORT BENCHMARK.
+
+        --[_] ALGORITHM BIG O NOTATION / json.
+
+        --[_] j2se code.
+
+        --[_] Comparisons, Swaps, Recursive Calls.
+
+        --[_] Pick up using Linear Regression related techniques.
+
+        --[_] https://gemini.google.com/app/19625a475ad0cbfe
+
+        --[_] https://gemini.google.com/app/4ba9363e7780efc5
+
+
+ --[_] collision 2d / 3d.
+
+ --[_] voice command.
+
+        --[_] Speech recognition unint testing. 
+
+        --[_] tetris 2d.
+
+        --[_] chat / online game.
+
+        --[_] Random Mace.
+        
+   --[_] tensorflow demo.
+
+        --[_] Sentimient Analysis.
+
+                --[_] https://claude.ai/chat/519754d4-5e76-4084-a53d-f33e1000cf68
+
+                --[_] https://gemini.google.com/app/812f0270dbfd9950
+
+                --[_] https://chat.deepseek.com/a/chat/s/38750b4a-f9c7-464b-9ec3-ad8e0aac2de7
+
+                --[_] https://chat.qwen.ai/c/8c0dc255-d4d8-4859-88d3-952cf30813bd
+
+                --[_] https://www.kimi.com/chat/19ebeca8-bc52-862b-8000-092902edd122?chat_enter_method=new_chat
+
+   --[_] Read a Book.
+
+ 
+--[_] TIC TAC TOE 
+        
+                --[_]  option "user vs. online user" merge  [Chat + tictactoe].
+
+                --[_]  option "machine vs. machine" -- c++ neural network.
+
+                --[_]  option "machine vs. machine" -- tensorflow.
+
+                --[_]  option "user vs. machine" -- current form -- check min max -- tic tac toe engine
+                
+--[_] section apps (unified solutions).
+
+        --[_] partially or totally integrate [Voice + chat + export formats + opencv + ocr + tensorflow + (others)].
+
+--[_] Write an article / book.
+
+     --[_] Samples :
+
+            --[_] https://practicaldev-herokuapp-com.global.ssl.fastly.net/dipakahirav/the-power-of-machine-learning-in-angular-a-developers-guide-4l2
+     
+     --[_] On Language Spec.
+
+     --[_] On Libraries / Algorithms.
+
+     --[_] On Specific Solutions.
+
+ --[_] about - language benchmark 
+
+        --[_] MERGE llm list / edu resources --> 'Resources'.  
+
+        --[_] bar chart language best performance.  
+
+        --[_] Pie chart lang implementations. 
+
+        --[_] Export report : xls, csv, pdf. 
+
+        --[_] Version 3.8.x. 
+
+ --[_] open cv image processing demo.
+
+        --[_] replaces hanoi 2d.
+
+        --[_] saves images to database.
+
+        --[_] upload image / draw image / take photo capture image.
+
+ --[_] open cv video processing demo.
+
+        --[_] replaces chat demo.
+
+        --[_] shapes recognition.
+
+        --[_] gestures recognition.
+
+        --[_] saves to db.
+ 
+ --[_]  app - open cv color detection.
+
+ --[_]  app - sudoku image board ocr detection / open cv image processing.
+
+ --[_] fractal demo / OCR Demo.
+  
+        --[x] ditch "IsZoomable" function and add it as a property of the languages array.
+
+        --[x]  add a infinite zoom in / out  option.
+
+                --[x]  minifab and target reticle  https://gemini.google.com/app/349346894b769c9a
+
+        --[x] Julia Fracal Zoom typescript.
+
+        --[x] typescript -- mandelbrot.
+
+                 --[x] Opencv -> Typescript.
+ 
+         --[x] Opencv -> Node.js.
+
+         --[x] Opencv -> C++.
+
+        --[_] C# / python.
+
+        --[x] performance benchmark.
+
+                --[x] write execution time in seconds (pipe).
+
+        -- [_] Fractal demo - complete backend information. 
+
+         --[_] Modify pdf header.
+
+         --[_] Update references (dynamic references).
+
+         --[_] Update menu access.
+
+                --[_] typescript.
+
+                --[_] c++.
+
+                --[_] node.js.
+
+                --[_] j2se.
+
+         --[_] Update index.
+
+         --[_] further plans : 
+                
+                 --[_]  add j2s3/springbot pure math option.
+
+                        --[_] https://claude.ai/chat/519754d4-5e76-4084-a53d-f33e1000cf68
+
+                        --[_] https://gemini.google.com/app/349346894b769c9a
+
+                --[_]  perform opencv operation over generated image.
+
+        -- [x] Julia Fracal Zoomin/out j2se.
+
+                --[x] check menu error (optoin generates barnsley fern fractal)                
+
+        --[x] Julia Fracal Zoomin/out node.js.
+
+                --[x] generic functions.
+
+        --[x] service / engine / view.
+
+                --[x] (alternative) write/read to database.
+
+                --[x] mock typescript as json resftul endpoint --? mandatory for j2se format and others.
+
+        --[x] coloured fractal info panel.                
+
+        --[_] Add option C++ puremath fractals.
+        
 /////////////////////////////////////////////////////////

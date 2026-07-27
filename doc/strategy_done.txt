@@ -1,8 +1,51 @@
 /////////////////////////////////////////////////////////////////
 // STRATEGY DONE 
 /////////////////////////////////////////////////////////////////
+-- [x] miscelaneous.
 
+      -- [X] move a.i. prompts from ENV_LANDING.
 
+      -- [X] SPLIT "STABLE RELEASES" FROM "DEV".
+
+      -- [x] BACK TO HOME LINK ON FOOTER.
+      
+ --[x] render timeout workaroud
+
+      --[x] https://gemini.google.com/app/19625a475ad0cbfe
+
+      --[x] cron job -- document on scm. 
+
+                --[x] "ping" endpoint with 0kb. 
+
+                        --[x] j2se. 
+                        
+ -- [x] Free disk space / one drive / personal / uv.  
+
+ -- [x] rubik cube.
+
+        --[x]   Face rotation on click.
+
+        --[x]   Shuffle functionality.
+        
+        --[x]   Step-by-step solving logic.
+        
+--[X] haonoi 3d -> add controls.
+
+--[x] pwa_demo_env_xxx -> LLM TESTING. (__testing folder)
+
+--[x] About > Diagnostics.
+
+        --[x] Check backends.
+
+-- [x] update readme.md -- devin link
+
+ --[x] check backend versions for render time span.
+
+        https://java2-ee-sb-demo-latest.onrender.com/api/fractals/generate?kind=1&xMin=-2&xMax=1&yMin=-1.2&yMax=1.2&maxIterations=500&zoomInOut=true&zoomStep=1
+
+-- [x] disable / check opencv - computer vision - node.js.
+
+-- [x] service / engine / view.
 
   -- [x] MODULES
 
