@@ -50,6 +50,66 @@ ALWAYS INDEX RECENTLY IMPORTED GITHUB REPOSTORIES AND REPEAT IMPORT USING REPO_0
 *****************************************************************
 
 /////////////////////////////////////////////////////////////////
+// DOCKER - RENDER - CRONJOBS
+/////////////////////////////////////////////////////////////////
+
+-- [_] 1) publish from github codespaces to the url below - each repo has "scm.txt" instructions for docker deploy
+https://hub.docker.com/repositories/apereznwogmail
+
+
+-- [_] 2) publish docker images on render.
+
+        -- [_] accounts : gmail, hotmail (github). (limited time usage and inactivity sleep behaviour for free accounts).
+
+        -- [_] https://dashboard.render.com/
+
+-- [_] 3) publish job on cronjobs to override render sleep / inactivity behaviour for free accounts.
+
+        -- [_] https://console.cron-job.org/jobs
+
+------------
+-- REPOS
+------------
+
+docker.io/apereznwogmail/cs_nodejs:latest
+
+docker push apereznwogmail/cs_nodejs:tagname
+
+https://cs-nodejs-latest.onrender.com/
+
+------------
+
+docker.io/apereznwogmail/cs_nodejs_ocr:latest
+
+docker push apereznwogmail/cs_nodejs_ocr:tagname
+
+https://cs-nodejs-ocr-latest.onrender.com/
+
+------------
+
+apereznwogmail/java2_ee_sb_demo:tagname
+
+docker.io/apereznwogmail/java2_ee_sb_demo:latest
+
+https://java2-ee-sb-demo-latest-gk09.onrender.com
+
+------------
+
+docker push apereznwogmail/django_setup_windows:tagname
+
+docker.io/apereznwogmail/django_setup_windows:latest
+
+https://django-setup-windows-latest-ojoj.onrender.com
+
+------------
+
+docker push apereznwogmail/django_setup_linux:tagname
+
+docker.io/apereznwogmail/django_setup_linux:latest
+
+https://django-setup-linux-latest.onrender.com 
+
+/////////////////////////////////////////////////////////////////
 // ENVINRONMENT LIST
 /////////////////////////////////////////////////////////////////
 
