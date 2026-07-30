@@ -66,8 +66,12 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] Baidu OCR.
 
- --[_] Merge Node.js repos.
-
  --[_] open render account for aperezNWO github. 
- 
+
+ --[_] Merge Node.js repos
+
+       --[_] cs_nodejs_ocr_ as base. 
+
+       --[_] cs_node_js, copy (don't cut). Don't delete repo until confirmed.
+
 ////////////////////////////////////////////////////////////////////////////////
