@@ -65,7 +65,15 @@ export class AlgorithmService extends BaseService {
       //
       return dijkstraData; 
     }
-    
+    //
+    getRandomVertexKotlin(vertexSize : Number,sourcePoint : Number): Observable<string> {
+       //
+      let p_url    = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}GenerateRandomVertex_SpringBoot`;
+      //
+      let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
+      //
+      return dijkstraData; 
+    }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [ALGORITMOS - ORDENAMIENTO]
     ////////////////////////////////////////////////////////////////     

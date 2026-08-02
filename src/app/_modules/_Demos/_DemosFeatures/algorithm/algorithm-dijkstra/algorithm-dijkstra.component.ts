@@ -108,9 +108,10 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
         new _languageName(0, '(CHOOSE OPTION...)', false,""),
       );
       //
-      this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS" ));
-      this.__languajeList.push(new _languageName(2, '(.Net Core   / C++)'            , false ,"CPP" ));
-      this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
+      this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS"     ));
+      this.__languajeList.push(new _languageName(2, '(.Net Core   / C++)'            , false ,"CPP"    ));
+      this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA"   ));
+      this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KOTLIN" ));      
       //
       let langName = params['langName'] ? params['langName'] : "" ;
       //
@@ -242,6 +243,9 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
             break;
             case 3:   // springboot
               randomVertexInfo       = this.algorithmService.getRandomVertexSpringBoot(_vertexSize,_sourcePoint);
+            break;
+            case 4:   // kotlin
+              randomVertexInfo       = this.algorithmService.getRandomVertexKotlin(_vertexSize,_sourcePoint);
             break;
         }
         //
