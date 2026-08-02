@@ -18,6 +18,7 @@ export enum BackendLanguage {
   NODEJS         = 2,
   CPP            = 3,
   J2SE           = 4,
+  KOTLIN         = 5,
 }
 
 export enum FractalType {

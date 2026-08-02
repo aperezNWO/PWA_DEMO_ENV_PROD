@@ -22,6 +22,7 @@ export class FractalService extends BaseService {
   private readonly __baseUrlCPPOpenCv     = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
   private readonly __baseUrlNodeJsFractal = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/fractal/`;
   private readonly __baseUrlJ2seFractal   = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate`;
+  private readonly __baseUrlKotlinFractal = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/fractals/generate`;
  
  
   // ═══════════════════════════════════════════════════════════════════════════
@@ -63,6 +64,16 @@ export class FractalService extends BaseService {
       case BackendLanguage.J2SE:
           url =
             `${this.__baseUrlJ2seFractal}` +
+            `?kind=${FractalType.JULIA}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;
+      case BackendLanguage.KOTLIN:
+          url =
+            `${this.__baseUrlKotlinFractal}` +
             `?kind=${FractalType.JULIA}` +
             `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
             `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
@@ -115,6 +126,16 @@ export class FractalService extends BaseService {
             `&zoomInOut=${p_fractalParams.serverZoomIn}` +
             `&zoomStep=${p_fractalParams.serverZoomFactor}` 
       break;
+      case BackendLanguage.KOTLIN:
+          url =
+            `${this.__baseUrlKotlinFractal}` +
+            `?kind=${FractalType.MANDELBROT}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;
       default :
           url =
             `${this.__baseUrlNodeJsFractal}mandelbrot` +
@@ -146,6 +167,15 @@ export class FractalService extends BaseService {
       break;
       case BackendLanguage.J2SE:
             url = `${this.__baseUrlJ2seFractal}` +
+            `?kind=${FractalType.BARNSLEY_FERN}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;
+      case BackendLanguage.KOTLIN:
+            url = `${this.__baseUrlKotlinFractal}` +
             `?kind=${FractalType.BARNSLEY_FERN}` +
             `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
             `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
