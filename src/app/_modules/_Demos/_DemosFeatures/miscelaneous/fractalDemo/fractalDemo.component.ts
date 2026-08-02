@@ -174,6 +174,19 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     }
   },
   {
+    backendLanguage   : BackendLanguage.KOTLIN,
+    languageCode      : 'Kotlin',
+    label             : 'Kotlin (Spring Boot)',
+    icon              : '☕',
+    description       : 'Runs on Spring Boot Engine',
+    enabled           : true,
+    supportedFractals : {
+      [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]        : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
+    }
+  },
+  {
     backendLanguage : BackendLanguage.NODEJS,
     languageCode: 'nodejs',
     label: 'Node.js (Server)',
@@ -445,6 +458,23 @@ constructor(
           fractalParams
         );
 
+      break;
+
+      case 'Kotlin':
+
+        fractalParams = { 
+            ...DEFAULT_FRACTAL_PARAMS 
+            ,selectedBackend  : BackendLanguage.KOTLIN
+            ,selectedFractal  : this.selectedFractal
+            ,maxIterations    : this.maxIterations
+            ,isZoomable       : this._buildBounds()
+            ,serverZoomIn     : this.serverZoomIn
+            ,serverZoomFactor : this.serverZoomFactor
+        };
+
+        serviceCall = this._fractalEngine.GetFractal(
+          fractalParams
+        );
       break;
 
       case 'nodejs':
