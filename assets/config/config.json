@@ -1,7 +1,7 @@
 {
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "3.7.102",
+    "appVersion"                                   : "3.8.0",
     "baseUrlNetCoreCPPEntry_local"                 : "http://localhost:84/",
     "baseUrlNetCoreCPPEntry_remote"                : "https://tensorflownetcore64.tryasp.net/",
     "baseUrlNetCoreCPPEntry"                       : "https://tensorflownetcore64.tryasp.net/",
@@ -32,6 +32,8 @@
     "baseUrlSpringBootJava_render_docker"          : "https://java2-ee-sb-demo-latest-gk09.onrender.com/",
     "baseUrlSpringBootJava_codespaces"             : "",
     "baseUrlSpringBootJava"                        : "https://java2-ee-sb-demo-latest-gk09.onrender.com/",
+    "baseUrlSpringBoot_Kotlin_render"              : "https://ping-api-latest.onrender.com/",
+    "baseUrlSpringBoot_Kotlin"                     : "https://ping-api-latest.onrender.com/",
     "baseUrlDjangoPython_local"                    : "http://localhost:8080/",
     "baseUrlDjangoPython_aperezNWO"                : "https://sp223k-8000.csb.app/",
     "baseUrlDjangoPython_aperezNWOGmail"           : "https://n96q4t-8000.csb.app/",
