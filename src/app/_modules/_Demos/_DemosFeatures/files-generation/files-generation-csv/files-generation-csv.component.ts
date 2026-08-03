@@ -215,7 +215,41 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                 td_informeLogRemoto_SprinbBootJava
                 .subscribe(td_observer_sprinbbootjava);
             break;
-            case 4: // DJANGO / PYTHON
+        case 4: // SPRINGBOOT / kLOTLIN
+                // 
+                let td_informeLogRemoto_SprinbBootKotlin!   : Observable<string>;
+                td_informeLogRemoto_SprinbBootKotlin        = this.backendService.getPersonsSprinbBootKotlin();
+                //
+                const td_observer_sprinbbootkotlin = {
+                  next: (td_observer_sprinbbootkotlin: string)     => { 
+                    //
+                    let td_persons_springboot_kotlin_json   = JSON.parse(td_observer_sprinbbootkotlin);
+                    //
+                    this.status_message.set("[" + td_persons_springboot_kotlin_json.length + "] records found ");
+                    this.rf_formSubmit            = false;
+                    //
+                    this.csv_dataSource           = new MatTableDataSource<PersonEntity>(td_persons_springboot_kotlin_json);
+                    this.csv_dataSource.paginator = this.csv_paginator;
+                  },
+                  error           : (err: Error)      => {
+                    //
+                    console.error('TEMPLATE DRIVEN - sprigboot/KOTLIN - (ERROR) : ' + JSON.stringify(err.message));
+                    //
+                    this.status_message.set("[An error ocurred]");
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Search]";
+                  },
+                  complete        : ()                => {
+                    //
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Search]";
+                  },
+                }; 
+                //
+                td_informeLogRemoto_SprinbBootKotlin
+                .subscribe(td_observer_sprinbbootkotlin);
+            break;
+            case 5: // DJANGO / PYTHON
                 // 
                 let td_Persons_DjangoPython!   : Observable<string>;
                 td_Persons_DjangoPython        = this.backendService.getPersonsDjangoPython();
@@ -249,6 +283,7 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                 td_Persons_DjangoPython
                 .subscribe(td_observer_pythondjango);
             break;
+ 
             default:
             return;
        };
@@ -380,7 +415,9 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
         this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS"   ));
         this.__languajeList.push(new _languageName(2, '(Node.js     / JavaScript)'     , false ,"JS"   ));
         this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
-        this.__languajeList.push(new _languageName(4, '(Django      / Pytnon)'         , false ,"PY"   ));
+        this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KT"   ));  
+        this.__languajeList.push(new _languageName(5, '(Django      / Pytnon)'         , false ,"PY"   ));    
+
         //
         let langName = params['langName'] ? params['langName'] : "" ;
         //

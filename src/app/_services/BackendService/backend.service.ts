@@ -22,6 +22,7 @@ import { takeUntilDestroyed       } from '@angular/core/rxjs-interop';
   providedIn: 'root'
 })
 export class BackendService extends BaseService implements OnInit {
+
   // v21: Inyección funcional (Reemplaza al constructor)
   public readonly http           = inject(HttpClient);
   public readonly _configService = inject(ConfigService);
@@ -132,6 +133,12 @@ export class BackendService extends BaseService implements OnInit {
 
   getPersonsSprinbBootJava(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllPersons`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+
+  getPersonsSprinbBootKotlin(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/data/getAllPersons`;
+    console.log('getPersonsSprinbBootKotlin URL: ', p_url);
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
