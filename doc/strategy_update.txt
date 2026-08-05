@@ -11,8 +11,12 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] full stack demo languages.
 
-       --[_] KOTLING (inside springboot) , DART.
+       --[_] KOTLING (inside springboot)
 
        --[_] MOVE GAME CORE FUNCTIONALITY (engine) TO "FULL STACK LANGUAGES".
- 
+
+            --[_] DART GAMES.
+
+            --[_] DART PING / DOCKER / RENDER.
+
 ////////////////////////////////////////////////////////////////////////////////
