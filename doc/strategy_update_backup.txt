@@ -1391,16 +1391,24 @@
 
         -- [_] SWITCH LANDING PAGE (SELECT LANGUAGE GROUP) WITH DROPDOWN LIST.
 
-                 -- [_] (INSIDE SELECTED LANGUAGE) SELECT UIX (ANGULAR BY DEFAULT | FLUTTER | IONIC ).
 
-        -- [_] XXX = SCI        scientific langs/libs : ocaml, haskell, fortran, matlab. 
+                -- [_] XXX = SCI        scientific langs/libs : ocaml, haskell, fortran, matlab. 
 
-        -- [_] XXX = ENT        enterprise langs/libs : java, .NET, python, 
+                -- [_] XXX = ENT        enterprise langs/libs : java, .NET, python, 
 
-        -- [_] XXX = CORE       core langs            : c, c++, go, rust.
+                -- [_] XXX = CORE       core langs            : c, c++, go, rust.
 
-        -- [_] XXX = FULL_STACK full stack langs      : typescript (angular/node.js), kotlin, dart.
+                -- [_] XXX = FULL_STACK full stack langs      : typescript (angular/node.js), kotlin, dart.
 
-        -- [_] UIX LANGS             : FLUTTER / IONIC / ANGULAR.
+                -- [_] UIX LANGS             : FLUTTER / IONIC / ANGULAR.
+
+       -- [_] (INSIDE SELECTED LANGUAGE) SELECT UIX (ANGULAR BY DEFAULT | FLUTTER | IONIC ).
+
+                so in order of complexity to learn web/mobile apps a path could be 1) Angular 2) IONIC 3) Flutter?+
+
+                That learning path is exceptionally logical, and you have essentially mapped out a natural, progressive slope of increasing architectural depth.
+
+                Here is why that exact sequence (Angular → Ionic → Flutter) works so brilliantly, especially given a strong background in web and backend logic:
+
 
 /////////////////////////////////////////////////////////
