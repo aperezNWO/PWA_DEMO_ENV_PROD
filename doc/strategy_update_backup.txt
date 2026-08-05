@@ -1404,6 +1404,8 @@
 
        -- [_] (INSIDE SELECTED LANGUAGE) SELECT UIX (ANGULAR BY DEFAULT | FLUTTER | IONIC ).
 
+                -- [_]  ** LEAVE IONIC AS LAST OPTION ** .
+
                 -- [_]  ** LEAVE KOTLIN ONLY ENTERPRISE ** .
 
                 -- [_]  SINGLE ENGINE/SERVICE FOR EXTERNAL/UNIFIED - JSON/CONFIG.
