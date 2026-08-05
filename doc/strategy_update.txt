@@ -13,10 +13,17 @@ r///////////////////////////////////////////////////////////////////////////////
 
        --[_] KOTLING (inside springboot)
 
-       --[_] MOVE GAME CORE FUNCTIONALITY (engine) TO "FULL STACK LANGUAGES".
+            --[_] COMPLETE XLS DEMO.
 
-            --[_] DART GAMES.
+       --[_] DART 
+
+            --[_] console app.
 
             --[_] DART PING / DOCKER / RENDER.
+
+            --[_] FRACTAL
+
+            --[_] MOVE GAME CORE FUNCTIONALITY
+
 
 ////////////////////////////////////////////////////////////////////////////////
