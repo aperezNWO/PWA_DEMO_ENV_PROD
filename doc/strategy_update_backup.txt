@@ -1404,11 +1404,12 @@
 
        -- [_] (INSIDE SELECTED LANGUAGE) SELECT UIX (ANGULAR BY DEFAULT | FLUTTER | IONIC ).
 
-                so in order of complexity to learn web/mobile apps a path could be 1) Angular 2) IONIC 3) Flutter?+
+                -- [_]  so in order of complexity to learn web/mobile apps a path could be 1) Angular 2) IONIC 3) Flutter?+
 
-                That learning path is exceptionally logical, and you have essentially mapped out a natural, progressive slope of increasing architectural depth.
+                        That learning path is exceptionally logical, and you have essentially mapped out a natural, progressive slope of increasing architectural depth.
 
-                Here is why that exact sequence (Angular → Ionic → Flutter) works so brilliantly, especially given a strong background in web and backend logic:
+                        Here is why that exact sequence (Angular → Ionic → Flutter) works so brilliantly, especially given a strong background in web and backend logic:
 
-
+                -- [_]  GOOGLE/KOTLIN/JETBRAINS Compose is Android-first (Compose Multiplatform is still maturing for iOS/desktop parity).
+                
 /////////////////////////////////////////////////////////
