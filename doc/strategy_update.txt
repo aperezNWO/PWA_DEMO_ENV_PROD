@@ -82,8 +82,10 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] Cursos.Cisco : python, c++.
 
- --[_] DISABLE CHANGES PWA_DEMO_ENV_PROD
+ --[_] full stack demo languages.
 
- --[_] ENABLE  LANG_XXX_DEMO_ENV_XXX INFRASTRUCTURE
+       --[_] KOTLING (inside springboot) , DART.
 
+       --[_] MOVE GAME CORE FUNCTIONALITY (engine) TO "FULL STACK LANGUAGES".
+ 
 ////////////////////////////////////////////////////////////////////////////////

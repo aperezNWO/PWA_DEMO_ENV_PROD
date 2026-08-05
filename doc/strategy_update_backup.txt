@@ -1314,14 +1314,16 @@
 -- [_] LANG_XXX_DEMO_ENV_XXX INFRASTRUCTURE
 /////////////////////////////////////////////////////////
 
--- [_] XXX = SCI        scientific langs/libs : ocaml, haskell, fortran, matlab. 
+--[_] ENABLE  LANG_XXX_DEMO_ENV_XXX URL LANDING_PAGE PARAM =  'LANG_XXX_DEMO_ENV_XXX'
 
--- [_] XXX = ENT        enterprise langs/libs : java, .NET, python, 
+        -- [_] XXX = SCI        scientific langs/libs : ocaml, haskell, fortran, matlab. 
 
--- [_] XXX = CORE       core langs            : c, c++, go, rust.
+        -- [_] XXX = ENT        enterprise langs/libs : java, .NET, python, 
 
--- [_] XXX = FULL_STACK full stack langs      : typescript (angular/node.js), kotlin, dart.
+        -- [_] XXX = CORE       core langs            : c, c++, go, rust.
 
--- [_] UIX LANGS             : FLUTTER / IONIC / ANGULAR.
+        -- [_] XXX = FULL_STACK full stack langs      : typescript (angular/node.js), kotlin, dart.
+
+        -- [_] UIX LANGS             : FLUTTER / IONIC / ANGULAR.
 
 /////////////////////////////////////////////////////////
