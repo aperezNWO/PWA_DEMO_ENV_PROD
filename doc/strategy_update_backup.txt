@@ -1404,6 +1404,8 @@
 
        -- [_] (INSIDE SELECTED LANGUAGE) SELECT UIX (ANGULAR BY DEFAULT | FLUTTER | IONIC ).
 
+                -- [_]  ** LEAVE KOTLIN ONLY ENTERPRISE ** .
+
                 -- [_]  SINGLE ENGINE/SERVICE FOR EXTERNAL/UNIFIED - JSON/CONFIG.
 
                 -- [_]  so in order of complexity to learn web/mobile apps a path could be 1) Angular 2) IONIC 3) Flutter?+
