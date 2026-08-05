@@ -1311,3 +1311,17 @@
   -- [_] Flutter(Dart) / IONIC / Angular Demos. 
   
 /////////////////////////////////////////////////////////
+-- [_] LANG_XXX_DEMO_ENV_XXX INFRASTRUCTURE
+/////////////////////////////////////////////////////////
+
+-- [_] XXX = SCI        scientific langs/libs : ocaml, haskell, fortran, matlab. 
+
+-- [_] XXX = ENT        enterprise langs/libs : java, .NET, python, 
+
+-- [_] XXX = CORE       core langs            : c, c++, go, rust.
+
+-- [_] XXX = FULL_STACK full stack langs      : typescript (angular/node.js), kotlin, dart.
+
+-- [_] UIX LANGS             : FLUTTER / IONIC / ANGULAR.
+
+/////////////////////////////////////////////////////////
