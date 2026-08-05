@@ -1389,7 +1389,9 @@
 
 --[_] ENABLE  LANG_XXX_DEMO_ENV_XXX URL LANDING_PAGE PARAM =  'LANG_XXX_DEMO_ENV_XXX'
 
-        -- [_] SWITCH LANDING PAGE WITH DROPDOWN LIST.
+        -- [_] SWITCH LANDING PAGE (SELECT LANGUAGE GROUP) WITH DROPDOWN LIST.
+
+                 -- [_] (INSIDE SELECTED LANGUAGE) SELECT UIX (ANGULAR BY DEFAULT | FLUTTER | IONIC ).
 
         -- [_] XXX = SCI        scientific langs/libs : ocaml, haskell, fortran, matlab. 
 
