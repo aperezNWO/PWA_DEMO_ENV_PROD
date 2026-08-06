@@ -2,6 +2,36 @@
 ** Software Configuration Management
 *********************************************************************
 
+/////////////////////////////////////////
+// git
+/////////////////////////////////////////
+
+echo "# pwa_demo_env_prod" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+
+## PATH 1 - NO EXTERNAL AUTH REQUIRED
+git remote add origin https://github.com/aperezNWO/PWA_DEMO_ENV_PROD
+git add *
+git push -u origin main
+
+## PATH 2 - EXTERNAL AUTH REQUIRED
+##  Create a new PAT with correct scope
+
+Go to https://github.com/settings/tokens/new (make sure you're logged in as aperezNWO)
+Fill in:
+
+Note: codespaces-write
+Expiration: 90 days
+Scopes: ✅ repo (the top-level checkbox — this gives full repo access
+
+git add * 
+git commit -m"kot changes"
+git remote set-url origin https://aperezNWO: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@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git
+git push --set-upstream origin main
+
 /////////////////////////////////////////////////////////////////
 // LLM TESTING
 /////////////////////////////////////////////////////////////////
