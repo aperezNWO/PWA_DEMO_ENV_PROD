@@ -215,39 +215,43 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                 td_informeLogRemoto_SprinbBootJava
                 .subscribe(td_observer_sprinbbootjava);
             break;
-        case 4: // SPRINGBOOT / kLOTLIN
-                // 
-                let td_informeLogRemoto_SprinbBootKotlin!   : Observable<string>;
-                td_informeLogRemoto_SprinbBootKotlin        = this.backendService.getPersonsSprinbBootKotlin();
-                //
-                const td_observer_sprinbbootkotlin = {
-                  next: (td_observer_sprinbbootkotlin: string)     => { 
-                    //
-                    let td_persons_springboot_kotlin_json   = JSON.parse(td_observer_sprinbbootkotlin);
-                    //
-                    this.status_message.set("[" + td_persons_springboot_kotlin_json.length + "] records found ");
-                    this.rf_formSubmit            = false;
-                    //
-                    this.csv_dataSource           = new MatTableDataSource<PersonEntity>(td_persons_springboot_kotlin_json);
-                    this.csv_dataSource.paginator = this.csv_paginator;
-                  },
-                  error           : (err: Error)      => {
-                    //
-                    console.error('TEMPLATE DRIVEN - sprigboot/KOTLIN - (ERROR) : ' + JSON.stringify(err.message));
-                    //
-                    this.status_message.set("[An error ocurred]");
-                    this.rf_formSubmit           = false;
-                    this.rf_buttonCaption        = "[Search]";
-                  },
-                  complete        : ()                => {
-                    //
-                    this.rf_formSubmit           = false;
-                    this.rf_buttonCaption        = "[Search]";
-                  },
-                }; 
-                //
-                td_informeLogRemoto_SprinbBootKotlin
-                .subscribe(td_observer_sprinbbootkotlin);
+        case 4: // SPRINGBOOT / KOTLIN
+            let td_informeLogRemoto_SprinbBootKotlin!: Observable<string>;
+            td_informeLogRemoto_SprinbBootKotlin = this.backendService.getPersonsSprinbBootKotlin();
+
+            const td_observer_sprinbbootkotlin = {
+              next: (td_observer_sprinbbootkotlin: string) => {
+
+                let rawPersons = JSON.parse(td_observer_sprinbbootkotlin);
+
+                console.log(rawPersons);
+
+                // Transform key name on each record
+                let td_persons_springboot_kotlin_json = rawPersons.map((person: any) => ({
+                  id_Column: person.id_column ?? person.Id_column ?? person.id_Column,
+                  ciudad: person.ciudad,
+                  nombreCompleto: person.nombreCompleto
+                }));
+
+                this.status_message.set("[" + td_persons_springboot_kotlin_json.length + "] records found ");
+                this.rf_formSubmit = false;
+
+                this.csv_dataSource = new MatTableDataSource<PersonEntity>(td_persons_springboot_kotlin_json);
+                this.csv_dataSource.paginator = this.csv_paginator;
+              },
+              error: (err: Error) => {
+                console.error('TEMPLATE DRIVEN - springboot/KOTLIN - (ERROR) : ' + JSON.stringify(err.message));
+                this.status_message.set("[An error ocurred]");
+                this.rf_formSubmit = false;
+                this.rf_buttonCaption = "[Search]";
+              },
+              complete: () => {
+                this.rf_formSubmit = false;
+                this.rf_buttonCaption = "[Search]";
+              },
+            }; 
+
+            td_informeLogRemoto_SprinbBootKotlin.subscribe(td_observer_sprinbbootkotlin);
             break;
             case 5: // DJANGO / PYTHON
                 // 
