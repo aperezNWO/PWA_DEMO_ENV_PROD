@@ -275,7 +275,48 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
               td_informeLogRemoto_SprinbBootJava
               .subscribe(td_observer_sprinbbootjava);
           break;
-        case 4: // DJANGO     / PYTHON
+      case 4: // SPRINGBOOT / KOTLIN
+              //
+              this.td_buttonCaption = "[Please wait...]";
+              //
+              this.status_message.set("[Please wait...]");
+              // 
+              let td_informeLogRemoto_SprinbBootKotlin!   : Observable<string>;
+              // 
+              td_informeLogRemoto_SprinbBootKotlin        = this.backendService.getLogRemotoSprinbBootKotlin(td_searchCriteria);
+              //
+              const td_observer_sprinbbootKotlin = {
+                next: (td_logEntry_sprinbboot_kotlin: string)     => { 
+                  //
+                  //console.log('TEMPLATE DRIVEN - SPRINGBOOT / JAVA - RETURN VALUES  : ' + td_logEntry_sprinbboot_java);
+                  //
+                  let td_logEntry_springboot_kotlin_json   = JSON.parse(td_logEntry_sprinbboot_kotlin);
+                  //
+                  this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_springboot_kotlin_json);
+                  this.td_dataSource.paginator = this.td_paginator;
+                  //
+                  this.status_message.set("[" + td_logEntry_springboot_kotlin_json.length + "] records found ");
+                  this.td_formSubmit           = false;
+                },
+                error           : (err: Error)      => {
+                  //
+                  console.error('TEMPLATE DRIVEN - sprigboot/kotlin - (ERROR) : ' + JSON.stringify(err.message));
+                  //
+                  this.status_message.set("An error ocurred. Please try again");
+                  this.td_formSubmit           = false;
+                  this.td_buttonCaption        = "[Search]";
+                },
+                complete        : ()                => {
+                  //
+                  this.td_formSubmit           = false;
+                  this.td_buttonCaption        = "[Search]";
+                },
+              }; 
+              //
+              td_informeLogRemoto_SprinbBootKotlin
+              .subscribe(td_observer_sprinbbootKotlin);
+          break;        
+        case 5: // DJANGO     / PYTHON
           //
           this.td_buttonCaption = "[Please wait...]";
           //
@@ -389,7 +430,8 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
         this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS"   ));
         this.__languajeList.push(new _languageName(2, '(Node.js     / JavaScript)'     , false ,"JS"   ));
         this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
-        this.__languajeList.push(new _languageName(4, '(Django      / Pytnon)'         , false ,"PY"   ));
+        this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KT"   ));        
+        this.__languajeList.push(new _languageName(5, '(Django      / Python)'         , false ,"PY"   ));
         //
         let langName = params['langName'] ? params['langName'] : "" ;
         //

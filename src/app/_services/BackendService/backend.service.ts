@@ -22,6 +22,7 @@ import { takeUntilDestroyed       } from '@angular/core/rxjs-interop';
   providedIn: 'root'
 })
 export class BackendService extends BaseService implements OnInit {
+  
 
   // v21: Inyección funcional (Reemplaza al constructor)
   public readonly http           = inject(HttpClient);
@@ -111,7 +112,22 @@ export class BackendService extends BaseService implements OnInit {
     };
     return this.http.get<string>(p_url, HTTPOptions); 
   }
+  
+  getPersonsSprinbBootKotlin(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/data/getAllPersons`;
+    console.log('getPersonsSprinbBootKotlin URL: ', p_url);
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
 
+  getPersonsDjangoPython(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getAllPersons?format=json`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  
+  getPersonsSprinbBootJava(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllPersons`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
   ////////////////////////////////////////////////////////////////  
   // METODOS - [GENERAR ARCHIVO XLS] / CHARTS
   ////////////////////////////////////////////////////////////////  
@@ -126,19 +142,13 @@ export class BackendService extends BaseService implements OnInit {
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
-  getLogRemotoSprinbBootJava(_searchCriteria: SearchCriteria): Observable<string> {
+  getLogRemotoSprinbBootJava(td_searchCriteria: SearchCriteria): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllLogs`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
-  getPersonsSprinbBootJava(): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllPersons`;
-    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
-  }
-
-  getPersonsSprinbBootKotlin(): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/data/getAllPersons`;
-    console.log('getPersonsSprinbBootKotlin URL: ', p_url);
+  getLogRemotoSprinbBootKotlin(_searchCriteria: SearchCriteria): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/data/getAllLogs`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
@@ -150,11 +160,6 @@ export class BackendService extends BaseService implements OnInit {
   getInformeExcel(_searchCriteria: SearchCriteria): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlNetCore')}api/XLSManager/generarinformexls`;
     return this.http.get<string>(p_url, this.HTTPOptions_Text); 
-  }
-
-  getPersonsDjangoPython(): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getAllPersons?format=json`;
-    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
   getLogStatGET(): Observable<string> {
