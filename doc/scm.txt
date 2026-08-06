@@ -28,7 +28,7 @@ Expiration: 90 days
 Scopes: ✅ repo (the top-level checkbox — this gives full repo access
 
 git add * 
-git commit -m"kot changes"
+git commit -m"[ANGULAR DEMO] - [ENV_PROD] v[3.8.2]" -m"1) kotlin - xls"
 git remote set-url origin https://aperezNWO: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@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git
 git push --set-upstream origin main
 
