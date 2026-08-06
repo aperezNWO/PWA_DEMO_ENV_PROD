@@ -224,8 +224,6 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
 
                 let rawPersons = JSON.parse(td_observer_sprinbbootkotlin);
 
-                console.log(rawPersons);
-
                 // Transform key name on each record
                 let td_persons_springboot_kotlin_json = rawPersons.map((person: any) => ({
                   id_Column: person.id_column ?? person.Id_column ?? person.id_Column,
