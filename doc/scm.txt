@@ -29,7 +29,7 @@ Scopes: ✅ repo (the top-level checkbox — this gives full repo access
 
 git add * 
 git commit -m"[ANGULAR DEMO] - [ENV_PROD] v[3.8.4]" -m"1) id column fix"
-git remote set-url origin https://aperezNWO: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@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git
+git remote set-url origin https://aperezNWO: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@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git
 git push --set-upstream origin main
 
 /////////////////////////////////////////////////////////////////
@@ -57,15 +57,21 @@ npx ng serve
 http://localhost:4200/
 https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/
 
+/////////////////////////////////////////////////////////////////
+// PUBLISH PAGE
+/////////////////////////////////////////////////////////////////
 
 https://github.com/settings/tokens
 
 git config --global core.longpaths true
 
-$env:GH_TOKEN = "YOUR TOKEN"
+(powershell)
+Remove-Item -Recurse -Force "node_modules\.cache\gh-pages"
 
-npx angular-cli-ghpages --dir=dist\PWA_DEMO_ENV_PROD\browser --name="aperezNWO" --email="alejandro.perez.acosta@hotmail.com"
+$env:GH_TOKEN = "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"
 
+#npx angular-cli-ghpages --dir=dist\PWA_DEMO_ENV_PROD\browser --name="aperezNWO" --email="alejandro.perez.acosta@hotmail.com"
+npx angular-cli-ghpages --dir=dist\PWA_DEMO_ENV_PROD\browser --name="aperezNWO" --email="alejandro.perez.acosta@hotmail.com" --repo="https://aperezNWO:$($env:GH_TOKEN)@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git"
 
 *****************************************************************
 *********** GENERATE DOC ****************************************

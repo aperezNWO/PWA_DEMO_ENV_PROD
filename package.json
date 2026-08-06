@@ -9,7 +9,8 @@
     "test": "ng test",
     "_package": "ng build --c=production --base-href=\"/PWA_DEMO_ENV_PROD\"",
     "_publish": "npx ngh --dir=dist\\PWA_DEMO_ENV_PROD\\browser",
-    "package-and-publish": "ng build --c=production --base-href=\"/PWA_DEMO_ENV_PROD/\" && npx ngh --dir=dist\\PWA_DEMO_ENV_PROD\\browser",
+    "package-and-publish_": "ng build --c=production --base-href=\"/PWA_DEMO_ENV_PROD/\" && npx ngh --dir=dist\\PWA_DEMO_ENV_PROD\\browser",
+    "package-and-publish": "echo \"Please see the section PUBLISH PAGE on file SCM.TXT\"",
     "package-and-publish-token": "ng build --c=production --base-href=\"/PWA_DEMO_ENV_PROD/\" && npx angular-cli-ghpages --dir=dist\\PWA_DEMO_ENV_PROD\\browser --name=\"aperezNWO\" --email=\"alejandro.perez.acosta@hotmail.com\" ",
     "git-update-strategy": "git add * && git commit -m \"strategy update\" -a && git push && git pull"
   },
