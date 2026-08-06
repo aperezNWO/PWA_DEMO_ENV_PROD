@@ -68,7 +68,7 @@ git config --global core.longpaths true
 (powershell)
 Remove-Item -Recurse -Force "node_modules\.cache\gh-pages"
 
-$env:GH_TOKEN = "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"
+$env:GH_TOKEN = "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"
 
 #npx angular-cli-ghpages --dir=dist\PWA_DEMO_ENV_PROD\browser --name="aperezNWO" --email="alejandro.perez.acosta@hotmail.com"
 npx angular-cli-ghpages --dir=dist\PWA_DEMO_ENV_PROD\browser --name="aperezNWO" --email="alejandro.perez.acosta@hotmail.com" --repo="https://aperezNWO:$($env:GH_TOKEN)@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git"
