@@ -186,6 +186,19 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
     }
   },
+   {
+    backendLanguage   : BackendLanguage.DART,
+    languageCode      : 'Dart',
+    label             : 'Dart (Shelf / Aqueduct)',
+    icon              : '🟣',
+    description       : 'Runs on Shelf Engine',
+    enabled           : true,
+    supportedFractals : {
+      [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]        : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
+    }
+  },
   {
     backendLanguage : BackendLanguage.NODEJS,
     languageCode: 'nodejs',
@@ -465,6 +478,23 @@ constructor(
         fractalParams = { 
             ...DEFAULT_FRACTAL_PARAMS 
             ,selectedBackend  : BackendLanguage.KOTLIN
+            ,selectedFractal  : this.selectedFractal
+            ,maxIterations    : this.maxIterations
+            ,isZoomable       : this._buildBounds()
+            ,serverZoomIn     : this.serverZoomIn
+            ,serverZoomFactor : this.serverZoomFactor
+        };
+
+        serviceCall = this._fractalEngine.GetFractal(
+          fractalParams
+        );
+      break;
+
+       case 'Dart':
+
+        fractalParams = { 
+            ...DEFAULT_FRACTAL_PARAMS 
+            ,selectedBackend  : BackendLanguage.DART
             ,selectedFractal  : this.selectedFractal
             ,maxIterations    : this.maxIterations
             ,isZoomable       : this._buildBounds()
