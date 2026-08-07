@@ -1,5 +1,5 @@
 import { Injectable    } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient    } from '@angular/common/http';
 import { Observable    } from 'rxjs';
 import { BaseService   } from '../__baseService/base.service';
 import { ConfigService } from '../__Utils/ConfigService/config.service';
@@ -67,12 +67,22 @@ export class AlgorithmService extends BaseService {
     }
     //
     getRandomVertexKotlin(vertexSize : Number,sourcePoint : Number): Observable<string> {
-       //
+      //
       let p_url    = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}GenerateRandomVertex_SpringBoot`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //
       return dijkstraData; 
+    }
+    //
+    getRandomVertexDart(_vertexSize: number, _sourcePoint: number): Observable<string> {
+      //
+      let p_url    = `${this._configService.getConfigValue('baseUrlDart')}GenerateRandomVertex_SpringBoot`;
+      //
+      let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
+      //
+      return dijkstraData; 
+       
     }
     ////////////////////////////////////////////////////////////////  
     // METODOS - [ALGORITMOS - ORDENAMIENTO]
