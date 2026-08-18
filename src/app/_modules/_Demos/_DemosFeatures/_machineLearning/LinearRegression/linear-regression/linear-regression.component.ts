@@ -245,8 +245,11 @@ export class LinearRegressionComponent  extends BaseReferenceComponent implement
           // 1) PRELOAD MODEL
           // 2) ADD  SYNC PROGRESS BAR 
         this.initializeChart();
-        this.status_message.set("Python/TensorFlow Engine is currently disabled. Please use the C++ Engine for predictions.");
-        this.isLoading = false;
+        this.errorMessage     = "Python/TensorFlow Engine is currently disabled. Please use the C++ Engine for predictions.";
+        this.status_message.set(this.errorMessage);
+        console.warn('API waarning:', this.errorMessage);
+        this.predictionResult = null;
+        this.isLoading        = false;
         return;
 
         /*
