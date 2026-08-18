@@ -13,6 +13,12 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] URL and navigation fixes.
 
+       --[_] disable "predic" functionality on python.
+
+       --[_] Add Dart links.
+
+       --[_] Add kotlin links.
+
  --[_] full stack demo languages.
 
        --[_] DART 
