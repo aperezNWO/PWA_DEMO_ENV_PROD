@@ -11,19 +11,14 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] full stack demo languages.
 
-       --[_] KOTLING (inside springboot)
-
-            --[_] COMPLETE CSV / XLS DEMO. FIX ID_COLUMN CAPITALIZATION
-
        --[_] DART 
 
-            --[_] console app.
+            --[x] console app.
 
-            --[_] DART PING / DOCKER / RENDER.
+            --[x] DART PING / DOCKER / RENDER.
 
-            --[_] FRACTAL
+            --[x] FRACTAL
 
             --[_] MOVE GAME CORE FUNCTIONALITY
-
 
 ////////////////////////////////////////////////////////////////////////////////
