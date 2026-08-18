@@ -17,7 +17,7 @@ import { SpeechService                            } from 'src/app/_services/__Ut
 // third party
 import { ChartData, ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective, NgChartsModule       } from 'ng2-charts';
-import { CustomErrorHandler } from 'src/app/app.module';
+import { CustomErrorHandler                       } from 'src/app/app.module';
 
 
 @Component({
@@ -240,6 +240,16 @@ export class LinearRegressionComponent  extends BaseReferenceComponent implement
     // PYTHON
     if (this.linearRegressionEngine == 1)
     {
+
+        // REMOVE UNTIL FIX THE FOLLOWING 
+          // 1) PRELOAD MODEL
+          // 2) ADD  SYNC PROGRESS BAR 
+        this.initializeChart();
+        this.status_message.set("Python/TensorFlow Engine is currently disabled. Please use the C++ Engine for predictions.");
+        this.isLoading = false;
+        return;
+
+        /*
         this.predictService.predictTime_tensorflow_python(this.inputMissionNumber).subscribe({
             next: (response) => {
               //
@@ -260,7 +270,7 @@ export class LinearRegressionComponent  extends BaseReferenceComponent implement
             complete: () => {
               this.isLoading = false;
             }
-        });
+        });*/
     }
   }
   //
