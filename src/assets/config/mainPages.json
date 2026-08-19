@@ -776,6 +776,11 @@
                   "text" : "Google a.i. (banned on some search engines)"
               },
               {
+                  "id"   : 0,
+                  "url"  : "InkLing",
+                  "text" : "https://thinkingmachines.ai/inkling/"
+              },              
+              {
                   "id"   : 7,
                   "url"  : "https://venice.ai/",
                   "text" : "Venice (payed proxy for other llms. Not recommended)"
