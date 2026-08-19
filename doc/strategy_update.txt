@@ -19,6 +19,12 @@ r///////////////////////////////////////////////////////////////////////////////
 
        --[_] Add kotlin links.
 
+       --[_] SCM.
+
+       --[_] LANGUAGES LIST.
+
+       --[_] DART LOGO.
+
  --[_] full stack demo languages.
 
        --[_] DART 

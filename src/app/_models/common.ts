@@ -146,6 +146,8 @@ export const PAGE_DEMOS_NODEJS_JAVASCRIPT        = 'PAGE_DEMOS_NODEJS_JAVASCRIPT
 
 export const PAGE_DEMOS_ANGULAR_JAVASCRIPT       = 'PAGE_DEMOS_ANGULAR_JAVASCRIPT';
 
+export const PAGE_DEMOS_DART_SHELF               = 'PAGE_DEMOS_DART_SHELF';
+
 ////////////////////////////////////////////////////////////////////////////
 
 export const PAGE_DEMOS_MACHINE_LEARNING_INDEX        = 'PAGE_DEMOS_MACHINE_LEARNING_INDEX'
