@@ -189,7 +189,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
    {
     backendLanguage   : BackendLanguage.DART,
     languageCode      : 'Dart',
-    label             : 'Dart (Shelf / Aqueduct)',
+    label             : 'Dart (Shelf)',
     icon              : '🟣',
     description       : 'Runs on Shelf Engine',
     enabled           : true,

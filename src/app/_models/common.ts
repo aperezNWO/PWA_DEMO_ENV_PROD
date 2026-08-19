@@ -130,6 +130,8 @@ export const PAGE_CURRICULUM_SPRING_BOOT_JAVA    = 'PAGE_CURRICULUM_SPRING_BOOT_
 
 export const PAGE_CURRICULUM_DJANGO_PYTHON       = 'PAGE_CURRICULUM_DJANGO_PYTHON';
 
+export const PAGE_CURRICULUM_SHELF_DART          = 'PAGE_CURRICULUM_SHELF_DART';
+
 ////////////////////////////////////////////////////////////////////////////
 
 export const PAGE_DEMOS_LENGUAJES_INDEX         = "PAGE_DEMOS_LENGUAJES_INDEX";
