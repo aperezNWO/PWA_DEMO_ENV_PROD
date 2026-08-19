@@ -40,7 +40,8 @@
           { "id": 3, "url" : "/GridParam"         , "text": "[.NET CORE / C#]"         , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CSHARP'}"        },
           { "id": 4, "url" : "/GridParam"         , "text": "[.NET CORE / C++]"        , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CPP'}"           },
           { "id": 5, "url" : "/GridParam"         , "text": "[SPRING BOOT / JAVA]"     , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
-          { "id": 6, "url" : "/GridParam"         , "text": "[PYTHON / DJANGO]"        , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         }
+          { "id": 6, "url" : "/GridParam"         , "text": "[PYTHON / DJANGO]"        , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
+          { "id": 7, "url" : "/GridParam"         , "text": "[DART  /  SHELF ]"        , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }          
         ],
       "comment_2"        : "'page_nested' values for  dynamic landing. queryParam explicit 'pageName' param requiered for /Gridparam.",
       "pages_nested"     : [
@@ -49,7 +50,8 @@
           { "id": 3, "url" : "", "text": "./assets/images/logos/C_Sharp_Logo_2023.svg"                          , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CSHARP'}"        },
           { "id": 4, "url" : "", "text": "./assets/images/logos/ISO_C%2B%2B_Logo.svg.png"                       , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CPP'}"           },
           { "id": 5, "url" : "", "text": "./assets/images/logos/Microsoft.VisualStudio.Services.Icons.Default"  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
-          { "id": 6, "url" : "", "text": "./assets/images/logos/Python-logo-notext.svg"                         , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         }
+          { "id": 6, "url" : "", "text": "./assets/images/logos/Python-logo-notext.svg"                         , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
+          { "id": 7, "url" : "", "text": "./assets/images/logos/Dart-logo.png"                                  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }
         ]
       },
       {
