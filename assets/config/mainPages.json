@@ -35,13 +35,13 @@
         "log_name"   : "PAGE_DEMOS_LENGUAJES_INDEX",
         "page_name"  : "[DEMOS - LANGUAGES]",
         "pages"      : [
-          { "id": 1, "url" : "/GridParam"         , "text": "[ANGULAR / TYPESCRIPT]"   , "queryParams" : "{ pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT'}"    },
-          { "id": 2, "url" : "/GridParam"         , "text": "[NODE.JS / JAVASCRIPT]"   , "queryParams" : "{ pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'}"     },
-          { "id": 3, "url" : "/GridParam"         , "text": "[.NET CORE / C#]"         , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CSHARP'}"        },
-          { "id": 4, "url" : "/GridParam"         , "text": "[.NET CORE / C++]"        , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CPP'}"           },
-          { "id": 5, "url" : "/GridParam"         , "text": "[SPRING BOOT / JAVA]"     , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
-          { "id": 6, "url" : "/GridParam"         , "text": "[PYTHON / DJANGO]"        , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
-          { "id": 7, "url" : "/GridParam"         , "text": "[DART  /  SHELF ]"        , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }          
+          { "id": 1, "url" : "/GridParam"         , "text": "[ANGULAR / TYPESCRIPT]"           , "queryParams" : "{ pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT'}"    },
+          { "id": 2, "url" : "/GridParam"         , "text": "[NODE.JS / JAVASCRIPT]"           , "queryParams" : "{ pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'}"     },
+          { "id": 3, "url" : "/GridParam"         , "text": "[.NET CORE / C#]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CSHARP'}"        },
+          { "id": 4, "url" : "/GridParam"         , "text": "[.NET CORE / C++]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CPP'}"           },
+          { "id": 5, "url" : "/GridParam"         , "text": "[SPRING BOOT / JAVA / KOTLIN]"    , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
+          { "id": 6, "url" : "/GridParam"         , "text": "[PYTHON / DJANGO]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
+          { "id": 7, "url" : "/GridParam"         , "text": "[DART  /  SHELF ]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }          
         ],
       "comment_2"        : "'page_nested' values for  dynamic landing. queryParam explicit 'pageName' param requiered for /Gridparam.",
       "pages_nested"     : [
@@ -626,7 +626,7 @@
       },
       {
         "log_name"   : "PAGE_DEMOS_SPRING_BOOT_JAVA",
-        "page_name"  : "[DEMOS - SPRINGBOOT / JAVA]",
+        "page_name"  : "[DEMOS - SPRINGBOOT / JAVA / KOTLIN]",
         "pages"      : [
           { "id": 1, "url" : "./assets/demos/springBootDemo/springBoot_Demos_base.json"         , "text": ""      }
         ]
@@ -657,6 +657,13 @@
         "page_name"  : "[DEMOS - ANGULAR / TYPESCRIPT]",
         "pages"      : [
           { "id": 1, "url" : "./assets/demos/angularDemo/angular_Demos_base.json"              , "text": ""      }
+        ]
+      },
+      {
+        "log_name"   : "PAGE_DEMOS_DART_SHELF",
+        "page_name"  : "[DEMOS - DART / SHELF]",
+        "pages"      : [
+          { "id": 1, "url" : "./assets/demos/dartDemo/dart_Demos_base.json"              , "text": ""      }
         ]
       },
       {
