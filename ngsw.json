@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1787294522832,
+  "timestamp": 1787341939275,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -19,7 +19,7 @@
         "/PWA_DEMO_ENV_PROD/chunk-QBUHZOWM.js",
         "/PWA_DEMO_ENV_PROD/favicon.ico",
         "/PWA_DEMO_ENV_PROD/index.html",
-        "/PWA_DEMO_ENV_PROD/main-FK5ACJ6W.js",
+        "/PWA_DEMO_ENV_PROD/main-67CI2VXG.js",
         "/PWA_DEMO_ENV_PROD/manifest.webmanifest",
         "/PWA_DEMO_ENV_PROD/polyfills-ERLYOUQC.js",
         "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css"
@@ -47,6 +47,8 @@
         "/PWA_DEMO_ENV_PROD/assets/demos/dartDemo/dart_Demos_base.json",
         "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json",
         "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json",
+        "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Curriculum_base.json",
+        "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Demos_base.json",
         "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_Curriculum_base.json",
         "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json",
         "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Curriculum_base.json",
@@ -68,6 +70,7 @@
         "/PWA_DEMO_ENV_PROD/assets/images/logos/Chart.js_logo.svg.png",
         "/PWA_DEMO_ENV_PROD/assets/images/logos/Dart-logo.png",
         "/PWA_DEMO_ENV_PROD/assets/images/logos/ISO_C++_Logo.svg.png",
+        "/PWA_DEMO_ENV_PROD/assets/images/logos/Kotlin_icon_(2016-2021).svg",
         "/PWA_DEMO_ENV_PROD/assets/images/logos/Microsoft.VisualStudio.Services.Icons.Default",
         "/PWA_DEMO_ENV_PROD/assets/images/logos/Microsoft_Office_Excel_(2019–2025).svg",
         "/PWA_DEMO_ENV_PROD/assets/images/logos/Node.js_logo.svg.png",
@@ -89,8 +92,8 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "e0884a233d00aa4f002d40ce4d05b95663d25776",
-    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "8253ff6111192c5998e8c7616043c0fe035e4a41",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "e6ec47838b06087dbcd4fac3c744039864086606",
+    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "bc057d7597c840d06b22b448f822f7033b2e6618",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "322e77aa4398525af8feafcc43878bc6855315ac",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "930b1bb67aacd91a98c1613ff7fb92cce7367553",
@@ -102,6 +105,8 @@
     "/PWA_DEMO_ENV_PROD/assets/demos/dartDemo/dart_Demos_base.json": "cd94171c87c02b0bccb4a0d3fcc4be8f50c883d0",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json": "c5cb47a936b0f9bc39bd5fcebfaf615e8cf8c497",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "df481ad31d3f0368a247d8a8aad2333c462aef0f",
+    "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Curriculum_base.json": "97d170e1550eee4afc0af065b78cda302a97674c",
+    "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Demos_base.json": "757507e491831c0e652154739d8d5534490aab49",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_Curriculum_base.json": "989628b99da2028ff7ee8b8407d82420bf6b108a",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "bb2fbbaf736d5960323712e8c5cc8ddecbafbdb3",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Curriculum_base.json": "d9a5f04e6eb21310eab505a8c000ac28a6b050bb",
@@ -123,6 +128,7 @@
     "/PWA_DEMO_ENV_PROD/assets/images/logos/Chart.js_logo.svg.png": "8e8fc9fd1ca2cdaacff93c59206e54c256cc5f46",
     "/PWA_DEMO_ENV_PROD/assets/images/logos/Dart-logo.png": "909f34dbf8d059d4d65446d711ee18fd77909ffd",
     "/PWA_DEMO_ENV_PROD/assets/images/logos/ISO_C++_Logo.svg.png": "9c76be4c7dd4bebe0bc2b74157798d0cb2880e01",
+    "/PWA_DEMO_ENV_PROD/assets/images/logos/Kotlin_icon_(2016-2021).svg": "3f1aa6bc8958ae0fbe37cc30a4b4b509334f6f0d",
     "/PWA_DEMO_ENV_PROD/assets/images/logos/Microsoft.VisualStudio.Services.Icons.Default": "cdc0bba7672b836f9c42306a17a9625524780fb2",
     "/PWA_DEMO_ENV_PROD/assets/images/logos/Microsoft_Office_Excel_(2019–2025).svg": "c8d7f89f8f29ed700606b095db4e5e53dd4107ec",
     "/PWA_DEMO_ENV_PROD/assets/images/logos/Node.js_logo.svg.png": "19e0495995107f4959440665de883102f1bc0741",
@@ -145,8 +151,8 @@
     "/PWA_DEMO_ENV_PROD/chunk-PMOVCFET.js": "7b864cebddc9344ef37d7dedd6aaaccd963aa458",
     "/PWA_DEMO_ENV_PROD/chunk-QBUHZOWM.js": "f9a114e2c2299184dc44a9cf400cca6748d4f06f",
     "/PWA_DEMO_ENV_PROD/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/PWA_DEMO_ENV_PROD/index.html": "09d102a530d367024fedb639457c10d088382fbd",
-    "/PWA_DEMO_ENV_PROD/main-FK5ACJ6W.js": "82ff5aa9ff1bae3ee28f2ff87fbd71ef703f434b",
+    "/PWA_DEMO_ENV_PROD/index.html": "d15de0fd5a6aa09858fe89c0e37609d4afb3bc88",
+    "/PWA_DEMO_ENV_PROD/main-67CI2VXG.js": "82ff5aa9ff1bae3ee28f2ff87fbd71ef703f434b",
     "/PWA_DEMO_ENV_PROD/manifest.webmanifest": "4c4fda145c554fe9a7ed086f63fa914267022e67",
     "/PWA_DEMO_ENV_PROD/polyfills-ERLYOUQC.js": "a5955bd090cb03ab54dd7dfcd8139ab0a8d8dd7f",
     "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css": "b4b303773c164ca15ba4f7f09c5ce83918d24668"

@@ -39,9 +39,10 @@
           { "id": 2, "url" : "/GridParam"         , "text": "[NODE.JS / JAVASCRIPT]"           , "queryParams" : "{ pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'}"     },
           { "id": 3, "url" : "/GridParam"         , "text": "[.NET CORE / C#]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CSHARP'}"        },
           { "id": 4, "url" : "/GridParam"         , "text": "[.NET CORE / C++]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CPP'}"           },
-          { "id": 5, "url" : "/GridParam"         , "text": "[SPRING BOOT / JAVA / KOTLIN]"    , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
+          { "id": 5, "url" : "/GridParam"         , "text": "[SPRING BOOT / JAVA ]"            , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
           { "id": 6, "url" : "/GridParam"         , "text": "[DJANGO / PYTHON]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
-          { "id": 7, "url" : "/GridParam"         , "text": "[SHELF /  DART ]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }          
+          { "id": 7, "url" : "/GridParam"         , "text": "[SHELF /  DART ]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            },
+          { "id": 8, "url" : "/GridParam"         , "text": "[SPRING BOOT /  KOTLIN ]"         , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"            }                         
         ],
       "comment_2"        : "'page_nested' values for  dynamic landing. queryParam explicit 'pageName' param requiered for /Gridparam.",
       "pages_nested"     : [
@@ -51,7 +52,8 @@
           { "id": 4, "url" : "", "text": "./assets/images/logos/ISO_C%2B%2B_Logo.svg.png"                       , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CPP'}"           },
           { "id": 5, "url" : "", "text": "./assets/images/logos/Microsoft.VisualStudio.Services.Icons.Default"  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
           { "id": 6, "url" : "", "text": "./assets/images/logos/Python-logo-notext.svg"                         , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
-          { "id": 7, "url" : "", "text": "./assets/images/logos/Dart-logo.png"                                  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }
+          { "id": 7, "url" : "", "text": "./assets/images/logos/Dart-logo.png"                                  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            },
+          { "id": 8, "url" : "", "text": "./assets/images/logos/Kotlin_icon_(2016-2021).svg"                    , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"    }
         ]
       },
       {
@@ -83,14 +85,16 @@
         "log_name"   : "PAGE_DEMOS_CURRICULUM_INDEX",
         "page_name"  : "[DEMOS - CURRICULUM]",
         "pages"      : [
-            { "id": 0, "url" : "/GridParam"               , "text": "[Curriculum - A.I.       / Machine Learning]"             , "queryParams" : "{pageName : 'PAGE_CURRICULUM_AI'}"               },
-            { "id": 1, "url" : "/CurriculumAngular"       , "text": "[Curriculum - Angular    / TypeScript      ]"             , "queryParams" : "{pageName : 'PAGE_CURRICULUM_ANGULAR'}"          },
-            { "id": 2, "url" : "/GridParam"               , "text": "[Curriculum - C++                          ]"             , "queryParams" : "{pageName : 'PAGE_CURRICULUM_CPP'}"              },
-            { "id": 3, "url" : "/GridParam"               , "text": "[Curriculum - Django     / Python]"                       , "queryParams" : "{pageName : 'PAGE_CURRICULUM_DJANGO_PYTHON'}"    },
-            { "id": 4, "url" : "/GridParam"               , "text": "[Curriculum - SpringBoot / Java]"                         , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SPRING_BOOT_JAVA'}" },
-            { "id": 5, "url" : "/GridParam"               , "text": "[Curriculum - Node.js    / Javascript]"                   , "queryParams" : "{pageName : 'PAGE_CURRICULUM_NODE_JS'}"          },
-            { "id": 6, "url" : "/GridParam"               , "text": "[Curriculum - .Net core  / C#]"                           , "queryParams" : "{pageName : 'PAGE_CURRICULUM_NET_CORE'}"         },
-            { "id": 7, "url" : "/GridParam"               , "text": "[Curriculum - Shelf      / Dart]"                         , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SHELF_DART'}"       }                 
+            { "id": 0, "url" : "/GridParam"               , "text": "[Curriculum - A.I.       / Machine Learning]"             , "queryParams" : "{pageName : 'PAGE_CURRICULUM_AI'}"                  },
+            { "id": 1, "url" : "/CurriculumAngular"       , "text": "[Curriculum - Angular    / TypeScript      ]"             , "queryParams" : "{pageName : 'PAGE_CURRICULUM_ANGULAR'}"             },
+            { "id": 2, "url" : "/GridParam"               , "text": "[Curriculum - C++                          ]"             , "queryParams" : "{pageName : 'PAGE_CURRICULUM_CPP'}"                 },
+            { "id": 3, "url" : "/GridParam"               , "text": "[Curriculum - Django     / Python]"                       , "queryParams" : "{pageName : 'PAGE_CURRICULUM_DJANGO_PYTHON'}"       },
+            { "id": 4, "url" : "/GridParam"               , "text": "[Curriculum - SpringBoot / Java]"                         , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SPRING_BOOT_JAVA'}"    },
+            { "id": 5, "url" : "/GridParam"               , "text": "[Curriculum - Node.js    / Javascript]"                   , "queryParams" : "{pageName : 'PAGE_CURRICULUM_NODE_JS'}"             },
+            { "id": 6, "url" : "/GridParam"               , "text": "[Curriculum - .Net core  / C#]"                           , "queryParams" : "{pageName : 'PAGE_CURRICULUM_NET_CORE'}"            },
+            { "id": 7, "url" : "/GridParam"               , "text": "[Curriculum - Shelf      / Dart]"                         , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SHELF_DART'}"          },                 
+            { "id": 7, "url" : "/GridParam"               , "text": "[Curriculum - SpringBoot / Kotlin]"                       , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SPRING_BOOT_KOTLIN'}"  }                 
+
           ]
       },
       {
@@ -154,6 +158,13 @@
         "page_name"  : "[CURRICULUM - SHELF / DART ]",
         "pages"      : [
              { "id": 1, "url" : "./assets/demos/dartDemo/dart_Curriculum_base.json"              , "text": ""        }
+        ]
+      },      
+      {
+        "log_name"   : "PAGE_CURRICULUM_SPRING_BOOT_KOTLIN",
+        "page_name"  : "[CURRICULUM - SPRINGBOOT / KOTLIN ]",
+        "pages"      : [
+             { "id": 1, "url" : "./assets/demos/kotlinDemo/kotlin_Curriculum_base.json"            , "text": ""        }
         ]
       },      
       {
@@ -634,7 +645,7 @@
       },
       {
         "log_name"   : "PAGE_DEMOS_SPRING_BOOT_JAVA",
-        "page_name"  : "[DEMOS - SPRINGBOOT / JAVA / KOTLIN]",
+        "page_name"  : "[DEMOS - SPRINGBOOT / JAVA]",
         "pages"      : [
           { "id": 1, "url" : "./assets/demos/springBootDemo/springBoot_Demos_base.json"         , "text": ""      }
         ]
@@ -674,6 +685,13 @@
           { "id": 1, "url" : "./assets/demos/dartDemo/dart_Demos_base.json"              , "text": ""      }
         ]
       },
+      {
+        "log_name"   : "PAGE_DEMOS_SPRING_BOOT_KOTLIN",
+        "page_name"  : "[DEMOS - SPRING BOOT / KOTLIN]",
+        "pages"      : [
+          { "id": 1, "url" : "./assets/demos/kotlinDemo/kotlin_Demos_base.json"           , "text": ""      }
+        ]
+      },      
       {
         "log_name"   : "PAGE_ABOUT_INDEX",
         "page_name"  : "[ABOUT]",
