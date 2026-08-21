@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1787293528413,
+  "timestamp": 1787294522832,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -89,7 +89,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "c2efba1abb5aecd204808da25eef437e2f20d4dc",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "e0884a233d00aa4f002d40ce4d05b95663d25776",
     "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "8253ff6111192c5998e8c7616043c0fe035e4a41",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "322e77aa4398525af8feafcc43878bc6855315ac",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
@@ -101,7 +101,7 @@
     "/PWA_DEMO_ENV_PROD/assets/demos/dartDemo/dart_Curriculum_base.json": "97d170e1550eee4afc0af065b78cda302a97674c",
     "/PWA_DEMO_ENV_PROD/assets/demos/dartDemo/dart_Demos_base.json": "cd94171c87c02b0bccb4a0d3fcc4be8f50c883d0",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json": "c5cb47a936b0f9bc39bd5fcebfaf615e8cf8c497",
-    "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "946c46d1438cdfa2dc49a6a373192d4fca37fff7",
+    "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "df481ad31d3f0368a247d8a8aad2333c462aef0f",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_Curriculum_base.json": "989628b99da2028ff7ee8b8407d82420bf6b108a",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "bb2fbbaf736d5960323712e8c5cc8ddecbafbdb3",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Curriculum_base.json": "d9a5f04e6eb21310eab505a8c000ac28a6b050bb",
