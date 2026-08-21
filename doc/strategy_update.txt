@@ -9,8 +9,6 @@ r///////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
 
- --[_] short videos on forms.
-
  --[_] URL and navigation fixes.
 
        --[_] disable "predic" functionality on python.
@@ -20,6 +18,8 @@ r///////////////////////////////////////////////////////////////////////////////
        --[_] Add kotlin links.
 
        --[_] SCM.
+
+            --[_] Devin doc.
 
             --[_] RENDER.
 
@@ -35,7 +35,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
        --[_] ABOUT.
 
-            --[_] RENDER VERSION.
+            --[_] RENDER / Kotlin VERSION.
 
  --[_] full stack demo languages.
 
@@ -47,7 +47,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[x] FRACTAL
 
-            --[_] MOVE GAME CORE FUNCTIONALITY
+            --[_] MOVE GAME CORE TO KOTLIN
 
  --[_] INSTALL .NET CORE DEV ENV.
 
@@ -62,5 +62,11 @@ r///////////////////////////////////////////////////////////////////////////////
        --[_] MERGE DEMOS.
 
        --[_] ADD LINKS TO KEYS.
-              
+
+ --[_] socket.io - play audio/video online. 
+
+     --[_] short videos on forms/ social media.
+
+--[_] voice record / streaming / authentication / sentient analisys.
+
 ////////////////////////////////////////////////////////////////////////////////
