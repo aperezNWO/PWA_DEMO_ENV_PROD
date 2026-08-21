@@ -132,6 +132,8 @@ export const PAGE_CURRICULUM_DJANGO_PYTHON       = 'PAGE_CURRICULUM_DJANGO_PYTHO
 
 export const PAGE_CURRICULUM_SHELF_DART          = 'PAGE_CURRICULUM_SHELF_DART';
 
+export const PAGE_CURRICULUM_SPRING_BOOT_KOTLIN   = 'PAGE_CURRICULUM_SPRING_BOOT_KOTLIN';
+
 ////////////////////////////////////////////////////////////////////////////
 
 export const PAGE_DEMOS_LENGUAJES_INDEX         = "PAGE_DEMOS_LENGUAJES_INDEX";
@@ -149,6 +151,8 @@ export const PAGE_DEMOS_NODEJS_JAVASCRIPT        = 'PAGE_DEMOS_NODEJS_JAVASCRIPT
 export const PAGE_DEMOS_ANGULAR_JAVASCRIPT       = 'PAGE_DEMOS_ANGULAR_JAVASCRIPT';
 
 export const PAGE_DEMOS_DART_SHELF               = 'PAGE_DEMOS_DART_SHELF';
+
+export const PAGE_DEMOS_SPRING_BOOT_KOTLIN       = 'PAGE_DEMOS_SPRING_BOOT_KOTLIN';
 
 ////////////////////////////////////////////////////////////////////////////
 
