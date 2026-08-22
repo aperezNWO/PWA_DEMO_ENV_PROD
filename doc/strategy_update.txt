@@ -47,7 +47,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[x] FRACTAL
 
-            --[_] MOVE GAME CORE TO KOTLIN
+            --[_] CONTAC FORM FLUTTER.
+
+            --[_] MOVE GAME CORE TO KOTLIN.
 
  --[_] INSTALL .NET CORE DEV ENV.
 
