@@ -20,7 +20,7 @@ interface GroqModel {
 })
 export class LLMApiTestingComponent  extends BaseReferenceComponent  {
   //
-  apiKey = signal<string>('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');
+  apiKey = signal<string>('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');
   prompt         = signal<string>('Latest Stable C++ Version');
   responseStream = signal<string>('');
   isLoading      = signal<boolean>(false);
