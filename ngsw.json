@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1787513128031,
+  "timestamp": 1787515589169,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -92,8 +92,8 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "404c7c581bb91cf64ca08c25cbd06478e7ccce5d",
-    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "bc057d7597c840d06b22b448f822f7033b2e6618",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "3212112c0b8d7dbad2e0e8511f998914e38eda3d",
+    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "08904eb0aedb9ae7fa8e975de1ac7dfec3519c3d",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "322e77aa4398525af8feafcc43878bc6855315ac",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "930b1bb67aacd91a98c1613ff7fb92cce7367553",
@@ -106,7 +106,7 @@
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json": "c5cb47a936b0f9bc39bd5fcebfaf615e8cf8c497",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "df481ad31d3f0368a247d8a8aad2333c462aef0f",
     "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Curriculum_base.json": "97d170e1550eee4afc0af065b78cda302a97674c",
-    "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Demos_base.json": "757507e491831c0e652154739d8d5534490aab49",
+    "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Demos_base.json": "b09ec87c6656e120fcc9141a50835d85edc9db80",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_Curriculum_base.json": "989628b99da2028ff7ee8b8407d82420bf6b108a",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "bb2fbbaf736d5960323712e8c5cc8ddecbafbdb3",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Curriculum_base.json": "d9a5f04e6eb21310eab505a8c000ac28a6b050bb",

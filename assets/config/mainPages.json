@@ -41,8 +41,8 @@
           { "id": 4, "url" : "/GridParam"         , "text": "[.NET CORE / C++]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CPP'}"           },
           { "id": 5, "url" : "/GridParam"         , "text": "[SPRING BOOT / JAVA ]"            , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
           { "id": 6, "url" : "/GridParam"         , "text": "[DJANGO / PYTHON]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
-          { "id": 7, "url" : "/GridParam"         , "text": "[SHELF /  DART ]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            },
-          { "id": 8, "url" : "/GridParam"         , "text": "[SPRING BOOT /  KOTLIN ]"         , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"            }                         
+          { "id": 7, "url" : "/GridParam"         , "text": "[SPRING BOOT /  KOTLIN ]"         , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"    },                         
+          { "id": 8, "url" : "/GridParam"         , "text": "[SHELF /  DART ]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }
         ],
       "comment_2"        : "'page_nested' values for  dynamic landing. queryParam explicit 'pageName' param requiered for /Gridparam.",
       "pages_nested"     : [
@@ -52,8 +52,8 @@
           { "id": 4, "url" : "", "text": "./assets/images/logos/ISO_C%2B%2B_Logo.svg.png"                       , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CPP'}"           },
           { "id": 5, "url" : "", "text": "./assets/images/logos/Microsoft.VisualStudio.Services.Icons.Default"  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
           { "id": 6, "url" : "", "text": "./assets/images/logos/Python-logo-notext.svg"                         , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
-          { "id": 7, "url" : "", "text": "./assets/images/logos/Dart-logo.png"                                  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            },
-          { "id": 8, "url" : "", "text": "./assets/images/logos/Kotlin_icon_(2016-2021).svg"                    , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"    }
+          { "id": 7, "url" : "", "text": "./assets/images/logos/Kotlin_icon_(2016-2021).svg"                    , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"    },
+          { "id": 8, "url" : "", "text": "./assets/images/logos/Dart-logo.png"                                  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }
         ]
       },
       {
@@ -92,9 +92,8 @@
             { "id": 4, "url" : "/GridParam"               , "text": "[Curriculum - SpringBoot / Java]"                         , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SPRING_BOOT_JAVA'}"    },
             { "id": 5, "url" : "/GridParam"               , "text": "[Curriculum - Node.js    / Javascript]"                   , "queryParams" : "{pageName : 'PAGE_CURRICULUM_NODE_JS'}"             },
             { "id": 6, "url" : "/GridParam"               , "text": "[Curriculum - .Net core  / C#]"                           , "queryParams" : "{pageName : 'PAGE_CURRICULUM_NET_CORE'}"            },
-            { "id": 7, "url" : "/GridParam"               , "text": "[Curriculum - Shelf      / Dart]"                         , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SHELF_DART'}"          },                 
-            { "id": 7, "url" : "/GridParam"               , "text": "[Curriculum - SpringBoot / Kotlin]"                       , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SPRING_BOOT_KOTLIN'}"  }                 
-
+            { "id": 7, "url" : "/GridParam"               , "text": "[Curriculum - SpringBoot / Kotlin]"                       , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SPRING_BOOT_KOTLIN'}"  },                 
+            { "id": 8, "url" : "/GridParam"               , "text": "[Curriculum - Shelf      / Dart]"                         , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SHELF_DART'}"          }                 
           ]
       },
       {
