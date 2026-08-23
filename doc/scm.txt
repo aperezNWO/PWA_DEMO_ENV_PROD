@@ -86,18 +86,6 @@ $env:GH_TOKEN = "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"
 npx angular-cli-ghpages --dir=dist\PWA_DEMO_ENV_PROD\browser --name="aperezNWO" --email="alejandro.perez.acosta@hotmail.com" --repo="https://aperezNWO:$($env:GH_TOKEN)@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git"
 
 *****************************************************************
-*********** GENERATE DOC ****************************************
-*****************************************************************
-
-https://github.com/aperezNWO/pwa_demo_env_prod
-
-https://deepwiki.com/aperezNWO/pwa_demo_env_prod
-
-https://app.devin.ai/org/pablo-alejandro-perez-acosta/wiki/aperezNWO/PWA_DEMO_ENV_PROD?branch=main
-
-ALWAYS INDEX RECENTLY IMPORTED GITHUB REPOSTORIES AND REPEAT IMPORT USING REPO_00XX NOMENCLATURE
-
-*****************************************************************
 *********** HOSTING *********************************************
 *****************************************************************
 
@@ -220,41 +208,6 @@ https://django-setup-linux-latest.onrender.com
 
                -- [>] codesandbox.io
 
-***********************************************************
-************** GIT ****************************************
-***********************************************************
-
-/////////////////////////////////////////////////////////////////
-// GIT COMMANDS
-/////////////////////////////////////////////////////////////////
-
-git add * && git commit -m"Application ASP_NET_CORE_CPP_ENTRY v[1.0.11]" -m"1) TIC TAC TOE A.I. Entry Points " -a && git push && git pull
-
-git add * 
-git commit -m"Application [ANGULAR DEMO - ENV_PROD] v[2.4.14]" -m"1) TETRIS A.I." -a
-git push 
-git pull
-
-npm run package-and-publish 
-
-
-In your component, add this before applyMove():
-console.log('Before applyMove:', { action, board: JSON.stringify(this.board.slice(0, 2)) });
-After drawPieceOnBoard(), add:
-console.log('After draw:', { position: this.currentPiece?.position, boardTop: this.board[0].slice(0, 5) });
-
-/////////////////////////////////////////////////////////////////
-// GIT HUB PAGES
-/////////////////////////////////////////////////////////////////
-
-  # Deploy the built application to GitHub Pages
-  (_) npx ngh --dir=dist/angular-dijkstra
-  (_) ngh --dir=dist/angular-dijkstra
-  (_) npm run publish              (custom task).
-  (_) npm run package-and-publish  (custom task).
-
-/////////////////////////////////////////////////////////////////
-
 =====================================================================
 -- ERRORS
 =====================================================================
@@ -271,11 +224,11 @@ console.log('After draw:', { position: this.currentPiece?.position, boardTop: th
 
             -- [_] free docker hosting.
 
-            -- [_] vercel, huroku, others.
+            -- [_] render, heroku, FLY.IO, OTHERS.
         
    --  [_]  FIREBASE STUDIO TEST 
 
-         --{_} I.A. Styudio.
+         --{_} I.A. Studio.
         
          --{_} Google cloud dev.
 
@@ -328,95 +281,4 @@ console.log('After draw:', { position: this.currentPiece?.position, boardTop: th
 
                 --[_] https://github.github.com/gfm/
 
- --[_] CHECK ANGULAR warnings.
-
- -- [_] owasp online check for vulnerabilities.
-
-        --[_]  https://www.veracode.com
-
--- [_] errors:
-
-        -- [_]  TWEEN LINK ERROR AT DESIGN TIME.
-        -- [_]  Uncaught (in promise) Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
-        -- [_]  PWA_DEMO_ENV_PROD/#/:1 Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
-        -- [_]  PWA_DEMO_ENV_PROD/#/:1 Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
-
--- [_] warnings:
-
-        -- [_] COMPILATION WARNINGS : BAILOUTS 
-
-        -- [_] COMPILATION WARNINGS : PAGE WEIGHT 
-/*
-
-Yes, **alternatives exist** that do not enforce the aggressive 15-minute "scale-to-zero" (sleep mode) that Render imposes on its free tier.
-
-Running **three separate backend applications** (J2SE, Python, Node.js) on free PaaS accounts presents a minor challenge because free tiers usually limit memory (RAM) or total instances. However, several hosting alternatives allow deploying Dockerized applications without dealing with cold starts.
-
----
-
-## Top Alternatives to Render (No Inactivity Sleep)
-
-### 1. Fly.io (Best PaaS Alternative)
-
-Fly.io runs Docker containers directly on lightweight microVMs.
-
-* **Sleep Behavior:** Fly.io allows small shared machines to run **24/7 without sleeping** as long as they stay within the free tier resource allowance.
-* **Free Resources:** Offers enough compute credits to run up to 3 small `256MB` containers simultaneously.
-* **Docker Support:** Exceptional. You can deploy directly from your Docker Hub images or `Dockerfile`s using their CLI tool (`flyctl`).
-
-### 2. Oracle Cloud "Always Free" Tier (Best Raw Performance)
-
-Oracle Cloud's free offering is widely regarded as one of the most generous in the cloud industry.
-
-* **Sleep Behavior:** **No sleep mode ever.** It is a full Virtual Private Server (VPS), not serverless hosting.
-* **Free Resources:** You get up to **4 OCPUs and 24 GB of RAM** (Ampere ARM architecture) completely free forever.
-* **Why it fits your architecture:** Because you get a full Linux server, you can install Docker and Docker Compose on it and run all three backends (J2SE, Python, Node.js) alongside a reverse proxy (like Nginx or Caddy) on a single instance without splitting them across services.
-
-### 3. Google Cloud Run (Serverless with "Minimum Instances")
-
-Google Cloud Run scales containers automatically based on incoming HTTP requests.
-
-* **Sleep Behavior:** By default, it scales to zero. However, Cloud Run allows setting a **`minimum-instances = 1`** setting.
-* **Free Resources:** Generous free tier includes 2 million requests per month.
-* *Note:* Setting minimum instances uses continuous CPU time, which may slowly consume your monthly free CPU allocation if left on constantly for all 3 apps.
-
----
-
-## Quick Comparison Summary
-
-| Platform | Does it Sleep? | Deployment Method | RAM Limit (Free) | Best for... |
-| --- | --- | --- | --- | --- |
-| **Render (Current)** | **Yes** (After 15 min) | Docker Hub / Git | 512 MB | Basic single-container apps |
-| **Fly.io** | **No** (Configurable) | CLI / Dockerfile | ~256 MB x 3 VMs | Seamless PaaS transition from Render |
-| **Oracle Cloud** | **No** (Full VPS) | Docker / Docker Compose | 24 GB RAM | Running all 3 backends on 1 box |
-| **Google Cloud Run** | **Configurable** (`min-instances`) | Docker Registry / Artifact Reg | Pay-as-you-go / Generous Free Tier | High-traffic event-driven APIs |
-
----
-
-## Recommended Strategy for Your Stack
-
-Since you have **three distinct backend applications** (Java/J2SE, Python, and Node.js):
-
-1. **Option A (Lowest Friction - Fly.io):** Deploy each of your Docker Hub images as a separate app on Fly.io. Set `auto_stop_machines = false` in your `fly.toml` configuration to prevent them from going to sleep. Keep an eye on memory usage, particularly for the J2SE app, as Java runtimes can be RAM-heavy.
-
-2. **Option B (Most Reliable - Oracle Cloud Always Free VPS):** Claim an Oracle Cloud Always Free ARM instance, install Docker Compose, and spin up all three containers using a single `docker-compose.yml` file. This completely eliminates cold starts across all backends permanently and gives you enough RAM to run J2SE smoothly.
-
-
-*/
-
-/////////////////////////////////////////////////////////////////
-
-    {
-        "id"               : 14,
-        "done"             : true,
-        "name"             : "Fractal Demo / .net core endpoint",
-        "description"      : "Fractal Demo / .net core endpoint",
-        "field_1"          : ".net core, c++, Fractal, opencv, julia",
-        "field_2"          : "./#/FractalDemo",
-        "field_3"          : "https://github.com/aperezNWO/ASP_NET_CORE_CPP_ENTRY/blob/8a465f7d3c40159b1d75c528291da7dcf764868a/ASP_NET_CORE_CPP_ENTRY/Controllers/HomeController.cs#L497",
-        "field_4"          : "{{baseUrlNetCoreCPPEntry}}api/computervision/generatejuliaparams/?maxIterations=500&realPart=-0.4&imagPart=0.6",
-        "field_6"          : "https://learn.microsoft.com/es-es/dotnet/api/system.runtime.interopservices.dllimportattribute?view=net-9.0",
-        "field_10"         : "97411cbf-d80a-4d7a-92dc-f88d158ae552"
-    },
-
-/////////////////////////////////////////////////////////////////
+ /////////////////////////////////////////////////////////////////
