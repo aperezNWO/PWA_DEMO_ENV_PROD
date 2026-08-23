@@ -1387,6 +1387,14 @@
 
         --[x] COMPLETE CSV / XLS DEMO. FIX ID_COLUMN CAPITALIZATION
 
+ --[x] disable "predict" functionality on python.
+
+        --[_] pretrain python / tensorflow models.
+
+ --[x] DART / KOTLIN LANGUAGES LIST.
+
+ --[x] DART / KOTLIN LOGO.
+
 /////////////////////////////////////////////////////////
 -- [_] LANG_XXX_DEMO_ENV_XXX INFRASTRUCTURE
 /////////////////////////////////////////////////////////
