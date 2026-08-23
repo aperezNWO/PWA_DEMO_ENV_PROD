@@ -1,6 +1,18 @@
 *********************************************************************
 ** Software Configuration Management
 *********************************************************************
+ 
+/////////////////////////////////////////////////////////////////
+// TECHNICAL DOCS
+/////////////////////////////////////////////////////////////////
+
+-- [_] PRIVATE LINK (USE github accounts : aperezNWO, aperezNWOGmail, Exam70486, Protonmail):
+
+        -- [_] https://app.devin.ai/org/pablo-alejandro-perez-acosta/wiki/aperezNWO/PWA_DEMO_ENV_PROD?branch=main
+
+-- [_] PUBLIC LINK
+
+        -- [_] https://deepwiki.com/{{github_account}}/PWA_DEMO_ENV_PROD
 
 /////////////////////////////////////////
 // git

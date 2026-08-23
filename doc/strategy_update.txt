@@ -9,34 +9,6 @@ r///////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
 
- --[_] URL and navigation fixes.
-
-       --[_] disable "predic" functionality on python.
-
-       --[_] Add Dart links.
-
-       --[_] Add kotlin links.
-
-       --[_] SCM.
-
-            --[_] Devin doc.
-
-            --[_] RENDER.
-
-            --[_] DOCKER.
-
-            --[_] CRON JOB.
-
-            --[_] FLUTTER DEMO.
-
-       --[_] LANGUAGES LIST.
-
-       --[_] DART LOGO.
-
-       --[_] ABOUT.
-
-            --[_] RENDER / Kotlin VERSION.
-
  --[_] full stack demo languages.
 
        --[_] DART 
@@ -70,5 +42,39 @@ r///////////////////////////////////////////////////////////////////////////////
      --[_] short videos on forms/ social media.
 
 --[_] voice record / streaming / authentication / sentient analisys.
+
+ --[_] URL and navigation fixes.
+
+       --[x] disable "predict" functionality on python.
+
+       --[_] SCM.
+
+            --[_] Devin doc replace from config value {{devinDoc}}.
+
+            --[_] url Repo  replace from config value {{devinDoc}}.
+
+            --[_] RENDER.
+
+            --[_] DOCKER.
+
+            --[_] CRON JOB.
+
+            --[_] FLUTTER DEMO.
+
+       --[x] LANGUAGES LIST.
+
+       --[x] DART LOGO.
+
+       --[_] ABOUT.
+
+            --[_] RENDER / Kotlin VERSION.
+
+            --[x] Devin doc   FROM CONFIG.
+
+            --[x] gitHub Repo FROM CONFIG.
+
+       --[_] Add Dart links.
+
+       --[_] Add kotlin links.
 
 ////////////////////////////////////////////////////////////////////////////////

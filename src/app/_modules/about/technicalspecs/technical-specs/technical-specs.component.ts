@@ -43,18 +43,21 @@ export class TechnicalSpecsComponent extends BaseComponent {
     //
     guid = signal<string>(''); // Signal to hold the GUID
     //
-    public get _baseUrlNetCoreSwagger(): string {
+    public get _baseUrlNetCoreSwagger(): string | undefined {
       //
       return this.__baseUrlNetCoreSwagger;
     }
     //
-    public get _baseUrlNetCoreCPPSwagger(): string {
+    public get _baseUrlNetCoreCPPSwagger(): string | undefined {
       //
       return this.__baseUrlNetCoreCPPSwagger;
     }
-    protected __baseUrlNetCoreSwagger    : string = `${this.configService.getConfigValue('baseUrlNetCore')}swagger`;
-    protected __baseUrlNetCoreCPPSwagger : string = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}swagger`;
-    protected _repo                      : string = `https://github.com/aperezNWO/PWA_DEMO_ENV_PROD`;
+    protected __baseUrlNetCoreSwagger    : string | undefined = `${this.configService.getConfigValue('baseUrlNetCore')}swagger`;
+    protected __baseUrlNetCoreCPPSwagger : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}swagger`;
+    protected _githubRepo                : string | undefined = `${this.configService.getConfigValue('gitHubRepo')}`;
+    //This is the root path for the technical documentation on DeepWiki 
+    protected _techDocRoot               : string | undefined = `${this.configService.getConfigValue('techDocRoot')}`;
+    protected _techDoc                   : string | undefined = `${this.configService.getConfigValue('techDocRegex').replace('{techDocRoot}', this._techDocRoot ?? '')}`;
     ////////////////////////////////////////////////////////////////  
     // [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  
