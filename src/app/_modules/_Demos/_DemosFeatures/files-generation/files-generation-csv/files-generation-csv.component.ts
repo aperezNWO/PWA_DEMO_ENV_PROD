@@ -418,7 +418,7 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
         this.__languajeList.push(new _languageName(2, '(Node.js     / JavaScript)'     , false ,"JS"   ));
         this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
         this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KT"   ));  
-        this.__languajeList.push(new _languageName(5, '(Django      / Pytnon)'         , false ,"PY"   ));    
+        this.__languajeList.push(new _languageName(5, '(Django      / Python)'         , false ,"PY"   ));    
 
         //
         let langName = params['langName'] ? params['langName'] : "" ;
