@@ -34,5 +34,17 @@
         "field_6"          : "https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/",
         "field_4"          : "{{baseUrlSpringBoot_Kotlin}}GenerateRandomVertex_SpringBoot",
         "field_10"         : "1e32e88d-da6c-429a-b326-22056574e8a4"			
+    },
+    {
+		"id"               : 4,
+        "done"             : true,
+        "name"             : "Fractal Demo",
+        "description"      : "Fractal Demo",
+        "field_1"          : "Spring Boot, REST service, Fractals, Julia, Maldelbrot, Barsley Fern",
+        "field_2"          : "./#/FractalDemo?langName=KT",
+        "field_3"          : "https://github.com/aperezNWO/KOTLIN_DEMO_002/blob/main/src/main/kotlin/com/example/pingapi/FractalEngine.kt",
+        "field_6"          : "https://en.wikipedia.org/wiki/Fractal",
+        "field_4"          : "{{baseUrlSpringBoot_Kotlin}}api/fractals/generate?kind=1",
+        "field_10"         : "6eed9cf9-dda3-467f-8bb1-abf1302819ac"			
     }
 ]       

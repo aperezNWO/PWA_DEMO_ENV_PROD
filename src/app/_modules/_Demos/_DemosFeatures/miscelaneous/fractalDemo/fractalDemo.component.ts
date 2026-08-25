@@ -262,9 +262,49 @@ constructor(
 
   // ── Lifecycle ─────────────────────────────────────────────────────────────
 
+  // Maps a short, URL-friendly code (?langName=KT) to the actual languageCode
+  // used internally in backendCapabilities. Keys are matched case-insensitively.
+  private readonly LANG_QUERY_PARAM_MAP: { [key: string]: string } = {
+    'TS'   : 'typescript',
+    'KT'   : 'Kotlin',
+    'DART' : 'Dart',
+    'JS'   : 'nodejs',
+    'NODE' : 'nodejs',
+    'JAVA' : 'j2se',
+    'J2SE' : 'j2se',
+    'CPP'  : 'cpp',
+  };
+
   ngOnInit(): void {
-    this.selectedImplementation = 'typescript';
+    this.selectedImplementation = this._resolveImplementationFromQueryParam() ?? 'typescript';
     this.onLanguageChange();
+  }
+
+  /**
+   * Reads ?langName=XX from the current URL and resolves it to a
+   * backendCapabilities.languageCode. Falls back to null (→ default
+   * 'typescript') if the param is missing, unrecognized, or maps to a
+   * backend that's currently disabled (e.g. ?langName=CPP while C++ is
+   * on hold) — never silently selects something the dropdown itself
+   * wouldn't offer.
+   */
+  private _resolveImplementationFromQueryParam(): string | null {
+    const raw = this.route.snapshot.queryParamMap.get('langName');
+    if (!raw) return null;
+
+    const mappedCode = this.LANG_QUERY_PARAM_MAP[raw.toUpperCase()];
+    if (!mappedCode) {
+      console.warn(`[FractalDemo] Unknown langName query param "${raw}" — falling back to default.`);
+      return null;
+    }
+
+    const backend = this.backendCapabilities.find(b => b.languageCode === mappedCode);
+    if (!backend || !backend.enabled) {
+      console.warn(`[FractalDemo] langName "${raw}" resolves to a disabled or unknown backend — falling back to default.`);
+      return null;
+    }
+
+    return backend.languageCode;
   }
 
   ngOnDestroy(): void {

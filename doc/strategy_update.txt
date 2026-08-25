@@ -50,6 +50,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] URL and navigation fixes.
 
+       --[_] UPDATE FRACTAL LINKS.
+
        --[_] SCM.
 
             --[_] Devin doc replace from config value {{devinDoc}}.
@@ -120,9 +122,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[=>] param URL.                     
                 
-                --[=>] Dijkstra.
+                --[x] Dijkstra.
 
-                      --[=>] Update References.
+                      --[x] Update References.
                 
                 --[x] XLS DEMO.
 
