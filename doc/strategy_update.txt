@@ -124,9 +124,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[=>] Update References.
                 
-                --[=>] XLS DEMO.
+                --[x] XLS DEMO.
 
-                      --[=>] Update References.
+                      --[x] Update References.
 
                 --[X] CSV DEMO.
 
