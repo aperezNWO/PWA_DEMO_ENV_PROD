@@ -9,6 +9,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
 
+
  --[_] full stack demo languages.
 
        --[_] DART 
@@ -37,11 +38,15 @@ r///////////////////////////////////////////////////////////////////////////////
 
        --[_] ADD LINKS TO KEYS.
 
+       --[_] About llm ==> llm testing link.
+
+       --[_] https://faraday.ai/
+
  --[_] socket.io - play audio/video online. 
 
      --[_] short videos on forms/ social media.
 
---[_] voice record / streaming / authentication / sentient analisys.
+     --[_] voice record / streaming / authentication / sentient analisys.
 
  --[_] URL and navigation fixes.
 
@@ -112,6 +117,8 @@ r///////////////////////////////////////////////////////////////////////////////
                 --[=>] Fractal.
 
                       --[=>] Update References.
+
+                      --[=>] param URL.                     
                 
                 --[=>] Dijkstra.
 
@@ -121,8 +128,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[=>] Update References.
 
-                --[=>] CSV DEMO.
+                --[X] CSV DEMO.
 
-                      --[=>] Update References.
+                      --[X] Update References.
 
 ////////////////////////////////////////////////////////////////////////////////

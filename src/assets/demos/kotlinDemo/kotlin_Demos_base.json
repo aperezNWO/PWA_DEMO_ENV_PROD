@@ -10,5 +10,29 @@
         "field_4"          : "{{baseUrlSpringBoot_Kotlin}}api/data/getAllPersons"  ,
         "field_6"          : "https://docs.spring.io/spring-boot/reference/data/sql.html",
         "field_10"         : "eef5f818-83a7-4331-a4fa-7b17b08657b5"		
+    },
+    {
+		"id"               : 2,
+        "done"             : true,
+        "name"             : "[SQL QUERY DEMO - XLS]",
+        "description"      : "Quering MS SQL Server Database- Generate XLS File",
+        "field_1"          : "Spring Boot, Kotlin, REST Service, MS SQL SERVER",
+        "field_2"          : "./#/FilesGenerationXLS?langName=KT",
+        "field_3"          : "https://github.com/aperezNWO/KOTLIN_DEMO_002/blob/main/src/main/kotlin/com/example/DAO/AccessLogDAO.kt",
+        "field_4"          : "{{baseUrlSpringBoot_Kotlin}}api/data/getAllLogs"  ,
+        "field_6"          : "https://docs.spring.io/spring-boot/reference/data/sql.html",		
+        "field_10"         : "9daff8fc-0f90-44ef-b660-15cdec19f7e9"	
+    },
+    {
+		"id"               : 3,
+        "done"             : true,
+        "name"             : "Shortest Path Algorithm",
+        "description"      : "Shortest Path Algorithm",
+        "field_1"          : "Spring Boot, REST service, Dijkstra",
+        "field_2"          : "./#/AlgorithmDijkstra?langName=KT",
+        "field_3"          : "https://github.com/aperezNWO/KOTLIN_DEMO_002/blob/main/src/main/kotlin/com/example/pingapi/AlgorithmManager.kt",
+        "field_6"          : "https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/",
+        "field_4"          : "{{baseUrlSpringBoot_Kotlin}}api/data/GenerateRandomVertex_SpringBoot",
+        "field_10"         : "1e32e88d-da6c-429a-b326-22056574e8a4"			
     }
 ]       
