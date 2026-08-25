@@ -32,7 +32,7 @@
         "field_2"          : "./#/AlgorithmDijkstra?langName=KT",
         "field_3"          : "https://github.com/aperezNWO/KOTLIN_DEMO_002/blob/main/src/main/kotlin/com/example/pingapi/AlgorithmManager.kt",
         "field_6"          : "https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/",
-        "field_4"          : "{{baseUrlSpringBoot_Kotlin}}api/data/GenerateRandomVertex_SpringBoot",
+        "field_4"          : "{{baseUrlSpringBoot_Kotlin}}GenerateRandomVertex_SpringBoot",
         "field_10"         : "1e32e88d-da6c-429a-b326-22056574e8a4"			
     }
 ]       
