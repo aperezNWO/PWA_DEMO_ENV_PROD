@@ -44,7 +44,7 @@
         "field_2"          : "./#/FractalDemo?langName=KT",
         "field_3"          : "https://github.com/aperezNWO/KOTLIN_DEMO_002/blob/main/src/main/kotlin/com/example/pingapi/FractalEngine.kt",
         "field_6"          : "https://en.wikipedia.org/wiki/Fractal",
-        "field_4"          : "{{baseUrlSpringBoot_Kotlin}}api/fractals/generate?kind=1",
+        "field_4"          : "{{baseUrlSpringBoot_Kotlin}}api/fractals/generate?kind=3",
         "field_10"         : "6eed9cf9-dda3-467f-8bb1-abf1302819ac"			
     }
 ]       
