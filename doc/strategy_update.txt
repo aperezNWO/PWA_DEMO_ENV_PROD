@@ -50,6 +50,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] URL and navigation fixes.
 
+       --[_] dart / kotlin curriculums.
+
        --[_] UPDATE FRACTAL LINKS.
 
        --[_] SCM.
