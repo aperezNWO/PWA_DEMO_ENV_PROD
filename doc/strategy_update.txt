@@ -27,10 +27,6 @@ r///////////////////////////////////////////////////////////////////////////////
 
        --[_] GITHUB CODESPPACES  / VM.
 
- --[_] INSTALL .NET CORE DEV ENV.
-
-       --[_] GITHUB CODESPPACES  / VM.
-
  --[_] COMPLETE LLM DEMO.
 
        --[_] MERGE DEMOS.
@@ -42,6 +38,8 @@ r///////////////////////////////////////////////////////////////////////////////
        --[_] https://faraday.ai/
 
       --[_]  groq Compound Mini is being decommissioned - enabled attribute.
+
+      --[_] https://www.liquid.ai/models
 
  --[_] socket.io - play audio/video online. 
 
@@ -138,5 +136,15 @@ r///////////////////////////////////////////////////////////////////////////////
                 --[X] CSV DEMO.
 
                       --[X] Update References.
+
+ --[_] RENSTALL C++ DEV ENVS.
+
+       --[x] CPP_GCC_ALGORITHM.
+
+       --[x] CPP_GCC_TESSERACT.
+
+       --[=>] CPP_GCC_OPEN_CV.
+
+       --[_] CPP_GCC_TENSORFLOW.       
 
 ////////////////////////////////////////////////////////////////////////////////
