@@ -38,8 +38,8 @@
     {
 		"id"               : 4,
         "done"             : true,
-        "name"             : "Fractal Demo",
-        "description"      : "Fractal Demo",
+        "name"             : "Fractal Demo - Benchmark",
+        "description"      : "Fractal Demo ",
         "field_1"          : "Spring Boot, REST service, Fractals, Julia, Maldelbrot, Barsley Fern",
         "field_2"          : "./#/FractalDemo?langName=KT",
         "field_3"          : "https://github.com/aperezNWO/KOTLIN_DEMO_002/blob/main/src/main/kotlin/com/example/pingapi/FractalEngine.kt",
