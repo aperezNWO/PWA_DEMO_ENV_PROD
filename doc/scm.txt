@@ -101,6 +101,8 @@ https://hub.docker.com/repositories/apereznwogmail
 
         -- [_] accounts : gmail, hotmail (github). (limited time usage and inactivity sleep behaviour for free accounts).
 
+        -- [_] CHECK WORKSPACES PER ACCOUNT
+
         -- [_] https://dashboard.render.com/
 
 -- [_] 3) publish job on cronjobs to override render sleep / inactivity behaviour for free accounts.
@@ -148,6 +150,18 @@ docker push apereznwogmail/django_setup_linux:tagname
 docker.io/apereznwogmail/django_setup_linux:latest
 
 https://django-setup-linux-latest.onrender.com 
+
+------------
+
+docker push apereznwogmail/ping-api:tagname
+
+docker.io/apereznwogmail/ping-api:latest
+
+------------
+
+docker push apereznwogmail/dart-zero-endpoint:tagname
+
+docker.io/apereznwogmail/dart-zero-endpoint:latest
 
 /////////////////////////////////////////////////////////////////
 // ENVINRONMENT LIST
@@ -277,7 +291,7 @@ https://django-setup-linux-latest.onrender.com
 
         -- [_] PROJECTS.
 
-        --[_]  git hub landing page / md file
+        -- [_]  git hub landing page / md file
 
                 --[_] https://github.github.com/gfm/
 
