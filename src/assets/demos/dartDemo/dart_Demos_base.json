@@ -1,6 +1,18 @@
 [
         {
-		"id"               : 4,
+		"id"               : 3,
+        "done"             : true,
+        "name"             : "Shortest Path Algorithm",
+        "description"      : "Shortest Path Algorithm",
+        "field_1"          : "Dart, Shelf, REST service, Dijkstra",
+        "field_2"          : "./#/AlgorithmDijkstra?langName=DART",
+        "field_3"          : "https://github.com/aperezNWO/DART_DEMO_002/blob/main/bin/algorithm_manager.dart",
+        "field_6"          : "https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/",
+        "field_4"          : "{{baseUrlDart}}GenerateRandomVertex_SpringBoot",
+        "field_10"         : "1c374744-6ea3-45a2-bb5c-c6e716e9e750"			
+    },
+    {
+		"id"               : 2,
         "done"             : true,
         "name"             : "Fractal Demo - Benchmark",
         "description"      : "Fractal Demo ",
