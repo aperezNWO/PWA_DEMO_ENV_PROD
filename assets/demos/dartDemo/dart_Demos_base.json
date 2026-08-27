@@ -1,3 +1,14 @@
 [
-    
+        {
+		"id"               : 4,
+        "done"             : true,
+        "name"             : "Fractal Demo - Benchmark",
+        "description"      : "Fractal Demo ",
+        "field_1"          : "Dart, Shelf, REST service, Fractals, Julia, Maldelbrot, Barsley Fern",
+        "field_2"          : "./#/FractalDemo?langName=DART",
+        "field_3"          : "https://github.com/aperezNWO/DART_DEMO_002/blob/main/bin/fractal_engine.dart",
+        "field_6"          : "https://en.wikipedia.org/wiki/Fractal",
+        "field_4"          : "{{baseUrlDart}}api/fractals/generate?kind=3&width=800&height=600&maxIterations=1000&zoom=1.0&centerX=0.0&centerY=0.0",
+        "field_10"         : "be7eb1da-4a54-4ce5-8827-9b47c60afc9b"			
+    }
 ]
