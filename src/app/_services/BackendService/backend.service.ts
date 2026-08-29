@@ -170,7 +170,7 @@ export class BackendService extends BaseService implements OnInit {
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
-    getAllLogsGoLang(_searchCriteria: SearchCriteria): Observable<string> {
+  getAllLogsGoLang(_searchCriteria: SearchCriteria): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlGoLang')}api/data/getAllLogs`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }

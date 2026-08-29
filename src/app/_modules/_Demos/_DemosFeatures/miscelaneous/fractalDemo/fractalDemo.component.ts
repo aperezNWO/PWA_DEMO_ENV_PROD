@@ -186,12 +186,38 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
     }
   },
-   {
+  {
     backendLanguage   : BackendLanguage.DART,
     languageCode      : 'Dart',
     label             : 'Dart (Shelf)',
     icon              : '🟣',
     description       : 'Runs on Shelf Engine',
+    enabled           : true,
+    supportedFractals : {
+      [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]        : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
+    }
+  },
+  {
+    backendLanguage   : BackendLanguage.GOLANG,
+    languageCode      : 'golang',
+    label             : 'Go (net-http)',
+    icon              : '🟣',
+    description       : 'Runs on native net/http Engine',
+    enabled           : true,
+    supportedFractals : {
+      [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]        : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
+    }
+  },
+  {
+    backendLanguage   : BackendLanguage.RUSTLANG,
+    languageCode      : 'rustlang',
+    label             : 'Rust (Actix-web)',
+    icon              : '🟣',
+    description       : 'Runs on Actix-web ',
     enabled           : true,
     supportedFractals : {
       [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
@@ -273,6 +299,8 @@ constructor(
     'JAVA' : 'j2se',
     'J2SE' : 'j2se',
     'CPP'  : 'cpp',
+    'GO'   : 'golang',
+    'RS'   : 'rustlang',
   };
 
   ngOnInit(): void {
@@ -580,7 +608,41 @@ constructor(
         serviceCall = this._fractalEngine.GetFractal(
           fractalParams
         );
-          break;
+        break;
+
+      case 'golang':
+
+         fractalParams = { 
+            ...DEFAULT_FRACTAL_PARAMS 
+            ,selectedBackend  : BackendLanguage.J2SE
+            ,selectedFractal  : this.selectedFractal
+            ,maxIterations    : this.maxIterations
+            ,isZoomable       : this._buildBounds()
+            ,serverZoomIn     : this.serverZoomIn
+            ,serverZoomFactor : this.serverZoomFactor
+        };
+
+        serviceCall = this._fractalEngine.GetFractal(
+          fractalParams
+        );
+      break;  
+
+      case 'rustlang':
+
+        fractalParams = { 
+              ...DEFAULT_FRACTAL_PARAMS 
+              ,selectedBackend  : BackendLanguage.J2SE
+              ,selectedFractal  : this.selectedFractal
+              ,maxIterations    : this.maxIterations
+              ,isZoomable       : this._buildBounds()
+              ,serverZoomIn     : this.serverZoomIn
+              ,serverZoomFactor : this.serverZoomFactor
+          };
+
+          serviceCall = this._fractalEngine.GetFractal(
+            fractalParams
+          );
+      break;  
 
       case 'cpp':
         serviceCall = this.fractalService.GetFractal_CPP(

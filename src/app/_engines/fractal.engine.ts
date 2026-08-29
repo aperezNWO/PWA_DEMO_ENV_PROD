@@ -20,6 +20,8 @@ export enum BackendLanguage {
   J2SE           = 4,
   KOTLIN         = 5,
   DART           = 6,
+  GOLANG         = 7,
+  RUSTLANG       = 8,
 }
 
 export enum FractalType {

@@ -24,6 +24,8 @@ export class FractalService extends BaseService {
   private readonly __baseUrlJ2seFractal   = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate`;
   private readonly __baseUrlKotlinFractal = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/fractals/generate`;
   private readonly __baseUrlDartFractal   = `${this._configService.getConfigValue('baseUrlDart')}api/fractals/generate`;  
+  private readonly __baseUrlGoLangFractal   = `${this._configService.getConfigValue('baseUrlGoLang')}api/fractals/generate`;  
+  private readonly __baseUrlRustLangFractal = `${this._configService.getConfigValue('baseUrlRustLang')}api/fractals/generate`;  
  
  
   // ═══════════════════════════════════════════════════════════════════════════
@@ -91,7 +93,27 @@ export class FractalService extends BaseService {
             `&maxIterations=${p_fractalParams.maxIterations}` +
             `&zoomInOut=${p_fractalParams.serverZoomIn}` +
             `&zoomStep=${p_fractalParams.serverZoomFactor}` 
-      break;      
+      break; 
+      case BackendLanguage.GOLANG :
+          url =
+            `${this.__baseUrlGoLangFractal}` +
+            `?kind=${FractalType.JULIA}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break; 
+      case BackendLanguage.RUSTLANG :
+          url =
+            `${this.__baseUrlRustLangFractal}` +
+            `?kind=${FractalType.JULIA}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;           
       default : 
           url =
             `${this.__baseUrlNodeJsFractal}julia` +
@@ -156,6 +178,26 @@ export class FractalService extends BaseService {
             `&maxIterations=${p_fractalParams.maxIterations}` +
             `&zoomInOut=${p_fractalParams.serverZoomIn}` +
             `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;    
+      case BackendLanguage.GOLANG:
+          url =
+            `${this.__baseUrlGoLangFractal}` +
+            `?kind=${FractalType.MANDELBROT}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;    
+      case BackendLanguage.RUSTLANG:
+          url =
+            `${this.__baseUrlRustLangFractal}` +
+            `?kind=${FractalType.MANDELBROT}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
       break;      
       default :
           url =
@@ -206,6 +248,24 @@ export class FractalService extends BaseService {
       break;
       case BackendLanguage.DART:
             url = `${this.__baseUrlDartFractal}` +
+            `?kind=${FractalType.BARNSLEY_FERN}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;    
+      case BackendLanguage.GOLANG:
+            url = `${this.__baseUrlGoLangFractal}` +
+            `?kind=${FractalType.BARNSLEY_FERN}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;    
+       case BackendLanguage.RUSTLANG:
+            url = `${this.__baseUrlRustLangFractal}` +
             `?kind=${FractalType.BARNSLEY_FERN}` +
             `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
             `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
