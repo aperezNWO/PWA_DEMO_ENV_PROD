@@ -2,7 +2,7 @@
     "APP INFO"                                     : "-----------------------------------------",
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "3.9.0",
+    "appVersion"                                   : "3.9.1",
     "TECHNICAL INFO"                               : "-----------------------------------------",
     "gitHubRepo"                                   : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD",
     "techDocRoot"                                  : "Exam70486", 
@@ -80,6 +80,9 @@
     "baseUrlDart"                               : "https://dart-zero-endpoint-latest-jeib.onrender.com/",
     "GO_LANG_ENV"                               : "--------------------------------------------------",
     "baseUrlGoLang_render_gmail"                : "https://golang-demo-001-latest.onrender.com/",    
-    "baseUrlGoLang"                             : "https://golang-demo-001-latest.onrender.com/"
+    "baseUrlGoLang"                             : "https://golang-demo-001-latest.onrender.com/",
+    "RUST_LANG_ENV"                             : "--------------------------------------------------",
+    "baseUrlRustLang_render_gmail"              : "https://rust-ping-api-latest.onrender.com/",    
+    "baseUrlRustLang"                           : "https://rust-ping-api-latest.onrender.com/"
 }
   
