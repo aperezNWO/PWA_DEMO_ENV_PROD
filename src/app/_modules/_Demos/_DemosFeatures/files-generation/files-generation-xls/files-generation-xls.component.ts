@@ -275,7 +275,7 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
               td_informeLogRemoto_SprinbBootJava
               .subscribe(td_observer_sprinbbootjava);
           break;
-      case 4: // SPRINGBOOT / KOTLIN
+        case 4: // SPRINGBOOT / KOTLIN
           //
           this.td_buttonCaption = "[Please wait...]";
           //
@@ -361,8 +361,86 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
           td_informeLogRemoto_PythonDjango
           .subscribe(td_observer_pythondjango);
       break;
-        default:
-          return;
+        case 6: // GO LANG    / [net-http]
+          //
+          this.td_buttonCaption = "[Please wait...]";
+          //
+          this.status_message.set("[Please wait...]");
+          // 
+          let td_informeLogRemoto_GoLang!   : Observable<string>;
+          // 
+          td_informeLogRemoto_GoLang        = this.backendService.getAllLogsGoLang(td_searchCriteria);
+          //
+          const td_observer_golang = {
+            next: (td_logEntry_golang: string)     => { 
+              //
+              let td_logEntry_golang_json   = JSON.parse(td_logEntry_golang);
+              //
+              this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_golang_json);
+              this.td_dataSource.paginator = this.td_paginator;
+              //
+              this.status_message.set("[" + td_logEntry_golang_json.length + "] records found ");
+              this.td_formSubmit           = false;
+            },
+            error           : (err: Error)      => {
+              //
+              console.error('TEMPLATE DRIVEN - golang/[net/http] - (ERROR) : ' + JSON.stringify(err.message));
+              //
+              this.status_message.set("An error ocurred. Please try again");
+              this.td_formSubmit           = false;
+              this.td_buttonCaption        = "[Search]";
+            },
+            complete        : ()                => {
+              //
+              this.td_formSubmit           = false;
+              this.td_buttonCaption        = "[Search]";
+            },
+          }; 
+          //
+          td_informeLogRemoto_GoLang
+          .subscribe(td_observer_golang);
+       break;
+        case 7: // RUST LANG  / [actix-web]
+                   //
+          this.td_buttonCaption = "[Please wait...]";
+          //
+          this.status_message.set("[Please wait...]");
+          // 
+          let td_informeLogRemoto_RustLang!   : Observable<string>;
+          // 
+          td_informeLogRemoto_RustLang        = this.backendService.getAllLogsRustLang(td_searchCriteria);
+          //
+          const td_observer_rustlang = {
+            next: (td_logEntry_rustlang: string)     => { 
+              //
+              let td_logEntry_rustlang_json   = JSON.parse(td_logEntry_rustlang);
+              //
+              this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_rustlang_json);
+              this.td_dataSource.paginator = this.td_paginator;
+              //
+              this.status_message.set("[" + td_logEntry_rustlang_json.length + "] records found ");
+              this.td_formSubmit           = false;
+            },
+            error           : (err: Error)      => {
+              //
+              console.error('TEMPLATE DRIVEN - rustlang/[actix-web] - (ERROR) : ' + JSON.stringify(err.message));
+              //
+              this.status_message.set("An error ocurred. Please try again");
+              this.td_formSubmit           = false;
+              this.td_buttonCaption        = "[Search]";
+            },
+            complete        : ()                => {
+              //
+              this.td_formSubmit           = false;
+              this.td_buttonCaption        = "[Search]";
+            },
+          }; 
+          //
+          td_informeLogRemoto_RustLang
+          .subscribe(td_observer_rustlang);
+      break;
+      default:
+            return;
       }
     };
     //
@@ -438,6 +516,9 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
         this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
         this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KT"   ));        
         this.__languajeList.push(new _languageName(5, '(Django      / Python)'         , false ,"PY"   ));
+        this.__languajeList.push(new _languageName(6, '(Go          / [net-http])'     , false ,"GO"   ));    
+        this.__languajeList.push(new _languageName(7, '(Rust        / Actix Web)'      , false ,"RS"   ));    
+
         //
         let langName = params['langName'] ? params['langName'] : "" ;
         //

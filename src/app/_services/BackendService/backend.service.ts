@@ -128,6 +128,19 @@ export class BackendService extends BaseService implements OnInit {
     const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllPersons`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
+
+  getPersonsGoLang(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlGoLang')}api/data/getAllPersons`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+
+
+
+  getPersonsRustLang(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/data/getAllPersons`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+
   ////////////////////////////////////////////////////////////////  
   // METODOS - [GENERAR ARCHIVO XLS] / CHARTS
   ////////////////////////////////////////////////////////////////  
@@ -154,6 +167,16 @@ export class BackendService extends BaseService implements OnInit {
 
   getLogRemotoDjangoPython(_searchCriteria: SearchCriteria): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getAllLogs?format=json`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+
+    getAllLogsGoLang(_searchCriteria: SearchCriteria): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlGoLang')}api/data/getAllLogs`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+
+  getAllLogsRustLang(_searchCriteria: SearchCriteria): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/data/getAllLogs`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 

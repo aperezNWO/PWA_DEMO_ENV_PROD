@@ -215,41 +215,41 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                 td_informeLogRemoto_SprinbBootJava
                 .subscribe(td_observer_sprinbbootjava);
             break;
-        case 4: // SPRINGBOOT / KOTLIN
-            let td_informeLogRemoto_SprinbBootKotlin!: Observable<string>;
-            td_informeLogRemoto_SprinbBootKotlin = this.backendService.getPersonsSprinbBootKotlin();
+            case 4: // SPRINGBOOT / KOTLIN
+              let td_informeLogRemoto_SprinbBootKotlin!: Observable<string>;
+              td_informeLogRemoto_SprinbBootKotlin = this.backendService.getPersonsSprinbBootKotlin();
 
-            const td_observer_sprinbbootkotlin = {
-              next: (td_observer_sprinbbootkotlin: string) => {
+              const td_observer_sprinbbootkotlin = {
+                next: (td_observer_sprinbbootkotlin: string) => {
 
-                let rawPersons = JSON.parse(td_observer_sprinbbootkotlin);
+                  let rawPersons = JSON.parse(td_observer_sprinbbootkotlin);
 
-                // Transform key name on each record
-                let td_persons_springboot_kotlin_json = rawPersons.map((person: any) => ({
-                  id_Column: person.id_column ?? person.Id_column ?? person.id_Column,
-                  ciudad: person.ciudad,
-                  nombreCompleto: person.nombreCompleto
-                }));
+                  // Transform key name on each record
+                  let td_persons_springboot_kotlin_json = rawPersons.map((person: any) => ({
+                    id_Column: person.id_column ?? person.Id_column ?? person.id_Column,
+                    ciudad: person.ciudad,
+                    nombreCompleto: person.nombreCompleto
+                  }));
 
-                this.status_message.set("[" + td_persons_springboot_kotlin_json.length + "] records found ");
-                this.rf_formSubmit = false;
+                  this.status_message.set("[" + td_persons_springboot_kotlin_json.length + "] records found ");
+                  this.rf_formSubmit = false;
 
-                this.csv_dataSource = new MatTableDataSource<PersonEntity>(td_persons_springboot_kotlin_json);
-                this.csv_dataSource.paginator = this.csv_paginator;
-              },
-              error: (err: Error) => {
-                console.error('TEMPLATE DRIVEN - springboot/KOTLIN - (ERROR) : ' + JSON.stringify(err.message));
-                this.status_message.set("[An error ocurred]");
-                this.rf_formSubmit = false;
-                this.rf_buttonCaption = "[Search]";
-              },
-              complete: () => {
-                this.rf_formSubmit = false;
-                this.rf_buttonCaption = "[Search]";
-              },
-            }; 
+                  this.csv_dataSource = new MatTableDataSource<PersonEntity>(td_persons_springboot_kotlin_json);
+                  this.csv_dataSource.paginator = this.csv_paginator;
+                },
+                error: (err: Error) => {
+                  console.error('TEMPLATE DRIVEN - springboot/KOTLIN - (ERROR) : ' + JSON.stringify(err.message));
+                  this.status_message.set("[An error ocurred]");
+                  this.rf_formSubmit = false;
+                  this.rf_buttonCaption = "[Search]";
+                },
+                complete: () => {
+                  this.rf_formSubmit = false;
+                  this.rf_buttonCaption = "[Search]";
+                },
+              }; 
 
-            td_informeLogRemoto_SprinbBootKotlin.subscribe(td_observer_sprinbbootkotlin);
+              td_informeLogRemoto_SprinbBootKotlin.subscribe(td_observer_sprinbbootkotlin);
             break;
             case 5: // DJANGO / PYTHON
                 // 
@@ -285,9 +285,76 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                 td_Persons_DjangoPython
                 .subscribe(td_observer_pythondjango);
             break;
- 
+            case 6: // GO / [net-http]
+               // 
+                let td_Persons_GoLang!   : Observable<string>;
+                td_Persons_GoLang        = this.backendService.getPersonsGoLang();
+                //
+                const td_observer_golang = {
+                  next: (td_persons_golang: string)     => { 
+                    //
+                    let td_persons_golang_json   = JSON.parse(td_persons_golang);
+                    //
+                    this.status_message.set("[" + td_persons_golang_json.length + "] records found ");
+                    this.rf_formSubmit            = false;
+                    //
+                    this.csv_dataSource           = new MatTableDataSource<PersonEntity>(td_persons_golang_json);
+                    this.csv_dataSource.paginator = this.csv_paginator;
+                  },
+                  error           : (err: Error)      => {
+                    //
+                    console.error('TEMPLATE DRIVEN - python/django - (ERROR) : ' + JSON.stringify(err.message));
+                    //
+                    this.status_message.set("[An error ocurred]");
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Search]";
+                  },
+                  complete        : ()                => {
+                    //
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Search]";
+                  },
+                }; 
+                //
+                td_Persons_GoLang
+                .subscribe(td_observer_golang);
+            break;
+            case 7: // RUST / Actix Web
+                // 
+                let td_Persons_RustLang!   : Observable<string>;
+                td_Persons_RustLang        = this.backendService.getPersonsGoLang();
+                //
+                const td_observer_rustlang = {
+                  next: (td_Persons_RustLang: string)     => { 
+                    //
+                    let td_persons_rustlang_json   = JSON.parse(td_Persons_RustLang);
+                    //
+                    this.status_message.set("[" + td_persons_rustlang_json.length + "] records found ");
+                    this.rf_formSubmit            = false;
+                    //
+                    this.csv_dataSource           = new MatTableDataSource<PersonEntity>(td_persons_rustlang_json);
+                    this.csv_dataSource.paginator = this.csv_paginator;
+                  },
+                  error           : (err: Error)      => {
+                    //
+                    console.error('TEMPLATE DRIVEN - rust/actix web - (ERROR) : ' + JSON.stringify(err.message));
+                    //
+                    this.status_message.set("[An error ocurred]");
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Search]";
+                  },
+                  complete        : ()                => {
+                    //
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Search]";
+                  },
+                }; 
+                //
+                td_Persons_RustLang
+                .subscribe(td_observer_rustlang);
+            break;
             default:
-            return;
+              return;
        };
     } 
     //
@@ -419,6 +486,8 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
         this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
         this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KT"   ));  
         this.__languajeList.push(new _languageName(5, '(Django      / Python)'         , false ,"PY"   ));    
+        this.__languajeList.push(new _languageName(6, '(Go          / [net-http])'     , false ,"GO"   ));    
+        this.__languajeList.push(new _languageName(7, '(Rust        / Actix Web)'      , false ,"RS"   ));    
 
         //
         let langName = params['langName'] ? params['langName'] : "" ;
