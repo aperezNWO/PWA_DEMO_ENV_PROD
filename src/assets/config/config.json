@@ -2,7 +2,7 @@
     "APP INFO"                                     : "-----------------------------------------",
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "3.8.28",
+    "appVersion"                                   : "3.9.0",
     "TECHNICAL INFO"                               : "-----------------------------------------",
     "gitHubRepo"                                   : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD",
     "techDocRoot"                                  : "Exam70486", 
@@ -53,11 +53,6 @@
     "baseUrlSpringBoot_Kotlin_render_github_gmail_proton"   : "https://ping-api-latest-ii19.onrender.com/", 
     "baseUrlSpringBoot_Kotlin_render_gmail"                 : "https://ping-api-latest-1xkv.onrender.com/",      
     "baseUrlSpringBoot_Kotlin"                              : "https://ping-api-latest-1xkv.onrender.com/",
-    "DART_ENV"                                  : "--------------------------------------------------",
-    "baseUrlDart_render_github"                 : "https://dart-zero-endpoint.onrender.com/",
-    "baseUrlDart_render_github_gmail_proton"    : "https://dart-zero-endpoint-latest-1ows.onrender.com/",
-    "baseUrlDart_render_gmail"                  : "https://dart-zero-endpoint-latest-jeib.onrender.com/",    
-    "baseUrlDart"                               : "https://dart-zero-endpoint-latest-jeib.onrender.com/",
     "DJANGO_PYTHON_ENV"                              : "--------------------------------------------------",   
     "baseUrlDjangoPython_local"                      : "http://localhost:8080/",
     "baseUrlDjangoPython_aperezNWO"                  : "https://sp223k-8000.csb.app/",
@@ -77,6 +72,14 @@
     "baseUrlDjangoPythonTF_render_github"              : "https://django-setup-linux.onrender.com/",
     "baseUrlDjangoPythonTF_render_github_gmail_proton" : "https://django-setup-linux-latest-fup4.onrender.com/",
     "baseUrlDjangoPythonTF_render_gmail"               : "https://django-setup-linux-latest-aqt9.onrender.com/",    
-    "baseUrlDjangoPythonTF"                            : "https://django-setup-linux-latest-aqt9.onrender.com/"
+    "baseUrlDjangoPythonTF"                            : "https://django-setup-linux-latest-aqt9.onrender.com/",
+    "DART_ENV"                                  : "--------------------------------------------------",
+    "baseUrlDart_render_github"                 : "https://dart-zero-endpoint.onrender.com/",
+    "baseUrlDart_render_github_gmail_proton"    : "https://dart-zero-endpoint-latest-1ows.onrender.com/",
+    "baseUrlDart_render_gmail"                  : "https://dart-zero-endpoint-latest-jeib.onrender.com/",    
+    "baseUrlDart"                               : "https://dart-zero-endpoint-latest-jeib.onrender.com/",
+    "GO_LANG_ENV"                               : "--------------------------------------------------",
+    "baseUrlGoLang_render_gmail"                : "https://golang-demo-001-latest.onrender.com/",    
+    "baseUrlGoLang"                             : "https://golang-demo-001-latest.onrender.com/"
 }
   

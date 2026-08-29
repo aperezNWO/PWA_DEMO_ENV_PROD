@@ -112,7 +112,8 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
       this.__languajeList.push(new _languageName(2, '(.Net Core   / C++)'            , false ,"CPP"    ));
       this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA"   ));
       this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KT"     ));      
-      this.__languajeList.push(new _languageName(5, '(Shelf       / Dart)'           , false ,"DART"   ));            
+      this.__languajeList.push(new _languageName(5, '(Shelf       / Dart)'           , false ,"DART"   ));   
+      this.__languajeList.push(new _languageName(6, '(GoLang      / [net/http])'     , false ,"GO"     ));                   
       //
       let langName = params['langName'] ? params['langName'] : "" ;
       //
@@ -250,6 +251,9 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
             break;
             case 5:   // dart
               randomVertexInfo       = this.algorithmService.getRandomVertexDart(_vertexSize,_sourcePoint);
+            break;
+            case 6:   // golang
+              randomVertexInfo       = this.algorithmService.getRandomVertexGoLang(_vertexSize,_sourcePoint);
             break;
         }
         //
