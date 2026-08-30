@@ -29,6 +29,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
 
+ --[_] SCM -- GITHUB -- PROTONMAIL -- CODESPACES.
+
  --[_] https://deepwiki.com/Exam70486/PWA_DEMO_ENV_PROD
 
  --[_] About > Tech Info > Admin (Auth Required) > front (flutter) / back (kottlin).
