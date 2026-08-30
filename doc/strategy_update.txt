@@ -35,6 +35,10 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] About llm ==> llm testing link.
 
+ --[_] webRTC demo.
+
+ --[_] Mandelbrot gRPC.
+
  --[_] full stack demo languages.
 
  --[_] full stack demo languages.
