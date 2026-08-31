@@ -161,12 +161,12 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
 
   backendCapabilities: LanguageCapability[] = [
   {
-    backendLanguage : BackendLanguage.TYPESCRIPT,
-    languageCode: 'typescript',
-    label: 'TypeScript (Local)',
-    icon: '🟡',
-    description: 'Runs in browser — Fastest',
-    enabled: true,
+    backendLanguage  : BackendLanguage.TYPESCRIPT,
+    languageCode     : 'typescript',
+    label            : 'TypeScript (Local)',
+    icon             : '🔷',
+    description      : 'Runs in browser — Fastest',
+    enabled          : true,
     supportedFractals: {
       [FractalType.MANDELBROT]   : { supported: true, zoomable: true  },
       [FractalType.JULIA]        : { supported: true, zoomable: true  },
@@ -177,7 +177,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     backendLanguage   : BackendLanguage.KOTLIN,
     languageCode      : 'Kotlin',
     label             : 'Kotlin (Spring Boot)',
-    icon              : '☕',
+    icon              : '🟪',
     description       : 'Runs on Spring Boot Engine',
     enabled           : true,
     supportedFractals : {
@@ -190,7 +190,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     backendLanguage   : BackendLanguage.DART,
     languageCode      : 'Dart',
     label             : 'Dart (Shelf)',
-    icon              : '🟣',
+    icon              : '🎯',
     description       : 'Runs on Shelf Engine',
     enabled           : true,
     supportedFractals : {
@@ -203,7 +203,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     backendLanguage   : BackendLanguage.GOLANG,
     languageCode      : 'golang',
     label             : 'Go (net-http)',
-    icon              : '🟣',
+    icon              : '🔵',
     description       : 'Runs on native net/http Engine',
     enabled           : true,
     supportedFractals : {
@@ -216,7 +216,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     backendLanguage   : BackendLanguage.RUSTLANG,
     languageCode      : 'rustlang',
     label             : 'Rust (Actix-web)',
-    icon              : '🟣',
+    icon              : '⚡',
     description       : 'Runs on Actix-web ',
     enabled           : true,
     supportedFractals : {
@@ -226,11 +226,11 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     }
   },
   {
-    backendLanguage : BackendLanguage.NODEJS,
-    languageCode: 'nodejs',
-    label: 'Node.js (Server)',
-    icon: '🟢',
-    description: 'Runs on server — Stable',
+    backendLanguage  : BackendLanguage.NODEJS,
+    languageCode     : 'nodejs',
+    label            : 'Node.js (Server)',
+    icon             : '🟢',
+    description      : 'Runs on server — Stable',
     enabled: true,
     supportedFractals: {
       [FractalType.MANDELBROT]   : { supported: true,  zoomable : true  },
@@ -255,7 +255,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     backendLanguage   : BackendLanguage.CPP, 
     languageCode      : 'cpp',
     label             : 'C++ (Native)',
-    icon              : '🔵',
+    icon              : '⚙️',
     description       : 'Native performance — On hold (pending pure-math migration)',
     enabled           : false,   // ← disabled: hidden from the dropdown, config kept for when work resumes
     supportedFractals : {
