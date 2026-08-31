@@ -41,7 +41,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] Mandelbrot gRPC.
 
- --[_] full stack demo languages.
+ --[_] RUST HTTP INTERCEPT.
 
  --[_] full stack demo languages.
 
@@ -170,16 +170,5 @@ r///////////////////////////////////////////////////////////////////////////////
                 --[X] CSV DEMO.
 
                       --[X] Update References.
-
- --[_] RENSTALL C++ DEV ENVS.
-
-       --[x] CPP_GCC_ALGORITHM.
-
-       --[x] CPP_GCC_TESSERACT.
-
-       --[=>] CPP_GCC_OPEN_CV.
-
-       --[_] CPP_GCC_TENSORFLOW.       
-
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,16 @@
 /////////////////////////////////////////////////////////////////
 // STRATEGY DONE 
 /////////////////////////////////////////////////////////////////
+--[x] RENSTALL C++ DEV ENVS.
+
+       --[x] CPP_GCC_ALGORITHM.
+
+       --[x] CPP_GCC_TESSERACT.
+
+       --[x] CPP_GCC_OPEN_CV.
+
+       --[x] CPP_GCC_TENSORFLOW.       
+
 -- [x] miscelaneous.
 
       -- [X] move a.i. prompts from ENV_LANDING.
