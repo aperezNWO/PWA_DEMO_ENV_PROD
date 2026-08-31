@@ -322,7 +322,7 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
             case 7: // RUST / Actix Web
                 // 
                 let td_Persons_RustLang!   : Observable<string>;
-                td_Persons_RustLang        = this.backendService.getPersonsGoLang();
+                td_Persons_RustLang        = this.backendService.getPersonsRustLang();
                 //
                 const td_observer_rustlang = {
                   next: (td_Persons_RustLang: string)     => { 
