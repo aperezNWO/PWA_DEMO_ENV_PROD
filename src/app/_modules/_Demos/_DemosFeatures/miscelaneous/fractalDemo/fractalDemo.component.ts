@@ -614,7 +614,7 @@ constructor(
 
          fractalParams = { 
             ...DEFAULT_FRACTAL_PARAMS 
-            ,selectedBackend  : BackendLanguage.J2SE
+            ,selectedBackend  : BackendLanguage.GOLANG
             ,selectedFractal  : this.selectedFractal
             ,maxIterations    : this.maxIterations
             ,isZoomable       : this._buildBounds()
@@ -631,7 +631,7 @@ constructor(
 
         fractalParams = { 
               ...DEFAULT_FRACTAL_PARAMS 
-              ,selectedBackend  : BackendLanguage.J2SE
+              ,selectedBackend  : BackendLanguage.RUSTLANG
               ,selectedFractal  : this.selectedFractal
               ,maxIterations    : this.maxIterations
               ,isZoomable       : this._buildBounds()
