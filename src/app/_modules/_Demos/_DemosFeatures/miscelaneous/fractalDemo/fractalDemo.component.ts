@@ -168,9 +168,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     description      : 'Runs in browser — Fastest',
     enabled          : true,
     supportedFractals: {
-      [FractalType.MANDELBROT]   : { supported: true, zoomable: true  },
-      [FractalType.JULIA]        : { supported: true, zoomable: true  },
-      [FractalType.BARNSLEY_FERN]: { supported: true, zoomable: false }
+      [FractalType.MANDELBROT]     : { supported: true, zoomable: true     },
+      [FractalType.JULIA]          : { supported: true, zoomable: true     },
+      [FractalType.BARNSLEY_FERN]  : { supported: true, zoomable: false    },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   }, // Enabled for Go            
     }
   },
   {
@@ -181,9 +182,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     description       : 'Runs on Spring Boot Engine',
     enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]        : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
+      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   }, // Enabled for Go            
     }
   },
   {
@@ -194,22 +196,24 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     description       : 'Runs on Shelf Engine',
     enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]        : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
+      [FractalType.MANDELBROT]     :   { supported: true,   zoomable: true   },
+      [FractalType.JULIA]          :   { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]  :   { supported: true,   zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]:   { supported: false,  zoomable: true   }, // Enabled for Go      
     }
   },
   {
     backendLanguage   : BackendLanguage.GOLANG,
     languageCode      : 'golang',
-    label             : 'Go (net-http)',
+    label             : 'Go (net-http / gRPC-Web)',
     icon              : '🔵',
-    description       : 'Runs on native net/http Engine',
+    description       : 'Runs on native net/http & gRPC-Web Engine',
     enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]        : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
+      [FractalType.MANDELBROT]     : { supported: true,  zoomable: true  },
+      [FractalType.JULIA]          : { supported: true,  zoomable: true  },
+      [FractalType.BARNSLEY_FERN]  : { supported: true,  zoomable: false },
+      [FractalType.MANDELBROT_GRPC]: { supported: true,  zoomable: true  }, // Enabled for Go
     }
   },
   {
@@ -220,9 +224,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     description       : 'Runs on Actix-web ',
     enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]        : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
+      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   }, // Enabled for Go            
     }
   },
   {
@@ -233,9 +238,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     description      : 'Runs on server — Stable',
     enabled: true,
     supportedFractals: {
-      [FractalType.MANDELBROT]   : { supported: true,  zoomable : true  },
-      [FractalType.JULIA]        : { supported: true , zoomable : true  },
-      [FractalType.BARNSLEY_FERN]: { supported: true , zoomable : false }
+      [FractalType.MANDELBROT]     : { supported: true,  zoomable : true  },
+      [FractalType.JULIA]          : { supported: true , zoomable : true  },
+      [FractalType.BARNSLEY_FERN]  : { supported: true , zoomable : false },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true  }, // Enabled for Go                  
     }
   },
   {
@@ -246,9 +252,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     description       : 'Runs on Spring Boot Engine',
     enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]   : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]        : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]: { supported: true,   zoomable: false  }
+      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   }, // Enabled for Go                  
     }
   },
   {
@@ -259,18 +266,20 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     description       : 'Native performance — On hold (pending pure-math migration)',
     enabled           : false,   // ← disabled: hidden from the dropdown, config kept for when work resumes
     supportedFractals : {
-      [FractalType.MANDELBROT]   : { supported: false, zoomable: false  },
-      [FractalType.JULIA]        : { supported: true,  zoomable: false  }, 
-      [FractalType.BARNSLEY_FERN]: { supported: false, zoomable: false  }
+      [FractalType.MANDELBROT]     : { supported: false, zoomable: false  },
+      [FractalType.JULIA]          : { supported: true,  zoomable: false  }, 
+      [FractalType.BARNSLEY_FERN]  : { supported: false, zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true  }, // Enabled for Go                  
     }
   },
 ];
 
 //
 fractalOptions = [
-    { id: FractalType.MANDELBROT,    label: 'Mandelbrot Set',           icon: '🌀' },
-    { id: FractalType.JULIA,         label: 'Julia Set',                icon: '❄️' },
-    { id: FractalType.BARNSLEY_FERN, label: 'Barnsley Fern (IFS — TS)', icon: '🍃' }
+    { id: FractalType.MANDELBROT,      label: 'Mandelbrot Set',           icon: '🌀' },
+    { id: FractalType.JULIA,           label: 'Julia Set',                icon: '❄️' },
+    { id: FractalType.BARNSLEY_FERN,   label: 'Barnsley Fern (IFS — TS)', icon: '🍃' },
+    { id: FractalType.MANDELBROT_GRPC, label: 'Mandelbrot Set (gRPC)',    icon: '⚡' },    
 ];
 
 //

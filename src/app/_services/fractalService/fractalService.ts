@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { map
         , Observable                  } from "rxjs";
 import { BaseService                  } from "../__baseService/base.service";
@@ -285,4 +286,88 @@ export class FractalService extends BaseService {
       map(raw => FractalEngine._adaptRemotePoints(raw, FractalType.BARNSLEY_FERN, p_fractalParams.maxIterations))
     );
   }
+
+  /////////////////////////////////////////////////////////////////////////
+  // RPC  
+  /////////////////////////////////////////////////////////////////////////
+  private _decodeGrpcResponse(
+    responseBuffer: ArrayBuffer,
+    maxIterations: number
+  ): FractalPoint[] {
+    const bytes = new Uint8Array(responseBuffer);
+    
+    // Minimal check for empty or invalid buffer length
+    if (bytes.length < 5) {
+      return [];
+    }
+
+    // gRPC-Web framing: byte 0 is flag (0x00 = data, 0x80 = trailers), bytes 1-4 are big-endian length
+    const compressionFlag = bytes[0];
+    const length = (bytes[1] << 24) | (bytes[2] << 16) | (bytes[3] << 8) | bytes[4];
+    
+    // Extract the Protobuf binary message payload following the 5-byte header
+    const protobufPayload = bytes.subarray(5, 5 + length);
+
+    // Parse protobuf bytes or convert fallback raw values to FractalPoint objects
+    // If using generated protoc JS classes:
+    // const parsedMessage = MyGrpcProtoResponse.deserializeBinary(protobufPayload);
+    
+    return this._mapBufferToPoints(protobufPayload, maxIterations);
+  }
+
+  private _mapBufferToPoints(
+    payload: Uint8Array,
+    maxIterations: number
+  ): FractalPoint[] {
+    const points: FractalPoint[] = [];
+    
+    // Example custom binary parser assuming float32 pairs (x, y) + uint16 iteration counts
+    const view = new DataView(payload.buffer, payload.byteOffset, payload.byteLength);
+    let offset = 0;
+
+    while (offset + 10 <= payload.byteLength) {
+      const x = view.getFloat32(offset, true);      // 4 bytes
+      const y = view.getFloat32(offset + 4, true);  // 4 bytes
+      const iter = view.getUint16(offset + 8, true); // 2 bytes
+      offset += 10;
+
+      points.push({
+        x,
+        y,
+        iterations: iter,
+        escaped: iter < maxIterations,
+        value: 0
+      });
+    }
+
+    return points;
+  }
+  
+  public GenerateFractalServerMandelbrotGrpc(
+      p_fractalParams: FractalParams
+  ): Observable<FractalPoint[]> {
+    const url = `${this._configService.getConfigValue('baseUrlGoLang')}fractal.FractalService/GetFractal`;
+
+    // Raw payload matching your curl binary wire format: --data-raw "AAAAAAYIAUABGAE="
+    const base64Payload = 'AAAAAAYIAUABGAE=';
+    const binaryData = Uint8Array.from(atob(base64Payload), c => c.charCodeAt(0));
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/grpc-web-text',
+      'Accept': 'application/grpc-web-text',
+      'X-User-Agent': 'grpc-web-javascript/0.1',
+      'X-Grpc-Web': '1'
+    });
+    return this.http.post(url, binaryData, {
+      headers,
+      responseType: 'arraybuffer'
+    }).pipe(
+      map((response: ArrayBuffer) => {
+        // Decode gRPC-Web frame & Protobuf response into FractalPoint[]
+        return this._decodeGrpcResponse(response, p_fractalParams.maxIterations);
+      })
+    );
+  }
+ 
+
 }

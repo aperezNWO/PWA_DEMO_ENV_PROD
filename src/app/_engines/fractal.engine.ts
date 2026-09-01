@@ -3,9 +3,11 @@ import { Observable, of, switchMap } from "rxjs";
 import { FractalService            } from "../_services/fractalService/fractalService";
 
 export interface FractalPoint {
-  x     : number;
-  y     : number;
-  value : number;          // iteration count or FERN_SENTINEL
+  x          : number;
+  y          : number;
+  value      : number;          
+  iterations : number; 
+  escaped?   : boolean;
 }
 
 export interface FractalCapability {
@@ -25,9 +27,10 @@ export enum BackendLanguage {
 }
 
 export enum FractalType {
-  MANDELBROT     = 1,
-  JULIA          = 2,
-  BARNSLEY_FERN  = 3,
+  MANDELBROT      = 1,
+  JULIA           = 2,
+  BARNSLEY_FERN   = 3,
+  MANDELBROT_GRPC = 4,
 }
 
 export interface FractalBounds {
@@ -219,13 +222,13 @@ export class FractalEngine{
     return raw.map(p => {
       if (fractalType === FractalType.BARNSLEY_FERN) {
         // IFS scatter — intensity is a fixed sentinel, not a real value
-        return { x: p.x, y: p.y, value: FERN_SENTINEL };
+        return { x: p.x, y: p.y, value: FERN_SENTINEL, iterations: maxIterations };
       }
       // Escape-time — back-calculate iteration from the 0-255 intensity
       const iter = p.intensity === 0
         ? maxIterations
         : Math.round((p.intensity * maxIterations) / 255);
-      return { x: p.x, y: p.y, value: iter };
+      return { x: p.x, y: p.y, value: iter, iterations: maxIterations };
     });
   }
 
@@ -270,6 +273,7 @@ export class FractalEngine{
             x,
             y,
             value: formula(bounds.xMin + x * xStep, bounds.yMin + y * yStep),
+            iterations: maxIterations
           };
         }
       }
@@ -356,7 +360,7 @@ export class FractalEngine{
   
         // Only push valid points to ensure the array stays clean
         if (px >= 0 && px < CANVAS_WIDTH && py >= 0 && py < CANVAS_HEIGHT) {
-          points.push({ x: px, y: py, value: FERN_SENTINEL });
+          points.push({ x: px, y: py, value: FERN_SENTINEL, iterations: p_maxIterations });
         }
       }
   
@@ -413,6 +417,8 @@ export class FractalEngine{
         case FractalType.BARNSLEY_FERN :
             return this._fractalService.GenerateFractalServerBarnsleyFern(p_fractalParams);
         break;
+        case FractalType.MANDELBROT_GRPC:
+            return this._fractalService.GenerateFractalServerMandelbrotGrpc(p_fractalParams);        
         default :
             return this._fractalService.GenerateFractalServerJulia(p_fractalParams);
       }
