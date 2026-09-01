@@ -1,6 +1,69 @@
 /////////////////////////////////////////////////////////////////
 // STRATEGY DONE 
 /////////////////////////////////////////////////////////////////
+
+       --[X] dart / kotlin curriculums.
+          
+       --[X] Add Dart links.
+
+            --[=>] Curriculum.
+
+                --[=>] Dart Programming language.
+
+                --[=>] Shelf web server.
+
+                --[=>] Flutter UIX Framework.
+
+            --[=>] Language.
+
+                --[=>] CONTACT FORM.
+
+                      --[=>] Update References.
+            
+                --[=>] Fractal.
+
+                       --[=>] Update References.
+                
+                --[=>] Dijkstra.
+                
+                        --[=>] Update References.
+
+                --[=>] CSV DEMO.
+
+                        --[=>] Update References.
+
+                --[=>] XLS DEMO.
+
+                     --[=>] Update References.
+
+       --[X] Add kotlin links.
+
+            --[=>] Curriculum.
+
+                  --[=>] Kotlin Programming Language.
+                              
+                  --[=>] Spring Boot for Kotlin.
+
+            --[=>] Language.
+
+                --[=>] Fractal.
+
+                      --[=>] Update References.
+
+                      --[=>] param URL.                     
+                
+                --[x] Dijkstra.
+
+                      --[x] Update References.
+                
+                --[x] XLS DEMO.
+
+                      --[x] Update References.
+
+                --[X] CSV DEMO.
+
+                      --[X] Update References.
+                      
 --[x] RENSTALL C++ DEV ENVS.
 
        --[x] CPP_GCC_ALGORITHM.
