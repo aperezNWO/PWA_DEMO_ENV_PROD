@@ -13,6 +13,7 @@ import { BackendLanguage
        , FractalParams
        , FractalPoint
        , FractalType                  } from "src/app/_engines/fractal.engine";
+import { FractalRequest, FractalResponse } from 'src/app/grpc/fractal';
 
 
 @Injectable({ providedIn: 'root' })
