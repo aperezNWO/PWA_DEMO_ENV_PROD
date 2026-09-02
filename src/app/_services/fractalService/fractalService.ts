@@ -353,7 +353,12 @@ export class FractalService extends BaseService {
         }
       } else {
         const decoded = FractalResponse.decode(payload);
-        dataPoints = this._mapBufferToPoints(decoded.points, maxIterations);
+        const mappedPoints = this._mapBufferToPoints(decoded.points, maxIterations);
+        
+        // Safely append points using a loop instead of the spread operator
+        for (let i = 0; i < mappedPoints.length; i++) {
+          dataPoints.push(mappedPoints[i]);
+        }
       }
 
       offset = payloadEnd;
