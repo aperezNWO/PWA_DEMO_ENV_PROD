@@ -291,66 +291,80 @@ export class FractalService extends BaseService {
   // RPC  
   /////////////////////////////////////////////////////////////////////////
   private _decodeGrpcResponse(
-    responseBuffer: ArrayBuffer,
-    maxIterations: number
-  ): FractalPoint[] {
-    const bytes = new Uint8Array(responseBuffer);
-    
-    // Minimal check for empty or invalid buffer length
-    if (bytes.length < 5) {
-      return [];
+      responseBuffer: ArrayBuffer,
+      maxIterations: number
+    ): FractalPoint[] {
+      // Convert ArrayBuffer to raw ASCII string (handles gRPC-Web text encoding)
+      const textDecoder = new TextDecoder('ascii');
+      const rawText = textDecoder.decode(responseBuffer).trim();
+
+      if (!rawText) {
+        return [];
+      }
+
+      // Decode gRPC-Web base64 transport payload
+      const binaryString = atob(rawText);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+
+      if (bytes.length < 5) {
+        return [];
+      }
+
+      // Strip 5-byte gRPC framing header (1 byte flag + 4 bytes big-endian length)
+      const length = (bytes[1] << 24) | (bytes[2] << 16) | (bytes[3] << 8) | bytes[4];
+      const protobufPayload = bytes.subarray(5, 5 + length);
+
+      // Deserialize Protobuf payload using generated ts-proto / protobuf decoder
+      const decodedResponse = FractalResponse.decode(protobufPayload);
+
+      return this._mapBufferToPoints(decodedResponse.points, maxIterations);
     }
 
-    // gRPC-Web framing: byte 0 is flag (0x00 = data, 0x80 = trailers), bytes 1-4 are big-endian length
-    const compressionFlag = bytes[0];
-    const length = (bytes[1] << 24) | (bytes[2] << 16) | (bytes[3] << 8) | bytes[4];
-    
-    // Extract the Protobuf binary message payload following the 5-byte header
-    const protobufPayload = bytes.subarray(5, 5 + length);
-
-    // Parse protobuf bytes or convert fallback raw values to FractalPoint objects
-    // If using generated protoc JS classes:
-    // const parsedMessage = MyGrpcProtoResponse.deserializeBinary(protobufPayload);
-    
-    return this._mapBufferToPoints(protobufPayload, maxIterations);
-  }
-
-  private _mapBufferToPoints(
-    payload: Uint8Array,
-    maxIterations: number
-  ): FractalPoint[] {
-    const points: FractalPoint[] = [];
-    
-    // Example custom binary parser assuming float32 pairs (x, y) + uint16 iteration counts
-    const view = new DataView(payload.buffer, payload.byteOffset, payload.byteLength);
-    let offset = 0;
-
-    while (offset + 10 <= payload.byteLength) {
-      const x = view.getFloat32(offset, true);      // 4 bytes
-      const y = view.getFloat32(offset + 4, true);  // 4 bytes
-      const iter = view.getUint16(offset + 8, true); // 2 bytes
-      offset += 10;
-
-      points.push({
-        x,
-        y,
-        iterations: iter,
-        escaped: iter < maxIterations,
-        value: 0
-      });
+    private _mapBufferToPoints(
+      points: { x: number; y: number; intensity: number }[],
+      maxIterations: number
+    ): FractalPoint[] {
+      return points.map(p => ({
+        x: p.x,
+        y: p.y,
+        iterations: p.intensity,
+        escaped: p.intensity < maxIterations,
+        value: p.intensity
+      }));
     }
 
-    return points;
-  }
-  
+
   public GenerateFractalServerMandelbrotGrpc(
       p_fractalParams: FractalParams
   ): Observable<FractalPoint[]> {
     const url = `${this._configService.getConfigValue('baseUrlGoLang')}fractal.FractalService/GetFractal`;
+    const bounds = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
 
-    // Raw payload matching your curl binary wire format: --data-raw "AAAAAAYIAUABGAE="
-    const base64Payload = 'AAAAAAYIAUABGAE=';
-    const binaryData = Uint8Array.from(atob(base64Payload), c => c.charCodeAt(0));
+    // Encode FractalRequest using generated TS classes
+    const requestPayload = FractalRequest.encode({
+      kind: FractalType.MANDELBROT,
+      maxIterations: p_fractalParams.maxIterations,
+      xMin: bounds.xMin,
+      xMax: bounds.xMax,
+      yMin: bounds.yMin,
+      yMax: bounds.yMax
+    }).finish();
+
+    // Wrap in 5-byte gRPC frame header
+    const frame = new Uint8Array(5 + requestPayload.length);
+    frame[0] = 0x00; // Data frame
+    const len = requestPayload.length;
+    frame[1] = (len >> 24) & 0xFF;
+    frame[2] = (len >> 16) & 0xFF;
+    frame[3] = (len >> 8) & 0xFF;
+    frame[4] = len & 0xFF;
+    frame.set(requestPayload, 5);
+
+    // Encode gRPC payload to base64 for grpc-web-text header compliance
+    const base64Request = btoa(String.fromCharCode(...frame));
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/grpc-web-text',
@@ -358,16 +372,15 @@ export class FractalService extends BaseService {
       'X-User-Agent': 'grpc-web-javascript/0.1',
       'X-Grpc-Web': '1'
     });
-    return this.http.post(url, binaryData, {
+
+    return this.http.post(url, base64Request, {
       headers,
       responseType: 'arraybuffer'
     }).pipe(
-      map((response: ArrayBuffer) => {
-        // Decode gRPC-Web frame & Protobuf response into FractalPoint[]
-        return this._decodeGrpcResponse(response, p_fractalParams.maxIterations);
-      })
+      map((response: ArrayBuffer) => 
+        this._decodeGrpcResponse(response, p_fractalParams.maxIterations)
+      )
     );
   }
  
-
 }

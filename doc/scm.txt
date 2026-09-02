@@ -72,6 +72,13 @@ npm install -D protoc-gen-grpc-web   --force
 npm approve-scripts --allow-scripts-pending 
 npm approve-scripts protoc-gen-grpc-web
 
+# 1. Install ts-proto to generate clean Angular-compatible TS types
+npm install -D ts-proto --force
+
+# 2. Run protoc compilation using npx
+New-Item -ItemType Directory -Force -Path .\src\app\grpc
+npx protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto.cmd --ts_proto_out=./src/app/grpc ./fractal.proto
+
 http://localhost:4200/
 https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/
 
