@@ -292,37 +292,75 @@ export class FractalService extends BaseService {
   // RPC  
   /////////////////////////////////////////////////////////////////////////
   private _decodeGrpcResponse(
-      responseBuffer: ArrayBuffer,
-      maxIterations: number
-    ): FractalPoint[] {
-      // Convert ArrayBuffer to raw ASCII string (handles gRPC-Web text encoding)
-      const textDecoder = new TextDecoder('ascii');
-      const rawText = textDecoder.decode(responseBuffer).trim();
+    responseBuffer: ArrayBuffer,
+    maxIterations: number
+  ): FractalPoint[] {
+    if (!responseBuffer || responseBuffer.byteLength === 0) {
+      return [];
+    }
 
-      if (!rawText) {
+    const uint8View = new Uint8Array(responseBuffer);
+    let bytes: Uint8Array;
+
+    const rawText = new TextDecoder('utf-8').decode(responseBuffer).trim();
+    let base64String = rawText.replace(/\s+/g, '');
+
+    // Check if the payload is actually valid base64 text
+    const base64Regex = /^[A-Za-z0-9+\/]*={0,2}$/;
+    const isBase64Text = base64String.length > 0 && 
+                         base64String.length % 4 === 0 && 
+                         base64Regex.test(base64String);
+
+    if (isBase64Text) {
+      let binaryString: string;
+      try {
+        binaryString = atob(base64String);
+      } catch (e) {
+        console.error('[gRPC Mandelbrot] Base64 decode failed:', e);
         return [];
       }
 
-      // Decode gRPC-Web base64 transport payload
-      const binaryString = atob(rawText);
-      const bytes = new Uint8Array(binaryString.length);
+      bytes = new Uint8Array(binaryString.length);
       for (let i = 0; i < binaryString.length; i++) {
         bytes[i] = binaryString.charCodeAt(i);
       }
+    } else {
+      // Fallback: Treat buffer directly as raw binary gRPC-web
+      bytes = uint8View;
+    }
 
-      if (bytes.length < 5) {
-        return [];
+    let offset = 0;
+    let dataPoints: FractalPoint[] = [];
+
+    while (offset + 5 <= bytes.length) {
+      const flag = bytes[offset];
+      const length =
+        (bytes[offset + 1] << 24) | (bytes[offset + 2] << 16) |
+        (bytes[offset + 3] << 8)  |  bytes[offset + 4];
+
+      const payloadStart = offset + 5;
+      const payloadEnd   = payloadStart + length;
+      if (payloadEnd > bytes.length) break;
+
+      const payload = bytes.subarray(payloadStart, payloadEnd);
+
+      if ((flag & 0x80) !== 0) {
+        const trailerText  = new TextDecoder().decode(payload);
+        const statusMatch  = trailerText.match(/grpc-status:\s*(\d+)/i);
+        const messageMatch = trailerText.match(/grpc-message:\s*(.+)/i);
+        if (statusMatch && statusMatch[1] !== '0') {
+          console.error(`[gRPC Mandelbrot] status ${statusMatch[1]}: ${messageMatch?.[1] ?? trailerText}`);
+        }
+      } else {
+        const decoded = FractalResponse.decode(payload);
+        dataPoints = this._mapBufferToPoints(decoded.points, maxIterations);
       }
 
-      // Strip 5-byte gRPC framing header (1 byte flag + 4 bytes big-endian length)
-      const length = (bytes[1] << 24) | (bytes[2] << 16) | (bytes[3] << 8) | bytes[4];
-      const protobufPayload = bytes.subarray(5, 5 + length);
-
-      // Deserialize Protobuf payload using generated ts-proto / protobuf decoder
-      const decodedResponse = FractalResponse.decode(protobufPayload);
-
-      return this._mapBufferToPoints(decodedResponse.points, maxIterations);
+      offset = payloadEnd;
     }
+
+    return dataPoints;
+  }
 
     private _mapBufferToPoints(
       points: { x: number; y: number; intensity: number }[],

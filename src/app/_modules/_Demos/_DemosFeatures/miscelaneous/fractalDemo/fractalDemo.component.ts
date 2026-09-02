@@ -217,7 +217,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.MANDELBROT]     : { supported: true,  zoomable: true  },
       [FractalType.JULIA]          : { supported: true,  zoomable: true  },
       [FractalType.BARNSLEY_FERN]  : { supported: true,  zoomable: false },
-      [FractalType.MANDELBROT_GRPC]: { supported: true,  zoomable: false }, // Enabled for Go
+      [FractalType.MANDELBROT_GRPC]: { supported: true,  zoomable: true  }, // Enabled for Go
     }
   },
   {
