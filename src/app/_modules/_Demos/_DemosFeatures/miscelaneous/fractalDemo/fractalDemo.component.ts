@@ -70,9 +70,13 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   centerY    : number = 0.0;
   zoomFactor : number = 1.0;
 
-  private get baseXRange(): number { return this.selectedFractal === FractalType.MANDELBROT ? 3.0 : 3.0; }
-  private get baseYRange(): number { return this.selectedFractal === FractalType.MANDELBROT ? 2.4 : 3.0; }
+  private get baseXRange(): number { 
+    return (this.selectedFractal === FractalType.MANDELBROT || this.selectedFractal === FractalType.MANDELBROT_GRPC) ? 3.0 : 3.0; 
+  }
 
+  private get baseYRange(): number { 
+    return (this.selectedFractal === FractalType.MANDELBROT || this.selectedFractal === FractalType.MANDELBROT_GRPC) ? 2.4 : 3.0; 
+  }
   public  serverZoomFactor: number = 1.0;
   public  serverZoomIn    : boolean = true;
 
@@ -387,16 +391,18 @@ constructor(
   }
 
   resetZoomViewport(): void {
-    // TypeScript bounds-based zoom
-    this.centerX    = this.selectedFractal === FractalType.MANDELBROT ? -0.5 : 0.0;
+    // Center on real axis -0.5 for both standard and gRPC Mandelbrot
+    const isMandelbrot = this.selectedFractal === FractalType.MANDELBROT 
+                      || this.selectedFractal === FractalType.MANDELBROT_GRPC;
+
+    this.centerX    = isMandelbrot ? -0.5 : 0.0;
     this.centerY    = 0.0;
     this.zoomFactor = 1.0;
     
     // Server step-based zoom — always reset direction to 'in'
     this.serverZoomFactor = 0;
-    this.serverZoomIn   = true;
+    this.serverZoomIn     = true;
   }
-
   // ── Complex-plane bounds  ─────────────────────────
 
   private _buildBounds(): { xMin: number; xMax: number; yMin: number; yMax: number } {

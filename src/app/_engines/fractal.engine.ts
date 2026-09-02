@@ -85,7 +85,12 @@ export const CANVAS_WIDTH  = 800;
 export const CANVAS_HEIGHT = 600;
 
 // Default complex-plane bounds per fractal type
-export const DEFAULT_BOUNDS_MANDELBROT : FractalBounds = { xMin: -2.0, xMax: 1.0,  yMin: -1.2, yMax: 1.2 };
+export const DEFAULT_BOUNDS_MANDELBROT : FractalBounds = { 
+  xMin: -2.0, 
+  xMax: 1.0,  
+  yMin: -1.2, 
+  yMax: 1.2 
+};
 export const DEFAULT_BOUNDS_JULIA      : FractalBounds = { xMin: -1.5, xMax: 1.5,  yMin: -1.5, yMax: 1.5 };
 
 //
