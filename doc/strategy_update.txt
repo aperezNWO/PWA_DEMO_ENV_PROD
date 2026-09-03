@@ -29,6 +29,14 @@ r///////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
 
+ --[_] RUST HTTP INTERCEPT.            
+  
+ --[_] zig demo.
+
+ --[_] swift demo.
+
+ --[_] webRTC demo.
+
  --[_] https://deepwiki.com/Exam70486/PWA_DEMO_ENV_PROD
 
  --[_] About llm ==> llm testing link.
@@ -107,15 +115,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[_] RENDER / Kotlin VERSION.
 
- --[_] webRTC demo.
-
- --[_] Mandelbrot gRPC.
-
- --[_] RUST HTTP INTERCEPT.            
-  
- --[_] zig demo.
-
- --[_] swift demo.
+ 
+ --[_] golang Mandelbrot gRPC.
 
 ////////////////////////////////////////////////////////////////////////////////
 
