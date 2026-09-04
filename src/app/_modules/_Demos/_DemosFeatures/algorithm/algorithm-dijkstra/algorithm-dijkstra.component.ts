@@ -115,6 +115,7 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
       this.__languajeList.push(new _languageName(5, '(Shelf       / Dart)'           , false ,"DART"   ));   
       this.__languajeList.push(new _languageName(6, '(GoLang      / [net/http])'     , false ,"GO"     ));                   
       this.__languajeList.push(new _languageName(7, '(Rust        / Actix Web    )'  , false, "RS"     ));      
+      this.__languajeList.push(new _languageName(8, '(Swift       / Vapor        )'  , false, "SWIFT"  ));            
       //
       let langName = params['langName'] ? params['langName'] : "" ;
       //
@@ -258,6 +259,9 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
             break;
             case 7:   // rustlang
               randomVertexInfo       = this.algorithmService.getRandomVertexRustLang(_vertexSize,_sourcePoint);
+            break;
+            case 8:   // swiftlang
+              randomVertexInfo       = this.algorithmService.getRandomVertexSwiftLang(_vertexSize,_sourcePoint);
             break;
         }
         //

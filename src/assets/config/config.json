@@ -2,7 +2,7 @@
     "APP INFO"                                     : "-----------------------------------------",
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "3.9.14",
+    "appVersion"                                   : "3.9.15",
     "TECHNICAL INFO"                               : "-----------------------------------------",
     "gitHubRepo"                                   : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD",
     "techDocRoot"                                  : "Exam70486", 
@@ -83,6 +83,10 @@
     "baseUrlGoLang"                             : "https://golang-demo-001-latest-csb6.onrender.com/",
     "RUST_LANG_ENV"                             : "--------------------------------------------------",
     "baseUrlRustLang_render_gmail"              : "https://rust-ping-api-latest-z0cj.onrender.com/",    
-    "baseUrlRustLang"                           : "https://rust-ping-api-latest-z0cj.onrender.com/"
+    "baseUrlRustLang"                           : "https://rust-ping-api-latest-z0cj.onrender.com/",
+    "SWIFT_LANG_ENV"                             : "--------------------------------------------------",
+    "baseUrlSwiftLang_render_gmail"              : "https://swiftdemo001-latest.onrender.com/",    
+    "baseUrlSwiftLang"                           : "https://swiftdemo001-latest.onrender.com/"
+
 }
   
