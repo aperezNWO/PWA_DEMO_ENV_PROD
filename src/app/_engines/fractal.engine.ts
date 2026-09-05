@@ -25,6 +25,7 @@ export enum BackendLanguage {
   GOLANG         = 7,
   RUSTLANG       = 8,
   SWIFTLANG      = 9,
+  ZIGLANG        = 10,
 }
 
 export enum FractalType {

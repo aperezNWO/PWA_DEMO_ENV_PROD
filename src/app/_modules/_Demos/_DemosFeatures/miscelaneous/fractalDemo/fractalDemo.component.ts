@@ -290,6 +290,20 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  }, // Enabled for Go            
     }
   },
+  {
+    backendLanguage   : BackendLanguage.ZIGLANG, 
+    languageCode      : 'ziglang',
+    label             : 'Zig (std.http.Server)',
+    icon              : '⚡',
+    description       : 'Runs on [std.http.Server] ',
+    enabled           : true,
+    supportedFractals : {
+      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  }, // Enabled for Go            
+    }
+  },
 ];
 
 //
@@ -329,6 +343,7 @@ constructor(
     'GO'   : 'golang',
     'RS'    : 'rustlang',
     'SWIFT' : 'swiftlang',
+    'ZIG'   : 'ziglang',
   };
 
   ngOnInit(): void {
@@ -690,6 +705,24 @@ constructor(
             fractalParams
           );
       break;  
+
+      case 'ziglang':
+
+        fractalParams = { 
+              ...DEFAULT_FRACTAL_PARAMS 
+              ,selectedBackend  : BackendLanguage.ZIGLANG
+              ,selectedFractal  : this.selectedFractal
+              ,maxIterations    : this.maxIterations
+              ,isZoomable       : this._buildBounds()
+              ,serverZoomIn     : this.serverZoomIn
+              ,serverZoomFactor : this.serverZoomFactor
+          };
+
+          serviceCall = this._fractalEngine.GetFractal(
+            fractalParams
+          );
+      break;  
+
       case 'cpp':
         serviceCall = this.fractalService.GetFractal_CPP(
           this.maxIterations, this.realPart, this.imagPart
