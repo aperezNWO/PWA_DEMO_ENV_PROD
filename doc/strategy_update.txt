@@ -35,7 +35,7 @@ r///////////////////////////////////////////////////////////////////////////////
   
  --[_] zig demo (out if disk space).
 
- --[_] swift demo.
+ --[_] swift demo / dijkstra.
 
  --[_] webRTC demo.
 

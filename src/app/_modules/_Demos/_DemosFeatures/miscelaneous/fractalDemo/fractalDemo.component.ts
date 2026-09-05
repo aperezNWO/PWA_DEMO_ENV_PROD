@@ -214,27 +214,13 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     description       : 'Runs on native net/http & gRPC-Web Engine',
     enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]     : { supported: true,  zoomable: true  },
-      [FractalType.JULIA]          : { supported: true,  zoomable: true  },
-      [FractalType.BARNSLEY_FERN]  : { supported: true,  zoomable: false },
-      [FractalType.MANDELBROT_GRPC]: { supported: true,  zoomable: true  }, // Enabled for Go
+      [FractalType.MANDELBROT]     : { supported: true,  zoomable: true   },
+      [FractalType.JULIA]          : { supported: true,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]  : { supported: true,  zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true  }, // Enabled for Go
     }
   },
   {
-    backendLanguage   : BackendLanguage.RUSTLANG,
-    languageCode      : 'rustlang',
-    label             : 'Rust (Actix-web)',
-    icon              : '⚡',
-    description       : 'Runs on Actix-web ',
-    enabled           : true,
-    supportedFractals : {
-      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   }, // Enabled for Go            
-    }
-  },
-    {
     backendLanguage   : BackendLanguage.RUSTLANG,
     languageCode      : 'rustlang',
     label             : 'Rust (Actix-web)',
