@@ -1401,7 +1401,7 @@
 -- [_] LANG_XXX_DEMO_ENV_XXX INFRASTRUCTURE
 /////////////////////////////////////////////////////////
 
---[_] go, rust, c, c++ with custom http servers.
+--[_] go, rust, [c/c++ with custom http servers].
 
 --[_] ENABLE  LANG_XXX_DEMO_ENV_XXX URL LANDING_PAGE PARAM =  'LANG_XXX_DEMO_ENV_XXX'
 

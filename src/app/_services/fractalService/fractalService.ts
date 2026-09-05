@@ -26,8 +26,9 @@ export class FractalService extends BaseService {
   private readonly __baseUrlJ2seFractal   = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate`;
   private readonly __baseUrlKotlinFractal = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/fractals/generate`;
   private readonly __baseUrlDartFractal   = `${this._configService.getConfigValue('baseUrlDart')}api/fractals/generate`;  
-  private readonly __baseUrlGoLangFractal   = `${this._configService.getConfigValue('baseUrlGoLang')}api/fractals/generate`;  
-  private readonly __baseUrlRustLangFractal = `${this._configService.getConfigValue('baseUrlRustLang')}api/fractals/generate`;  
+  private readonly __baseUrlGoLangFractal    = `${this._configService.getConfigValue('baseUrlGoLang')}api/fractals/generate`;  
+  private readonly __baseUrlRustLangFractal  = `${this._configService.getConfigValue('baseUrlRustLang')}api/fractals/generate`;  
+  private readonly __baseUrlSwiftLangFractal = `${this._configService.getConfigValue('baseUrlSwiftLang')}api/fractals/generate`;  
  
  
   // ═══════════════════════════════════════════════════════════════════════════
@@ -115,7 +116,17 @@ export class FractalService extends BaseService {
             `&maxIterations=${p_fractalParams.maxIterations}` +
             `&zoomInOut=${p_fractalParams.serverZoomIn}` +
             `&zoomStep=${p_fractalParams.serverZoomFactor}` 
-      break;           
+      break;
+     case BackendLanguage.SWIFTLANG :
+          url =
+            `${this.__baseUrlSwiftLangFractal}` +
+            `?kind=${FractalType.JULIA}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;             
       default : 
           url =
             `${this.__baseUrlNodeJsFractal}julia` +
@@ -200,7 +211,17 @@ export class FractalService extends BaseService {
             `&maxIterations=${p_fractalParams.maxIterations}` +
             `&zoomInOut=${p_fractalParams.serverZoomIn}` +
             `&zoomStep=${p_fractalParams.serverZoomFactor}` 
-      break;      
+      break;     
+     case BackendLanguage.SWIFTLANG:
+          url =
+            `${this.__baseUrlSwiftLangFractal}` +
+            `?kind=${FractalType.MANDELBROT}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;  
       default :
           url =
             `${this.__baseUrlNodeJsFractal}mandelbrot` +
@@ -274,7 +295,16 @@ export class FractalService extends BaseService {
             `&maxIterations=${p_fractalParams.maxIterations}` +
             `&zoomInOut=${p_fractalParams.serverZoomIn}` +
             `&zoomStep=${p_fractalParams.serverZoomFactor}` 
-      break;      
+      break;  
+      case BackendLanguage.SWIFTLANG:
+            url = `${this.__baseUrlSwiftLangFractal}` +
+            `?kind=${FractalType.BARNSLEY_FERN}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;     
       default : 
             url = `${this.__baseUrlNodeJsFractal}leaf`;      
     }

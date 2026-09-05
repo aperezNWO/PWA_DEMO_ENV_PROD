@@ -234,6 +234,20 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   }, // Enabled for Go            
     }
   },
+    {
+    backendLanguage   : BackendLanguage.RUSTLANG,
+    languageCode      : 'rustlang',
+    label             : 'Rust (Actix-web)',
+    icon              : '⚡',
+    description       : 'Runs on Actix-web ',
+    enabled           : true,
+    supportedFractals : {
+      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   }, // Enabled for Go            
+    }
+  },
   {
     backendLanguage  : BackendLanguage.NODEJS,
     languageCode     : 'nodejs',
@@ -276,6 +290,20 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true  }, // Enabled for Go                  
     }
   },
+  {
+    backendLanguage   : BackendLanguage.SWIFTLANG, 
+    languageCode      : 'swiftlang',
+    label             : 'Swift (Vapor)',
+    icon              : '🍊',
+    description       : 'Runs on Vapor ',
+    enabled           : true,
+    supportedFractals : {
+      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  }, // Enabled for Go            
+    }
+  },
 ];
 
 //
@@ -313,7 +341,8 @@ constructor(
     'J2SE' : 'j2se',
     'CPP'  : 'cpp',
     'GO'   : 'golang',
-    'RS'   : 'rustlang',
+    'RS'    : 'rustlang',
+    'SWIFT' : 'swiftlang',
   };
 
   ngOnInit(): void {
@@ -659,6 +688,22 @@ constructor(
           );
       break;  
 
+    case 'swiftlang':
+
+        fractalParams = { 
+              ...DEFAULT_FRACTAL_PARAMS 
+              ,selectedBackend  : BackendLanguage.SWIFTLANG
+              ,selectedFractal  : this.selectedFractal
+              ,maxIterations    : this.maxIterations
+              ,isZoomable       : this._buildBounds()
+              ,serverZoomIn     : this.serverZoomIn
+              ,serverZoomFactor : this.serverZoomFactor
+          };
+
+          serviceCall = this._fractalEngine.GetFractal(
+            fractalParams
+          );
+      break;  
       case 'cpp':
         serviceCall = this.fractalService.GetFractal_CPP(
           this.maxIterations, this.realPart, this.imagPart
