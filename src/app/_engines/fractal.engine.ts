@@ -26,6 +26,7 @@ export enum BackendLanguage {
   RUSTLANG       = 8,
   SWIFTLANG      = 9,
   ZIGLANG        = 10,
+  CPP_WS         = 11
 }
 
 export enum FractalType {

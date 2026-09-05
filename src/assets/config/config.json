@@ -2,7 +2,7 @@
     "APP INFO"                                     : "-----------------------------------------",
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "3.9.20",
+    "appVersion"                                   : "3.9.21",
     "TECHNICAL INFO"                               : "-----------------------------------------",
     "gitHubRepo"                                   : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD",
     "techDocRoot"                                  : "Exam70486", 
@@ -92,6 +92,9 @@
     "baseUrlSwiftLang"                           : "https://swiftdemo001-latest-l5ee.onrender.com/",
     "ZIG_LANG_ENV"                               : "--------------------------------------------------",
     "baseUrlZigLang_render_gmail_ws_00"          : "https://zig-demo-001-latest.onrender.com/",  
-    "baseUrlZigLang"                             : "https://zig-demo-001-latest.onrender.com/"
+    "baseUrlZigLang"                             : "https://zig-demo-001-latest.onrender.com/",
+    "CPP_WEB_SERVER_ENV"                          : "--------------------------------------------------",
+    "baseUrlCppWebServer_render_gmail_ws_00"      : "https://fractal-cpp-server-latest.onrender.com/",  
+    "baseUrlCppWebServer"                         : "https://fractal-cpp-server-latest.onrender.com/"
 }
   

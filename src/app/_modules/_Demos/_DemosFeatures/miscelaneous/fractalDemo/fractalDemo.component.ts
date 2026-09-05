@@ -263,20 +263,6 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     }
   },
   {
-    backendLanguage   : BackendLanguage.CPP, 
-    languageCode      : 'cpp',
-    label             : 'C++ (Native)',
-    icon              : '⚙️',
-    description       : 'Native performance — On hold (pending pure-math migration)',
-    enabled           : false,   // ← disabled: hidden from the dropdown, config kept for when work resumes
-    supportedFractals : {
-      [FractalType.MANDELBROT]     : { supported: false, zoomable: false  },
-      [FractalType.JULIA]          : { supported: true,  zoomable: false  }, 
-      [FractalType.BARNSLEY_FERN]  : { supported: false, zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true  }, // Enabled for Go                  
-    }
-  },
-  {
     backendLanguage   : BackendLanguage.SWIFTLANG, 
     languageCode      : 'swiftlang',
     label             : 'Swift (Vapor)',
@@ -301,9 +287,23 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
       [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
       [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  }, // Enabled for Go            
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  }, 
     }
   },
+  {
+    backendLanguage   : BackendLanguage.CPP_WS, 
+    languageCode      : 'cppWs',
+    label             : 'C++ (http::Server)',
+    icon              : '⚙️',
+    description       : 'Native performanc',
+    enabled           : true,  
+    supportedFractals : {
+      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]          : { supported: true,   zoomable: true   }, 
+      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  }, 
+    }
+   },
 ];
 
 //
@@ -339,7 +339,8 @@ constructor(
     'NODE' : 'nodejs',
     'JAVA' : 'j2se',
     'J2SE' : 'j2se',
-    'CPP'  : 'cpp',
+    'CPW'  : 'cppws',  // C++ Web Server
+    'CPP'  : 'cpp',   
     'GO'   : 'golang',
     'RS'    : 'rustlang',
     'SWIFT' : 'swiftlang',
@@ -711,6 +712,23 @@ constructor(
         fractalParams = { 
               ...DEFAULT_FRACTAL_PARAMS 
               ,selectedBackend  : BackendLanguage.ZIGLANG
+              ,selectedFractal  : this.selectedFractal
+              ,maxIterations    : this.maxIterations
+              ,isZoomable       : this._buildBounds()
+              ,serverZoomIn     : this.serverZoomIn
+              ,serverZoomFactor : this.serverZoomFactor
+          };
+
+          serviceCall = this._fractalEngine.GetFractal(
+            fractalParams
+          );
+      break;  
+
+     case 'cppws':
+
+        fractalParams = { 
+              ...DEFAULT_FRACTAL_PARAMS 
+              ,selectedBackend  : BackendLanguage.CPP_WS
               ,selectedFractal  : this.selectedFractal
               ,maxIterations    : this.maxIterations
               ,isZoomable       : this._buildBounds()

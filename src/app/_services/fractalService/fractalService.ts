@@ -12,7 +12,7 @@ import { BackendLanguage
        , FractalEngine
        , FractalParams
        , FractalPoint
-       , FractalType                  } from "src/app/_engines/fractal.engine";
+       , FractalType                     } from "src/app/_engines/fractal.engine";
 import { FractalRequest, FractalResponse } from 'src/app/grpc/fractal';
 
 
@@ -30,6 +30,7 @@ export class FractalService extends BaseService {
   private readonly __baseUrlRustLangFractal  = `${this._configService.getConfigValue('baseUrlRustLang')}api/fractals/generate`;  
   private readonly __baseUrlSwiftLangFractal = `${this._configService.getConfigValue('baseUrlSwiftLang')}api/fractals/generate`;  
   private readonly __baseUrlZigLangFractal   = `${this._configService.getConfigValue('baseUrlZigLang')}api/fractals/generate`;  
+  private readonly __baseUrlCppWebServer     = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/fractals/generate`;  
  
   // ═══════════════════════════════════════════════════════════════════════════
   //  C++ / .NET CORE BACKEND
@@ -127,9 +128,19 @@ export class FractalService extends BaseService {
             `&zoomInOut=${p_fractalParams.serverZoomIn}` +
             `&zoomStep=${p_fractalParams.serverZoomFactor}` 
       break;     
-           case BackendLanguage.ZIGLANG :
+      case BackendLanguage.ZIGLANG :
           url =
             `${this.__baseUrlZigLangFractal}` +
+            `?kind=${FractalType.JULIA}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;    
+      case BackendLanguage.CPP_WS :
+          url =
+            `${this.__baseUrlCppWebServer}` +
             `?kind=${FractalType.JULIA}` +
             `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
             `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
@@ -241,7 +252,17 @@ export class FractalService extends BaseService {
             `&maxIterations=${p_fractalParams.maxIterations}` +
             `&zoomInOut=${p_fractalParams.serverZoomIn}` +
             `&zoomStep=${p_fractalParams.serverZoomFactor}` 
-      break;        
+      break;    
+    case BackendLanguage.CPP_WS:
+          url =
+            `${this.__baseUrlCppWebServer}` +
+            `?kind=${FractalType.MANDELBROT}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;                
       default :
           url =
             `${this.__baseUrlNodeJsFractal}mandelbrot` +
@@ -327,6 +348,15 @@ export class FractalService extends BaseService {
       break;     
       case BackendLanguage.ZIGLANG:
             url = `${this.__baseUrlZigLangFractal}` +
+            `?kind=${FractalType.BARNSLEY_FERN}` +
+            `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
+            `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
+            `&maxIterations=${p_fractalParams.maxIterations}` +
+            `&zoomInOut=${p_fractalParams.serverZoomIn}` +
+            `&zoomStep=${p_fractalParams.serverZoomFactor}` 
+      break;           
+      case BackendLanguage.CPP_WS:
+            url = `${this.__baseUrlCppWebServer}` +
             `?kind=${FractalType.BARNSLEY_FERN}` +
             `&xMin=${bounds.xMin}&xMax=${bounds.xMax}` +
             `&yMin=${bounds.yMin}&yMax=${bounds.yMax}` +
