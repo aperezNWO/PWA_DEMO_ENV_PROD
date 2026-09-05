@@ -292,10 +292,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   },
   {
     backendLanguage   : BackendLanguage.CPP_WS, 
-    languageCode      : 'cppWs',
+    languageCode      : 'cppws',
     label             : 'C++ (http::Server)',
     icon              : '⚙️',
-    description       : 'Native performanc',
+    description       : 'Native performance',
     enabled           : true,  
     supportedFractals : {
       [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
