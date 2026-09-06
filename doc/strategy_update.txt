@@ -2,7 +2,6 @@ r///////////////////////////////////////////////////////////////////////////////
                         -- STRATEGY UPDATE --
 ////////////////////////////////////////////////////////////////////////////////
 
-
 ////////////////////////////////////////////////////////////////////////////////
 
 -- [_] TODO LIST.
@@ -29,14 +28,14 @@ r///////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
 
+ --[x] zig demo (out if disk space).
+
+ --[x] swift demo / dijkstra.
+ 
  --[_] 1.fm landing page style.            
 
  --[_] RUST HTTP INTERCEPT.            
   
- --[_] zig demo (out if disk space).
-
- --[_] swift demo / dijkstra.
-
  --[_] webRTC demo.
 
  --[_] https://deepwiki.com/Exam70486/PWA_DEMO_ENV_PROD
@@ -57,11 +56,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[_] MOVE GAME CORE TO KOTLIN.
 
-             --[_] About > Tech Info > Admin (Auth Required) > front (flutter) / back (kottlin).
-
- --[X] INSTALL .NET CORE DEV ENV.
-
-       --[X] GITHUB CODESPPACES  / VM.
+            --[_] About > Tech Info > Admin (Auth Required) > front (flutter) / back (kottlin).
 
  --[_] COMPLETE LLM DEMO.
 
@@ -115,12 +110,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[x] gitHub Repo FROM CONFIG.
 
-            --[_] RENDER / Kotlin VERSION.
-
+            --[_] RENDER / Kotlin / Dart / Golang / Rust / Swift / Zig VERSION.
  
  --[_] golang Mandelbrot / Barnsley Fern gRPC.
-
- --[_] c++ http web server fractal demo.
 
 ////////////////////////////////////////////////////////////////////////////////
 

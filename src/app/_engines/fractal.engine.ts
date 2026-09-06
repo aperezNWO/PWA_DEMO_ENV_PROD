@@ -30,10 +30,12 @@ export enum BackendLanguage {
 }
 
 export enum FractalType {
-  MANDELBROT      = 1,
-  JULIA           = 2,
-  BARNSLEY_FERN   = 3,
-  MANDELBROT_GRPC = 4,
+  MANDELBROT         = 1,
+  JULIA              = 2,
+  BARNSLEY_FERN      = 3,
+  MANDELBROT_GRPC    = 4,
+  JULIA_GRPC         = 5,
+  BARNSLEY_FERN_GRPC = 6,
 }
 
 export interface FractalBounds {
@@ -426,7 +428,11 @@ export class FractalEngine{
             return this._fractalService.GenerateFractalServerBarnsleyFern(p_fractalParams);
         break;
         case FractalType.MANDELBROT_GRPC:
-            return this._fractalService.GenerateFractalServerMandelbrotGrpc(p_fractalParams);        
+            return this._fractalService.GenerateFractalServerGrpc(p_fractalParams);  
+        case FractalType.JULIA_GRPC:
+            return this._fractalService.GenerateFractalServerGrpc(p_fractalParams);    
+        case FractalType.BARNSLEY_FERN_GRPC:
+            return this._fractalService.GenerateFractalServerGrpc(p_fractalParams);                              
         default :
             return this._fractalService.GenerateFractalServerJulia(p_fractalParams);
       }

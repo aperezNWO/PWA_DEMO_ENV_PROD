@@ -469,16 +469,19 @@ export class FractalService extends BaseService {
       }));
     }
 
-
-  public GenerateFractalServerMandelbrotGrpc(
-      p_fractalParams: FractalParams
+  public GenerateFractalServerGrpc(
+    p_fractalParams: FractalParams
   ): Observable<FractalPoint[]> {
-    const url = `${this._configService.getConfigValue('baseUrlGoLang')}fractal.FractalService/GetFractal`;
-    const bounds = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
+    const url         = `${this._configService.getConfigValue('baseUrlGoLang')}fractal.FractalService/GetFractal`;
+    const bounds      = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
+    const GRPC_OFFSET = 3; // Adjust this value based on your gRPC enum offset
+
+    // Dynamically use the kind passed in parameters, defaulting to Mandelbrot (1) if not provided
+    const fractalKind    = ((p_fractalParams.selectedFractal) ?? FractalType.MANDELBROT_GRPC) - GRPC_OFFSET; // Adjusted for gRPC enum offset
 
     // Encode FractalRequest using generated TS classes
     const requestPayload = FractalRequest.encode({
-      kind: FractalType.MANDELBROT,
+      kind: fractalKind,
       maxIterations: p_fractalParams.maxIterations,
       xMin: bounds.xMin,
       xMax: bounds.xMax,
@@ -515,5 +518,4 @@ export class FractalService extends BaseService {
       )
     );
   }
- 
 }

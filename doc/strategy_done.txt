@@ -2,9 +2,15 @@
 // STRATEGY DONE 
 /////////////////////////////////////////////////////////////////
 
-       --[X] dart / kotlin curriculums.
+  --[x] c++ http web server fractal demo.
+
+  --[X] INSTALL .NET CORE DEV ENV.
+
+  --[X] GITHUB CODESPPACES  / VM.
+
+  --[X] dart / kotlin curriculums.
           
-       --[X] Add Dart links.
+  --[X] Add Dart links.
 
             --[=>] Curriculum.
 
