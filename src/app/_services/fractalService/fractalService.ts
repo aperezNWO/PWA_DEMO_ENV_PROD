@@ -9,7 +9,7 @@ import { ConfigService                } from "../__Utils/ConfigService/config.se
 import { BackendLanguage
        , DEFAULT_BOUNDS_JULIA
        , DEFAULT_BOUNDS_MANDELBROT
-       , FractalBounds
+       , FERN_SENTINEL, FractalBounds
        , FractalEngine
        , FractalParams
        , FractalPoint
@@ -379,157 +379,124 @@ export class FractalService extends BaseService {
   }
 
   /////////////////////////////////////////////////////////////////////////
-  // RPC  
+  // gRPC  
   /////////////////////////////////////////////////////////////////////////
-  private _decodeGrpcResponse(
-    responseBuffer: ArrayBuffer,
-    maxIterations: number
+  
+  public GenerateFractalServerGrpc(
+    p_fractalParams: FractalParams
+  ): Observable<FractalPoint[]> {
+    const url = `${this._configService.getConfigValue('baseUrlGoLang')}fractal.FractalService/GetFractal`;
+    const bounds = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
+    const GRPC_OFFSET = 3;
+    const fractalKind = ((p_fractalParams.selectedFractal) ?? FractalType.MANDELBROT_GRPC) - GRPC_OFFSET;
+
+    const requestPayload = FractalRequest.encode({
+      kind: fractalKind,
+      maxIterations: p_fractalParams.maxIterations,
+      xMin: bounds.xMin,
+      xMax: bounds.xMax,
+      yMin: bounds.yMin,
+      yMax: bounds.yMax
+    }).finish();
+
+    // Build the 5-byte gRPC-Web frame header (1 byte flag + 4-byte big-endian length)
+    const frame = new Uint8Array(5 + requestPayload.length);
+    frame[0] = 0x00;
+    const len = requestPayload.length;
+    frame[1] = (len >> 24) & 0xFF;
+    frame[2] = (len >> 16) & 0xFF;
+    frame[3] = (len >> 8) & 0xFF;
+    frame[4] = len & 0xFF;
+    frame.set(requestPayload, 5);
+
+    // Binary transport — send the frame bytes directly, no base64 involved,
+    // so there's no base64 frame-boundary alignment bug possible.
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/grpc-web+proto',
+      'Accept': 'application/grpc-web+proto',
+      'X-User-Agent': 'grpc-web-javascript/0.1',
+      'X-Grpc-Web': '1'
+    });
+
+    return this.http.post(url, frame, {
+      headers,
+      responseType: 'arraybuffer'
+    }).pipe(
+      map((buffer: ArrayBuffer) => this._parseGrpcArrayBuffer(buffer, p_fractalParams.maxIterations, fractalKind)),
+      take(1)
+    );
+  }
+  
+  private _parseGrpcArrayBuffer(
+    buffer: ArrayBuffer,
+    maxIterations: number,
+    fractalKind: number
   ): FractalPoint[] {
-    if (!responseBuffer || responseBuffer.byteLength === 0) {
+    if (!buffer || buffer.byteLength === 0) {
+      console.warn('[gRPC] Empty response buffer — nothing to parse.');
       return [];
     }
 
-    const uint8View = new Uint8Array(responseBuffer);
-    let bytes: Uint8Array;
-
-    const rawText = new TextDecoder('utf-8').decode(responseBuffer).trim();
-    let base64String = rawText.replace(/\s+/g, '');
-
-    // Check if the payload is actually valid base64 text
-    const base64Regex = /^[A-Za-z0-9+\/]*={0,2}$/;
-    const isBase64Text = base64String.length > 0 && 
-                         base64String.length % 4 === 0 && 
-                         base64Regex.test(base64String);
-
-    if (isBase64Text) {
-      let binaryString: string;
-      try {
-        binaryString = atob(base64String);
-      } catch (e) {
-        console.error('[gRPC Mandelbrot] Base64 decode failed:', e);
-        return [];
-      }
-
-      bytes = new Uint8Array(binaryString.length);
-      for (let i = 0; i < binaryString.length; i++) {
-        bytes[i] = binaryString.charCodeAt(i);
-      }
-    } else {
-      // Fallback: Treat buffer directly as raw binary gRPC-web
-      bytes = uint8View;
-    }
-
+    const bytes = new Uint8Array(buffer);
     let offset = 0;
-    let dataPoints: FractalPoint[] = [];
+    const dataPoints: FractalPoint[] = [];
+    let sawDataFrame = false;
 
     while (offset + 5 <= bytes.length) {
       const flag = bytes[offset];
       const length =
-        (bytes[offset + 1] << 24) | (bytes[offset + 2] << 16) |
-        (bytes[offset + 3] << 8)  |  bytes[offset + 4];
+        ((bytes[offset + 1] << 24) >>> 0) +
+        ((bytes[offset + 2] << 16) |
+        (bytes[offset + 3] << 8)  |
+          bytes[offset + 4]);
 
       const payloadStart = offset + 5;
-      const payloadEnd   = payloadStart + length;
-      if (payloadEnd > bytes.length) break;
+      const payloadEnd = payloadStart + length;
+      if (payloadEnd > bytes.length) {
+        console.error('[gRPC] Frame length overruns buffer — malformed response.', { offset, length, total: bytes.length });
+        break;
+      }
 
       const payload = bytes.subarray(payloadStart, payloadEnd);
 
-      if ((flag & 0x80) !== 0) {
+      if ((flag & 0x80) === 0) {
+        sawDataFrame = true;
+        const decoded = FractalResponse.decode(payload);
+        const points = this._mapBufferToPoints(decoded.points, maxIterations, fractalKind);
+        for (let i = 0; i < points.length; i++) {
+          dataPoints.push(points[i]);
+        }
+      } else {
+        // Trailer frame — surface the real gRPC status instead of failing silently
         const trailerText  = new TextDecoder().decode(payload);
         const statusMatch  = trailerText.match(/grpc-status:\s*(\d+)/i);
         const messageMatch = trailerText.match(/grpc-message:\s*(.+)/i);
         if (statusMatch && statusMatch[1] !== '0') {
-          console.error(`[gRPC Mandelbrot] status ${statusMatch[1]}: ${messageMatch?.[1] ?? trailerText}`);
-        }
-      } else {
-        const decoded = FractalResponse.decode(payload);
-        const mappedPoints = this._mapBufferToPoints(decoded.points, maxIterations);
-        
-        // Safely append points using a loop instead of the spread operator
-        for (let i = 0; i < mappedPoints.length; i++) {
-          dataPoints.push(mappedPoints[i]);
+          console.error(`[gRPC] call failed — status ${statusMatch[1]}: ${messageMatch?.[1] ?? trailerText}`);
         }
       }
 
       offset = payloadEnd;
     }
 
+    if (!sawDataFrame) {
+      console.warn('[gRPC] No data frame in response — only trailers, or the buffer was malformed.');
+    }
+
     return dataPoints;
   }
 
-    private _mapBufferToPoints(
-      points: { x: number; y: number; intensity: number }[],
-      maxIterations: number
-    ): FractalPoint[] {
-      return points.map(p => ({
-        x: p.x,
-        y: p.y,
-        iterations: p.intensity,
-        escaped: p.intensity < maxIterations,
-        value: p.intensity
-      }));
-    }
-
-  public GenerateFractalServerGrpc(
-      p_fractalParams: FractalParams
-    ): Observable<FractalPoint[]> {
-      return new Observable<FractalPoint[]>((observer) => {
-        const url         = `${this._configService.getConfigValue('baseUrlGoLang')}fractal.FractalService/GetFractal`;
-        const bounds      = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
-        const GRPC_OFFSET = 3;
-
-        const fractalKind = ((p_fractalParams.selectedFractal) ?? FractalType.MANDELBROT_GRPC) - GRPC_OFFSET;
-
-        const requestPayload = FractalRequest.encode({
-          kind: fractalKind,
-          maxIterations: p_fractalParams.maxIterations,
-          xMin: bounds.xMin,
-          xMax: bounds.xMax,
-          yMin: bounds.yMin,
-          yMax: bounds.yMax
-        }).finish();
-
-        const frame = new Uint8Array(5 + requestPayload.length);
-        frame[0] = 0x00;
-        const len = requestPayload.length;
-        frame[1] = (len >> 24) & 0xFF;
-        frame[2] = (len >> 16) & 0xFF;
-        frame[3] = (len >> 8) & 0xFF;
-        frame[4] = len & 0xFF;
-        frame.set(requestPayload, 5);
-
-        const base64Request = btoa(String.fromCharCode(...frame));
-
-        const headers = new HttpHeaders({
-          'Content-Type': 'application/grpc-web-text',
-          'Accept': 'application/grpc-web-text',
-          'X-User-Agent': 'grpc-web-javascript/0.1',
-          'X-Grpc-Web': '1'
-        });
-
-        // Execute post call and capture inner HTTP subscription
-        const httpSubscription = this.http.post(url, base64Request, {
-          headers,
-          responseType: 'arraybuffer'
-        }).pipe(
-          map((response: ArrayBuffer) => 
-            this._decodeGrpcResponse(response, p_fractalParams.maxIterations)
-          ),
-          take(1)
-        ).subscribe({
-          next: (points) => {
-            observer.next(points);
-            observer.complete();
-          },
-          error: (err) => observer.error(err)
-        });
-
-        // Teardown: Abort the underlying HTTP request if unsubscribed prematurely
-        return () => {
-          if (httpSubscription && !httpSubscription.closed) {
-            httpSubscription.unsubscribe();
-          }
-        };
-      });
-    }
+  private _mapBufferToPoints(
+    points: { x: number; y: number; intensity: number }[],
+    maxIterations: number,
+    fractalKind: number
+  ): FractalPoint[] {
+    return points.map(p => {
+      if (fractalKind === 3 /* Leaf/BarnsleyFern on the Go side */) {
+        return { x: p.x, y: p.y, value: FERN_SENTINEL, iterations: maxIterations };
+      }
+      const iter = p.intensity === 0 ? maxIterations : Math.round((p.intensity * maxIterations) / 255);
+      return { x: p.x, y: p.y, value: iter, iterations: maxIterations, escaped: p.intensity < 255 };
+    });
+  }
 }
