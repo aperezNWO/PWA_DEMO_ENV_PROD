@@ -1,6 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { map
-        , Observable                  } from "rxjs";
+        , Observable,                  
+        take} from "rxjs";
 import { BaseService                  } from "../__baseService/base.service";
 import { HttpClient                   } from "@angular/common/http";
 import { inject, Injectable           } from "@angular/core";
@@ -470,52 +471,65 @@ export class FractalService extends BaseService {
     }
 
   public GenerateFractalServerGrpc(
-    p_fractalParams: FractalParams
-  ): Observable<FractalPoint[]> {
-    const url         = `${this._configService.getConfigValue('baseUrlGoLang')}fractal.FractalService/GetFractal`;
-    const bounds      = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
-    const GRPC_OFFSET = 3; // Adjust this value based on your gRPC enum offset
+      p_fractalParams: FractalParams
+    ): Observable<FractalPoint[]> {
+      return new Observable<FractalPoint[]>((observer) => {
+        const url         = `${this._configService.getConfigValue('baseUrlGoLang')}fractal.FractalService/GetFractal`;
+        const bounds      = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
+        const GRPC_OFFSET = 3;
 
-    // Dynamically use the kind passed in parameters, defaulting to Mandelbrot (1) if not provided
-    const fractalKind    = ((p_fractalParams.selectedFractal) ?? FractalType.MANDELBROT_GRPC) - GRPC_OFFSET; // Adjusted for gRPC enum offset
+        const fractalKind = ((p_fractalParams.selectedFractal) ?? FractalType.MANDELBROT_GRPC) - GRPC_OFFSET;
 
-    // Encode FractalRequest using generated TS classes
-    const requestPayload = FractalRequest.encode({
-      kind: fractalKind,
-      maxIterations: p_fractalParams.maxIterations,
-      xMin: bounds.xMin,
-      xMax: bounds.xMax,
-      yMin: bounds.yMin,
-      yMax: bounds.yMax
-    }).finish();
+        const requestPayload = FractalRequest.encode({
+          kind: fractalKind,
+          maxIterations: p_fractalParams.maxIterations,
+          xMin: bounds.xMin,
+          xMax: bounds.xMax,
+          yMin: bounds.yMin,
+          yMax: bounds.yMax
+        }).finish();
 
-    // Wrap in 5-byte gRPC frame header
-    const frame = new Uint8Array(5 + requestPayload.length);
-    frame[0] = 0x00; // Data frame
-    const len = requestPayload.length;
-    frame[1] = (len >> 24) & 0xFF;
-    frame[2] = (len >> 16) & 0xFF;
-    frame[3] = (len >> 8) & 0xFF;
-    frame[4] = len & 0xFF;
-    frame.set(requestPayload, 5);
+        const frame = new Uint8Array(5 + requestPayload.length);
+        frame[0] = 0x00;
+        const len = requestPayload.length;
+        frame[1] = (len >> 24) & 0xFF;
+        frame[2] = (len >> 16) & 0xFF;
+        frame[3] = (len >> 8) & 0xFF;
+        frame[4] = len & 0xFF;
+        frame.set(requestPayload, 5);
 
-    // Encode gRPC payload to base64 for grpc-web-text header compliance
-    const base64Request = btoa(String.fromCharCode(...frame));
+        const base64Request = btoa(String.fromCharCode(...frame));
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/grpc-web-text',
-      'Accept': 'application/grpc-web-text',
-      'X-User-Agent': 'grpc-web-javascript/0.1',
-      'X-Grpc-Web': '1'
-    });
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/grpc-web-text',
+          'Accept': 'application/grpc-web-text',
+          'X-User-Agent': 'grpc-web-javascript/0.1',
+          'X-Grpc-Web': '1'
+        });
 
-    return this.http.post(url, base64Request, {
-      headers,
-      responseType: 'arraybuffer'
-    }).pipe(
-      map((response: ArrayBuffer) => 
-        this._decodeGrpcResponse(response, p_fractalParams.maxIterations)
-      )
-    );
-  }
+        // Execute post call and capture inner HTTP subscription
+        const httpSubscription = this.http.post(url, base64Request, {
+          headers,
+          responseType: 'arraybuffer'
+        }).pipe(
+          map((response: ArrayBuffer) => 
+            this._decodeGrpcResponse(response, p_fractalParams.maxIterations)
+          ),
+          take(1)
+        ).subscribe({
+          next: (points) => {
+            observer.next(points);
+            observer.complete();
+          },
+          error: (err) => observer.error(err)
+        });
+
+        // Teardown: Abort the underlying HTTP request if unsubscribed prematurely
+        return () => {
+          if (httpSubscription && !httpSubscription.closed) {
+            httpSubscription.unsubscribe();
+          }
+        };
+      });
+    }
 }
