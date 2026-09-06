@@ -1,3 +1,4 @@
+import { take } from 'rxjs';
 import { Component
        , ViewChild
        , OnInit
@@ -605,7 +606,7 @@ constructor(
 
         serviceCall = this._fractalEngine.GetFractal(
           fractalParams
-        );
+        ).pipe(take(1));
 
       break;
 
@@ -623,7 +624,7 @@ constructor(
 
         serviceCall = this._fractalEngine.GetFractal(
           fractalParams
-        );
+        ).pipe(take(1));;
       break;
 
        case 'Dart':
@@ -636,11 +637,11 @@ constructor(
             ,isZoomable       : this._buildBounds()
             ,serverZoomIn     : this.serverZoomIn
             ,serverZoomFactor : this.serverZoomFactor
-        };
+        }
 
         serviceCall = this._fractalEngine.GetFractal(
           fractalParams
-        );
+        ).pipe(take(1));;;
       break;
 
       case 'nodejs':
@@ -653,11 +654,11 @@ constructor(
             ,isZoomable       : this._buildBounds()
             ,serverZoomIn     : this.serverZoomIn
             ,serverZoomFactor : this.serverZoomFactor
-        };
+        }
 
         serviceCall = this._fractalEngine.GetFractal(
           fractalParams
-        );
+        ).pipe(take(1));;;
 
         break;
 
@@ -675,7 +676,7 @@ constructor(
 
         serviceCall = this._fractalEngine.GetFractal(
           fractalParams
-        );
+        ).pipe(take(1));;;
         break;
 
       case 'golang':
@@ -692,7 +693,7 @@ constructor(
 
         serviceCall = this._fractalEngine.GetFractal(
           fractalParams
-        );
+        ).pipe(take(1));
       break;  
 
       case 'rustlang':
@@ -709,7 +710,7 @@ constructor(
 
           serviceCall = this._fractalEngine.GetFractal(
             fractalParams
-          );
+          ).pipe(take(1));
       break;  
 
     case 'swiftlang':
@@ -726,7 +727,7 @@ constructor(
 
           serviceCall = this._fractalEngine.GetFractal(
             fractalParams
-          );
+          ).pipe(take(1));
       break;  
 
       case 'ziglang':
@@ -743,7 +744,7 @@ constructor(
 
           serviceCall = this._fractalEngine.GetFractal(
             fractalParams
-          );
+          ).pipe(take(1));
       break;  
 
      case 'cppws':
@@ -760,13 +761,13 @@ constructor(
 
           serviceCall = this._fractalEngine.GetFractal(
             fractalParams
-          );
+          ).pipe(take(1));
       break;  
 
       case 'cpp':
         serviceCall = this.fractalService.GetFractal_CPP(
           this.maxIterations, this.realPart, this.imagPart
-        );
+        ).pipe(take(1));
         break;
 
       default:
@@ -778,7 +779,7 @@ constructor(
 
               serviceCall = this._fractalEngine.GetFractal(
                 fractalParams
-              );
+              ).pipe(take(1));
         }
         
     }
