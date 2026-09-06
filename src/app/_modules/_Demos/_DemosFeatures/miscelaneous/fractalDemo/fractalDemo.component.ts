@@ -224,8 +224,8 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.MANDELBROT]        : { supported: true,  zoomable: true    },
       [FractalType.JULIA]             : { supported: true,  zoomable: true    },
       [FractalType.BARNSLEY_FERN]     : { supported: true,  zoomable: false   },
-      [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   }, 
-      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
+      [FractalType.MANDELBROT_GRPC]   : { supported: true,   zoomable: true   }, 
+      [FractalType.JULIA_GRPC]        : { supported: true,   zoomable: true   }, 
       [FractalType.BARNSLEY_FERN_GRPC]: { supported: true,   zoomable: false  },   // Enabled for Go
     }
   },
@@ -320,9 +320,9 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
       [FractalType.JULIA]          : { supported: true,   zoomable: true   }, 
       [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  }, 
-      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    },
-      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   },
+      [FractalType.MANDELBROT_GRPC]   :   { supported: false,  zoomable: false   }, // BACKEND MUST PUBLISH ON RENDER PRIVATE SERVER PAID SITE
+      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, // BACKEND MUST PUBLISH ON RENDER PRIVATE SERVER PAID SITE
+      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   }, // BACKEND MUST PUBLISH ON RENDER PRIVATE SERVER PAID SITE
     }
    },
 ];
