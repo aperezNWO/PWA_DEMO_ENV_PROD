@@ -178,7 +178,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.BARNSLEY_FERN]     : { supported: true,   zoomable: false  },
       [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   }, 
       [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: true   },                  
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: true   },
+      [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },
     }
   },
   {
@@ -194,7 +197,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.BARNSLEY_FERN]  : { supported: true , zoomable : false },
       [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true  },
       [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },   
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },               
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  }, 
+      [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },                    
     }
   },
   {
@@ -209,8 +215,11 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
       [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
       [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   },
-      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, 
-      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   },    
+      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },    
+      [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },    
     }
   },
   {
@@ -227,6 +236,9 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   }, 
       [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
       [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: true   }, 
+      [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },      
     }
   },
   {
@@ -242,7 +254,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.BARNSLEY_FERN]     :   { supported: true,   zoomable: false  },
       [FractalType.MANDELBROT_GRPC]   :   { supported: false,  zoomable: true   }, 
       [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true   }, 
-      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: true   },            
+      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: true   },
+      [FractalType.MANDELBROT_WASM]   :   { supported: false,  zoomable: true   },
+      [FractalType.JULIA_WASM]        :   { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false  },                  
     }
   },
   {
@@ -258,7 +273,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.BARNSLEY_FERN]     : { supported: true,  zoomable: false   },
       [FractalType.MANDELBROT_GRPC]   : { supported: true,   zoomable: true   }, 
       [FractalType.JULIA_GRPC]        : { supported: true,   zoomable: true   }, 
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: true,   zoomable: false  },   // Enabled for Go
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: true,   zoomable: false  },   
+      [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },      
     }
   },
   {
@@ -274,7 +292,10 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
       [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   }, 
       [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },            
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },   
+      [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },               
     }
   },
   {
@@ -289,8 +310,11 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
       [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
       [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  },
-      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, 
-      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   },     
+      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },   
+      [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },              
     }
   },
   {
@@ -307,6 +331,9 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.MANDELBROT_GRPC]   :   { supported: false,  zoomable: false   }, // BACKEND MUST PUBLISH ON RENDER PRIVATE SERVER PAID SITE
       [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, // BACKEND MUST PUBLISH ON RENDER PRIVATE SERVER PAID SITE
       [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   }, // BACKEND MUST PUBLISH ON RENDER PRIVATE SERVER PAID SITE
+      [FractalType.MANDELBROT_WASM]   :   { supported: false,  zoomable: true    },
+      [FractalType.JULIA_WASM]        :   { supported: false,  zoomable: true    },
+      [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false   },              
     }
   },
   {
@@ -323,9 +350,31 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  },
       [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, 
       [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   },             
+      [FractalType.MANDELBROT_WASM]   :   { supported: false,  zoomable: true    },
+      [FractalType.JULIA_WASM]        :   { supported: false,  zoomable: true    },
+      [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false   },              
     }
   },
-];
+  {
+      backendLanguage   : BackendLanguage.RUSTLANG_WASM,
+      languageCode      : 'rustlangwasm',
+      label             : 'Rust (webassembly)',
+      icon              : '⚡',
+      description       : 'Runs on webassembly ',
+      enabled           : true,
+      supportedFractals : {
+        [FractalType.MANDELBROT]     : { supported: false,   zoomable: true   },
+        [FractalType.JULIA]          : { supported: false ,  zoomable: true   },
+        [FractalType.BARNSLEY_FERN]  : { supported: false,   zoomable: false  },
+        [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   }, 
+        [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
+        [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },   
+        [FractalType.MANDELBROT_WASM]   : { supported: true,   zoomable: true   },
+        [FractalType.JULIA_WASM]        : { supported: true,   zoomable: true   },
+        [FractalType.BARNSLEY_FERN_WASM]: { supported: true,   zoomable: false  },               
+      }
+  },  
+  ];
 
 //
 fractalOptions = [
@@ -334,7 +383,10 @@ fractalOptions = [
     { id: FractalType.BARNSLEY_FERN,      label: 'Barnsley Fern (IFS — TS)', icon: '🍃' },
     { id: FractalType.MANDELBROT_GRPC,    label: 'Mandelbrot Set (gRPC)',    icon: '⚡' },    
     { id: FractalType.JULIA_GRPC        , label: 'Julia Set (gRPC)',         icon: '⚡' },  
-    { id: FractalType.BARNSLEY_FERN_GRPC, label: 'Barnsley Fern (gRPC)',     icon: '⚡' },   
+    { id: FractalType.BARNSLEY_FERN_GRPC, label: 'Barnsley Fern (gRPC)',     icon: '⚡' }, 
+    { id: FractalType.MANDELBROT_WASM,    label: 'Mandelbrot Set (WASM)',    icon: '⚙️' },
+    { id: FractalType.JULIA_WASM,         label: 'Julia Set (WASM)',         icon: '⚙️' },  
+    { id: FractalType.BARNSLEY_FERN_WASM, label: 'Barnsley Fern (WASM)',     icon: '⚙️' },
 ];
 
 //
@@ -367,7 +419,8 @@ constructor(
     'GO'   : 'golang',
     'RS'   : 'rustlang',
     'SWIFT': 'swiftlang',
-    'ZIG'  : 'ziglang',
+    'ZIG'   : 'ziglang',
+    'RSWASM': 'rustlangwasm',    
   };
 
   ngOnInit(): void {
@@ -764,11 +817,22 @@ constructor(
           ).pipe(take(1));
       break;  
 
-      case 'cpp':
-        serviceCall = this.fractalService.GetFractal_CPP(
-          this.maxIterations, this.realPart, this.imagPart
-        ).pipe(take(1));
-        break;
+  case 'rustlangwasm':
+
+        fractalParams = { 
+              ...DEFAULT_FRACTAL_PARAMS 
+              ,selectedBackend  : BackendLanguage.RUSTLANG_WASM
+              ,selectedFractal  : this.selectedFractal
+              ,maxIterations    : this.maxIterations
+              ,isZoomable       : this._buildBounds()
+              ,serverZoomIn     : this.serverZoomIn
+              ,serverZoomFactor : this.serverZoomFactor
+          };
+
+          serviceCall = this._fractalEngine.GetFractal(
+            fractalParams
+          ).pipe(take(1));
+      break;  
 
       default:
         {

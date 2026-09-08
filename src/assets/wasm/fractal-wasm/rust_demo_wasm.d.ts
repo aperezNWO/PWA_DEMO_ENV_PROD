@@ -5,10 +5,14 @@ export class FractalEngine {
     free(): void;
     [Symbol.dispose](): void;
     /**
-     * Generates the fractal using primitive boundary inputs to avoid Wasm ABI mapping errors,
-     * returning a flat Float64Array [x1, y1, intensity1, x2, y2, intensity2, ...]
+     * Returns the element count of the buffer
      */
-    generate(kind: number, x_min: number, x_max: number, y_min: number, y_max: number, max_iterations: number): Float64Array;
+    buffer_len(): number;
+    /**
+     * Returns a pointer to the start of the buffer in WebAssembly memory
+     */
+    buffer_ptr(): number;
+    generate(kind: number, x_min: number, x_max: number, y_min: number, y_max: number, max_iterations: number): void;
     constructor();
 }
 
@@ -17,7 +21,9 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
     readonly memory: WebAssembly.Memory;
     readonly __wbg_fractalengine_free: (a: number, b: number) => void;
-    readonly fractalengine_generate: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => [number, number, number];
+    readonly fractalengine_buffer_len: (a: number) => number;
+    readonly fractalengine_buffer_ptr: (a: number) => number;
+    readonly fractalengine_generate: (a: number, b: number, c: number, d: number, e: number, f: number, g: number) => [number, number];
     readonly fractalengine_new: () => number;
     readonly __wbindgen_exn_store: (a: number) => void;
     readonly __externref_table_alloc: () => number;

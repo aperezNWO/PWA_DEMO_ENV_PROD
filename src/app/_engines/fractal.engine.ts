@@ -26,7 +26,8 @@ export enum BackendLanguage {
   RUSTLANG       = 8,
   SWIFTLANG      = 9,
   ZIGLANG        = 10,
-  CPP_WS         = 11
+  CPP_WS         = 11,
+  RUSTLANG_WASM  = 12,
 }
 
 export enum FractalType {
@@ -36,6 +37,9 @@ export enum FractalType {
   MANDELBROT_GRPC    = 4,
   JULIA_GRPC         = 5,
   BARNSLEY_FERN_GRPC = 6,
+  MANDELBROT_WASM    = 7,
+  JULIA_WASM         = 8,
+  BARNSLEY_FERN_WASM = 9
 }
 
 export interface FractalBounds {
@@ -96,6 +100,9 @@ export const DEFAULT_BOUNDS_MANDELBROT : FractalBounds = {
   yMin: -1.2, 
   yMax: 1.2 
 };
+
+export const DEFAULT_BOUNDS_MANDELBROT_WASM: FractalBounds ={xMin: -2.0, xMax: 1.0, yMin: -1.2, yMax: 1.2}
+
 export const DEFAULT_BOUNDS_JULIA      : FractalBounds = { xMin: -1.5, xMax: 1.5,  yMin: -1.5, yMax: 1.5 };
 
 //
@@ -432,7 +439,14 @@ export class FractalEngine{
         case FractalType.JULIA_GRPC:
             return this._fractalService.GenerateFractalServerGrpc(p_fractalParams);    
         case FractalType.BARNSLEY_FERN_GRPC:
-            return this._fractalService.GenerateFractalServerGrpc(p_fractalParams);                              
+            return this._fractalService.GenerateFractalServerGrpc(p_fractalParams);
+        case FractalType.MANDELBROT_WASM:
+            return this._fractalService.GenerateFractalClientWasm(p_fractalParams);
+        case FractalType.JULIA_WASM:
+            return this._fractalService.GenerateFractalClientWasm(p_fractalParams);
+        case FractalType.BARNSLEY_FERN_WASM:
+            return this._fractalService.GenerateFractalClientWasm(p_fractalParams);
+        break;                                          
         default :
             return this._fractalService.GenerateFractalServerJulia(p_fractalParams);
       }

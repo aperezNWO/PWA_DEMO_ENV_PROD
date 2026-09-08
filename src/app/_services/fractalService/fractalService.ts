@@ -1,11 +1,12 @@
 import { HttpHeaders } from '@angular/common/http';
-import { map, Observable, take } from "rxjs";
+import { defer, from, map, Observable, take } from "rxjs";
 import { BaseService } from "../__baseService/base.service";
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { ConfigService } from "../__Utils/ConfigService/config.service";
-import { BackendLanguage, DEFAULT_BOUNDS_JULIA, DEFAULT_BOUNDS_MANDELBROT, FERN_SENTINEL, FractalBounds, FractalEngine, FractalParams, FractalPoint, FractalType } from "src/app/_engines/fractal.engine";
+import { BackendLanguage, DEFAULT_BOUNDS_JULIA, DEFAULT_BOUNDS_MANDELBROT, DEFAULT_BOUNDS_MANDELBROT_WASM, FERN_SENTINEL, FractalBounds, FractalEngine, FractalParams, FractalPoint, FractalType } from "src/app/_engines/fractal.engine";
 import { FractalRequest, FractalResponse } from 'src/app/grpc/fractal';
+import __wbg_init, { FractalEngine as WasmFractalEngine, InitOutput } from 'src/assets/wasm/fractal-wasm/rust_demo_wasm';
 
 @Injectable({ providedIn: 'root' })
 export class FractalService extends BaseService {
@@ -23,6 +24,13 @@ export class FractalService extends BaseService {
   private readonly __baseUrlZigLangFractal   = `${this._configService.getConfigValue('baseUrlZigLang')}api/fractals/generate`;  
   private readonly __baseUrlCppWebServer     = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/fractals/generate`;  
  
+  // ═══════════════════════════════════════════════════════════════════════════
+  //  WASM PROPERTIES
+  // ═══════════════════════════════════════════════════════════════════════════
+  private wasmInitialized = false;
+  private engineInstance: WasmFractalEngine | null = null;
+  private wasmModule: InitOutput | null = null;
+
   // ═══════════════════════════════════════════════════════════════════════════
   //  C++ / .NET CORE BACKEND
   // ═══════════════════════════════════════════════════════════════════════════
@@ -314,4 +322,176 @@ private _parseGrpcArrayBuffer(
       return { x: p.x, y: p.y, value: iter, iterations: maxIterations, escaped: p.intensity < 255 };
     });
   }
+
+  /////////////////////////////////////////////////////////////////////////
+  // WASM
+  /////////////////////////////////////////////////////////////////////////
+
+  //
+  private async initWasm(): Promise<{ engine: WasmFractalEngine; module: InitOutput }> {
+    if (!this.wasmInitialized) {
+      // Capture the initialized WASM module output containing .memory
+      this.wasmModule = await __wbg_init('assets/wasm/fractal-wasm/rust_demo_wasm_bg.wasm');
+      this.wasmInitialized = true;
+    }
+    if (!this.engineInstance) {
+      this.engineInstance = new WasmFractalEngine();
+    }
+    return { engine: this.engineInstance, module: this.wasmModule! };
+  }
+  
+//
+/*
+public GenerateFractalClientWasm(
+  p_fractalParams: FractalParams
+): Observable<FractalPoint[]> {
+  const WASM_OFFSET = 6;
+  const fractalKind = ((p_fractalParams.selectedFractal) ?? FractalType.MANDELBROT_WASM) - WASM_OFFSET;
+  const maxIterations = p_fractalParams.maxIterations;
+
+  console.log(`[WASM] Generating fractal of kind ${fractalKind} with maxIterations=${maxIterations}`);
+  
+  return defer(() => from(this.initWasm())).pipe(
+    map(({ engine, module }) => {
+      let bounds = p_fractalParams.isZoomable;
+
+      // 1. Force centered Mandelbrot with correct aspect ratio
+      // MANDELBROT 
+      if (fractalKind === 1 ) {
+        if (!bounds || (bounds.xMin === -2.0 && bounds.xMax === 1.0)) {
+          // Get canvas aspect ratio (you may need to inject or calculate this)
+          const canvasWidth   = 800;  // Adjust to your actual width
+          const canvasHeight  = 600; // Adjust to your actual height
+          const aspectRatio   = canvasWidth / canvasHeight;
+          
+          // Mandelbrot center point
+          const centerX = -0.5;
+          const centerY = 0;
+          
+          // Base height range (shows full Mandelbrot vertically)
+          const yRange = 1.5; // From -1.5 to 1.5
+          const xRange = yRange * aspectRatio;
+          
+          bounds = {
+            xMin: centerX - xRange / 2,
+            xMax: centerX + xRange / 2,
+            yMin: centerY - yRange / 2,
+            yMax: centerY + yRange / 2
+          };
+        }
+      } else {
+        bounds = bounds ?? DEFAULT_BOUNDS_MANDELBROT_WASM;
+      }
+
+      // 2. Execute Rust WASM generation
+      engine.generate(
+        fractalKind,
+        bounds.xMin,
+        bounds.xMax,
+        bounds.yMin,
+        bounds.yMax,
+        maxIterations
+      );
+
+      // ... rest of your code remains the same
+      const ptr = (engine as any).buffer_ptr();
+      const len = (engine as any).buffer_len();
+      const rawData = new Float64Array(module.memory.buffer, ptr, len);
+
+      const points: FractalPoint[] = [];
+
+      for (let i = 0; i < rawData.length; i += 3) {
+        const x = rawData[i];
+        const y = rawData[i + 1];
+        const intensity = rawData[i + 2];
+
+        // LEAF
+        if (fractalKind === 3 ) {
+          points.push({
+            x,
+            y,
+            value: FERN_SENTINEL,
+            iterations: maxIterations
+          });
+        } else {
+          const iter = intensity === 0 ? maxIterations : Math.round((intensity * maxIterations) / 255);
+          points.push({
+            x,
+            y,
+            value: iter,
+            iterations: maxIterations,
+            escaped: intensity < 255
+          });
+        }
+      }
+
+      return points;
+    })
+  );
+}*/
+
+public GenerateFractalClientWasm(
+  p_fractalParams: FractalParams
+): Observable<FractalPoint[]> {
+  const WASM_OFFSET = 6;
+  const fractalKind = ((p_fractalParams.selectedFractal) ?? FractalType.MANDELBROT_WASM) - WASM_OFFSET;
+  const maxIterations = p_fractalParams.maxIterations;
+
+  console.log(`[WASM] Generating fractal of kind ${fractalKind} with maxIterations=${maxIterations}`);
+
+  return defer(() => from(this.initWasm())).pipe(
+    map(({ engine, module }) => {
+      // Same fallback for every fractal kind — no per-kind special-casing.
+      // Whatever DEFAULT_BOUNDS_MANDELBROT_WASM holds is only ever used when
+      // isZoomable is genuinely unset; in normal use _buildBounds() always
+      // supplies real bounds before this is called.
+      const bounds = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT_WASM;
+
+      // Execute Rust WASM generation
+      engine.generate(
+        fractalKind,
+        bounds.xMin,
+        bounds.xMax,
+        bounds.yMin,
+        bounds.yMax,
+        maxIterations
+      );
+
+      // Read raw point data from WASM linear memory
+      const ptr = (engine as any).buffer_ptr();
+      const len = (engine as any).buffer_len();
+      const rawData = new Float64Array(module.memory.buffer, ptr, len);
+
+      const points: FractalPoint[] = [];
+
+      for (let i = 0; i < rawData.length; i += 3) {
+        const x = rawData[i];
+        const y = rawData[i + 1];
+        const intensity = rawData[i + 2];
+
+        if (fractalKind === 3 /* LEAF */) {
+          points.push({
+            x,
+            y,
+            value: FERN_SENTINEL,
+            iterations: maxIterations
+          });
+        } else {
+          const iter = intensity === 0 ? maxIterations : Math.round((intensity * maxIterations) / 255);
+          points.push({
+            x,
+            y,
+            value: iter,
+            iterations: maxIterations,
+            escaped: intensity < 255
+          });
+        }
+      }
+
+      return points;
+    })
+  );
 }
+
+}  
+

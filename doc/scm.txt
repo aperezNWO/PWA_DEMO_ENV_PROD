@@ -311,4 +311,21 @@ docker.io/apereznwogmail/dart-zero-endpoint:latest
 
                 --[_] https://github.github.com/gfm/
 
- /////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+// FOLDER STRUCTURE FOR WEB ASSEMBLY
+/////////////////////////////////////////////////////////////////
+
+PWA_DEMO_ENV_PROD/
+├── src/
+│   └── app/
+│   └── asset/
+│          └── wasm/
+│                 └── fractal-wasm/
+│                        └── package.json
+│                        └── rust_demo_wasm_bg.wasm
+│                        └── rust_demo_wasm.js
+
+/////////////////////////////////////////////////////////////////
+
+
+ 
