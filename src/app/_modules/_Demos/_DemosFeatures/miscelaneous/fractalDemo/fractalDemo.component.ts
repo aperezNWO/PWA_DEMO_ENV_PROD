@@ -182,6 +182,38 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     }
   },
   {
+    backendLanguage  : BackendLanguage.NODEJS,
+    languageCode     : 'nodejs',
+    label            : 'Node.js (Server)',
+    icon             : '🟢',
+    description      : 'Runs on server — Stable',
+    enabled: true,
+    supportedFractals: {
+      [FractalType.MANDELBROT]     : { supported: true,  zoomable : true  },
+      [FractalType.JULIA]          : { supported: true , zoomable : true  },
+      [FractalType.BARNSLEY_FERN]  : { supported: true , zoomable : false },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true  },
+      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },   
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },               
+    }
+  },
+  {
+    backendLanguage   : BackendLanguage.J2SE,
+    languageCode      : 'j2se',
+    label             : 'Java J2SE (Spring Boot)',
+    icon              : '☕',
+    description       : 'Runs on Spring Boot Engine',
+    enabled           : true,
+    supportedFractals : {
+      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   },
+      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, 
+      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   },    
+    }
+  },
+  {
     backendLanguage   : BackendLanguage.KOTLIN,
     languageCode      : 'Kotlin',
     label             : 'Kotlin (Spring Boot)',
@@ -246,54 +278,6 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
     }
   },
   {
-    backendLanguage  : BackendLanguage.NODEJS,
-    languageCode     : 'nodejs',
-    label            : 'Node.js (Server)',
-    icon             : '🟢',
-    description      : 'Runs on server — Stable',
-    enabled: true,
-    supportedFractals: {
-      [FractalType.MANDELBROT]     : { supported: true,  zoomable : true  },
-      [FractalType.JULIA]          : { supported: true , zoomable : true  },
-      [FractalType.BARNSLEY_FERN]  : { supported: true , zoomable : false },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true  },
-      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },   
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },               
-    }
-  },
-  {
-    backendLanguage   : BackendLanguage.J2SE,
-    languageCode      : 'j2se',
-    label             : 'Java J2SE (Spring Boot)',
-    icon              : '☕',
-    description       : 'Runs on Spring Boot Engine',
-    enabled           : true,
-    supportedFractals : {
-      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   },
-      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, 
-      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   },    
-    }
-  },
-  {
-    backendLanguage   : BackendLanguage.SWIFTLANG, 
-    languageCode      : 'swiftlang',
-    label             : 'Swift (Vapor)',
-    icon              : '🍊',
-    description       : 'Runs on Vapor ',
-    enabled           : true,
-    supportedFractals : {
-      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  },
-      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, 
-      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   },             
-    }
-  },
-  {
     backendLanguage   : BackendLanguage.ZIGLANG, 
     languageCode      : 'ziglang',
     label             : 'Zig (std.http.Server)',
@@ -324,7 +308,23 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, // BACKEND MUST PUBLISH ON RENDER PRIVATE SERVER PAID SITE
       [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   }, // BACKEND MUST PUBLISH ON RENDER PRIVATE SERVER PAID SITE
     }
-   },
+  },
+  {
+    backendLanguage   : BackendLanguage.SWIFTLANG, 
+    languageCode      : 'swiftlang',
+    label             : 'Swift (Vapor)',
+    icon              : '🍊',
+    description       : 'Runs on Vapor ',
+    enabled           : true,
+    supportedFractals : {
+      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
+      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  },
+      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, 
+      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   },             
+    }
+  },
 ];
 
 //
@@ -362,12 +362,12 @@ constructor(
     'NODE' : 'nodejs',
     'JAVA' : 'j2se',
     'J2SE' : 'j2se',
-    'CPW'  : 'cppws',  // C++ Web Server
+    'CWS'  : 'cppws',  
     'CPP'  : 'cpp',   
     'GO'   : 'golang',
-    'RS'    : 'rustlang',
-    'SWIFT' : 'swiftlang',
-    'ZIG'   : 'ziglang',
+    'RS'   : 'rustlang',
+    'SWIFT': 'swiftlang',
+    'ZIG'  : 'ziglang',
   };
 
   ngOnInit(): void {

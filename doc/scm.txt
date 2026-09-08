@@ -66,7 +66,6 @@ npm install @angular/cdk@^19.0.0 --save --legacy-peer-deps
 npx ng cache clean
 npx ng serve
 
-
 npm install grpc-web google-protobuf --force 
 npm install -D protoc-gen-grpc-web   --force 
 npm approve-scripts --allow-scripts-pending 
