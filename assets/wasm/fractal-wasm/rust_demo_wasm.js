@@ -12,22 +12,34 @@ export class FractalEngine {
         wasm.__wbg_fractalengine_free(ptr, 0);
     }
     /**
-     * Generates the fractal using primitive boundary inputs to avoid Wasm ABI mapping errors,
-     * returning a flat Float64Array [x1, y1, intensity1, x2, y2, intensity2, ...]
+     * Returns the element count of the buffer
+     * @returns {number}
+     */
+    buffer_len() {
+        const ret = wasm.fractalengine_buffer_len(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
+     * Returns a pointer to the start of the buffer in WebAssembly memory
+     * @returns {number}
+     */
+    buffer_ptr() {
+        const ret = wasm.fractalengine_buffer_ptr(this.__wbg_ptr);
+        return ret >>> 0;
+    }
+    /**
      * @param {number} kind
      * @param {number} x_min
      * @param {number} x_max
      * @param {number} y_min
      * @param {number} y_max
      * @param {number} max_iterations
-     * @returns {Float64Array}
      */
     generate(kind, x_min, x_max, y_min, y_max, max_iterations) {
         const ret = wasm.fractalengine_generate(this.__wbg_ptr, kind, x_min, x_max, y_min, y_max, max_iterations);
-        if (ret[2]) {
-            throw takeFromExternrefTable0(ret[1]);
+        if (ret[1]) {
+            throw takeFromExternrefTable0(ret[0]);
         }
-        return takeFromExternrefTable0(ret[0]);
     }
     constructor() {
         const ret = wasm.fractalengine_new();
@@ -77,10 +89,6 @@ function __wbg_get_imports() {
         },
         __wbg_msCrypto_bd5a034af96bcba6: function(arg0) {
             const ret = arg0.msCrypto;
-            return ret;
-        },
-        __wbg_new_from_slice_3b4c7f1456059f80: function(arg0, arg1) {
-            const ret = new Float64Array(getArrayF64FromWasm0(arg0, arg1));
             return ret;
         },
         __wbg_new_with_length_5ffeddb9d9fbb96f: function(arg0) {
@@ -165,22 +173,9 @@ function addToExternrefTable0(obj) {
     return idx;
 }
 
-function getArrayF64FromWasm0(ptr, len) {
-    ptr = ptr >>> 0;
-    return getFloat64ArrayMemory0().subarray(ptr / 8, ptr / 8 + len);
-}
-
 function getArrayU8FromWasm0(ptr, len) {
     ptr = ptr >>> 0;
     return getUint8ArrayMemory0().subarray(ptr / 1, ptr / 1 + len);
-}
-
-let cachedFloat64ArrayMemory0 = null;
-function getFloat64ArrayMemory0() {
-    if (cachedFloat64ArrayMemory0 === null || cachedFloat64ArrayMemory0.byteLength === 0) {
-        cachedFloat64ArrayMemory0 = new Float64Array(wasm.memory.buffer);
-    }
-    return cachedFloat64ArrayMemory0;
 }
 
 function getStringFromWasm0(ptr, len) {
@@ -233,7 +228,6 @@ function __wbg_finalize_init(instance, module) {
     wasmInstance = instance;
     wasm = instance.exports;
     wasmModule = module;
-    cachedFloat64ArrayMemory0 = null;
     cachedUint8ArrayMemory0 = null;
     wasm.__wbindgen_start();
     return wasm;
