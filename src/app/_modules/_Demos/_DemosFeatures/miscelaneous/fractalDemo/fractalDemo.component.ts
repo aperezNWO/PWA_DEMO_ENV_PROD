@@ -72,11 +72,11 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   zoomFactor : number = 1.0;
 
   private get baseXRange(): number { 
-    return (this.selectedFractal === FractalType.MANDELBROT || this.selectedFractal === FractalType.MANDELBROT_GRPC) ? 3.0 : 3.0; 
+    return (this.selectedFractal === FractalType.MANDELBROT || this.selectedFractal === FractalType.MANDELBROT_GRPC || this.selectedFractal === FractalType.MANDELBROT_WASM) ? 3.0 : 3.0; 
   }
 
   private get baseYRange(): number { 
-    return (this.selectedFractal === FractalType.MANDELBROT || this.selectedFractal === FractalType.MANDELBROT_GRPC) ? 2.4 : 3.0; 
+    return (this.selectedFractal === FractalType.MANDELBROT || this.selectedFractal === FractalType.MANDELBROT_GRPC || this.selectedFractal === FractalType.MANDELBROT_WASM) ? 2.4 : 3.0; 
   }
   public  serverZoomFactor: number = 1.0;
   public  serverZoomIn    : boolean = true;
@@ -500,7 +500,8 @@ constructor(
   resetZoomViewport(): void {
     // Center on real axis -0.5 for both standard and gRPC Mandelbrot
     const isMandelbrot = this.selectedFractal === FractalType.MANDELBROT 
-                      || this.selectedFractal === FractalType.MANDELBROT_GRPC;
+                      || this.selectedFractal === FractalType.MANDELBROT_GRPC
+                      || this.selectedFractal === FractalType.MANDELBROT_WASM;
 
     this.centerX    = isMandelbrot ? -0.5 : 0.0;
     this.centerY    = 0.0;
