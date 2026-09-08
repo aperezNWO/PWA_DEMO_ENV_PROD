@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1788841045658,
+  "timestamp": 1788848032127,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -96,7 +96,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "0b2ef852e03f03c68d14e51e898b3c566c863c35",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "87f00eeb5d4e29d22a3fdb1ae1151858e3d67784",
     "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "4e4eb04be2cdef232921d3458f7f85fbe20eb56e",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "4a8728c8bd972af81187a4da622979133a8cf0c9",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
