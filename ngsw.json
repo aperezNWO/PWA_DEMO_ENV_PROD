@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1788714758431,
+  "timestamp": 1788839179792,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -19,7 +19,7 @@
         "/PWA_DEMO_ENV_PROD/chunk-QBUHZOWM.js",
         "/PWA_DEMO_ENV_PROD/favicon.ico",
         "/PWA_DEMO_ENV_PROD/index.html",
-        "/PWA_DEMO_ENV_PROD/main-XB6R37ZB.js",
+        "/PWA_DEMO_ENV_PROD/main-RYIEV7YY.js",
         "/PWA_DEMO_ENV_PROD/manifest.webmanifest",
         "/PWA_DEMO_ENV_PROD/polyfills-ERLYOUQC.js",
         "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css"
@@ -85,14 +85,18 @@
         "/PWA_DEMO_ENV_PROD/assets/images/speaker_on.gif",
         "/PWA_DEMO_ENV_PROD/assets/opencv.js",
         "/PWA_DEMO_ENV_PROD/assets/sudoku.txt",
-        "/PWA_DEMO_ENV_PROD/assets/tessdata/spa.traineddata"
+        "/PWA_DEMO_ENV_PROD/assets/tessdata/spa.traineddata",
+        "/PWA_DEMO_ENV_PROD/assets/wasm/fractal-wasm/package.json",
+        "/PWA_DEMO_ENV_PROD/assets/wasm/fractal-wasm/rust_demo_wasm.d.ts",
+        "/PWA_DEMO_ENV_PROD/assets/wasm/fractal-wasm/rust_demo_wasm.js",
+        "/PWA_DEMO_ENV_PROD/assets/wasm/fractal-wasm/rust_demo_wasm_bg.wasm"
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "67bdb1c8390b2f1e6f987294f771eacc32f57d54",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "d1cb79deb16c640429f0326f38ee0d4d086bc3b8",
     "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "4e4eb04be2cdef232921d3458f7f85fbe20eb56e",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "4a8728c8bd972af81187a4da622979133a8cf0c9",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
@@ -144,6 +148,10 @@
     "/PWA_DEMO_ENV_PROD/assets/opencv.js": "9c25f0d869689b62b0834b7f938896a4ecfae698",
     "/PWA_DEMO_ENV_PROD/assets/sudoku.txt": "a11677cdf143c6ab92080e8a4247c50083c14e71",
     "/PWA_DEMO_ENV_PROD/assets/tessdata/spa.traineddata": "97aa3e1745006915a188766613e488d4c13d1449",
+    "/PWA_DEMO_ENV_PROD/assets/wasm/fractal-wasm/package.json": "1313ccf891d6c45bc2c661337b94873a7e21ca27",
+    "/PWA_DEMO_ENV_PROD/assets/wasm/fractal-wasm/rust_demo_wasm.d.ts": "da22a75263a37a6e9b3f40646a0fb98b1a3be6eb",
+    "/PWA_DEMO_ENV_PROD/assets/wasm/fractal-wasm/rust_demo_wasm.js": "224bf0f40ef73f743151634ab6c31bd7517239f4",
+    "/PWA_DEMO_ENV_PROD/assets/wasm/fractal-wasm/rust_demo_wasm_bg.wasm": "387d1b09fb56abcc8cf96c1b2da34c37c0c3f191",
     "/PWA_DEMO_ENV_PROD/chunk-5WQIPY4G.js": "d1ad1bd89c32588311dba641fba13aef09b48ee7",
     "/PWA_DEMO_ENV_PROD/chunk-DZZ33C2C.js": "39bb23ba8f2a6a2fdf9b78f2ce0c3427ceafc4aa",
     "/PWA_DEMO_ENV_PROD/chunk-ETEU52MT.js": "2b58b787851412eac44cdc30a860277d99cb607a",
@@ -151,8 +159,8 @@
     "/PWA_DEMO_ENV_PROD/chunk-PMOVCFET.js": "7b864cebddc9344ef37d7dedd6aaaccd963aa458",
     "/PWA_DEMO_ENV_PROD/chunk-QBUHZOWM.js": "f9a114e2c2299184dc44a9cf400cca6748d4f06f",
     "/PWA_DEMO_ENV_PROD/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/PWA_DEMO_ENV_PROD/index.html": "e962b58ee745f303471585b246bdddb0fde13227",
-    "/PWA_DEMO_ENV_PROD/main-XB6R37ZB.js": "537bcf1b24d34a1818af4a35f586f1bf3f50200c",
+    "/PWA_DEMO_ENV_PROD/index.html": "7369f48b94d3a42398ef90890864e88a32cba88c",
+    "/PWA_DEMO_ENV_PROD/main-RYIEV7YY.js": "1a223b5b2a016e98b9a2254715cd26df66d9b2a7",
     "/PWA_DEMO_ENV_PROD/manifest.webmanifest": "4c4fda145c554fe9a7ed086f63fa914267022e67",
     "/PWA_DEMO_ENV_PROD/polyfills-ERLYOUQC.js": "a5955bd090cb03ab54dd7dfcd8139ab0a8d8dd7f",
     "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css": "b4b303773c164ca15ba4f7f09c5ce83918d24668"
