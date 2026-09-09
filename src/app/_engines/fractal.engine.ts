@@ -28,6 +28,7 @@ export enum BackendLanguage {
   ZIGLANG        = 10,
   CPP_WS         = 11,
   RUSTLANG_WASM  = 12,
+  GOLANG_RPC     = 13,
 }
 
 export enum FractalType {

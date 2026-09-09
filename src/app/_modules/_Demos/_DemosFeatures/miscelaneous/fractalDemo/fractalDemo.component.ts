@@ -293,9 +293,9 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   }, 
       [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
       [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },   
-      [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
-      [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },               
+      [FractalType.MANDELBROT_WASM]   : { supported: true,  zoomable: true   },
+      [FractalType.JULIA_WASM]        : { supported: true,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: true,  zoomable: false  },               
     }
   },
   {
@@ -415,12 +415,10 @@ constructor(
     'JAVA' : 'j2se',
     'J2SE' : 'j2se',
     'CWS'  : 'cppws',  
-    'CPP'  : 'cpp',   
-    'GO'   : 'golang',
-    'RS'   : 'rustlang',
-    'SWIFT': 'swiftlang',
+    'GO'    : 'golang',
+    'RS'    : 'rustlang',
+    'SWIFT' : 'swiftlang',
     'ZIG'   : 'ziglang',
-    'RSWASM': 'rustlangwasm',    
   };
 
   ngOnInit(): void {
@@ -750,7 +748,7 @@ constructor(
         ).pipe(take(1));
       break;  
 
-      case 'rustlang':
+     case 'rustlang':
 
         fractalParams = { 
               ...DEFAULT_FRACTAL_PARAMS 
@@ -818,22 +816,7 @@ constructor(
           ).pipe(take(1));
       break;  
 
-  case 'rustlangwasm':
-
-        fractalParams = { 
-              ...DEFAULT_FRACTAL_PARAMS 
-              ,selectedBackend  : BackendLanguage.RUSTLANG_WASM
-              ,selectedFractal  : this.selectedFractal
-              ,maxIterations    : this.maxIterations
-              ,isZoomable       : this._buildBounds()
-              ,serverZoomIn     : this.serverZoomIn
-              ,serverZoomFactor : this.serverZoomFactor
-          };
-
-          serviceCall = this._fractalEngine.GetFractal(
-            fractalParams
-          ).pipe(take(1));
-      break;  
+  
 
       default:
         {
