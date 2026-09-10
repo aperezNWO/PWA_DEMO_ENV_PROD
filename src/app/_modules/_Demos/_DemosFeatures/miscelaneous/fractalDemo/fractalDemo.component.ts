@@ -355,26 +355,7 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
       [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false   },              
     }
   },
-  {
-      backendLanguage   : BackendLanguage.RUSTLANG_WASM,
-      languageCode      : 'rustlangwasm',
-      label             : 'Rust (webassembly)',
-      icon              : '⚡',
-      description       : 'Runs on webassembly ',
-      enabled           : true,
-      supportedFractals : {
-        [FractalType.MANDELBROT]     : { supported: false,   zoomable: true   },
-        [FractalType.JULIA]          : { supported: false ,  zoomable: true   },
-        [FractalType.BARNSLEY_FERN]  : { supported: false,   zoomable: false  },
-        [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   }, 
-        [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
-        [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },   
-        [FractalType.MANDELBROT_WASM]   : { supported: true,   zoomable: true   },
-        [FractalType.JULIA_WASM]        : { supported: true,   zoomable: true   },
-        [FractalType.BARNSLEY_FERN_WASM]: { supported: true,   zoomable: false  },               
-      }
-  },  
-  ];
+];
 
 //
 fractalOptions = [
