@@ -282,9 +282,9 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   {
     backendLanguage   : BackendLanguage.RUSTLANG,
     languageCode      : 'rustlang',
-    label             : 'Rust (Actix-web)',
+    label             : 'Rust (Actix-web / WebAssembly)',
     icon              : '⚡',
-    description       : 'Runs on Actix-web ',
+    description       : 'Runs on Actix-web and WebAssembly',
     enabled           : true,
     supportedFractals : {
       [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },

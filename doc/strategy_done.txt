@@ -2,6 +2,8 @@
 // STRATEGY DONE 
 /////////////////////////////////////////////////////////////////
 
+  --[x] golang Fractals gRPC.
+
   --[x] c++ http web server fractal demo.
 
   --[X] INSTALL .NET CORE DEV ENV.
