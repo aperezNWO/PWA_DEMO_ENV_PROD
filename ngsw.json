@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1789020900079,
+  "timestamp": 1789021765640,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -19,7 +19,7 @@
         "/PWA_DEMO_ENV_PROD/chunk-QBUHZOWM.js",
         "/PWA_DEMO_ENV_PROD/favicon.ico",
         "/PWA_DEMO_ENV_PROD/index.html",
-        "/PWA_DEMO_ENV_PROD/main-UZWTM6HW.js",
+        "/PWA_DEMO_ENV_PROD/main-QY7HJZGB.js",
         "/PWA_DEMO_ENV_PROD/manifest.webmanifest",
         "/PWA_DEMO_ENV_PROD/polyfills-ERLYOUQC.js",
         "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css"
@@ -159,8 +159,8 @@
     "/PWA_DEMO_ENV_PROD/chunk-PMOVCFET.js": "7b864cebddc9344ef37d7dedd6aaaccd963aa458",
     "/PWA_DEMO_ENV_PROD/chunk-QBUHZOWM.js": "f9a114e2c2299184dc44a9cf400cca6748d4f06f",
     "/PWA_DEMO_ENV_PROD/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/PWA_DEMO_ENV_PROD/index.html": "318177e31c45611161fe9a723e5a2b97430645bf",
-    "/PWA_DEMO_ENV_PROD/main-UZWTM6HW.js": "ef95b63d6aa61c6e2c417cd1d2003bb191cfd984",
+    "/PWA_DEMO_ENV_PROD/index.html": "118bb7ff0dca7d9ffda921221466ea37b71cea66",
+    "/PWA_DEMO_ENV_PROD/main-QY7HJZGB.js": "4dc08a06d3714294543cbec583059bd1e4fc2394",
     "/PWA_DEMO_ENV_PROD/manifest.webmanifest": "4c4fda145c554fe9a7ed086f63fa914267022e67",
     "/PWA_DEMO_ENV_PROD/polyfills-ERLYOUQC.js": "a5955bd090cb03ab54dd7dfcd8139ab0a8d8dd7f",
     "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css": "b4b303773c164ca15ba4f7f09c5ce83918d24668"
