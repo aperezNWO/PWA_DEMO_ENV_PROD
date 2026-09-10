@@ -24,7 +24,7 @@ r///////////////////////////////////////////////////////////////////////////////
     ├── Go (Axum/Gin - Fractal Engine)
     └── Rust (Axum - High-Throughput Compute Engine)
 
-      --[_] c / c++ / [c++ + .net core] / rust / [rust + webassembly] / go benchmark (c++ demos basis).
+      --[_] c / c++ / [c++ + .net core] / rust / [rust + webassembly] / go / go GRPC - benchmark (c++ demos basis).
 
 //////////////////////////////////////////////////////////////
 
