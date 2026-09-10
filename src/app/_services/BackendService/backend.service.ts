@@ -11,8 +11,16 @@ import { BaseService   } from '../__baseService/base.service';
 
 // THIRD PARTY
 import { Observable               } from 'rxjs';
+import { map                      } from 'rxjs/operators';
 import { takeUntilDestroyed       } from '@angular/core/rxjs-interop';
 
+ interface ZigVersionResponse {
+      zigVersion: string;
+  }
+
+  interface WebServerVersionResponse {
+      webServerVersion: string;
+  }
 
 /**
  * v21 Update: Se utiliza la inyección de dependencias funcional y DestroyRef
@@ -224,5 +232,20 @@ export class BackendService extends BaseService implements OnInit {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getPythonVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
+
+  // ZigLang
+  getZigVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/getZigVersion`;
+    return this.http.get<ZigVersionResponse>(p_url, this.HTTPOptions_JSON).pipe(
+      map(response => response.zigVersion)
+    );
+  }
+
+  getZigWebServerVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/getZigWebServerVersion`;
+    return this.http.get<WebServerVersionResponse>(p_url, this.HTTPOptions_JSON).pipe(
+      map(response => response.webServerVersion)
+    );
+  } 
   ////////////////////////////////////////////////////////////////  
 }

@@ -34,8 +34,10 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _tesseractAPIVersion       = this.fromCache('tesseractApi');
     _tesseractCPPSTDVersion    = this.fromCache('tesseractCpp');
     _TensorFlowAPPVersion      = this.fromCache('tfApp');
-    _TensorFlowAPIVersion      = this.fromCache('tfApi');;
-    _TensorFlowCPPSTDVersion   = this.fromCache('tfCpp');;
+    _TensorFlowAPIVersion      = this.fromCache('tfApi');
+    _ZigVersion                = this.fromCache('zigVersion');
+    _ZigWebServerVersion       = this.fromCache('zigWebServerVersion');
+;   _TensorFlowCPPSTDVersion   = this.fromCache('tfCpp');;
     _PythonVersion             = this.fromCache('pythonVersion');
     _JavaVersion               = this.fromCache('javaVersion');
     _NodeVersion               = this.fromCache('nodeVersion');
@@ -99,6 +101,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
           this._TensorFlowAPPVersion    = v.tfApp            ?? '(..loading..)';
           this._TensorFlowAPIVersion    = v.tfApi            ?? '(..loading..)';
           this._TensorFlowCPPSTDVersion = v.tfCpp            ?? '(..loading..)';
+          this._ZigVersion              = v.zigVersion       ?? '(..loading..)';
+          this._ZigWebServerVersion     = v.zigWebServerVersion ?? '(..loading..)';
           this._PythonVersion           = v.pythonVersion    ?? '(..loading..)';
           this._JavaVersion             = v.javaVersion      ?? '(..loading..)';
           this._NodeVersion             = v.nodeVersion      ?? '(..loading..)';

@@ -36,6 +36,8 @@ export interface VersionBundle {
   tfApp           : string;
   tfApi           : string;
   tfCpp           : string;
+  zigVersion      : string;
+  zigWebServerVersion : string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -73,7 +75,9 @@ export class VersionCacheService implements OnDestroy {
       openCvCpp       : this.cv._OpenCv_GetCPPSTDVersion(),
       tfApp           : this.tf._GetTensorFlowAPPVersion(),
       tfApi           : this.tf._GetTensorFlowAPIVersion(),
-      tfCpp           : this.tf._TensorFlow_GetCPPSTDVersion()
+      tfCpp           : this.tf._TensorFlow_GetCPPSTDVersion(),
+      zigVersion          : this.back.getZigVersion(),
+      zigWebServerVersion : this.back.getZigWebServerVersion(),
     }).pipe(
       map(v => {
         localStorage.setItem('version-cache', JSON.stringify(v));
