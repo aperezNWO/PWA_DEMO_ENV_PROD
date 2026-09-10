@@ -54,8 +54,6 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[_] CONTAC FORM FLUTTER.
 
-            --[_] MOVE GAME CORE TO KOTLIN.
-
             --[_] About > Tech Info > Admin (Auth Required) > front (flutter) / back (kottlin).
 
  --[_] COMPLETE LLM DEMO.
@@ -111,7 +109,11 @@ r///////////////////////////////////////////////////////////////////////////////
             --[x] gitHub Repo FROM CONFIG.
 
             --[_] RENDER / Kotlin / Dart / Golang / Rust / Swift / Zig VERSION.
- 
+
+--[_] GAMES UPDATE.
+
+     --[_] COMPLETE LANGUAGE LIST.
+
 --[_] Add C++ WebServer Demos.
 
      --[_] List from C++ / .net core demos.
