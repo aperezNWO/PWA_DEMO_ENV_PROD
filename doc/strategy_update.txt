@@ -114,7 +114,13 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[_] RENDER / Kotlin / Dart / Golang / Rust / Swift / Zig VERSION.
  
---[_] language dropdown lists with icons.
+--[_] Dijkstra Demo.
+
+     --[_] language dropdown lists with icons.    
+
+          --[_] use shared const / enum values.  
+
+     --[_] Complete all languages.    
 
 --[_] Fractal Demo.
 
