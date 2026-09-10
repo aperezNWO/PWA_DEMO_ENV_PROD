@@ -2,6 +2,10 @@
 // STRATEGY DONE 
 /////////////////////////////////////////////////////////////////
 
+  --[x] zig demo (out if disk space).
+
+  --[x] swift demo / dijkstra.
+
   --[x] golang Fractals gRPC.
 
   --[x] c++ http web server fractal demo.
