@@ -138,6 +138,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
           --[_] Add option "FRACTALS - grpc / fractals - webassembly". Split fom Rust and go.          
 
+          --[_] gRPC improvement.          
+
      --[_] Update Language References.
 
      --[_] Update Landing Page ==> Version 4.0.0.
