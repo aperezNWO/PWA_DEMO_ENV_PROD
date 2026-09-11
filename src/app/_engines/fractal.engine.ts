@@ -585,9 +585,6 @@ static clear(): void {
     enabledBackends : string[],
     fractalTypes    : FractalType[]
   ): FractalSliceScore[] {
-
-    // avgScore(backend) = average performanceScore across every fractal
-    // that backend has ever recorded a time for.
     const avgScoreByBackend: { [backendCode: string]: number } = {};
 
     for (const backendCode of enabledBackends) {
@@ -604,17 +601,17 @@ static clear(): void {
       let sliceValue = 0;
 
       for (const backendCode of enabledBackends) {
-        const entry    = store[backendCode]?.[fractalType];
+        const bestTimeMs = FractalBenchmark.getBestTimeForBaseFractal(store[backendCode], fractalType);
         const avgScore = avgScoreByBackend[backendCode];
-        if (!entry || avgScore === undefined) continue;
+        if (bestTimeMs === null || avgScore === undefined) continue;
 
-        sliceValue += FractalBenchmark.performanceScore(entry.bestTimeMs) * avgScore;
+        sliceValue += FractalBenchmark.performanceScore(bestTimeMs) * avgScore;
       }
 
       return { fractalType, score: sliceValue };
     });
   }
-
+  
   // ── Bar chart: performance score per backend, for ONE fractal ───────────
 
   /**
@@ -629,7 +626,7 @@ static clear(): void {
     fractalType : FractalType
   ): BackendTimeBar[] {
     return backends.map(b => {
-      const bestTimeMs = store[b.code]?.[fractalType]?.bestTimeMs ?? null;
+      const bestTimeMs = FractalBenchmark.getBestTimeForBaseFractal(store[b.code], fractalType);
       return {
         backendCode : b.code,
         label       : b.label,
@@ -637,5 +634,38 @@ static clear(): void {
         score       : bestTimeMs !== null ? FractalBenchmark.performanceScore(bestTimeMs) : 0,
       };
     });
+  }
+
+  static getBestTimeForBaseFractal(
+    backendStore: { [fractalId: number]: BenchmarkEntry } | undefined,
+    baseType: FractalType
+  ): number | null {
+    if (!backendStore) return null;
+    
+    let variantIds: number[] = [];
+    switch (baseType) {
+      case FractalType.MANDELBROT:
+        variantIds = [FractalType.MANDELBROT, FractalType.MANDELBROT_GRPC, FractalType.MANDELBROT_WASM];
+        break;
+      case FractalType.JULIA:
+        variantIds = [FractalType.JULIA, FractalType.JULIA_GRPC, FractalType.JULIA_WASM];
+        break;
+      case FractalType.BARNSLEY_FERN:
+        variantIds = [FractalType.BARNSLEY_FERN, FractalType.BARNSLEY_FERN_GRPC, FractalType.BARNSLEY_FERN_WASM];
+        break;
+      default:
+        variantIds = [baseType];
+    }
+
+    let best: number | null = null;
+    for (const id of variantIds) {
+      const entry = backendStore[id];
+      if (entry && entry.bestTimeMs > 0) {
+        if (best === null || entry.bestTimeMs < best) {
+          best = entry.bestTimeMs;
+        }
+      }
+    }
+    return best;
   }
 }

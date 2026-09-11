@@ -47,7 +47,7 @@
                 </select>
             </div>
 
-            <div class="parametric-box" *ngIf="selectedFractal === FractalType.JULIA">
+            <div class="parametric-box" *ngIf="isJuliaSelected">
                 <div class="form-group">
                     <label for="realPart">Real Constant Part (Cr):</label>
                     <input type="number" step="0.01" id="realPart" name="realPart"
@@ -56,11 +56,11 @@
                 <div class="form-group">
                     <label for="imagPart">Imaginary Constant Part (Ci):</label>
                     <input type="number" step="0.01" id="imagPart" name="imagPart"
-                           [(ngModel)]="imagPart" class="form-control"disabled="disabled" />
+                           [(ngModel)]="imagPart" class="form-control" disabled="disabled" />
                 </div>
             </div>
 
-            <div class="info-box mandelbrot-info-box" *ngIf="selectedFractal === FractalType.MANDELBROT">
+            <div class="info-box mandelbrot-info-box" *ngIf="isMandelbrotSelected">
                 <div class="info-header">🌀 Mandelbrot Set — Escape-Time Algorithm</div>
                 <div class="info-body">
                     Defined by the sequence <strong>z<sub>n+1</sub> = z<sub>n</sub><sup>2</sup> + c</strong>, 
@@ -75,7 +75,7 @@
                 </div>
             </div>
 
-            <div class="info-box julia-info-box" *ngIf="selectedFractal === FractalType.JULIA">
+            <div class="info-box julia-info-box" *ngIf="isJuliaSelected">
                 <div class="info-header">🎨 Julia Set — Constant Parametric Mapping</div>
                 <div class="info-body">
                     Generated using the same iterative function as Mandelbrot, but with a fixed 
@@ -90,12 +90,12 @@
                 </div>
             </div>
             
-            <div class="fern-info-box" *ngIf="selectedFractal === FractalType.BARNSLEY_FERN">
+            <div class="fern-info-box" *ngIf="isBarnsleyFernSelected">
                 <div class="fern-info-header">🍃 Barnsley Fern — IFS Algorithm</div>
                 <div class="fern-info-body">
                     Uses <strong>4 affine transformations</strong> chosen by weighted random roll,
                     iterated from (0, 0). The orbit traces the fern attractor entirely in-browser
-                    with no backend required.
+                    or via backend engine.
                     <div class="fern-transform-grid">
                         <span class="fern-transform">f1 · 1% → stem</span>
                         <span class="fern-transform">f2 · 85% → main frond</span>
@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="form-group">
                 <label for="maxIterations">{{ iterationsLabel }}:</label>
                 <input type="number" id="maxIterations" name="maxIterations"

@@ -71,6 +71,24 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   centerY    : number = 0.0;
   zoomFactor : number = 1.0;
 
+get isMandelbrotSelected(): boolean {
+    return this.selectedFractal === FractalType.MANDELBROT ||
+           this.selectedFractal === FractalType.MANDELBROT_GRPC ||
+           this.selectedFractal === FractalType.MANDELBROT_WASM;
+  }
+
+  get isJuliaSelected(): boolean {
+    return this.selectedFractal === FractalType.JULIA ||
+           this.selectedFractal === FractalType.JULIA_GRPC ||
+           this.selectedFractal === FractalType.JULIA_WASM;
+  }
+
+  get isBarnsleyFernSelected(): boolean {
+    return this.selectedFractal === FractalType.BARNSLEY_FERN ||
+           this.selectedFractal === FractalType.BARNSLEY_FERN_GRPC ||
+           this.selectedFractal === FractalType.BARNSLEY_FERN_WASM;
+  }
+
   private get baseXRange(): number { 
     return (this.selectedFractal === FractalType.MANDELBROT || this.selectedFractal === FractalType.MANDELBROT_GRPC || this.selectedFractal === FractalType.MANDELBROT_WASM) ? 3.0 : 3.0; 
   }
@@ -888,43 +906,50 @@ constructor(
     return 'danger';
   }
 
-  private getFractalLabel(type: FractalType): string {
+private getFractalLabel(type: FractalType): string {
     switch (type) {
-      case FractalType.MANDELBROT:    return 'Mandelbrot';
-      case FractalType.JULIA:         return 'Julia';
-      case FractalType.BARNSLEY_FERN: return 'Barnsley Leaf';
-      default:                        return 'Fractal';
+      case FractalType.MANDELBROT:
+      case FractalType.MANDELBROT_GRPC:
+      case FractalType.MANDELBROT_WASM:
+        return 'Mandelbrot';
+      case FractalType.JULIA:
+      case FractalType.JULIA_GRPC:
+      case FractalType.JULIA_WASM:
+        return 'Julia';
+      case FractalType.BARNSLEY_FERN:
+      case FractalType.BARNSLEY_FERN_GRPC:
+      case FractalType.BARNSLEY_FERN_WASM:
+        return 'Barnsley Leaf';
+      default:                        
+        return 'Fractal';
     }
   }
-
   // ── Language benchmark ───────────────────────────────────────────────────
 
   /** Template-facing wrapper — private getFractalLabel() can't be called directly from HTML. */
   fractalLabel(type: FractalType): string { return this.getFractalLabel(type); }
 
-  private _renderPieChart(): void {
+ private _renderPieChart(): void {
     const store        = FractalBenchmark.load();
     const enabledCodes = this.getAvailableBackends().map(b => b.languageCode);
-    const fractalIds   = this.fractalOptions.map(o => o.id);
+    
+    // Restrict pie chart categories to the 3 base fractal types
+    const baseFractalIds = [
+      FractalType.MANDELBROT,
+      FractalType.JULIA,
+      FractalType.BARNSLEY_FERN
+    ];
 
     const slices = FractalBenchmark
-      .computeSliceScores(store, enabledCodes, fractalIds)
+      .computeSliceScores(store, enabledCodes, baseFractalIds)
       .filter(s => s.score > 0);
 
-    // Compute the flag FIRST, independent of whether the canvas exists yet —
-    // the canvas is only mounted/visible once hasBenchmarkData is true, so
-    // checking for it before this point created a deadlock (canvas never
-    // appears because the flag that reveals it was never set).
     this.hasBenchmarkData = slices.length > 0;
     this._pieChart?.destroy();
     this._pieChart = undefined;
 
     if (!this.hasBenchmarkData) return;
 
-    // Defer the actual draw one more tick: [hidden]="!hasBenchmarkData" was
-    // just flipped above, but Angular hasn't flushed that to the DOM yet in
-    // this same synchronous call — drawing immediately would measure a
-    // still-hidden (0×0) canvas.
     setTimeout(() => this._drawPieChart(slices), 0);
   }
 
