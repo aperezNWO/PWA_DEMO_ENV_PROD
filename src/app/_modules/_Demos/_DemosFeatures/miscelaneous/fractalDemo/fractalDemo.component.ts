@@ -991,12 +991,15 @@ private getFractalLabel(type: FractalType): string {
     });
   }
 
-  private _renderBarChart(fractalType: FractalType): void {
+ private _renderBarChart(fractalType: FractalType): void {
     if (!this.barCanvasRef) return;
 
     const store    = FractalBenchmark.load();
     const backends = this.getAvailableBackends().map(b => ({ code: b.languageCode, label: b.label }));
-    const bars     = FractalBenchmark.computeBackendTimeBars(store, backends, fractalType);
+    let bars       = FractalBenchmark.computeBackendTimeBars(store, backends, fractalType);
+
+    // Sort bars from highest performance score to lowest (fastest first)
+    bars.sort((a, b) => b.score - a.score);
 
     this._barChart?.destroy();
 
