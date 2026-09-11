@@ -11,7 +11,7 @@ import { BaseService   } from '../__baseService/base.service';
 
 // THIRD PARTY
 import { Observable               } from 'rxjs';
-import { map                      } from 'rxjs/operators';
+import { map, tap                 } from 'rxjs/operators';
 import { takeUntilDestroyed       } from '@angular/core/rxjs-interop';
 
  interface ZigVersionResponse {
@@ -233,26 +233,32 @@ export class BackendService extends BaseService implements OnInit {
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
-  // ZigLang
   getZigVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/getZigVersion`;
 
-    console.log('getZigVersion URL: ', p_url); // Debug log for the URL
-
-    const value = this.http.get<ZigVersionResponse>(p_url, this.HTTPOptions_JSON).pipe(
-      map(response => response.zigVersion)
+    return this.http.get<any>(p_url, this.HTTPOptions_JSON).pipe(
+      tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+      map(response => {
+        const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+        return (parsed?.zigVersion ?? parsed?.body?.zigVersion) as string;
+      }),
+      tap(version => console.log('Extracted Zig Version:', version))
     );
-
-    console.log('getZigVersion Response:   ', value); // Debug log for the Response
-
-    return value;
   }
 
   getZigWebServerVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/getZigWebServerVersion`;
-    return this.http.get<WebServerVersionResponse>(p_url, this.HTTPOptions_JSON).pipe(
-      map(response => response.webServerVersion)
+
+    console.log('getZigWebServerVersion URL: ', p_url);
+
+    return this.http.get<any>(p_url, this.HTTPOptions_JSON).pipe(
+      tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+      map(response => {
+        const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+        return (parsed?.webServerVersion ?? parsed?.body?.webServerVersion) as string;
+      }),
+      tap(version => console.log('Extracted Zig Web Server Version:', version))
     );
-  } 
+  }
   ////////////////////////////////////////////////////////////////  
 }
