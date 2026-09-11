@@ -28,6 +28,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
 
+ --[_] Move VersionCache to APP_INIT.
+
  --[_] machine learning graph fix.
 
  --[_] version 4.0.0 : LANDING PAGE - DROP DOWN LIST MENU.
@@ -132,6 +134,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
           --[_] Add Python Language.          
 
+          --[_] Sort Bar Charts.          
+
+
      --[_] Update Language References.
 
      --[_] Update Landing Page ==> Version 4.0.0.
@@ -147,8 +152,6 @@ r///////////////////////////////////////////////////////////////////////////////
                   --[==>]   Node.js / J2SE / Kotlin / Dart / Golang / Rust / ZIG / Swift (?).
 
                       --[==>] ZIG. 
-
-  --[_] Move VersionCache to APP_INIT.
 
 ////////////////////////////////////////////////////////////////////////////////
 
