@@ -236,9 +236,16 @@ export class BackendService extends BaseService implements OnInit {
   // ZigLang
   getZigVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/getZigVersion`;
-    return this.http.get<ZigVersionResponse>(p_url, this.HTTPOptions_JSON).pipe(
+
+    console.log('getZigVersion URL: ', p_url); // Debug log for the URL
+
+    const value = this.http.get<ZigVersionResponse>(p_url, this.HTTPOptions_JSON).pipe(
       map(response => response.zigVersion)
     );
+
+    console.log('getZigVersion Response:   ', value); // Debug log for the Response
+
+    return value;
   }
 
   getZigWebServerVersion(): Observable<string> {
