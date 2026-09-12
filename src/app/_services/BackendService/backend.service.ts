@@ -260,5 +260,42 @@ export class BackendService extends BaseService implements OnInit {
       tap(version => console.log('Extracted Zig Web Server Version:', version))
     );
   }
+
+  // RUST
+  getRustVersion(): Observable<string> { 
+      // RUST  
+      const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/version/rust`;
+      
+      // Log the URL for debugging purposes
+      console.log('getRustVersion URL: ', p_url);
+
+      // {"rust_version":"Edition 2021"}
+      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.rust_version ?? parsed?.body?.rust_version) as string;
+        }),
+        tap(version => console.log('Extracted Rust Version:', version))
+      );
+  }
+  
+  getRustWebServerVersion(): Observable<string> {  
+    // RUST WEB SERVER
+    const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/version/server`;
+
+    // Log the URL for debugging purposes
+    console.log('getRustWebServerVersion URL: ', p_url);
+    
+    // {"server_version":"0.1.0"}
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+      tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+      map(response => {
+        const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+        return (parsed?.server_version ?? parsed?.body?.server_version) as string;
+      }),
+      tap(version => console.log('Extracted Rust Web Server Version:', version))
+    );
+  }
   ////////////////////////////////////////////////////////////////  
 }

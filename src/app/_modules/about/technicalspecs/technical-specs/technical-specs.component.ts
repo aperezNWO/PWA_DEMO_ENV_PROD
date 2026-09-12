@@ -41,6 +41,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _NodeVersionOcr             = this.fromCache('nodeVersionOcr');
     _ZigVersion                 = this.fromCache('zigVersion');
     _ZigWebServerVersion        = this.fromCache('zigWebServerVersion');
+    _RustVersion                = this.fromCache('rustVersion');
+    _RustWebServerVersion       = this.fromCache('rustWebServerVersion');
 
     guid = signal<string>('');
 

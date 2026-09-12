@@ -38,6 +38,8 @@ export interface VersionBundle {
   tfCpp               : string;
   zigVersion          : string;
   zigWebServerVersion : string;
+  rustVersion          : string;
+  rustWebServerVersion : string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -119,6 +121,8 @@ export class VersionCacheService implements OnDestroy {
       tfCpp               : safeSub(this.tf._TensorFlow_GetCPPSTDVersion()),
       zigVersion          : safeSub(this.back.getZigVersion()),
       zigWebServerVersion : safeSub(this.back.getZigWebServerVersion()),
+      rustVersion          : safeSub(this.back.getRustVersion()),
+      rustWebServerVersion : safeSub(this.back.getRustWebServerVersion()),
     }).pipe(
       map(bundle => {
         this.writeCache(bundle);
