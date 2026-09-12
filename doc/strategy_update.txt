@@ -154,14 +154,13 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[_] LANGUAJE / SERVER VERSION
             
-                  --[==>]   Node.js / J2SE / Kotlin / Dart / Golang /  Swift (?).
+                  --[==>]   Node.js / J2SE / Kotlin / Dart /  Swift (?).
 
                       --[x] ZIG. 
                       
                       --[x] Rust.
 
-                            .route("/api/version/rust", get(handlers::get_rust_version))       // <-- Rust version endpoint
-                            .route("/api/version/server", get(handlers::get_server_version)) // <-- Server version endpoint
- 
-////////////////////////////////////////////////////////////////////////////////
+                      --[==>] Golang.
+
+  ////////////////////////////////////////////////////////////////////////////////
 
