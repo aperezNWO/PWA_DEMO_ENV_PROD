@@ -334,5 +334,43 @@ export class BackendService extends BaseService implements OnInit {
         tap(server_version => console.log('Extracted Go Server Version:', server_version))
       );
   }
+
+  // DART 
+  getDartVersion(){
+      // DART
+      const p_url =  `${this._configService.getConfigValue('baseUrlDart')}api/system/language-version`;
+
+      // Log the URL for debugging purposes
+      console.log('getDartVersion URL: ', p_url);
+      
+      // {"language":"Dart","version":"3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"windows_x64\""}
+      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.language ?? parsed?.body?.language) as string;
+        }),
+        tap(language => console.log('Extracted Go Version:', language))
+      );
+  }
+
+  getDartWebServerVersion()  {
+      // DART - web server - Shelf
+      const p_url =  `${this._configService.getConfigValue('baseUrlDart')}api/system/server-version`;
+
+      // Log the URL for debugging purposes
+      console.log('getDartServerVersion URL: ', p_url);
+
+      // {"server":"Shelf Dart Backend","version":"1.4.2"}
+      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.server ?? parsed?.body?.server) as string;
+        }),
+        tap(server => console.log('Extracted Dart Server Version:', server))
+      );
+  }
+
   ////////////////////////////////////////////////////////////////  
 }

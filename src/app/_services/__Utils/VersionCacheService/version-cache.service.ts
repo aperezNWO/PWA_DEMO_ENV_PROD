@@ -42,6 +42,8 @@ export interface VersionBundle {
   rustWebServerVersion : string;
   goLangVersion            : string;
   goLangWebServerVersion   : string;
+  dartVersion              : string;
+  dartWebServerVersion     : string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -127,7 +129,8 @@ export class VersionCacheService implements OnDestroy {
       rustWebServerVersion : safeSub(this.back.getRustWebServerVersion()),
       goLangVersion          : safeSub(this.back.getGoLangVersion()),
       goLangWebServerVersion : safeSub(this.back.getGoLangWebServerVersion()),
-
+      dartVersion            : safeSub(this.back.getDartVersion()),
+      dartWebServerVersion   : safeSub(this.back.getDartWebServerVersion())
     }).pipe(
       map(bundle => {
         this.writeCache(bundle);
@@ -178,6 +181,8 @@ export class VersionCacheService implements OnDestroy {
       rustWebServerVersion: L,
       goLangVersion: L,
       goLangWebServerVersion: L,
+      dartVersion: L,
+      dartWebServerVersion: L,
     };
     try {
       const raw = localStorage.getItem('version-cache');

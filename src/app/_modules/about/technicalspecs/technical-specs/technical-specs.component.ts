@@ -45,6 +45,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _RustWebServerVersion       = this.fromCache('rustWebServerVersion');
     _GoLangVersion              = this.fromCache('goLangVersion');
     _GoLangWebServerVersion     = this.fromCache('goLangWebServerVersion'); 
+    _DartVersion                = this.fromCache('dartVersion');
+    _DartWebServerVersion       = this.fromCache('dartWebServerVersion');
 
     guid = signal<string>('');
 
@@ -113,6 +115,12 @@ export class TechnicalSpecsComponent extends BaseComponent {
         return match ? match[1] : this._PythonVersion;
     }
 
+    public get cleanDartVersion(): string {
+        if (!this._DartVersion) return '';
+        const match = this._DartVersion.match(/(\d+\.\d+\.\d+)/);
+        return match ? match[1] : this._DartVersion;
+    }
+
     ////////////////////////////////////////////////////////////////  
     // [PRIVADOS]
     ////////////////////////////////////////////////////////////////
@@ -139,6 +147,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._ZigWebServerVersion       = v.zigWebServerVersion ?? '(..loading..)';
         this._GoLangVersion             = v.goLangVersion          ?? '(..loading..)';
         this._GoLangWebServerVersion    = v.goLangWebServerVersion ?? '(..loading..)';
+        this._DartVersion               = v.dartVersion            ?? '(..loading..)';
+        this._DartWebServerVersion      = v.dartWebServerVersion   ?? '(..loading..)'; 
     }
 
     private fromCache(key: keyof VersionBundle): string {
