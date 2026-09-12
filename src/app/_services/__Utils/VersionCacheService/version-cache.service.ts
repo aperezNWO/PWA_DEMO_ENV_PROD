@@ -164,11 +164,13 @@ export class VersionCacheService implements OnDestroy {
     const L = '(..loading..)';
     const blank: VersionBundle = {
       pythonVersion: L, nodeVersion: L, nodeVersionOcr: L, javaVersion: L,
-      webApiApp: L,     algorithmApp: L, algorithmCpp: L, aspNetCoreCpp: L,
-      openCvApp: L,     openCvApi: L,    openCvCpp: L,
-      tesseractApp: L,  tesseractApi: L, tesseractCpp: L,
-      tfApp: L,         tfApi: L,        tfCpp: L,
-      zigVersion: L,    zigWebServerVersion: L,
+      webApiApp: L, algorithmApp: L, algorithmCpp: L, aspNetCoreCpp: L,
+      openCvApp: L, openCvApi: L, openCvCpp: L,
+      tesseractApp: L, tesseractApi: L, tesseractCpp: L,
+      tfApp: L, tfApi: L, tfCpp: L,
+      zigVersion: L, zigWebServerVersion: L,
+      rustVersion: L,
+      rustWebServerVersion: L
     };
     try {
       const raw = localStorage.getItem('version-cache');
