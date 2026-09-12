@@ -40,6 +40,8 @@ export interface VersionBundle {
   zigWebServerVersion : string;
   rustVersion          : string;
   rustWebServerVersion : string;
+  goLangVersion            : string;
+  goLangWebServerVersion   : string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -123,6 +125,9 @@ export class VersionCacheService implements OnDestroy {
       zigWebServerVersion : safeSub(this.back.getZigWebServerVersion()),
       rustVersion          : safeSub(this.back.getRustVersion()),
       rustWebServerVersion : safeSub(this.back.getRustWebServerVersion()),
+      goLangVersion          : safeSub(this.back.getGoLangVersion()),
+      goLangWebServerVersion : safeSub(this.back.getGoLangWebServerVersion()),
+
     }).pipe(
       map(bundle => {
         this.writeCache(bundle);
@@ -170,7 +175,9 @@ export class VersionCacheService implements OnDestroy {
       tfApp: L, tfApi: L, tfCpp: L,
       zigVersion: L, zigWebServerVersion: L,
       rustVersion: L,
-      rustWebServerVersion: L
+      rustWebServerVersion: L,
+      goLangVersion: L,
+      goLangWebServerVersion: L,
     };
     try {
       const raw = localStorage.getItem('version-cache');

@@ -297,5 +297,42 @@ export class BackendService extends BaseService implements OnInit {
       tap(version => console.log('Extracted Rust Web Server Version:', version))
     );
   }
+  
+  // GO LANG
+  getGoLangVersion(){
+      // GO
+      const p_url =  `${this._configService.getConfigValue('baseUrlGoLang')}api/version/go`;
+
+      // Log the URL for debugging purposes
+      console.log('getGoVersion URL: ', p_url);
+
+      // {"go_version":"go1.27.0"}
+      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.go_version ?? parsed?.body?.go_version) as string;
+        }),
+        tap(go_version => console.log('Extracted Go Version:', go_version))
+      );
+  }
+
+  getGoLangWebServerVersion(){
+      // GO web server 
+      const p_url =  `${this._configService.getConfigValue('baseUrlGoLang')}api/version/server`;
+
+      // Log the URL for debugging purposes
+      console.log('getGoServerVersion URL: ', p_url);
+
+      // {"server_version":"1.0.0"}
+      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.server_version ?? parsed?.body?.server_version) as string;
+        }),
+        tap(server_version => console.log('Extracted Go Server Version:', server_version))
+      );
+  }
   ////////////////////////////////////////////////////////////////  
 }

@@ -43,6 +43,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _ZigWebServerVersion        = this.fromCache('zigWebServerVersion');
     _RustVersion                = this.fromCache('rustVersion');
     _RustWebServerVersion       = this.fromCache('rustWebServerVersion');
+    _GoLangVersion              = this.fromCache('goLangVersion');
+    _GoLangWebServerVersion     = this.fromCache('goLangWebServerVersion'); 
 
     guid = signal<string>('');
 
@@ -135,6 +137,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._NodeVersionOcr            = v.nodeVersionOcr      ?? '(..loading..)';
         this._ZigVersion                = v.zigVersion          ?? '(..loading..)';
         this._ZigWebServerVersion       = v.zigWebServerVersion ?? '(..loading..)';
+        this._GoLangVersion             = v.goLangVersion          ?? '(..loading..)';
+        this._GoLangWebServerVersion    = v.goLangWebServerVersion ?? '(..loading..)';
     }
 
     private fromCache(key: keyof VersionBundle): string {
