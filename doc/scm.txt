@@ -37,7 +37,9 @@ Fill in:
 
 Note: codespaces-write
 Expiration: 90 days
-Scopes: ✅ repo (the top-level checkbox — this gives full repo access
+Scopes: 
+        ✅ repo (the top-level checkbox — this gives full repo access
+        ✅ workflow
 
 git add * 
 git commit -m"[ANGULAR DEMO] - [ENV_PROD] v[3.8.7]" -m"1) Dart - Dijkstra"

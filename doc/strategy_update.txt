@@ -152,10 +152,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[x] gitHub Repo FROM CONFIG.
 
-            --[_] LANGUAJE / SERVER VERSION
+            --[==>] LANGUAJE / SERVER VERSION ==> Node.js / J2SE / Kotlin / Swift (?).
             
-                  --[==>]   Node.js / J2SE / Kotlin / Swift (?).
-
                       --[x] ZIG. 
                       
                       --[x] Rust.
@@ -163,6 +161,12 @@ r///////////////////////////////////////////////////////////////////////////////
                       --[x] Golang.
 
                       --[==>] Dart. 
+
+                       http://localhost:8080/api/system/language-version
+                       {"language":"Dart","version":"3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"windows_x64\""}
+
+                       http://localhost:8080/api/system/server-version
+                       {"server":"Shelf Dart Backend","version":"1.4.2"}
 
 --[_] test visual studio code angent window ==> ask copilot about functionality.
 
