@@ -20,6 +20,7 @@ import { ConfigService         } from '../ConfigService/config.service';
 
 export interface VersionBundle {
   pythonVersion        : string;
+  pythonVersionTF      : string;
   nodeVersion          : string;
   nodeVersionOcr       : string;
   javaVersion          : string;
@@ -110,6 +111,7 @@ export class VersionCacheService implements OnDestroy {
 
     return forkJoin({
       pythonVersion        : safeSub(this.back.getPythonVersion()),
+      pythonVersionTF      : safeSub(this.back.getPythonVersionTF()),
       nodeVersion          : safeSub(this.back.getNodeVersion()),
       nodeVersionOcr       : safeSub(this.back.getNodeVersionOcr()),
       javaVersion          : safeSub(this.back.getJavaVersion()),
@@ -177,7 +179,8 @@ export class VersionCacheService implements OnDestroy {
   private readCache(): VersionBundle {
     const L = '(..loading..)';
     const blank: VersionBundle = {
-      pythonVersion: L, nodeVersion: L, nodeVersionOcr: L, 
+      pythonVersion: L, pythonVersionTF:L,
+      nodeVersion: L, nodeVersionOcr: L, 
       javaVersion: L, javaWebServerVersion : L,
       webApiApp: L, algorithmApp: L, algorithmCpp: L, aspNetCoreCpp: L,
       openCvApp: L, openCvApi: L, openCvCpp: L,

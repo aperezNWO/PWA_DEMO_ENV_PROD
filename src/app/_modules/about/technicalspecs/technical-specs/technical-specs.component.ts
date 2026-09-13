@@ -36,6 +36,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _TensorFlowAPIVersion       = this.fromCache('tfApi');
     _TensorFlowCPPSTDVersion    = this.fromCache('tfCpp');
     _PythonVersion              = this.fromCache('pythonVersion');
+    _PythonVersionTF            = this.fromCache('pythonVersionTF');
     _JavaVersion                = this.fromCache('javaVersion');
     _JavaWebServerVersion       = this.fromCache('javaWebServerVersion');  
     _NodeVersion                = this.fromCache('nodeVersion');
@@ -117,6 +118,12 @@ export class TechnicalSpecsComponent extends BaseComponent {
         return match ? match[1] : this._PythonVersion;
     }
 
+    public get cleanPythonVersionTF(): string {
+        if (!this._PythonVersionTF) return '';
+        const match = this._PythonVersionTF.match(/^(\d+\.\d+\.\d+)/);
+        return match ? match[1] : this._PythonVersion;
+    }
+
     public get cleanDartVersion(): string {
         if (!this._DartVersion) return '';
         const match = this._DartVersion.match(/(\d+\.\d+\.\d+)/);
@@ -142,6 +149,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._TensorFlowAPIVersion      = v.tfApi               ?? '(..loading..)';
         this._TensorFlowCPPSTDVersion   = v.tfCpp               ?? '(..loading..)';
         this._PythonVersion             = v.pythonVersion       ?? '(..loading..)';
+        this._PythonVersionTF           = v.pythonVersionTF     ?? '(..loading..)';
         this._JavaVersion               = v.javaVersion         ?? '(..loading..)';
         this._JavaWebServerVersion      = v.javaWebServerVersion   ?? '(..loading..)';
         this._NodeVersion               = v.nodeVersion            ?? '(..loading..)';

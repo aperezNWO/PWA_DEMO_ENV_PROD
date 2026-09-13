@@ -233,9 +233,15 @@ export class BackendService extends BaseService implements OnInit {
     const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-  // PYTHON
+  // PYTHON - DB 
   getPythonVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getPythonVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+
+  // PYTHON - TENSORFLOW
+  getPythonVersionTF(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlDjangoPythonTF')}getPythonVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
