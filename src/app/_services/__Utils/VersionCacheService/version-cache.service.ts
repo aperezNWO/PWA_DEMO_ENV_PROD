@@ -19,10 +19,11 @@ import { BackendService        } from '../../BackendService/backend.service';
 import { ConfigService         } from '../ConfigService/config.service';
 
 export interface VersionBundle {
-  pythonVersion       : string;
-  nodeVersion         : string;
-  nodeVersionOcr      : string;
-  javaVersion         : string;
+  pythonVersion        : string;
+  nodeVersion          : string;
+  nodeVersionOcr       : string;
+  javaVersion          : string;
+  javaWebServerVersion : string;
   webApiApp           : string;
   algorithmApp        : string;
   algorithmCpp        : string;
@@ -108,10 +109,11 @@ export class VersionCacheService implements OnDestroy {
       );
 
     return forkJoin({
-      pythonVersion       : safeSub(this.back.getPythonVersion()),
-      nodeVersion         : safeSub(this.back.getNodeVersion()),
-      nodeVersionOcr      : safeSub(this.back.getNodeVersionOcr()),
-      javaVersion         : safeSub(this.back.getJavaVersion()),
+      pythonVersion        : safeSub(this.back.getPythonVersion()),
+      nodeVersion          : safeSub(this.back.getNodeVersion()),
+      nodeVersionOcr       : safeSub(this.back.getNodeVersionOcr()),
+      javaVersion          : safeSub(this.back.getJavaVersion()),
+      javaWebServerVersion : safeSub(this.back.getJavaWebServerVersion()),
       webApiApp           : safeSub(this.back._GetWebApiAppVersion()),
       algorithmApp        : safeSub(this.algo._Algorithm_GetAppVersion()),
       algorithmCpp        : safeSub(this.algo._Algorithm_GetCPPSTDVersion()),
@@ -175,7 +177,8 @@ export class VersionCacheService implements OnDestroy {
   private readCache(): VersionBundle {
     const L = '(..loading..)';
     const blank: VersionBundle = {
-      pythonVersion: L, nodeVersion: L, nodeVersionOcr: L, javaVersion: L,
+      pythonVersion: L, nodeVersion: L, nodeVersionOcr: L, 
+      javaVersion: L, javaWebServerVersion : L,
       webApiApp: L, algorithmApp: L, algorithmCpp: L, aspNetCoreCpp: L,
       openCvApp: L, openCvApi: L, openCvCpp: L,
       tesseractApp: L, tesseractApi: L, tesseractCpp: L,

@@ -217,6 +217,12 @@ export class BackendService extends BaseService implements OnInit {
     const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getJavaVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
+
+  getJavaWebServerVersion(){
+    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getSpringBootVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+
   // NODE.JS 
   getNodeVersion(): Observable<string>{
     const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}getNodeVersion`;

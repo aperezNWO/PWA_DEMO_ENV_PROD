@@ -37,6 +37,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _TensorFlowCPPSTDVersion    = this.fromCache('tfCpp');
     _PythonVersion              = this.fromCache('pythonVersion');
     _JavaVersion                = this.fromCache('javaVersion');
+    _JavaWebServerVersion       = this.fromCache('javaWebServerVersion');  
     _NodeVersion                = this.fromCache('nodeVersion');
     _NodeVersionOcr             = this.fromCache('nodeVersionOcr');
     _ZigVersion                 = this.fromCache('zigVersion');
@@ -142,10 +143,11 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._TensorFlowCPPSTDVersion   = v.tfCpp               ?? '(..loading..)';
         this._PythonVersion             = v.pythonVersion       ?? '(..loading..)';
         this._JavaVersion               = v.javaVersion         ?? '(..loading..)';
-        this._NodeVersion               = v.nodeVersion         ?? '(..loading..)';
-        this._NodeVersionOcr            = v.nodeVersionOcr      ?? '(..loading..)';
-        this._ZigVersion                = v.zigVersion          ?? '(..loading..)';
-        this._ZigWebServerVersion       = v.zigWebServerVersion ?? '(..loading..)';
+        this._JavaWebServerVersion      = v.javaWebServerVersion   ?? '(..loading..)';
+        this._NodeVersion               = v.nodeVersion            ?? '(..loading..)';
+        this._NodeVersionOcr            = v.nodeVersionOcr         ?? '(..loading..)';
+        this._ZigVersion                = v.zigVersion             ?? '(..loading..)';
+        this._ZigWebServerVersion       = v.zigWebServerVersion    ?? '(..loading..)';
         this._GoLangVersion             = v.goLangVersion          ?? '(..loading..)';
         this._GoLangWebServerVersion    = v.goLangWebServerVersion ?? '(..loading..)';
         this._DartVersion               = v.dartVersion            ?? '(..loading..)';

@@ -152,7 +152,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[x] gitHub Repo FROM CONFIG.
 
-            --[==>] LANGUAJE / SERVER VERSION ==> Node.js / J2SE /  / Swift (?).
+            --[==>] LANGUAJE / SERVER VERSION ==> Node.js /  Swift (?).
             
                       --[x] ZIG. 
                       
@@ -162,7 +162,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[x] Dart. 
 
-                      --[X] Kotlin
+                      --[X] Kotlin.
+
+                      --[X] J2SE.
 
 --[_] test visual studio code angent window ==> ask copilot about functionality.
 
