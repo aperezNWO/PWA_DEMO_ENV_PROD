@@ -47,7 +47,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _GoLangWebServerVersion     = this.fromCache('goLangWebServerVersion'); 
     _DartVersion                = this.fromCache('dartVersion');
     _DartWebServerVersion       = this.fromCache('dartWebServerVersion');
-
+    _KotlinVersion              = this.fromCache('kotlinVersion');
+    _KotlinWebServerVersion     = this.fromCache('kotlinWebServerVersion');
     guid = signal<string>('');
 
     public get _baseUrlNetCoreSwagger(): string | undefined {
@@ -149,6 +150,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._GoLangWebServerVersion    = v.goLangWebServerVersion ?? '(..loading..)';
         this._DartVersion               = v.dartVersion            ?? '(..loading..)';
         this._DartWebServerVersion      = v.dartWebServerVersion   ?? '(..loading..)'; 
+        this._KotlinVersion             = v.kotlinVersion          ?? '(..loading..)'; 
+        this._KotlinWebServerVersion    = v.kotlinWebServerVersion ?? '(..loading..)'; 
     }
 
     private fromCache(key: keyof VersionBundle): string {

@@ -44,6 +44,8 @@ export interface VersionBundle {
   goLangWebServerVersion   : string;
   dartVersion              : string;
   dartWebServerVersion     : string;
+  kotlinVersion            : string;
+  kotlinWebServerVersion   : string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -130,7 +132,9 @@ export class VersionCacheService implements OnDestroy {
       goLangVersion          : safeSub(this.back.getGoLangVersion()),
       goLangWebServerVersion : safeSub(this.back.getGoLangWebServerVersion()),
       dartVersion            : safeSub(this.back.getDartVersion()),
-      dartWebServerVersion   : safeSub(this.back.getDartWebServerVersion())
+      dartWebServerVersion   : safeSub(this.back.getDartWebServerVersion()),
+      kotlinVersion          : safeSub(this.back.getKotlinVersion()),
+      kotlinWebServerVersion : safeSub(this.back.getKotlinWebServerVersion())
     }).pipe(
       map(bundle => {
         this.writeCache(bundle);
@@ -183,6 +187,8 @@ export class VersionCacheService implements OnDestroy {
       goLangWebServerVersion: L,
       dartVersion: L,
       dartWebServerVersion: L,
+      kotlinVersion: L,
+      kotlinWebServerVersion: L,
     };
     try {
       const raw = localStorage.getItem('version-cache');

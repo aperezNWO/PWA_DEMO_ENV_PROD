@@ -11,7 +11,6 @@
     <tr><td>Angular Runtime                             </td><td><b>{{this._runtimeVersion}}              </b></td></tr>
     <!-- .NET CORE / c#        -->
     <tr><td><a [href]="[this._baseUrlNetCoreSwagger]"     target="_blank">(Backend ASP.NET Core x32 / C# )</a></td><td><b>v5.0  App v[{{this._webApiAppVersion    }}]                 </b></td></tr>
-    <tr><td><a [href]="[this._baseUrlNetCoreCPPSwagger]"  target="_blank">(Backend ASP.NET Core x64 / C++)</a></td><td><b>v8.0  App v[{{this._ASPNETCoreCppVersion}}]             </b></td></tr>
     <!-- SPRINGBOOT / JAVA       -->
     <tr><td>(Backend SpringBoot / Java)                    </td><td><b>v{{this._JavaVersion}}       </b></td></tr>
     <!-- NODE.JS    / JAVASCRIPT -->
@@ -20,14 +19,18 @@
     <!-- DJANGO     / PYTHON-    -->
     <tr><td>(Backend Django    / Python)(db)               </td><td><b>v{{this.cleanPythonVersion}} </b></td></tr>
     <!-- ZIG        / web server -->
-    <tr><td>(Backend Zig    / std.http.Server)             </td><td><b>v[{{this._ZigVersion}}] / v[{{this._ZigWebServerVersion}}]       </b></td></tr>
+    <tr><td>(Backend Zig    / std.http.Server)             </td><td><b>v[{{this._ZigVersion}}] / v[{{this._ZigWebServerVersion}}]           </b></td></tr>
     <!-- RUST       / web server -->
-    <tr><td>(Backend Rust   / Actix-web)                   </td><td><b>v[{{this._RustVersion}}] / v[{{this._RustWebServerVersion}}]     </b></td></tr>
+    <tr><td>(Backend Rust   / Actix-web)                   </td><td><b>v[{{this._RustVersion}}] / v[{{this._RustWebServerVersion}}]         </b></td></tr>
     <!-- GoLang     / web server -->
-    <tr><td>(Backend GoLang / net-http)                    </td><td><b>v[{{this._GoLangVersion}}] / v[{{this._GoLangWebServerVersion}}] </b></td></tr>
+    <tr><td>(Backend GoLang / net-http)                    </td><td><b>v[{{this._GoLangVersion}}] / v[{{this._GoLangWebServerVersion}}]     </b></td></tr>
     <!-- Dart       / web server -->
-    <tr><td>(Backend Dart   / Shelf)                       </td><td><b>v[{{this.cleanDartVersion}}]   / v[{{this._DartWebServerVersion}}] </b></td></tr>
-     <!-- C++ -->
+    <tr><td>(Backend Dart   / Shelf)                       </td><td><b>v[{{this.cleanDartVersion}}]   / v[{{this._DartWebServerVersion}}]   </b></td></tr>
+    <!-- Kotlin     / web server -->
+    <tr><td>(Backend Kotlin / SpringBoot)                  </td><td><b>v[{{this._KotlinVersion}}]     / v[{{this._KotlinWebServerVersion}}] </b></td></tr>
+    <!-- .NET CORE / C++         -->
+    <tr><td><a [href]="[this._baseUrlNetCoreCPPSwagger]"  target="_blank">(Backend ASP.NET Core x64 / C++)</a></td><td><b>v8.0  App v[{{this._ASPNETCoreCppVersion}}] </b></td></tr>
+    <!-- C++ -->
     <tr><td>(DLL C++ Algorithm)                         </td><td><b>App v[{{this._AlgorithmAppVersion}}]        / [{{this._Algorithm_CPPSTDVersion}}]    </b></td></tr>
     <tr><td>(DLL C++ OpenCv)                            </td><td><b>App v[{{this._OpenCvAppVersion}}]           / [{{this._OpenCvCPPSTDVersion}}]      / API v[{{this._OpenCvAPIVersion}}]      </b></td></tr>
     <tr><td>(DLL C++ Tesseract)                         </td><td><b>App v[{{this._tesseractAppVersion}}]        / [{{this._tesseractCPPSTDVersion}}]   / API v[{{this._tesseractAPIVersion}}]   </b></td></tr>

@@ -350,7 +350,7 @@ export class BackendService extends BaseService implements OnInit {
           const parsed = typeof response === 'string' ? JSON.parse(response) : response;
           return (parsed?.version ?? parsed?.body?.version) as string;
         }),
-        tap(version => console.log('Extracted Go Version:', version))
+        tap(version => console.log('Extracted Dart Version:', version))
       );
   }
 
@@ -372,5 +372,41 @@ export class BackendService extends BaseService implements OnInit {
       );
   }
 
+  // KOTLIN
+  getKotlinVersion(){
+     //
+     const p_url =  `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/system/language-version`;
+
+      // Log the URL for debugging purposes
+      console.log('getKotlinVersion URL: ', p_url);
+      
+      // {"language":"Kotlin","version":"2.3.21"}
+      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.version ?? parsed?.body?.version) as string;
+        }),
+        tap(version => console.log('Extracted Kotlin Version:', version))
+      ); 
+  }
+
+  getKotlinWebServerVersion(){
+      // KOTLIN - SPRINB BOOT 
+      const p_url =  `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/system/server-version`;
+
+      // Log the URL for debugging purposes
+      console.log('getKotlinServerVersion URL: ', p_url);
+
+      // {"server":"Spring Boot","version":"4.1.0"}
+      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.version ?? parsed?.body?.version) as string;
+        }),
+        tap(version => console.log('Extracted Kotlin - SpringBoot Version:', version))
+      );
+  }
   ////////////////////////////////////////////////////////////////  
 }
