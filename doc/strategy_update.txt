@@ -162,15 +162,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[x] Dart. 
 
-                      --[==>] Kotlin
-
-                      ## KOTLIN VERSION
-                         curl -i https://ping-api-latest.onrender.com/api/system/language-version
-                         {"language":"Kotlin","version":"2.3.21"}
-
-                         ## SPRING BOOT VERSION
-                         curl -i https://ping-api-latest.onrender.com/api/system/server-version
-                         {"server":"Spring Boot","version":"4.1.0"}
+                      --[X] Kotlin
 
 --[_] test visual studio code angent window ==> ask copilot about functionality.
 
