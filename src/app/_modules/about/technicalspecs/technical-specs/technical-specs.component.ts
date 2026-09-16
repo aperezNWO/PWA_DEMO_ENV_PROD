@@ -40,7 +40,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _JavaVersion                = this.fromCache('javaVersion');
     _JavaWebServerVersion       = this.fromCache('javaWebServerVersion');  
     _NodeVersion                = this.fromCache('nodeVersion');
+    _NodeWebServerVersion       = this.fromCache('nodeWebServerVersion');    
     _NodeVersionOcr             = this.fromCache('nodeVersionOcr');
+    _NodeWebServerVersionOcr    = this.fromCache('nodeWebServerVersionOcr');
     _ZigVersion                 = this.fromCache('zigVersion');
     _ZigWebServerVersion        = this.fromCache('zigWebServerVersion');
     _RustVersion                = this.fromCache('rustVersion');
@@ -112,18 +114,35 @@ export class TechnicalSpecsComponent extends BaseComponent {
         }
     }
 
+    //
+    public get cleanNodeWebServerVersion(): string {
+        if (!this._NodeWebServerVersion) return '';
+        const match = this._NodeWebServerVersion.match(/^(\d+\.\d+\.\d+)/);
+        return match ? match[1] : this._NodeWebServerVersion;
+    }
+
+    //
+    public get cleanNodeWebServerVersionOcr(): string{
+        if (!this._NodeWebServerVersionOcr) return '';
+        const match = this._NodeWebServerVersionOcr.match(/^(\d+\.\d+\.\d+)/);
+        return match ? match[1] : this._NodeWebServerVersionOcr;
+    }
+
+    //
     public get cleanPythonVersion(): string {
         if (!this._PythonVersion) return '';
         const match = this._PythonVersion.match(/^(\d+\.\d+\.\d+)/);
         return match ? match[1] : this._PythonVersion;
     }
 
+    //
     public get cleanPythonVersionTF(): string {
         if (!this._PythonVersionTF) return '';
         const match = this._PythonVersionTF.match(/^(\d+\.\d+\.\d+)/);
         return match ? match[1] : this._PythonVersion;
     }
 
+    //
     public get cleanDartVersion(): string {
         if (!this._DartVersion) return '';
         const match = this._DartVersion.match(/(\d+\.\d+\.\d+)/);
@@ -153,7 +172,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._JavaVersion               = v.javaVersion         ?? '(..loading..)';
         this._JavaWebServerVersion      = v.javaWebServerVersion   ?? '(..loading..)';
         this._NodeVersion               = v.nodeVersion            ?? '(..loading..)';
-        this._NodeVersionOcr            = v.nodeVersionOcr         ?? '(..loading..)';
+        this._NodeWebServerVersion      = v.nodeWebServerVersion   ?? '(..loading..)';
+        this._NodeVersionOcr            = v.nodeVersionOcr           ?? '(..loading..)';
+        this._NodeWebServerVersionOcr   = v.nodeWebServerVersionOcr  ?? '(..loading..)';
         this._ZigVersion                = v.zigVersion             ?? '(..loading..)';
         this._ZigWebServerVersion       = v.zigWebServerVersion    ?? '(..loading..)';
         this._GoLangVersion             = v.goLangVersion          ?? '(..loading..)';

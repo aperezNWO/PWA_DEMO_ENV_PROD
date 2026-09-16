@@ -228,11 +228,22 @@ export class BackendService extends BaseService implements OnInit {
     const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}getNodeVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
+  getNodeWebServerVersion(): Observable<string>{
+    const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}getNodeWebServerVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  
   // NODE.JS - OCR
   getNodeVersionOcr(): Observable<string>{
     const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
+  
+  getNodeWebServerVersionOcr(): Observable<string>{
+    const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeWebServerVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  
   // PYTHON - DB 
   getPythonVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getPythonVersion`;
