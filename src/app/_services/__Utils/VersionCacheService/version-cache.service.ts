@@ -24,7 +24,7 @@ export interface VersionBundle {
   nodeVersion          : string;
   nodeWebServerVersion : string;
   nodeVersionOcr          : string;
-  nodeWebServerVersionOcr : string;
+  nodeWebServerVersioOcr  : string;
   javaVersion          : string;
   javaWebServerVersion : string;
   webApiApp           : string;
@@ -185,7 +185,7 @@ export class VersionCacheService implements OnDestroy {
     const blank: VersionBundle = {
       pythonVersion: L, pythonVersionTF:L,
       nodeVersion: L, nodeWebServerVersion: L,
-      nodeVersionOcr: L, nodeWebServerVersionOcr: L, 
+      nodeVersionOcr: L, nodeWebServerVersioOcr: L, 
       javaVersion: L, javaWebServerVersion : L,
       webApiApp: L, algorithmApp: L, algorithmCpp: L, aspNetCoreCpp: L,
       openCvApp: L, openCvApi: L, openCvCpp: L,
