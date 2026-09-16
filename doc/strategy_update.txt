@@ -28,6 +28,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
 
+--[_] SHOW REFERENCES ==> LIBRAREIS ==> NAME V[X.X.X].
+
 --[_] test visual studio code angent window ==> ask copilot about functionality.
 
 --[_] Free disk space.
@@ -134,7 +136,6 @@ r///////////////////////////////////////////////////////////////////////////////
 
           --[==>] GRUPO-MATRIZ ACCOUNT.
  
-
 --[_] Fractal Demo.
 
      --[_] Fix Benchmark Demo.
@@ -191,6 +192,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[==>] cleangetxxxversions() ??? ==> ask i.a.
 
+                      --[==>] MS SQL SERVER VERSION.
+
                       --[==>] zig / c++ web server group
 
                          --[==>] c++ web server 
@@ -201,9 +204,25 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[==>] PYTHON
 
+                         --[==>] DJANGO-LINUX
+
+                              --[==>] LINK TO HEALTH / CREATE HEALTH ENDPOINT.
+
+                              --[==>] LINK TO REPO / PRIVATE.
+
+                              --[==>] SERVER VERSION.
+
+                              --[==>] LANGUAGE VERSION.
+
                          --[==>] DJANGO-WINDOWS
 
-                         --[==>] DJANGO-LINUX
+                              --[==>] LINK TO HEALTH / CREATE HEALTH ENDPOINT.
+
+                              --[==>] LINK TO REPO / PRIVATE.
+
+                              --[==>] SERVER VERSION.
+
+                              --[==>] LANGUAGE VERSION.
 
 ////////////////////////////////////////////////////////////////////////////////
 
