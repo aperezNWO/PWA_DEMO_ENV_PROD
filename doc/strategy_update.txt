@@ -190,11 +190,21 @@ r///////////////////////////////////////////////////////////////////////////////
 
                          --[==>] DJANGO-LINUX
 
+                    --[==>] zig / c++ web server group
+
+                         --[==>] c++ web server 
+
+                              |--[==>] lang version.
+
+                              |--[==>] sevver version. 
+
+                    --[==>] cleangetxxxversions() ??? ==> ask i.a.
+
             --[==>] Devin doc   FROM CONFIG.
 
                --[==>] GRUPO-MATRIZ ACCOUNT.
 
-  --[==>] cleangetxxxversions() ??? ==> ask i.a.
+  
 
   --[==>] CHANGE GMAIL SMPT SETTING .
 
