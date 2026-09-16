@@ -134,7 +134,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
      --[_] Fix Benchmark Demo.
 
-          --[_] Group WASM and GRPC fractals.
+          --[_] split wasm && gRPC FRACTAL samples.
 
           --[_] Update Sorce Code Reference.
 
@@ -174,15 +174,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[X] J2SE.
 
-                      --[X] Node.js 
-
-                         --[X] Node.js - express. 
-                              https://cs-nodejs-latest-otdv.onrender.com/getNodeWebServerVersion
-                              {"server":"Express / Node App","version":"1.0.0.3"}
-                              
-                         --[X] Node.js. 
-                              https://improved-disco-695gqwgpxwvg24xwx-3000.app.github.dev/getNodeWebServerVersion
-                              {"server":"express","version":"1.0.0.3"}
+                      --[X] Node.js.
 
                       --[==>] PYTHON
 
@@ -196,17 +188,23 @@ r///////////////////////////////////////////////////////////////////////////////
 
                               |--[==>] lang version.
 
-                              |--[==>] sevver version. 
+                              |--[==>] server version. 
 
                     --[==>] cleangetxxxversions() ??? ==> ask i.a.
 
             --[==>] Devin doc   FROM CONFIG.
 
                --[==>] GRUPO-MATRIZ ACCOUNT.
-
-  
-
+ 
   --[==>] CHANGE GMAIL SMPT SETTING .
 
+          --[==>] change google smtp password.
+
+  --[==>] repo / health links.
+
+  --[==>] make repo private.
+
+
+  
 ////////////////////////////////////////////////////////////////////////////////
 
