@@ -229,8 +229,18 @@ export class BackendService extends BaseService implements OnInit {
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
   getNodeWebServerVersion(): Observable<string>{
-    const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}getNodeWebServerVersion`;
-    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+     //
+     const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}getNodeWebServerVersion`;
+    
+     // {"server":"Express / Node App","version":"1.0.0.3"}
+     return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.version ?? parsed?.body?.version) as string;
+        }),
+        tap(version => console.log('Extracted Node.js - Express Version (OCR)', version))
+      );
   }
   
   // NODE.JS - OCR
@@ -240,8 +250,18 @@ export class BackendService extends BaseService implements OnInit {
   }
   
   getNodeWebServerVersionOcr(): Observable<string>{
-    const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeWebServerVersion`;
-    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+     // 
+     const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeWebServerVersion`;
+      
+     // {"server":"Express / Node App","version":"1.0.0.3"}
+     return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.version ?? parsed?.body?.version) as string;
+        }),
+        tap(version => console.log('Extracted Node.js - Express Version', version))
+      );
   }
   
   // PYTHON - DB 

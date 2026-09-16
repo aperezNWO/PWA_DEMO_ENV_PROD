@@ -115,20 +115,6 @@ export class TechnicalSpecsComponent extends BaseComponent {
     }
 
     //
-    public get cleanNodeWebServerVersion(): string {
-        if (!this._NodeWebServerVersion) return '';
-        const match = this._NodeWebServerVersion.match(/^(\d+\.\d+\.\d+)/);
-        return match ? match[1] : this._NodeWebServerVersion;
-    }
-
-    //
-    public get cleanNodeWebServerVersionOcr(): string{
-        if (!this._NodeWebServerVersionOcr) return '';
-        const match = this._NodeWebServerVersionOcr.match(/^(\d+\.\d+\.\d+)/);
-        return match ? match[1] : this._NodeWebServerVersionOcr;
-    }
-
-    //
     public get cleanPythonVersion(): string {
         if (!this._PythonVersion) return '';
         const match = this._PythonVersion.match(/^(\d+\.\d+\.\d+)/);

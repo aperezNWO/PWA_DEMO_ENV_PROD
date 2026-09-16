@@ -158,8 +158,6 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] ABOUT.
 
-            --[x] Devin doc   FROM CONFIG.
-
             --[x] gitHub Repo FROM CONFIG.
 
             --[==>] LANGUAJE / SERVER VERSION ==>  Swift (?).
@@ -176,15 +174,25 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[X] J2SE.
 
-                      --[==>] Node.js 
+                      --[X] Node.js 
 
-                         --[==>] Node.js - express. 
+                         --[X] Node.js - express. 
                               https://cs-nodejs-latest-otdv.onrender.com/getNodeWebServerVersion
                               {"server":"Express / Node App","version":"1.0.0.3"}
                               
-                         --[==>] Node.js. 
+                         --[X] Node.js. 
                               https://improved-disco-695gqwgpxwvg24xwx-3000.app.github.dev/getNodeWebServerVersion
                               {"server":"express","version":"1.0.0.3"}
+
+                      --[==>] PYTHON
+
+                         --[==>] DJANGO-WINDOWS
+
+                         --[==>] DJANGO-LINUX
+
+            --[==>] Devin doc   FROM CONFIG.
+
+               --[==>] GRUPO-MATRIZ ACCOUNT.
 
 ////////////////////////////////////////////////////////////////////////////////
 
