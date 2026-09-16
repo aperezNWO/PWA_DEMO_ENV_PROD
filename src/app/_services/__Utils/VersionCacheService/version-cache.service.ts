@@ -19,7 +19,8 @@ import { BackendService        } from '../../BackendService/backend.service';
 import { ConfigService         } from '../ConfigService/config.service';
 
 export interface VersionBundle {
-  pythonVersion        : string;
+  pythonVersion           : string;
+  pythonWebServerVersion  : string;
   pythonVersionTF      : string;
   nodeVersion          : string;
   nodeWebServerVersion : string;
@@ -112,7 +113,8 @@ export class VersionCacheService implements OnDestroy {
       );
 
     return forkJoin({
-      pythonVersion        : safeSub(this.back.getPythonVersion()),
+      pythonVersion            : safeSub(this.back.getPythonVersion()),
+      pythonWebServerVersion   : safeSub(this.back.getPythonWebServerVersion()),
       pythonVersionTF      : safeSub(this.back.getPythonVersionTF()),
       nodeVersion          : safeSub(this.back.getNodeVersion()),
       nodeWebServerVersion : safeSub(this.back.getNodeWebServerVersion()),
@@ -183,7 +185,8 @@ export class VersionCacheService implements OnDestroy {
   private readCache(): VersionBundle {
     const L = '(..loading..)';
     const blank: VersionBundle = {
-      pythonVersion: L, pythonVersionTF:L,
+      pythonVersion: L, pythonWebServerVersion: L,
+      pythonVersionTF:L,
       nodeVersion: L, nodeWebServerVersion: L,
       nodeVersionOcr: L, nodeWebServerVersionOcr: L, 
       javaVersion: L, javaWebServerVersion : L,

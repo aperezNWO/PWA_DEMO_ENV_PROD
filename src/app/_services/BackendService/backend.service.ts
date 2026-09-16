@@ -270,6 +270,11 @@ export class BackendService extends BaseService implements OnInit {
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
+  getPythonWebServerVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getPythonWebServerVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+
   // PYTHON - TENSORFLOW
   getPythonVersionTF(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPythonTF')}getPythonVersion`;

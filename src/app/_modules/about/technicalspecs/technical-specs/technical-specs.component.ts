@@ -36,6 +36,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _TensorFlowAPIVersion       = this.fromCache('tfApi');
     _TensorFlowCPPSTDVersion    = this.fromCache('tfCpp');
     _PythonVersion              = this.fromCache('pythonVersion');
+    _PythonWebServerVersion     = this.fromCache('pythonWebServerVersion');    
     _PythonVersionTF            = this.fromCache('pythonVersionTF');
     _JavaVersion                = this.fromCache('javaVersion');
     _JavaWebServerVersion       = this.fromCache('javaWebServerVersion');  
@@ -154,8 +155,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._TensorFlowAPIVersion      = v.tfApi               ?? '(..loading..)';
         this._TensorFlowCPPSTDVersion   = v.tfCpp               ?? '(..loading..)';
         this._PythonVersion             = v.pythonVersion       ?? '(..loading..)';
-        this._PythonVersionTF           = v.pythonVersionTF     ?? '(..loading..)';
-        this._JavaVersion               = v.javaVersion         ?? '(..loading..)';
+        this._PythonWebServerVersion    = v.pythonWebServerVersion   ?? '(..loading..)';        
+        this._PythonVersionTF           = v.pythonVersionTF          ?? '(..loading..)';
+        this._JavaVersion               = v.javaVersion              ?? '(..loading..)';
         this._JavaWebServerVersion      = v.javaWebServerVersion   ?? '(..loading..)';
         this._NodeVersion               = v.nodeVersion            ?? '(..loading..)';
         this._NodeWebServerVersion      = v.nodeWebServerVersion   ?? '(..loading..)';
