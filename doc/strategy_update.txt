@@ -130,6 +130,11 @@ r///////////////////////////////////////////////////////////////////////////////
 
      --[_] Complete all languages.    
 
+--[==>] Devin doc   FROM CONFIG.
+
+          --[==>] GRUPO-MATRIZ ACCOUNT.
+ 
+
 --[_] Fractal Demo.
 
      --[_] Fix Benchmark Demo.
@@ -155,6 +160,14 @@ r///////////////////////////////////////////////////////////////////////////////
      --[_] Update Language References.
 
      --[_] Update Landing Page ==> Version 4.0.0.
+
+--[==>] CHANGE GMAIL SMPT SETTING .
+
+     --[==>] change google smtp password.
+
+--[==>] repo / health links.
+
+--[==>] make repo private.
 
 --[_] ABOUT.
 
@@ -192,19 +205,5 @@ r///////////////////////////////////////////////////////////////////////////////
 
                     --[==>] cleangetxxxversions() ??? ==> ask i.a.
 
-            --[==>] Devin doc   FROM CONFIG.
-
-               --[==>] GRUPO-MATRIZ ACCOUNT.
- 
-  --[==>] CHANGE GMAIL SMPT SETTING .
-
-          --[==>] change google smtp password.
-
-  --[==>] repo / health links.
-
-  --[==>] make repo private.
-
-
-  
 ////////////////////////////////////////////////////////////////////////////////
 
