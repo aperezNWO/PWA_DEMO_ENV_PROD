@@ -170,5 +170,11 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] Free disk space.
 
+--[_] visual studio alternatives.
+
+--[_] podman vs docker.
+
+--[_] Server: Go gRPC server with a WebSocket gateway.Client: Angular service using a WebSocket client that sends/receives Protobuf bytes
+
 ////////////////////////////////////////////////////////////////////////////////
 
