@@ -28,6 +28,16 @@ r///////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////
 
+--[_] test visual studio code angent window ==> ask copilot about functionality.
+
+--[_] Free disk space.
+
+--[_] visual studio alternatives.
+
+--[_] podman vs docker.
+
+--[_] Server: Go gRPC server with a WebSocket gateway.Client: Angular service using a WebSocket client that sends/receives Protobuf bytes
+
  --[_] Move VersionCache to APP_INIT.
 
  --[_] machine learning graph fix.
@@ -152,7 +162,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[x] gitHub Repo FROM CONFIG.
 
-            --[==>] LANGUAJE / SERVER VERSION ==> Node.js /  Swift (?).
+            --[==>] LANGUAJE / SERVER VERSION ==>  Swift (?).
             
                       --[x] ZIG. 
                       
@@ -166,15 +176,15 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[X] J2SE.
 
---[_] test visual studio code angent window ==> ask copilot about functionality.
+                      --[==>] Node.js 
 
---[_] Free disk space.
-
---[_] visual studio alternatives.
-
---[_] podman vs docker.
-
---[_] Server: Go gRPC server with a WebSocket gateway.Client: Angular service using a WebSocket client that sends/receives Protobuf bytes
+                         --[==>] Node.js - express. 
+                              https://cs-nodejs-latest-otdv.onrender.com/getNodeWebServerVersion
+                              {"server":"Express / Node App","version":"1.0.0.3"}
+                              
+                         --[==>] Node.js. 
+                              https://improved-disco-695gqwgpxwvg24xwx-3000.app.github.dev/getNodeWebServerVersion
+                              {"server":"express","version":"1.0.0.3"}
 
 ////////////////////////////////////////////////////////////////////////////////
 
