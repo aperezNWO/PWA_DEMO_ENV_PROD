@@ -219,9 +219,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
                               --[==>] LINK TO HEALTH / CREATE HEALTH ENDPOINT.
 
-                              --[==>] LINK TO REPO / PRIVATE.
+                              --[x] LINK TO REPO / PRIVATE.
 
-                              --[==>] SERVER VERSION.
+                              --[x] SERVER VERSION.
                                       {6.0.8}  
 
                               --[x] LANGUAGE VERSION.
