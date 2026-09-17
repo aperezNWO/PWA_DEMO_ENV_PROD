@@ -38,6 +38,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _PythonVersion              = this.fromCache('pythonVersion');
     _PythonWebServerVersion     = this.fromCache('pythonWebServerVersion');    
     _PythonVersionTF            = this.fromCache('pythonVersionTF');
+    _PythonWebServerVersionTF   = this.fromCache('pythonWebServerVersionTF');
     _JavaVersion                = this.fromCache('javaVersion');
     _JavaWebServerVersion       = this.fromCache('javaWebServerVersion');  
     _NodeVersion                = this.fromCache('nodeVersion');
@@ -167,6 +168,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._PythonVersion             = v.pythonVersion       ?? '(..loading..)';
         this._PythonWebServerVersion    = v.pythonWebServerVersion   ?? '(..loading..)';        
         this._PythonVersionTF           = v.pythonVersionTF          ?? '(..loading..)';
+        this._PythonWebServerVersionTF  = v.pythonWebServerVersionTF ?? '(..loading..)';   
         this._JavaVersion               = v.javaVersion              ?? '(..loading..)';
         this._JavaWebServerVersion      = v.javaWebServerVersion   ?? '(..loading..)';
         this._NodeVersion               = v.nodeVersion            ?? '(..loading..)';

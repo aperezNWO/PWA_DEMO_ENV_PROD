@@ -19,9 +19,10 @@ import { BackendService        } from '../../BackendService/backend.service';
 import { ConfigService         } from '../ConfigService/config.service';
 
 export interface VersionBundle {
-  pythonVersion           : string;
-  pythonWebServerVersion  : string;
-  pythonVersionTF      : string;
+  pythonVersion             : string;
+  pythonWebServerVersion    : string;
+  pythonVersionTF           : string;
+  pythonWebServerVersionTF  : string;
   nodeVersion          : string;
   nodeWebServerVersion : string;
   nodeVersionOcr           : string;
@@ -113,13 +114,14 @@ export class VersionCacheService implements OnDestroy {
       );
 
     return forkJoin({
-      pythonVersion            : safeSub(this.back.getPythonVersion()),
-      pythonWebServerVersion   : safeSub(this.back.getPythonWebServerVersion()),
-      pythonVersionTF      : safeSub(this.back.getPythonVersionTF()),
-      nodeVersion          : safeSub(this.back.getNodeVersion()),
-      nodeWebServerVersion : safeSub(this.back.getNodeWebServerVersion()),
-      nodeVersionOcr         : safeSub(this.back.getNodeVersionOcr()),
-      nodeWebServerVersionOcr : safeSub(this.back.getNodeWebServerVersionOcr()),
+      pythonVersion             : safeSub(this.back.getPythonVersion()),
+      pythonWebServerVersion    : safeSub(this.back.getPythonWebServerVersion()),
+      pythonVersionTF           : safeSub(this.back.getPythonVersionTF()),
+      pythonWebServerVersionTF  : safeSub(this.back.getPythonWebServerVersionTF()),
+      nodeVersion               : safeSub(this.back.getNodeVersion()),
+      nodeWebServerVersion      : safeSub(this.back.getNodeWebServerVersion()),
+      nodeVersionOcr            : safeSub(this.back.getNodeVersionOcr()),
+      nodeWebServerVersionOcr   : safeSub(this.back.getNodeWebServerVersionOcr()),
       javaVersion          : safeSub(this.back.getJavaVersion()),
       javaWebServerVersion : safeSub(this.back.getJavaWebServerVersion()),
       webApiApp           : safeSub(this.back._GetWebApiAppVersion()),
@@ -186,7 +188,7 @@ export class VersionCacheService implements OnDestroy {
     const L = '(..loading..)';
     const blank: VersionBundle = {
       pythonVersion: L, pythonWebServerVersion: L,
-      pythonVersionTF:L,
+      pythonVersionTF:L, pythonWebServerVersionTF : L,
       nodeVersion: L, nodeWebServerVersion: L,
       nodeVersionOcr: L, nodeWebServerVersionOcr: L, 
       javaVersion: L, javaWebServerVersion : L,

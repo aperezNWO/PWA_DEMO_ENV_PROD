@@ -281,6 +281,12 @@ export class BackendService extends BaseService implements OnInit {
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
+  getPythonWebServerVersionTF(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlDjangoPythonTF')}getPythonWebServerVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+
+  // ZIG
   getZigVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/getZigVersion`;
 
