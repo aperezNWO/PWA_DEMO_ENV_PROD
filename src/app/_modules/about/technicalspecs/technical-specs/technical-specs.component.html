@@ -28,7 +28,14 @@
                                                                        </a>
                                                            </b></td></tr>
     <!-- DJANGO     / PYTHON-/ TF    -->
-    <tr><td>(Backend Python    / Django)(Tensorflow)       </td><td><b>v[{{this.cleanPythonVersionTF}}]</b></td></tr>
+    <tr><td>(Backend Python    / Django)(Tensorflow)       </td><td><b><a [href]="[this._PythonDjangoRepoTF]" target="_blank">
+                                                                       v[{{this.cleanPythonVersionTF}}]
+                                                                       </a>             
+                                                                       / 
+                                                                       <a [href]="[`${this._baseUrlPythonDjangoTF}health/?format=json` ]" target="_blank">
+                                                                        v[{{ this._PythonWebServerVersionTF}}]
+                                                                       </a>  
+                                                           </b></td></tr>
       <!-- ZIG        / web server -->
     <tr><td>(Backend Zig    / std.http.Server)             </td><td><b>v[{{this._ZigVersion}}] / v[{{this._ZigWebServerVersion}}]           </b></td></tr>
     <!-- RUST       / web server -->

@@ -204,17 +204,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[==>] PYTHON
 
-                         --[==>] DJANGO-LINUX
-
-                              --[==>] LINK TO HEALTH / CREATE HEALTH ENDPOINT.
-
-                              --[==>] LINK TO REPO / PRIVATE.
-
-                              --[==>] SERVER VERSION.
-
-                              --[==>] LANGUAGE VERSION.
-
-                         --[==>] DJANGO-WINDOWS
+                          --[==>] DJANGO-WINDOWS
 
                               --[==>] LINK TO HEALTH / CREATE HEALTH ENDPOINT.
 
@@ -225,6 +215,16 @@ r///////////////////////////////////////////////////////////////////////////////
                               --[x] SERVER VERSION.
                                       {6.0.8}
 
+                        --[==>] DJANGO-LINUX
+
+                              --[==>] LINK TO HEALTH / CREATE HEALTH ENDPOINT.
+
+                              --[==>] LINK TO REPO / PRIVATE.
+
+                              --[==>] SERVER VERSION.
+                                      {6.0.8}  
+
+                              --[x] LANGUAGE VERSION.
 
 ////////////////////////////////////////////////////////////////////////////////
 
