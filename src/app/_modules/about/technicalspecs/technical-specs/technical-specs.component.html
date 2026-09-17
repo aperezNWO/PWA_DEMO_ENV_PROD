@@ -19,7 +19,14 @@
     <tr><td>(Backend Node.js    / Javascript)(db/smtp/chat)</td><td><b>v[{{this._NodeVersion}}]       / v[{{this._NodeWebServerVersion}}]       </b></td></tr>
     <tr><td>(Backend Node.js    / Javascript)(Ocr/Opencv)  </td><td><b>v[{{this._NodeVersionOcr}}]    / v[{{this._NodeWebServerVersionOcr}}]    </b></td></tr>
     <!-- DJANGO     / PYTHON-        -->
-    <tr><td>(Backend Python    / Django)(db)               </td><td><b><a [href]="[this._PythonDjangoRepo]">v[{{this.cleanPythonVersion}}]</a> / <a [href]="[ `${this._PythonDjangoRepo}health/?format=json` ]">v[{{ this._baseUrlPythonDjango}}]</a></b></td></tr>
+    <tr><td>(Backend Python    / Django)(db)               </td><td><b><a [href]="[this._PythonDjangoRepo]" target="_blank">
+                                                                        v[{{this.cleanPythonVersion}}]
+                                                                       </a> 
+                                                                        / 
+                                                                       <a [href]="[`${this._baseUrlPythonDjango}health/?format=json` ]" target="_blank">
+                                                                        v[{{ this._PythonWebServerVersion}}]
+                                                                       </a>
+                                                           </b></td></tr>
     <!-- DJANGO     / PYTHON-/ TF    -->
     <tr><td>(Backend Python    / Django)(Tensorflow)       </td><td><b>v[{{this.cleanPythonVersionTF}}]</b></td></tr>
       <!-- ZIG        / web server -->
