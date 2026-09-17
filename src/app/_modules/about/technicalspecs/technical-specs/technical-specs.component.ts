@@ -68,6 +68,14 @@ export class TechnicalSpecsComponent extends BaseComponent {
     protected _techDocRoot               : string | undefined = `${this.configService.getConfigValue('techDocRoot')}`;
     protected _techDoc                   : string | undefined = `${this.configService.getConfigValue('techDocRegex').replace('{techDocRoot}', this._techDocRoot ?? '')}`;
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // REPO LINKS
+    //////////////////////////////////////////////////////////////////////////////
+
+    protected _baseUrlPythonDjango       : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPython')}`;
+    protected _PythonDjangoRepo          : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonRepo')}`;
+
+
     ////////////////////////////////////////////////////////////////  
     // [EVENT HANDLERS]
     ////////////////////////////////////////////////////////////////  
@@ -183,4 +191,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
             return '(..loading..)';
         }
     }
+
+    //////////////////////////////////////////////////////////////////////////////
+   
 }

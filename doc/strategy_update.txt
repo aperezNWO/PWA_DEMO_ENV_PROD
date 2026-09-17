@@ -218,11 +218,11 @@ r///////////////////////////////////////////////////////////////////////////////
 
                               --[==>] LINK TO HEALTH / CREATE HEALTH ENDPOINT.
 
-                              --[==>] LINK TO REPO / PRIVATE.
+                              --[x] LINK TO REPO / PRIVATE.
 
                               --[x] LANGUAGE VERSION.
 
-                              --[==>] SERVER VERSION.
+                              --[x] SERVER VERSION.
                                       {6.0.8}
 
 
