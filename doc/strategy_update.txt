@@ -162,9 +162,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
      --[_] Update Landing Page ==> Version 4.0.0.
 
---[==>] CHANGE GMAIL SMPT SETTING .
+--[x] aperezNWOProtonmail DEVIN DOC.
 
-     --[==>] change google smtp password.
+     --[==>] https://deepwiki.com/aperezNWOProtonmail/PWA_DEMO_ENV_PROD.
 
 --[==>] repo / health links.
 
