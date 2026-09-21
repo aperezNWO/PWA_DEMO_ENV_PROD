@@ -1,5 +1,6 @@
 {
     "APP INFO"                                     : "-----------------------------------------",
+    "GIT-TITLE"                                    : "[ANGULAR DEMO] - [ENV_PROD] v[3.9.91]    ",
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
     "appVersion"                                   : "3.9.92",

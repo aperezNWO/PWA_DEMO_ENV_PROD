@@ -34,7 +34,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] Free disk space.
 
---[_] visual studio alternatives.
+--[_] visual studio alternatives zed.
 
 --[_] podman vs docker.
 
