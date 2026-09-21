@@ -14,9 +14,9 @@ import { BackendService                     } from '../../../../_services/Backen
     standalone: false
 })
 export class TechnicalSpecsComponent extends BaseComponent {
-    ////////////////////////////////////////////////////////////////  
+    ////////////////////////////////////////////////////////////////
     // [PROPIEDADES]
-    //////////////////////////////////////////////////////////////// 
+    ////////////////////////////////////////////////////////////////
 
     _appBrand               : string | undefined;
     _appVersion             : string | undefined;
@@ -36,13 +36,13 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _TensorFlowAPIVersion       = this.fromCache('tfApi');
     _TensorFlowCPPSTDVersion    = this.fromCache('tfCpp');
     _PythonVersion              = this.fromCache('pythonVersion');
-    _PythonWebServerVersion     = this.fromCache('pythonWebServerVersion');    
+    _PythonWebServerVersion     = this.fromCache('pythonWebServerVersion');
     _PythonVersionTF            = this.fromCache('pythonVersionTF');
     _PythonWebServerVersionTF   = this.fromCache('pythonWebServerVersionTF');
     _JavaVersion                = this.fromCache('javaVersion');
-    _JavaWebServerVersion       = this.fromCache('javaWebServerVersion');  
+    _JavaWebServerVersion       = this.fromCache('javaWebServerVersion');
     _NodeVersion                = this.fromCache('nodeVersion');
-    _NodeWebServerVersion       = this.fromCache('nodeWebServerVersion');    
+    _NodeWebServerVersion       = this.fromCache('nodeWebServerVersion');
     _NodeVersionOcr             = this.fromCache('nodeVersionOcr');
     _NodeWebServerVersionOcr    = this.fromCache('nodeWebServerVersionOcr');
     _ZigVersion                 = this.fromCache('zigVersion');
@@ -50,7 +50,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _RustVersion                = this.fromCache('rustVersion');
     _RustWebServerVersion       = this.fromCache('rustWebServerVersion');
     _GoLangVersion              = this.fromCache('goLangVersion');
-    _GoLangWebServerVersion     = this.fromCache('goLangWebServerVersion'); 
+    _GoLangWebServerVersion     = this.fromCache('goLangWebServerVersion');
     _DartVersion                = this.fromCache('dartVersion');
     _DartWebServerVersion       = this.fromCache('dartWebServerVersion');
     _KotlinVersion              = this.fromCache('kotlinVersion');
@@ -79,9 +79,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
     protected _PythonDjangoRepoTF        : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonTFRepo')}`;
 
 
-    ////////////////////////////////////////////////////////////////  
+    ////////////////////////////////////////////////////////////////
     // [EVENT HANDLERS]
-    ////////////////////////////////////////////////////////////////  
+    ////////////////////////////////////////////////////////////////
 
     constructor(
            private         versionCache  : VersionCacheService,
@@ -106,9 +106,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
         });
     }
 
-    ////////////////////////////////////////////////////////////////  
+    ////////////////////////////////////////////////////////////////
     // [MÉTODOS COMUNES]
-    ////////////////////////////////////////////////////////////////  
+    ////////////////////////////////////////////////////////////////
 
     setNewGuid(): string {
         const guid = this.configService.generateGuid();
@@ -147,7 +147,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         return match ? match[1] : this._DartVersion;
     }
 
-    ////////////////////////////////////////////////////////////////  
+    ////////////////////////////////////////////////////////////////
     // [PRIVADOS]
     ////////////////////////////////////////////////////////////////
 
@@ -166,9 +166,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._TensorFlowAPIVersion      = v.tfApi               ?? '(..loading..)';
         this._TensorFlowCPPSTDVersion   = v.tfCpp               ?? '(..loading..)';
         this._PythonVersion             = v.pythonVersion       ?? '(..loading..)';
-        this._PythonWebServerVersion    = v.pythonWebServerVersion   ?? '(..loading..)';        
+        this._PythonWebServerVersion    = v.pythonWebServerVersion   ?? '(..loading..)';
         this._PythonVersionTF           = v.pythonVersionTF          ?? '(..loading..)';
-        this._PythonWebServerVersionTF  = v.pythonWebServerVersionTF ?? '(..loading..)';   
+        this._PythonWebServerVersionTF  = v.pythonWebServerVersionTF ?? '(..loading..)';
         this._JavaVersion               = v.javaVersion              ?? '(..loading..)';
         this._JavaWebServerVersion      = v.javaWebServerVersion   ?? '(..loading..)';
         this._NodeVersion               = v.nodeVersion            ?? '(..loading..)';
@@ -180,9 +180,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._GoLangVersion             = v.goLangVersion          ?? '(..loading..)';
         this._GoLangWebServerVersion    = v.goLangWebServerVersion ?? '(..loading..)';
         this._DartVersion               = v.dartVersion            ?? '(..loading..)';
-        this._DartWebServerVersion      = v.dartWebServerVersion   ?? '(..loading..)'; 
-        this._KotlinVersion             = v.kotlinVersion          ?? '(..loading..)'; 
-        this._KotlinWebServerVersion    = v.kotlinWebServerVersion ?? '(..loading..)'; 
+        this._DartWebServerVersion      = v.dartWebServerVersion   ?? '(..loading..)';
+        this._KotlinVersion             = v.kotlinVersion          ?? '(..loading..)';
+        this._KotlinWebServerVersion    = v.kotlinWebServerVersion ?? '(..loading..)';
     }
 
     private fromCache(key: keyof VersionBundle): string {
@@ -197,5 +197,5 @@ export class TechnicalSpecsComponent extends BaseComponent {
     }
 
     //////////////////////////////////////////////////////////////////////////////
-   
+
 }

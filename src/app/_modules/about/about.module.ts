@@ -17,6 +17,7 @@ import { SpeechPanelComponent                    } from 'src/app/_components/spe
 // THIRD PARTY
 import { NgbHighlight, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProgramDescriptionComponent                       } from './programDescription/program-description.component';
+import { CleanVersionPipe                                  } from '../../_pipes/CleanVersionPipe';
 
 @NgModule({
   declarations: [
@@ -34,23 +35,24 @@ import { ProgramDescriptionComponent                       } from './programDesc
     NgbPaginationModule,
     NgbAlertModule,
     BaseSortableHeader,
-    DecimalPipe, 
-    IndexSortableHeader, 
-    FormsModule, 
-    RouterLink
-  ],
+    DecimalPipe,
+    IndexSortableHeader,
+    FormsModule,
+    RouterLink,
+    CleanVersionPipe
+],
   exports : [
         IndexComponent,
         SCMComponent,
         TechnicalSpecsComponent,
         ContactformComponent,
-     
+
   ],
   providers : [
     // Referenciamos la clase que definimos arriba
     { provide: ErrorHandler, useClass: CustomErrorHandler },
   ]
 })
-export class AboutModule { 
+export class AboutModule {
 
 }

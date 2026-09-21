@@ -228,4 +228,11 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] DOCKER / PODMAN CI/CD (PYTHON/DJANGO CHANGES).
 
+npm install --save-dev @angular/language-service@latest          --legacy-peer-deps
+
+npm install -D @angular/language-server @angular/compiler-cli    --legacy-peer-deps
+
+npm install -g @angular/language-server typescript
+
+
 ////////////////////////////////////////////////////////////////////////////////
