@@ -45,11 +45,11 @@ r///////////////////////////////////////////////////////////////////////////////
  --[_] machine learning graph fix.
 
  --[_] version 4.0.0 : LANDING PAGE - DROP DOWN LIST MENU.
- 
- --[_] 1.fm landing page style.            
 
- --[_] RUST HTTP INTERCEPT.            
-  
+ --[_] 1.fm landing page style.
+
+ --[_] RUST HTTP INTERCEPT.
+
  --[_] webRTC demo.
 
  --[_] https://deepwiki.com/Exam70486/PWA_DEMO_ENV_PROD
@@ -58,7 +58,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] full stack demo languages.
 
-       --[_] DART 
+       --[_] DART
 
             --[x] console app.
 
@@ -84,7 +84,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
       --[_] https://www.liquid.ai/models
 
- --[_] socket.io - play audio/video online. 
+ --[_] socket.io - play audio/video online.
 
      --[_] short videos on forms/ social media.
 
@@ -126,16 +126,16 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] Dijkstra Demo.
 
-     --[_] language dropdown lists with icons.    
+     --[_] language dropdown lists with icons.
 
-          --[_] use shared const / enum values.  
+          --[_] use shared const / enum values.
 
-     --[_] Complete all languages.    
+     --[_] Complete all languages.
 
 --[==>] Devin doc   FROM CONFIG.
 
           --[==>] GRUPO-MATRIZ ACCOUNT.
- 
+
 --[_] Fractal Demo.
 
      --[_] Fix Benchmark Demo.
@@ -148,15 +148,15 @@ r///////////////////////////////////////////////////////////////////////////////
 
           --[_] Add .NET Language.
 
-          --[_] Add Python Language.          
+          --[_] Add Python Language.
 
-          --[_] Sort Bar Charts.          
+          --[_] Sort Bar Charts.
 
-          --[_] Add option "FRACTALS - grpc / fractals - webassembly". Split fom Rust and go.          
+          --[_] Add option "FRACTALS - grpc / fractals - webassembly". Split fom Rust and go.
 
-          --[_] gRPC improvement.          
+          --[_] gRPC improvement.
 
-          --[_] pdf print. 
+          --[_] pdf print.
 
      --[_] Update Language References.
 
@@ -175,14 +175,14 @@ r///////////////////////////////////////////////////////////////////////////////
             --[x] gitHub Repo FROM CONFIG.
 
             --[==>] LANGUAJE / SERVER VERSION ==>  Swift (?).
-            
-                      --[x] ZIG. 
-                      
+
+                      --[x] ZIG.
+
                       --[x] Rust.
 
                       --[x] Golang.
 
-                      --[x] Dart. 
+                      --[x] Dart.
 
                       --[X] Kotlin.
 
@@ -196,11 +196,11 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[==>] zig / c++ web server group
 
-                         --[==>] c++ web server 
+                         --[==>] c++ web server
 
                               |--[==>] lang version.
 
-                              |--[==>] server version. 
+                              |--[==>] server version.
 
                       --[==>] PYTHON
 
@@ -222,9 +222,10 @@ r///////////////////////////////////////////////////////////////////////////////
                               --[x] LINK TO REPO / PRIVATE.
 
                               --[x] SERVER VERSION.
-                                      {6.0.8}  
+                                      {6.0.8}
 
                               --[x] LANGUAGE VERSION.
 
-////////////////////////////////////////////////////////////////////////////////
+--[_] DOCKER / PODMAN CI/CD (PYTHON/DJANGO CHANGES).
 
+////////////////////////////////////////////////////////////////////////////////
