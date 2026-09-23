@@ -1,7 +1,7 @@
 *********************************************************************
 ** Software Configuration Management
 *********************************************************************
- 
+
 /////////////////////////////////////////////////////////////////
 // TECHNICAL DOCS
 /////////////////////////////////////////////////////////////////
@@ -37,11 +37,11 @@ Fill in:
 
 Note: codespaces-write
 Expiration: 90 days
-Scopes: 
+Scopes:
         ✅ repo (the top-level checkbox — this gives full repo access
         ✅ workflow
 
-git add * 
+git add *
 git commit -m"[ANGULAR DEMO] - [ENV_PROD] v[3.8.7]" -m"1) Dart - Dijkstra"
 git remote set-url origin https://aperezNWO:<YOUR_PAT_HERE>@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git
 git push --set-upstream origin main
@@ -51,7 +51,7 @@ git push --set-upstream origin main
 /////////////////////////////////////////////////////////////////
 
 (see grok folder)
-  
+
 /////////////////////////////////////////////////////////////////
 // NPM PACKAGES
 /////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@ git push --set-upstream origin main
 
 npm install --force
 
-npm list  --depth=0  
+npm list  --depth=0
 
 Remove-Item -Recurse -Force .angular/cache
 npm install -g @angular/cli --verbose --legacy-peer-deps
@@ -68,9 +68,9 @@ npm install @angular/cdk@^19.0.0 --save --legacy-peer-deps
 npx ng cache clean
 npx ng serve
 
-npm install grpc-web google-protobuf --force 
-npm install -D protoc-gen-grpc-web   --force 
-npm approve-scripts --allow-scripts-pending 
+npm install grpc-web google-protobuf --force
+npm install -D protoc-gen-grpc-web   --force
+npm approve-scripts --allow-scripts-pending
 npm approve-scripts protoc-gen-grpc-web
 
 # 1. Install ts-proto to generate clean Angular-compatible TS types
@@ -113,9 +113,9 @@ https://hub.docker.com/repositories/apereznwogmail
 
 -- [_] 2) publish docker images on render.
 
-        -- [_] accounts : 
-        
-                         gmail, 
+        -- [_] accounts :
+
+                         gmail,
                          hotmail (github). (limited time usage and inactivity sleep behaviour for free accounts).
                          protonmail,
 
@@ -167,7 +167,7 @@ docker push apereznwogmail/django_setup_linux:tagname
 
 docker.io/apereznwogmail/django_setup_linux:latest
 
-https://django-setup-linux-latest.onrender.com 
+https://django-setup-linux-latest.onrender.com
 
 ------------
 
@@ -186,16 +186,16 @@ docker.io/apereznwogmail/dart-zero-endpoint:latest
 /////////////////////////////////////////////////////////////////
 
 
--- [>] SOURCE CODE / GIT HUB :         
+-- [>] SOURCE CODE / GIT HUB :
 
-      -- [_] aperezNWO      -> PRIVATE.        
+      -- [_] aperezNWO      -> PRIVATE.
 
-      -- [_] aperezNWOGmail -> PUBLIC.        
+      -- [_] aperezNWOGmail -> PUBLIC.
 
-      -- [_] EXAM486        -> PUBLIC.       
-     
+      -- [_] EXAM486        -> PUBLIC.
 
--- [>] HOSTING  
+
+-- [>] HOSTING
 
         -- [_] BACKEND
 
@@ -206,7 +206,7 @@ docker.io/apereznwogmail/dart-zero-endpoint:latest
                         -- [_] https://xranks.com/es/somee.com
 
                 -- [_] [somee.com]
-                
+
                         -- [_] [HELP]
                                 https://somee.com/doka/Help/Article/106/How_to_deploy_Web_project_from_Visual_Studio
 
@@ -221,7 +221,7 @@ docker.io/apereznwogmail/dart-zero-endpoint:latest
         -- [_] FRONTEND
 
                 -- [_] GIT HUB PAGES.
-       
+
 /////////////////////////////////////////////////////////////////
 // hosting maintenance (ver scm).
 /////////////////////////////////////////////////////////////////
@@ -245,7 +245,7 @@ docker.io/apereznwogmail/dart-zero-endpoint:latest
 =====================================================================
 
 -- [_] check compiler warnings.
- 
+
 /////////////////////////////////////////////////////////////////
 // SCM STRATEGY
 /////////////////////////////////////////////////////////////////
@@ -257,11 +257,11 @@ docker.io/apereznwogmail/dart-zero-endpoint:latest
             -- [_] free docker hosting.
 
             -- [_] render, heroku, FLY.IO, OTHERS.
-        
-   --  [_]  FIREBASE STUDIO TEST 
+
+   --  [_]  FIREBASE STUDIO TEST
 
          --{_} I.A. Studio.
-        
+
          --{_} Google cloud dev.
 
         --[_]  google idx.
@@ -270,9 +270,9 @@ docker.io/apereznwogmail/dart-zero-endpoint:latest
 
                 --[_] https://pwa-demo-env-prod.web.app/
 
-        --  [_]  PWA_DEMO_ENV_DEV      -> TENSORFLOW / DATA SCIENCE 
+        --  [_]  PWA_DEMO_ENV_DEV      -> TENSORFLOW / DATA SCIENCE
 
-        
+
 -- [_] sites destination.
 
         -- [_] env_admin    -> marketing.
@@ -285,7 +285,7 @@ docker.io/apereznwogmail/dart-zero-endpoint:latest
 
                 -- [_]  https://developers.facebook.com/apps
 
-        -- [_] fb account "adam heispaupt" -> Dev / OAutn Accont.        
+        -- [_] fb account "adam heispaupt" -> Dev / OAutn Accont.
 
 -- [_] hosting files cleanup service.
 
@@ -327,7 +327,15 @@ PWA_DEMO_ENV_PROD/
 │                        └── rust_demo_wasm_bg.wasm
 │                        └── rust_demo_wasm.js
 
+
+/////////////////////////////////////////////////////////////////
+// ZED IDE SETUP
 /////////////////////////////////////////////////////////////////
 
+npm install --save-dev @angular/language-service@latest          --legacy-peer-deps
 
- 
+npm install -D @angular/language-server @angular/compiler-cli    --legacy-peer-deps
+
+npm install -g @angular/language-server typescript
+
+/////////////////////////////////////////////////////////////////
