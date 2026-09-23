@@ -172,7 +172,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] ABOUT.
 
-            --[x] gitHub Repo FROM CONFIG.
+            --[==>] gitHub Repo FROM CONFIG.
 
             --[==>] LANGUAJE / SERVER VERSION ==>  Swift (?).
 
@@ -227,5 +227,9 @@ r///////////////////////////////////////////////////////////////////////////////
                               --[x] LANGUAGE VERSION.
 
 --[_] DOCKER / PODMAN CI/CD (PYTHON/DJANGO CHANGES).
+
+--[_] LINUX UBUNTU / KDE TEST.
+
+--[_] TECHNICAL SPECS LOOK UP TABLE
 
 ////////////////////////////////////////////////////////////////////////////////
