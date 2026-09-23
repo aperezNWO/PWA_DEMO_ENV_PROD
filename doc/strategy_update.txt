@@ -170,7 +170,12 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[==>] make repo private.
 
+--[_] DOCKER / PODMAN CI/CD (PYTHON/DJANGO CHANGES).
+
+--[_] LINUX UBUNTU / KDE TEST.
+
 --[_] ABOUT.
+
 
             --[==>] gitHub Repo FROM CONFIG.
 
@@ -226,10 +231,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
                               --[x] LANGUAGE VERSION.
 
---[_] DOCKER / PODMAN CI/CD (PYTHON/DJANGO CHANGES).
+            --[_] TECHNICAL SPECS LOOK UP TABLE
 
---[_] LINUX UBUNTU / KDE TEST.
 
---[_] TECHNICAL SPECS LOOK UP TABLE
+
 
 ////////////////////////////////////////////////////////////////////////////////
