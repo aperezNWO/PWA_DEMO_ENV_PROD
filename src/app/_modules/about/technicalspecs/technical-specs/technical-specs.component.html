@@ -2,55 +2,46 @@
     <H4>{{pageTitle}}</H4>
 </div>
 <hr/>
-<table>
+<table class="specs-table">
+  <tbody>
     <!-- ANGULAR / TYPESCRIPT  -->
     <tr><td>Application Name                            </td><td align="left"><b>{{this._appBrand}}</b></td></tr>
     <tr><td>Aplication Version / Angular Runtime        </td><td align="left"><b>v[{{this._appVersion}}] / v[{{this._runtimeVersion}}] </b></td></tr>
     <tr><td>Source Code                                 </td><td align="left"><b><a [href]="[this._githubRepo]"    target="_blank">[GIT HUB]</a></b></td></tr>
     <tr><td>Technical Documenation                      </td><td align="left"><b><a [href]="[this._techDoc]" target="_blank">[DEEP WIKI]</a></b></td></tr>
-    <!-- .NET CORE / c#        -->
-    <tr><td><a [href]="[this._baseUrlNetCoreSwagger]"     target="_blank">(Backend | App Version |.NET Core Version | [ASP.NET Core x32 / C#])</a></td><td><b> v[{{this._webApiAppVersion    }}]/ v[5.0] </b></td></tr>
-    <!-- SPRINGBOOT / JAVA       -->
-    <tr><td>(Backend | [Java   / SpringBoot)]                  </td><td><b>v[{{this._JavaVersion}}]       / v[{{this._JavaWebServerVersion}}]   </b></td></tr>
-    <!-- Kotlin     / web server -->
-    <tr><td>(Backend | [Kotlin / SpringBoot)]                  </td><td><b>v[{{this._KotlinVersion}}]     / v[{{this._KotlinWebServerVersion}}] </b></td></tr>
-     <!-- NODE.JS    / JAVASCRIPT -->
-    <tr><td>(Backend | [Node.js    / Javascript)(db/smtp/chat)]</td><td><b>v[{{this._NodeVersion      | cleanVersion }}]     / v[{{this._NodeWebServerVersion}}]       </b></td></tr>
-    <tr><td>(Backend | [Node.js    / Javascript)(Ocr/Opencv)  ]</td><td><b>v[{{this._NodeVersionOcr   | cleanVersion }}]    / v[{{this._NodeWebServerVersionOcr}}]    </b></td></tr>
-    <!-- DJANGO     / PYTHON-        -->
-    <tr><td>(Backend | [Python    / Django)(db)               </td><td><b><a [href]="[this._PythonDjangoRepo]" target="_blank">
-                                                                        v[{{this.cleanPythonVersion}}]
-                                                                       </a>
-                                                                        /
-                                                                       <a [href]="[`${this._baseUrlPythonDjango}health/?format=json` ]" target="_blank">
-                                                                        v[{{ this._PythonWebServerVersion}}]
-                                                                       </a>
-                                                           </b></td></tr>
-    <!-- DJANGO     / PYTHON-/ TF    -->
-    <tr><td>(Backend | [Python    / Django)(Tensorflow)]       </td><td><b><a [href]="[this._PythonDjangoRepoTF]" target="_blank">
-                                                                       v[{{this.cleanPythonVersionTF}}]
-                                                                       </a>
-                                                                       /
-                                                                       <a [href]="[`${this._baseUrlPythonDjangoTF}health/?format=json` ]" target="_blank">
-                                                                        v[{{ this._PythonWebServerVersionTF}}]
-                                                                       </a>
-                                                           </b></td></tr>
-      <!-- ZIG        / web server -->
-    <tr><td>(Backend | [Zig    / std.http.Server])             </td><td><b>v[{{this._ZigVersion}}]                           / v[{{this._ZigWebServerVersion       | cleanVersion }}]           </b></td></tr>
-    <!-- RUST       / web server -->
-    <tr><td>(Backend | [Rust   / Actix-web])                   </td><td><b>v[{{this._RustVersion.trim() | cleanVersion  }}]  / v[{{this._RustWebServerVersion                     }}]           </b></td></tr>
-    <!-- GoLang     / web server -->
-    <tr><td>(Backend | [GoLang / net-http])                    </td><td><b>v[{{this._GoLangVersion      | cleanVersion  }}]  / v[{{this._GoLangWebServerVersion    | cleanVersion }}]           </b></td></tr>
-    <!-- Dart       / web server -->
-    <tr><td>(Backend | [Dart   / Shelf])                       </td><td><b>v[{{this.cleanDartVersion}}]                      / v[{{this._DartWebServerVersion                     }}]           </b></td></tr>
-    <!-- .NET CORE / C++         -->
-    <tr><td><a [href]="[this._baseUrlNetCoreCPPSwagger]"  target="_blank">(Backend | App Version | .NET Core Version | [ASP.NET Core x64 / C++])</a></td><td><b>v[{{this._ASPNETCoreCppVersion}}] / v[8.0]  </b></td></tr>
-    <!-- C++ -->
-    <tr><td>(DLL C++ | App Version  | Std Version | API Version | [Algorithm]  )</td><td><b>v[{{this._AlgorithmAppVersion}}]        / v[{{this._Algorithm_CPPSTDVersion}}]                                       </b></td></tr>
-    <tr><td>(DLL C++ | App Version  | Std Version | API Version | [OpenCv]     )</td><td><b>v[{{this._OpenCvAppVersion}}]           / v[{{this._OpenCvCPPSTDVersion}}]      / v[{{this._OpenCvAPIVersion}}]      </b></td></tr>
-    <tr><td>(DLL C++ | App Version  | Std Version | API Version | [Tesseract]  )</td><td><b>v[{{this._tesseractAppVersion}}]        / v[{{this._tesseractCPPSTDVersion}}]   / v[{{this._tesseractAPIVersion}}]   </b></td></tr>
-    <tr><td>(DLL C++ | App Version  | Std Version | API Version | [Tensorflow] )</td><td><b>v[{{this._TensorFlowAPPVersion}}]       / v[{{this._TensorFlowCPPSTDVersion}}]  / v[{{this._TensorFlowAPIVersion}}]  </b></td></tr>
+    @for (item of services; track item.name) {
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>
+          <b>
+            <!-- 1. App Version -->
+            @if (item.appVersion) {
+              <span>v[{{ item.appVersion | cleanVersion }}]</span>
+            }
+
+            <!-- 2. Language / Runtime Version -->
+            @if (item.runtimeOrLangVersion) {
+              @if (item.appVersion) { <span> / </span> }
+              <span>v[{{ item.runtimeOrLangVersion | cleanVersion }}]</span>
+            }
+
+            <!-- 3. C++ Standard Version -->
+            @if (item.stdVersion) {
+              @if (item.appVersion || item.runtimeOrLangVersion) { <span> / </span> }
+              <span>v[{{ item.stdVersion | cleanVersion }}]</span>
+            }
+
+            <!-- 4. API / Server Version -->
+            @if (item.apiOrServerVersion) {
+              @if (item.appVersion || item.runtimeOrLangVersion || item.stdVersion) { <span> / </span> }
+              <span>v[{{ item.apiOrServerVersion | cleanVersion }}]</span>
+            }
+          </b>
+        </td>
+      </tr>
+    }
     <tr><td>Random GUID <b><button (click)="this.generateNewGuid()">[GENERATE & COPY]</button></b></td><td><b>{{guid()}}    </b></td></tr>
+  </tbody>
 </table>
 <hr>
 <div align="right">

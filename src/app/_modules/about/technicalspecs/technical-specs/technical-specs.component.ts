@@ -7,6 +7,16 @@ import { ConfigService                      } from 'src/app/_services/__Utils/Co
 import { VersionBundle, VersionCacheService } from 'src/app/_services/__Utils/VersionCacheService/version-cache.service';
 import { BackendService                     } from '../../../../_services/BackendService/backend.service';
 
+export interface ServiceVersionMeta {
+  name: string;                         // e.g., "(Backend | [Java / SpringBoot])" or "(DLL C++ | [OpenCv])"
+  appVersion?: string | null;           // e.g., "1.0.33.0" or "1.0.4"
+  runtimeOrLangVersion?: string | null; // e.g., "21.0.12" or "2021"
+  apiOrServerVersion?: string | null;   // e.g., "3.3.5", "6.0.8", or "4.13.0"
+  stdVersion?: string | null;           // e.g., "C++20" or "C++17"
+  repoLink?: string | null;             //
+  healthLink?: string | null;           //
+}
+
 @Component({
     selector: 'app-technical-specs',
     templateUrl: './technical-specs.component.html',
@@ -78,6 +88,111 @@ export class TechnicalSpecsComponent extends BaseComponent {
     protected _baseUrlPythonDjangoTF     : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonTF')}`;
     protected _PythonDjangoRepoTF        : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonTFRepo')}`;
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // VERSIONS LOOKUP TABLE
+    //////////////////////////////////////////////////////////////////////////////
+
+  services: ServiceVersionMeta[] = [
+        // <!-- .NET CORE / c#        -->
+        // <tr><td><a [href]="[this._baseUrlNetCoreSwagger]"     target="_blank">(Backend | App Version |.NET Core Version | [ASP.NET Core x32 / C#])</a></td><td><b> v[{{this._webApiAppVersion    }}]/ v[5.0] </b></td></tr>
+        {
+          name                : '(Backend | App Version | .NET Core Version | [ASP.NET Core x32 / C#])',
+          appVersion          : this._webApiAppVersion,
+          runtimeOrLangVersion: 'v[5.0]', // PENDING FROM SERVER
+          //repoLink          : PENDING,
+          healthLink          : this._baseUrlNetCoreSwagger,
+        },
+        //<!-- SPRINGBOOT / JAVA       -->
+        // <tr><td>(Backend | [Java   / SpringBoot)]                  </td><td><b>v[{{this._JavaVersion}}]       / v[{{this._JavaWebServerVersion}}]   </b></td></tr>
+        {
+          name: '(Backend | [Java / SpringBoot])',
+          runtimeOrLangVersion: this._JavaVersion,
+          apiOrServerVersion  : this._JavaWebServerVersion,
+        },
+        // <!-- Kotlin     / web server -->
+        // <tr><td>(Backend | [Kotlin / SpringBoot)]                  </td><td><b>v[{{this._KotlinVersion}}]     / v[{{this._KotlinWebServerVersion}}] </b></td></tr>
+        {
+          name : '(Backend | [Kotlin / SpringBoot])',
+          runtimeOrLangVersion: this._KotlinVersion,
+          apiOrServerVersion  : this._KotlinWebServerVersion,
+        },
+/*
+<!-- NODE.JS    / JAVASCRIPT -->
+<tr><td>(Backend | [Node.js    / Javascript)(db/smtp/chat)]</td><td><b>v[{{this._NodeVersion      | cleanVersion }}]     / v[{{this._NodeWebServerVersion}}]       </b></td></tr>
+<tr><td>(Backend | [Node.js    / Javascript)(Ocr/Opencv)  ]</td><td><b>v[{{this._NodeVersionOcr   | cleanVersion }}]    / v[{{this._NodeWebServerVersionOcr}}]    </b></td></tr>
+<!-- DJANGO     / PYTHON-        -->
+<tr><td>(Backend | [Python    / Django)(db)               </td><td><b><a [href]="[this._PythonDjangoRepo]" target="_blank">
+                                                                    v[{{this.cleanPythonVersion}}]
+                                                                   </a>
+                                                                    /
+                                                                   <a [href]="[`${this._baseUrlPythonDjango}health/?format=json` ]" target="_blank">
+                                                                    v[{{ this._PythonWebServerVersion}}]
+                                                                   </a>
+                                                       </b></td></tr>
+<!-- DJANGO     / PYTHON-/ TF    -->
+<tr><td>(Backend | [Python    / Django)(Tensorflow)]       </td><td><b><a [href]="[this._PythonDjangoRepoTF]" target="_blank">
+                                                                   v[{{this.cleanPythonVersionTF}}]
+                                                                   </a>
+                                                                   /
+                                                                   <a [href]="[`${this._baseUrlPythonDjangoTF}health/?format=json` ]" target="_blank">
+                                                                    v[{{ this._PythonWebServerVersionTF}}]
+                                                                   </a>
+                                                       </b></td></tr>
+<!-- ZIG        / web server -->
+<tr><td>(Backend | [Zig    / std.http.Server])             </td><td><b>v[{{this._ZigVersion}}]                           / v[{{this._ZigWebServerVersion       | cleanVersion }}]           </b></td></tr>
+<!-- GoLang     / web server -->
+<tr><td>(Backend | [GoLang / net-http])                    </td><td><b>v[{{this._GoLangVersion      | cleanVersion  }}]  / v[{{this._GoLangWebServerVersion    | cleanVersion }}]           </b></td></tr>
+<!-- Dart       / web server -->
+<tr><td>(Backend | [Dart   / Shelf])                       </td><td><b>v[{{this.cleanDartVersion}}]                      / v[{{this._DartWebServerVersion                     }}]           </b></td></tr>
+
+*/
+        // <!-- RUST / ACTIX-WEB       -->
+        // <tr><td>(Backend | [Rust / Actix-web])                  </td><td><b>v[{{this._RustVersion}}]       / v[{{this._RustWebServerVersion}}]   </b></td></tr>
+        {
+          name: '(Backend | [Rust / Actix-web])',
+          runtimeOrLangVersion: this._RustVersion,
+          apiOrServerVersion  : this._RustWebServerVersion,
+        },
+        //<!-- .NET CORE / C++         -->
+        //<tr><td><a [href]="[this._baseUrlNetCoreCPPSwagger]"  target="_blank">(Backend | App Version | .NET Core Version | [ASP.NET Core x64 / C++])</a></td><td><b>v[{{this._ASPNETCoreCppVersion}}] / v[8.0]  </b></td></tr>
+        {
+          name                : '(Backend | App Version | .NET Core Version | [ASP.NET Core x64 / C++])',
+          appVersion          : this._ASPNETCoreCppVersion,
+          runtimeOrLangVersion: 'v[8.0]', // PENDING FROM SERVER
+          //repoLink          : PENDING,
+          healthLink          : this._baseUrlNetCoreCPPSwagger,
+        },
+        /*
+        <!-- C++ -->
+        */
+        //<tr><td>(DLL C++ | App Version  | Std Version | API Version | [Algorithm]  )</td><td><b>v[{{this._AlgorithmAppVersion}}]        / v[{{this._Algorithm_CPPSTDVersion}}]                                       </b></td></tr>
+        {
+            name      : '(DLL C++ | App Version | Std Version | API Version | [Algorithm])',
+            appVersion: this._AlgorithmAppVersion,
+            stdVersion: this._Algorithm_CPPSTDVersion,
+        },
+        // <tr><td>(DLL C++ | App Version  | Std Version | API Version | [OpenCv]     )</td><td><b>v[{{this._OpenCvAppVersion}}]           / v[{{this._OpenCvCPPSTDVersion}}]      / v[{{this._OpenCvAPIVersion}}]      </b></td></tr>
+        {
+            name               : '(DLL C++ | App Version | Std Version | API Version | [OpenCv])',
+            appVersion         : this._OpenCvAppVersion,
+            stdVersion         : this._OpenCvCPPSTDVersion,
+            apiOrServerVersion : this._OpenCvAPIVersion,
+        },
+        //<tr><td>(DLL C++ | App Version  | Std Version | API Version | [Tesseract]  )</td><td><b>v[{{this._tesseractAppVersion}}]        / v[{{this._tesseractCPPSTDVersion}}]   / v[{{this._tesseractAPIVersion}}]   </b></td></tr>
+        {
+            name: '(DLL C++ | App Version | Std Version | API Version | [Tesseract])',
+            appVersion        : this._tesseractAppVersion,
+            stdVersion        : this._tesseractCPPSTDVersion,
+            apiOrServerVersion: this._tesseractAPIVersion,
+        },
+        //  <tr><td>(DLL C++ | App Version  | Std Version | API Version | [Tensorflow] )</td><td><b>v[{{this._TensorFlowAPPVersion}}]       / v[{{this._TensorFlowCPPSTDVersion}}]  / v[{{this._TensorFlowAPIVersion}}]  </b></td></tr>
+        {
+            name: '(DLL C++ | App Version | Std Version | API Version | [Tensorflow])',
+            appVersion        : this._TensorFlowAPPVersion,
+            stdVersion        : this._TensorFlowCPPSTDVersion,
+            apiOrServerVersion: this._TensorFlowAPIVersion,
+        },
+      ];
 
     ////////////////////////////////////////////////////////////////
     // [EVENT HANDLERS]
