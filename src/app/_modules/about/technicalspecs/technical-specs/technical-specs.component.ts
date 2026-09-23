@@ -156,12 +156,12 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion: this._KotlinWebServerVersion,
                 },
                 {
-                    name: '(Backend | [Node.js / Javascript)(db/smtp/chat)])',
+                    name: '(Backend | [Node.js / Express)(db/smtp/chat)])',
                     runtimeOrLangVersion: this._NodeVersion,
                     apiOrServerVersion: this._NodeWebServerVersion,
                 },
                 {
-                    name: '(Backend | [Node.js / Javascript)(Ocr/Opencv)])',
+                    name: '(Backend | [Node.js / Express)(Ocr/Opencv)])',
                     runtimeOrLangVersion: this._NodeVersionOcr,
                     apiOrServerVersion: this._NodeWebServerVersionOcr,
                 },
