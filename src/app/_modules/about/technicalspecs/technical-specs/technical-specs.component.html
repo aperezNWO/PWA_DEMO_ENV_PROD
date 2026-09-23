@@ -1,28 +1,50 @@
 <div align="center">
-    <H4>{{pageTitle}}</H4>
+    <h4>{{pageTitle}}</h4>
 </div>
 <hr/>
 <table class="specs-table">
   <tbody>
-    <!-- ANGULAR / TYPESCRIPT  -->
-    <tr><td>Application Name                            </td><td align="left"><b>{{this._appBrand}}</b></td></tr>
-    <tr><td>Aplication Version / Angular Runtime        </td><td align="left"><b>v[{{this._appVersion}}] / v[{{this._runtimeVersion}}] </b></td></tr>
-    <tr><td>Source Code                                 </td><td align="left"><b><a [href]="[this._githubRepo]"    target="_blank">[GIT HUB]</a></b></td></tr>
-    <tr><td>Technical Documenation                      </td><td align="left"><b><a [href]="[this._techDoc]" target="_blank">[DEEP WIKI]</a></b></td></tr>
+    <!-- ANGULAR / TYPESCRIPT -->
+    <tr>
+      <td>Application Name</td>
+      <td align="left"><b>{{this._appBrand}}</b></td>
+    </tr>
+    <tr>
+      <td>Aplication Version / Angular Runtime</td>
+      <td align="left"><b>v[{{this._appVersion}}] / v[{{this._runtimeVersion}}]</b></td>
+    </tr>
+    <tr>
+      <td>Source Code</td>
+      <td align="left"><b><a [href]="_githubRepo" target="_blank">[GIT HUB]</a></b></td>
+    </tr>
+    <tr>
+      <td>Technical Documenation</td>
+      <td align="left"><b><a [href]="_techDoc" target="_blank">[DEEP WIKI]</a></b></td>
+    </tr>
+
+    <!-- DYNAMIC SERVICES LOOKUP TABLE -->
     @for (item of services; track item.name) {
       <tr>
         <td>{{ item.name }}</td>
         <td>
           <b>
-            <!-- 1. App Version -->
+            <!-- 1. App Version (Paired with repoLink) -->
             @if (item.appVersion) {
-              <span>v[{{ item.appVersion | cleanVersion }}]</span>
+              @if (item.repoLink) {
+                <a [href]="item.repoLink" target="_blank">v[{{ item.appVersion | cleanVersion }}]</a>
+              } @else {
+                <span>v[{{ item.appVersion | cleanVersion }}]</span>
+              }
             }
 
             <!-- 2. Language / Runtime Version -->
             @if (item.runtimeOrLangVersion) {
-              @if (item.appVersion) { <span> / </span> }
-              <span>v[{{ item.runtimeOrLangVersion | cleanVersion }}]</span>
+              <!-- MOST BACKEND DOES NOT HAVE APP VERSION YET -->
+              @if (item.appVersion || item.runtimeOrLangVersion ) {
+               <a [href]="item.repoLink" target="_blank">v[{{ item.runtimeOrLangVersion | cleanVersion }}]</a>
+              } @else {
+                <span>v[{{ item.runtimeOrLangVersion | cleanVersion }}]</span>
+              }
             }
 
             <!-- 3. C++ Standard Version -->
@@ -31,19 +53,27 @@
               <span>v[{{ item.stdVersion | cleanVersion }}]</span>
             }
 
-            <!-- 4. API / Server Version -->
+            <!-- 4. API / Server Version (Paired with healthLink) -->
             @if (item.apiOrServerVersion) {
               @if (item.appVersion || item.runtimeOrLangVersion || item.stdVersion) { <span> / </span> }
-              <span>v[{{ item.apiOrServerVersion | cleanVersion }}]</span>
+              @if (item.healthLink) {
+                <a [href]="item.healthLink" target="_blank">v[{{ item.apiOrServerVersion | cleanVersion }}]</a>
+              } @else {
+                <span>v[{{ item.apiOrServerVersion | cleanVersion }}]</span>
+              }
             }
           </b>
         </td>
       </tr>
     }
-    <tr><td>Random GUID <b><button (click)="this.generateNewGuid()">[GENERATE & COPY]</button></b></td><td><b>{{guid()}}    </b></td></tr>
+
+    <tr>
+      <td>Random GUID <b><button (click)="generateNewGuid()">[GENERATE & COPY]</button></b></td>
+      <td><b>{{guid()}}</b></td>
+    </tr>
   </tbody>
 </table>
 <hr>
 <div align="right">
-    <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_ABOUT_INDEX'}" >[Back to Menu]</a>
+    <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_ABOUT_INDEX'}">[Back to Menu]</a>
 </div>
