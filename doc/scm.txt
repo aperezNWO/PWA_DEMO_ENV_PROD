@@ -20,7 +20,7 @@
 
 ## GIT ACCOUNTS
 
-      -- alejandro.perez.acosta@hotmail.com         - aperezNWO       - main account
+      --  alejandro.perez.acosta@hotmail.com        - aperezNWO       - main account
       --  alejandro.perez.acosta@gmail.com (oauth)  - aperezNWOGmial  - secound account (empty)
       --  df149032@outlook.com                      - Exam70486       - AUX - EMPTY
 
