@@ -18,33 +18,41 @@
 // git
 /////////////////////////////////////////
 
-echo "# pwa_demo_env_prod" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
+## GIT ACCOUNTS
 
-## PATH 1 - NO EXTERNAL AUTH REQUIRED
-git remote add origin https://github.com/aperezNWO/PWA_DEMO_ENV_PROD
-git add *
-git push -u origin main
+      -- alejandro.perez.acosta@hotmail.com         - aperezNWO       - main account
+      --  alejandro.perez.acosta@gmail.com (oauth)  - aperezNWOGmial  - secound account (empty)
+      --  df149032@outlook.com                      - Exam70486       - AUX - EMPTY
 
-## PATH 2 - EXTERNAL AUTH REQUIRED
-##  Create a new PAT with correct scope
+## LOCAL SETUP
+    echo "# pwa_demo_env_prod" >> README.md
+    git init
+    git add README.md
+    git commit -m "first commit"
+    git branch -M main
 
-Go to https://github.com/settings/tokens/new (make sure you're logged in as aperezNWO)
-Fill in:
+## REMOTE UPDATE
+    ## PATH 1 - NO EXTERNAL AUTH REQUIRED
+    git remote add origin https://github.com/aperezNWO/PWA_DEMO_ENV_PROD
+    git add *
+    git push -u origin main
 
-Note: codespaces-write
-Expiration: 90 days
-Scopes:
-        ✅ repo (the top-level checkbox — this gives full repo access
-        ✅ workflow
+    ## PATH 2 - EXTERNAL AUTH REQUIRED
+    ##  Create a new PAT with correct scope
 
-git add *
-git commit -m"[ANGULAR DEMO] - [ENV_PROD] v[3.8.7]" -m"1) Dart - Dijkstra"
-git remote set-url origin https://aperezNWO:<YOUR_PAT_HERE>@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git
-git push --set-upstream origin main
+    Go to https://github.com/settings/tokens/new (make sure you're logged in as aperezNWO)
+    Fill in:
+
+    Note: codespaces-write
+    Expiration: 90 days
+    Scopes:
+            ✅ repo (the top-level checkbox — this gives full repo access
+            ✅ workflow
+
+    git add *
+    git commit -m"[ANGULAR DEMO] - [ENV_PROD] v[3.8.7]" -m"1) Dart - Dijkstra"
+    git remote set-url origin https://aperezNWO:<YOUR_PAT_HERE>@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git
+    git push --set-upstream origin main
 
 /////////////////////////////////////////////////////////////////
 // LLM TESTING
