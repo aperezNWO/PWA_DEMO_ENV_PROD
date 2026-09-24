@@ -56,48 +56,54 @@ git push --set-upstream origin main
 // NPM PACKAGES
 /////////////////////////////////////////////////////////////////
 
--- [_] npm packages
 
-npm install --force
+## BASIC PACKAGES
+   Remove-Item -Recurse -Force .angular/cache
+   npm install --legacy-peer-deps
+   npm install -g @angular/cli --verbose --legacy-peer-deps
+   npm install @angular/cdk@^19.0.0 --save --legacy-peer-deps
+  npx ng cache clean
 
-npm list  --depth=0
-
-Remove-Item -Recurse -Force .angular/cache
-npm install -g @angular/cli --verbose --legacy-peer-deps
-npm install @angular/cdk@^19.0.0 --save --legacy-peer-deps
-npx ng cache clean
-npx ng serve
 
 npm install grpc-web google-protobuf --force
 npm install -D protoc-gen-grpc-web   --force
 npm approve-scripts --allow-scripts-pending
 npm approve-scripts protoc-gen-grpc-web
 
-# 1. Install ts-proto to generate clean Angular-compatible TS types
-npm install -D ts-proto --force
+## WEB ASSEMBLY COMPATIBILITY PACKAGES
+  # 1. Install ts-proto to generate clean Angular-compatible TS types
+  npm install -D ts-proto --force
 
-# 2. Run protoc compilation using npx
-New-Item -ItemType Directory -Force -Path .\src\app\grpc
-npx protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto.cmd --ts_proto_out=./src/app/grpc ./fractal.proto
+  # 2. Run protoc compilation using npx
+  New-Item -ItemType Directory -Force -Path .\src\app\grpc
+  npx protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto.cmd --ts_proto_out=./src/app/grpc ./fractal.proto
 
-http://localhost:4200/
-https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/
+## URL OUTPUT
+    npx ng serve
+    http://localhost:4200/
+
 
 /////////////////////////////////////////////////////////////////
 // PUBLISH PAGE
 /////////////////////////////////////////////////////////////////
 
-https://github.com/settings/tokens
 
-git config --global core.longpaths true
+## NO SINGNUP REQUIRED
+   npm run package-and-publish_
 
-(powershell)
-Remove-Item -Recurse -Force "node_modules\.cache\gh-pages"
+## SIGN UP REQUIRED
 
-$env:GH_TOKEN = "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"
+   ## GET GITHUB TOKEN
+   https://github.com/settings/tokens
 
-#npx angular-cli-ghpages --dir=dist\PWA_DEMO_ENV_PROD\browser --name="aperezNWO" --email="alejandro.perez.acosta@hotmail.com"
-npx angular-cli-ghpages --dir=dist\PWA_DEMO_ENV_PROD\browser --name="aperezNWO" --email="alejandro.perez.acosta@hotmail.com" --repo="https://aperezNWO:$($env:GH_TOKEN)@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git"
+   ## (powershell)
+   git config --global core.longpaths true
+   Remove-Item -Recurse -Force "node_modules\.cache\gh-pages"
+   $env:GH_TOKEN = "YOUR_TOKEN_HERE"
+   npx angular-cli-ghpages --dir=dist\PWA_DEMO_ENV_PROD\browser --name="aperezNWO" --email="alejandro.perez.acosta@hotmail.com" --repo="https://aperezNWO:$($env:GH_TOKEN)@github.com/aperezNWO/PWA_DEMO_ENV_PROD.git"
+
+## PUBLIC URL PAGE
+   https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/
 
 *****************************************************************
 *********** HOSTING *********************************************
@@ -107,28 +113,51 @@ npx angular-cli-ghpages --dir=dist\PWA_DEMO_ENV_PROD\browser --name="aperezNWO" 
 // DOCKER - RENDER - CRONJOBS
 /////////////////////////////////////////////////////////////////
 
--- [_] 1) publish from github codespaces to the url below - each repo has "scm.txt" instructions for docker deploy
+-- [_] 1) publish from github codespaces to the url below - each repo has "scm.txt" instructions for
+
+docker deploy
 https://hub.docker.com/repositories/apereznwogmail
 
 
 -- [_] 2) publish docker images on render.
 
-        -- [_] accounts :
+        -- [_] https://dashboard.render.com/login
 
-                         gmail,
-                         hotmail (github). (limited time usage and inactivity sleep behaviour for free accounts).
-                         protonmail,
+        -- [_] config.json render accounts and PROJECT suffixes :
 
-        -- [_] CHECK WORKSPACES PER ACCOUNT
+               -- [_] (OAUTH gmail) signed as alejandro.perez.acosta@gmail.com :
+                    render_gmail_WS00 (DISABLED - 24/09/2026)
+                    render_gmail_WS01 (DISABLED - 24/09/2026)
+                    render_gmail_WS02 (DISABLED - 24/09/2026)
+                    render_gmail_WS06 (DISABLED - 24/09/2026)
 
-        -- [_] https://dashboard.render.com/
+               -- [_] (direct account) df149032@outlook.com              :
+                    render_df149032_ws03 (DISABLED - 24/09/2026)
+                    TRY_MORE
+
+               -- [_] (OAUTH github- MAIN GITHUB ACCOUNT) signed as
+                                                        alejandro.perez.acosta@hotmail.com
+                    render_github_ws04 (RUNNING - 24/09/2026)
+                    TRY_MORE
+
+               -- [_] (OAUTH github - SECONDARY GITHUB ACCOUNT) signed as
+                                                        alejandro.perez.acosta@gmail.com :
+                    render_github_ws05 (RUNNING - 24/09/2026)
+                    TRY_MORE
+
+                -- [_] PENDING SIGN IN ACCOUNTS:
+
+                    -- [_] OAUTH GITHUB - df149032@outlook.com
+
+                    -- [_] direct account - alejandro.perez.acosta@hotmail.com
+                    -- [_] direct account - alejandro.perez.acosta@gmail.com
 
 -- [_] 3) publish job on cronjobs to override render sleep / inactivity behaviour for free accounts.
 
         -- [_] https://console.cron-job.org/jobs
 
 ------------
--- REPOS
+-- IMAGES
 ------------
 
 docker.io/apereznwogmail/cs_nodejs:latest
