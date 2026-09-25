@@ -206,7 +206,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     healthLink: this.__baseUrlNetCoreCPPSwagger,
                 },
                 {
-                    name: '(DLL C++) | [App Version | Std Version | API Version]|<Algorithm>',
+                    name: '(DLL C++) | [App Version | Std Version ]|<Algorithm>',
                     appVersion: this._AlgorithmAppVersion,
                     stdVersion: this._Algorithm_CPPSTDVersion,
                 },
