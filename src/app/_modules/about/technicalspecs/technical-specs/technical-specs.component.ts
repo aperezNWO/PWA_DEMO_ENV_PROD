@@ -140,7 +140,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     private rebuildServicesTable(): void {
             this.services = [
                 {
-                    name: '(Backend | App Version | .NET Core Version | [ASP.NET Core x32 / C#])',
+                    name: '(Backend | App Version | .NET Core Version | [x32 / C#])',
                     appVersion: this._webApiAppVersion,
                     apiOrServerVersion: '5.0',
                     healthLink: this.__baseUrlNetCoreSwagger,
@@ -200,7 +200,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion: this._RustWebServerVersion,
                 },
                 {
-                    name: '(Backend | App Version | .NET Core Version | [ASP.NET Core x64 / C++])',
+                    name: '(Backend | App Version | .NET Core Version | [x64 / C++])',
                     appVersion: this._ASPNETCoreCppVersion,
                     apiOrServerVersion: '8.0',
                     healthLink: this.__baseUrlNetCoreCPPSwagger,
