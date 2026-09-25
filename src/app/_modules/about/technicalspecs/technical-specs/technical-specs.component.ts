@@ -8,7 +8,9 @@ import { VersionBundle, VersionCacheService } from 'src/app/_services/__Utils/Ve
 import { BackendService } from '../../../../_services/BackendService/backend.service';
 
 export interface ServiceVersionMeta {
+  type?: string  | null;
   name: string;
+  features?: string  | null;
   appVersion?: string | null;
   runtimeOrLangVersion?: string | null;
   apiOrServerVersion?: string | null;
@@ -65,11 +67,13 @@ export class TechnicalSpecsComponent extends BaseComponent {
 
     guid = signal<string>('');
 
-    protected __baseUrlNetCoreSwagger: string | undefined = `${this.configService.getConfigValue('baseUrlNetCore')}swagger`;
-    protected __baseUrlNetCoreCPPSwagger: string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}swagger`;
-    protected _githubRepo: string | undefined = `${this.configService.getConfigValue('gitHubRepo')}`;
-    protected _techDocRoot: string | undefined = `${this.configService.getConfigValue('techDocRoot')}`;
-    protected _techDoc: string | undefined = `${this.configService.getConfigValue('techDocRegex').replace('{techDocRoot}', this._techDocRoot ?? '')}`;
+    protected __baseUrlNetCoreSwagger    : string | undefined = `${this.configService.getConfigValue('baseUrlNetCore')}swagger`;
+    protected __baseUrlNetCoreRepo       : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreRepo')}`;
+    protected __baseUrlNetCoreCPPSwagger : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}swagger`;
+    protected __baseUrlNetCoreCPPRepo    : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntryRepo')}`;
+    protected _githubRepo                : string | undefined = `${this.configService.getConfigValue('gitHubRepo')}`;
+    protected _techDocRoot               : string | undefined = `${this.configService.getConfigValue('techDocRoot')}`;
+    protected _techDoc                   : string | undefined = `${this.configService.getConfigValue('techDocRegex').replace('{techDocRoot}', this._techDocRoot ?? '')}`;
 
     protected _baseUrlPythonDjango: string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPython')}`;
     protected _PythonDjangoRepo: string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonRepo')}`;
@@ -139,11 +143,14 @@ export class TechnicalSpecsComponent extends BaseComponent {
 
     private rebuildServicesTable(): void {
             this.services = [
-                {
-                    name: '(Backend) | [App v. / .NET  v.] | <x32,C#>',
-                    appVersion: this._webApiAppVersion,
-                    apiOrServerVersion: '5.0',
-                    healthLink: this.__baseUrlNetCoreSwagger,
+              {
+                    type               : '(Backend)',
+                    name               : '[App v. / .NET  v.]',
+                    features           : '<x32,C#>',
+                    appVersion         : this._webApiAppVersion,
+                    apiOrServerVersion : '5.0',
+                    healthLink         : this.__baseUrlNetCoreSwagger,
+                    repoLink           : this.__baseUrlNetCoreRepo,
                 },
                 {
                     name: '(Backend) | [Java / SpringBoot] | <db>',
@@ -200,10 +207,13 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion: this._ZigWebServerVersion,
                 },
                 {
-                    name: '(Backend) | [App v. | .NET  v.] | <x64,C++>',
-                    appVersion: this._ASPNETCoreCppVersion,
-                    apiOrServerVersion: '8.0',
-                    healthLink: this.__baseUrlNetCoreCPPSwagger,
+                    type               : '(Backend)',
+                    name               : '[App v. / .NET  v.]',
+                    features           : '<x64,C++>',
+                    appVersion         : this._ASPNETCoreCppVersion,
+                    repoLink           : this.__baseUrlNetCoreCPPRepo,
+                    apiOrServerVersion : '8.0',
+                    healthLink         : this.__baseUrlNetCoreCPPSwagger,
                 },
                 {
                     name: '(DLL C++) | [App v. / Std v.] | <Algorithm>',

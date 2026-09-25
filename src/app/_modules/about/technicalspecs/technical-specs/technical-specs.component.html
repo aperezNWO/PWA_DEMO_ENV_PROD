@@ -25,7 +25,19 @@
     <!-- DYNAMIC SERVICES LOOKUP TABLE -->
     @for (item of services; track item.name) {
       <tr>
-        <td>{{ item.name }}</td>
+        <td>
+            @if (item.type) {
+              {{ item.type }}
+              <span>|</span>
+            } @else {
+              <span></span>
+            }
+            {{ item.name }}
+            @if (item.features) {
+              <span>|</span>
+              {{ item.features }}
+            }
+        </td>
         <td>
           <b>
             <!-- 1. App Version (Paired with repoLink) -->
@@ -40,7 +52,7 @@
             <!-- 2. Language / Runtime Version -->
             @if (item.runtimeOrLangVersion) {
               <!-- MOST BACKEND DOES NOT HAVE APP VERSION YET -->
-              @if (item.appVersion || item.runtimeOrLangVersion ) {
+              @if (item.runtimeOrLangVersion ) {
                <a [href]="item.repoLink" target="_blank">v[{{ item.runtimeOrLangVersion | cleanVersion }}]</a>
               } @else {
                 <span>v[{{ item.runtimeOrLangVersion | cleanVersion }}]</span>
