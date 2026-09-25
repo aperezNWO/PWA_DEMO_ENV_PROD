@@ -140,7 +140,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     private rebuildServicesTable(): void {
             this.services = [
                 {
-                    name: '(Backend | App Version | .NET Core Version | [x32 / C#])',
+                    name: '(Backend | App Version | .NET Version | [x32 / C#])',
                     appVersion: this._webApiAppVersion,
                     apiOrServerVersion: '5.0',
                     healthLink: this.__baseUrlNetCoreSwagger,
@@ -156,24 +156,24 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion: this._KotlinWebServerVersion,
                 },
                 {
-                    name: '(Backend | [Node.js / Express)(db/smtp/chat)])',
+                    name: '(Backend | [Node.js / Express]<db,smtp,chat>)',
                     runtimeOrLangVersion: this._NodeVersion,
                     apiOrServerVersion: this._NodeWebServerVersion,
                 },
                 {
-                    name: '(Backend | [Node.js / Express)(Ocr/Opencv)])',
+                    name: '(Backend | [Node.js / Express] | <Ocr,Opencv>)',
                     runtimeOrLangVersion: this._NodeVersionOcr,
                     apiOrServerVersion: this._NodeWebServerVersionOcr,
                 },
                 {
-                    name: '(Backend | [Python / Django)(db)])',
+                    name: '(Backend | [Python / Django] | <db>)',
                     runtimeOrLangVersion: this._PythonVersion,
                     apiOrServerVersion: this._PythonWebServerVersion,
                     repoLink: this._PythonDjangoRepo,
                     healthLink: `${this._baseUrlPythonDjango}health/?format=json`,
                 },
                 {
-                    name: '(Backend | [Python / Django)(Tensorflow)])',
+                    name: '(Backend | [Python / Django] | <Tensorflow>)',
                     runtimeOrLangVersion: this._PythonVersionTF,
                     apiOrServerVersion: this._PythonWebServerVersionTF,
                     repoLink: this._PythonDjangoRepoTF,
@@ -200,7 +200,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion: this._RustWebServerVersion,
                 },
                 {
-                    name: '(Backend | App Version | .NET Core Version | [x64 / C++])',
+                    name: '(Backend | App Version | .NET Version | [x64 / C++])',
                     appVersion: this._ASPNETCoreCppVersion,
                     apiOrServerVersion: '8.0',
                     healthLink: this.__baseUrlNetCoreCPPSwagger,
