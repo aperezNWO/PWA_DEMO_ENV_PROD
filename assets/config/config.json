@@ -1,9 +1,9 @@
 {
     "APP INFO"                                     : "-----------------------------------------",
-    "GIT-TITLE"                                    : "[ANGULAR DEMO] - [ENV_PROD] v[3.4.06]    ",
+    "GIT-TITLE"                                    : "[ANGULAR DEMO] - [ENV_PROD] v[3.4.07]    ",
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "3.4.06",
+    "appVersion"                                   : "3.4.07",
     "TECHNICAL INFO"                               : "-----------------------------------------",
     "gitHubRepo"                                   : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD",
     "techDocRoot"                                  : "aperezNWOProtonmail",
