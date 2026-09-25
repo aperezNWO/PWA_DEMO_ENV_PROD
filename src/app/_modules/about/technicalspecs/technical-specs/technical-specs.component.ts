@@ -146,7 +146,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     healthLink: this.__baseUrlNetCoreSwagger,
                 },
                 {
-                    name: '(Backend | [Java / SpringBoot])',
+                    name: '(Backend) | [Java / SpringBoot]',
                     runtimeOrLangVersion: this._JavaVersion,
                     apiOrServerVersion: this._JavaWebServerVersion,
                 },
