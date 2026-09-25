@@ -146,12 +146,12 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     healthLink: this.__baseUrlNetCoreSwagger,
                 },
                 {
-                    name: '(Backend) | [Java / SpringBoot]',
+                    name: '(Backend) | [Java / SpringBoot] | <db>',
                     runtimeOrLangVersion: this._JavaVersion,
                     apiOrServerVersion: this._JavaWebServerVersion,
                 },
                 {
-                    name: '(Backend) | [Kotlin / SpringBoot]',
+                    name: '(Backend) | [Kotlin / SpringBoot] | <db>',
                     runtimeOrLangVersion: this._KotlinVersion,
                     apiOrServerVersion: this._KotlinWebServerVersion,
                 },
@@ -180,17 +180,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     healthLink: `${this._baseUrlPythonDjangoTF}health/?format=json`,
                 },
                 {
-                    name: '(Backend) | [Zig / std.http.Server]',
-                    runtimeOrLangVersion: this._ZigVersion,
-                    apiOrServerVersion: this._ZigWebServerVersion,
-                },
-                {
-                    name: '(Backend) | [GoLang / net-http] | <gRPC>',
-                    runtimeOrLangVersion: this._GoLangVersion,
-                    apiOrServerVersion: this._GoLangWebServerVersion,
-                },
-                {
-                    name: '(Backend) | [Dart / Shelf]',
+                    name: '(Backend) | [Dart / Shelf] | Google lang / multi-UI core',
                     runtimeOrLangVersion: this._DartVersion,
                     apiOrServerVersion: this._DartWebServerVersion,
                 },
@@ -200,13 +190,23 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion: this._RustWebServerVersion,
                 },
                 {
+                    name: '(Backend) | [GoLang / net-http] | <gRPC>',
+                    runtimeOrLangVersion: this._GoLangVersion,
+                    apiOrServerVersion: this._GoLangWebServerVersion,
+                },
+                {
+                    name: '(Backend) | [Zig / std.http.Server] <c/c++ alt,mem mgt,bin size>',
+                    runtimeOrLangVersion: this._ZigVersion,
+                    apiOrServerVersion: this._ZigWebServerVersion,
+                },
+                {
                     name: '(Backend) | [App Version | .NET Version] | <x64,C++>',
                     appVersion: this._ASPNETCoreCppVersion,
                     apiOrServerVersion: '8.0',
                     healthLink: this.__baseUrlNetCoreCPPSwagger,
                 },
                 {
-                    name: '(DLL C++) | [App Version | Std Version ]|<Algorithm>',
+                    name: '(DLL C++) | [App Version | Std Version] | <Algorithm>',
                     appVersion: this._AlgorithmAppVersion,
                     stdVersion: this._Algorithm_CPPSTDVersion,
                 },
