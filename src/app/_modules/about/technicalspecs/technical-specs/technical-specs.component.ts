@@ -177,14 +177,14 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     runtimeOrLangVersion: this._PythonVersion,
                     apiOrServerVersion: this._PythonWebServerVersion,
                     repoLink: this._PythonDjangoRepo,
-                    healthLink: `${this._baseUrlPythonDjango}health/?format=json`,
+                    healthLink: `${this._baseUrlPythonDjango}api/docs/`,
                 },
                 {
                     name: '(Backend) | [Python / Django] | <Tensorflow>',
                     runtimeOrLangVersion: this._PythonVersionTF,
                     apiOrServerVersion: this._PythonWebServerVersionTF,
                     repoLink: this._PythonDjangoRepoTF,
-                    healthLink: `${this._baseUrlPythonDjangoTF}health/?format=json`,
+                    healthLink: `${this._baseUrlPythonDjangoTF}api/docs/`,
                 },
                 {
                     name: '(Backend) | [Dart / Shelf] | <Google UIx lang>',
