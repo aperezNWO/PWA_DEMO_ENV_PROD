@@ -182,7 +182,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[==>] gitHub Repo FROM CONFIG.
 
-            --[==>] LANGUAJE / SERVER VERSION ==>  Swift (?).
+            --[==>] LANGUAJE / SERVER VERSION
 
                       --[x] ZIG.
 
@@ -204,7 +204,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
                          --[==>] zig / c++ web server group
 
-                         --[==>] c++ web server
+                         --[==>] Swift (missing from lookup)
+
+                         --[==>] c++ web server (missing from lookup)
 
                               |--[==>] lang version.
 

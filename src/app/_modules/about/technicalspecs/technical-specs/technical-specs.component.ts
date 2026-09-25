@@ -185,7 +185,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion: this._ZigWebServerVersion,
                 },
                 {
-                    name: '(Backend) | [GoLang / net-http]',
+                    name: '(Backend) | [GoLang / net-http] | <gRPC>',
                     runtimeOrLangVersion: this._GoLangVersion,
                     apiOrServerVersion: this._GoLangWebServerVersion,
                 },
@@ -195,7 +195,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion: this._DartWebServerVersion,
                 },
                 {
-                    name: '(Backend) | [Rust / Actix-web]',
+                    name: '(Backend) | [Rust / Actix-web] | <WASM>',
                     runtimeOrLangVersion: this._RustVersion,
                     apiOrServerVersion: this._RustWebServerVersion,
                 },
