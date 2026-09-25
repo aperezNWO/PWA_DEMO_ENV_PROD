@@ -140,7 +140,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     private rebuildServicesTable(): void {
             this.services = [
                 {
-                    name: '(Backend) | [App v. | .NET  v.] | <x32,C#>',
+                    name: '(Backend) | [App v. / .NET  v.] | <x32,C#>',
                     appVersion: this._webApiAppVersion,
                     apiOrServerVersion: '5.0',
                     healthLink: this.__baseUrlNetCoreSwagger,
@@ -206,24 +206,24 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     healthLink: this.__baseUrlNetCoreCPPSwagger,
                 },
                 {
-                    name: '(DLL C++) | [App v. | Std v.] | <Algorithm>',
+                    name: '(DLL C++) | [App v. / Std v.] | <Algorithm>',
                     appVersion: this._AlgorithmAppVersion,
                     stdVersion: this._Algorithm_CPPSTDVersion,
                 },
                 {
-                    name: '(DLL C++) | [App v. | Std v. | API v.] | <OpenCv>',
+                    name: '(DLL C++) | [App v. / Std v. / API v.] | <OpenCv>',
                     appVersion: this._OpenCvAppVersion,
                     stdVersion: this._OpenCvCPPSTDVersion,
                     apiOrServerVersion: this._OpenCvAPIVersion,
                 },
                 {
-                    name: '(DLL C++) | [App v. | Std v. | API v.] | <Tesseract>',
+                    name: '(DLL C++) | [App v. / Std v. / API v.] | <Tesseract>',
                     appVersion: this._tesseractAppVersion,
                     stdVersion: this._tesseractCPPSTDVersion,
                     apiOrServerVersion: this._tesseractAPIVersion,
                 },
                 {
-                    name: '(DLL C++) | [App v. | Std v. | API v.] | <Tensorflow>',
+                    name: '(DLL C++) | [App v. / Std v. / API v.] | <Tensorflow>',
                     appVersion: this._TensorFlowAPPVersion,
                     stdVersion: this._TensorFlowCPPSTDVersion,
                     apiOrServerVersion: this._TensorFlowAPIVersion,
