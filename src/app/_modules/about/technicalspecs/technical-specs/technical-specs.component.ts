@@ -140,7 +140,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
     private rebuildServicesTable(): void {
             this.services = [
                 {
-                    name: '(Backend) | [App Version | .NET Version] | <x32,C#>',
+                    name: '(Backend) | [App v. | .NET  v.] | <x32,C#>',
                     appVersion: this._webApiAppVersion,
                     apiOrServerVersion: '5.0',
                     healthLink: this.__baseUrlNetCoreSwagger,
@@ -180,7 +180,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     healthLink: `${this._baseUrlPythonDjangoTF}health/?format=json`,
                 },
                 {
-                    name: '(Backend) | [Dart / Shelf] | Google lang / multi-UI core',
+                    name: '(Backend) | [Dart / Shelf] | <Google UIx lang>',
                     runtimeOrLangVersion: this._DartVersion,
                     apiOrServerVersion: this._DartWebServerVersion,
                 },
@@ -195,35 +195,35 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion: this._GoLangWebServerVersion,
                 },
                 {
-                    name: '(Backend) | [Zig / std.http.Server] <c/c++ alt,mem mgt,bin size>',
+                    name: '(Backend) | [Zig / std.http.Server] | <c/c++ alt>',
                     runtimeOrLangVersion: this._ZigVersion,
                     apiOrServerVersion: this._ZigWebServerVersion,
                 },
                 {
-                    name: '(Backend) | [App Version | .NET Version] | <x64,C++>',
+                    name: '(Backend) | [App v. | .NET  v.] | <x64,C++>',
                     appVersion: this._ASPNETCoreCppVersion,
                     apiOrServerVersion: '8.0',
                     healthLink: this.__baseUrlNetCoreCPPSwagger,
                 },
                 {
-                    name: '(DLL C++) | [App Version | Std Version] | <Algorithm>',
+                    name: '(DLL C++) | [App v. | Std v.] | <Algorithm>',
                     appVersion: this._AlgorithmAppVersion,
                     stdVersion: this._Algorithm_CPPSTDVersion,
                 },
                 {
-                    name: '(DLL C++) | [App Version | Std Version | API Version] | <OpenCv>',
+                    name: '(DLL C++) | [App v. | Std v. | API v.] | <OpenCv>',
                     appVersion: this._OpenCvAppVersion,
                     stdVersion: this._OpenCvCPPSTDVersion,
                     apiOrServerVersion: this._OpenCvAPIVersion,
                 },
                 {
-                    name: '(DLL C++) | [App Version | Std Version | API Version] | <Tesseract>',
+                    name: '(DLL C++) | [App v. | Std v. | API v.] | <Tesseract>',
                     appVersion: this._tesseractAppVersion,
                     stdVersion: this._tesseractCPPSTDVersion,
                     apiOrServerVersion: this._tesseractAPIVersion,
                 },
                 {
-                    name: '(DLL C++) | [App Version | Std Version | API Version] | <Tensorflow>',
+                    name: '(DLL C++) | [App v. | Std v. | API v.] | <Tensorflow>',
                     appVersion: this._TensorFlowAPPVersion,
                     stdVersion: this._TensorFlowCPPSTDVersion,
                     apiOrServerVersion: this._TensorFlowAPIVersion,
