@@ -180,6 +180,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] ABOUT.
 
+            --[==>] exteran json source.
+
             --[==>] cleangetxxxversions() ??? ==> ask i.a.
 
             --[==>] MS SQL SERVER VERSION.
