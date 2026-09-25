@@ -138,6 +138,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] Fractal Demo.
 
+     --[_] GOLDEN RATION SPIRAL FRACTAL.
+
      --[_] Fix Benchmark Demo.
 
           --[_] split wasm && gRPC FRACTAL samples.
