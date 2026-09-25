@@ -176,6 +176,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] ABOUT.
 
+            --[==>] cleangetxxxversions() ??? ==> ask i.a.
+
+            --[==>] MS SQL SERVER VERSION.
 
             --[==>] gitHub Repo FROM CONFIG.
 
@@ -195,11 +198,11 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[X] Node.js.
 
-                      --[==>] cleangetxxxversions() ??? ==> ask i.a.
+                              |--[==>] lang version / repo link.
 
-                      --[==>] MS SQL SERVER VERSION.
+                              |--[==>] server version / health link.
 
-                      --[==>] zig / c++ web server group
+                         --[==>] zig / c++ web server group
 
                          --[==>] c++ web server
 
@@ -231,9 +234,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
                               --[x] LANGUAGE VERSION.
 
-            --[_] TECHNICAL SPECS LOOK UP TABLE
+            --[x] TECHNICAL SPECS LOOK UP TABLE
 
-
-
+                  --[x] FEATURES LIST <, , ,>.
 
 ////////////////////////////////////////////////////////////////////////////////
