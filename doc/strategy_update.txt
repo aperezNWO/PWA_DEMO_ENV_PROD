@@ -168,6 +168,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
      --[==>] https://deepwiki.com/aperezNWOProtonmail/PWA_DEMO_ENV_PROD.
 
+     --[==>] https://gitdiagram.com/apereznwo/pwa_demo_env_prod
+
 --[==>] repo / health links.
 
 --[==>] make repo private.
