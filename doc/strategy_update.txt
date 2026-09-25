@@ -192,39 +192,39 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[==>] LANGUAJE / SERVER VERSION
 
-                      --[x] ZIG.
+                          --[x] ZIG.
 
-                      --[x] Rust.
+                          --[x] Rust.
 
-                      --[x] Golang.
+                          --[x] Golang.
 
-                      --[x] Dart.
+                          --[x] Dart.
 
-                      --[X] Kotlin.
+                          --[X] Kotlin.
 
-                      --[X] J2SE.
+                          --[X] J2SE.
 
-                      --[X] Node.js.
+                          --[==>] zig / c++ web server group
 
-                              |--[==>] lang version / repo link.
+                          --[==>] Swift (missing from lookup)
 
-                              |--[==>] server version / health link.
-
-                         --[==>] zig / c++ web server group
-
-                         --[==>] Swift (missing from lookup)
-
-                         --[==>] c++ web server (missing from lookup)
+                          --[==>] c++ web server (missing from lookup)
 
                               |--[==>] lang version.
 
                               |--[==>] server version.
 
+                      --[X] Node.js / ocr.
+
+                              |--[==>] lang version / repo link.
+
+                              |--[==>] server version / health link / SWAGGER.
+
                       --[==>] PYTHON
 
                           --[==>] DJANGO-WINDOWS
 
-                              --[==>] LINK TO HEALTH / CREATE HEALTH ENDPOINT.
+                              --[==>] LINK TO HEALTH / SWAGGER.
 
                               --[x] LINK TO REPO / PRIVATE.
 
@@ -235,7 +235,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
                         --[==>] DJANGO-LINUX
 
-                              --[==>] LINK TO HEALTH / CREATE HEALTH ENDPOINT.
+                              --[==>] LINK TO HEALTH / SWAGGER.
 
                               --[x] LINK TO REPO / PRIVATE.
 
