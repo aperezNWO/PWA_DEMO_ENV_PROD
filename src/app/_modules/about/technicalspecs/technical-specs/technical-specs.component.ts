@@ -67,18 +67,20 @@ export class TechnicalSpecsComponent extends BaseComponent {
 
     guid = signal<string>('');
 
-    protected __baseUrlNetCoreSwagger    : string | undefined = `${this.configService.getConfigValue('baseUrlNetCore')}swagger`;
-    protected __baseUrlNetCoreRepo       : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreRepo')}`;
-    protected __baseUrlNetCoreCPPSwagger : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}swagger`;
-    protected __baseUrlNetCoreCPPRepo    : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntryRepo')}`;
     protected _githubRepo                : string | undefined = `${this.configService.getConfigValue('gitHubRepo')}`;
     protected _techDocRoot               : string | undefined = `${this.configService.getConfigValue('techDocRoot')}`;
     protected _techDoc                   : string | undefined = `${this.configService.getConfigValue('techDocRegex').replace('{techDocRoot}', this._techDocRoot ?? '')}`;
 
-    protected _baseUrlPythonDjango: string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPython')}`;
-    protected _PythonDjangoRepo: string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonRepo')}`;
-    protected _baseUrlPythonDjangoTF: string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonTF')}`;
-    protected _PythonDjangoRepoTF: string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonTFRepo')}`;
+    protected __baseUrlNetCoreSwagger    : string | undefined = `${this.configService.getConfigValue('baseUrlNetCore')}swagger`;
+    protected __baseUrlNetCoreRepo       : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreRepo')}`;
+    protected __baseUrlNetCoreCPPSwagger : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}swagger`;
+    protected __baseUrlNetCoreCPPRepo    : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntryRepo')}`;
+    protected __baseUrlNodeJs            : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJs')}`;
+    protected __baseUrlNodeJsRepo        : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJsRepo')}`;
+    protected _baseUrlPythonDjango       : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPython')}`;
+    protected _PythonDjangoRepo          : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonRepo')}`;
+    protected _baseUrlPythonDjangoTF     : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonTF')}`;
+    protected _PythonDjangoRepoTF        : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonTFRepo')}`;
 
     // Lookup table array
     services: ServiceVersionMeta[] = [];
@@ -172,6 +174,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     features             : '<db,smtp,chat>',
                     runtimeOrLangVersion : this._NodeVersion,
                     apiOrServerVersion   : this._NodeWebServerVersion,
+                    healthLink           : `${this.__baseUrlNodeJs}apí-docs`,
+                    repoLink             : this.__baseUrlNodeJsRepo,
                 },
                 {
                     type                  : '(Backend)',
