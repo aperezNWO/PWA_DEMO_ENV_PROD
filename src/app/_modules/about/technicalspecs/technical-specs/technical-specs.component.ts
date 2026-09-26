@@ -77,6 +77,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
     protected __baseUrlNetCoreCPPRepo    : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntryRepo')}`;
     protected __baseUrlNodeJs            : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJs')}`;
     protected __baseUrlNodeJsRepo        : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJsRepo')}`;
+    protected __baseUrlNodeJsOcr         : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJsOcr')}`;
+    protected __baseUrlNodeJsOcrRepo     : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJsOcrRepo')}`;
     protected _baseUrlPythonDjango       : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPython')}`;
     protected _PythonDjangoRepo          : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonRepo')}`;
     protected _baseUrlPythonDjangoTF     : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonTF')}`;
@@ -174,7 +176,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     features             : '<db,smtp,chat>',
                     runtimeOrLangVersion : this._NodeVersion,
                     apiOrServerVersion   : this._NodeWebServerVersion,
-                    healthLink           : `${this.__baseUrlNodeJs}apí-docs`,
+                    healthLink           : `${this.__baseUrlNodeJs}api-docs`,
                     repoLink             : this.__baseUrlNodeJsRepo,
                 },
                 {
@@ -182,7 +184,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     name                  : '[Node.js / Express]',
                     features              : '<Ocr,Opencv>',
                     runtimeOrLangVersion  : this._NodeVersionOcr,
-                    apiOrServerVersion    : this._NodeWebServerVersionOcr,
+                  apiOrServerVersion: this._NodeWebServerVersionOcr,
+                  healthLink: `${this.__baseUrlNodeJsOcr}api-docs`,
+                    repoLink              : this.__baseUrlNodeJsOcrRepo,
                 },
                 {
                     type                  : '(Backend)',
