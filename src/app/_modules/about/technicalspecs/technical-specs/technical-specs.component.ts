@@ -184,8 +184,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     name                  : '[Node.js / Express]',
                     features              : '<Ocr,Opencv>',
                     runtimeOrLangVersion  : this._NodeVersionOcr,
-                  apiOrServerVersion: this._NodeWebServerVersionOcr,
-                  healthLink: `${this.__baseUrlNodeJsOcr}api-docs`,
+                    apiOrServerVersion    : this._NodeWebServerVersionOcr,
+                    healthLink            : `${this.__baseUrlNodeJsOcr}api-docs`,
                     repoLink              : this.__baseUrlNodeJsOcrRepo,
                 },
                 {
