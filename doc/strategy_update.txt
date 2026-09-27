@@ -138,8 +138,6 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] Fractal Demo.
 
-     --[_] GOLDEN RATION SPIRAL FRACTAL.
-
      --[_] Fix Benchmark Demo.
 
           --[_] split wasm && gRPC FRACTAL samples.
@@ -248,5 +246,15 @@ r///////////////////////////////////////////////////////////////////////////////
 
                   --[x] TYPE ATTRIBUTE.
                   --[x] FEATURES LIST <, , ,>.
+
+
+--[_] GOLDEN RATION SPIRAL FRACTAL.
+
+    --[_] Kotlin.
+
+        --[x] Server.
+
+        --[==>] Client.
+
 
 ////////////////////////////////////////////////////////////////////////////////

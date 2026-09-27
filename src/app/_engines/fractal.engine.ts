@@ -5,8 +5,8 @@ import { FractalService            } from "../_services/fractalService/fractalSe
 export interface FractalPoint {
   x          : number;
   y          : number;
-  value      : number;          
-  iterations : number; 
+  value      : number;
+  iterations : number;
   escaped?   : boolean;
 }
 
@@ -35,12 +35,13 @@ export enum FractalType {
   MANDELBROT         = 1,
   JULIA              = 2,
   BARNSLEY_FERN      = 3,
-  MANDELBROT_GRPC    = 4,
-  JULIA_GRPC         = 5,
-  BARNSLEY_FERN_GRPC = 6,
-  MANDELBROT_WASM    = 7,
-  JULIA_WASM         = 8,
-  BARNSLEY_FERN_WASM = 9
+  GOLDEN_RATIO       = 4,
+  MANDELBROT_GRPC    = 5,
+  JULIA_GRPC         = 6,
+  BARNSLEY_FERN_GRPC = 7,
+  MANDELBROT_WASM    = 8,
+  JULIA_WASM         = 9,
+  BARNSLEY_FERN_WASM = 10
 }
 
 export interface FractalBounds {
@@ -95,16 +96,16 @@ export const CANVAS_WIDTH  = 800;
 export const CANVAS_HEIGHT = 600;
 
 // Default complex-plane bounds per fractal type
-export const DEFAULT_BOUNDS_MANDELBROT : FractalBounds = { 
-  xMin: -2.0, 
-  xMax: 1.0,  
-  yMin: -1.2, 
-  yMax: 1.2 
+export const DEFAULT_BOUNDS_MANDELBROT : FractalBounds = {
+  xMin: -2.0,
+  xMax: 1.0,
+  yMin: -1.2,
+  yMax: 1.2
 };
 
 export const DEFAULT_BOUNDS_MANDELBROT_WASM: FractalBounds ={xMin: -2.0, xMax: 1.0, yMin: -1.2, yMax: 1.2}
 
-export const DEFAULT_BOUNDS_JULIA      : FractalBounds = { xMin: -1.5, xMax: 1.5,  yMin: -1.5, yMax: 1.5 };
+export const DEFAULT_BOUNDS_JULIA          : FractalBounds = { xMin: -1.5, xMax: 1.5,  yMin: -1.5, yMax: 1.5 };
 
 //
 export const DEFAULT_FRACTAL_PARAMS: FractalParams = {
@@ -126,7 +127,7 @@ export class FractalEngine{
   // ═══════════════════════════════════════════════════════════════════════════
 
   private readonly _fractalService        = inject(FractalService);
-    
+
   // ═══════════════════════════════════════════════════════════════════════════
   //  UTILITY METHODS
   // ═══════════════════════════════════════════════════════════════════════════
@@ -153,30 +154,30 @@ export class FractalEngine{
         return new Observable<Blob>((observer) => {
           try {
             const { width, height, maxIterations } = options;
-    
+
             const canvas  = document.createElement('canvas');
             canvas.width  = width;
             canvas.height = height;
             const ctx = canvas.getContext('2d');
             if (!ctx) { observer.error(new Error('Could not get canvas context')); return; }
-    
+
             // Black background
             ctx.fillStyle = '#000000';
             ctx.fillRect(0, 0, width, height);
-    
+
             const imageData = ctx.createImageData(width, height);
             const data      = imageData.data;
-    
+
             // Pre-fill alpha to fully opaque — avoids per-pixel alpha writes
             for (let i = 3; i < data.length; i += 4) data[i] = 255;
-    
+
             for (const point of points) {
               // Bounds check — silently skip out-of-range points from any backend
               if (point.x < 0 || point.x >= width || point.y < 0 || point.y >= height) continue;
-    
+
               const idx = (point.y * width + point.x) * 4;
               let r: number, g: number, b: number;
-    
+
               if (point.value === FERN_SENTINEL) {
                 const normY  = 1 - (point.y / height);   // 0 = bottom, 1 = top
                 const t      = 0.25 + normY * 0.45;       // keep in ochre band
@@ -188,20 +189,20 @@ export class FractalEngine{
                 const color = this._getFractalColorRGB(point.value, maxIterations);
                 r = color.r; g = color.g; b = color.b;
               }
-    
+
               data[idx    ] = r;
               data[idx + 1] = g;
               data[idx + 2] = b;
               // [idx + 3] already 255 from pre-fill
             }
-    
+
             ctx.putImageData(imageData, 0, 0);
-    
+
             canvas.toBlob((blob) => {
               if (blob) { observer.next(blob); observer.complete(); }
               else        observer.error(new Error('renderPointsToBlob: canvas.toBlob failed'));
             }, 'image/png');
-    
+
           } catch (e) { observer.error(e); }
         });
   }
@@ -255,11 +256,11 @@ export class FractalEngine{
   // ═══════════════════════════════════════════════════════════════════════════
 
   public static _renderPipeline(
-    points$: Observable<FractalPoint[]>, 
+    points$: Observable<FractalPoint[]>,
     maxIterations: number
   ): Observable<Blob> {
     return points$.pipe(
-      switchMap(points => 
+      switchMap(points =>
         FractalEngine.renderPointsToBlob(points, {
           width: CANVAS_WIDTH,
           height: CANVAS_HEIGHT,
@@ -268,22 +269,22 @@ export class FractalEngine{
       )
     );
   }
-  
+
   //
   public static _runEscapeTimeEngine(
       maxIterations : number,
       bounds        : FractalBounds,
       formula       : (x: number, y: number) => number
   ): FractalPoint[] {
-  
+
       const width  = CANVAS_WIDTH;
       const height = CANVAS_HEIGHT;
       const xStep  = (bounds.xMax - bounds.xMin) / width;
       const yStep  = (bounds.yMax - bounds.yMin) / height;
-  
+
       const t0     = performance.now();
       const points : FractalPoint[] = new Array(width * height);
-  
+
       let idx = 0;
       for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
@@ -295,15 +296,15 @@ export class FractalEngine{
           };
         }
       }
-  
+
       console.log(`[TS Engine] ${width * height} points in ${(performance.now() - t0).toFixed(2)}ms`);
       return points;
     }
-  
+
     // ═══════════════════════════════════════════════════════════════════════════
     //  TYPESCRIPT MATH
     // ═══════════════════════════════════════════════════════════════════════════
-  
+
     // MANDERBLROT
     public static _generateTSMandelbrot(p_maxIterations: number, p_bounds?: FractalBounds): Observable<FractalPoint[]> {
       const bounds = p_bounds ?? DEFAULT_BOUNDS_MANDELBROT;
@@ -318,7 +319,7 @@ export class FractalEngine{
         return i;
       }));
     }
-  
+
     // JULIA
     public static _generateTSJulia(p_maxIterations: number, p_realPart: number, p_imagPart: number, p_bounds?: FractalBounds): Observable<FractalPoint[]> {
       const bounds = p_bounds ?? DEFAULT_BOUNDS_JULIA;
@@ -333,26 +334,26 @@ export class FractalEngine{
         return i;
       }));
     }
-  
-    // BARNSLEY FERN 
+
+    // BARNSLEY FERN
     public static _generateTSBarnsley(p_maxIterations: number): Observable<FractalPoint[]> {
       const points: FractalPoint[] = [];
-      
+
       // FIX 1: Ensure enough iterations for a dense render
       const iterations = Math.max(p_maxIterations, 50000);
-  
+
       let x = 0;
       let y = 0;
-  
-      // FIX 2: Better Scaling. 
+
+      // FIX 2: Better Scaling.
       // Fern Width range is roughly 4.84 units, Height is roughly 10 units.
       // Multiply by 0.95 to add a small margin so it doesn't touch edges.
       const scale = Math.min(CANVAS_WIDTH / 4.84, CANVAS_HEIGHT / 10) * 0.95;
-  
+
       for (let i = 0; i < iterations; i++) {
         let nextX, nextY;
         const rand = Math.random();
-  
+
         // Standard Barnsley IFS transformation matrices
         if (rand < 0.01) {
           nextX = 0;
@@ -367,21 +368,21 @@ export class FractalEngine{
           nextX = -0.15 * x + 0.28 * y;
           nextY = 0.26 * x + 0.24 * y + 0.44;
         }
-  
+
         x = nextX;
         y = nextY;
-  
-        // FIX 3: Centering logic. 
+
+        // FIX 3: Centering logic.
         // The horizontal center of the fern is at roughly 0.24.
         const px = Math.floor(CANVAS_WIDTH / 2 + (x - 0.24) * scale);
         const py = Math.floor(CANVAS_HEIGHT - y * scale); // Flip Y for canvas
-  
+
         // Only push valid points to ensure the array stays clean
         if (px >= 0 && px < CANVAS_WIDTH && py >= 0 && py < CANVAS_HEIGHT) {
           points.push({ x: px, y: py, value: FERN_SENTINEL, iterations: p_maxIterations });
         }
       }
-  
+
       return of(points);
   }
 
@@ -393,27 +394,27 @@ export class FractalEngine{
       p_fractalParams : FractalParams
     ): Observable<FractalPoint[]> {
       let points$: Observable<FractalPoint[]>;
-      
+
       switch (p_fractalParams.selectedFractal) {
-        case FractalType.MANDELBROT: 
-          points$ = FractalEngine._generateTSMandelbrot(p_fractalParams.maxIterations, p_fractalParams.isZoomable); 
+        case FractalType.MANDELBROT:
+          points$ = FractalEngine._generateTSMandelbrot(p_fractalParams.maxIterations, p_fractalParams.isZoomable);
           break;
-        case FractalType.JULIA:      
-          points$ = FractalEngine._generateTSJulia(p_fractalParams.maxIterations, p_fractalParams.realPart, p_fractalParams.imagPart, p_fractalParams.isZoomable); 
+        case FractalType.JULIA:
+          points$ = FractalEngine._generateTSJulia(p_fractalParams.maxIterations, p_fractalParams.realPart, p_fractalParams.imagPart, p_fractalParams.isZoomable);
           break;
-        case FractalType.BARNSLEY_FERN: 
-          points$ = FractalEngine._generateTSBarnsley(p_fractalParams.maxIterations); 
+        case FractalType.BARNSLEY_FERN:
+          points$ = FractalEngine._generateTSBarnsley(p_fractalParams.maxIterations);
           break;
-        default: 
+        default:
           points$ = FractalEngine._generateTSJulia(p_fractalParams.maxIterations, p_fractalParams.realPart, p_fractalParams.imagPart, p_fractalParams.isZoomable);
       }
-      
+
       return points$;
-      
+
     }
 
   // ═══════════════════════════════════════════════════════════════════════════
-  //  SERVER  ENTERY POINT 
+  //  SERVER  ENTERY POINT
   // ═══════════════════════════════════════════════════════════════════════════
   public GetFractalServer(
       p_fractalParams : FractalParams
@@ -422,7 +423,7 @@ export class FractalEngine{
 
       //
       console.info(`[Server] backend=${p_fractalParams.selectedBackend?.toString()} fractal=${p_fractalParams.selectedFractal} zoom=${p_fractalParams.serverZoomIn} factor=${p_fractalParams.serverZoomFactor}`);
-  
+
       //
       switch (p_fractalParams.selectedFractal)
       {
@@ -434,11 +435,14 @@ export class FractalEngine{
         break;
         case FractalType.BARNSLEY_FERN :
             return this._fractalService.GenerateFractalServerBarnsleyFern(p_fractalParams);
+          break;
+        case FractalType.GOLDEN_RATIO  :
+            return this._fractalService.GenerateFractalServerGoldenRatio(p_fractalParams);
         break;
         case FractalType.MANDELBROT_GRPC:
-            return this._fractalService.GenerateFractalServerGrpc(p_fractalParams);  
+            return this._fractalService.GenerateFractalServerGrpc(p_fractalParams);
         case FractalType.JULIA_GRPC:
-            return this._fractalService.GenerateFractalServerGrpc(p_fractalParams);    
+            return this._fractalService.GenerateFractalServerGrpc(p_fractalParams);
         case FractalType.BARNSLEY_FERN_GRPC:
             return this._fractalService.GenerateFractalServerGrpc(p_fractalParams);
         case FractalType.MANDELBROT_WASM:
@@ -447,12 +451,12 @@ export class FractalEngine{
             return this._fractalService.GenerateFractalClientWasm(p_fractalParams);
         case FractalType.BARNSLEY_FERN_WASM:
             return this._fractalService.GenerateFractalClientWasm(p_fractalParams);
-        break;                                          
+        break;
         default :
             return this._fractalService.GenerateFractalServerJulia(p_fractalParams);
       }
   }
-    
+
   // ═══════════════════════════════════════════════════════════════════════════
   //  PROXY FUNCTION
   // ═══════════════════════════════════════════════════════════════════════════
@@ -461,9 +465,9 @@ export class FractalEngine{
       p_fractalParams : FractalParams
   ): Observable<Blob>  {
       //
-      let points$: Observable<FractalPoint[]> = (p_fractalParams.selectedBackend == BackendLanguage.TYPESCRIPT)? 
-                                                this.GetFractalClient(p_fractalParams) : 
-                                                this.GetFractalServer(p_fractalParams); 
+      let points$: Observable<FractalPoint[]> = (p_fractalParams.selectedBackend == BackendLanguage.TYPESCRIPT)?
+                                                this.GetFractalClient(p_fractalParams) :
+                                                this.GetFractalServer(p_fractalParams);
       //
       return FractalEngine._renderPipeline(points$, p_fractalParams.maxIterations);
    }
@@ -517,14 +521,14 @@ export class FractalBenchmark {
 // Inside FractalBenchmark class in fractal.engine.ts
 static record(backendCode: string, fractalType: FractalType, timeMs: number): void {
     const store = FractalBenchmark.load();
-    
+
     // Explicitly convert to number to ensure consistency
-    const id = Number(fractalType); 
-    
+    const id = Number(fractalType);
+
     if (!store[backendCode]) {
         store[backendCode] = {};
     }
-    
+
     const existing = store[backendCode][id]?.bestTimeMs;
 
     if (existing === undefined || timeMs < existing) {
@@ -611,7 +615,7 @@ static clear(): void {
       return { fractalType, score: sliceValue };
     });
   }
-  
+
   // ── Bar chart: performance score per backend, for ONE fractal ───────────
 
   /**
@@ -641,7 +645,7 @@ static clear(): void {
     baseType: FractalType
   ): number | null {
     if (!backendStore) return null;
-    
+
     let variantIds: number[] = [];
     switch (baseType) {
       case FractalType.MANDELBROT:

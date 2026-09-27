@@ -4,13 +4,13 @@ import { Component
        , OnInit
        , OnDestroy
        , ElementRef
-       , HostListener,                     
+       , HostListener,
          inject                           } from '@angular/core';
 import { ActivatedRoute                   } from '@angular/router';
 import { HttpClient                       } from '@angular/common/http';
 import { Chart, registerables             } from 'chart.js';
-import { PAGE_MISCELANEOUS_FRACTAL_DEMO, 
-         PAGE_TITLE_LOG, 
+import { PAGE_MISCELANEOUS_FRACTAL_DEMO,
+         PAGE_TITLE_LOG,
          PAGE_TITLE_NO_SOUND    } from 'src/app/_models/common';
 import { BackendService         } from 'src/app/_services/BackendService/backend.service';
 import { ConfigService          } from 'src/app/_services/__Utils/ConfigService/config.service';
@@ -21,9 +21,9 @@ import { FractalService         } from 'src/app/_services/fractalService/fractal
 import { FractalType
         , ZoomMode
         , LanguageCapability
-        , FractalEngine         
+        , FractalEngine
         , BackendLanguage
-        , FractalParams,         
+        , FractalParams,
         DEFAULT_FRACTAL_PARAMS
         , FractalBenchmark
         , FractalSliceScore } from '../../../../../_engines/fractal.engine';
@@ -72,29 +72,29 @@ export class FractalDemoComponent extends BaseReferenceComponent implements OnIn
   zoomFactor : number = 1.0;
 
 get isMandelbrotSelected(): boolean {
-    return this.selectedFractal === FractalType.MANDELBROT ||
+    return this.selectedFractal === FractalType.MANDELBROT      ||
            this.selectedFractal === FractalType.MANDELBROT_GRPC ||
            this.selectedFractal === FractalType.MANDELBROT_WASM;
   }
 
   get isJuliaSelected(): boolean {
-    return this.selectedFractal === FractalType.JULIA ||
+    return this.selectedFractal === FractalType.JULIA      ||
            this.selectedFractal === FractalType.JULIA_GRPC ||
            this.selectedFractal === FractalType.JULIA_WASM;
   }
 
   get isBarnsleyFernSelected(): boolean {
-    return this.selectedFractal === FractalType.BARNSLEY_FERN ||
+    return this.selectedFractal === FractalType.BARNSLEY_FERN      ||
            this.selectedFractal === FractalType.BARNSLEY_FERN_GRPC ||
            this.selectedFractal === FractalType.BARNSLEY_FERN_WASM;
   }
 
-  private get baseXRange(): number { 
-    return (this.selectedFractal === FractalType.MANDELBROT || this.selectedFractal === FractalType.MANDELBROT_GRPC || this.selectedFractal === FractalType.MANDELBROT_WASM) ? 3.0 : 3.0; 
+  private get baseXRange(): number {
+    return (this.selectedFractal === FractalType.MANDELBROT || this.selectedFractal === FractalType.MANDELBROT_GRPC || this.selectedFractal === FractalType.MANDELBROT_WASM) ? 3.0 : 3.0;
   }
 
-  private get baseYRange(): number { 
-    return (this.selectedFractal === FractalType.MANDELBROT || this.selectedFractal === FractalType.MANDELBROT_GRPC || this.selectedFractal === FractalType.MANDELBROT_WASM) ? 2.4 : 3.0; 
+  private get baseYRange(): number {
+    return (this.selectedFractal === FractalType.MANDELBROT || this.selectedFractal === FractalType.MANDELBROT_GRPC || this.selectedFractal === FractalType.MANDELBROT_WASM) ? 2.4 : 3.0;
   }
   public  serverZoomFactor: number = 1.0;
   public  serverZoomIn    : boolean = true;
@@ -106,7 +106,7 @@ get isMandelbrotSelected(): boolean {
     this.serverZoomIn = false;
     this.onSubmit();
   }
-  
+
   // ── Mobile reticle ────────────────────────────────────────────────────────
   reticleVisible  : boolean  = false;
   reticleX        : number   = 50;
@@ -125,7 +125,7 @@ get isMandelbrotSelected(): boolean {
   getAvailableFractals() {
     const lang = this.backendCapabilities.find(o => o.languageCode === this.selectedImplementation);
     if (!lang) return [];
-    
+
     // Filter by the .supported property
     return this.fractalOptions.filter(f => lang.supportedFractals[f.id].supported);
   }
@@ -194,8 +194,9 @@ get isMandelbrotSelected(): boolean {
       [FractalType.MANDELBROT]        : { supported: true,   zoomable: true   },
       [FractalType.JULIA]             : { supported: true,   zoomable: true   },
       [FractalType.BARNSLEY_FERN]     : { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   }, 
-      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
+      [FractalType.GOLDEN_RATIO]      : { supported: false,  zoomable: true   },
+      [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },
       [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: true   },
       [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
       [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
@@ -210,15 +211,16 @@ get isMandelbrotSelected(): boolean {
     description      : 'Runs on server — Stable',
     enabled: true,
     supportedFractals: {
-      [FractalType.MANDELBROT]     : { supported: true,  zoomable : true  },
-      [FractalType.JULIA]          : { supported: true , zoomable : true  },
-      [FractalType.BARNSLEY_FERN]  : { supported: true , zoomable : false },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true  },
-      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },   
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  }, 
+      [FractalType.MANDELBROT]        : { supported: true,   zoomable : true  },
+      [FractalType.JULIA]             : { supported: true ,  zoomable : true  },
+      [FractalType.BARNSLEY_FERN]     : { supported: true,   zoomable: false  },
+      [FractalType.GOLDEN_RATIO]      : { supported: false,  zoomable: true   },
+      [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },
       [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
       [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },                    
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },
     }
   },
   {
@@ -229,15 +231,16 @@ get isMandelbrotSelected(): boolean {
     description       : 'Runs on Spring Boot Engine',
     enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   },
-      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },    
+      [FractalType.MANDELBROT]        : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]             : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]     : { supported: true,   zoomable: false  },
+      [FractalType.GOLDEN_RATIO]      : { supported: false,  zoomable: true   },
+      [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },
       [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
       [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },    
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },
     }
   },
   {
@@ -249,14 +252,15 @@ get isMandelbrotSelected(): boolean {
     enabled           : true,
     supportedFractals : {
       [FractalType.MANDELBROT]        : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]             : { supported: true ,  zoomable: true   },
+      [FractalType.JULIA]             : { supported: true,   zoomable: true   },
       [FractalType.BARNSLEY_FERN]     : { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   }, 
-      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: true   }, 
+      [FractalType.GOLDEN_RATIO]      : { supported: true,   zoomable: true   },
+      [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: true   },
       [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
       [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },      
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },
     }
   },
   {
@@ -268,14 +272,15 @@ get isMandelbrotSelected(): boolean {
     enabled           : true,
     supportedFractals : {
       [FractalType.MANDELBROT]        :   { supported: true,   zoomable: true   },
-      [FractalType.JULIA]             :   { supported: true ,  zoomable: true   },
+      [FractalType.JULIA]             :   { supported: true,   zoomable: true   },
       [FractalType.BARNSLEY_FERN]     :   { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]   :   { supported: false,  zoomable: true   }, 
-      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true   }, 
+      [FractalType.GOLDEN_RATIO]      :   { supported: false,  zoomable: true   },
+      [FractalType.MANDELBROT_GRPC]   :   { supported: false,  zoomable: true   },
+      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true   },
       [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: true   },
       [FractalType.MANDELBROT_WASM]   :   { supported: false,  zoomable: true   },
       [FractalType.JULIA_WASM]        :   { supported: false,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false  },                  
+      [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false  },
     }
   },
   {
@@ -286,15 +291,16 @@ get isMandelbrotSelected(): boolean {
     description       : 'Runs on native net/http & gRPC-Web Engine',
     enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]        : { supported: true,  zoomable: true    },
-      [FractalType.JULIA]             : { supported: true,  zoomable: true    },
-      [FractalType.BARNSLEY_FERN]     : { supported: true,  zoomable: false   },
-      [FractalType.MANDELBROT_GRPC]   : { supported: true,   zoomable: true   }, 
-      [FractalType.JULIA_GRPC]        : { supported: true,   zoomable: true   }, 
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: true,   zoomable: false  },   
+      [FractalType.MANDELBROT]        : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]             : { supported: true,   zoomable: true   },
+      [FractalType.BARNSLEY_FERN]     : { supported: true,   zoomable: false  },
+      [FractalType.GOLDEN_RATIO]      : { supported: false,  zoomable: true   },
+      [FractalType.MANDELBROT_GRPC]   : { supported: true,   zoomable: true   },
+      [FractalType.JULIA_GRPC]        : { supported: true,   zoomable: true   },
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: true,   zoomable: false  },
       [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
       [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },      
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },
     }
   },
   {
@@ -305,72 +311,76 @@ get isMandelbrotSelected(): boolean {
     description       : 'Runs on Actix-web and WebAssembly',
     enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: true   }, 
-      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },   
-      [FractalType.MANDELBROT_WASM]   : { supported: true,  zoomable: true   },
-      [FractalType.JULIA_WASM]        : { supported: true,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN_WASM]: { supported: true,  zoomable: false  },               
+      [FractalType.MANDELBROT]        : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]             : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]     : { supported: true,   zoomable: false  },
+      [FractalType.GOLDEN_RATIO]      : { supported: false,  zoomable: true   },
+      [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },
+      [FractalType.MANDELBROT_WASM]   : { supported: true,   zoomable: true   },
+      [FractalType.JULIA_WASM]        : { supported: true,   zoomable: true   },
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: true,   zoomable: false  },
     }
   },
   {
-    backendLanguage   : BackendLanguage.ZIGLANG, 
+    backendLanguage   : BackendLanguage.ZIGLANG,
     languageCode      : 'ziglang',
     label             : 'Zig (std.http.Server)',
     icon              : '⚡',
     description       : 'Runs on [std.http.Server] ',
     enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  },
-      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   }, 
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },   
+      [FractalType.MANDELBROT]        : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]             : { supported: true,   zoomable: true   },
+      [FractalType.BARNSLEY_FERN]     : { supported: true,   zoomable: false  },
+      [FractalType.GOLDEN_RATIO]      : { supported: false,  zoomable: true   },
+      [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: false  },
+      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },
       [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
       [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },              
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },
     }
   },
   {
-    backendLanguage   : BackendLanguage.CPP_WS, 
+    backendLanguage   : BackendLanguage.CPP_WS,
     languageCode      : 'cppws',
     label             : 'C++ (http::Server)',
     icon              : '⚙️',
     description       : 'Native performance',
-    enabled           : true,  
+    enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]          : { supported: true,   zoomable: true   }, 
-      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
+      [FractalType.MANDELBROT]        :   { supported: true,   zoomable: true    },
+      [FractalType.JULIA]             :   { supported: true,   zoomable: true    },
+      [FractalType.BARNSLEY_FERN]     :   { supported: true,   zoomable: false   },
+      [FractalType.GOLDEN_RATIO]      :   { supported: false,  zoomable: true    },
       [FractalType.MANDELBROT_GRPC]   :   { supported: false,  zoomable: false   }, // BACKEND MUST PUBLISH ON RENDER PRIVATE SERVER PAID SITE
       [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, // BACKEND MUST PUBLISH ON RENDER PRIVATE SERVER PAID SITE
       [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   }, // BACKEND MUST PUBLISH ON RENDER PRIVATE SERVER PAID SITE
       [FractalType.MANDELBROT_WASM]   :   { supported: false,  zoomable: true    },
       [FractalType.JULIA_WASM]        :   { supported: false,  zoomable: true    },
-      [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false   },              
+      [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false   },
     }
   },
   {
-    backendLanguage   : BackendLanguage.SWIFTLANG, 
+    backendLanguage   : BackendLanguage.SWIFTLANG,
     languageCode      : 'swiftlang',
     label             : 'Swift (Vapor)',
     icon              : '🍊',
     description       : 'Runs on Vapor ',
     enabled           : true,
     supportedFractals : {
-      [FractalType.MANDELBROT]     : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]          : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]  : { supported: true,   zoomable: false  },
-      [FractalType.MANDELBROT_GRPC]: { supported: false,  zoomable: false  },
-      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    }, 
-      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   },             
+      [FractalType.MANDELBROT]        :   { supported: true,   zoomable: true    },
+      [FractalType.JULIA]             :   { supported: true ,  zoomable: true    },
+      [FractalType.BARNSLEY_FERN]     :   { supported: true,   zoomable: false   },
+      [FractalType.GOLDEN_RATIO]      :   { supported: false,  zoomable: true    },
+      [FractalType.MANDELBROT_GRPC]   :   { supported: false,  zoomable: false   },
+      [FractalType.JULIA_GRPC]        :   { supported: false,  zoomable: true    },
+      [FractalType.BARNSLEY_FERN_GRPC]:   { supported: false,  zoomable: false   },
       [FractalType.MANDELBROT_WASM]   :   { supported: false,  zoomable: true    },
       [FractalType.JULIA_WASM]        :   { supported: false,  zoomable: true    },
-      [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false   },              
+      [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false   },
     }
   },
 ];
@@ -380,11 +390,12 @@ fractalOptions = [
     { id: FractalType.MANDELBROT,         label: 'Mandelbrot Set',           icon: '🌀' },
     { id: FractalType.JULIA,              label: 'Julia Set',                icon: '❄️' },
     { id: FractalType.BARNSLEY_FERN,      label: 'Barnsley Fern (IFS — TS)', icon: '🍃' },
-    { id: FractalType.MANDELBROT_GRPC,    label: 'Mandelbrot Set (gRPC)',    icon: '⚡' },    
-    { id: FractalType.JULIA_GRPC        , label: 'Julia Set (gRPC)',         icon: '⚡' },  
-    { id: FractalType.BARNSLEY_FERN_GRPC, label: 'Barnsley Fern (gRPC)',     icon: '⚡' }, 
+    { id: FractalType.GOLDEN_RATIO,       label: 'Golden Ratio',             icon: '🌷' },
+    { id: FractalType.MANDELBROT_GRPC,    label: 'Mandelbrot Set (gRPC)',    icon: '⚡' },
+    { id: FractalType.JULIA_GRPC        , label: 'Julia Set (gRPC)',         icon: '⚡' },
+    { id: FractalType.BARNSLEY_FERN_GRPC, label: 'Barnsley Fern (gRPC)',     icon: '⚡' },
     { id: FractalType.MANDELBROT_WASM,    label: 'Mandelbrot Set (WASM)',    icon: '⚙️' },
-    { id: FractalType.JULIA_WASM,         label: 'Julia Set (WASM)',         icon: '⚙️' },  
+    { id: FractalType.JULIA_WASM,         label: 'Julia Set (WASM)',         icon: '⚙️' },
     { id: FractalType.BARNSLEY_FERN_WASM, label: 'Barnsley Fern (WASM)',     icon: '⚙️' },
 ];
 
@@ -413,7 +424,7 @@ constructor(
     'NODE' : 'nodejs',
     'JAVA' : 'j2se',
     'J2SE' : 'j2se',
-    'CWS'  : 'cppws',  
+    'CWS'  : 'cppws',
     'GO'    : 'golang',
     'RS'    : 'rustlang',
     'SWIFT' : 'swiftlang',
@@ -496,14 +507,14 @@ constructor(
 
   resetZoomViewport(): void {
     // Center on real axis -0.5 for both standard and gRPC Mandelbrot
-    const isMandelbrot = this.selectedFractal === FractalType.MANDELBROT 
+    const isMandelbrot = this.selectedFractal === FractalType.MANDELBROT
                       || this.selectedFractal === FractalType.MANDELBROT_GRPC
                       || this.selectedFractal === FractalType.MANDELBROT_WASM;
 
     this.centerX    = isMandelbrot ? -0.5 : 0.0;
     this.centerY    = 0.0;
     this.zoomFactor = 1.0;
-    
+
     // Server step-based zoom — always reset direction to 'in'
     this.serverZoomFactor = 0;
     this.serverZoomIn     = true;
@@ -637,21 +648,21 @@ constructor(
     const t0            = performance.now();
 
     let serviceCall      : any = null;
-    let fractalParams    : FractalParams = { 
-        ...DEFAULT_FRACTAL_PARAMS 
+    let fractalParams    : FractalParams = {
+        ...DEFAULT_FRACTAL_PARAMS
     };
 
     switch (this.selectedImplementation) {
 
       case 'typescript':
 
-        fractalParams = { 
-            ...DEFAULT_FRACTAL_PARAMS 
+        fractalParams = {
+            ...DEFAULT_FRACTAL_PARAMS
             ,selectedBackend : BackendLanguage.TYPESCRIPT
             ,selectedFractal : this.selectedFractal
             ,maxIterations   : this.maxIterations
             ,realPart        : this.realPart
-            ,imagPart        : this.imagPart            
+            ,imagPart        : this.imagPart
             ,isZoomable      : this._buildBounds()
         };
 
@@ -663,8 +674,8 @@ constructor(
 
       case 'Kotlin':
 
-        fractalParams = { 
-            ...DEFAULT_FRACTAL_PARAMS 
+        fractalParams = {
+            ...DEFAULT_FRACTAL_PARAMS
             ,selectedBackend  : BackendLanguage.KOTLIN
             ,selectedFractal  : this.selectedFractal
             ,maxIterations    : this.maxIterations
@@ -680,8 +691,8 @@ constructor(
 
        case 'Dart':
 
-        fractalParams = { 
-            ...DEFAULT_FRACTAL_PARAMS 
+        fractalParams = {
+            ...DEFAULT_FRACTAL_PARAMS
             ,selectedBackend  : BackendLanguage.DART
             ,selectedFractal  : this.selectedFractal
             ,maxIterations    : this.maxIterations
@@ -697,8 +708,8 @@ constructor(
 
       case 'nodejs':
 
-       fractalParams = { 
-            ...DEFAULT_FRACTAL_PARAMS 
+       fractalParams = {
+            ...DEFAULT_FRACTAL_PARAMS
             ,selectedBackend  : BackendLanguage.NODEJS
             ,selectedFractal  : this.selectedFractal
             ,maxIterations    : this.maxIterations
@@ -715,8 +726,8 @@ constructor(
 
         case 'j2se':
 
-        fractalParams = { 
-            ...DEFAULT_FRACTAL_PARAMS 
+        fractalParams = {
+            ...DEFAULT_FRACTAL_PARAMS
             ,selectedBackend  : BackendLanguage.J2SE
             ,selectedFractal  : this.selectedFractal
             ,maxIterations    : this.maxIterations
@@ -732,8 +743,8 @@ constructor(
 
       case 'golang':
 
-         fractalParams = { 
-            ...DEFAULT_FRACTAL_PARAMS 
+         fractalParams = {
+            ...DEFAULT_FRACTAL_PARAMS
             ,selectedBackend  : BackendLanguage.GOLANG
             ,selectedFractal  : this.selectedFractal
             ,maxIterations    : this.maxIterations
@@ -745,12 +756,12 @@ constructor(
         serviceCall = this._fractalEngine.GetFractal(
           fractalParams
         ).pipe(take(1));
-      break;  
+      break;
 
      case 'rustlang':
 
-        fractalParams = { 
-              ...DEFAULT_FRACTAL_PARAMS 
+        fractalParams = {
+              ...DEFAULT_FRACTAL_PARAMS
               ,selectedBackend  : BackendLanguage.RUSTLANG
               ,selectedFractal  : this.selectedFractal
               ,maxIterations    : this.maxIterations
@@ -762,12 +773,12 @@ constructor(
           serviceCall = this._fractalEngine.GetFractal(
             fractalParams
           ).pipe(take(1));
-      break;  
+      break;
 
     case 'swiftlang':
 
-        fractalParams = { 
-              ...DEFAULT_FRACTAL_PARAMS 
+        fractalParams = {
+              ...DEFAULT_FRACTAL_PARAMS
               ,selectedBackend  : BackendLanguage.SWIFTLANG
               ,selectedFractal  : this.selectedFractal
               ,maxIterations    : this.maxIterations
@@ -779,12 +790,12 @@ constructor(
           serviceCall = this._fractalEngine.GetFractal(
             fractalParams
           ).pipe(take(1));
-      break;  
+      break;
 
       case 'ziglang':
 
-        fractalParams = { 
-              ...DEFAULT_FRACTAL_PARAMS 
+        fractalParams = {
+              ...DEFAULT_FRACTAL_PARAMS
               ,selectedBackend  : BackendLanguage.ZIGLANG
               ,selectedFractal  : this.selectedFractal
               ,maxIterations    : this.maxIterations
@@ -796,12 +807,12 @@ constructor(
           serviceCall = this._fractalEngine.GetFractal(
             fractalParams
           ).pipe(take(1));
-      break;  
+      break;
 
      case 'cppws':
 
-        fractalParams = { 
-              ...DEFAULT_FRACTAL_PARAMS 
+        fractalParams = {
+              ...DEFAULT_FRACTAL_PARAMS
               ,selectedBackend  : BackendLanguage.CPP_WS
               ,selectedFractal  : this.selectedFractal
               ,maxIterations    : this.maxIterations
@@ -813,14 +824,14 @@ constructor(
           serviceCall = this._fractalEngine.GetFractal(
             fractalParams
           ).pipe(take(1));
-      break;  
+      break;
 
-  
+
 
       default:
         {
-              fractalParams = { 
-                  ...DEFAULT_FRACTAL_PARAMS 
+              fractalParams = {
+                  ...DEFAULT_FRACTAL_PARAMS
                   ,isZoomable : this._buildBounds()
               };
 
@@ -828,7 +839,7 @@ constructor(
                 fractalParams
               ).pipe(take(1));
         }
-        
+
     }
 
     serviceCall.subscribe({
@@ -920,7 +931,7 @@ private getFractalLabel(type: FractalType): string {
       case FractalType.BARNSLEY_FERN_GRPC:
       case FractalType.BARNSLEY_FERN_WASM:
         return 'Barnsley Leaf';
-      default:                        
+      default:
         return 'Fractal';
     }
   }
@@ -932,7 +943,7 @@ private getFractalLabel(type: FractalType): string {
  private _renderPieChart(): void {
     const store        = FractalBenchmark.load();
     const enabledCodes = this.getAvailableBackends().map(b => b.languageCode);
-    
+
     // Restrict pie chart categories to the 3 base fractal types
     const baseFractalIds = [
       FractalType.MANDELBROT,

@@ -10,20 +10,20 @@ import __wbg_init, { FractalEngine as WasmFractalEngine, InitOutput } from 'src/
 
 @Injectable({ providedIn: 'root' })
 export class FractalService extends BaseService {
-  
+
   private readonly http                   = inject(HttpClient);
   private readonly _configService         = inject(ConfigService);
   private readonly __baseUrlCPPOpenCv     = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
   private readonly __baseUrlNodeJsFractal = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/fractal/`;
   private readonly __baseUrlJ2seFractal   = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate`;
   private readonly __baseUrlKotlinFractal = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/fractals/generate`;
-  private readonly __baseUrlDartFractal   = `${this._configService.getConfigValue('baseUrlDart')}api/fractals/generate`;  
-  private readonly __baseUrlGoLangFractal    = `${this._configService.getConfigValue('baseUrlGoLang')}api/fractals/generate`;  
-  private readonly __baseUrlRustLangFractal  = `${this._configService.getConfigValue('baseUrlRustLang')}api/fractals/generate`;  
-  private readonly __baseUrlSwiftLangFractal = `${this._configService.getConfigValue('baseUrlSwiftLang')}api/fractals/generate`;  
-  private readonly __baseUrlZigLangFractal   = `${this._configService.getConfigValue('baseUrlZigLang')}api/fractals/generate`;  
-  private readonly __baseUrlCppWebServer     = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/fractals/generate`;  
- 
+  private readonly __baseUrlDartFractal   = `${this._configService.getConfigValue('baseUrlDart')}api/fractals/generate`;
+  private readonly __baseUrlGoLangFractal    = `${this._configService.getConfigValue('baseUrlGoLang')}api/fractals/generate`;
+  private readonly __baseUrlRustLangFractal  = `${this._configService.getConfigValue('baseUrlRustLang')}api/fractals/generate`;
+  private readonly __baseUrlSwiftLangFractal = `${this._configService.getConfigValue('baseUrlSwiftLang')}api/fractals/generate`;
+  private readonly __baseUrlZigLangFractal   = `${this._configService.getConfigValue('baseUrlZigLang')}api/fractals/generate`;
+  private readonly __baseUrlCppWebServer     = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/fractals/generate`;
+
   // ═══════════════════════════════════════════════════════════════════════════
   //  WASM PROPERTIES
   // ═══════════════════════════════════════════════════════════════════════════
@@ -47,7 +47,7 @@ export class FractalService extends BaseService {
   // ═══════════════════════════════════════════════════════════════════════════
   // GENERIC BACKEND
   // ═══════════════════════════════════════════════════════════════════════════
-  
+
   public GenerateFractalServerJulia(
       p_fractalParams : FractalParams
   ): Observable<FractalPoint[]> {
@@ -66,23 +66,23 @@ export class FractalService extends BaseService {
       break;
       case BackendLanguage.DART :
           url = `${this.__baseUrlDartFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break; 
+      break;
       case BackendLanguage.GOLANG :
           url = `${this.__baseUrlGoLangFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break; 
+      break;
       case BackendLanguage.RUSTLANG :
           url = `${this.__baseUrlRustLangFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
      case BackendLanguage.SWIFTLANG :
           url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;     
+      break;
       case BackendLanguage.ZIGLANG :
           url = `${this.__baseUrlZigLangFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;    
+      break;
       case BackendLanguage.CPP_WS :
           url = `${this.__baseUrlCppWebServer}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;           
-      default : 
+      break;
+      default :
           url = `${this.__baseUrlNodeJsFractal}julia?xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}`;
     }
 
@@ -110,22 +110,22 @@ export class FractalService extends BaseService {
       break;
       case BackendLanguage.DART:
           url = `${this.__baseUrlDartFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;    
+      break;
       case BackendLanguage.GOLANG:
           url = `${this.__baseUrlGoLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;    
+      break;
       case BackendLanguage.RUSTLANG:
           url = `${this.__baseUrlRustLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;     
+      break;
      case BackendLanguage.SWIFTLANG:
           url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;  
+      break;
      case BackendLanguage.ZIGLANG:
           url = `${this.__baseUrlZigLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;    
+      break;
     case BackendLanguage.CPP_WS:
           url = `${this.__baseUrlCppWebServer}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;                
+      break;
       default :
           url = `${this.__baseUrlNodeJsFractal}mandelbrot?xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}`;
     }
@@ -142,7 +142,7 @@ export class FractalService extends BaseService {
 
     switch(p_fractalParams.selectedBackend){
       case BackendLanguage.NODEJS:
-            url = `${this.__baseUrlNodeJsFractal}leaf`;      
+            url = `${this.__baseUrlNodeJsFractal}leaf`;
       break;
       case BackendLanguage.J2SE:
             url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
@@ -152,24 +152,24 @@ export class FractalService extends BaseService {
       break;
       case BackendLanguage.DART:
             url = `${this.__baseUrlDartFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;    
+      break;
       case BackendLanguage.GOLANG:
             url = `${this.__baseUrlGoLangFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;    
+      break;
        case BackendLanguage.RUSTLANG:
             url = `${this.__baseUrlRustLangFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;  
+      break;
       case BackendLanguage.SWIFTLANG:
             url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;     
+      break;
       case BackendLanguage.ZIGLANG:
             url = `${this.__baseUrlZigLangFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;           
+      break;
       case BackendLanguage.CPP_WS:
             url = `${this.__baseUrlCppWebServer}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;           
-      default : 
-            url = `${this.__baseUrlNodeJsFractal}leaf`;      
+      break;
+      default :
+            url = `${this.__baseUrlNodeJsFractal}leaf`;
     }
 
     const rawData$ = this.http.get<{ x: number; y: number; intensity: number }[]>(url);
@@ -178,15 +178,64 @@ export class FractalService extends BaseService {
     );
   }
 
-  /////////////////////////////////////////////////////////////////////////
-  // gRPC  
-  /////////////////////////////////////////////////////////////////////////
-  
+  public GenerateFractalServerGoldenRatio(
+      p_fractalParams : FractalParams
+  ): Observable<FractalPoint[]> {
+    const bounds : FractalBounds | undefined = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
+    let   url    : string                    = "";
+
+    switch (p_fractalParams.selectedBackend) {
+      /*
+      case BackendLanguage.NODEJS:
+          url = `${this.__baseUrlNodeJsFractal}mandelbrot?xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}`;
+      break;
+      case BackendLanguage.J2SE:
+          url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      break;*/
+      case BackendLanguage.KOTLIN:
+          url = `${this.__baseUrlKotlinFractal}?kind=${FractalType.GOLDEN_RATIO}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+        break;
+      /*
+      case BackendLanguage.DART:
+          url = `${this.__baseUrlDartFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      break;
+      case BackendLanguage.GOLANG:
+          url = `${this.__baseUrlGoLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      break;
+      case BackendLanguage.RUSTLANG:
+          url = `${this.__baseUrlRustLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      break;
+     case BackendLanguage.SWIFTLANG:
+          url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      break;
+     case BackendLanguage.ZIGLANG:
+          url = `${this.__baseUrlZigLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      break;
+    case BackendLanguage.CPP_WS:
+          url = `${this.__baseUrlCppWebServer}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      break; */
+      default :
+          url = `${this.__baseUrlKotlinFractal}?kind=${FractalType.GOLDEN_RATIO}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+    }
+
+    //
+    const rawData$ = this.http.get<{ x: number; y: number; intensity: number }[]>(url);
+
+    //
+    return rawData$.pipe(
+      map(raw => FractalEngine._adaptRemotePoints(raw, FractalType.GOLDEN_RATIO, p_fractalParams.maxIterations))
+    );
+  }
+
+/////////////////////////////////////////////////////////////////////////
+// gRPC
+/////////////////////////////////////////////////////////////////////////
+
  public GenerateFractalServerGrpc(
     p_fractalParams: FractalParams
   ): Observable<FractalPoint[]> {
-    const url = `${this._configService.getConfigValue('baseUrlGoLang')}fractal.FractalService/GetFractal`;
-    const bounds = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
+    const url         = `${this._configService.getConfigValue('baseUrlGoLang')}fractal.FractalService/GetFractal`;
+    const bounds      = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT;
     const GRPC_OFFSET = 3;
     const fractalKind = ((p_fractalParams.selectedFractal) ?? FractalType.MANDELBROT_GRPC) - GRPC_OFFSET;
 
@@ -234,8 +283,8 @@ export class FractalService extends BaseService {
       });
     }).pipe(take(1));
   }
-  
-private _parseGrpcArrayBuffer(
+
+ private _parseGrpcArrayBuffer(
     buffer: ArrayBuffer,
     maxIterations: number,
     fractalKind: number
@@ -259,7 +308,7 @@ private _parseGrpcArrayBuffer(
 
       const payloadStart = offset + 5;
       const payloadEnd = payloadStart + length;
-      
+
       console.log(`[gRPC Frame] Offset: ${offset}, Flag: 0x${flag.toString(16)}, Length: ${length}, PayloadEnd: ${payloadEnd}`);
 
       if (payloadEnd > bytes.length) {
@@ -288,7 +337,7 @@ private _parseGrpcArrayBuffer(
       } else {
         const trailerText  = new TextDecoder().decode(payload);
         console.warn('[gRPC Trailer]:', trailerText);
-        
+
         const statusMatch  = trailerText.match(/grpc-status:\s*(\d+)/i);
         const messageMatch = trailerText.match(/grpc-message:\s*(.+)/i);
         if (statusMatch && statusMatch[1] !== '0') {
@@ -308,7 +357,7 @@ private _parseGrpcArrayBuffer(
     console.log(`[gRPC] Parsing complete. Total mapped points: ${dataPoints.length}`);
     return dataPoints;
   }
-  
+
   private _mapBufferToPoints(
     points: { x: number; y: number; intensity: number }[],
     maxIterations: number,
@@ -339,70 +388,74 @@ private _parseGrpcArrayBuffer(
     }
     return { engine: this.engineInstance, module: this.wasmModule! };
   }
-  
+
 //
-public GenerateFractalClientWasm(
+
+/////////////////////////////////////////////////////////////////////////
+// WASM
+/////////////////////////////////////////////////////////////////////////
+
+ public GenerateFractalClientWasm(
   p_fractalParams: FractalParams
 ): Observable<FractalPoint[]> {
-  const WASM_OFFSET = 6;
-  const fractalKind = ((p_fractalParams.selectedFractal) ?? FractalType.MANDELBROT_WASM) - WASM_OFFSET;
-  const maxIterations = p_fractalParams.maxIterations;
+    const WASM_OFFSET   = 7;
+    const fractalKind   = ((p_fractalParams.selectedFractal) ?? FractalType.MANDELBROT_WASM) - WASM_OFFSET;
+    const maxIterations = p_fractalParams.maxIterations;
 
-  console.log(`[WASM] Generating fractal of kind ${fractalKind} with maxIterations=${maxIterations}`);
+    console.log(`[WASM] Generating fractal of kind ${fractalKind} with maxIterations=${maxIterations}`);
 
-  return defer(() => from(this.initWasm())).pipe(
-    map(({ engine, module }) => {
-      // Same fallback for every fractal kind — no per-kind special-casing.
-      // Whatever DEFAULT_BOUNDS_MANDELBROT_WASM holds is only ever used when
-      // isZoomable is genuinely unset; in normal use _buildBounds() always
-      // supplies real bounds before this is called.
-      const bounds = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT_WASM;
+    return defer(() => from(this.initWasm())).pipe(
+      map(({ engine, module }) => {
+        // Same fallback for every fractal kind — no per-kind special-casing.
+        // Whatever DEFAULT_BOUNDS_MANDELBROT_WASM holds is only ever used when
+        // isZoomable is genuinely unset; in normal use _buildBounds() always
+        // supplies real bounds before this is called.
+        const bounds = p_fractalParams.isZoomable ?? DEFAULT_BOUNDS_MANDELBROT_WASM;
 
-      // Execute Rust WASM generation
-      engine.generate(
-        fractalKind,
-        bounds.xMin,
-        bounds.xMax,
-        bounds.yMin,
-        bounds.yMax,
-        maxIterations
-      );
+        // Execute Rust WASM generation
+        engine.generate(
+          fractalKind,
+          bounds.xMin,
+          bounds.xMax,
+          bounds.yMin,
+          bounds.yMax,
+          maxIterations
+        );
 
-      // Read raw point data from WASM linear memory
-      const ptr = (engine as any).buffer_ptr();
-      const len = (engine as any).buffer_len();
-      const rawData = new Float64Array(module.memory.buffer, ptr, len);
+        // Read raw point data from WASM linear memory
+        const ptr = (engine as any).buffer_ptr();
+        const len = (engine as any).buffer_len();
+        const rawData = new Float64Array(module.memory.buffer, ptr, len);
 
-      const points: FractalPoint[] = [];
+        const points: FractalPoint[] = [];
 
-      for (let i = 0; i < rawData.length; i += 3) {
-        const x = rawData[i];
-        const y = rawData[i + 1];
-        const intensity = rawData[i + 2];
+        for (let i = 0; i < rawData.length; i += 3) {
+          const x = rawData[i];
+          const y = rawData[i + 1];
+          const intensity = rawData[i + 2];
 
-        if (fractalKind === 3 /* LEAF */) {
-          points.push({
-            x,
-            y,
-            value: FERN_SENTINEL,
-            iterations: maxIterations
-          });
-        } else {
-          const iter = intensity === 0 ? maxIterations : Math.round((intensity * maxIterations) / 255);
-          points.push({
-            x,
-            y,
-            value: iter,
-            iterations: maxIterations,
-            escaped: intensity < 255
-          });
+          if (fractalKind === 3 /* LEAF */) {
+            points.push({
+              x,
+              y,
+              value: FERN_SENTINEL,
+              iterations: maxIterations
+            });
+          } else {
+            const iter = intensity === 0 ? maxIterations : Math.round((intensity * maxIterations) / 255);
+            points.push({
+              x,
+              y,
+              value: iter,
+              iterations: maxIterations,
+              escaped: intensity < 255
+            });
+          }
         }
-      }
 
-      return points;
-    })
-  );
+        return points;
+      })
+    );
+  }
+
 }
-
-}  
-
