@@ -4,7 +4,6 @@ import { HomeWebComponent                } from './_modules/home/home-web/home-w
 import { PageNotFoundComponent           } from './_modules/home/page-not-found/page-not-found.component';
 import { ProgramDescriptionComponent     } from './_modules/about/programDescription/program-description.component';
 import { SCMComponent                    } from './_modules/about/scm/scm.component';
-import { TechnicalSpecsComponent         } from './_modules/about/technicalspecs/technical-specs/technical-specs.component';
 import { CurriculumAngularComponent      } from './_modules/_Demos/_DemosCurriculum/curriculumAngular/curriculumAngular.component';
 import { AlgorithmCollisionComponent     } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-collision/algorithm-collision.component';
 import { AlgorithmDijkstraComponent      } from './_modules/_Demos/_DemosFeatures/algorithm/algorithm-dijkstra/algorithm-dijkstra.component';
@@ -33,10 +32,11 @@ import { LandingComponent            } from './_components/landing/landing.compo
 import { RubikCubeComponent          } from './_modules/_Demos/_DemosFeatures/games/rubik-cube/rubik-cube.component';
 import { LLMApiTestingComponent as LLMApiTestingComponent } from './_modules/_Demos/_DemosFeatures/miscelaneous/LLMApiTesting/LLMApiTesting.component';
 import { inkLingComponent                                 } from './_modules/__Testing/LLM/InkLing/inkLing.component';
+import { TechnicalSpecsComponent } from './_modules/about/technicalspecs/technical-specs.component';
 
 
 export interface _Route extends Route
-{  
+{
     id      : number;
     caption : string;
     queryParams : string;
@@ -88,14 +88,14 @@ export const routes: _Route[] = [
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Demos / Language - SpringBoot / Java'        , queryParams : 'PAGE_DEMOS_SPRING_BOOT_JAVA'     },
   {  id: 0,  path: 'GridParam'             , component: GridParamComponent                  , caption: ' Demos / Language - Django / Python'          , queryParams : 'PAGE_DEMOS_DJANGO_PYTHON'        },
   {  id: 0,  path: 'PageUrlList'           , component: PageUrlListComponent                , caption: ''                                             , queryParams : '' },
-  {  id: 0,  path: 'Landing'               , component: LandingComponent                    , caption: ''                                             , queryParams : '' }, 
+  {  id: 0,  path: 'Landing'               , component: LandingComponent                    , caption: ''                                             , queryParams : '' },
   {  id: 0,  path: 'inkLing'               , component: inkLingComponent                    , caption: ''                                             , queryParams : '' },
   {  id: 0,  path: '**'                    , component: PageNotFoundComponent               , caption: ''                                             , queryParams : '' },
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)], 
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
@@ -110,6 +110,6 @@ export class AppRoutingModule {
             {
               element.id = ++index;
             }
-        });    
+        });
     }
 }

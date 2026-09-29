@@ -12,7 +12,7 @@ import { CustomErrorHandler      } from 'src/app/app.module';
 import { ContactformComponent                    } from './contactform/contactform.component';
 import { IndexComponent, IndexSortableHeader     } from './index/index.component';
 import { SCMComponent                            } from './scm/scm.component';
-import { TechnicalSpecsComponent                 } from './technicalspecs/technical-specs/technical-specs.component';
+import { TechnicalSpecsComponent                 } from './technicalspecs/technical-specs.component';
 import { SpeechPanelComponent                    } from 'src/app/_components/speech-panel/speech-panel.component';
 // THIRD PARTY
 import { NgbHighlight, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';

@@ -1,7 +1,7 @@
-import { Component                                                      } from '@angular/core';
-import { _environment                                                   } from 'src/environments/environment';
-import { _BaseModel                                                     } from 'src/app/_models/entity.model';
-import { PAGE_ABOUT_SCM, PAGE_ID, PAGE_SIZE, SEARCH_TERM                } from 'src/app/_models/common';
+import { Component                                                           } from '@angular/core';
+import { _environment                                                        } from 'src/environments/environment';
+import { _BaseModel                                                          } from 'src/app/_models/entity.model';
+import { PAGE_ABOUT_SCM, PAGE_ID, PAGE_SIZE, SEARCH_TERM                     } from 'src/app/_models/common';
 import { SearchCustomService                                                 } from 'src/app/_services/__Utils/SearchService/search-custom.service';
 import { SearchCustomComponent                                               } from 'src/app/_components/search/search-custom.component ';
 
@@ -27,4 +27,4 @@ export class SCMComponent extends SearchCustomComponent {
       //
       super(searchService);
   }
-} 
+}
