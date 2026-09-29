@@ -118,7 +118,7 @@
     "baseUrlCppWebServer_render_github_hotmail_ws04"   : "https://fractal-cpp-server-latest-hh6n.onrender.com/",
     "baseUrlCppWebServer_render_df149032_ws03"         : "https://fractal-cpp-server-latest-1bm4.onrender.com/",
     "baseUrlCppWebServer"                              : "https://fractal-cpp-server-latest-hh6n.onrender.com/",
-    "baseUrlCppWebServer_Repo"                         : "https://github.com/aperezNWO/CPP_GCC_ALGORITHM/tree/master/fractalEngine",
+    "baseUrlCppWebServerRepo"                          : "https://github.com/aperezNWO/CPP_GCC_ALGORITHM/tree/master/fractalEngine",
     "DJANGO_PYTHON_ENV"                                : "--------------------------------------------------",
     "baseUrlDjangoPython_local"                        : "http://localhost:8080/",
     "baseUrlDjangoPython_aperezNWO"                    : "https://sp223k-8000.csb.app/",
