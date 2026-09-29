@@ -176,9 +176,18 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] LINUX UBUNTU / KDE TEST.
 
+    --[_] CHECK CURRENT VOSTRO LAPTOP INSTALL / PARTITION.
+
+--[_] GOLDEN RATION SPIRAL FRACTAL.
+
+    --[_] Kotlin.
+
+        --[x] Server.
+
+        --[==>] Client.
 --[_] ABOUT.
 
-            --[==>] exteran json source.
+            --[==>] external json source.
 
             --[==>] cleangetxxxversions() ??? ==> ask i.a.
 
@@ -202,17 +211,15 @@ r///////////////////////////////////////////////////////////////////////////////
 
                           --[X] J2SE.
 
-                          --[==>] (missing from lookup) Swift.
+                          --[x] (missing from lookup) C++ web server.
 
-                          --[==>] (missing from lookup) C++ web server.
+                              --[x] lang version.
 
-                              |--[==>] lang version.
+                              --[x] server version.
 
-                              |--[==>] server version.
+                          --[x] zig / c++ web server group
 
-                          --[==>] zig / c++ web server group
-
-                      --[X] Node.js / ocr.
+                     --[X] Node.js / ocr.
 
                               --[==>] lang version / repo link.
 
@@ -235,7 +242,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
                         --[==>] DJANGO-LINUX
 
-                              --[==>] LINK TO HEALTH / SWAGGER.
+                              --[x] LINK TO HEALTH / SWAGGER.
 
                               --[x] LINK TO REPO / PRIVATE.
 
@@ -249,14 +256,10 @@ r///////////////////////////////////////////////////////////////////////////////
                   --[x] TYPE ATTRIBUTE.
                   --[x] FEATURES LIST <, , ,>.
 
+            --[==>] (missing from lookup) Swift.
 
---[_] GOLDEN RATION SPIRAL FRACTAL.
+            --[==>] django dynamic site config - render.
 
-    --[_] Kotlin.
-
-        --[x] Server.
-
-        --[==>] Client.
-
+            --[==>] node.js dynamic root url  - swagger
 
 ////////////////////////////////////////////////////////////////////////////////
