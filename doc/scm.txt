@@ -145,12 +145,12 @@ https://hub.docker.com/repositories/apereznwogmail
 
                -- [_] (OAUTH github- MAIN GITHUB ACCOUNT) signed as
                                                         alejandro.perez.acosta@hotmail.com
-                    render_github_ws04 (RUNNING - 24/09/2026)
+                    render_github_ws04 (RUNNING - 24/09/2026) / (RUNNING - 28/09/2026)
                     TRY_MORE
 
                -- [_] (OAUTH github - SECONDARY GITHUB ACCOUNT) signed as
                                                         alejandro.perez.acosta@gmail.com :
-                    render_github_ws05 (RUNNING - 24/09/2026)
+                    render_github_ws05 (RUNNING - 24/09/2026)/(DISABLED - 28/09/2026)
                     TRY_MORE
 
                 -- [_] PENDING SIGN IN ACCOUNTS:

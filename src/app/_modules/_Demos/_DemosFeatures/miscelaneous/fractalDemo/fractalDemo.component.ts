@@ -254,7 +254,7 @@ get isMandelbrotSelected(): boolean {
       [FractalType.MANDELBROT]        : { supported: true,   zoomable: true   },
       [FractalType.JULIA]             : { supported: true,   zoomable: true   },
       [FractalType.BARNSLEY_FERN]     : { supported: true,   zoomable: false  },
-      [FractalType.GOLDEN_RATIO]      : { supported: true,   zoomable: true   },
+      [FractalType.GOLDEN_RATIO]      : { supported: false,  zoomable: true   },
       [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   },
       [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },
       [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: true   },

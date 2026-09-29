@@ -202,15 +202,15 @@ r///////////////////////////////////////////////////////////////////////////////
 
                           --[X] J2SE.
 
-                          --[==>] zig / c++ web server group
+                          --[==>] (missing from lookup) Swift.
 
-                          --[==>] Swift (missing from lookup)
-
-                          --[==>] c++ web server (missing from lookup)
+                          --[==>] (missing from lookup) C++ web server.
 
                               |--[==>] lang version.
 
                               |--[==>] server version.
+
+                          --[==>] zig / c++ web server group
 
                       --[X] Node.js / ocr.
 
