@@ -1,11 +1,16 @@
-import { Component, signal, VERSION, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { PAGE_ABOUT_TECHNICAL_SPECS } from 'src/app/_models/common';
-import { BaseComponent } from 'src/app/_components/base/base.component';
-import { SpeechService } from 'src/app/_services/__Utils/SpeechService/speech.service';
-import { ConfigService } from 'src/app/_services/__Utils/ConfigService/config.service';
-import { VersionBundle, VersionCacheService } from 'src/app/_services/__Utils/VersionCacheService/version-cache.service';
-import { BackendService } from '../../../../_services/BackendService/backend.service';
+import {
+  Component,
+  signal,
+  VERSION,
+  ChangeDetectorRef
+}                                              from '@angular/core';
+import { ActivatedRoute                      } from '@angular/router';
+import { BaseComponent                       } from '../../../_components/base/base.component';
+import { PAGE_ABOUT_TECHNICAL_SPECS          } from '../../../_models/common';
+import { ConfigService                       } from '../../../_services/__Utils/ConfigService/config.service';
+import { SpeechService                       } from '../../../_services/__Utils/SpeechService/speech.service';
+import { VersionBundle, VersionCacheService  } from '../../../_services/__Utils/VersionCacheService/version-cache.service';
+import { BackendService                      } from '../../../_services/BackendService/backend.service';
 
 export interface ServiceVersionMeta {
   type?: string  | null;
@@ -79,6 +84,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
     protected __baseUrlNodeJsRepo        : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJsRepo')}`;
     protected __baseUrlNodeJsOcr         : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJsOcr')}`;
     protected __baseUrlNodeJsOcrRepo     : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJsOcrRepo')}`;
+    protected __baseUrlCppWebServer      : string | undefined = `${this.configService.getConfigValue('baseUrlCppWebServer')}`;
+    protected __baseUrlCppWebServerRepo  : string | undefined = `${this.configService.getConfigValue('baseUrlCppWebServerRepo')}`;
     protected _baseUrlPythonDjango       : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPython')}`;
     protected _PythonDjangoRepo          : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonRepo')}`;
     protected _baseUrlPythonDjangoTF     : string | undefined = `${this.configService.getConfigValue('baseUrlDjangoPythonTF')}`;
@@ -233,6 +240,15 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     features             : '<c/c++ alt>',
                     runtimeOrLangVersion : this._ZigVersion,
                     apiOrServerVersion   : this._ZigWebServerVersion,
+                },
+                {
+                    type                 : '(Backend)',
+                    name                 : '[C++ / httplib::Server]',
+                    features             : '<std=c++17>',
+                    runtimeOrLangVersion : `${this.__baseUrlCppWebServer}getSTDVersion`,
+                    apiOrServerVersion   : `${this.__baseUrlCppWebServer}getServerVersion`,
+                    repoLink             : this.__baseUrlCppWebServerRepo,
+                    healthLink           : `${this.__baseUrlCppWebServer}health`,
                 },
                 {
                     type               : '(Backend)',
