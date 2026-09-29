@@ -214,9 +214,11 @@ r///////////////////////////////////////////////////////////////////////////////
 
                       --[X] Node.js / ocr.
 
-                              |--[==>] lang version / repo link.
+                              --[==>] lang version / repo link.
 
-                              |--[==>] server version / health link / SWAGGER.
+                              --[==>] server version / health link / SWAGGER.
+
+                              --[==>] SWAGGER dymamic root.
 
                       --[==>] PYTHON
 
