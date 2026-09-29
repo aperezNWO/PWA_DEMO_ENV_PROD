@@ -30,14 +30,14 @@ import { takeUntilDestroyed       } from '@angular/core/rxjs-interop';
   providedIn: 'root'
 })
 export class BackendService extends BaseService implements OnInit {
-  
+
 
   // v21: Inyección funcional (Reemplaza al constructor)
   public readonly http           = inject(HttpClient);
   public readonly _configService = inject(ConfigService);
-  
+
   /**
-   * v21 Feature: DestroyRef. 
+   * v21 Feature: DestroyRef.
    * Inyectarlo aquí captura el 'Injection Context' necesario para takeUntilDestroyed.
    */
   private readonly destroyRef = inject(DestroyRef);
@@ -51,9 +51,9 @@ export class BackendService extends BaseService implements OnInit {
     // Inicialización si fuera necesaria
   }
 
-  ////////////////////////////////////////////////////////////////  
+  ////////////////////////////////////////////////////////////////
   // METODOS - [COMUNES]
-  ////////////////////////////////////////////////////////////////  
+  ////////////////////////////////////////////////////////////////
 
   _GetWebApiAppVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlNetCore')}api/Demos/GetAppVersion`;
@@ -73,54 +73,54 @@ export class BackendService extends BaseService implements OnInit {
     if (p_PageTitle === '' || p_logMsg === '') return;
 
     const p_url = `${this._configService.getConfigValue('baseUrlNetCore')}api/Demos/SetLog?p_logMsg=${p_logMsg}&logType=${logType.toString()}`;
-    
+
     this.http.get<string>(p_url, this.HTTPOptions_Text)
-      .pipe(takeUntilDestroyed(this.destroyRef)) 
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (logResult) => { /* Silently handle success */ },
         error: (err) => { /* Silently handle error to avoid infinite loops */ }
       });
   }
 
-  ////////////////////////////////////////////////////////////////  
-  // METODOS - [GENERAR ARCHIVO CSV] / CHARTS 
-  ////////////////////////////////////////////////////////////////  
+  ////////////////////////////////////////////////////////////////
+  // METODOS - [GENERAR ARCHIVO CSV] / CHARTS
+  ////////////////////////////////////////////////////////////////
 
   getCSVLink(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlNetCore')}api/CSVManager/GetCSVLinkJson`;
-    return this.http.post<string>(p_url, this.HTTPOptions_Text); 
+    return this.http.post<string>(p_url, this.HTTPOptions_Text);
   }
-    
+
   getInformeRemotoCSV(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlNetCore')}api/CSVManager/GenerarInformeCSVJson`;
-    return this.http.get<string>(p_url, this.HTTPOptions_Text); 
+    return this.http.get<string>(p_url, this.HTTPOptions_Text);
   }
 
   getInformeRemotoCSV_STAT(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlNetCore')}api/CacheManager/GenerarInformeCSVJsonSTAT`;
-    return this.http.get<string>(p_url, this.HTTPOptions_Text); 
+    return this.http.get<string>(p_url, this.HTTPOptions_Text);
   }
 
   _SetSTATPieCache(_prefix: string | undefined): void {
     const p_url = `${_prefix}api/CacheManager/SetSTATPieCache`;
-    
+
     this.http.get<string>(p_url, this.HTTPOptions_Text)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (jsondata) => { },
         error: (err) => { }
-      }); 
+      });
   }
-    
+
   getInformeRemotoCSV_NodeJS(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}GenerarInformeCSVJson`;
     const HTTPOptions = {
       headers: new HttpHeaders({ 'Accept': 'application/text' }),
       'responseType': 'text' as 'json'
     };
-    return this.http.get<string>(p_url, HTTPOptions); 
+    return this.http.get<string>(p_url, HTTPOptions);
   }
-  
+
   getPersonsSprinbBootKotlin(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/data/getAllPersons`;
     console.log('getPersonsSprinbBootKotlin URL: ', p_url);
@@ -131,7 +131,7 @@ export class BackendService extends BaseService implements OnInit {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getAllPersons?format=json`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-  
+
   getPersonsSprinbBootJava(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllPersons`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
@@ -149,9 +149,9 @@ export class BackendService extends BaseService implements OnInit {
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
-  ////////////////////////////////////////////////////////////////  
+  ////////////////////////////////////////////////////////////////
   // METODOS - [GENERAR ARCHIVO XLS] / CHARTS
-  ////////////////////////////////////////////////////////////////  
+  ////////////////////////////////////////////////////////////////
 
   getLogRemoto(_searchCriteria: SearchCriteria): Observable<LogEntry[]> {
     const url = `${this._configService.getConfigValue('baseUrlNetCore')}api/XLSManager/generarinformejson`;
@@ -190,28 +190,28 @@ export class BackendService extends BaseService implements OnInit {
 
   getInformeExcel(_searchCriteria: SearchCriteria): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlNetCore')}api/XLSManager/generarinformexls`;
-    return this.http.get<string>(p_url, this.HTTPOptions_Text); 
+    return this.http.get<string>(p_url, this.HTTPOptions_Text);
   }
 
   getLogStatGET(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlNetCore')}api/CacheManager/GetConsultaLogStatGet`;
-    return this.http.get<string>(p_url, this.HTTPOptions_JSON);   
-  } 
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
 
   _SetSTATBarCache(_prefix: string | undefined): void {
     const p_url = `${_prefix}api/CacheManager/SetSTATBarCache`;
-    
+
     this.http.get<string>(p_url, this.HTTPOptions_Text)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (jsondata) => { },
         error: (err) => console.error('_SetSTATBarCache ERROR: ', err.message)
       });
-  } 
+  }
 
-  ////////////////////////////////////////////////////////////////  
-  // BACKEND VERSIONS 
-  ////////////////////////////////////////////////////////////////  
+  ////////////////////////////////////////////////////////////////
+  // BACKEND VERSIONS
+  ////////////////////////////////////////////////////////////////
   // J2SE / JAVA SPRING BOOT
   getJavaVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getJavaVersion`;
@@ -223,7 +223,7 @@ export class BackendService extends BaseService implements OnInit {
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
-  // NODE.JS 
+  // NODE.JS
   getNodeVersion(): Observable<string>{
     const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}getNodeVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
@@ -231,7 +231,7 @@ export class BackendService extends BaseService implements OnInit {
   getNodeWebServerVersion(): Observable<string>{
      //
      const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}getNodeWebServerVersion`;
-    
+
      // {"server":"Express / Node App","version":"1.0.0.3"}
      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
         tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
@@ -242,17 +242,17 @@ export class BackendService extends BaseService implements OnInit {
         tap(version => console.log('Extracted Node.js - Express Version (OCR)', version))
       );
   }
-  
+
   // NODE.JS - OCR
   getNodeVersionOcr(): Observable<string>{
     const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-  
+
   getNodeWebServerVersionOcr(): Observable<string>{
-     // 
+     //
      const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeWebServerVersion`;
-      
+
      // {"server":"Express / Node App","version":"1.0.0.3"}
      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
         tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
@@ -263,8 +263,8 @@ export class BackendService extends BaseService implements OnInit {
         tap(version => console.log('Extracted Node.js - Express Version', version))
       );
   }
-  
-  // PYTHON - DB 
+
+  // PYTHON - DB
   getPythonVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getPythonVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
@@ -299,7 +299,7 @@ export class BackendService extends BaseService implements OnInit {
       tap(version => console.log('Extracted Zig Version:', version))
     );
   }
-
+  // ZIG
   getZigWebServerVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/getZigWebServerVersion`;
 
@@ -314,12 +314,21 @@ export class BackendService extends BaseService implements OnInit {
       tap(version => console.log('Extracted Zig Web Server Version:', version))
     );
   }
-
+  // CPP
+  getCppVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWebServer')}getSTDVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  // CPP
+  getCppWebServerVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWebServer')}getServerVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
   // RUST
-  getRustVersion(): Observable<string> { 
-      // RUST  
+  getRustVersion(): Observable<string> {
+      // RUST
       const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/version/rust`;
-      
+
       // Log the URL for debugging purposes
       console.log('getRustVersion URL: ', p_url);
 
@@ -333,14 +342,14 @@ export class BackendService extends BaseService implements OnInit {
         tap(version => console.log('Extracted Rust Version:', version))
       );
   }
-  
-  getRustWebServerVersion(): Observable<string> {  
+
+  getRustWebServerVersion(): Observable<string> {
     // RUST WEB SERVER
     const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/version/server`;
 
     // Log the URL for debugging purposes
     console.log('getRustWebServerVersion URL: ', p_url);
-    
+
     // {"server_version":"0.1.0"}
     return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
       tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
@@ -351,7 +360,7 @@ export class BackendService extends BaseService implements OnInit {
       tap(version => console.log('Extracted Rust Web Server Version:', version))
     );
   }
-  
+
   // GO LANG
   getGoLangVersion(){
       // GO
@@ -372,7 +381,7 @@ export class BackendService extends BaseService implements OnInit {
   }
 
   getGoLangWebServerVersion(){
-      // GO web server 
+      // GO web server
       const p_url =  `${this._configService.getConfigValue('baseUrlGoLang')}api/version/server`;
 
       // Log the URL for debugging purposes
@@ -389,14 +398,14 @@ export class BackendService extends BaseService implements OnInit {
       );
   }
 
-  // DART 
+  // DART
   getDartVersion(){
       // DART
       const p_url =  `${this._configService.getConfigValue('baseUrlDart')}api/system/language-version`;
 
       // Log the URL for debugging purposes
       console.log('getDartVersion URL: ', p_url);
-      
+
       // {"language":"Dart","version":"3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"windows_x64\""}
       return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
         tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
@@ -433,7 +442,7 @@ export class BackendService extends BaseService implements OnInit {
 
       // Log the URL for debugging purposes
       console.log('getKotlinVersion URL: ', p_url);
-      
+
       // {"language":"Kotlin","version":"2.3.21"}
       return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
         tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
@@ -442,11 +451,11 @@ export class BackendService extends BaseService implements OnInit {
           return (parsed?.version ?? parsed?.body?.version) as string;
         }),
         tap(version => console.log('Extracted Kotlin Version:', version))
-      ); 
+      );
   }
 
   getKotlinWebServerVersion(){
-      // KOTLIN - SPRINB BOOT 
+      // KOTLIN - SPRINB BOOT
       const p_url =  `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/system/server-version`;
 
       // Log the URL for debugging purposes
@@ -462,5 +471,5 @@ export class BackendService extends BaseService implements OnInit {
         tap(version => console.log('Extracted Kotlin - SpringBoot Version:', version))
       );
   }
-  ////////////////////////////////////////////////////////////////  
+  ////////////////////////////////////////////////////////////////
 }

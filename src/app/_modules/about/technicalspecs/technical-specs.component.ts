@@ -61,6 +61,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
     _NodeWebServerVersionOcr = this.fromCache('nodeWebServerVersionOcr');
     _ZigVersion = this.fromCache('zigVersion');
     _ZigWebServerVersion = this.fromCache('zigWebServerVersion');
+    _CppVersion = this.fromCache('cppVersion');
+    _CppWebServerVersion = this.fromCache('cppWebServerVersion');
     _RustVersion = this.fromCache('rustVersion');
     _RustWebServerVersion = this.fromCache('rustWebServerVersion');
     _GoLangVersion = this.fromCache('goLangVersion');
@@ -141,6 +143,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._NodeWebServerVersionOcr = v.nodeWebServerVersionOcr ?? '(..loading..)';
         this._ZigVersion = v.zigVersion ?? '(..loading..)';
         this._ZigWebServerVersion = v.zigWebServerVersion ?? '(..loading..)';
+        this._CppVersion = v.cppVersion ?? '(..loading..)';
+        this._CppWebServerVersion = v.cppWebServerVersion ?? '(..loading..)';
         this._GoLangVersion = v.goLangVersion ?? '(..loading..)';
         this._GoLangWebServerVersion = v.goLangWebServerVersion ?? '(..loading..)';
         this._DartVersion = v.dartVersion ?? '(..loading..)';
@@ -245,8 +249,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     type                 : '(Backend)',
                     name                 : '[C++ / httplib::Server]',
                     features             : '<std=c++17>',
-                    runtimeOrLangVersion : `${this.__baseUrlCppWebServer}getSTDVersion`,
-                    apiOrServerVersion   : `${this.__baseUrlCppWebServer}getServerVersion`,
+                    runtimeOrLangVersion : this._CppVersion,
+                    apiOrServerVersion   : this._CppWebServerVersion,
                     repoLink             : this.__baseUrlCppWebServerRepo,
                     healthLink           : `${this.__baseUrlCppWebServer}health`,
                 },

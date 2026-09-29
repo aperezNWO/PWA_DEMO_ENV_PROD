@@ -44,6 +44,8 @@ export interface VersionBundle {
   tfCpp               : string;
   zigVersion          : string;
   zigWebServerVersion : string;
+  cppVersion           : string;
+  cppWebServerVersion  : string;
   rustVersion          : string;
   rustWebServerVersion : string;
   goLangVersion            : string;
@@ -138,7 +140,9 @@ export class VersionCacheService implements OnDestroy {
       tfApi               : safeSub(this.tf._GetTensorFlowAPIVersion()),
       tfCpp               : safeSub(this.tf._TensorFlow_GetCPPSTDVersion()),
       zigVersion          : safeSub(this.back.getZigVersion()),
-      zigWebServerVersion : safeSub(this.back.getZigWebServerVersion()),
+      zigWebServerVersion  : safeSub(this.back.getZigWebServerVersion()),
+      cppVersion           : safeSub(this.back.getCppVersion()),
+      cppWebServerVersion  : safeSub(this.back.getCppWebServerVersion()),
       rustVersion          : safeSub(this.back.getRustVersion()),
       rustWebServerVersion : safeSub(this.back.getRustWebServerVersion()),
       goLangVersion          : safeSub(this.back.getGoLangVersion()),
@@ -190,13 +194,14 @@ export class VersionCacheService implements OnDestroy {
       pythonVersion: L, pythonWebServerVersion: L,
       pythonVersionTF:L, pythonWebServerVersionTF : L,
       nodeVersion: L, nodeWebServerVersion: L,
-      nodeVersionOcr: L, nodeWebServerVersionOcr: L, 
+      nodeVersionOcr: L, nodeWebServerVersionOcr: L,
       javaVersion: L, javaWebServerVersion : L,
       webApiApp: L, algorithmApp: L, algorithmCpp: L, aspNetCoreCpp: L,
       openCvApp: L, openCvApi: L, openCvCpp: L,
       tesseractApp: L, tesseractApi: L, tesseractCpp: L,
       tfApp: L, tfApi: L, tfCpp: L,
       zigVersion: L, zigWebServerVersion: L,
+      cppVersion: L, cppWebServerVersion: L,
       rustVersion: L,
       rustWebServerVersion: L,
       goLangVersion: L,
