@@ -248,7 +248,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 {
                     type                 : '(Backend)',
                     name                 : '[C++ / httplib::Server]',
-                    features             : '<std=c++17>',
+                    features             : '<Fractals>',
                     runtimeOrLangVersion : this._CppVersion,
                     apiOrServerVersion   : this._CppWebServerVersion,
                     repoLink             : this.__baseUrlCppWebServerRepo,
