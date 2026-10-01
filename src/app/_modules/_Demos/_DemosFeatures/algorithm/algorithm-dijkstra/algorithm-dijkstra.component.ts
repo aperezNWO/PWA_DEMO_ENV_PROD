@@ -53,22 +53,22 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
   public __sourcePointList : any;
   public __distanceList    : any;
   public __languajeList    : any;
-  // 
+  //
   public selectedIndex          : number  = 0;
   public selectedIndexLanguage  : number  = 0;
   //
   public getGraphIdle           : boolean = false;
   //
   ////////////////////////////////////////////////////////////////
-  // EVENT HANDLERS //////////////////////////////////////////////  
+  // EVENT HANDLERS //////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////
   constructor(public override configService      : ConfigService,
-              public override backendService     : BackendService, 
+              public override backendService     : BackendService,
               public override route              : ActivatedRoute,
               public override speechService      : SpeechService,
               public pdfService                  : PdfService,
-              public algorithmService            : AlgorithmService, 
-            ) 
+              public algorithmService            : AlgorithmService,
+            )
   {
       super(configService,
             backendService,
@@ -86,14 +86,14 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
     this.DrawDistanceList(true, "");
   }
   //
-  ngAfterViewInit():void { 
+  ngAfterViewInit():void {
     //
     this._context = this.c_canvas.nativeElement.getContext('2d');
-    //    
+    //
     this._ResetControls();
   };
   //--------------------------------------------------------------------------
-  // METODOS COMUNES 
+  // METODOS COMUNES
   //--------------------------------------------------------------------------
   //
   queryParams():void {
@@ -111,21 +111,22 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
       this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS"     ));
       this.__languajeList.push(new _languageName(2, '(.Net Core   / C++)'            , false ,"CPP"    ));
       this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA"   ));
-      this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KT"     ));      
-      this.__languajeList.push(new _languageName(5, '(Shelf       / Dart)'           , false ,"DART"   ));   
-      this.__languajeList.push(new _languageName(6, '(GoLang      / [net/http])'     , false ,"GO"     ));                   
-      this.__languajeList.push(new _languageName(7, '(Rust        / Actix Web        )'  , false, "RS"     ));      
-      this.__languajeList.push(new _languageName(8, '(Zig         / http.std.Server  )'  , false, "ZIG"    ));            
+      this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KT"     ));
+      this.__languajeList.push(new _languageName(5, '(Shelf       / Dart)'           , false ,"DART"   ));
+      this.__languajeList.push(new _languageName(6, '(GoLang      / [net/http])'     , false ,"GO"     ));
+      this.__languajeList.push(new _languageName(7, '(Rust        / Actix Web        )'  , false, "RS"     ));
+      this.__languajeList.push(new _languageName(8, '(Zig         / http.std.Server  )'  , false, "ZIG"    ));
+      this.__languajeList.push(new _languageName(9, '(C++         / httplib::Server  )'  , false, "CWS"    ));
       //
       let langName = params['langName'] ? params['langName'] : "" ;
       //
       if (langName !== '')
-      {   
+      {
           //
           for (var index = 1; index < this.__languajeList.length; index++) {
               //
               if (this.__languajeList[index]._shortName  == langName)
-                this.__languajeList[index]._selected = true;        
+                this.__languajeList[index]._selected = true;
           }
 
       } else {
@@ -135,7 +136,7 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
     });
   }
   //
-  public _distanceListChange():void 
+  public _distanceListChange():void
   {
     //
     this.selectedIndex           = this._distanceList.nativeElement.options.selectedIndex;
@@ -157,7 +158,7 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
         let path              = distenceListItems[2];
         //
         if (path != "")
-        { 
+        {
             //
             while (path.indexOf(";") != -1)
             {
@@ -173,14 +174,14 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
             }
             //
             for (let index_y = 0; index_y < selectedPoints.length; index_y++)
-            { 
+            {
                 if  (selectedPoints.length > 0)
                 {
                     //
                     let selectedPointsVal : string[] = selectedPoints[index_y].replace("[", "").replace("]", "").split(",");
                     //
                     if  (selectedPointsVal.length > 0)
-                    { 
+                    {
                       //
                       let coordSource    : number   = Number.parseInt(selectedPointsVal[0]);
                       var coordDest      : number   = Number.parseInt(selectedPointsVal[1]);
@@ -220,7 +221,7 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
       //
       this.status_message.set(`[Graph reseted correctly]`);
   };
-  // 
+  //
   _GetGraph():void
   {
         //
@@ -234,7 +235,7 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
         //
         this.status_message.set('[Generating graph. Please wait...]');
         //
-        switch(_progLangId)    
+        switch(_progLangId)
         {
             case 0:   // (SELECT LANGUAGE...)
                   return;
@@ -263,11 +264,14 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
             case 8:   // ziglang
               randomVertexInfo       = this.algorithmService.getRandomVertexZigLang(_vertexSize,_sourcePoint);
             break;
+            case 9:   // cpplang
+              randomVertexInfo       = this.algorithmService.getRandomVertexCppLang(_vertexSize,_sourcePoint);
+            break;
         }
         //
         const randomVertexObserver   = {
             //
-            next: (randomVertexInfo: string)     => { 
+            next: (randomVertexInfo: string)     => {
                 //
                 const regex_1 = /&#x25A0;/g;
                 //
@@ -328,7 +332,7 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
                 this._ResetControls();
                 //
                 this.status_message.set('[An error occured. Please try again]');
-            },       
+            },
             complete: ()        => {
                 //
                 console.warn(this.pageTitle + ' - [GETTING VERTEX VALUES] - [Observer got a complete notification]');
@@ -444,7 +448,7 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
     //
     let pointArrayMaster : string [] = this.PointListHidden.split("|");
     let matrix           = new Array(matrixArray.length);
-    let index            : number; 
+    let index            : number;
     //
     for (index = 0; index < matrixArray.length; index++) {
         //
@@ -505,8 +509,8 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
                         drawLine = false;
 
                     if (pointArray[index_y] != pointArrayMaster[index_y])
-                        drawLine = false;    
-                }    
+                        drawLine = false;
+                }
 
                 //
                 if (drawLine == true)
@@ -572,14 +576,14 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
         //
         let vertexSize : _vertexSize = new _vertexSize(index,index.toString());
         //
-        this.__sourcePointList.push(vertexSize);        
+        this.__sourcePointList.push(vertexSize);
     }
     //-----------------------------------------------------------------------------
     // LENGUAJES DE PROGRAMACION
     //-----------------------------------------------------------------------------
-    this.queryParams();      
+    this.queryParams();
   }
-  // 
+  //
   ////////////////////////////////////////////////////////////////
   // METODOS COMUNES /////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////

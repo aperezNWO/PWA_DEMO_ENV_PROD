@@ -9,13 +9,13 @@ import { ConfigService } from '../__Utils/ConfigService/config.service';
 })
 export class AlgorithmService extends BaseService {
     //
-    constructor(public http: HttpClient, public _configService : ConfigService) { 
+    constructor(public http: HttpClient, public _configService : ConfigService) {
         //
-        super();    
+        super();
     }
-    ////////////////////////////////////////////////////////////////  
+    ////////////////////////////////////////////////////////////////
     // METODOS - [COMUNES]
-    ////////////////////////////////////////////////////////////////  
+    ////////////////////////////////////////////////////////////////
     //
     _Algorithm_GetAppVersion(): Observable<string> {
       //
@@ -25,7 +25,7 @@ export class AlgorithmService extends BaseService {
       //
       return appVersion;
     }
-    // 
+    //
     _Algorithm_GetCPPSTDVersion(): Observable<string> {
       //
       let p_url         : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/Algorithm/GetCPPSTDVersion`;
@@ -35,17 +35,17 @@ export class AlgorithmService extends BaseService {
       return appVersion;
     }
 
-    ////////////////////////////////////////////////////////////////  
+    ////////////////////////////////////////////////////////////////
     // METODOS - [ALGORITMOS - DISTANCIA MAS CORTA]
-    ////////////////////////////////////////////////////////////////  
-    //    
+    ////////////////////////////////////////////////////////////////
+    //
     getRandomVertex(vertexSize : Number,sourcePoint : Number): Observable<string> {
       //
       let p_url    = `${this._configService.getConfigValue('baseUrlNetCore')}api/Dijkstra/GenerateRandomVertex?p_vertexSize=${vertexSize}&p_sourcePoint=${sourcePoint}`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
-      return dijkstraData; 
+      return dijkstraData;
     }
     //
     getRandomVertexCpp(vertexSize : Number,sourcePoint : Number): Observable<string> {
@@ -54,7 +54,7 @@ export class AlgorithmService extends BaseService {
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
-      return dijkstraData; 
+      return dijkstraData;
     }
     //
     getRandomVertexSpringBoot(vertexSize : Number,sourcePoint : Number): Observable<string> {
@@ -63,7 +63,7 @@ export class AlgorithmService extends BaseService {
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //
-      return dijkstraData; 
+      return dijkstraData;
     }
     //
     getRandomVertexKotlin(vertexSize : Number,sourcePoint : Number): Observable<string> {
@@ -72,7 +72,7 @@ export class AlgorithmService extends BaseService {
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //
-      return dijkstraData; 
+      return dijkstraData;
     }
     //
     getRandomVertexDart(_vertexSize: number, _sourcePoint: number): Observable<string> {
@@ -81,8 +81,8 @@ export class AlgorithmService extends BaseService {
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //
-      return dijkstraData; 
-       
+      return dijkstraData;
+
     }
     //
     getRandomVertexGoLang(_vertexSize: number, _sourcePoint: number): Observable<string> {
@@ -91,8 +91,8 @@ export class AlgorithmService extends BaseService {
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //
-      return dijkstraData; 
-       
+      return dijkstraData;
+
     }
     //
     getRandomVertexRustLang(_vertexSize: number, _sourcePoint: number): Observable<string> {
@@ -101,7 +101,7 @@ export class AlgorithmService extends BaseService {
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //
-      return dijkstraData; 
+      return dijkstraData;
     }
     //
     getRandomVertexZigLang(_vertexSize: number, _sourcePoint: number): Observable<string> {
@@ -110,11 +110,21 @@ export class AlgorithmService extends BaseService {
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //
-      return dijkstraData; 
+      return dijkstraData;
     }
-    ////////////////////////////////////////////////////////////////  
+    //
+    getRandomVertexCppLang(_vertexSize: number, _sourcePoint: number): Observable<string> {
+      //
+      let p_url    = `${this._configService.getConfigValue('baseUrlCppWebServer')}GenerateRandomVertex_CPP?p_vertexSize=${_vertexSize}&p_sourcePoint=${_sourcePoint}`;
+      //
+      let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
+      //
+      return dijkstraData;
+    }
+
+    ////////////////////////////////////////////////////////////////
     // METODOS - [ALGORITMOS - ORDENAMIENTO]
-    ////////////////////////////////////////////////////////////////     
+    ////////////////////////////////////////////////////////////////
     SortBenchMark_getNewSort_C_Sharp():Observable<string>
     {
       //
@@ -122,9 +132,9 @@ export class AlgorithmService extends BaseService {
       //
       let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
-      return newSortData; 
+      return newSortData;
     }
-    //    
+    //
     SortBenchMark_getSort_C_Sharp(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
     {
       //
@@ -132,9 +142,9 @@ export class AlgorithmService extends BaseService {
       //
       let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
-      return newSortData; 
+      return newSortData;
     }
-    //    
+    //
     getSort_CPP(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
     {
       //
@@ -142,12 +152,12 @@ export class AlgorithmService extends BaseService {
       //
       let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
-      return newSortData; 
+      return newSortData;
     }
-    ////////////////////////////////////////////////////////////////  
+    ////////////////////////////////////////////////////////////////
     // METODOS - [ALGORITMOS - EXPRESIONES REGULARES]
-    ////////////////////////////////////////////////////////////////  
-    //    
+    ////////////////////////////////////////////////////////////////
+    //
     _GetXmlData():Observable<string>
     {
       //
@@ -155,7 +165,7 @@ export class AlgorithmService extends BaseService {
       //
       let xmlData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
-      return xmlData; 
+      return xmlData;
     }
     //
     _SetXmlDataToCache(_prefix : string | undefined):void
@@ -168,7 +178,7 @@ export class AlgorithmService extends BaseService {
       let xmlData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       const td_observer = {
-        next: (jsondata: string)     => { 
+        next: (jsondata: string)     => {
           //
           ////console.log('_SetXmlDataToCache - (return): ' + jsondata);
         },
@@ -193,7 +203,7 @@ export class AlgorithmService extends BaseService {
       //
       let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
-      return regExData; 
+      return regExData;
     }
     //
     public _RegExEval_CPP(tagSearchIndex: number, textSearchValue: string): Observable<string>
@@ -203,7 +213,7 @@ export class AlgorithmService extends BaseService {
       //
       let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
-      return regExData; 
+      return regExData;
     }
   ///////////////////////////////////////////////////////////////
 }
