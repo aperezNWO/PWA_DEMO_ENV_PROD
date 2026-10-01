@@ -173,6 +173,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     features              : '<db>',
                     runtimeOrLangVersion  : this._JavaVersion,
                     apiOrServerVersion    : this._JavaWebServerVersion,
+                    repoLink              : `${this.configService.getConfigValue('baseUrlSpringBootJavaRepo')}`,
+                    healthLink            : `${this.configService.getConfigValue('baseUrlSpringBootJava')}getSpringBootVersion`,
                 },
                 {
                     type                  : '(Backend)',
@@ -180,6 +182,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     features              : '<db>',
                     runtimeOrLangVersion  : this._KotlinVersion,
                     apiOrServerVersion    : this._KotlinWebServerVersion,
+                    repoLink              : `${this.configService.getConfigValue('baseUrlSpringBoot_KotlinRepo')}`,
+                    healthLink            : `${this.configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/system/server-version`,
                 },
                 {
                     type                 : '(Backend)',
@@ -223,6 +227,18 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     features              : '<Google UIx lang>',
                     runtimeOrLangVersion  : this._DartVersion,
                     apiOrServerVersion    : this._DartWebServerVersion,
+                    repoLink              : `${this.configService.getConfigValue('baseUrlDartRepo')}`,
+                    healthLink            : `${this.configService.getConfigValue('baseUrlDart')}api/system/server-version`,
+                },
+                {
+                    type                  : '(Backend)',
+                    name                  : '[Swift / Vapor]',
+                    features              : '<Apple UIx lang>',
+                    runtimeOrLangVersion  : '6.4.0',
+                    apiOrServerVersion    : '4.122.0',
+                    repoLink              : `${this.configService.getConfigValue('baseUrlSwiftLangRepo')}`,
+                    healthLink            : `${this.configService.getConfigValue('baseUrlSwiftLang')}hello`,
+
                 },
                 {
                     type                  : '(Backend)',
@@ -230,6 +246,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     features              : '<WASM>',
                     runtimeOrLangVersion  : this._RustVersion,
                     apiOrServerVersion    : this._RustWebServerVersion,
+                    repoLink              : `${this.configService.getConfigValue('baseUrlRustLangRepo')}`,
+                    healthLink            : `${this.configService.getConfigValue('baseUrlRustLang')}api/version/server`,
                 },
                 {
                     type                  : '(Backend)',
@@ -237,6 +255,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     features              : '<gRPC>',
                     runtimeOrLangVersion  : this._GoLangVersion,
                     apiOrServerVersion    : this._GoLangWebServerVersion,
+                    repoLink              : `${this.configService.getConfigValue('baseUrlGoLangRepo')}`,
+                    healthLink            : `${this.configService.getConfigValue('baseUrlGoLang')}api/version/server`,
                 },
                 {
                     type                 : '(Backend)',
@@ -244,6 +264,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     features             : '<c/c++ alt>',
                     runtimeOrLangVersion : this._ZigVersion,
                     apiOrServerVersion   : this._ZigWebServerVersion,
+                    repoLink             : `${this.configService.getConfigValue('baseUrlZigLangRepo')}`,
+                    healthLink           : `${this.configService.getConfigValue('baseUrlZigLang')}api/getZigWebServerVersion`,
                 },
                 {
                     type                 : '(Backend)',
@@ -251,7 +273,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     features             : '<Fractals>',
                     runtimeOrLangVersion : this._CppVersion,
                     apiOrServerVersion   : this._CppWebServerVersion,
-                    repoLink             : this.__baseUrlCppWebServerRepo,
+                    repoLink             : `${this.__baseUrlCppWebServerRepo}fractalEngine/FractalDemo.cpp`,
                     healthLink           : `${this.__baseUrlCppWebServer}health`,
                 },
                 {
@@ -268,7 +290,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     name                  : '[App v. / Std v.]',
                     features              : '<Algorithm>',
                     appVersion            : this._AlgorithmAppVersion,
-                    stdVersion            : this._Algorithm_CPPSTDVersion,
+                    apiOrServerVersion    : this._Algorithm_CPPSTDVersion,
+                    repoLink              : `${this.__baseUrlCppWebServerRepo}Algorithm.cpp`,
                 },
                 {
                     type               : '(DLL C++)',
@@ -277,6 +300,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     appVersion         : this._OpenCvAppVersion,
                     stdVersion         : this._OpenCvCPPSTDVersion,
                     apiOrServerVersion : this._OpenCvAPIVersion,
+                    repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvRepo')}`,
                 },
                 {
                     type                : '(DLL C++)',
@@ -285,6 +309,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     appVersion          : this._tesseractAppVersion,
                     stdVersion          : this._tesseractCPPSTDVersion,
                     apiOrServerVersion  : this._tesseractAPIVersion,
+                    repoLink            : `${this.configService.getConfigValue('baseUrlNetCoreCPPTesseractRepo')}`,
                 },
                 {
                     type               : '(DLL C++)',
@@ -293,6 +318,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     appVersion         : this._TensorFlowAPPVersion,
                     stdVersion         : this._TensorFlowCPPSTDVersion,
                     apiOrServerVersion : this._TensorFlowAPIVersion,
+                    repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowRepo')}`,
                 },
             ];
     }
