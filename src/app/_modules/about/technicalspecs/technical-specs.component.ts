@@ -274,7 +274,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     runtimeOrLangVersion : this._CppVersion,
                     apiOrServerVersion   : this._CppWebServerVersion,
                     repoLink             : `${this.__baseUrlCppWebServerRepo}fractalEngine/FractalDemo.cpp`,
-                    healthLink           : `${this.__baseUrlCppWebServer}health`,
+                    healthLink           : `${this.__baseUrlCppWebServer}getServerVersion`,
                 },
                 {
                     type               : '(Backend)',
