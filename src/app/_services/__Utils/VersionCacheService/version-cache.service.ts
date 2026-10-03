@@ -54,6 +54,9 @@ export interface VersionBundle {
   dartWebServerVersion     : string;
   kotlinVersion            : string;
   kotlinWebServerVersion   : string;
+  swiftAppVersion          : string;
+  swiftVersion             : string;
+  swiftWebServerVersion    : string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -150,7 +153,10 @@ export class VersionCacheService implements OnDestroy {
       dartVersion            : safeSub(this.back.getDartVersion()),
       dartWebServerVersion   : safeSub(this.back.getDartWebServerVersion()),
       kotlinVersion          : safeSub(this.back.getKotlinVersion()),
-      kotlinWebServerVersion : safeSub(this.back.getKotlinWebServerVersion())
+      kotlinWebServerVersion : safeSub(this.back.getKotlinWebServerVersion()),
+      swiftAppVersion        : safeSub(this.back.getSwiftAppVersion()),
+      swiftVersion           : safeSub(this.back.getSwiftVersion()),
+      swiftWebServerVersion  : safeSub(this.back.getSwiftWebServerVersion()),
     }).pipe(
       map(bundle => {
         this.writeCache(bundle);
@@ -210,6 +216,9 @@ export class VersionCacheService implements OnDestroy {
       dartWebServerVersion: L,
       kotlinVersion: L,
       kotlinWebServerVersion: L,
+      swiftAppVersion: L,
+      swiftVersion: L,
+      swiftWebServerVersion: L,
     };
     try {
       const raw = localStorage.getItem('version-cache');

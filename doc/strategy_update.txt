@@ -256,12 +256,20 @@ r///////////////////////////////////////////////////////////////////////////////
                   --[x] TYPE ATTRIBUTE.
                   --[x] FEATURES LIST <, , ,>.
 
-            --[==>] (missing from lookup) Swift.
+            --[_] (missing from lookup) Swift.
 
-            --[==>] django dynamic site config - render.
+            --[_] django dynamic site config - render.
 
-            --[==>] node.js dynamic root url  - swagger
+            --[_] node.js dynamic root url  - swagger
 
---[x] C++ RAW ALGORITHMS.
+            --[_] C++ RAW ALGORITHMS.
+
+            --[_] LINK TO MODULE.
+
+            --[_] APP VERSION.
+
+            --[_] HEALTH.
+
+--[_] C++ RAW ALGORITHMS.
 
 ////////////////////////////////////////////////////////////////////////////////

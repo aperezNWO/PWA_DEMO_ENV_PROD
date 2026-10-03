@@ -32,7 +32,13 @@
             } @else {
               <span></span>
             }
-            {{ item.name }}
+
+            @if (item.moduleLink) {
+              <a [href]="item.moduleLink">{{ item.name }}</a>
+            } @else {
+              {{ item.name }}
+            }
+
             @if (item.features) {
               <span>|</span>
               {{ item.features }}

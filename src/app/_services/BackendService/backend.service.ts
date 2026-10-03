@@ -453,9 +453,9 @@ export class BackendService extends BaseService implements OnInit {
         tap(version => console.log('Extracted Kotlin Version:', version))
       );
   }
-
+  // KOTLIN - SPRINB BOOT
   getKotlinWebServerVersion(){
-      // KOTLIN - SPRINB BOOT
+      //
       const p_url =  `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/system/server-version`;
 
       // Log the URL for debugging purposes
@@ -470,6 +470,37 @@ export class BackendService extends BaseService implements OnInit {
         }),
         tap(version => console.log('Extracted Kotlin - SpringBoot Version:', version))
       );
+  }
+  // SWIFT -- APP VERSION
+  getSwiftAppVersion(){
+    const p_url = `${this._configService.getConfigValue('baseUrlSwiftLang')}appVersion`;
+
+    // Log the URL for debugging purposes
+    console.log('getSwiftAppVersion URL: ', p_url);
+
+    //
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  // SWIFT - SERVER VERSION - VAPOR
+  getSwiftWebServerVersion(){
+    const p_url = `${this._configService.getConfigValue('baseUrlSwiftLang')}serverVersion`;
+
+    // Log the URL for debugging purposes
+    console.log('getSwiftWebServerVersion URL: ', p_url);
+
+    //
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  //
+  // SWIFT - LANG VERSION
+  getSwiftVersion(){
+    const p_url = `${this._configService.getConfigValue('baseUrlSwiftLang')}langVersion`;
+
+    // Log the URL for debugging purposes
+    console.log('getSwiftWebServerVersion URL: ', p_url);
+
+    //
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
   ////////////////////////////////////////////////////////////////
 }
