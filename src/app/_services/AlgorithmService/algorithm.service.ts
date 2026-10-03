@@ -112,7 +112,7 @@ export class AlgorithmService extends BaseService {
       //
       return dijkstraData;
     }
-    //
+    // CPP - SERVER
     getRandomVertexCppLang(_vertexSize: number, _sourcePoint: number): Observable<string> {
       //
       let p_url    = `${this._configService.getConfigValue('baseUrlCppWebServer')}GenerateRandomVertex_CPP?p_vertexSize=${_vertexSize}&p_sourcePoint=${_sourcePoint}`;
