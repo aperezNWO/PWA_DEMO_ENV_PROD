@@ -121,7 +121,7 @@ export class AlgorithmService extends BaseService {
       //
       return dijkstraData;
     }
-    //
+    // SWIFT
     getRandomVertexSwiftLang(_vertexSize: number, _sourcePoint: number): Observable<string> {
       //
       let p_url    = `${this._configService.getConfigValue('baseUrlSwiftLang')}GenerateRandomVertex_Swift?p_vertexSize=${_vertexSize}&p_sourcePoint=${_sourcePoint}`;
