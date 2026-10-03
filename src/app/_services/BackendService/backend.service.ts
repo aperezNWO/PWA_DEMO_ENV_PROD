@@ -491,7 +491,6 @@ export class BackendService extends BaseService implements OnInit {
     //
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-  //
   // SWIFT - LANG VERSION
   getSwiftVersion(){
     const p_url = `${this._configService.getConfigValue('baseUrlSwiftLang')}langVersion`;
