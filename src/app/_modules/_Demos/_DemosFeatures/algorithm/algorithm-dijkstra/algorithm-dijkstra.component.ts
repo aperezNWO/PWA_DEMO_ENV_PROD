@@ -114,9 +114,10 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
       this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KT"     ));
       this.__languajeList.push(new _languageName(5, '(Shelf       / Dart)'           , false ,"DART"   ));
       this.__languajeList.push(new _languageName(6, '(GoLang      / [net/http])'     , false ,"GO"     ));
-      this.__languajeList.push(new _languageName(7, '(Rust        / Actix Web        )'  , false, "RS"     ));
-      this.__languajeList.push(new _languageName(8, '(Zig         / http.std.Server  )'  , false, "ZIG"    ));
-      this.__languajeList.push(new _languageName(9, '(C++         / httplib::Server  )'  , false, "CWS"    ));
+      this.__languajeList.push(new _languageName(7, '(Rust        / Actix Web        )', false, "RS"     ));
+      this.__languajeList.push(new _languageName(8, '(Zig         / http.std.Server  )', false, "ZIG"    ));
+      this.__languajeList.push(new _languageName(9, '(C++         / httplib::Server  )', false, "CWS"    ));
+      this.__languajeList.push(new _languageName(10, '(Swift      / Vapor            )', false, "SWIFT"  ));
       //
       let langName = params['langName'] ? params['langName'] : "" ;
       //
@@ -266,6 +267,9 @@ export class AlgorithmDijkstraComponent extends BaseReferenceComponent implement
             break;
             case 9:   // cpplang
               randomVertexInfo       = this.algorithmService.getRandomVertexCppLang(_vertexSize,_sourcePoint);
+            break;
+            case 10:  // swift
+              randomVertexInfo       = this.algorithmService.getRandomVertexSwiftLang(_vertexSize,_sourcePoint);
             break;
         }
         //
