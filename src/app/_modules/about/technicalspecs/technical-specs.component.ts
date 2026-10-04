@@ -13,16 +13,16 @@ import { VersionBundle, VersionCacheService  } from '../../../_services/__Utils/
 import { BackendService                      } from '../../../_services/BackendService/backend.service';
 
 export interface ServiceVersionMeta {
-  type?: string  | null;
-  name: string;
-  features?: string  | null;
-  appVersion?: string | null;
+  type?:                 string | null;
+  name:                  string;
+  features?:             string | null;
+  stdVersion?:           string | null;
+  appVersion?:           string | null;
   runtimeOrLangVersion?: string | null;
-  apiOrServerVersion?: string | null;
-  stdVersion?: string | null;
-  repoLink?: string | null;
-  healthLink?: string | null;
-  moduleLink?: string | null;
+  apiOrServerVersion?:   string | null;
+  repoLink?:             string | null;
+  healthLink?:           string | null;
+  moduleLink?:           string | null;
 }
 
 @Component({
@@ -37,44 +37,44 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _appVersion: string | undefined;
   _runtimeVersion: string = VERSION.full;
 
-  _webApiAppVersion = this.fromCache('webApiApp');
-  _AlgorithmAppVersion = this.fromCache('algorithmApp');
-  _Algorithm_CPPSTDVersion = this.fromCache('algorithmCpp');
-  _ASPNETCoreCppVersion = this.fromCache('aspNetCoreCpp');
-  _OpenCvAppVersion = this.fromCache('openCvApp');
-  _OpenCvAPIVersion = this.fromCache('openCvApi');
-  _OpenCvCPPSTDVersion = this.fromCache('openCvCpp');
-  _tesseractAppVersion = this.fromCache('tesseractApp');
-  _tesseractAPIVersion = this.fromCache('tesseractApi');
-  _tesseractCPPSTDVersion = this.fromCache('tesseractCpp');
-  _TensorFlowAPPVersion = this.fromCache('tfApp');
-  _TensorFlowAPIVersion = this.fromCache('tfApi');
-  _TensorFlowCPPSTDVersion = this.fromCache('tfCpp');
-  _PythonVersion = this.fromCache('pythonVersion');
-  _PythonWebServerVersion = this.fromCache('pythonWebServerVersion');
-  _PythonVersionTF = this.fromCache('pythonVersionTF');
-  _PythonWebServerVersionTF = this.fromCache('pythonWebServerVersionTF');
-  _JavaVersion = this.fromCache('javaVersion');
-  _JavaWebServerVersion = this.fromCache('javaWebServerVersion');
-  _NodeVersion = this.fromCache('nodeVersion');
-  _NodeWebServerVersion = this.fromCache('nodeWebServerVersion');
-  _NodeVersionOcr = this.fromCache('nodeVersionOcr');
-  _NodeWebServerVersionOcr = this.fromCache('nodeWebServerVersionOcr');
-  _ZigVersion = this.fromCache('zigVersion');
-  _ZigWebServerVersion = this.fromCache('zigWebServerVersion');
-  _CppVersion = this.fromCache('cppVersion');
-  _CppWebServerVersion = this.fromCache('cppWebServerVersion');
-  _RustVersion = this.fromCache('rustVersion');
-  _RustWebServerVersion = this.fromCache('rustWebServerVersion');
-  _GoLangVersion = this.fromCache('goLangVersion');
-  _GoLangWebServerVersion = this.fromCache('goLangWebServerVersion');
-  _DartVersion = this.fromCache('dartVersion');
-    _DartWebServerVersion   = this.fromCache('dartWebServerVersion');
-    _KotlinVersion          = this.fromCache('kotlinVersion');
-    _KotlinWebServerVersion = this.fromCache('kotlinWebServerVersion');
-    _SwiftAppVersion        = this.fromCache('swiftAppVersion');
-    _SwiftVersion           = this.fromCache('swiftVersion');
-    _SwiftWebServerVersion  = this.fromCache('swiftWebServerVersion');
+  _webApiAppVersion                = this.fromCache('webApiApp');
+  _AlgorithmAppVersion             = this.fromCache('algorithmApp');
+  _Algorithm_CPPSTDVersion         = this.fromCache('algorithmCpp');
+  _ASPNETCoreCppVersion            = this.fromCache('aspNetCoreCpp');
+  _OpenCvAppVersion                = this.fromCache('openCvApp');
+  _OpenCvAPIVersion                = this.fromCache('openCvApi');
+  _OpenCvCPPSTDVersion             = this.fromCache('openCvCpp');
+  _tesseractAppVersion             = this.fromCache('tesseractApp');
+  _tesseractAPIVersion             = this.fromCache('tesseractApi');
+  _tesseractCPPSTDVersion          = this.fromCache('tesseractCpp');
+  _TensorFlowAPPVersion            = this.fromCache('tfApp');
+  _TensorFlowAPIVersion            = this.fromCache('tfApi');
+  _TensorFlowCPPSTDVersion         = this.fromCache('tfCpp');
+  _PythonVersion                   = this.fromCache('pythonVersion');
+  _PythonWebServerVersion          = this.fromCache('pythonWebServerVersion');
+  _PythonVersionTF                 = this.fromCache('pythonVersionTF');
+  _PythonWebServerVersionTF        = this.fromCache('pythonWebServerVersionTF');
+  _JavaVersion                     = this.fromCache('javaVersion');
+  _JavaWebServerVersion            = this.fromCache('javaWebServerVersion');
+  _NodeVersion                     = this.fromCache('nodeVersion');
+  _NodeWebServerVersion            = this.fromCache('nodeWebServerVersion');
+  _NodeVersionOcr                  = this.fromCache('nodeVersionOcr');
+  _NodeWebServerVersionOcr         = this.fromCache('nodeWebServerVersionOcr');
+  _ZigVersion                      = this.fromCache('zigVersion');
+  _ZigWebServerVersion             = this.fromCache('zigWebServerVersion');
+  _CppVersion                      = this.fromCache('cppVersion');
+  _CppWebServerVersion             = this.fromCache('cppWebServerVersion');
+  _RustVersion                     = this.fromCache('rustVersion');
+  _RustWebServerVersion            = this.fromCache('rustWebServerVersion');
+  _GoLangVersion                   = this.fromCache('goLangVersion');
+  _GoLangWebServerVersion          = this.fromCache('goLangWebServerVersion');
+  _DartVersion                     = this.fromCache('dartVersion');
+  _DartWebServerVersion            = this.fromCache('dartWebServerVersion');
+  _KotlinVersion                   = this.fromCache('kotlinVersion');
+  _KotlinWebServerVersion          = this.fromCache('kotlinWebServerVersion');
+  _SwiftAppVersion                 = this.fromCache('swiftAppVersion');
+  _SwiftVersion                    = this.fromCache('swiftVersion');
+  _SwiftWebServerVersion           = this.fromCache('swiftWebServerVersion');
 
     guid = signal<string>('');
 
@@ -109,8 +109,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
         public override speechService: SpeechService,
     ) {
         super(configService, backendService, route, speechService, PAGE_ABOUT_TECHNICAL_SPECS);
-        this._appBrand = this.configService.getConfigValue('appBrand');
-        this._appVersion = this.configService.getConfigValue('appVersion');
+        this._appBrand    = this.configService.getConfigValue('appBrand');
+        this._appVersion  = this.configService.getConfigValue('appVersion');
         this.rebuildServicesTable();
     }
 
@@ -122,42 +122,42 @@ export class TechnicalSpecsComponent extends BaseComponent {
     }
 
     private applyBundle(v: VersionBundle): void {
-        this._webApiAppVersion = v.webApiApp ?? '(..loading..)';
-        this._AlgorithmAppVersion = v.algorithmApp ?? '(..loading..)';
-        this._Algorithm_CPPSTDVersion = v.algorithmCpp ?? '(..loading..)';
-        this._ASPNETCoreCppVersion = v.aspNetCoreCpp ?? '(..loading..)';
-        this._tesseractAppVersion = v.tesseractApp ?? '(..loading..)';
-        this._tesseractAPIVersion = v.tesseractApi ?? '(..loading..)';
-        this._tesseractCPPSTDVersion = v.tesseractCpp ?? '(..loading..)';
-        this._OpenCvAppVersion = v.openCvApp ?? '(..loading..)';
-        this._OpenCvAPIVersion = v.openCvApi ?? '(..loading..)';
-        this._OpenCvCPPSTDVersion = v.openCvCpp ?? '(..loading..)';
-        this._TensorFlowAPPVersion = v.tfApp ?? '(..loading..)';
-        this._TensorFlowAPIVersion = v.tfApi ?? '(..loading..)';
-        this._TensorFlowCPPSTDVersion  = v.tfCpp ?? '(..loading..)';
-        this._PythonVersion            = v.pythonVersion ?? '(..loading..)';
-        this._PythonWebServerVersion   = v.pythonWebServerVersion ?? '(..loading..)';
-        this._PythonVersionTF          = v.pythonVersionTF ?? '(..loading..)';
-        this._PythonWebServerVersionTF = v.pythonWebServerVersionTF ?? '(..loading..)';
-        this._JavaVersion             = v.javaVersion ?? '(..loading..)';
-        this._JavaWebServerVersion    = v.javaWebServerVersion ?? '(..loading..)';
-        this._NodeVersion             = v.nodeVersion ?? '(..loading..)';
-        this._NodeWebServerVersion    = v.nodeWebServerVersion ?? '(..loading..)';
-        this._NodeVersionOcr          = v.nodeVersionOcr ?? '(..loading..)';
-        this._NodeWebServerVersionOcr = v.nodeWebServerVersionOcr ?? '(..loading..)';
-        this._ZigVersion              = v.zigVersion ?? '(..loading..)';
-        this._ZigWebServerVersion     = v.zigWebServerVersion ?? '(..loading..)';
-        this._CppVersion              = v.cppVersion ?? '(..loading..)';
-        this._CppWebServerVersion     = v.cppWebServerVersion ?? '(..loading..)';
-        this._GoLangVersion           = v.goLangVersion ?? '(..loading..)';
-        this._GoLangWebServerVersion  = v.goLangWebServerVersion ?? '(..loading..)';
-        this._DartVersion             = v.dartVersion ?? '(..loading..)';
-        this._DartWebServerVersion    = v.dartWebServerVersion ?? '(..loading..)';
-        this._KotlinVersion           = v.kotlinVersion ?? '(..loading..)';
-        this._KotlinWebServerVersion  = v.kotlinWebServerVersion ?? '(..loading..)';
-        this._SwiftVersion            = v.swiftVersion ?? '(..loading..)';
-        this._SwiftAppVersion         = v.swiftAppVersion ?? '(..loading..)';
-        this._SwiftWebServerVersion = v.swiftWebServerVersion ?? '(..loading..)';
+        this._webApiAppVersion             = v.webApiApp ?? '(..loading..)';
+        this._AlgorithmAppVersion          = v.algorithmApp ?? '(..loading..)';
+        this._Algorithm_CPPSTDVersion      = v.algorithmCpp ?? '(..loading..)';
+        this._ASPNETCoreCppVersion         = v.aspNetCoreCpp ?? '(..loading..)';
+        this._tesseractAppVersion          = v.tesseractApp ?? '(..loading..)';
+        this._tesseractAPIVersion          = v.tesseractApi ?? '(..loading..)';
+        this._tesseractCPPSTDVersion       = v.tesseractCpp ?? '(..loading..)';
+        this._OpenCvAppVersion             = v.openCvApp ?? '(..loading..)';
+        this._OpenCvAPIVersion             = v.openCvApi ?? '(..loading..)';
+        this._OpenCvCPPSTDVersion          = v.openCvCpp ?? '(..loading..)';
+        this._TensorFlowAPPVersion         = v.tfApp ?? '(..loading..)';
+        this._TensorFlowAPIVersion         = v.tfApi ?? '(..loading..)';
+        this._TensorFlowCPPSTDVersion      = v.tfCpp ?? '(..loading..)';
+        this._PythonVersion                = v.pythonVersion ?? '(..loading..)';
+        this._PythonWebServerVersion       = v.pythonWebServerVersion ?? '(..loading..)';
+        this._PythonVersionTF              = v.pythonVersionTF ?? '(..loading..)';
+        this._PythonWebServerVersionTF     = v.pythonWebServerVersionTF ?? '(..loading..)';
+        this._JavaVersion                  = v.javaVersion ?? '(..loading..)';
+        this._JavaWebServerVersion         = v.javaWebServerVersion ?? '(..loading..)';
+        this._NodeVersion                  = v.nodeVersion ?? '(..loading..)';
+        this._NodeWebServerVersion         = v.nodeWebServerVersion ?? '(..loading..)';
+        this._NodeVersionOcr               = v.nodeVersionOcr ?? '(..loading..)';
+        this._NodeWebServerVersionOcr      = v.nodeWebServerVersionOcr ?? '(..loading..)';
+        this._ZigVersion                   = v.zigVersion ?? '(..loading..)';
+        this._ZigWebServerVersion          = v.zigWebServerVersion ?? '(..loading..)';
+        this._CppVersion                   = v.cppVersion ?? '(..loading..)';
+        this._CppWebServerVersion          = v.cppWebServerVersion ?? '(..loading..)';
+        this._GoLangVersion                = v.goLangVersion ?? '(..loading..)';
+        this._GoLangWebServerVersion       = v.goLangWebServerVersion ?? '(..loading..)';
+        this._DartVersion                  = v.dartVersion ?? '(..loading..)';
+        this._DartWebServerVersion         = v.dartWebServerVersion ?? '(..loading..)';
+        this._KotlinVersion                = v.kotlinVersion ?? '(..loading..)';
+        this._KotlinWebServerVersion       = v.kotlinWebServerVersion ?? '(..loading..)';
+        this._SwiftVersion                 = v.swiftVersion ?? '(..loading..)';
+        this._SwiftAppVersion              = v.swiftAppVersion ?? '(..loading..)';
+        this._SwiftWebServerVersion        = v.swiftWebServerVersion ?? '(..loading..)';
 
         // Rebuild table when cache resolves
         this.rebuildServicesTable();
@@ -173,6 +173,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion : '5.0',
                     healthLink         : this.__baseUrlNetCoreSwagger,
                     repoLink           : this.__baseUrlNetCoreRepo,
+                    moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreModule')}`,
                 },
                 {
                     type                  : '(Backend)',
@@ -283,6 +284,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion   : this._CppWebServerVersion,
                     repoLink             : `${this.__baseUrlCppWebServerRepo}fractalEngine/FractalDemo.cpp`,
                     healthLink           : `${this.__baseUrlCppWebServer}getServerVersion`,
+                    moduleLink           : `${this.configService.getConfigValue('baseUrlCppWebServerModule')}`,
                 },
                 {
                     type               : '(Backend)',
@@ -292,6 +294,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink           : this.__baseUrlNetCoreCPPRepo,
                     apiOrServerVersion : '8.0',
                     healthLink         : this.__baseUrlNetCoreCPPSwagger,
+                    moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPEntryModule')}`,
                 },
                 {
                     type                  : '(DLL C++)',
@@ -300,6 +303,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     appVersion            : this._AlgorithmAppVersion,
                     apiOrServerVersion    : this._Algorithm_CPPSTDVersion,
                     repoLink              : `${this.__baseUrlCppWebServerRepo}Algorithm.cpp`,
+                    moduleLink            : `${this.configService.getConfigValue('baseUrlNetCoreCPPAlgorithmModule')}`,
                 },
                 {
                     type               : '(DLL C++)',
@@ -309,6 +313,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     stdVersion         : this._OpenCvCPPSTDVersion,
                     apiOrServerVersion : this._OpenCvAPIVersion,
                     repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvRepo')}`,
+                    moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvModule')}`,
                 },
                 {
                     type                : '(DLL C++)',
@@ -318,6 +323,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     stdVersion          : this._tesseractCPPSTDVersion,
                     apiOrServerVersion  : this._tesseractAPIVersion,
                     repoLink            : `${this.configService.getConfigValue('baseUrlNetCoreCPPTesseractRepo')}`,
+                    moduleLink          : `${this.configService.getConfigValue('baseUrlNetCoreCPPTesseractModule')}`,
+
                 },
                 {
                     type               : '(DLL C++)',
@@ -327,6 +334,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     stdVersion         : this._TensorFlowCPPSTDVersion,
                     apiOrServerVersion : this._TensorFlowAPIVersion,
                     repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowRepo')}`,
+                    moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowModule')}`,
                 },
             ];
     }

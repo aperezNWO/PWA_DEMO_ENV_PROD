@@ -30,7 +30,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] SHOW REFERENCES ==> LIBRAREIS ==> NAME V[X.X.X].
 
---[_] test visual studio code angent window ==> ask copilot about functionality.
+--[_] Test visual studio code angent window ==> ask copilot about functionality.
 
 --[_] Free disk space.
 
@@ -184,20 +184,23 @@ r///////////////////////////////////////////////////////////////////////////////
 
         --[x] Server.
 
-        --[==>] Client.
+        --[_] Client.
+
+--[_] C++ RAW ALGORITHMS.
+
+--[_] LANDING MENU CLASSIFIED BY LANG TYPE.
+
 --[_] ABOUT.
 
-            --[==>] external json source.
+            --[_] external json source.
 
-            --[==>] cleangetxxxversions() ??? ==> ask i.a.
+            --[x] cleangetxxxversions() ??? ==> ask i.a.
 
-            --[==>] MS SQL SERVER VERSION.
+            --[_] MS SQL SERVER VERSION.
 
-            --[==>] gitHub Repo FROM CONFIG.
+            --[_] .NET CORE SERVER VERSIONS.
 
-            --[==>] .NET CORE SERVER VERSIONS.
-
-            --[==>] LANGUAJE / SERVER VERSION
+            --[_] LANGUAJE / SERVER VERSION
 
                           --[x] ZIG.
 
@@ -221,17 +224,17 @@ r///////////////////////////////////////////////////////////////////////////////
 
                      --[X] Node.js / ocr.
 
-                              --[==>] lang version / repo link.
+                              --[_] lang version / repo link.
 
-                              --[==>] server version / health link / SWAGGER.
+                              --[_] server version / health link / SWAGGER.
 
-                              --[==>] SWAGGER dymamic root.
+                              --[_] SWAGGER dymamic root.
 
-                      --[==>] PYTHON
+                      --[_] PYTHON
 
-                          --[==>] DJANGO-WINDOWS
+                          --[_] DJANGO-WINDOWS
 
-                              --[==>] LINK TO HEALTH / SWAGGER.
+                              --[_] LINK TO HEALTH / SWAGGER (complete / arrange links).
 
                               --[x] LINK TO REPO / PRIVATE.
 
@@ -240,7 +243,7 @@ r///////////////////////////////////////////////////////////////////////////////
                               --[x] SERVER VERSION.
                                       {6.0.8}
 
-                        --[==>] DJANGO-LINUX
+                        --[_] DJANGO-LINUX
 
                               --[x] LINK TO HEALTH / SWAGGER.
 
@@ -262,14 +265,15 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[_] node.js dynamic root url  - swagger
 
-            --[_] C++ RAW ALGORITHMS.
-
             --[_] LINK TO MODULE.
 
             --[_] APP VERSION.
 
             --[_] HEALTH.
 
---[_] C++ RAW ALGORITHMS.
+            --[=>] [App v. / xx ] name prefix.
+
+            --[=>] gitHub Repo FROM CONFIG.
+
 
 ////////////////////////////////////////////////////////////////////////////////
