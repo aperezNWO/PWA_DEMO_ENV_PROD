@@ -263,7 +263,9 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[_] django dynamic site config - render.
 
-            --[_] node.js dynamic root url  - swagger
+            --[_] node.js dynamic root url  - swagger.
+
+            --[_] SWIFT SHORT DOCKER DEPLOY.
 
             --[_] LINK TO MODULE.
 
