@@ -240,8 +240,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 },
                 {
                     type                  : '(Backend)',
-                    name                  : '[Swift / Vapor]',
-                    features              : '<Apple UIx lang>',
+                    name                  : '[App v. / Swift / Vapor]',
+                    features              : '<Apple lang>',
                     stdVersion            : this._SwiftVersion,
                     apiOrServerVersion    : this._SwiftWebServerVersion,
                     appVersion            : this._SwiftAppVersion,
@@ -270,7 +270,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 {
                     type                 : '(Backend)',
                     name                 : '[Zig / std.http.Server]',
-                    features             : '<c/c++ alt>',
+                    features             : '<c++ alt>',
                     runtimeOrLangVersion : this._ZigVersion,
                     apiOrServerVersion   : this._ZigWebServerVersion,
                     repoLink             : `${this.configService.getConfigValue('baseUrlZigLangRepo')}`,
