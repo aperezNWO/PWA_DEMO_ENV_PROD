@@ -156,6 +156,7 @@
     "baseUrlDjangoPython_render_df149032_ws03"         : "https://django-setup-windows-latest-9vkx.onrender.com/",
     "baseUrlDjangoPython"                              : "https://django-setup-windows.onrender.com/",
     "baseUrlDjangoPythonRepo"                          : "https://github.com/aperezNWO/django_setup_windows/",
+    "baseUrlDjangoPythonModule"                        : "#/GridParam?searchTerm=XLS&pageName=PAGE_DEMOS_DJANGO_PYTHON",
     "DJANGO_PYTHON_TF_ENV"                             : "--------------------------------------------------",
     "baseUrlDjangoPythonTF_local"                      : "http://localhost:8080/",
     "baseUrlDjangoPythonTF_aperezNWO"                  : "https://6rtfk8-8000.csb.app/",
@@ -169,5 +170,6 @@
     "baseUrlDjangoPythonTF_render_github_hotmail_ws04" : "https://django-setup-linux.onrender.com/",
     "baseUrlDjangoPythonTF_render_df149032_ws03"       : "https://django-setup-linux-latest-o4i3.onrender.com/",
     "baseUrlDjangoPythonTF"                            : "https://django-setup-linux.onrender.com/",
-    "baseUrlDjangoPythonTFRepo"                        : "https://github.com/aperezNWO/django_setup_linux/"
+    "baseUrlDjangoPythonTFRepo"                        : "https://github.com/aperezNWO/django_setup_linux/",
+    "baseUrlDjangoPythonTFModule"                      : "#/GridParam?searchTerm=Tensorflow&pageName=PAGE_DEMOS_DJANGO_PYTHON"
 }
