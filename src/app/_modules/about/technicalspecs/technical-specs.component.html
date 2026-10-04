@@ -46,7 +46,7 @@
         </td>
         <td>
           <b>
-            <!-- 1. App Version (Paired with repoLink) -->
+            <!-- App Version (Paired with repoLink) -->
             @if (item.appVersion) {
               @if (item.repoLink) {
                 <a [href]="item.repoLink" target="_blank">v[{{ item.appVersion | cleanVersion }}]</a>
@@ -55,25 +55,15 @@
               }
             }
 
-            <!-- 2. Language / Runtime Version -->
-            @if (item.runtimeOrLangVersion) {
-              <!-- MOST BACKEND DOES NOT HAVE APP VERSION YET -->
-              @if (item.runtimeOrLangVersion ) {
-               <a [href]="item.repoLink" target="_blank">v[{{ item.runtimeOrLangVersion | cleanVersion }}]</a>
-              } @else {
-                <span>v[{{ item.runtimeOrLangVersion | cleanVersion }}]</span>
-              }
-            }
-
-            <!-- 3. C++ Standard Version -->
+            <!--  C++ Standard Version / Language Version -->
             @if (item.stdVersion) {
-              @if (item.appVersion || item.runtimeOrLangVersion) { <span> / </span> }
+              @if (item.appVersion) { <span> / </span> }
               <span>v[{{ item.stdVersion | cleanVersion }}]</span>
             }
 
-            <!-- 4. API / Server Version (Paired with healthLink) -->
+            <!-- API / Server Version (Paired with healthLink) -->
             @if (item.apiOrServerVersion) {
-              @if (item.appVersion || item.runtimeOrLangVersion || item.stdVersion) { <span> / </span> }
+              @if (item.appVersion || item.stdVersion) { <span> / </span> }
               @if (item.healthLink) {
                 <a [href]="item.healthLink" target="_blank">v[{{ item.apiOrServerVersion | cleanVersion }}]</a>
               } @else {
