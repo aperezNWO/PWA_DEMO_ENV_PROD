@@ -90,6 +90,7 @@
     "baseUrlDart_render_df149032_ws03"          : "https://dart-zero-endpoint-latest-n0y4.onrender.com/",
     "baseUrlDart"                               : "https://dart-zero-endpoint.onrender.com/",
     "baseUrlDartRepo"                           : "https://github.com/aperezNWO/DART_DEMO_002.git",
+    "baseUrlDartModule"                         : "#/GridParam?pageName=PAGE_DEMOS_DART_SHELF",
     "GO_LANG_ENV"                               : "--------------------------------------------------",
     "baseUrlGoLang_render_gmail_ws_00"          : "https://golang-demo-001-latest.onrender.com/",
     "baseUrlGoLang_render_gmail_ws_01"          : "https://golang-demo-001-latest-cmqs.onrender.com/",
