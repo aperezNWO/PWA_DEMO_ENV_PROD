@@ -303,7 +303,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     appVersion           : '1.0.0',
                     stdVersion           : this._CppVersion,
                     apiOrServerVersion   : this._CppWebServerVersion,
-                    repoLink             : `${this.__baseUrlCppWebServerRepo}fractalEngine/FractalDemo.cpp`,
+                    repoLink             : `${this.__baseUrlCppWebServerRepo}CppWebServer/CppWebServer.cpp`,
                     healthLink           : `${this.__baseUrlCppWebServer}getServerVersion`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWebServerModule')}`,
                 },
