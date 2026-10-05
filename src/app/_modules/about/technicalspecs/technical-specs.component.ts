@@ -236,7 +236,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     type                  : '(Backend)',
                     name                  : '[App v / Python / Django]',
                     features              : '<Tensorflow>',
-                    appVersion            : this._PythonVersionTF,
+                    appVersion            : '1.0.0',
                     stdVersion            : this._PythonVersionTF,
                     apiOrServerVersion    : this._PythonWebServerVersionTF,
                     repoLink              : this._PythonDjangoRepoTF,
@@ -300,7 +300,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 },
                 {
                     type                 : '(Backend)',
-                    name                 : '[C++ / httplib::Server]',
+                    name                 : '[App v. / C++ / httplib::Server]',
                     features             : '<Fractals>',
                     appVersion           : this._CppAppVersion,
                     stdVersion           : this._CppVersion,
