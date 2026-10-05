@@ -275,9 +275,10 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[_] change "FractalDemo.cpp" for "CppWebServerDemo.cpp".
 
-            --[=>] [App v. / xx ] name prefix.
+            --[X] [App v. / xx ] name prefix.
 
-            --[=>] gitHub Repo FROM CONFIG.
+            --[_] gitHub Repo FROM CONFIG.
 
+            --[_] HEALTH ENDPOINT - ENDPOINT LOOKUP DICTIONARY.
 
 ////////////////////////////////////////////////////////////////////////////////
