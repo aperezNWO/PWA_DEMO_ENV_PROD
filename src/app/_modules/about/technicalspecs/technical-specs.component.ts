@@ -62,6 +62,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _NodeWebServerVersionOcr         = this.fromCache('nodeWebServerVersionOcr');
   _ZigVersion                      = this.fromCache('zigVersion');
   _ZigWebServerVersion             = this.fromCache('zigWebServerVersion');
+  _CppAppVersion                   = this.fromCache('cppAppVersion');
   _CppVersion                      = this.fromCache('cppVersion');
   _CppWebServerVersion             = this.fromCache('cppWebServerVersion');
   _RustVersion                     = this.fromCache('rustVersion');
@@ -147,6 +148,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._NodeWebServerVersionOcr      = v.nodeWebServerVersionOcr ?? '(..loading..)';
         this._ZigVersion                   = v.zigVersion ?? '(..loading..)';
         this._ZigWebServerVersion          = v.zigWebServerVersion ?? '(..loading..)';
+        this._CppAppVersion                = v.cppAppVersion ?? '(..loading..)';
         this._CppVersion                   = v.cppVersion ?? '(..loading..)';
         this._CppWebServerVersion          = v.cppWebServerVersion ?? '(..loading..)';
         this._GoLangVersion                = v.goLangVersion ?? '(..loading..)';
@@ -300,7 +302,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     type                 : '(Backend)',
                     name                 : '[C++ / httplib::Server]',
                     features             : '<Fractals>',
-                    appVersion           : '1.0.0',
+                    appVersion           : this._CppAppVersion,
                     stdVersion           : this._CppVersion,
                     apiOrServerVersion   : this._CppWebServerVersion,
                     repoLink             : `${this.__baseUrlCppWebServerRepo}CppWebServer/CppWebServer.cpp`,

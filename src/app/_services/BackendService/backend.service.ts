@@ -315,6 +315,11 @@ export class BackendService extends BaseService implements OnInit {
     );
   }
   // CPP
+  getCppAppVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWebServer')}getAppVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  // CPP
   getCppVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlCppWebServer')}getSTDVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
