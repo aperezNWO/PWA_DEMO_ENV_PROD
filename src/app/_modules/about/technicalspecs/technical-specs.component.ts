@@ -304,7 +304,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     stdVersion           : this._CppVersion,
                     apiOrServerVersion   : this._CppWebServerVersion,
                     repoLink             : `${this.__baseUrlCppWebServerRepo}CppWebServer/CppWebServer.cpp`,
-                    healthLink           : `${this.__baseUrlCppWebServer}getServerVersion`,
+                    healthLink           : `${this.__baseUrlCppWebServer}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWebServerModule')}`,
                 },
                 {
