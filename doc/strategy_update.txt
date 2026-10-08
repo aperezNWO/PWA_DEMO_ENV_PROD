@@ -178,7 +178,20 @@ r///////////////////////////////////////////////////////////////////////////////
 
      --[_] https://gitdiagram.com/apereznwo/pwa_demo_env_prod
 
---[_] repo / health links.
+
+--[_] Fix brave nsvigator go/rust/zig/c++
+
+--[_] Online / Streaming / Radio / Video app (chillout channel / dev. channel)
+
+--[_] Domain specific solution / upwork.
+
+--[_] Domain, Language Clasification, Topic, Libraries dynamic landing Page.
+
+--[_] Domain specific algorithm, math, physics.
+
+--[_] Zig Web Assembly.
+
+--[_] Custom LLM.
 
 --[_] make repo private.
 
@@ -281,30 +294,19 @@ r///////////////////////////////////////////////////////////////////////////////
 
             --[_] APP VERSION.
 
-            --[_] HEALTH.
-
             --[_] "CppWebServerDemo.cpp". OOP.
 
             --[X] [App v. / xx ] name prefix.
 
             --[_] gitHub Repo FROM CONFIG.
 
-            --[_] HEALTH ENDPOINT - ENDPOINT LOOKUP DICTIONARY.
+            --[_] HEALTH ENDPOINT
 
---[_] Fix brave nsvigator go/rust/zig/c++
+                  --[_] ENDPOINT LOOKUP DICTIONARY.
 
---[_] Online / Streaming / Radio / Video app (chillout channel / dev. channel)
+                  --[_] SERVER VERSION.
 
---[_] Domain specific solution / upwork.
+            --[_] Object Pascal backend.
 
---[_] Domain, Language Clasification, Topic, Libraries dynamic landing Page.
-
---[_] Domain specific algorithm, math, physics.
-
---[_] Zig Web Assembly.
-
---[_] Custom LLM.
-
---[_] Object Pascal backend.
 
 ////////////////////////////////////////////////////////////////////////////////
