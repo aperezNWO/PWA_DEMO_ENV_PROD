@@ -64,8 +64,6 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] https://deepwiki.com/Exam70486/PWA_DEMO_ENV_PROD
 
- --[_] About llm ==> llm testing link.
-
  --[_] full stack demo languages.
 
        --[_] DART
@@ -82,11 +80,23 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] COMPLETE LLM DEMO.
 
+        --[_] Aleph Alpha has just released Kolibri-1.
+
+        --[_] TypeSafe YF.
+
+        --[_] DeepSeek Harness.
+
+        --[_] MOONSHOT.AI kimi.
+
+        --[_] About llm
+
+          --[_] llm testing link.
+
+          --[_] Custom LLM.
+
        --[_] MERGE DEMOS.
 
        --[_] ADD LINKS TO KEYS.
-
-       --[_] About llm ==> llm testing link.
 
        --[_] https://faraday.ai/
 
@@ -191,15 +201,17 @@ r///////////////////////////////////////////////////////////////////////////////
 
 --[_] Zig Web Assembly.
 
---[_] Custom LLM.
-
 --[_] make repo private.
 
 --[_] DOCKER / PODMAN CI/CD (PYTHON/DJANGO CHANGES).
 
 --[_] LINUX UBUNTU / KDE TEST.
 
+    --[_] KDE COMMUNITY.
+
     --[_] CHECK CURRENT VOSTRO LAPTOP INSTALL / PARTITION.
+
+    --[_] https://distrosea.com.
 
 --[_] GOLDEN RATION SPIRAL FRACTAL.
 
