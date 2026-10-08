@@ -80,6 +80,8 @@ r///////////////////////////////////////////////////////////////////////////////
 
  --[_] COMPLETE LLM DEMO.
 
+        --[_] Interpositive.
+
         --[_] Aleph Alpha has just released Kolibri-1.
 
         --[_] TypeSafe YF.
