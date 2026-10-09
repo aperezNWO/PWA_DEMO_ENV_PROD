@@ -158,7 +158,7 @@ r///////////////////////////////////////////////////////////////////////////////
 
           --[_] GRUPO-MATRIZ ACCOUNT.
 
-          --[_] VIDEO DEMO.
+          --[_] VIDEO CAPTURE DEMO.
 
 --[_] Fractal Demo.
 
