@@ -154,9 +154,11 @@ r///////////////////////////////////////////////////////////////////////////////
 
      --[_] Complete all languages.
 
---[==>] Devin doc   FROM CONFIG.
+--[_] Devin doc   FROM CONFIG.
 
-          --[==>] GRUPO-MATRIZ ACCOUNT.
+          --[_] GRUPO-MATRIZ ACCOUNT.
+
+          --[_] VIDEO DEMO.
 
 --[_] Fractal Demo.
 
@@ -320,7 +322,12 @@ r///////////////////////////////////////////////////////////////////////////////
 
                   --[_] SERVER VERSION.
 
-            --[_] Object Pascal backend.
+            --[_] windows backends
 
+                    --[_]  Object Pascal backend.
+
+                    --[_]  .NET Core.
+
+                    --[_] Turbo C++ / Pascal.
 
 ////////////////////////////////////////////////////////////////////////////////
