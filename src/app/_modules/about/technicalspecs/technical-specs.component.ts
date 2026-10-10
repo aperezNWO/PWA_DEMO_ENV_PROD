@@ -18,7 +18,6 @@ export interface ServiceVersionMeta {
   features?:             string | null;
   stdVersion?:           string | null;
   appVersion?:           string | null;
-  //runtimeOrLangVersion?: string | null;
   apiOrServerVersion?:   string | null;
   repoLink?:             string | null;
   healthLink?:           string | null;
@@ -295,7 +294,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     stdVersion           : this._ZigVersion,
                     apiOrServerVersion   : this._ZigWebServerVersion,
                     repoLink             : `${this.configService.getConfigValue('baseUrlZigLangRepo')}`,
-                    healthLink           : `${this.configService.getConfigValue('baseUrlZigLang')}api/server/getZigWebServerVersion`,
+                    healthLink           : `${this.configService.getConfigValue('baseUrlZigLang')}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlZigLangModule')}`,
                 },
                 {
