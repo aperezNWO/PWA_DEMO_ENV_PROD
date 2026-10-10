@@ -59,6 +59,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _NodeWebServerVersion            = this.fromCache('nodeWebServerVersion');
   _NodeVersionOcr                  = this.fromCache('nodeVersionOcr');
   _NodeWebServerVersionOcr         = this.fromCache('nodeWebServerVersionOcr');
+  _ZigAppVersion                   = this.fromCache('zigAppVersion');
   _ZigVersion                      = this.fromCache('zigVersion');
   _ZigWebServerVersion             = this.fromCache('zigWebServerVersion');
   _CppAppVersion                   = this.fromCache('cppAppVersion');
@@ -145,6 +146,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._NodeWebServerVersion         = v.nodeWebServerVersion ?? '(..loading..)';
         this._NodeVersionOcr               = v.nodeVersionOcr ?? '(..loading..)';
         this._NodeWebServerVersionOcr      = v.nodeWebServerVersionOcr ?? '(..loading..)';
+        this._ZigAppVersion                = v.zigAppVersion ?? '(..loading..)';
         this._ZigVersion                   = v.zigVersion ?? '(..loading..)';
         this._ZigWebServerVersion          = v.zigWebServerVersion ?? '(..loading..)';
         this._CppAppVersion                = v.cppAppVersion ?? '(..loading..)';
@@ -290,7 +292,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     type                 : '(Backend)',
                     name                 : '[App v. / Zig / std.http.Server]',
                     features             : '<c++ alt>',
-                    appVersion           : '1.0.0',
+                    appVersion           : this._ZigAppVersion,
                     stdVersion           : this._ZigVersion,
                     apiOrServerVersion   : this._ZigWebServerVersion,
                     repoLink             : `${this.configService.getConfigValue('baseUrlZigLangRepo')}`,
