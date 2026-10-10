@@ -106,7 +106,7 @@ export class AlgorithmService extends BaseService {
     //
     getRandomVertexZigLang(_vertexSize: number, _sourcePoint: number): Observable<string> {
       //
-      let p_url    = `${this._configService.getConfigValue('baseUrlZigLang')}api/GenerateRandomVertex_SpringBoot`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlZigLang')}api/Algorithm/GenerateRandomVertex_Zig`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //

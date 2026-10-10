@@ -295,7 +295,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     stdVersion           : this._ZigVersion,
                     apiOrServerVersion   : this._ZigWebServerVersion,
                     repoLink             : `${this.configService.getConfigValue('baseUrlZigLangRepo')}`,
-                    healthLink           : `${this.configService.getConfigValue('baseUrlZigLang')}api/getZigWebServerVersion`,
+                    healthLink           : `${this.configService.getConfigValue('baseUrlZigLang')}api/server/getZigWebServerVersion`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlZigLangModule')}`,
                 },
                 {

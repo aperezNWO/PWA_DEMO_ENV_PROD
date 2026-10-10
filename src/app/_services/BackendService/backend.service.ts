@@ -288,7 +288,7 @@ export class BackendService extends BaseService implements OnInit {
 
   // ZIG
   getZigVersion(): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/getZigVersion`;
+    const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/server/getZigVersion`;
 
     return this.http.get<any>(p_url, this.HTTPOptions_JSON).pipe(
       tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
@@ -301,7 +301,7 @@ export class BackendService extends BaseService implements OnInit {
   }
   // ZIG
   getZigWebServerVersion(): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/getZigWebServerVersion`;
+    const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/server/getZigWebServerVersion`;
 
     console.log('getZigWebServerVersion URL: ', p_url);
 
