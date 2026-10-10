@@ -2,6 +2,11 @@ r///////////////////////////////////////////////////////////////////////////////
                         -- STRATEGY UPDATE --
 ////////////////////////////////////////////////////////////////////////////////
 
+[1:36 a.m., 9/10/2026] pablo alejandro perez a: I came with a fresh idea about programming lsnguages showcasing. Something I baptized as Non-Punishing benchmarking. Instead of falling in the religious discussion trap of comparing a sewer with s hammer, i realized that is better to show with metrics that one language/framrwork is better suited for specific scenarios and even domains.
+
+Thar the north I want to give to an existing basic showcase I programmes using angular as frontend and several languages/frameworks as backends like. .net core/ c#, springboot / java, spring boot kotlin, node.js / express, swift / vapor, dart / actix web, go / http lib, rust / http lib, c++ / http lib, zig / httpblib
+[1:59 a.m., 9/10/2026] pablo alejandro perez a: Non punisging collaborative benchmsrk is other idea meaning. I uploades an image using angulat typescript, extracted the texr using c++ based ocr,  saved the binsey image and the exteacted text usibg a .net core / ns sql database, classified thextext using a tensorfliw/ python ml model, sent a processing report from a node.js smtp bsckend, or insread of a image i fearuresd a msndelbrot frac4tal engine built in rust/ webassembly; or inferred the big o notation from several sort or shortest path algorithns with kotlin; o created a high performsnce tetris autoplay (genetic algrithn)  game engine in go, dart or swift, a high lerformance 3d collisuin calculatin  in zig, complemented with online chat features with node.js socket io
+
 ////////////////////////////////////////////////////////////////////////////////
 
 -- [_] TODO LIST.
@@ -224,6 +229,9 @@ r///////////////////////////////////////////////////////////////////////////////
         --[x] Server.
 
         --[_] Client.
+
+
+--[_] Non-Punishing benchmarking
 
 --[_] C++ RAW ALGORITHMS.
 
