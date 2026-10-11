@@ -67,6 +67,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _CppWebServerVersion             = this.fromCache('cppWebServerVersion');
   _RustVersion                     = this.fromCache('rustVersion');
   _RustWebServerVersion            = this.fromCache('rustWebServerVersion');
+  _GoLangAppVersion                = this.fromCache('goLangAppVersion');
   _GoLangVersion                   = this.fromCache('goLangVersion');
   _GoLangWebServerVersion          = this.fromCache('goLangWebServerVersion');
   _DartVersion                     = this.fromCache('dartVersion');
@@ -152,6 +153,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._CppAppVersion                = v.cppAppVersion ?? '(..loading..)';
         this._CppVersion                   = v.cppVersion ?? '(..loading..)';
         this._CppWebServerVersion          = v.cppWebServerVersion ?? '(..loading..)';
+        this._GoLangAppVersion             = v.goLangVersion ?? '(..loading..)';
         this._GoLangVersion                = v.goLangVersion ?? '(..loading..)';
         this._GoLangWebServerVersion       = v.goLangWebServerVersion ?? '(..loading..)';
         this._DartVersion                  = v.dartVersion ?? '(..loading..)';
@@ -281,11 +283,11 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     type                  : '(Backend)',
                     name                  : '[App v. / GoLang / net-http]',
                     features              : '<gRPC>',
-                    appVersion            : '1.0.0',
+                    appVersion            : this._GoLangAppVersion,
                     stdVersion            : this._GoLangVersion,
                     apiOrServerVersion    : this._GoLangWebServerVersion,
                     repoLink              : `${this.configService.getConfigValue('baseUrlGoLangRepo')}`,
-                    healthLink            : `${this.configService.getConfigValue('baseUrlGoLang')}api/version/server`,
+                    healthLink            : `${this.configService.getConfigValue('baseUrlGoLang')}health`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlGoLangModule')}`,
                 },
                 {

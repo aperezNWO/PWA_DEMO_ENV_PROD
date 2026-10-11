@@ -372,9 +372,28 @@ export class BackendService extends BaseService implements OnInit {
   }
 
   // GO LANG
+  getGoLangAppVersion(){
+      // GO
+      const p_url =  `${this._configService.getConfigValue('baseUrlGoLang')}api/server/version/getGoLangAppVersion`;
+
+      // Log the URL for debugging purposes
+      console.log('getGoVersion URL: ', p_url);
+
+      // {"go_version":"go1.27.0"}
+      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.go_version ?? parsed?.body?.app_version) as string;
+        }),
+        tap(app_version => console.log('Extracted Go Version:', app_version))
+      );
+  }
+
+  // GO LANG
   getGoLangVersion(){
       // GO
-      const p_url =  `${this._configService.getConfigValue('baseUrlGoLang')}api/version/go`;
+      const p_url =  `${this._configService.getConfigValue('baseUrlGoLang')}api/server/version/getGoLangVersion`;
 
       // Log the URL for debugging purposes
       console.log('getGoVersion URL: ', p_url);
@@ -392,7 +411,7 @@ export class BackendService extends BaseService implements OnInit {
 
   getGoLangWebServerVersion(){
       // GO web server
-      const p_url =  `${this._configService.getConfigValue('baseUrlGoLang')}api/version/server`;
+      const p_url =  `${this._configService.getConfigValue('baseUrlGoLang')}api/server/version/getGoLangServerVersion`;
 
       // Log the URL for debugging purposes
       console.log('getGoServerVersion URL: ', p_url);

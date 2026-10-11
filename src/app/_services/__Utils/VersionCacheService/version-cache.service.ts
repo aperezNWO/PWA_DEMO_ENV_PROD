@@ -49,7 +49,8 @@ export interface VersionBundle {
   cppVersion           : string;
   cppWebServerVersion  : string;
   rustVersion          : string;
-  rustWebServerVersion : string;
+  rustWebServerVersion: string;
+  goLangAppVersion         :  string;
   goLangVersion            : string;
   goLangWebServerVersion   : string;
   dartVersion              : string;
@@ -151,7 +152,8 @@ export class VersionCacheService implements OnDestroy {
       cppVersion           : safeSub(this.back.getCppVersion()),
       cppWebServerVersion  : safeSub(this.back.getCppWebServerVersion()),
       rustVersion          : safeSub(this.back.getRustVersion()),
-      rustWebServerVersion : safeSub(this.back.getRustWebServerVersion()),
+      rustWebServerVersion: safeSub(this.back.getRustWebServerVersion()),
+      goLangAppVersion       : safeSub(this.back.getGoLangAppVersion()),
       goLangVersion          : safeSub(this.back.getGoLangVersion()),
       goLangWebServerVersion : safeSub(this.back.getGoLangWebServerVersion()),
       dartVersion            : safeSub(this.back.getDartVersion()),
@@ -216,6 +218,7 @@ export class VersionCacheService implements OnDestroy {
       cppAppVersion: L, cppVersion: L, cppWebServerVersion: L,
       rustVersion: L,
       rustWebServerVersion: L,
+      goLangAppVersion: L,
       goLangVersion: L,
       goLangWebServerVersion: L,
       dartVersion: L,
