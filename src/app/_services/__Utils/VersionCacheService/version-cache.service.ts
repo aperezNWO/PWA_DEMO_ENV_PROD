@@ -47,9 +47,10 @@ export interface VersionBundle {
   zigWebServerVersion : string;
   cppAppVersion        : string;
   cppVersion           : string;
-  cppWebServerVersion  : string;
-  rustVersion          : string;
-  rustWebServerVersion: string;
+  cppWebServerVersion      : string;
+  rustAppVersion           : string;
+  rustVersion              : string;
+  rustWebServerVersion     : string;
   goLangAppVersion         : string;
   goLangVersion            : string;
   goLangWebServerVersion   : string;
@@ -150,9 +151,10 @@ export class VersionCacheService implements OnDestroy {
       zigWebServerVersion  : safeSub(this.back.getZigWebServerVersion()),
       cppAppVersion        : safeSub(this.back.getCppAppVersion()),
       cppVersion           : safeSub(this.back.getCppVersion()),
-      cppWebServerVersion  : safeSub(this.back.getCppWebServerVersion()),
-      rustVersion          : safeSub(this.back.getRustVersion()),
-      rustWebServerVersion: safeSub(this.back.getRustWebServerVersion()),
+      cppWebServerVersion    : safeSub(this.back.getCppWebServerVersion()),
+      rustAppVersion         : safeSub(this.back.getRustAppVersion()),
+      rustVersion            : safeSub(this.back.getRustVersion()),
+      rustWebServerVersion   : safeSub(this.back.getRustWebServerVersion()),
       goLangAppVersion       : safeSub(this.back.getGoLangAppVersion()),
       goLangVersion          : safeSub(this.back.getGoLangVersion()),
       goLangWebServerVersion : safeSub(this.back.getGoLangWebServerVersion()),
@@ -216,8 +218,7 @@ export class VersionCacheService implements OnDestroy {
       zigWebServerVersion: L,
       zigAppVersion: L,
       cppAppVersion: L, cppVersion: L, cppWebServerVersion: L,
-      rustVersion: L,
-      rustWebServerVersion: L,
+      rustVersion: L,  rustWebServerVersion: L,rustAppVersion : L,
       goLangAppVersion: L,
       goLangVersion: L,
       goLangWebServerVersion: L,

@@ -65,6 +65,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _CppAppVersion                   = this.fromCache('cppAppVersion');
   _CppVersion                      = this.fromCache('cppVersion');
   _CppWebServerVersion             = this.fromCache('cppWebServerVersion');
+  _RustAppVersion                  = this.fromCache('rustAppVersion');
   _RustVersion                     = this.fromCache('rustVersion');
   _RustWebServerVersion            = this.fromCache('rustWebServerVersion');
   _GoLangAppVersion                = this.fromCache('goLangAppVersion');
@@ -153,6 +154,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._CppAppVersion                = v.cppAppVersion ?? '(..loading..)';
         this._CppVersion                   = v.cppVersion ?? '(..loading..)';
         this._CppWebServerVersion          = v.cppWebServerVersion ?? '(..loading..)';
+        this._RustAppVersion               = v.rustAppVersion ?? '(..loading..)';
+        this._RustWebServerVersion         = v.rustWebServerVersion ?? '(..loading..)';
+        this._RustVersion                  = v.rustVersion ?? '(..loading..)';
         this._GoLangAppVersion             = v.goLangAppVersion ?? '(..loading..)';
         this._GoLangVersion                = v.goLangVersion ?? '(..loading..)';
         this._GoLangWebServerVersion       = v.goLangWebServerVersion ?? '(..loading..)';
@@ -272,11 +276,11 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     type                  : '(Backend)',
                     name                  : '[App v. / Rust / Actix-web]',
                     features              : '<WASM>',
-                    appVersion            : '1.0.0',
+                    appVersion            : this._RustAppVersion,
                     stdVersion            : this._RustVersion,
                     apiOrServerVersion    : this._RustWebServerVersion,
                     repoLink              : `${this.configService.getConfigValue('baseUrlRustLangRepo')}`,
-                    healthLink            : `${this.configService.getConfigValue('baseUrlRustLang')}api/version/server`,
+                    healthLink            : `${this.configService.getConfigValue('baseUrlRustLang')}health`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlRustLangModule')}`,
                 },
                 {

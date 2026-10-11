@@ -97,7 +97,7 @@ export class AlgorithmService extends BaseService {
     //
     getRandomVertexRustLang(_vertexSize: number, _sourcePoint: number): Observable<string> {
       //
-      let p_url    = `${this._configService.getConfigValue('baseUrlRustLang')}GenerateRandomVertex_SpringBoot`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlRustLang')}api/Algorithm/GenerateRandomVertex_Rust`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //

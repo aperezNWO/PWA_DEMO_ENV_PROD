@@ -349,13 +349,13 @@ export class BackendService extends BaseService implements OnInit {
           const parsed = typeof response === 'string' ? JSON.parse(response) : response;
           return (parsed?.rust_version ?? parsed?.body?.rust_version) as string;
         }),
-        tap(version => console.log('Extracted Rust Version:', version))
+        tap(rust_version => console.log('Extracted Rust Version:', rust_version))
       );
   }
-
+  // RUST
   getRustWebServerVersion(): Observable<string> {
     // RUST WEB SERVER
-    const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/version/server`;
+    const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/version/getServerVersion`;
 
     // Log the URL for debugging purposes
     console.log('getRustWebServerVersion URL: ', p_url);
@@ -367,10 +367,27 @@ export class BackendService extends BaseService implements OnInit {
         const parsed = typeof response === 'string' ? JSON.parse(response) : response;
         return (parsed?.server_version ?? parsed?.body?.server_version) as string;
       }),
-      tap(version => console.log('Extracted Rust Web Server Version:', version))
+      tap(server_version => console.log('Extracted Rust Web Server Version:', server_version))
     );
   }
+  // RUST
+  getRustAppVersion(): Observable<string> {
+    //
+    const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/version/getAppVersion`;
 
+    // Log the URL for debugging purposes
+    console.log('getRustWebServerVersion URL: ', p_url);
+
+    //
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+      tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+      map(response => {
+        const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+        return (parsed?.app_version ?? parsed?.body?.app_version) as string;
+      }),
+      tap(app_version => console.log('Extracted Rust Web Server Version:', app_version))
+    );
+  }
   // GO LANG
   getGoLangAppVersion(){
       // GO
@@ -389,7 +406,6 @@ export class BackendService extends BaseService implements OnInit {
         tap(app_version => console.log('Extracted Go Version:', app_version))
       );
   }
-
   // GO LANG
   getGoLangVersion(){
       // GO
@@ -408,7 +424,7 @@ export class BackendService extends BaseService implements OnInit {
         tap(go_version => console.log('Extracted Go Version:', go_version))
       );
   }
-
+  // GO LANG
   getGoLangWebServerVersion(){
       // GO web server
       const p_url =  `${this._configService.getConfigValue('baseUrlGoLang')}api/server/version/getGoLangServerVersion`;
