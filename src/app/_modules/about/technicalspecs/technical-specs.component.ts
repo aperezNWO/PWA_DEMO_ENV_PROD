@@ -153,7 +153,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._CppAppVersion                = v.cppAppVersion ?? '(..loading..)';
         this._CppVersion                   = v.cppVersion ?? '(..loading..)';
         this._CppWebServerVersion          = v.cppWebServerVersion ?? '(..loading..)';
-        this._GoLangAppVersion             = v.goLangVersion ?? '(..loading..)';
+        this._GoLangAppVersion             = v.goLangAppVersion ?? '(..loading..)';
         this._GoLangVersion                = v.goLangVersion ?? '(..loading..)';
         this._GoLangWebServerVersion       = v.goLangWebServerVersion ?? '(..loading..)';
         this._DartVersion                  = v.dartVersion ?? '(..loading..)';

@@ -50,7 +50,7 @@ export interface VersionBundle {
   cppWebServerVersion  : string;
   rustVersion          : string;
   rustWebServerVersion: string;
-  goLangAppVersion         :  string;
+  goLangAppVersion         : string;
   goLangVersion            : string;
   goLangWebServerVersion   : string;
   dartVersion              : string;

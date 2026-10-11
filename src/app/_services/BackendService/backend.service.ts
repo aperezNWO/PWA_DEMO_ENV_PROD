@@ -379,12 +379,12 @@ export class BackendService extends BaseService implements OnInit {
       // Log the URL for debugging purposes
       console.log('getGoVersion URL: ', p_url);
 
-      // {"go_version":"go1.27.0"}
+      //
       return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
         tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
         map(response => {
           const parsed = typeof response === 'string' ? JSON.parse(response) : response;
-          return (parsed?.go_version ?? parsed?.body?.app_version) as string;
+          return (parsed?.app_version ?? parsed?.body?.app_version) as string;
         }),
         tap(app_version => console.log('Extracted Go Version:', app_version))
       );
