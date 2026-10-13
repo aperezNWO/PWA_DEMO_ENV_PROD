@@ -77,7 +77,7 @@ export class AlgorithmService extends BaseService {
     //
     getRandomVertexDart(_vertexSize: number, _sourcePoint: number): Observable<string> {
       //
-      let p_url    = `${this._configService.getConfigValue('baseUrlDart')}GenerateRandomVertex_SpringBoot`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlDart')}GenerateRandomVertex_Dart`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //

@@ -442,7 +442,24 @@ export class BackendService extends BaseService implements OnInit {
         tap(server_version => console.log('Extracted Go Server Version:', server_version))
       );
   }
+  // DART
+  getDartAppVersion(){
+      // DART
+      const p_url =  `${this._configService.getConfigValue('baseUrlDart')}api/system/appVersion`;
 
+      // Log the URL for debugging purposes
+      console.log('getDartAppVersion URL: ', p_url);
+
+      // {"language":"Dart","version":"3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"windows_x64\""}
+      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.app_version ?? parsed?.body?.app_version) as string;
+        }),
+        tap(app_version => console.log('Extracted Dart Version:', app_version))
+      );
+  }
   // DART
   getDartVersion(){
       // DART

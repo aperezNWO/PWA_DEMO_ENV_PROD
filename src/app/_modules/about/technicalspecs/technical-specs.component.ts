@@ -71,6 +71,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _GoLangAppVersion                = this.fromCache('goLangAppVersion');
   _GoLangVersion                   = this.fromCache('goLangVersion');
   _GoLangWebServerVersion          = this.fromCache('goLangWebServerVersion');
+  _DartAppVersion                  = this.fromCache('dartAppVersion');
   _DartVersion                     = this.fromCache('dartVersion');
   _DartWebServerVersion            = this.fromCache('dartWebServerVersion');
   _KotlinVersion                   = this.fromCache('kotlinVersion');
@@ -160,6 +161,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._GoLangAppVersion             = v.goLangAppVersion ?? '(..loading..)';
         this._GoLangVersion                = v.goLangVersion ?? '(..loading..)';
         this._GoLangWebServerVersion       = v.goLangWebServerVersion ?? '(..loading..)';
+        this._DartAppVersion               = v.dartAppVersion ?? '(..loading..)';
         this._DartVersion                  = v.dartVersion ?? '(..loading..)';
         this._DartWebServerVersion         = v.dartWebServerVersion ?? '(..loading..)';
         this._KotlinVersion                = v.kotlinVersion ?? '(..loading..)';
@@ -254,11 +256,11 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     type                  : '(Backend)',
                     name                  : '[App v. / Dart / Shelf]',
                     features              : '<Google lang>',
-                    appVersion            : '1.0.0',
+                    appVersion            : this._DartAppVersion,
                     stdVersion            : this._DartVersion,
                     apiOrServerVersion    : this._DartWebServerVersion,
                     repoLink              : `${this.configService.getConfigValue('baseUrlDartRepo')}`,
-                    healthLink            : `${this.configService.getConfigValue('baseUrlDart')}api/system/server-version`,
+                    healthLink            : `${this.configService.getConfigValue('baseUrlDart')}health`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlDartModule')}`,
                 },
                 {
