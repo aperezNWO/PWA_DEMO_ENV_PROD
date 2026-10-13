@@ -450,7 +450,7 @@ export class BackendService extends BaseService implements OnInit {
       // Log the URL for debugging purposes
       console.log('getDartAppVersion URL: ', p_url);
 
-      // {"language":"Dart","version":"3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"windows_x64\""}
+      // 1.0.x
       return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
         tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
         map(response => {
