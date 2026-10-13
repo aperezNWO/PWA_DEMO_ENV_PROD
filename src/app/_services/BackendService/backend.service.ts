@@ -455,9 +455,9 @@ export class BackendService extends BaseService implements OnInit {
         tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
         map(response => {
           const parsed = typeof response === 'string' ? JSON.parse(response) : response;
-          return (parsed?.app_version ?? parsed?.body?.app_version) as string;
+          return (parsed?.appVersion ?? parsed?.body?.appVersion) as string;
         }),
-        tap(app_version => console.log('Extracted Dart Version:', app_version))
+        tap(appVersion => console.log('Extracted Dart Version:', appVersion))
       );
   }
   // DART
