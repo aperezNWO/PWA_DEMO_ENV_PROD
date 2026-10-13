@@ -54,6 +54,7 @@ export interface VersionBundle {
   goLangAppVersion         : string;
   goLangVersion            : string;
   goLangWebServerVersion   : string;
+  dartAppVersion           : string;
   dartVersion              : string;
   dartWebServerVersion     : string;
   kotlinVersion            : string;

@@ -445,7 +445,7 @@ export class BackendService extends BaseService implements OnInit {
   // DART
   getDartAppVersion(){
       // DART
-      const p_url =  `${this._configService.getConfigValue('baseUrlDart')}api/system/appVersion`;
+      const p_url =  `${this._configService.getConfigValue('baseUrlDart')}api/system/app-version"`;
 
       // Log the URL for debugging purposes
       console.log('getDartAppVersion URL: ', p_url);
