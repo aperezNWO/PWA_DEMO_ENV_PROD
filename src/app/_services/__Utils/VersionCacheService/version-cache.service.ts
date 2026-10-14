@@ -25,7 +25,8 @@ export interface VersionBundle {
   pythonWebServerVersionTF: string;
   nodeAppVersion       : string;
   nodeVersion          : string;
-  nodeWebServerVersion : string;
+  nodeWebServerVersion: string;
+  nodeAppVersionOcr       : string;
   nodeVersionOcr           : string;
   nodeWebServerVersionOcr  : string;
   javaAppVersion          : string;
@@ -134,6 +135,7 @@ export class VersionCacheService implements OnDestroy {
       nodeAppVersion            : safeSub(this.back.getNodeAppVersion()),
       nodeVersion               : safeSub(this.back.getNodeVersion()),
       nodeWebServerVersion      : safeSub(this.back.getNodeWebServerVersion()),
+      nodeAppVersionOcr         : safeSub(this.back.getNodeAppVersionOcr()),
       nodeVersionOcr            : safeSub(this.back.getNodeVersionOcr()),
       nodeWebServerVersionOcr   : safeSub(this.back.getNodeWebServerVersionOcr()),
       javaAppVersion          : safeSub(this.back.getJavaAppVersion()),
@@ -216,7 +218,7 @@ export class VersionCacheService implements OnDestroy {
       pythonVersion: L, pythonWebServerVersion: L,
       pythonVersionTF:L, pythonWebServerVersionTF : L,
       nodeAppVersion: L, nodeVersion: L, nodeWebServerVersion: L,
-      nodeVersionOcr: L, nodeWebServerVersionOcr: L,
+      nodeAppVersionOcr: L,nodeVersionOcr: L, nodeWebServerVersionOcr: L,
       javaAppVersion: L, javaVersion: L, javaWebServerVersion : L,
       webApiApp: L, algorithmApp: L, algorithmCpp: L, aspNetCoreCpp: L,
       openCvApp: L, openCvApi: L, openCvCpp: L,

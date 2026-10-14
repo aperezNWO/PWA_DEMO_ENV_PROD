@@ -250,7 +250,11 @@ export class BackendService extends BaseService implements OnInit {
         tap(version => console.log('Extracted Node.js - Express Version (OCR)', version))
       );
   }
-
+  // NODE.JS - OCR
+  getNodeAppVersionOcr(): Observable<string>{
+    const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeAppVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
   // NODE.JS - OCR
   getNodeVersionOcr(): Observable<string>{
     const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeVersion`;

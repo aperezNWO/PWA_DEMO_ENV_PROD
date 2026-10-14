@@ -59,6 +59,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _NodeAppVersion                  = this.fromCache('nodeAppVersion');
   _NodeVersion                     = this.fromCache('nodeVersion');
   _NodeWebServerVersion            = this.fromCache('nodeWebServerVersion');
+  _NodeAppVersionOcr               = this.fromCache('nodeAppVersionOcr');
   _NodeVersionOcr                  = this.fromCache('nodeVersionOcr');
   _NodeWebServerVersionOcr         = this.fromCache('nodeWebServerVersionOcr');
   _ZigAppVersion                   = this.fromCache('zigAppVersion');
@@ -152,6 +153,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._NodeAppVersion               = v.nodeAppVersion ?? '(..loading..)';
         this._NodeVersion                  = v.nodeVersion ?? '(..loading..)';
         this._NodeWebServerVersion         = v.nodeWebServerVersion ?? '(..loading..)';
+        this._NodeAppVersionOcr            = v.nodeAppVersionOcr  ?? '(..loading..)';
         this._NodeVersionOcr               = v.nodeVersionOcr ?? '(..loading..)';
         this._NodeWebServerVersionOcr      = v.nodeWebServerVersionOcr ?? '(..loading..)';
         this._ZigAppVersion                = v.zigAppVersion ?? '(..loading..)';
@@ -193,28 +195,6 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreModule')}`,
                 },
                 {
-                    type                 : '(Backend)',
-                    name                 : '[App v. / Node.js / Express]',
-                    features             : '<db>',
-                    appVersion           : this._NodeAppVersion,
-                    stdVersion           : this._NodeVersion,
-                    apiOrServerVersion   : this._NodeWebServerVersion,
-                    healthLink           : `${this.__baseUrlNodeJs}api-docs`,
-                    repoLink             : this.__baseUrlNodeJsRepo,
-                    moduleLink           : `${this.configService.getConfigValue('baseUrlNodeJsModule')}`,
-                },
-                {
-                    type                  : '(Backend)',
-                    name                  : '[App v / Node.js / Express]',
-                    features              : '<Ocr>',
-                    appVersion            : '1.0.0',
-                    stdVersion            : this._NodeVersionOcr,
-                    apiOrServerVersion    : this._NodeWebServerVersionOcr,
-                    healthLink            : `${this.__baseUrlNodeJsOcr}api-docs`,
-                    repoLink              : this.__baseUrlNodeJsOcrRepo,
-                    moduleLink            : `${this.configService.getConfigValue('baseUrlNodeJsOcrModule')}`,
-                },
-                {
                     type                  : '(Backend)',
                     name                  : '[App v / Python / Django]',
                     features              : '<db>',
@@ -235,6 +215,28 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink              : this._PythonDjangoRepoTF,
                     healthLink            : `${this._baseUrlPythonDjangoTF}api/docs/`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlDjangoPythonTFModule')}`,
+              },
+              {
+                  type                 : '(Backend)',
+                  name                 : '[App v. / Node.js / Express]',
+                  features             : '<db>',
+                  appVersion           : this._NodeAppVersion,
+                  stdVersion           : this._NodeVersion,
+                  apiOrServerVersion   : this._NodeWebServerVersion,
+                  healthLink           : `${this.__baseUrlNodeJs}api-docs`,
+                  repoLink             : this.__baseUrlNodeJsRepo,
+                  moduleLink           : `${this.configService.getConfigValue('baseUrlNodeJsModule')}`,
+              },
+              {
+                  type                  : '(Backend)',
+                  name                  : '[App v / Node.js / Express]',
+                  features              : '<Ocr>',
+                  appVersion            : this._NodeAppVersionOcr,
+                  stdVersion            : this._NodeVersionOcr,
+                  apiOrServerVersion    : this._NodeWebServerVersionOcr,
+                  healthLink            : `${this.__baseUrlNodeJsOcr}api-docs`,
+                  repoLink              : this.__baseUrlNodeJsOcrRepo,
+                  moduleLink            : `${this.configService.getConfigValue('baseUrlNodeJsOcrModule')}`,
               },
               {
                   type                  : '(Backend)',
