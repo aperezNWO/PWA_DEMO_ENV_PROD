@@ -56,6 +56,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _JavaAppVersion                  = this.fromCache('javaAppVersion');
   _JavaVersion                     = this.fromCache('javaVersion');
   _JavaWebServerVersion            = this.fromCache('javaWebServerVersion');
+  _NodeAppVersion                  = this.fromCache('nodeAppVersion');
   _NodeVersion                     = this.fromCache('nodeVersion');
   _NodeWebServerVersion            = this.fromCache('nodeWebServerVersion');
   _NodeVersionOcr                  = this.fromCache('nodeVersionOcr');
@@ -148,6 +149,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._JavaAppVersion               = v.javaAppVersion ?? '(..loading..)';
         this._JavaVersion                  = v.javaVersion ?? '(..loading..)';
         this._JavaWebServerVersion         = v.javaWebServerVersion ?? '(..loading..)';
+        this._NodeAppVersion               = v.nodeAppVersion ?? '(..loading..)';
         this._NodeVersion                  = v.nodeVersion ?? '(..loading..)';
         this._NodeWebServerVersion         = v.nodeWebServerVersion ?? '(..loading..)';
         this._NodeVersionOcr               = v.nodeVersionOcr ?? '(..loading..)';
@@ -194,7 +196,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     type                 : '(Backend)',
                     name                 : '[App v. / Node.js / Express]',
                     features             : '<db>',
-                    appVersion           : '1.0.0',
+                    appVersion           : this._NodeAppVersion,
                     stdVersion           : this._NodeVersion,
                     apiOrServerVersion   : this._NodeWebServerVersion,
                     healthLink           : `${this.__baseUrlNodeJs}api-docs`,
