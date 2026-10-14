@@ -496,7 +496,25 @@ export class BackendService extends BaseService implements OnInit {
         tap(version => console.log('Extracted Dart Server Version:', version))
       );
   }
+  // KOTLIN
+  getKotlinAppVersion(){
+     //
+     const p_url =  `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/system/app-version`;
 
+      // Log the URL for debugging purposes
+      console.log('getKotlinVersion URL: ', p_url);
+
+      // {"language":"Kotlin","version":"2.3.21"}
+      return this.http.get<string>(p_url, this.HTTPOptions_JSON).pipe(
+        tap(fullResponse => console.log('Raw HTTP Response Object:', fullResponse)),
+        map(response => {
+          const parsed = typeof response === 'string' ? JSON.parse(response) : response;
+          return (parsed?.appVersion ?? parsed?.body?.appVersion) as string;
+        }),
+        tap(appVersion => console.log('Extracted Kotlin Version:', appVersion))
+      );
+  }
+  //
   // KOTLIN
   getKotlinVersion(){
      //

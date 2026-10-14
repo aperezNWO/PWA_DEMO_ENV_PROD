@@ -57,6 +57,7 @@ export interface VersionBundle {
   dartAppVersion           : string;
   dartVersion              : string;
   dartWebServerVersion     : string;
+  kotlinAppVersion         : string;
   kotlinVersion            : string;
   kotlinWebServerVersion   : string;
   swiftAppVersion          : string;
@@ -151,7 +152,7 @@ export class VersionCacheService implements OnDestroy {
       zigVersion           : safeSub(this.back.getZigVersion()),
       zigWebServerVersion  : safeSub(this.back.getZigWebServerVersion()),
       cppAppVersion        : safeSub(this.back.getCppAppVersion()),
-      cppVersion           : safeSub(this.back.getCppVersion()),
+      cppVersion             : safeSub(this.back.getCppVersion()),
       cppWebServerVersion    : safeSub(this.back.getCppWebServerVersion()),
       rustAppVersion         : safeSub(this.back.getRustAppVersion()),
       rustVersion            : safeSub(this.back.getRustVersion()),
@@ -162,6 +163,7 @@ export class VersionCacheService implements OnDestroy {
       dartAppVersion         : safeSub(this.back.getDartAppVersion()),
       dartVersion            : safeSub(this.back.getDartVersion()),
       dartWebServerVersion   : safeSub(this.back.getDartWebServerVersion()),
+      kotlinAppVersion       : safeSub(this.back.getKotlinAppVersion()),
       kotlinVersion          : safeSub(this.back.getKotlinVersion()),
       kotlinWebServerVersion : safeSub(this.back.getKotlinWebServerVersion()),
       swiftAppVersion        : safeSub(this.back.getSwiftAppVersion()),
@@ -226,7 +228,8 @@ export class VersionCacheService implements OnDestroy {
       goLangWebServerVersion: L,
       dartVersion: L,
       dartWebServerVersion: L,
-      dartAppVersion : L,
+      dartAppVersion: L,
+      kotlinAppVersion: L,
       kotlinVersion: L,
       kotlinWebServerVersion: L,
       swiftAppVersion: L,

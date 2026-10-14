@@ -74,6 +74,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _DartAppVersion                  = this.fromCache('dartAppVersion');
   _DartVersion                     = this.fromCache('dartVersion');
   _DartWebServerVersion            = this.fromCache('dartWebServerVersion');
+  _KotlinAppVersion                = this.fromCache('kotlinAppVersion');
   _KotlinVersion                   = this.fromCache('kotlinVersion');
   _KotlinWebServerVersion          = this.fromCache('kotlinWebServerVersion');
   _SwiftAppVersion                 = this.fromCache('swiftAppVersion');
@@ -164,6 +165,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._DartAppVersion               = v.dartAppVersion ?? '(..loading..)';
         this._DartVersion                  = v.dartVersion ?? '(..loading..)';
         this._DartWebServerVersion         = v.dartWebServerVersion ?? '(..loading..)';
+        this._KotlinAppVersion             = v.kotlinAppVersion ?? '(..loading..)';
         this._KotlinVersion                = v.kotlinVersion ?? '(..loading..)';
         this._KotlinWebServerVersion       = v.kotlinWebServerVersion ?? '(..loading..)';
         this._SwiftVersion                 = v.swiftVersion ?? '(..loading..)';
@@ -185,28 +187,6 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     healthLink         : this.__baseUrlNetCoreSwagger,
                     repoLink           : this.__baseUrlNetCoreRepo,
                     moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreModule')}`,
-                },
-                {
-                    type                  : '(Backend)',
-                    name                  : '[App v. / Java / SpringBoot]',
-                    features: '<db>',
-                    appVersion            : '1.0.0',
-                    stdVersion            : this._JavaVersion,
-                    apiOrServerVersion    : this._JavaWebServerVersion,
-                    repoLink              : `${this.configService.getConfigValue('baseUrlSpringBootJavaRepo')}`,
-                    healthLink            : `${this.configService.getConfigValue('baseUrlSpringBootJava')}getSpringBootVersion`,
-                    moduleLink            : `${this.configService.getConfigValue('baseUrlSpringBootJavaModule')}`,
-                },
-                {
-                    type                  : '(Backend)',
-                    name                  : '[App v. / Kotlin / SpringBoot]',
-                    features              : '<db>',
-                    appVersion            : '1.0.0',
-                    stdVersion            : this._KotlinVersion,
-                    apiOrServerVersion    : this._KotlinWebServerVersion,
-                    repoLink              : `${this.configService.getConfigValue('baseUrlSpringBoot_KotlinRepo')}`,
-                    healthLink            : `${this.configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/system/server-version`,
-                    moduleLink            : `${this.configService.getConfigValue('baseUrlSpringBoot_KotlinModule')}`,
                 },
                 {
                     type                 : '(Backend)',
@@ -251,8 +231,30 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink              : this._PythonDjangoRepoTF,
                     healthLink            : `${this._baseUrlPythonDjangoTF}api/docs/`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlDjangoPythonTFModule')}`,
-                },
-                {
+              },
+              {
+                  type                  : '(Backend)',
+                  name                  : '[App v. / Java / SpringBoot]',
+                  features: '<db>',
+                  appVersion            : '1.0.0',
+                  stdVersion            : this._JavaVersion,
+                  apiOrServerVersion    : this._JavaWebServerVersion,
+                  repoLink              : `${this.configService.getConfigValue('baseUrlSpringBootJavaRepo')}`,
+                  healthLink            : `${this.configService.getConfigValue('baseUrlSpringBootJava')}getSpringBootVersion`,
+                  moduleLink            : `${this.configService.getConfigValue('baseUrlSpringBootJavaModule')}`,
+              },
+              {
+                  type                  : '(Backend)',
+                  name                  : '[App v. / Kotlin / SpringBoot]',
+                  features              : '<db>',
+                  appVersion            : this._KotlinAppVersion,
+                  stdVersion            : this._KotlinVersion,
+                  apiOrServerVersion    : this._KotlinWebServerVersion,
+                  repoLink              : `${this.configService.getConfigValue('baseUrlSpringBoot_KotlinRepo')}`,
+                  healthLink            : `${this.configService.getConfigValue('baseUrlSpringBoot_Kotlin')}health`,
+                  moduleLink            : `${this.configService.getConfigValue('baseUrlSpringBoot_KotlinModule')}`,
+              },
+              {
                     type                  : '(Backend)',
                     name                  : '[App v. / Dart / Shelf]',
                     features              : '<Google lang>',

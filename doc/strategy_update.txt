@@ -342,7 +342,9 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
                   --[_] SERVER VERSION.
 
-            --[_] HEALTH STRUCTURE.
+                  --[_] HEALTH STRUCTURE.
+
+                  --[_] HEALTH STRUCTURE ENDPONTS CONSTANTS ON FRONTEND.
 
  --[_] 12:38 I needed a C compiler on Windows for a Neovim plugin. The Zig compiler was, by far, the easiest way to get a C compiler compared to Mingw, Clang, MSVC, or GCC. Awesome stuf.
 
