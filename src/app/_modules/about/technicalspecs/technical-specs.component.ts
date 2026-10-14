@@ -185,16 +185,6 @@ export class TechnicalSpecsComponent extends BaseComponent {
     private rebuildServicesTable(): void {
             this.services = [
                 {
-                    type               : '(Backend)',
-                    name               : '[App v. / .NET  v.]',
-                    features           : '<x32,C#>',
-                    appVersion         : this._webApiAppVersion,
-                    apiOrServerVersion : '5.0',
-                    healthLink         : this.__baseUrlNetCoreSwagger,
-                    repoLink           : this.__baseUrlNetCoreRepo,
-                    moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreModule')}`,
-                },
-                {
                     type                  : '(Backend)',
                     name                  : '[App v / Python / Django]',
                     features              : '<db>',
@@ -325,6 +315,16 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink             : `${this.__baseUrlCppWebServerRepo}CppWebServer/CppWebServer.cpp`,
                     healthLink           : `${this.__baseUrlCppWebServer}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWebServerModule')}`,
+                },
+                {
+                    type               : '(Backend)',
+                    name               : '[App v. / .NET  v.]',
+                    features           : '<x32,C#>',
+                    appVersion         : this._webApiAppVersion,
+                    apiOrServerVersion : '5.0',
+                    healthLink         : this.__baseUrlNetCoreSwagger,
+                    repoLink           : this.__baseUrlNetCoreRepo,
+                    moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreModule')}`,
                 },
                 {
                     type               : '(Backend)',
