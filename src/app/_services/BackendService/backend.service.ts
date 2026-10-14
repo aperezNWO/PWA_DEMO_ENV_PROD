@@ -213,13 +213,17 @@ export class BackendService extends BaseService implements OnInit {
   // BACKEND VERSIONS
   ////////////////////////////////////////////////////////////////
   // J2SE / JAVA SPRING BOOT
+  getJavaAppVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/system/app-version`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
   getJavaVersion(): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getJavaVersion`;
+    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/system/language-version`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
   getJavaWebServerVersion(){
-    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getSpringBootVersion`;
+    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/system/server-version`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 

@@ -53,6 +53,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _PythonWebServerVersion          = this.fromCache('pythonWebServerVersion');
   _PythonVersionTF                 = this.fromCache('pythonVersionTF');
   _PythonWebServerVersionTF        = this.fromCache('pythonWebServerVersionTF');
+  _JavaAppVersion                  = this.fromCache('javaAppVersion');
   _JavaVersion                     = this.fromCache('javaVersion');
   _JavaWebServerVersion            = this.fromCache('javaWebServerVersion');
   _NodeVersion                     = this.fromCache('nodeVersion');
@@ -144,6 +145,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._PythonWebServerVersion       = v.pythonWebServerVersion ?? '(..loading..)';
         this._PythonVersionTF              = v.pythonVersionTF ?? '(..loading..)';
         this._PythonWebServerVersionTF     = v.pythonWebServerVersionTF ?? '(..loading..)';
+        this._JavaAppVersion               = v.javaAppVersion ?? '(..loading..)';
         this._JavaVersion                  = v.javaVersion ?? '(..loading..)';
         this._JavaWebServerVersion         = v.javaWebServerVersion ?? '(..loading..)';
         this._NodeVersion                  = v.nodeVersion ?? '(..loading..)';
@@ -235,12 +237,12 @@ export class TechnicalSpecsComponent extends BaseComponent {
               {
                   type                  : '(Backend)',
                   name                  : '[App v. / Java / SpringBoot]',
-                  features: '<db>',
-                  appVersion            : '1.0.0',
+                  features              : '<db>',
+                  appVersion            : this._JavaAppVersion,
                   stdVersion            : this._JavaVersion,
                   apiOrServerVersion    : this._JavaWebServerVersion,
                   repoLink              : `${this.configService.getConfigValue('baseUrlSpringBootJavaRepo')}`,
-                  healthLink            : `${this.configService.getConfigValue('baseUrlSpringBootJava')}getSpringBootVersion`,
+                  healthLink            : `${this.configService.getConfigValue('baseUrlSpringBootJava')}health`,
                   moduleLink            : `${this.configService.getConfigValue('baseUrlSpringBootJavaModule')}`,
               },
               {

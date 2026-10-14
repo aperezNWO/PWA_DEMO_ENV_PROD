@@ -27,7 +27,8 @@ export interface VersionBundle {
   nodeWebServerVersion : string;
   nodeVersionOcr           : string;
   nodeWebServerVersionOcr  : string;
-  javaVersion          : string;
+  javaAppVersion          : string;
+  javaVersion             : string;
   javaWebServerVersion : string;
   webApiApp           : string;
   algorithmApp        : string;
@@ -133,8 +134,9 @@ export class VersionCacheService implements OnDestroy {
       nodeWebServerVersion      : safeSub(this.back.getNodeWebServerVersion()),
       nodeVersionOcr            : safeSub(this.back.getNodeVersionOcr()),
       nodeWebServerVersionOcr   : safeSub(this.back.getNodeWebServerVersionOcr()),
-      javaVersion          : safeSub(this.back.getJavaVersion()),
-      javaWebServerVersion : safeSub(this.back.getJavaWebServerVersion()),
+      javaAppVersion          : safeSub(this.back.getJavaAppVersion()),
+      javaVersion             : safeSub(this.back.getJavaVersion()),
+      javaWebServerVersion    : safeSub(this.back.getJavaWebServerVersion()),
       webApiApp           : safeSub(this.back._GetWebApiAppVersion()),
       algorithmApp        : safeSub(this.algo._Algorithm_GetAppVersion()),
       algorithmCpp        : safeSub(this.algo._Algorithm_GetCPPSTDVersion()),
@@ -213,7 +215,7 @@ export class VersionCacheService implements OnDestroy {
       pythonVersionTF:L, pythonWebServerVersionTF : L,
       nodeVersion: L, nodeWebServerVersion: L,
       nodeVersionOcr: L, nodeWebServerVersionOcr: L,
-      javaVersion: L, javaWebServerVersion : L,
+      javaAppVersion: L, javaVersion: L, javaWebServerVersion : L,
       webApiApp: L, algorithmApp: L, algorithmCpp: L, aspNetCoreCpp: L,
       openCvApp: L, openCvApi: L, openCvCpp: L,
       tesseractApp: L, tesseractApi: L, tesseractCpp: L,

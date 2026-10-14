@@ -59,7 +59,7 @@ export class AlgorithmService extends BaseService {
     //
     getRandomVertexSpringBoot(vertexSize : Number,sourcePoint : Number): Observable<string> {
        //
-      let p_url    = `${this._configService.getConfigValue('baseUrlSpringBootJava')}GenerateRandomVertex_SpringBoot`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/algorithm/GenerateRandomVertex_Java`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //
