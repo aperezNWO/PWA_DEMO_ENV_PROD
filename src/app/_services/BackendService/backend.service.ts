@@ -252,7 +252,7 @@ export class BackendService extends BaseService implements OnInit {
   }
   // NODE.JS - OCR
   getNodeAppVersionOcr(): Observable<string>{
-    const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeAppVersion`;
+    const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getAppVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
   // NODE.JS - OCR
