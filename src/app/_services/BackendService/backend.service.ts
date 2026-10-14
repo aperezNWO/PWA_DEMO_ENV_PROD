@@ -133,7 +133,7 @@ export class BackendService extends BaseService implements OnInit {
   }
 
   getPersonsSprinbBootJava(): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllPersons`;
+    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/data/getAllPersons`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
@@ -164,7 +164,7 @@ export class BackendService extends BaseService implements OnInit {
   }
 
   getLogRemotoSprinbBootJava(td_searchCriteria: SearchCriteria): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}getAllLogs`;
+    const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/data/getAllLogs`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
