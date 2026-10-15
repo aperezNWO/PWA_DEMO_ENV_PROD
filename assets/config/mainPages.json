@@ -39,21 +39,23 @@
           { "id": 2, "url" : "/GridParam"         , "text": "[NODE.JS / JAVASCRIPT]"           , "queryParams" : "{ pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'}"     },
           { "id": 3, "url" : "/GridParam"         , "text": "[.NET CORE / C#]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CSHARP'}"        },
           { "id": 4, "url" : "/GridParam"         , "text": "[.NET CORE / C++]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CPP'}"           },
-          { "id": 5, "url" : "/GridParam"         , "text": "[SPRING BOOT / JAVA ]"            , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
-          { "id": 6, "url" : "/GridParam"         , "text": "[DJANGO / PYTHON]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
-          { "id": 7, "url" : "/GridParam"         , "text": "[SPRING BOOT /  KOTLIN ]"         , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"    },                         
-          { "id": 8, "url" : "/GridParam"         , "text": "[SHELF /  DART ]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }
-        ],
+          { "id": 5, "url" : "/GridParam"         , "text": "[HTTP WEB SERVER / C++ ]"         , "queryParams" : "{ pageName : 'PAGE_DEMOS_CPP_WEB_SERVER'}"        },
+          { "id": 6, "url" : "/GridParam"         , "text": "[SPRING BOOT / JAVA ]"            , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
+          { "id": 7, "url" : "/GridParam"         , "text": "[DJANGO / PYTHON]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
+          { "id": 8, "url" : "/GridParam"         , "text": "[SPRING BOOT /  KOTLIN ]"         , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"    },
+          { "id": 9, "url" : "/GridParam"         , "text": "[SHELF /  DART ]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }
+          ],
       "comment_2"        : "'page_nested' values for  dynamic landing. queryParam explicit 'pageName' param requiered for /Gridparam.",
       "pages_nested"     : [
           { "id": 1, "url" : "", "text": "./assets/images/logos/Angular_gradient_logo.png"                      , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT'}"    },
           { "id": 2, "url" : "", "text": "./assets/images/logos/Node.js_logo.svg.png"                           , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'}"     },
           { "id": 3, "url" : "", "text": "./assets/images/logos/C_Sharp_Logo_2023.svg"                          , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CSHARP'}"        },
           { "id": 4, "url" : "", "text": "./assets/images/logos/ISO_C%2B%2B_Logo.svg.png"                       , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_NETCORE_CPP'}"           },
-          { "id": 5, "url" : "", "text": "./assets/images/logos/Microsoft.VisualStudio.Services.Icons.Default"  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
-          { "id": 6, "url" : "", "text": "./assets/images/logos/Python-logo-notext.svg"                         , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
-          { "id": 7, "url" : "", "text": "./assets/images/logos/Kotlin_icon_(2016-2021).svg"                    , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"    },
-          { "id": 8, "url" : "", "text": "./assets/images/logos/Dart-logo.png"                                  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }
+          { "id": 5, "url" : "", "text": "./assets/images/logos/c-logo-black-and-white.png"                     , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_CPP_WEB_SERVER'}"        },
+          { "id": 6, "url" : "", "text": "./assets/images/logos/Microsoft.VisualStudio.Services.Icons.Default"  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
+          { "id": 7, "url" : "", "text": "./assets/images/logos/Python-logo-notext.svg"                         , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
+          { "id": 8, "url" : "", "text": "./assets/images/logos/Kotlin_icon_(2016-2021).svg"                    , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"    },
+          { "id": 9, "url" : "", "text": "./assets/images/logos/Dart-logo.png"                                  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }
         ]
       },
       {
@@ -92,8 +94,8 @@
             { "id": 4, "url" : "/GridParam"               , "text": "[Curriculum - SpringBoot / Java]"                         , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SPRING_BOOT_JAVA'}"    },
             { "id": 5, "url" : "/GridParam"               , "text": "[Curriculum - Node.js    / Javascript]"                   , "queryParams" : "{pageName : 'PAGE_CURRICULUM_NODE_JS'}"             },
             { "id": 6, "url" : "/GridParam"               , "text": "[Curriculum - .Net core  / C#]"                           , "queryParams" : "{pageName : 'PAGE_CURRICULUM_NET_CORE'}"            },
-            { "id": 7, "url" : "/GridParam"               , "text": "[Curriculum - SpringBoot / Kotlin]"                       , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SPRING_BOOT_KOTLIN'}"  },                 
-            { "id": 8, "url" : "/GridParam"               , "text": "[Curriculum - Shelf      / Dart]"                         , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SHELF_DART'}"          }                 
+            { "id": 7, "url" : "/GridParam"               , "text": "[Curriculum - SpringBoot / Kotlin]"                       , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SPRING_BOOT_KOTLIN'}"  },
+            { "id": 8, "url" : "/GridParam"               , "text": "[Curriculum - Shelf      / Dart]"                         , "queryParams" : "{pageName : 'PAGE_CURRICULUM_SHELF_DART'}"          }
           ]
       },
       {
@@ -102,7 +104,7 @@
         "pages"      : [
              { "id": 1, "url" : "./assets/demos/aiDemo/ai_Curriculum_base.json"                 , "text": ""    }
         ]
-      },      
+      },
       {
         "log_name"   : "PAGE_CURRICULUM_CPP",
         "page_name"  : "[CURRICULUM  - C++]",
@@ -158,14 +160,14 @@
         "pages"      : [
              { "id": 1, "url" : "./assets/demos/dartDemo/dart_Curriculum_base.json"              , "text": ""        }
         ]
-      },      
+      },
       {
         "log_name"   : "PAGE_CURRICULUM_SPRING_BOOT_KOTLIN",
         "page_name"  : "[CURRICULUM - SPRINGBOOT / KOTLIN ]",
         "pages"      : [
              { "id": 1, "url" : "./assets/demos/kotlinDemo/kotlin_Curriculum_base.json"            , "text": ""        }
         ]
-      },      
+      },
       {
         "log_name"   : "PAGE_DEMOS_MISCELLANEOUS_INDEX",
         "page_name"  : "[DEMOS - MISCELLANEOUS]",
@@ -184,7 +186,7 @@
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
           { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
           { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
-          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }      
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
         ],
         "pages_nested" : [
           { "id" : 1, "url": "about:blank"                                                       , "text" : "[Angular]"                       , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '5640c548-8aa6-4f15-bcf9-b10b8cb7fd0d' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
@@ -197,12 +199,12 @@
           { "id" : 3, "url": "https://www.npmjs.com/package/ngx-signaturepad"                    , "text" : "[ngx-signaturepad]"              , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"   , "text" : "[HTML Video]"                    , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://www.npmjs.com/package/tesseract.js/v/2.1.1"                , "text" : "[Tesseract / Node.js]"           , "routerLink" : "about:blank" , "queryParams" : ""},
-          { "id" : 3, "url": "https://github.com/tesseract-ocr/tesseract"                        , "text" : "[Tesseract / C++]"               , "routerLink" : "about:blank" , "queryParams" : ""},          
+          { "id" : 3, "url": "https://github.com/tesseract-ocr/tesseract"                        , "text" : "[Tesseract / C++]"               , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://docs.opencv.org/4.x/d5/d10/tutorial_js_root.html"          , "text" : "[OpenCv / Javascript]"         , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://docs.opencv.org/4.x/d1/dfb/intro.html"                     , "text" : "[Open CV/ C++]"                , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/Optical_character_recognition"       , "text" : "[OCR]"                         , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/Computer_vision"                     , "text" : "[Computer Vision]"             , "routerLink" : "about:blank" , "queryParams" : ""}
-        ]        
+        ]
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_OCR",
@@ -211,7 +213,7 @@
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
           { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
           { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
-          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }      
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
         ],
         "pages_nested" : [
           { "id" : 1, "url": "about:blank"                                                       , "text" : "[Angular]"                       , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '5640c548-8aa6-4f15-bcf9-b10b8cb7fd0d' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
@@ -221,9 +223,9 @@
           { "id" : 3, "url": "https://www.npmjs.com/package/ngx-signaturepad"                    , "text" : "[ngx-signaturepad]"              , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"   , "text" : "[HTML Video]"                    , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://www.npmjs.com/package/tesseract.js/v/2.1.1"                , "text" : "[Tesseract / Node.js]"           , "routerLink" : "about:blank" , "queryParams" : ""},
-          { "id" : 3, "url": "https://github.com/tesseract-ocr/tesseract"                        , "text" : "[Tesseract / C++]"               , "routerLink" : "about:blank" , "queryParams" : ""},          
+          { "id" : 3, "url": "https://github.com/tesseract-ocr/tesseract"                        , "text" : "[Tesseract / C++]"               , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/Optical_character_recognition"       , "text" : "[OCR]"                           , "routerLink" : "about:blank" , "queryParams" : ""}
-        ]        
+        ]
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_COMPUTER_VISION",
@@ -232,7 +234,7 @@
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
           { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
           { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
-          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }      
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
         ],
         "pages_nested" : [
           { "id" : 1, "url": "about:blank"                                                       , "text" : "[Angular]"                     , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'c094e0c5-c29b-4bdf-91ea-8204bb6e8942' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
@@ -244,33 +246,33 @@
           { "id" : 3, "url": "https://docs.opencv.org/4.x/d5/d10/tutorial_js_root.html"          , "text" : "[OpenCv / Javascript]"         , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://docs.opencv.org/4.x/d1/dfb/intro.html"                     , "text" : "[Open CV/ C++]"                , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/Computer_vision"                     , "text" : "[Computer Vision]"             , "routerLink" : "about:blank" , "queryParams" : ""}
-        ]        
+        ]
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_CHAT",
         "page_name"  : "[MISCELLANEOUS - CHAT]",
         "pages"      : [
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"     },
-          { "id": 2, "url" : "/#/"           , "text": "[Backend]"      },   
+          { "id": 2, "url" : "/#/"           , "text": "[Backend]"      },
           { "id": 3, "url" : "/#/"           , "text": "[Libraries]"    }
         ],
         "pages_nested" : [
           { "id" : 1, "url": "about:blank"                                              , "text" : "[Angular]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '415b3965-c5ef-4953-8484-080c34df691f' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
           { "id" : 2, "url": "about:blank"                                              , "text" : "[Node.Js/Javascript]"         , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '1996fa99-4e01-42eb-ac45-98e2918208d9' , pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'  }"},
           { "id" : 3, "url": "https://socket.io/get-started/chat/"                      , "text" : "[socket.io]"                  , "routerLink" : "about:blank" , "queryParams" : ""}
-        ]    
+        ]
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_FRACTAL_DEMO",
         "page_name"  : "[MISCELLANEOUS - FRACTAL DEMO]",
         "pages"      : [
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
-          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }      
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
         ],
         "pages_nested" : [
           { "id" : 1, "url": "about:blank"                                              , "text" : "[Angular]"                     , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'ace5fb03-bc8c-43c5-8650-181bf581b2a4' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/Fractal"                    , "text" : "[Fractal]"                     , "routerLink" : "about:blank" , "queryParams" : ""}
-        ]        
+        ]
       },
       {
         "log_name"   : "PAGE_MISCELANEOUS_LLM_TESTING",
@@ -282,7 +284,7 @@
         "pages_nested" : [
           { "id" : 1, "url": "about:blank"                                          , "text" : "[Angular]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '5e5bfdf8-6876-43a5-a2ea-858628bf0dae' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/Large_language_model"   , "text" : "[LARGE LANGUAGE MODELS LLM]"  , "routerLink" : "about:blank" , "queryParams" : "" }
-        ]        
+        ]
       },
       {
         "log_name"   : "PAGE_DEMOS_GAMES_INDEX",
@@ -291,11 +293,11 @@
           { "id": 1, "url" : "/GamesSudoku"            , "text": "[GAMES - SUDOKU]"           },
           { "id": 2, "url" : "/GamesHanoiAuto"         , "text": "[GAMES - HANOI 2d]"         },
           { "id": 3, "url" : "/GamesHanoi3d"           , "text": "[GAMES - HANOI 3d]"         },
-          { "id": 4, "url" : "/GamesTicTacToe"         , "text": "[GAMES - TIC-TAC-TOE]"      }, 
+          { "id": 4, "url" : "/GamesTicTacToe"         , "text": "[GAMES - TIC-TAC-TOE]"      },
           { "id": 5, "url" : "/GamesTicTacToeAI"       , "text": "[GAMES - TIC-TAC-TOE - AI]" },
           { "id": 6, "url" : "/GamesTetris"            , "text": "[GAMES - TETRIS]"           },
-          { "id": 7, "url" : "/GamesTetrisAI"          , "text": "[GAMES - TETRIS - AI]"      },   
-          { "id": 8, "url" : "/RubikCube"              , "text": "[GAMES - RUBIK CUBE]"       }   
+          { "id": 7, "url" : "/GamesTetrisAI"          , "text": "[GAMES - TETRIS - AI]"      },
+          { "id": 8, "url" : "/RubikCube"              , "text": "[GAMES - RUBIK CUBE]"       }
         ]
       },
       {
@@ -443,15 +445,15 @@
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
           { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
           { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
-          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }            
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
         ],
-        "pages_nested" : [ 
+        "pages_nested" : [
           { "id" : 1, "url": "about:blank"                                                                                    , "text" : "[Angular]"                                  , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '179c6e7c-6dad-4aea-a515-d45d09641a76' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
           { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[C# / .NET  Core]"                          , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '0cd41eee-f54c-44be-b03a-422769b1a8f2' , pageName : 'PAGE_DEMOS_NETCORE_CSHARP'     }"},
           { "id" : 3, "url": "https://www.nuget.org/packages/iTextSharp/"                                                     , "text" : "[ITextSharp v5.5.13.2]"                     , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://ironpdf.com/blog/compare-to-other-components/itextsharp-html-to-pdf-css-style-example/" , "text" : "[ITextSharp HTML to PDF Example]"           , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://v17.angular.io/api/common/http/HttpEventType#DownloadProgress"                          , "text" : "[Angular HttpEventType.DownloadProgress]"   , "routerLink" : "about:blank" , "queryParams" : ""}
-        ] 
+        ]
       },
       {
         "log_name"   : "PAGE_FILE_GENERATION_CHART",
@@ -460,14 +462,14 @@
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
           { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
           { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
-          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }     
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
         ],
         "pages_nested" : [
           { "id" : 1, "url": "about:blank"                                                                                    , "text" : "[Angular]"                       , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '483973b3-b8f6-478b-a702-de3fbab225a4' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
           { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[C# / .NET  Core]"               , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '0b0b083f-bda7-44b8-9922-2365317ee934' , pageName : 'PAGE_DEMOS_NETCORE_CSHARP'     }"},
           { "id" : 3, "url": "https://www.chartjs.org/"                                                                       , "text" : "[Chart.js]"                      , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-10.0"  , "text" : "[.NET Core Caching]"             , "routerLink" : "about:blank" , "queryParams" : ""}
-        ]    
+        ]
       },
       {
         "log_name"   : "PAGE_FILE_GENERATION_CSV",
@@ -476,7 +478,7 @@
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
           { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
           { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
-          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }     
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
         ],
         "pages_nested" : [
           { "id" : 1, "url": "about:blank"                                                                                    , "text" : "[Angular]"                       , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'c8981879-7457-4534-b660-b2e8c8eb9c83' , pageName  : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT'     }"},
@@ -484,12 +486,12 @@
           { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[Node.Js/Javascript]"            , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'f58efe4e-fc26-4f9c-b11b-0e148b3ffb2e' , pageName  : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'      }"},
           { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[SpringBoot/Java]"               , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'b9d33b9d-4f94-4f95-a437-b4544ff478ca' , pageName  : 'PAGE_DEMOS_SPRING_BOOT_JAVA'       }"},
           { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[Django/Python]"                 , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '882904a3-efd8-4ed7-bf4c-ccae59b995ce' , pageName  : 'PAGE_DEMOS_DJANGO_PYTHON'          }"},
-          { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[SpringBoot/Kotlin]"             , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'eef5f818-83a7-4331-a4fa-7b17b08657b5' , pageName  : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'     }"},          
+          { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[SpringBoot/Kotlin]"             , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'eef5f818-83a7-4331-a4fa-7b17b08657b5' , pageName  : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'     }"},
           { "id" : 3, "url": "https://material.angular.io/"                                                                   , "text" : "[Angular Material]"              , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/REST"                                                             , "text" : "[REST (Architecture)]"           , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://v17.angular.io/guide/reactive-forms"                                                    , "text" : "[Angular v17 reactive forms]"    , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/"                      , "text" : "[C# Async programming]"          , "routerLink" : "about:blank" , "queryParams" : ""}
-        ]   
+        ]
       },
       {
         "log_name"   : "PAGE_FILE_GENERATION_XLS",
@@ -498,7 +500,7 @@
           { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
           { "id": 2, "url" : "/#/"           , "text": "[Backend]"     },
           { "id": 3, "url" : "/#/"           , "text": "[Libraries]"   },
-          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }     
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
         ],
         "pages_nested" : [
           { "id" : 1, "url": "about:blank"                                                                                    , "text" : "[Angular]"                          , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '096030d9-cebd-4243-addf-02a36e7eda01' , pageName  : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT'   }"},
@@ -506,12 +508,12 @@
           { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[Node.Js/Javascript]"               , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'e109d2d1-64dc-41ac-bee2-3820bc571a97' , pageName  : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'    }"},
           { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[SpringBoot/Java]"                  , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '4cb9a915-ad62-4ba1-ad34-351112d50343' , pageName  : 'PAGE_DEMOS_SPRING_BOOT_JAVA'     }"},
           { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[Django/Python]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'f1ba13c3-131f-4517-aa72-ca9899058317' , pageName  : 'PAGE_DEMOS_DJANGO_PYTHON'        }"},
-          { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[SpringBoot/Kotlin]"                , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '9daff8fc-0f90-44ef-b660-15cdec19f7e9' , pageName  : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'     }"},          
+          { "id" : 2, "url": "about:blank"                                                                                    , "text" : "[SpringBoot/Kotlin]"                , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '9daff8fc-0f90-44ef-b660-15cdec19f7e9' , pageName  : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'     }"},
           { "id" : 3, "url": "https://material.angular.io/"                                                                   , "text" : "[Angular Material]"                 , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 3, "url": "https://www.epplussoftware.com/"                                                                , "text" : "[EPPlus (xls for .NET]"             , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/REST"                                                             , "text" : "[REST (Architecture)]"              , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://v17.angular.io/guide/forms"                                                             , "text" : "[Angular v17 Template based forms]" , "routerLink" : "about:blank" , "queryParams" : ""}
-        ]   
+        ]
       },
       {
         "log_name"   : "PAGE_ALGORITMOS_INDEX",
@@ -520,7 +522,7 @@
           { "id": 1, "url" : "/AlgorithmRegEx"          , "text": "[ALGORITHMS - REGULAR EXPRESSIONS]"    },
           { "id": 2, "url" : "/AlgorithmSort"           , "text": "[ALGORITHMS - SORTING]"                },
           { "id": 3, "url" : "/AlgorithmDijkstra"       , "text": "[ALGORITHMS - SHORTEST PATH]"          },
-          { "id": 4, "url" : "/AlgorithmCollision"      , "text": "[ALGORITHMS - COLLISION]"              }          
+          { "id": 4, "url" : "/AlgorithmCollision"      , "text": "[ALGORITHMS - COLLISION]"              }
         ]
       },
       {
@@ -573,7 +575,7 @@
           { "id" : 2, "url": "about:blank"                                                   , "text" : "[C++ / .NET Core Endpoint]"   , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '45feb969-2879-4f5f-8d2b-adccb9b187b5' , pageName : 'PAGE_DEMOS_NETCORE_CPP'        }"},
           { "id" : 2, "url": "about:blank"                                                   , "text" : "[C#  / .NET Core Endpoint]"   , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '292ed965-b158-45a6-900e-78a5dc8ed1bd' , pageName : 'PAGE_DEMOS_NETCORE_CSHARP'     }"},
           { "id" : 2, "url": "about:blank"                                                   , "text" : "[SpringBoot / Java]"          , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '4cb9a915-ad62-4ba1-ad34-351112d50343' , pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'   }"},
-          { "id" : 2, "url": "about:blank"                                                   , "text" : "[SpringBoot / Kotlin]"        , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '1e32e88d-da6c-429a-b326-22056574e8a4' , pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'   }"},          
+          { "id" : 2, "url": "about:blank"                                                   , "text" : "[SpringBoot / Kotlin]"        , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '1e32e88d-da6c-429a-b326-22056574e8a4' , pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'   }"},
           { "id" : 3, "url": "https://www.npmjs.com/package/jspdf"                           , "text" : "[jsPDF]"                      , "routerLink" : "about:blank" , "queryParams" : "" },
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/Dijkstra's_algorithm"            , "text" : "[Dijkstra Algorithm]"         , "routerLink" : "about:blank" , "queryParams" : "" },
           { "id" : 4, "url": "https://www.uber.com/en-CO/blog/engineering-routing-engine/"   , "text" : "[Dijkstra Algorithm] - UBER"  , "routerLink" : "about:blank" , "queryParams" : "" }
@@ -634,8 +636,8 @@
           { "id": 1, "url" : "/PageUrlList"             , "text": "[MISCELLANEOUS]"                   , "queryParams" : "{ pageName : 'PAGE_DEMOS_MISCELLANEOUS_INDEX'} "   },
           { "id": 2, "url" : "/PageUrlList"             , "text": "[GAMES]"                           , "queryParams" : "{ pageName : 'PAGE_DEMOS_GAMES_INDEX'}"            },
           { "id": 3, "url" : "/PageUrlList"             , "text": "[ALGORITHMS]"                      , "queryParams" : "{ pageName : 'PAGE_ALGORITMOS_INDEX'}"             },
-          { "id": 4, "url" : "/PageUrlList"             , "text": "[FILE GENERATION]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_FILE_GENREATION_INDEX'}"  },     
-          { "id": 5, "url" : "/PageUrlList"             , "text": "[MACHINE LEARNING]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_MACHINE_LEARNING_INDEX'}" }     
+          { "id": 4, "url" : "/PageUrlList"             , "text": "[FILE GENERATION]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_FILE_GENREATION_INDEX'}"  },
+          { "id": 5, "url" : "/PageUrlList"             , "text": "[MACHINE LEARNING]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_MACHINE_LEARNING_INDEX'}" }
         ]
       },
       {
@@ -693,7 +695,7 @@
         "pages"      : [
           { "id": 1, "url" : "./assets/demos/kotlinDemo/kotlin_Demos_base.json"           , "text": ""      }
         ]
-      },      
+      },
       {
         "log_name"   : "PAGE_ABOUT_INDEX",
         "page_name"  : "[ABOUT]",
@@ -789,7 +791,7 @@
                   "text" : "Kimi (3 hours limit per session)"
               },
               {
-                  "id"   : 5,  
+                  "id"   : 5,
                   "url"  : "https://pi.ai/talk",
                   "text" : "Inflection - PI (does not allow large inputs)"
               },
@@ -807,7 +809,7 @@
                   "id"   : 0,
                   "url"  : "InkLing",
                   "text" : "https://thinkingmachines.ai/inkling/"
-              },              
+              },
               {
                   "id"   : 7,
                   "url"  : "https://venice.ai/",
@@ -833,7 +835,7 @@
                   "id"  : 2,
                   "url" : "https://ng-bootstrap.github.io/#/components/table/examples#basic",
                   "text": "Angular Components - ng-bootstrap"
-              }, 
+              },
               {
                   "id"  : 3,
                   "url": "https://isocpp.org/",
@@ -863,17 +865,17 @@
                   "id"  : 8,
                   "url" : "https://www-cs-faculty.stanford.edu/~knuth/taocp.html",
                   "text": "The Art of Computer Programming"
-              },    
+              },
               {
                   "id"  : 9,
                   "url" : "https://developer.mozilla.org/en-US/",
                   "text": "Mozilla Developer Network"
-              },    
+              },
               {
                   "id"  : 10,
                   "url" : "https://web.dev/?hl=es-419",
                   "text": "Web.dev (by Google)"
-              },    
+              },
               {
                   "id"  : 11,
                   "url" : "https://www.freecodecamp.org/learn",

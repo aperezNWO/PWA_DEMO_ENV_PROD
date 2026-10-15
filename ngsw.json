@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1791970314454,
+  "timestamp": 1792032325998,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -78,6 +78,7 @@
         "/PWA_DEMO_ENV_PROD/assets/images/logos/PDF_file_icon.svg",
         "/PWA_DEMO_ENV_PROD/assets/images/logos/Python-logo-notext.svg",
         "/PWA_DEMO_ENV_PROD/assets/images/logos/Tensorflow_logo.svg",
+        "/PWA_DEMO_ENV_PROD/assets/images/logos/c-logo-black-and-white.png",
         "/PWA_DEMO_ENV_PROD/assets/images/logos/tesseract-icon.webp",
         "/PWA_DEMO_ENV_PROD/assets/images/logos/tesseract-ocr.png",
         "/PWA_DEMO_ENV_PROD/assets/images/mic_off.gif",
@@ -96,8 +97,8 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "b3fb126f9663793480f6c0c82558fc02c3af4d9e",
-    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "4e4eb04be2cdef232921d3458f7f85fbe20eb56e",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "51ed2910121e39bbcac564b295464589589d7514",
+    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "8833036bcd5dedd9989ea8c4ab4aba3953c742c0",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "4a8728c8bd972af81187a4da622979133a8cf0c9",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "930b1bb67aacd91a98c1613ff7fb92cce7367553",
@@ -140,6 +141,7 @@
     "/PWA_DEMO_ENV_PROD/assets/images/logos/PDF_file_icon.svg": "1d67e84dd8baa7b635d88523dcd4f2c1a380a4ff",
     "/PWA_DEMO_ENV_PROD/assets/images/logos/Python-logo-notext.svg": "654d0ce59f95b990cd15b311daadccb47ff22446",
     "/PWA_DEMO_ENV_PROD/assets/images/logos/Tensorflow_logo.svg": "062863270951490be99eb67a25ec6137b78eb8fd",
+    "/PWA_DEMO_ENV_PROD/assets/images/logos/c-logo-black-and-white.png": "1843e612790626e3ba4cd07a953f8a4b7cc14c4b",
     "/PWA_DEMO_ENV_PROD/assets/images/logos/tesseract-icon.webp": "d58f54fd40e6186503e330adcf743f1952b3a663",
     "/PWA_DEMO_ENV_PROD/assets/images/logos/tesseract-ocr.png": "4f0ac5f5458fdbdd99a4aafe872072a6f4e27bce",
     "/PWA_DEMO_ENV_PROD/assets/images/mic_off.gif": "58fb904614ab65925c51edf315b70c46d6687410",
