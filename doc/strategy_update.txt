@@ -43,6 +43,19 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 //////////////////////////////////////////////////////////////
 
+  --[X] (missing from lookup) Swift.
+
+  --[X] node.js dynamic root url  - swagger.
+
+  --[X] [App v. / xx ] name prefix.
+
+  --[x] gitHub Repo FROM CONFIG.
+
+  --[x] TECHNICAL SPECS LOOK UP TABLE
+
+        --[x] TYPE ATTRIBUTE.
+        --[x] FEATURES LIST <, , ,>.
+
 --[_] SHOW REFERENCES ==> LIBRAREIS ==> NAME V[X.X.X].
 
 --[_] Test visual studio code angent window ==> ask copilot about functionality.
@@ -313,16 +326,7 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
                               --[x] LANGUAGE VERSION.
 
-            --[x] TECHNICAL SPECS LOOK UP TABLE
-
-                  --[x] TYPE ATTRIBUTE.
-                  --[x] FEATURES LIST <, , ,>.
-
-            --[_] (missing from lookup) Swift.
-
             --[_] django dynamic site config - render.
-
-            --[_] node.js dynamic root url  - swagger.
 
             --[_] SWIFT SHORT DOCKER DEPLOY.
 
@@ -332,9 +336,9 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
             --[_] "CppWebServerDemo.cpp". OOP.
 
-            --[X] [App v. / xx ] name prefix.
+            --[_] ZIG CORS.
 
-            --[_] gitHub Repo FROM CONFIG.
+            --[_] PYTHON CORS.
 
             --[_] HEALTH ENDPOINT
 
@@ -349,7 +353,5 @@ Thar the north I want to give to an existing basic showcase I programmes using a
  --[_] 12:38 I needed a C compiler on Windows for a Neovim plugin. The Zig compiler was, by far, the easiest way to get a C compiler compared to Mingw, Clang, MSVC, or GCC. Awesome stuf.
 
 --[_] Render config from database.
-
---[_] Health Structure from DB.
 
 ////////////////////////////////////////////////////////////////////////////////
