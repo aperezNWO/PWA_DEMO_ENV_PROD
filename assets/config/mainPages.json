@@ -43,8 +43,9 @@
           { "id": 6, "url" : "/GridParam"         , "text": "[SPRING BOOT / JAVA ]"            , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
           { "id": 7, "url" : "/GridParam"         , "text": "[DJANGO / PYTHON]"                , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
           { "id": 8, "url" : "/GridParam"         , "text": "[SPRING BOOT /  KOTLIN ]"         , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"    },
-          { "id": 9, "url" : "/GridParam"         , "text": "[SHELF /  DART ]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }
-          ],
+          { "id": 9, "url" : "/GridParam"         , "text": "[SHELF /  DART]"                  , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            },
+          { "id":10, "url" : "/GridParam"         , "text": "[SWIFT /  VAPOR]"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SWIFT_VAPOR'}"           }
+        ],
       "comment_2"        : "'page_nested' values for  dynamic landing. queryParam explicit 'pageName' param requiered for /Gridparam.",
       "pages_nested"     : [
           { "id": 1, "url" : "", "text": "./assets/images/logos/Angular_gradient_logo.png"                      , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT'}"    },
@@ -55,7 +56,8 @@
           { "id": 6, "url" : "", "text": "./assets/images/logos/Microsoft.VisualStudio.Services.Icons.Default"  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_JAVA'}"      },
           { "id": 7, "url" : "", "text": "./assets/images/logos/Python-logo-notext.svg"                         , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DJANGO_PYTHON'}"         },
           { "id": 8, "url" : "", "text": "./assets/images/logos/Kotlin_icon_(2016-2021).svg"                    , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN'}"    },
-          { "id": 9, "url" : "", "text": "./assets/images/logos/Dart-logo.png"                                  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            }
+          { "id": 9, "url" : "", "text": "./assets/images/logos/Dart-logo.png"                                  , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_DART_SHELF'}"            },
+          { "id":10, "url" : "", "text": "./assets/images/logos/Swift_icon.webp"                                , "routerLink" : "/GridParam"                 , "queryParams" : "{ pageName : 'PAGE_DEMOS_SWIFT_VAPOR'}"           }
         ]
       },
       {
