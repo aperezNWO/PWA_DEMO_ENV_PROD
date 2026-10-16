@@ -705,6 +705,41 @@
         ]
       },
       {
+        "log_name"   : "PAGE_DEMOS_ZIG_WEB_SERVER",
+        "page_name"  : "[DEMOS - ZIG / HTTP WEB SERVER ]",
+        "pages"      : [
+             { "id": 1, "url" : "./assets/demos/zigDemo/zig_Demos_base.json"             , "text": ""        }
+        ]
+      },
+      {
+        "log_name"   : "PAGE_DEMOS_RUST_AXUM",
+        "page_name"  : "[DEMOS - RUST / AXUM ]",
+        "pages"      : [
+             { "id": 1, "url" : "./assets/demos/rustDemo/rust_Demos_base.json"             , "text": ""        }
+        ]
+      },
+      {
+        "log_name"   : "PAGE_DEMOS_GOLANG_SERVER_MUX",
+        "page_name"  : "[DEMOS - GO LANG / HTTP SERVER MUX ]",
+        "pages"      : [
+             { "id": 1, "url" : "./assets/demos/goLangDemo/goLang_Demos_base.json"             , "text": ""        }
+        ]
+      },
+      {
+        "log_name"   : "PAGE_DEMOS_SWIFT_VAPOR",
+        "page_name"  : "[DEMOS - SWIFT / VAPOR ]",
+        "pages"      : [
+             { "id": 1, "url" : "./assets/demos/swiftDemo/swift_Demos_base.json"               , "text": ""        }
+        ]
+      },
+      {
+        "log_name"   : "PAGE_DEMOS_CPP_WEB_SERVER",
+        "page_name"  : "[DEMOS - C++ / HTTP WEB SERVER ]",
+        "pages"      : [
+             { "id": 1, "url" : "./assets/demos/cppWebServerDemo/cppWebServer_Demos_base.json" , "text": ""        }
+        ]
+      },
+      {
         "log_name"   : "PAGE_ABOUT_INDEX",
         "page_name"  : "[ABOUT]",
         "pages"      : [
