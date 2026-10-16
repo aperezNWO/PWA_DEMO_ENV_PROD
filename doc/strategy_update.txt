@@ -258,6 +258,8 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
         --[_] Turbo C++ / Pascal.
 
+--[_] CURL DOS OUPTUT GRAPHS TESTING.
+
 --[_] https://aistudio.xiaomimimo.com.
 
 --[_] jev.
