@@ -115,7 +115,7 @@ export class AlgorithmService extends BaseService {
     // CPP - SERVER
     getRandomVertexCppLang(_vertexSize: number, _sourcePoint: number): Observable<string> {
       //
-      let p_url    = `${this._configService.getConfigValue('baseUrlCppWebServer')}GenerateRandomVertex_CPP?p_vertexSize=${_vertexSize}&p_sourcePoint=${_sourcePoint}`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/algorithm/GenerateRandomVertex_CPP?p_vertexSize=${_vertexSize}&p_sourcePoint=${_sourcePoint}`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //
@@ -159,6 +159,17 @@ export class AlgorithmService extends BaseService {
     {
       //
       let p_url    = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/Algorithm/_GetSort_CPP?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
+      //
+      let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+      //
+      return newSortData;
+    }
+
+    //
+    getSort_CPPLang(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
+    {
+      //
+      let p_url    = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/algorithm/GetSort_CPP?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
       //
       let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //

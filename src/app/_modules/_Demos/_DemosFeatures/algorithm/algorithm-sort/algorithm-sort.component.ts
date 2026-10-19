@@ -45,7 +45,7 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
     private   indexDraw           : number   = 0;
     public    sortedArrayDecoded  : string   = "";
     private   arraySeparator      : string   = "|";
-    public    GetSortLabel        : string   = "[SORT]"; 
+    public    GetSortLabel        : string   = "[SORT]";
     public    stringArray_        : string[] = [];
     public    __languajeList      : any;
     protected   drawEngine        : DrawEngine | undefined;
@@ -54,7 +54,7 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
     public override toogleLisCaption: string = "[See references]";
     //
     constructor(public  override  configService     : ConfigService,
-                public  override  backendService    : BackendService, 
+                public  override  backendService    : BackendService,
                 public  override  route             : ActivatedRoute,
                 public  override  speechService     : SpeechService,
                 public  algorithmService            : AlgorithmService)
@@ -66,7 +66,7 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
               speechService,
               PAGE_TITLE_NO_SOUND
         );
-    
+
     }
     //
     ngOnInit(): void {
@@ -85,7 +85,7 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
         this.GetNewSort();
     }
     //--------------------------------------------------------------------------
-    // METODOS COMUNES 
+    // METODOS COMUNES
     //--------------------------------------------------------------------------
     //
     queryParams():void {
@@ -96,21 +96,22 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
             //-----------------------------------------------------------------------------
             this.__languajeList = new Array();
             //
-            this.__languajeList.push( new _languageName(0,"(CHOOSE OPTION OPCION...)",false ,""));        
-            this.__languajeList.push( new _languageName(1,"(.NET Core/C#)"        ,true  ,"CS"));        
-            this.__languajeList.push( new _languageName(2,"(.NET Core/C++)"       ,false ,"CPP")); 
+            this.__languajeList.push( new _languageName(0, "(CHOOSE OPTION OPCION...)",false  , ""   ));
+            this.__languajeList.push( new _languageName(1, "(.NET Core/C#)"           , true  , "CS" ));
+            this.__languajeList.push( new _languageName(2, "(.NET Core/C++)"          , false , "CPP"));
+            this.__languajeList.push( new _languageName(3, "(httplib::Server/C++)"    , false , "CWS"));
             //
             let langName = params['langName'] ? params['langName'] : "" ;
             //
             //console.log("query param : " + langName);
             //
             if (langName !== '')
-            {   
+            {
                 //
                 for (var index = 1; index < this.__languajeList.length; index++) {
                     //
                     if (this.__languajeList[index]._shortName  == langName)
-                    this.__languajeList[index]._selected = true;        
+                    this.__languajeList[index]._selected = true;
                 }
 
             } else {
@@ -146,24 +147,28 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
         //
         let _progLangId        : number = Number.parseInt(this._languajeList.nativeElement.value);
         //
-        switch(_progLangId)    
+        switch(_progLangId)
         {
             case 0:  // (seleccione lenguaje...)
                   return;
             break;
             case 1 : // C#
                 //
-                GetSortInfo           = this.algorithmService.SortBenchMark_getSort_C_Sharp(p_sortAlgorith, p_unsortedList);            
+                GetSortInfo           = this.algorithmService.SortBenchMark_getSort_C_Sharp(p_sortAlgorith, p_unsortedList);
             break;
             case 2: // C++
                 //
-                GetSortInfo           = this.algorithmService.getSort_CPP(p_sortAlgorith, p_unsortedList);            
+                GetSortInfo = this.algorithmService.getSort_CPP(p_sortAlgorith, p_unsortedList);
+            break;
+            case 3: // C++ / WEB SERVER
+                //
+                GetSortInfo           = this.algorithmService.getSort_CPPLang(p_sortAlgorith, p_unsortedList);
             break;
         }
         //
         const GetSortInfoObserver   = {
             //
-            next: (data: string)     => { 
+            next: (data: string)     => {
                 //-----------------------------------------------------------------------
                 // CORREGIR DATOS DE MATRIZ PARA VISUALIZAR EN CANVAS
                 //-----------------------------------------------------------------------
@@ -204,7 +209,7 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
                 this.status_message.set("An error occurred");
                 //
                 return false;
-            },       
+            },
             complete: ()        => {
                 //
                 console.warn(this.pageTitle  + ' - [GETTING SORT] - [Observer got a complete notification]');
@@ -212,7 +217,7 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
         };
         //
         GetSortInfo.subscribe(GetSortInfoObserver);
-    }    
+    }
     //
     public GetNewSort():void
     {
@@ -227,7 +232,7 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
         //
         this.mensajes_2.nativeElement.innerHTML   = "...getting list...";
         //
-        this.status_message.set("...getting list...");                                    
+        this.status_message.set("...getting list...");
         //
         let randomVertexInfo!          : Observable<string>;
         //
@@ -235,7 +240,7 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
         //
         const randomVertexObserver     = {
             //
-            next: (sortInfo: string)     => { 
+            next: (sortInfo: string)     => {
                 //
                 console.info(this.pageTitle + ' - [GETTING NEW SORT]  - RETURN VALUE : ' + sortInfo);
                 //
@@ -266,7 +271,7 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
                 console.error(this.pageTitle + ' - [GETTING NEW SORT] - [error] : ' + err.message);
                 //
                 this.status_message.set("An error occurred");
-            },       
+            },
             complete: ()        => {
                 //
                 console.warn(this.pageTitle  + ' - [GETTING NEW SORT] - [Observer got a complete notification]');
@@ -282,14 +287,14 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
         //
         this.stringArray_            = this.mensajes.nativeElement.innerHTML.split("<br>");
         //
-        let numberArray  : SortInfo[] = []; 
+        let numberArray  : SortInfo[] = [];
         //
-        this.stringArray_.forEach((element: string, index : number) => {    
+        this.stringArray_.forEach((element: string, index : number) => {
             //
             let sortInfo  : SortInfo = new SortInfo(element, false);
             //
-            numberArray.push(sortInfo);  
-        });   
+            numberArray.push(sortInfo);
+        });
         //
         this.drawEngine?.DrawGrid();
         //
@@ -336,22 +341,22 @@ export class AlgorithmSortComponent extends BaseReferenceComponent implements On
             //
             let stringArray_current : string[]   = this.stringMatrix[this.indexDraw].split(",");
             //
-            let numberArray : SortInfo[] = []; 
+            let numberArray : SortInfo[] = [];
             //
-            stringArray_current.forEach((element: string, index : number) => {  
+            stringArray_current.forEach((element: string, index : number) => {
               //
-              let swapStyle : boolean  = (stringArray_current[index] != stringArray_past[index]);  
+              let swapStyle : boolean  = (stringArray_current[index] != stringArray_past[index]);
               //
               let sortInfo  : SortInfo = new SortInfo(element, swapStyle);
               //
-              numberArray.push(sortInfo);  
-            });        
+              numberArray.push(sortInfo);
+            });
             //
             this.drawEngine?.DrawGrid();
             //
             this.drawEngine?.DrawRectangles(numberArray);
             //
-            this.DrawArray();    
+            this.DrawArray();
         }
         //
         this.indexDraw++;
