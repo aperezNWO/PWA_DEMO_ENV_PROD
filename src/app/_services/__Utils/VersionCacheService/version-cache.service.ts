@@ -19,11 +19,12 @@ import { BackendService        } from '../../BackendService/backend.service';
 import { ConfigService         } from '../ConfigService/config.service';
 
 export interface VersionBundle {
-  pythonAppVersion          : string;
-  pythonVersion             : string;
-  pythonWebServerVersion    : string;
-  pythonVersionTF           : string;
-  pythonWebServerVersionTF: string;
+  pythonAppVersion           : string;
+  pythonVersion              : string;
+  pythonWebServerVersion     : string;
+  pythonAppVersionTF         : string;
+  pythonVersionTF            : string;
+  pythonWebServerVersionTF   : string;
   nodeAppVersion       : string;
   nodeVersion          : string;
   nodeWebServerVersion: string;
@@ -132,6 +133,7 @@ export class VersionCacheService implements OnDestroy {
       pythonAppVersion          : safeSub(this.back.getPythonAppVersion()),
       pythonVersion             : safeSub(this.back.getPythonVersion()),
       pythonWebServerVersion    : safeSub(this.back.getPythonWebServerVersion()),
+      pythonAppVersionTF        : safeSub(this.back.getPythonAppVersionTF()),
       pythonVersionTF           : safeSub(this.back.getPythonVersionTF()),
       pythonWebServerVersionTF  : safeSub(this.back.getPythonWebServerVersionTF()),
       nodeAppVersion            : safeSub(this.back.getNodeAppVersion()),
@@ -218,7 +220,7 @@ export class VersionCacheService implements OnDestroy {
     const L = '(..loading..)';
     const blank: VersionBundle = {
       pythonAppVersion: L, pythonVersion: L, pythonWebServerVersion: L,
-      pythonVersionTF:L, pythonWebServerVersionTF : L,
+      pythonAppVersionTF:L, pythonVersionTF:L, pythonWebServerVersionTF : L,
       nodeAppVersion: L, nodeVersion: L, nodeWebServerVersion: L,
       nodeAppVersionOcr: L,nodeVersionOcr: L, nodeWebServerVersionOcr: L,
       javaAppVersion: L, javaVersion: L, javaWebServerVersion : L,
