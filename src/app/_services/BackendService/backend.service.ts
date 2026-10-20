@@ -277,6 +277,12 @@ export class BackendService extends BaseService implements OnInit {
   }
 
   // PYTHON - DB
+  getPythonAppVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getAppVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+
+  // PYTHON - DB
   getPythonVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getPythonVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);

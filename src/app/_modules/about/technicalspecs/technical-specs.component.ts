@@ -49,6 +49,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _TensorFlowAPPVersion            = this.fromCache('tfApp');
   _TensorFlowAPIVersion            = this.fromCache('tfApi');
   _TensorFlowCPPSTDVersion         = this.fromCache('tfCpp');
+  _PythonAppVersion                = this.fromCache('pythonAppVersion');
   _PythonVersion                   = this.fromCache('pythonVersion');
   _PythonWebServerVersion          = this.fromCache('pythonWebServerVersion');
   _PythonVersionTF                 = this.fromCache('pythonVersionTF');
@@ -143,6 +144,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._TensorFlowAPPVersion         = v.tfApp ?? '(..loading..)';
         this._TensorFlowAPIVersion         = v.tfApi ?? '(..loading..)';
         this._TensorFlowCPPSTDVersion      = v.tfCpp ?? '(..loading..)';
+        this._PythonAppVersion             = v.pythonAppVersion ?? '(..loading..)';
         this._PythonVersion                = v.pythonVersion ?? '(..loading..)';
         this._PythonWebServerVersion       = v.pythonWebServerVersion ?? '(..loading..)';
         this._PythonVersionTF              = v.pythonVersionTF ?? '(..loading..)';
@@ -188,7 +190,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     type                  : '(Backend)',
                     name                  : '[App v / Python / Django]',
                     features              : '<db>',
-                    appVersion            : '1.0.0',
+                    appVersion            : this._PythonAppVersion,
                     stdVersion            : this._PythonVersion,
                     apiOrServerVersion    : this._PythonWebServerVersion,
                     repoLink              : this._PythonDjangoRepo,
