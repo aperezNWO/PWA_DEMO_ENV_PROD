@@ -8,19 +8,19 @@ import { ConfigService                      } from '../../__Utils/ConfigService/
   providedIn: 'root'
 })
 export class SudokuService extends BaseService {
-  
-  ////////////////////////////////////////////////////////////////  
+
+  ////////////////////////////////////////////////////////////////
   // FIELDS
-  ////////////////////////////////////////////////////////////////  
-  
-  constructor(public http : HttpClient, public _configService : ConfigService) { 
+  ////////////////////////////////////////////////////////////////
+
+  constructor(public http : HttpClient, public _configService : ConfigService) {
       //
       super();
   }
 
-  ////////////////////////////////////////////////////////////////  
+  ////////////////////////////////////////////////////////////////
   // METHODS
-  //////////////////////////////////////////////////////////////// 
+  ////////////////////////////////////////////////////////////////
   //
   _GetSudoku_NodeJS(): Observable<string> {
     //
@@ -32,12 +32,22 @@ export class SudokuService extends BaseService {
     );
     //
     return sudokuGenerated;
-  } 
+  }
   //
   _GetSudoku_CPP(): Observable<string>
   {
-    // 
+    //
     let p_url              : string  =  `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/Algorithm/Sudoku_Generate_CPP`;
+    //
+    let sudokuGenerated    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+    //
+    return sudokuGenerated;
+  };
+  //
+  _GetSudoku_CPP_WS(): Observable<string>
+  {
+    //
+    let p_url              : string  =  `${this._configService.getConfigValue('baseUrlCppWebServer')}api/algorithm/Sudoku_Generate_CPP`;
     //
     let sudokuGenerated    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
     //
@@ -46,7 +56,7 @@ export class SudokuService extends BaseService {
   //
   _SolveSudoku_CPP(p_matrix : string): Observable<string>
   {
-    // 
+    //
     let p_url               : string  = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/Algorithm/Sudoku_Solve_CPP?p_matrix=${p_matrix}`
     //
     let sudokuSolved        : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
@@ -54,6 +64,15 @@ export class SudokuService extends BaseService {
     return sudokuSolved;
   };
   //
+  _SolveSudoku_CPP_WS(p_matrix : string): Observable<string>
+  {
+    //
+    let p_url               : string  = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/algorithm/Sudoku_Solve_CPP?p_matrix=${p_matrix}`
+    //
+    let sudokuSolved        : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+    //
+    return sudokuSolved;
+  }; //
   _SolveSudoku_NodeJS(p_matrix: string): Observable<string> {
     //
     let p_url: string = `${this._configService.getConfigValue('baseUrlNodeJs')}Sudoku_Solve_NodeJS?p_matrix=${p_matrix}`;
@@ -82,6 +101,6 @@ export class SudokuService extends BaseService {
     });
     //
     return this.http.request<HttpEvent<any>>(req);
-  }    
+  }
   ///////////////////////////////////////////////////////////////
 }

@@ -44,7 +44,7 @@ export class SudokuComponent extends BaseReferenceComponent implements OnInit, A
   @ViewChild('_fileUpload')   _fileUpload     : any;
   @ViewChild('_sudoku_board')  _sudoku_board  : any;
   //
-  public __languajeList: any;  
+  public __languajeList: any;
   //
   public __generateSourceList : any;
   //
@@ -67,16 +67,16 @@ export class SudokuComponent extends BaseReferenceComponent implements OnInit, A
   //
   constructor(
                   public  override configService    : ConfigService,
-                  public  override backendService   : BackendService,                  
+                  public  override backendService   : BackendService,
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
-                  public  formBuilder               : FormBuilder, 
+                  public  formBuilder               : FormBuilder,
                   public  pdfEngine                 : PdfService,
                   public  _sudokuService            : SudokuService,
-              ) 
-  { 
+              )
+  {
       //
-      super(configService,  
+      super(configService,
             backendService,
             route,
             speechService,
@@ -98,7 +98,7 @@ export class SudokuComponent extends BaseReferenceComponent implements OnInit, A
     this.__generateSourceList.push(new ListItem(2, '[Backend]'         , true));
   }
   //--------------------------------------------------------------------------
-  // METODOS COMUNES 
+  // METODOS COMUNES
   //--------------------------------------------------------------------------
   //
   queryParams():void{
@@ -108,24 +108,25 @@ export class SudokuComponent extends BaseReferenceComponent implements OnInit, A
       // LENGUAJES DE PROGRAMACION
       //-----------------------------------------------------------------------------
       this.__languajeList = new Array();
-      this.__languajeList.push(new _languageName(0, '(CHOOSE OPTION...)'   , false,""    ));
-      this.__languajeList.push(new _languageName(1, '(.NET Core/C++)'      , true ,"CPP" ));
-      this.__languajeList.push(new _languageName(2, '(Node.js)'            , false,"JS"  ));
+      this.__languajeList.push(new _languageName(0, '(CHOOSE OPTION...)'         , false,""    ));
+      this.__languajeList.push(new _languageName(1, '(.NET Core   / C++)'        , true  , "CPP" ));
+      this.__languajeList.push(new _languageName(2, '(cpp-httplib / C++)'        , false , "CWS" ));
+      this.__languajeList.push(new _languageName(3, '(Node.js     / Javascript)' , false , "JS"  ));
       //
       let langName = params['langName'] ? params['langName'] : "" ;
       //
       if (langName !== '')
-      {   
+      {
           //
           for (var index = 1; index < this.__languajeList.length; index++) {
               //
               if (this.__languajeList[index]._shortName  == langName)
-                this.__languajeList[index]._selected = true;        
+                this.__languajeList[index]._selected = true;
           }
 
       } else {
         //
-        this.__languajeList[1]._selected = true; // C#
+        this.__languajeList[1]._selected = true; // C++
       }
     });
   }
@@ -147,13 +148,17 @@ export class SudokuComponent extends BaseReferenceComponent implements OnInit, A
         let selectedIndex  : number = this._languajeList.nativeElement.options.selectedIndex; // c++ by default
         //
         switch (selectedIndex) {
-          case 1: // c++
+          case 1: // c++ / .NET CORE
             generatedSudoku = this._sudokuService._GetSudoku_CPP();
             break;
-          case 2: // Typescript
+          case 2: // c++ / http web server
+            generatedSudoku = this._sudokuService._GetSudoku_CPP_WS();
+          break;
+          case 3: // node.js / javascript
             generatedSudoku = this._sudokuService._GetSudoku_NodeJS();
             break;
           default:
+            generatedSudoku = this._sudokuService._GetSudoku_CPP();
             return;
         }
         //
@@ -193,7 +198,7 @@ export class SudokuComponent extends BaseReferenceComponent implements OnInit, A
               '[SUDOKU - GENERATE] - (ERROR) : ' + JSON.stringify(err.message),
             );
             //
-            this.btnGenerateCaption = '[GENERATE]';            
+            this.btnGenerateCaption = '[GENERATE]';
             //
             this.status_message.set("An error occurred");
           },
@@ -226,7 +231,7 @@ export class SudokuComponent extends BaseReferenceComponent implements OnInit, A
         //
         this.sudokuSolved = false;
         //
-        this.btnGenerateCaption = '[...generating...]';       
+        this.btnGenerateCaption = '[...generating...]';
         //
         this.currentFile = file;
         //
@@ -246,7 +251,7 @@ export class SudokuComponent extends BaseReferenceComponent implements OnInit, A
               jsondata = jsondata.replace(/\\n/g, '');
               //
               this._sudokuGenerated = jsondata;
-              //  
+              //
               jsondata = jsondata.replaceAll('[', '');
               jsondata = jsondata.replaceAll(']', '');
               jsondata = jsondata.replaceAll('},', '|');
@@ -297,7 +302,7 @@ export class SudokuComponent extends BaseReferenceComponent implements OnInit, A
         });
       }
     }
-    else 
+    else
     {
         //
         this.status_message.set("¨Please select a file.");
@@ -318,7 +323,7 @@ export class SudokuComponent extends BaseReferenceComponent implements OnInit, A
         default:
           return;
       }
-      
+
   }
   //
   public _SolveSudoku(): void {
@@ -335,14 +340,18 @@ export class SudokuComponent extends BaseReferenceComponent implements OnInit, A
       this._languajeList.nativeElement.options.selectedIndex; // c++ by default
     //
     switch (selectedIndex) {
-      case 1: // c++
-        solveSudoku = this._sudokuService._SolveSudoku_CPP(this._sudokuGenerated);
-        break;
-      case 2: // Typescript
-        solveSudoku = this._sudokuService._SolveSudoku_NodeJS(this._sudokuGenerated);
-        break;
+      case 1: // .net core / c++
+          solveSudoku = this._sudokuService._SolveSudoku_CPP(this._sudokuGenerated);
+          break;
+      case 2: // .net core / c++
+          solveSudoku = this._sudokuService._SolveSudoku_CPP_WS(this._sudokuGenerated);
+          break;
+      case 3: // node.js / javascript
+          solveSudoku = this._sudokuService._SolveSudoku_NodeJS(this._sudokuGenerated);
+          break;
       default:
-        return;
+          solveSudoku = this._sudokuService._SolveSudoku_CPP(this._sudokuGenerated);
+          return;
     }
     //
     const solveSudokuObserver = {
