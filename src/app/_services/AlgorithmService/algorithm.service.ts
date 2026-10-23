@@ -235,6 +235,16 @@ export class AlgorithmService extends BaseService {
       let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
       return regExData;
-    }
+  }
+  //
+  public _RegExEval_CPP_WS(tagSearchIndex: number, textSearchValue: string): Observable<string>
+  {
+    //
+    let p_url    : string = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/algorithm/Regex_Eval_CPP?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
+    //
+    let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
+    //
+    return regExData;
+  }
   ///////////////////////////////////////////////////////////////
 }

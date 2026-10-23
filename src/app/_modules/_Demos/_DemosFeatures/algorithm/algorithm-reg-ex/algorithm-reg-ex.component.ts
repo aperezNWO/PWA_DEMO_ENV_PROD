@@ -40,7 +40,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
     @ViewChild('_languajeList')   _languajeList  : any;
     //
     constructor(public override configService    : ConfigService,
-                public override backendService   : BackendService, 
+                public override backendService   : BackendService,
                 public override speechService    : SpeechService,
                 public override route            : ActivatedRoute,
                 public          algorithmService : AlgorithmService)
@@ -76,19 +76,21 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
             //-----------------------------------------------------------------------------
             this.__languajeList = new Array();
             //
-            this.__languajeList.push( new _languageName(0,"(CHOOSE OPTION...)"   ,false ,""   ));        
-            this.__languajeList.push( new _languageName(1,"(.NET CORE/C#)"       ,true  ,"CS" ));        
-            this.__languajeList.push( new _languageName(2,"(.NET CORE/C++)"      ,false ,"CPP"));  
+            this.__languajeList.push( new _languageName(0,"(CHOOSE OPTION...)"   , false ,""    ));
+            this.__languajeList.push( new _languageName(1, "(.NET CORE  / C#)"      , true  , "CS" ));
+            this.__languajeList.push( new _languageName(2, "(.NET CORE  / C++)"     , false , "CPP"));
+            this.__languajeList.push( new _languageName(3, "(cpp-httplib/ C++)"     , false , "CWS"));
+
             //
             let langName = params['langName'] ? params['langName'] : "" ;
             //
             if (langName !== '')
-            {   
+            {
                 //
                 for (var index = 1; index < this.__languajeList.length; index++) {
                     //
                     if (this.__languajeList[index]._shortName  == langName)
-                        this.__languajeList[index]._selected = true;        
+                        this.__languajeList[index]._selected = true;
                 }
 
             } else {
@@ -109,7 +111,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
         //
         const xmlInfoObserver   = {
             //
-            next: (_xmlData: string)     => { 
+            next: (_xmlData: string)     => {
                 //------------------------------------------------------------
                 // OBTENER DATA
                 //------------------------------------------------------------
@@ -123,7 +125,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
                 //
                 this.mensajes.nativeElement.innerHTML = this.xmlData;
                 //
-                this.status_message.set("[RESTART SUCCESFUL]")                 
+                this.status_message.set("[RESTART SUCCESFUL]")
                 //
                 this.pattern   = "";
             },
@@ -134,7 +136,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
                 this.pattern   = "";
                 //
                 console.error(this.pageTitle + ' - [GET XML DATA]- [error] : ' + err.message);
-            },       
+            },
             complete: ()        => {
                 //
                 console.info(this.pageTitle  + ' - [GET XML DATA]- [Observer got a complete notification]');
@@ -176,7 +178,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
         //
         let regExInfo!         : Observable<string>;
         //
-        switch(_progLangId)    
+        switch(_progLangId)
         {
             case 0:  // (seleccione lenguaje...)
                   return;
@@ -185,9 +187,13 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
                 //
                 regExInfo       = this.algorithmService._RegExEval(tagSearchIndex,textSearchValue);
             break;
-            case 2: // C++
+            case 2: // C++ / .NET CORE
                 //
                 regExInfo       = this.algorithmService._RegExEval_CPP(tagSearchIndex,textSearchValue);
+            break;
+            case 3: // C++ / http web server
+                //
+                regExInfo       = this.algorithmService._RegExEval_CPP_WS(tagSearchIndex,textSearchValue);
             break;
         }
         //
@@ -195,13 +201,13 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
         //
         const regExInfoObserver   = {
             //
-            next: (data: string)     => { 
+            next: (data: string)     => {
                 //------------------------------------------------------------
                 // OBTENER DATA
                 //------------------------------------------------------------
                 //
                 console.warn(this.pageTitle + ' - [EVAL REGEX] - [RETURN VALUE] : ' + data.length);
-                //    
+                //
                 let resultArray : string[] = data.split("|");
                 //
                 //
@@ -225,7 +231,7 @@ export class AlgorithmRegExComponent extends BaseComponent implements OnInit, Af
             error: (err: Error) => {
                 //
                 console.error(this.pageTitle + ' - [EVAL REGEX] - [error] : ' + err.message);
-            },       
+            },
             complete: ()        => {
                 //
                 console.info(this.pageTitle  + ' - [EVAL REGEX] - [Observer got a complete notification]');
