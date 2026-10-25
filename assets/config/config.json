@@ -152,7 +152,7 @@
     "baseUrlCppWebServer_render_gmail_ws_05"           : "https://fractal-cpp-server-latest-f8s5.onrender.com/",
     "baseUrlCppWebServer_render_gmail_ws_06"           : "https://fractal-cpp-server-latest-1d69.onrender.com/",
     "baseUrlCppWebServer"                              : "https://cpp-gcc-algorithm-docker.onrender.com/",
-    "baseUrlCppWebServerRepo"                          : "https://github.com/aperezNWO/CPP_GCC_ALGORITHM/blob/master/src/",
+    "baseUrlCppWebServerRepo"                          : "https://github.com/aperezNWO/CPP_GCC_ALGORITHM_DOCKER.git",
     "baseUrlCppWebServerModule"                        : "#/GridParam?pageName=PAGE_DEMOS_CPP_WEB_SERVER",
     "DJANGO_PYTHON_ENV"                                : "--------------------------------------------------",
     "baseUrlDjangoPython_local"                        : "http://localhost:8080/",
