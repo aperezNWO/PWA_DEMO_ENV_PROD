@@ -346,18 +346,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     features              : '<Algorithm>',
                     appVersion            : this._AlgorithmAppVersion,
                     apiOrServerVersion    : this._Algorithm_CPPSTDVersion,
-                    repoLink              : `${this.__baseUrlCppWebServerRepo}Algorithm.cpp`,
+                    repoLink              : `${this.configService.getConfigValue('baseUrlNetCoreCPPAlgorithmRepo')}`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlNetCoreCPPAlgorithmModule')}`,
-                },
-                {
-                    type               : '(DLL C++)',
-                    name               : '[App v. / Std v. / API v.]',
-                    features           : '<OpenCv>',
-                    appVersion         : this._OpenCvAppVersion,
-                    stdVersion         : this._OpenCvCPPSTDVersion,
-                    apiOrServerVersion : this._OpenCvAPIVersion,
-                    repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvRepo')}`,
-                    moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvModule')}`,
                 },
                 {
                     type                : '(DLL C++)',
@@ -379,6 +369,16 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion : this._TensorFlowAPIVersion,
                     repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowRepo')}`,
                     moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowModule')}`,
+                },
+                {
+                    type               : '(DLL C++)',
+                    name               : '[App v. / Std v. / API v.]',
+                    features           : '<OpenCv>',
+                    appVersion         : this._OpenCvAppVersion,
+                    stdVersion         : this._OpenCvCPPSTDVersion,
+                    apiOrServerVersion : this._OpenCvAPIVersion,
+                    repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvRepo')}`,
+                    moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvModule')}`,
                 },
             ];
     }
