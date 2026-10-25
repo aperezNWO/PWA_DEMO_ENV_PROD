@@ -360,14 +360,24 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
                   --[_] HEALTH STRUCTURE ENDPONTS CONSTANTS ON FRONTEND.
 
- --[_] 12:38 I needed a C compiler on Windows for a Neovim plugin. The Zig compiler was, by far, the easiest way to get a C compiler compared to Mingw, Clang, MSVC, or GCC. Awesome stuf.
-
---[_] Render config from database.
+ --[_] [ZIG RESEARCH] I needed a C compiler on Windows for a Neovim plugin. The Zig compiler was, by far, the easiest way to get a C compiler compared to Mingw, Clang, MSVC, or GCC. Awesome stuf.
 
 --[_] C++ HTTP WEB SERVER.
 
     --[_] COMPLETE DEMOS BASED UP ON C++/.NET CORE DEMOS.
 
     --[_] C++ RAW ALGORITHMS.
+
+    --[_] GCC_CPP_ALGORITHM_DOCKER.
+
+    --[_] GCC_CPP_TENSORFLOW_DOCKER.
+
+--[_] LINKS TO DOCKER / RENDER.
+
+    --[_] ABOUT -> TECH SPECS.
+
+    --[_] SCM.JSON.
+
+--[_] Render config from database.
 
 ////////////////////////////////////////////////////////////////////////////////
