@@ -312,11 +312,11 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 {
                     type                 : '(Backend)',
                     name                 : '[App v. / C++ / httplib::Server]',
-                    features             : '<Fractals>',
+                    features             : '<Algorithm>',
                     appVersion           : this._CppAppVersion,
                     stdVersion           : this._CppVersion,
                     apiOrServerVersion   : this._CppWebServerVersion,
-                    repoLink             : `${this.__baseUrlCppWebServerRepo}CppWebServer/CppWebServer.cpp`,
+                    repoLink             : `${this.__baseUrlCppWebServerRepo}`,
                     healthLink           : `${this.__baseUrlCppWebServer}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWebServerModule')}`,
                 },
