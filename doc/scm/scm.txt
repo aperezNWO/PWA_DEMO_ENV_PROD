@@ -157,9 +157,9 @@ https://hub.docker.com/repositories/apereznwogmail
                 -- [_] PENDING SIGN IN ACCOUNTS:
 
                     -- [_] OAUTH GITHUB - df149032@outlook.com
-
                     -- [_] direct account - alejandro.perez.acosta@hotmail.com
                     -- [_] direct account - alejandro.perez.acosta@gmail.com
+                    -- [_] OAUTH GITHUB - alejandro.perez.acosta@protonmail.com (ACCOUNT SUSPENED DUE TERM OF SERVICES)
 
 -- [_] 3) publish job on cronjobs to override render sleep / inactivity behaviour for free accounts.
 
