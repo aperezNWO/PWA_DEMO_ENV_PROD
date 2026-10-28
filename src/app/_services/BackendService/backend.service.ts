@@ -365,7 +365,7 @@ export class BackendService extends BaseService implements OnInit {
   }
   // CPP - tesseract
   getCppTesseractVersion(): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlCppWSTesseract')}getSTDVersion`;
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWSTesseract')}api/ocr/getAPIVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
   // CPP - tesseract

@@ -70,9 +70,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _CppAppVersion                   = this.fromCache('cppAppVersion');
   _CppVersion                      = this.fromCache('cppVersion');
   _CppWebServerVersion             = this.fromCache('cppWebServerVersion');
-  _CppTesseractWebServerVersion    = this.fromCache('cppTesseractWebServerVersion');
-  _CppTesseractAppVersion          = this.fromCache('cppTesseractAppVersion');
   _CppTesseractVersion             = this.fromCache('cppTesseractVersion');
+  _CppTesseractAppVersion          = this.fromCache('cppTesseractAppVersion');
+  _CppTesseractWebServerVersion    = this.fromCache('cppTesseractWebServerVersion');
   _RustAppVersion                  = this.fromCache('rustAppVersion');
   _RustVersion                     = this.fromCache('rustVersion');
   _RustWebServerVersion            = this.fromCache('rustWebServerVersion');
@@ -169,9 +169,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._CppAppVersion                = v.cppAppVersion ?? '(..loading..)';
         this._CppVersion                   = v.cppVersion ?? '(..loading..)';
         this._CppWebServerVersion          = v.cppWebServerVersion ?? '(..loading..)';
-        this._CppTesseractAppVersion       = v.cppTesseractAppVersion       ?? '(..loading..)';
-        this._CppTesseractVersion          = v.cppTesseractVersion          ?? '(..loading..)';
-        this._CppTesserctWebServerVersion  = v.cppTesseractWebServerVersion ?? '(..loading..)';
+        this._CppTesseractAppVersion        = v.cppTesseractAppVersion       ?? '(..loading..)';
+        this._CppTesseractVersion           = v.cppTesseractVersion          ?? '(..loading..)';
+        this._CppTesseractWebServerVersion  = v.cppTesseractWebServerVersion ?? '(..loading..)';
         this._RustAppVersion               = v.rustAppVersion ?? '(..loading..)';
         this._RustWebServerVersion         = v.rustWebServerVersion ?? '(..loading..)';
         this._RustVersion                  = v.rustVersion ?? '(..loading..)';
