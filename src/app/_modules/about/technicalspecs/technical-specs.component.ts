@@ -70,6 +70,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _CppAppVersion                   = this.fromCache('cppAppVersion');
   _CppVersion                      = this.fromCache('cppVersion');
   _CppWebServerVersion             = this.fromCache('cppWebServerVersion');
+  _CppTesseractWebServerVersion    = this.fromCache('cppTesseractWebServerVersion');
+  _CppTesseractAppVersion          = this.fromCache('cppTesseractAppVersion');
+  _CppTesseractVersion             = this.fromCache('cppTesseractVersion');
   _RustAppVersion                  = this.fromCache('rustAppVersion');
   _RustVersion                     = this.fromCache('rustVersion');
   _RustWebServerVersion            = this.fromCache('rustWebServerVersion');
@@ -166,6 +169,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._CppAppVersion                = v.cppAppVersion ?? '(..loading..)';
         this._CppVersion                   = v.cppVersion ?? '(..loading..)';
         this._CppWebServerVersion          = v.cppWebServerVersion ?? '(..loading..)';
+        this._CppTesseractAppVersion       = v.cppTesseractAppVersion       ?? '(..loading..)';
+        this._CppTesseractVersion          = v.cppTesseractVersion          ?? '(..loading..)';
+        this._CppTesserctWebServerVersion  = v.cppTesseractWebServerVersion ?? '(..loading..)';
         this._RustAppVersion               = v.rustAppVersion ?? '(..loading..)';
         this._RustWebServerVersion         = v.rustWebServerVersion ?? '(..loading..)';
         this._RustVersion                  = v.rustVersion ?? '(..loading..)';
@@ -319,6 +325,17 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink             : `${this.__baseUrlCppWebServerRepo}`,
                     healthLink           : `${this.__baseUrlCppWebServer}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWebServerModule')}`,
+                },
+                {
+                    type                 : '(Backend)',
+                    name                 : '[App v. / C++ / httplib::Server]',
+                    features             : '<Tesseract>',
+                    appVersion           : this._CppTesseractAppVersion,
+                    stdVersion           : this._CppTesseractVersion,
+                    apiOrServerVersion   : this._CppTesseractWebServerVersion,
+                    repoLink             : `${this.configService.getConfigValue('baseUrlCppWSTesseractRepo')}`,
+                    healthLink           : `${this.configService.getConfigValue('baseUrlCppWSTesseract')}health`,
+                    moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSTesseractModule')}`,
                 },
                 {
                     type               : '(Backend)',

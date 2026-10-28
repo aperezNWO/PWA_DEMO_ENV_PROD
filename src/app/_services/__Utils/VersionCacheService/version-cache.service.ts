@@ -50,10 +50,13 @@ export interface VersionBundle {
   zigAppVersion       : string;
   zigVersion          : string;
   zigWebServerVersion : string;
-  cppAppVersion        : string;
-  cppVersion           : string;
+  cppAppVersion            : string;
+  cppVersion               : string;
   cppWebServerVersion      : string;
-  rustAppVersion           : string;
+  cppTesseractAppVersion        : string;
+  cppTesseractVersion           : string;
+  cppTesseractWebServerVersion  : string;
+  rustAppVersion: string;
   rustVersion              : string;
   rustWebServerVersion     : string;
   goLangAppVersion         : string;
@@ -161,9 +164,12 @@ export class VersionCacheService implements OnDestroy {
       zigAppVersion        : safeSub(this.back.getZigAppVersion()),
       zigVersion           : safeSub(this.back.getZigVersion()),
       zigWebServerVersion  : safeSub(this.back.getZigWebServerVersion()),
-      cppAppVersion        : safeSub(this.back.getCppAppVersion()),
+      cppAppVersion          : safeSub(this.back.getCppAppVersion()),
       cppVersion             : safeSub(this.back.getCppVersion()),
       cppWebServerVersion    : safeSub(this.back.getCppWebServerVersion()),
+      cppTesseractAppVersion       : safeSub(this.back.getCppTesseractAppVersion()),
+      cppTesseractVersion          : safeSub(this.back.getCppTesseractVersion()),
+      cppTesseractWebServerVersion : safeSub(this.back.getCppTesseractWebServerVersion()),
       rustAppVersion         : safeSub(this.back.getRustAppVersion()),
       rustVersion            : safeSub(this.back.getRustVersion()),
       rustWebServerVersion   : safeSub(this.back.getRustWebServerVersion()),

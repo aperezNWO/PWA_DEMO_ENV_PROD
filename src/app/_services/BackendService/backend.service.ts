@@ -343,19 +343,34 @@ export class BackendService extends BaseService implements OnInit {
       tap(version => console.log('Extracted Zig Web Server Version:', version))
     );
   }
-  // CPP
+  // CPP - algorithm
   getCppAppVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlCppWebServer')}getAppVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-  // CPP
+  // CPP - algorithm
   getCppVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlCppWebServer')}getSTDVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-  // CPP
+  // CPP - algorithm
   getCppWebServerVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlCppWebServer')}getServerVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  // CPP - tesseract
+  getCppTesseractAppVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWSTesseract')}getAppVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  // CPP - tesseract
+  getCppTesseractVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWSTesseract')}getSTDVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  // CPP - tesseract
+  getCppTesseractWebServerVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWSTesseract')}getServerVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
   // RUST
