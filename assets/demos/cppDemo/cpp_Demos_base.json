@@ -75,7 +75,7 @@
 	    	"id"               : 7,
         "done"             : true,
         "name"             : "Regex Demo / c++ dll",
-        "description"      : "Regex Demo / cll dll",
+        "description"      : "Regex Demo / c++ dll",
         "field_1"          : "Regular Expressions",
         "field_2"          : "./#/AlgorithmRegEx?langName=CPP",
         "field_3"          : "https://github.com/aperezNWO/CPP_GCC_ALGORITHM/blob/c2966f93059d84b5c129dbd4e81bbaa1c5daa634/Algorithm.cpp#L218",
