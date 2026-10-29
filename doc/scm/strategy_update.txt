@@ -370,18 +370,6 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 --[_] WebSocket docker / render / golang
 
---[_] C++ HTTP WEB SERVER.
-
-    --[_] COMPLETE DEMOS BASED UP ON C++/.NET CORE DEMOS.
-
-    --[_] C++ RAW ALGORITHMS.
-
-    --[_] GCC_CPP_ALGORITHM_DOCKER.
-
-    --[_] GCC_CPP_TENSORFLOW_DOCKER.
-
-    --[_] config naming convention : CppWebServer<feature> -> CppWebServerAlgorithm
-
 --[_] LINKS TO DOCKER / RENDER.
 
     --[_] ABOUT -> TECH SPECS -> App Type (Backend / DLL).
@@ -392,10 +380,31 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 --[_] node.js security update.
 
---[_] CPP_GCC_TEMPLATE.
 
---[_] CPP_WEB_SERVER CLASS.
+--[_] C++ HTTP WEB SERVER.
 
---[_] CPP_GCC_ALGORITHM_DOCKER / UPDATE SCM.TXT.
+    --[_] CPP_GCC_TEMPLATE.
+
+    --[_] CPP_WEB_SERVER CLASS.
+
+    --[_] CPP_GCC_ALGORITHM_DOCKER / UPDATE SCM.TXT.
+
+    --[_] COMPLETE DEMOS BASED UP ON C++/.NET CORE DEMOS.
+
+    --[_] C++ RAW ALGORITHMS.
+
+    --[_] CPP_GCC_ALGORITHM_DOCKER.
+
+    --[_] CPP_GCC_TESSERACT_DOCKER.
+
+    --[_] CPP_GCC_TENSORFLOW_DOCKER.
+
+    --[_] CPP_GCC_OPEN_CV_DOCKER.
+
+    --[_] config naming convention : CppWebServer<feature> -> CppWebServerAlgorithm
+
+    --[_] Param : [DEMOS - C++ / HTTP WEB SERVER ] -> json files
+
+          --[_] cppWebServer_Demos_base.json
 
 ////////////////////////////////////////////////////////////////////////////////
