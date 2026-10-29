@@ -58,5 +58,17 @@
       "field_6"          : "https://en.wikipedia.org/wiki/Fractal",
       "field_4"          : "{{baseUrlCppWebServer}}api/fractals/generate?kind=3&width=800&height=600&maxIterations=1000&zoom=1.0&centerX=0.0&centerY=0.0",
       "field_10"         : "1ca596b5-8943-4082-bcd5-a318ec9a315c"
+  },
+  {
+		"id"               : 6,
+    "done"             : true,
+    "name"             : "OCR Demo / c++ (cpp-httplib)",
+    "description"      : "OCR Demo / c++ (cpp-httplib)",
+    "field_1"          : "OCR, Tesseract",
+    "field_2"          : "./#/VisionHub?aiFeature=OCR&langName=CWS",
+    "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TESSERACT_DOCKER",
+    "field_4"          : "{{baseUrlCppWebServer}}api/ocr/getImage",
+    "field_6"          : "https://github.com/tesseract-ocr/tesseract",
+    "field_10"         : "02f983ac-560c-496c-b90e-f00668f8f9e7"
   }
 ]
