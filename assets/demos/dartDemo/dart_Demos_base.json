@@ -9,10 +9,10 @@
         "field_3"          : "https://github.com/aperezNWO/DART_DEMO_002/blob/main/bin/algorithm_manager.dart",
         "field_6"          : "https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/",
         "field_4"          : "{{baseUrlDart}}GenerateRandomVertex_SpringBoot",
-        "field_10"         : "1c374744-6ea3-45a2-bb5c-c6e716e9e750"			
+        "field_10"         : "1c374744-6ea3-45a2-bb5c-c6e716e9e750"
     },
     {
-		"id"               : 2,
+		    "id"               : 2,
         "done"             : true,
         "name"             : "Fractal Demo - Benchmark",
         "description"      : "Fractal Demo ",
@@ -21,6 +21,6 @@
         "field_3"          : "https://github.com/aperezNWO/DART_DEMO_002/blob/main/bin/fractal_engine.dart",
         "field_6"          : "https://en.wikipedia.org/wiki/Fractal",
         "field_4"          : "{{baseUrlDart}}api/fractals/generate?kind=3&width=800&height=600&maxIterations=1000&zoom=1.0&centerX=0.0&centerY=0.0",
-        "field_10"         : "be7eb1da-4a54-4ce5-8827-9b47c60afc9b"			
+        "field_10"         : "be7eb1da-4a54-4ce5-8827-9b47c60afc9b"
     }
 ]
