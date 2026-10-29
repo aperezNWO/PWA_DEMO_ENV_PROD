@@ -67,7 +67,7 @@
     "field_1"          : "OCR, Tesseract",
     "field_2"          : "./#/VisionHub?aiFeature=OCR&langName=CWS",
     "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TESSERACT_DOCKER",
-    "field_4"          : "{{baseUrlCppWebServer}}api/ocr/getImage",
+    "field_4"          : "{{baseUrlCppWSTesseract}}api/ocr/getImage",
     "field_6"          : "https://github.com/tesseract-ocr/tesseract",
     "field_10"         : "02f983ac-560c-496c-b90e-f00668f8f9e7"
   }
