@@ -405,6 +405,8 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
     --[_] Param : [DEMOS - C++ / HTTP WEB SERVER ] -> json files
 
-          --[_] cppWebServer_Demos_base.json
+          --[_] cppWebServer_Demos_base.json.
+
+          --[_] update references.
 
 ////////////////////////////////////////////////////////////////////////////////
