@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core'; // [v21x] 'inject' is the modern standard for Functional DI
-import { HttpClient         } from '@angular/common/http';
+import { HttpClient, HttpHeaders         } from '@angular/common/http';
 import { Observable         } from 'rxjs';
 import { ConfigService      } from '../../__Utils/ConfigService/config.service';
 import { BaseService        } from '../../__baseService/base.service';
@@ -22,7 +22,7 @@ export class OCRService extends BaseService {
   /**
    * [v21x] FUNCTIONAL DEPENDENCY INJECTION
    * Replacing 'constructor(private http: HttpClient)' with 'inject(HttpClient)'.
-   * This allows the service to be used in functional providers and reduces 
+   * This allows the service to be used in functional providers and reduces
    * boilerplate code significantly.
    */
   private readonly http = inject(HttpClient);
@@ -30,17 +30,18 @@ export class OCRService extends BaseService {
 
   /**
    * [v21x] DECLARATIVE PROPERTY INITIALIZATION
-   * Using 'readonly' with 'inject' ensures these values are immutable 
+   * Using 'readonly' with 'inject' ensures these values are immutable
    * once the service is instantiated, improving thread safety and predictability.
    */
   private readonly __baseUrlNodeJsOcr       = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/Ocr/`;
   private readonly __baseUrlCpp             = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/ocr/`;
+  private readonly __baseUrlCWSOcr          = `${this._configService.getConfigValue('baseUrlCppWSTesseract')}api/ocr/`;
 
   // --- GET METHODS (Return Observables for VersionCacheService compatibility) ---
 
   /**
    * [v21x] OBSERVABLE-SIGNAL INTEROP READY
-   * By returning Observables here, these methods remain compatible with 
+   * By returning Observables here, these methods remain compatible with
    * v21 features like 'rxResource' and 'toSignal' used in your components.
    */
   _GetTesseract_CPPSTDVersion(): Observable<string> {
@@ -59,57 +60,75 @@ export class OCRService extends BaseService {
 
   /**
    * [v21x] TYPE-SAFE HTTP GENERICS
-   * By passing <OCRResponse> to the .post call, the compiler now 'knows' 
-   * the shape of the data before the server even responds. This is vital 
+   * By passing <OCRResponse> to the .post call, the compiler now 'knows'
+   * the shape of the data before the server even responds. This is vital
    * for v21 template type checking (Strict Mode).
    */
   //
   uploadBase64ImageCPP(base64Image: string): Observable<OCRResponse> {
     return this.http.post<OCRResponse>(`${this.__baseUrlCpp}upload`, { base64Image });
   }
+  /*
+  uploadBase64ImageCWS(base64Image: string): Observable<OCRResponse> {
+    return this.http.post<OCRResponse>(`${this.__baseUrlCWSOcr}upload`, { base64Image });
+    }*/
+  uploadBase64ImageCWS(base64Image: string): Observable<OCRResponse> {
+    // Convert base64 data URL string back to a binary Blob/File object on the fly
+    const arr = base64Image.split(',');
+    const mime = arr[0].match(/:(.*?);/)![1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    const blob = new Blob([u8arr], { type: mime });
 
+    const headers = new HttpHeaders({ 'Content-Type': 'application/octet-stream' });
+    return this.http.post<OCRResponse>(`${this.__baseUrlCWSOcr}upload`, blob, { headers });
+  }
   //
   uploadBase64ImageNodeJs(base64Image: string): Observable<OCRResponse> {
         return this.http.post<OCRResponse>(`${this.__baseUrlNodeJsOcr}uploadOCR`, { base64Image });
   }
 
- 
+
   // --- TESSERACT TYPESCRIPT LOCAL LOGIC ---
   async _Tesseract_ts_detectText(imageElement: HTMLImageElement): Promise<string> {
     let extractedText: string = '';
     let worker: any = null;
-    
+
     try {
       // Create worker
       worker = await Tesseract.createWorker();
-      
+
       // Set custom tessdata path using setParameters
       await worker.setParameters({
         tessdata_prefix: window.location.origin + '/assets/tessdata/'
       });
-      
+
       // Load Spanish language
       //await worker.loadLanguage('spa');
       //await worker.initialize('spa');
-      
+
       // Set logger with proper typing
       //worker.setLogger((m: any) => {
       //  console.log(`OCR Progress: ${Math.round(m.progress * 100)}%`);
       //});
-      
+
       // Recognize text
       const { data: { text } } = await worker.recognize(imageElement);
       extractedText = text.trim();
-      
+
       // Clean up
       await worker.terminate();
-      
+
     } catch (error) {
         console.error('Error during OCR processing:', error);
         extractedText = '';
         if (worker) await worker.terminate();
     }
-    
+
     return extractedText;
   }
 }

@@ -16,6 +16,7 @@ export class ComputerVisionService extends BaseService {
   private readonly _configService        = inject(ConfigService);
   private readonly __baseUrlCPP          = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
   private readonly __baseUrlNodeJsOpenCv = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/OpenCv/`;
+  private readonly __baseUrlCWSOpenCV    = `${this._configService.getConfigValue('baseUrlCppWSOpenCv')}api/computervision/`;
 
   //////////////////////////////////////////////////////////////
   // --- OPENCV -- SHAPES -- CPP LOGIC ---
@@ -35,6 +36,10 @@ export class ComputerVisionService extends BaseService {
 
   _OpenCv_CPP_uploadBase64Image(base64Image: string): Observable<OCRResponse> {
     return this.http.post<OCRResponse>(`${this.__baseUrlCPP}uploadOpenCv`, { base64Image });
+  }
+
+  _OpenCv_CWS_uploadBase64Image(base64Image: string): Observable<OCRResponse> {
+    return this.http.post<OCRResponse>(`${this.__baseUrlCWSOpenCV}uploadOpenCv`, { base64Image });
   }
 
   //////////////////////////////////////////////////////////////
