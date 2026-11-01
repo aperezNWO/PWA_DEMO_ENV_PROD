@@ -217,11 +217,12 @@ export class BackendService extends BaseService implements OnInit {
     const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/system/app-version`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
+  // J2SE / JAVA SPRING BOOT
   getJavaVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/system/language-version`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-
+  // J2SE / JAVA SPRING BOOT
   getJavaWebServerVersion(){
     const p_url = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/system/server-version`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
@@ -236,6 +237,7 @@ export class BackendService extends BaseService implements OnInit {
     const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}getNodeVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
+  // NODE.JS
   getNodeWebServerVersion(): Observable<string>{
      //
      const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}getNodeWebServerVersion`;
@@ -260,7 +262,7 @@ export class BackendService extends BaseService implements OnInit {
     const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-
+  // NODE.JS
   getNodeWebServerVersionOcr(): Observable<string>{
      //
      const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}getNodeWebServerVersion`;
@@ -275,41 +277,36 @@ export class BackendService extends BaseService implements OnInit {
         tap(version => console.log('Extracted Node.js - Express Version', version))
       );
   }
-
   // PYTHON - DB
   getPythonAppVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getAppVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-
   // PYTHON - DB
   getPythonVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getPythonVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-
+  //
   getPythonWebServerVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getPythonWebServerVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-
   // PYTHON - TENSORFLOW
   getPythonAppVersionTF(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPythonTF')}getAppVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-
   // PYTHON - TENSORFLOW
   getPythonVersionTF(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPythonTF')}getPythonVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-
+  // PYTHON
   getPythonWebServerVersionTF(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlDjangoPythonTF')}getPythonWebServerVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-
   // ZIG
   getZigAppVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlZigLang')}api/server/getZigAppVersion`;
@@ -371,6 +368,21 @@ export class BackendService extends BaseService implements OnInit {
   // CPP - tesseract
   getCppTesseractWebServerVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlCppWSTesseract')}getServerVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  // CPP - OpenCv
+  getCppOpenCvAppVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWSOpenCv')}getAppVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  // CPP - OpenCv
+  getCppOpenCvVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWSOpenCv')}api/ocr/getAPIVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  // CPP - OpenCv
+  getCppOpenCvWebServerVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWSOpenCv')}getServerVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
   // RUST
@@ -517,7 +529,7 @@ export class BackendService extends BaseService implements OnInit {
         tap(version => console.log('Extracted Dart Version:', version))
       );
   }
-
+  // DART
   getDartWebServerVersion()  {
       // DART - web server - Shelf
       const p_url =  `${this._configService.getConfigValue('baseUrlDart')}api/system/server-version`;
@@ -553,7 +565,6 @@ export class BackendService extends BaseService implements OnInit {
         tap(appVersion => console.log('Extracted Kotlin Version:', appVersion))
       );
   }
-  //
   // KOTLIN
   getKotlinVersion(){
      //

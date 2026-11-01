@@ -28,12 +28,12 @@ export interface VersionBundle {
   nodeAppVersion       : string;
   nodeVersion          : string;
   nodeWebServerVersion: string;
-  nodeAppVersionOcr       : string;
+  nodeAppVersionOcr        : string;
   nodeVersionOcr           : string;
   nodeWebServerVersionOcr  : string;
-  javaAppVersion          : string;
-  javaVersion             : string;
-  javaWebServerVersion : string;
+  javaAppVersion           : string;
+  javaVersion              : string;
+  javaWebServerVersion     : string;
   webApiApp           : string;
   algorithmApp        : string;
   algorithmCpp        : string;
@@ -56,6 +56,9 @@ export interface VersionBundle {
   cppTesseractAppVersion        : string;
   cppTesseractVersion           : string;
   cppTesseractWebServerVersion  : string;
+  cppOpenCvAppVersion        : string;
+  cppOpenCvVersion           : string;
+  cppOpenCvWebServerVersion  : string;
   rustAppVersion: string;
   rustVersion              : string;
   rustWebServerVersion     : string;
@@ -170,6 +173,9 @@ export class VersionCacheService implements OnDestroy {
       cppTesseractAppVersion       : safeSub(this.back.getCppTesseractAppVersion()),
       cppTesseractVersion          : safeSub(this.back.getCppTesseractVersion()),
       cppTesseractWebServerVersion : safeSub(this.back.getCppTesseractWebServerVersion()),
+      cppOpenCvAppVersion       : safeSub(this.back.getCppOpenCvAppVersion()),
+      cppOpenCvVersion          : safeSub(this.back.getCppOpenCvVersion()),
+      cppOpenCvWebServerVersion : safeSub(this.back.getCppOpenCvWebServerVersion()),
       rustAppVersion         : safeSub(this.back.getRustAppVersion()),
       rustVersion            : safeSub(this.back.getRustVersion()),
       rustWebServerVersion   : safeSub(this.back.getRustWebServerVersion()),
@@ -239,6 +245,7 @@ export class VersionCacheService implements OnDestroy {
       zigAppVersion: L,
       cppAppVersion: L, cppVersion: L, cppWebServerVersion: L,
       cppTesseractAppVersion: L, cppTesseractVersion: L, cppTesseractWebServerVersion: L,
+      cppOpenCvAppVersion: L, cppOpenCvVersion: L, cppOpenCvWebServerVersion: L,
       rustVersion: L, rustWebServerVersion: L, rustAppVersion: L,
       goLangAppVersion: L,
       goLangVersion: L,

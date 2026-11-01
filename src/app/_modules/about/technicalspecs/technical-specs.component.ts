@@ -72,7 +72,10 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _CppWebServerVersion             = this.fromCache('cppWebServerVersion');
   _CppTesseractVersion             = this.fromCache('cppTesseractVersion');
   _CppTesseractAppVersion          = this.fromCache('cppTesseractAppVersion');
-  _CppTesseractWebServerVersion    = this.fromCache('cppTesseractWebServerVersion');
+  _CppTesseractWebServerVersion    = this.fromCache('cppOpenCvWebServerVersion');
+  _CppOpenCvVersion                = this.fromCache('cppOpenCvVersion');
+  _CppOpenCvAppVersion             = this.fromCache('cppOpenCvAppVersion');
+  _CppOpenCvWebServerVersion       = this.fromCache('cppTesseractWebServerVersion');
   _RustAppVersion                  = this.fromCache('rustAppVersion');
   _RustVersion                     = this.fromCache('rustVersion');
   _RustWebServerVersion            = this.fromCache('rustWebServerVersion');
@@ -336,6 +339,17 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink             : `${this.configService.getConfigValue('baseUrlCppWSTesseractRepo')}`,
                     healthLink           : `${this.configService.getConfigValue('baseUrlCppWSTesseract')}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSTesseractModule')}`,
+                },
+                {
+                    type                 : '(Backend)',
+                    name                 : '[App v. / C++ / httplib::Server]',
+                    features             : '<OpenCv>',
+                    appVersion           : this._CppOpenCvAppVersion,
+                    stdVersion           : this._CppOpenCvVersion,
+                    apiOrServerVersion   : this._CppOpenCvWebServerVersion,
+                    repoLink             : `${this.configService.getConfigValue('baseUrlCppWSOpenCvRepo')}`,
+                    healthLink           : `${this.configService.getConfigValue('baseUrlCppWSOpenCv')}health`,
+                    moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSOpenCvModule')}`,
                 },
                 {
                     type               : '(Backend)',
