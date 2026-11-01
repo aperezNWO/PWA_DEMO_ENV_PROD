@@ -377,7 +377,7 @@ export class BackendService extends BaseService implements OnInit {
   }
   // CPP - OpenCv
   getCppOpenCvVersion(): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlCppWSOpenCv')}api/ocr/getAPIVersion`;
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWSOpenCv')}api/OpenCv/getAPIVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
   // CPP - OpenCv
