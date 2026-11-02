@@ -79,7 +79,7 @@
     "field_1"          : "OpenCv, Computer Vision",
     "field_2"          : "./#/VisionHub?aiFeature=CV&langName=CWS",
     "field_3"          : "https://github.com/aperezNWO/CPP_GCC_OPEN_CV_DOCKER",
-    "field_4"          : "{{baseUrlCppWSOpenCv}}api/ocr/getImage",
+    "field_4"          : "{{baseUrlCppWSOpenCv}}api/opencv/getImage",
     "field_6"          : "https://docs.opencv.org/4.13.0/d1/dfb/intro.html",
     "field_10"         : "37528222-045f-45bf-8f58-ab745fd0f79b"
   }
