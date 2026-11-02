@@ -77,7 +77,7 @@
     "name"             : "OpenCv Demo / c++ (cpp-httplib)",
     "description"      : "OpenCv Demo / c++ (cpp-httplib)",
     "field_1"          : "OpenCv, Computer Vision",
-    "field_2"          : "./#/VisionHub?aiFeature=CVR&langName=CWS",
+    "field_2"          : "./#/VisionHub?aiFeature=CV&langName=CWS",
     "field_3"          : "https://github.com/aperezNWO/CPP_GCC_OPEN_CV_DOCKER",
     "field_4"          : "{{baseUrlCppWSOpenCv}}api/ocr/getImage",
     "field_6"          : "https://docs.opencv.org/4.13.0/d1/dfb/intro.html",
