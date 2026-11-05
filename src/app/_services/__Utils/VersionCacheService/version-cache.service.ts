@@ -58,8 +58,11 @@ export interface VersionBundle {
   cppTesseractWebServerVersion  : string;
   cppOpenCvAppVersion        : string;
   cppOpenCvVersion           : string;
-  cppOpenCvWebServerVersion  : string;
-  rustAppVersion: string;
+  cppOpenCvWebServerVersion: string;
+  cppTensorflowAppVersion       : string;
+  cppTensorflowWebServerVersion : string;
+  cppTensorflowVersion          : string;
+  rustAppVersion           : string;
   rustVersion              : string;
   rustWebServerVersion     : string;
   goLangAppVersion         : string;
@@ -176,6 +179,9 @@ export class VersionCacheService implements OnDestroy {
       cppOpenCvAppVersion       : safeSub(this.back.getCppOpenCvAppVersion()),
       cppOpenCvVersion          : safeSub(this.back.getCppOpenCvVersion()),
       cppOpenCvWebServerVersion : safeSub(this.back.getCppOpenCvWebServerVersion()),
+      cppTensorflowAppVersion       : safeSub(this.back.getCppTensorflowAppVersion()),
+      cppTensoflowVersion           : safeSub(this.back.getCppTensorflowVersion()),
+      cppTensorflowWebServerVersion : safeSub(this.back.getCppTensorflowtWebServerVersion()),
       rustAppVersion         : safeSub(this.back.getRustAppVersion()),
       rustVersion            : safeSub(this.back.getRustVersion()),
       rustWebServerVersion   : safeSub(this.back.getRustWebServerVersion()),
@@ -246,6 +252,7 @@ export class VersionCacheService implements OnDestroy {
       cppAppVersion: L, cppVersion: L, cppWebServerVersion: L,
       cppTesseractAppVersion: L, cppTesseractVersion: L, cppTesseractWebServerVersion: L,
       cppOpenCvAppVersion: L, cppOpenCvVersion: L, cppOpenCvWebServerVersion: L,
+      cppTensorflowAppVersion: L, cppTensorflowVersion: L, cppTensorflowWebServerVersion: L,
       rustVersion: L, rustWebServerVersion: L, rustAppVersion: L,
       goLangAppVersion: L,
       goLangVersion: L,

@@ -72,10 +72,13 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _CppWebServerVersion             = this.fromCache('cppWebServerVersion');
   _CppTesseractVersion             = this.fromCache('cppTesseractVersion');
   _CppTesseractAppVersion          = this.fromCache('cppTesseractAppVersion');
-  _CppTesseractWebServerVersion    = this.fromCache('cppOpenCvWebServerVersion');
+  _CppTesseractWebServerVersion    = this.fromCache('cppTesseractWebServerVersion');
   _CppOpenCvVersion                = this.fromCache('cppOpenCvVersion');
   _CppOpenCvAppVersion             = this.fromCache('cppOpenCvAppVersion');
-  _CppOpenCvWebServerVersion       = this.fromCache('cppTesseractWebServerVersion');
+  _CppOpenCvWebServerVersion       = this.fromCache('cppOpenCvWebServerVersion');
+  _CppTensorflowVersion            = this.fromCache('cppTensorflowVersion');
+  _CppTensorflowAppVersion         = this.fromCache('cppTensorflowAppVersion');
+  _CppTensorflowWebServerVersion   = this.fromCache('cppTensorflowWebServerVersion');
   _RustAppVersion                  = this.fromCache('rustAppVersion');
   _RustVersion                     = this.fromCache('rustVersion');
   _RustWebServerVersion            = this.fromCache('rustWebServerVersion');
@@ -175,6 +178,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._CppTesseractAppVersion        = v.cppTesseractAppVersion       ?? '(..loading..)';
         this._CppTesseractVersion           = v.cppTesseractVersion          ?? '(..loading..)';
         this._CppTesseractWebServerVersion  = v.cppTesseractWebServerVersion ?? '(..loading..)';
+        this._CppTensorflowAppVersion       = v.cppTensorflowAppVersion       ?? '(..loading..)';
+        this._CppTensorflowVersion          = v.cppTensorflowVersion          ?? '(..loading..)';
+        this._CppTensorflowWebServerVersion = v.cppTensorflowWebServerVersion ?? '(..loading..)';
         this._RustAppVersion               = v.rustAppVersion ?? '(..loading..)';
         this._RustWebServerVersion         = v.rustWebServerVersion ?? '(..loading..)';
         this._RustVersion                  = v.rustVersion ?? '(..loading..)';
@@ -343,13 +349,13 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 {
                     type                 : '(Backend)',
                     name                 : '[App v. / C++ / httplib::Server]',
-                    features             : '<OpenCv>',
-                    appVersion           : this._CppOpenCvAppVersion,
-                    stdVersion           : this._CppOpenCvVersion,
-                    apiOrServerVersion   : this._CppOpenCvWebServerVersion,
-                    repoLink             : `${this.configService.getConfigValue('baseUrlCppWSOpenCvRepo')}`,
-                    healthLink           : `${this.configService.getConfigValue('baseUrlCppWSOpenCv')}health`,
-                    moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSOpenCvModule')}`,
+                    features             : '<Tensorflow>',
+                    appVersion           : this._CppTensorflowAppVersion,
+                    stdVersion           : this._CppTensorflowVersion,
+                    apiOrServerVersion   : this._CppTensorflowWebServerVersion,
+                    repoLink             : `${this.configService.getConfigValue('baseUrlCppWSTensorfowRepo')}`,
+                    healthLink           : `${this.configService.getConfigValue('baseUrlCppWSTensorfow')}health`,
+                    moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSTensorfowModule')}`,
                 },
                 {
                     type               : '(Backend)',
@@ -394,23 +400,23 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 {
                     type               : '(DLL C++)',
                     name               : '[App v. / Std v. / API v.]',
-                    features           : '<Tensorflow>',
-                    appVersion         : this._TensorFlowAPPVersion,
-                    stdVersion         : this._TensorFlowCPPSTDVersion,
-                    apiOrServerVersion : this._TensorFlowAPIVersion,
-                    repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowRepo')}`,
-                    moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowModule')}`,
-                },
-                {
-                    type               : '(DLL C++)',
-                    name               : '[App v. / Std v. / API v.]',
                     features           : '<OpenCv>',
                     appVersion         : this._OpenCvAppVersion,
                     stdVersion         : this._OpenCvCPPSTDVersion,
                     apiOrServerVersion : this._OpenCvAPIVersion,
                     repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvRepo')}`,
                     moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvModule')}`,
-                },
+              },
+              {
+                  type               : '(DLL C++)',
+                  name               : '[App v. / Std v. / API v.]',
+                  features           : '<Tensorflow>',
+                  appVersion         : this._TensorFlowAPPVersion,
+                  stdVersion         : this._TensorFlowCPPSTDVersion,
+                  apiOrServerVersion : this._TensorFlowAPIVersion,
+                  repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowRepo')}`,
+                  moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowModule')}`,
+              }
             ];
     }
 

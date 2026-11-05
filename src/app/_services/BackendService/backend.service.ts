@@ -385,6 +385,21 @@ export class BackendService extends BaseService implements OnInit {
     const p_url = `${this._configService.getConfigValue('baseUrlCppWSOpenCv')}getServerVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
+  // CPP - tensorflow
+  getCppTensorflowAppVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}getAppVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  // CPP - tesseract
+  getCppTensorflowVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}api/tensorflow/getAPIVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
+  // CPP - tesseract
+  getCppTensorflowtWebServerVersion(): Observable<string> {
+    const p_url = `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}getServerVersion`;
+    return this.http.get<string>(p_url, this.HTTPOptions_JSON);
+  }
   // RUST
   getRustVersion(): Observable<string> {
       // RUST
@@ -405,8 +420,8 @@ export class BackendService extends BaseService implements OnInit {
   }
   // RUST
   getRustWebServerVersion(): Observable<string> {
-    // RUST WEB SERVER
-    const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/version/getServerVersion`;
+      // RUST WEB SERVER
+      const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/version/getServerVersion`;
 
     // Log the URL for debugging purposes
     console.log('getRustWebServerVersion URL: ', p_url);
@@ -423,8 +438,8 @@ export class BackendService extends BaseService implements OnInit {
   }
   // RUST
   getRustAppVersion(): Observable<string> {
-    //
-    const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/version/getAppVersion`;
+      //
+      const p_url = `${this._configService.getConfigValue('baseUrlRustLang')}api/version/getAppVersion`;
 
     // Log the URL for debugging purposes
     console.log('getRustWebServerVersion URL: ', p_url);
@@ -549,8 +564,8 @@ export class BackendService extends BaseService implements OnInit {
   }
   // KOTLIN
   getKotlinAppVersion(){
-     //
-     const p_url =  `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/system/app-version`;
+      //
+      const p_url =  `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/system/app-version`;
 
       // Log the URL for debugging purposes
       console.log('getKotlinVersion URL: ', p_url);
@@ -567,8 +582,8 @@ export class BackendService extends BaseService implements OnInit {
   }
   // KOTLIN
   getKotlinVersion(){
-     //
-     const p_url =  `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/system/language-version`;
+      //
+      const p_url =  `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/system/language-version`;
 
       // Log the URL for debugging purposes
       console.log('getKotlinVersion URL: ', p_url);
