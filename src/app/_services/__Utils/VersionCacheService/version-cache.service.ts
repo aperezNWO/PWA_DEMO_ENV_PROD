@@ -180,7 +180,7 @@ export class VersionCacheService implements OnDestroy {
       cppOpenCvVersion          : safeSub(this.back.getCppOpenCvVersion()),
       cppOpenCvWebServerVersion : safeSub(this.back.getCppOpenCvWebServerVersion()),
       cppTensorflowAppVersion       : safeSub(this.back.getCppTensorflowAppVersion()),
-      cppTensoflowVersion           : safeSub(this.back.getCppTensorflowVersion()),
+      cppTensorflowVersion          : safeSub(this.back.getCppTensorflowVersion()),
       cppTensorflowWebServerVersion : safeSub(this.back.getCppTensorflowtWebServerVersion()),
       rustAppVersion         : safeSub(this.back.getRustAppVersion()),
       rustVersion            : safeSub(this.back.getRustVersion()),
