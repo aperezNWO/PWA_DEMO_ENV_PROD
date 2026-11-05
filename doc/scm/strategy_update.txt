@@ -399,10 +399,9 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
           --[x] CPP_GCC_TESSERACT_DOCKER.
 
-          --[_] CPP_GCC_TENSORFLOW_DOCKER.
+          --[x] CPP_GCC_TENSORFLOW_DOCKER.
 
-          --[_] CPP_GCC_OPEN_CV_DOCKER.
-
+          --[x] CPP_GCC_OPEN_CV_DOCKER.
 
     --[_] Param : [DEMOS - C++ / HTTP WEB SERVER ] -> json files
 
