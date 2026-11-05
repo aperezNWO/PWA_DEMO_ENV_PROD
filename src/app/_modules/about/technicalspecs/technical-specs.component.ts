@@ -353,9 +353,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     appVersion           : this._CppTensorflowAppVersion,
                     stdVersion           : this._CppTensorflowVersion,
                     apiOrServerVersion   : this._CppTensorflowWebServerVersion,
-                    repoLink             : `${this.configService.getConfigValue('baseUrlCppWSTensorfowRepo')}`,
-                    healthLink           : `${this.configService.getConfigValue('baseUrlCppWSTensorfow')}health`,
-                    moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSTensorfowModule')}`,
+                    repoLink             : `${this.configService.getConfigValue('baseUrlCppWSTensorflowRepo')}`,
+                    healthLink           : `${this.configService.getConfigValue('baseUrlCppWSTensorflow')}health`,
+                    moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSTensorflowModule')}`,
                 },
                 {
                     type               : '(Backend)',

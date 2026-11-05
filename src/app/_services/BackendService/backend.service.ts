@@ -390,12 +390,12 @@ export class BackendService extends BaseService implements OnInit {
     const p_url = `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}getAppVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-  // CPP - tesseract
+  // CPP - tensorflow
   getCppTensorflowVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}api/tensorflow/getAPIVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
-  // CPP - tesseract
+  // CPP - tensorflow
   getCppTensorflowtWebServerVersion(): Observable<string> {
     const p_url = `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}getServerVersion`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
