@@ -82,5 +82,17 @@
     "field_4"          : "{{baseUrlCppWSOpenCv}}api/OpenCv/getImage",
     "field_6"          : "https://docs.opencv.org/4.13.0/d1/dfb/intro.html",
     "field_10"         : "37528222-045f-45bf-8f58-ab745fd0f79b"
+  },
+  {
+		  "id"               : 8,
+      "done"             : true,
+      "name"             : "Tic-Tac Toe Game A.I. / c++ (cpp-httplib)",
+      "description"      : "Machine Learning, Tic-Tac Toe Game A.I., tensorflow",
+      "field_1"          : "Machine Learning, tensorflow, TicTacToe Game, A.I., c++, Neural Network",
+      "field_2"          : "./#/GamesTicTacToeAI?langName=CWS",
+      "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TENSORFLOW_DOCKER.git",
+      "field_4"          : "{{baseUrlCppWSTensorfow}}api/tictactoe/play?aiMode=1" ,
+      "field_6"          : "https://www.tensorflow.org/install/lang_c?hl=es-419",
+      "field_10"         : "60189f7e-6d8d-4638-9e40-0f71fc3c1902"
   }
 ]
