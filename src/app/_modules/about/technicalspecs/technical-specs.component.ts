@@ -326,7 +326,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 },
                 {
                     type                 : '(Backend)',
-                    name                 : '[App v. / C++ / httplib::Server]',
+                    name                 : '[App v. / C++ / cpp-httplib]',
                     features             : '<Algorithm>',
                     appVersion           : this._CppAppVersion,
                     stdVersion           : this._CppVersion,
@@ -337,7 +337,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 },
                 {
                     type                 : '(Backend)',
-                    name                 : '[App v. / C++ / httplib::Server]',
+                    name                 : '[App v. / C++ / cpp-httplib]',
                     features             : '<Tesseract>',
                     appVersion           : this._CppTesseractAppVersion,
                     stdVersion           : this._CppTesseractVersion,
@@ -348,7 +348,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 },
                 {
                     type                 : '(Backend)',
-                    name                 : '[App v. / C++ / httplib::Server]',
+                    name                 : '[App v. / C++ / cpp-httplib]',
                     features             : '<Tensorflow>',
                     appVersion           : this._CppTensorflowAppVersion,
                     stdVersion           : this._CppTensorflowVersion,
