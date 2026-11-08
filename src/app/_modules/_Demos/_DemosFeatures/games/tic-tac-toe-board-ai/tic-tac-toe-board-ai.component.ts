@@ -128,11 +128,16 @@ export class TicTacToeBoardAiComponent extends BaseReferenceComponent implements
     //
     if (this.animationInterval) clearInterval(this.animationInterval);
     //
-    const url    = `${this.getConfigValue('baseUrlNetCoreCPPEntry')}api/tictactoe/play?aiMode=${this.aiMode}&temperature=${this.temperature}`;
-    //
     console.log(` aiMode : ${this.aiMode}`);
     //
+    let url = '';
     //
+    if (this.aiMode == 5) {
+        url =  `${this.getConfigValue('baseUrlCppWSTensorflow')}api/tictactoe/play?aiMode=${this.aiMode - 1}&temperature=${this.temperature}`;
+    } else {
+        url =  `${this.getConfigValue('baseUrlNetCoreCPPEntry')}api/tictactoe/play?aiMode=${this.aiMode}&temperature=${this.temperature}`;
+    }
+
     console.log(` url    : ${url}`);
     //
     fetch(url)
