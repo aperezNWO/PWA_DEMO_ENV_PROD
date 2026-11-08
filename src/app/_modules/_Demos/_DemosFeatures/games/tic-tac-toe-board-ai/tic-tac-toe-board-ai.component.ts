@@ -37,12 +37,12 @@ export class TicTacToeBoardAiComponent extends BaseReferenceComponent implements
   winner       = 'In Progress';
   loading      = true;
   error        = '';
-  aiMode       = 3; 
+  aiMode       = 3;
   temperature  = 1.5;
   //
   private animationInterval: any;
   //
-  public __languajeList: any; 
+  public __languajeList: any;
   //
   public __generateSourceList : any;
   //
@@ -50,8 +50,8 @@ export class TicTacToeBoardAiComponent extends BaseReferenceComponent implements
                   public  override configService    : ConfigService,
                   public  override route            : ActivatedRoute,
                   public  override speechService    : SpeechService,
-                  public  override backendService   : BackendService) 
-  {  
+                  public  override backendService   : BackendService)
+  {
       //
       super(configService,
             backendService,
@@ -73,34 +73,35 @@ export class TicTacToeBoardAiComponent extends BaseReferenceComponent implements
         // LENGUAJES DE PROGRAMACION
         //-----------------------------------------------------------------------------
         this.__languajeList      = new Array();
-        this.__languajeList.push(new _languageName(0, '(.NET Core/C++ -> Expert                ) '  , true ,  "CPP"  ));
-        this.__languajeList.push(new _languageName(1, '(.NET Core/C++ -> Creative              ) '  , false,  "CPP"  ));
-        this.__languajeList.push(new _languageName(2, '(.NET Core/C++ -> Min Max               ) '  , false,  "CPP"  ));
-        this.__languajeList.push(new _languageName(3, '(.NET Core/C++ -> Random Player         ) '  , false,  "CPP"  ));
-        this.__languajeList.push(new _languageName(4, '(.NET Core/C++ -> Tensorflow / Python   ) '  , false,  "PY"   ));
+        this.__languajeList.push(new _languageName(0, '(.NET Core/C++ -> Expert                    ) '  , true ,  "CPP"  ));
+        this.__languajeList.push(new _languageName(1, '(.NET Core/C++ -> Creative                  ) '  , false,  "CPP"  ));
+        this.__languajeList.push(new _languageName(2, '(.NET Core/C++ -> Min Max                   ) '  , false,  "CPP"  ));
+        this.__languajeList.push(new _languageName(3, '(.NET Core/C++ -> Random Player             ) '  , false,  "CPP"  ));
+        this.__languajeList.push(new _languageName(4, '(.NET Core/C++ -> Tensorflow / Python       ) '  , false,  "PY"   ));
+        this.__languajeList.push(new _languageName(5, '(cpp-httplib / C++ -> Tensorflow / Python   ) '  , false,  "CWS"   ));
         //
         let langName = params['langName'] ? params['langName'] : "" ;
         //
         if (langName !== '')
         {
             //
-            console.log(` LangName : ${langName}`);  
+            console.log(` LangName : ${langName}`);
             //
             for (var index = 0; index < this.__languajeList.length; index++) {
               //
               if (this.__languajeList[index]._shortName  == langName)
                 {
-                  this.__languajeList[index]._selected = true;     
+                  this.__languajeList[index]._selected = true;
                   this.aiMode                          = this.__languajeList[index]._index;
-                  
+
                   break;
-          
+
                 }
             }
-        } 
-        else 
+        }
+        else
         {
-            this.aiMode = 0; // (.NET Core/C++ -> Creative ) 
+            this.aiMode = 0; // (.NET Core/C++ -> Creative )
         }
         //
         this.loadGame();
@@ -129,10 +130,10 @@ export class TicTacToeBoardAiComponent extends BaseReferenceComponent implements
     //
     const url    = `${this.getConfigValue('baseUrlNetCoreCPPEntry')}api/tictactoe/play?aiMode=${this.aiMode}&temperature=${this.temperature}`;
     //
-    console.log(` aiMode : ${this.aiMode}`);  
+    console.log(` aiMode : ${this.aiMode}`);
     //
     //
-    console.log(` url    : ${url}`);  
+    console.log(` url    : ${url}`);
     //
     fetch(url)
       .then(response => {
@@ -206,7 +207,7 @@ getCurrentWinner(): string {
 
     for (const [a,b,c] of wins) {
       if (board[a] !== 0 && board[a] === board[b] && board[b] === board[c]) {
-        this.winner    = `Winner : ${(board[a] === 1 ? 'X' : 'O')}`; 
+        this.winner    = `Winner : ${(board[a] === 1 ? 'X' : 'O')}`;
         this.status_message.set(this.winner);
         return this.winner;
       }
@@ -217,10 +218,9 @@ getCurrentWinner(): string {
         this.winner = 'Winner: Draw';
         this.status_message.set(this.winner);
         return this.winner;
-    } 
+    }
 
     //
     return this.winner;
   }
 }
-
