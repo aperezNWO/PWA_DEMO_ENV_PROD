@@ -358,6 +358,17 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSTensorflowModule')}`,
                 },
                 {
+                    type                 : '(Backend)',
+                    name                 : '[App v. / C++ / cpp-httplib]',
+                    features             : '<OpenCv>',
+                    appVersion           : this._CppOpenCvAppVersion,
+                    stdVersion           : this._CppOpenCvVersion,
+                    apiOrServerVersion   : this._CppOpenCvWebServerVersion,
+                    repoLink             : `${this.configService.getConfigValue('baseUrlCppWSOpenCvRepo')}`,
+                    healthLink           : `${this.configService.getConfigValue('baseUrlCppWSOpenCv')}health`,
+                    moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSOpenCvModule')}`,
+                },
+                {
                     type               : '(Backend)',
                     name               : '[App v. / .NET  v.]',
                     features           : '<x32,C#>',
@@ -400,23 +411,23 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 {
                     type               : '(DLL C++)',
                     name               : '[App v. / Std v. / API v.]',
+                    features           : '<Tensorflow>',
+                    appVersion         : this._TensorFlowAPPVersion,
+                    stdVersion         : this._TensorFlowCPPSTDVersion,
+                    apiOrServerVersion : this._TensorFlowAPIVersion,
+                    repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowRepo')}`,
+                    moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowModule')}`,
+                },
+                {
+                    type               : '(DLL C++)',
+                    name               : '[App v. / Std v. / API v.]',
                     features           : '<OpenCv>',
                     appVersion         : this._OpenCvAppVersion,
                     stdVersion         : this._OpenCvCPPSTDVersion,
                     apiOrServerVersion : this._OpenCvAPIVersion,
                     repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvRepo')}`,
                     moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvModule')}`,
-              },
-              {
-                  type               : '(DLL C++)',
-                  name               : '[App v. / Std v. / API v.]',
-                  features           : '<Tensorflow>',
-                  appVersion         : this._TensorFlowAPPVersion,
-                  stdVersion         : this._TensorFlowCPPSTDVersion,
-                  apiOrServerVersion : this._TensorFlowAPIVersion,
-                  repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowRepo')}`,
-                  moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowModule')}`,
-              }
+                }
             ];
     }
 
