@@ -91,7 +91,7 @@
       "field_1"          : "Machine Learning, tensorflow, TicTacToe Game, A.I., c++, Neural Network",
       "field_2"          : "./#/GamesTicTacToeAI?langName=CWS",
       "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TENSORFLOW_DOCKER.git",
-      "field_4"          : "{{baseUrlCppWSTensorfow}}api/tictactoe/play?aiMode=1" ,
+      "field_4"          : "{{baseUrlCppWSTensorflow}}api/tictactoe/play?aiMode=1" ,
       "field_6"          : "https://www.tensorflow.org/install/lang_c?hl=es-419",
       "field_10"         : "60189f7e-6d8d-4638-9e40-0f71fc3c1902"
   }
