@@ -101,7 +101,7 @@
       "name"             : "Linear Regression / C++ (cpp-httplib)",
       "description"      : "Machine Learning, Linear Regression, C++",
       "field_1"          : "Machine Learning, Linear Regression, C++",
-      "field_2"          : "./#/LinearRegression?langeName=CWS",
+      "field_2"          : "./#/LinearRegression?langName=CWS",
       "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TENSORFLOW_DOCKER/blob/main/02_src_exe/include/LinearRegression.h",
       "field_4"          : "{{baseUrlCppWSTensorflow}}api/linearregression/predict?missionNumberToPredict=18" ,
       "field_6"          : "https://en.wikipedia.org/wiki/Linear_regression",
