@@ -22,7 +22,7 @@ export interface PredictionResponse {
 })
 export class TensorFlowService extends BaseService {
   //
-  constructor(private http: HttpClient, public _configService : ConfigService) { 
+  constructor(private http: HttpClient, public _configService : ConfigService) {
     //
     super();
   }
@@ -45,10 +45,20 @@ export class TensorFlowService extends BaseService {
 
     return this.http.post<PredictionResponse>(apiUrl_tensorflow_python, body, { headers });
   }
-  //
+  // C++ / .NET CORE
   predictTime_netcore_cpp(missionNumber: number): Observable<PredictionResponse> {
 
     let apiUrl_netcore_cpp                        =  `${this.getConfigValue('baseUrlNetCoreCPPEntry')}api/linearregression/predict?missionNumberToPredict=${missionNumber}`;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<PredictionResponse>(apiUrl_netcore_cpp,{ headers });
+  }
+  //
+  predictTime_httplib_cpp(missionNumber: number): Observable<PredictionResponse> {
+
+    let apiUrl_netcore_cpp                        =  `${this.getConfigValue('baseUrlCppWSTensorflow')}api/linearregression/predict?missionNumberToPredict=${missionNumber}`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });

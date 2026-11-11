@@ -94,5 +94,17 @@
       "field_4"          : "{{baseUrlCppWSTensorflow}}api/tictactoe/play?aiMode=1" ,
       "field_6"          : "https://www.tensorflow.org/install/lang_c?hl=es-419",
       "field_10"         : "60189f7e-6d8d-4638-9e40-0f71fc3c1902"
+  },
+  {
+      "id"               : 9,
+      "done"             : true,
+      "name"             : "Linear Regression / C++ (cpp-httplib)",
+      "description"      : "Machine Learning, Linear Regression, C++",
+      "field_1"          : "Machine Learning, Linear Regression, C++",
+      "field_2"          : "./#/LinearRegression?langeName=CPW",
+      "field_3"          : "https://github.com/aperezNWO/CPP_GCC_TENSORFLOW_DOCKER/blob/main/02_src_exe/include/LinearRegression.h",
+      "field_4"          : "{{baseUrlCppWSTensorflow}}api/linearregression/predict?missionNumberToPredict=18" ,
+      "field_6"          : "https://en.wikipedia.org/wiki/Linear_regression",
+      "field_10"         : "46feb59b-dd11-47c6-87b1-aeb66a01b307"
   }
 ]

@@ -64,7 +64,7 @@ export class LinearRegressionComponent  extends BaseReferenceComponent implement
      @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
      //
      public chartType    : ChartType = 'line';
-     // 
+     //
      public chartOptions: ChartConfiguration['options'] = {
         responsive          : true,
         maintainAspectRatio : false, // Allows chart to fill container
@@ -117,9 +117,9 @@ export class LinearRegressionComponent  extends BaseReferenceComponent implement
       ]
     };
     //
-    public linearRegressionEngine         : number = 3; 
+    public linearRegressionEngine         : number = 3;
     //
-    public __languajeList : any; 
+    public __languajeList : any;
     //
     constructor(      public  override configService    : ConfigService,
                       public  override route            : ActivatedRoute,
@@ -127,8 +127,8 @@ export class LinearRegressionComponent  extends BaseReferenceComponent implement
                       public  override backendService   : BackendService,
                       public  predictService            : TensorFlowService,
                       public  decimalPipe               : DecimalPipe
-               ) 
-    { 
+               )
+    {
           //
           super(configService,
                 backendService,
@@ -151,31 +151,32 @@ export class LinearRegressionComponent  extends BaseReferenceComponent implement
             // LENGUAJES DE PROGRAMACION
             //-----------------------------------------------------------------------------
             this.__languajeList      = new Array();
-            this.__languajeList.push(new _languageName(0, '(C++ Engine              : "Exact Solution (Least Squares Method))         '  , true ,  "CPP"  ));
-            this.__languajeList.push(new _languageName(1, '(Python/TensorFlow Engine: "Approximate Solution (Iterative Optimization)) '  , false,  "PY"   ));
+            this.__languajeList.push(new _languageName(0, '(C++ Engine / .NET CORE  : "Exact Solution (Least Squares Method))         '  , true  ,  "CPP"  ));
+            this.__languajeList.push(new _languageName(1, '(Python/TensorFlow Engine: "Approximate Solution (Iterative Optimization)) '  , false ,  "PY"   ));
+            this.__languajeList.push(new _languageName(2, '(C++ Engine / cpp-httplib: "Exact Solution (Least Squares Method))         '  , false ,  "CWS"  ));
             //
             let langName = params['langName'] ? params['langName'] : "" ;
             //
             if (langName !== '')
             {
                 //
-                console.log(` LangName : ${langName}`);  
+                console.log(` LangName : ${langName}`);
                 //
                 for (var index = 0; index < this.__languajeList.length; index++) {
                   //
                   if (this.__languajeList[index]._shortName  == langName)
                     {
-                      this.__languajeList[index]._selected = true;     
+                      this.__languajeList[index]._selected = true;
                       this.linearRegressionEngine                          = this.__languajeList[index]._index;
-                      
+
                       break;
-              
+
                     }
                 }
-            } 
-            else 
+            }
+            else
             {
-                this.linearRegressionEngine = 0; // (C++ Engine              : "Exact Solution (Least Squares Method)) 
+                this.linearRegressionEngine = 0; // (C++ Engine              : "Exact Solution (Least Squares Method))
             }
             //
             this.initializeChart();
@@ -212,7 +213,7 @@ export class LinearRegressionComponent  extends BaseReferenceComponent implement
     this.errorMessage = null;
     this.isLoading    = true;
 
-    // C++
+    // C++ / .NET CORE
     if (this.linearRegressionEngine == 0)
     {
         this.predictService.predictTime_netcore_cpp(this.inputMissionNumber).subscribe({
@@ -236,14 +237,39 @@ export class LinearRegressionComponent  extends BaseReferenceComponent implement
             }
         });
     }
-    
+
+    // C++ / http-lib
+    if (this.linearRegressionEngine == 2)
+    {
+        this.predictService.predictTime_httplib_cpp(this.inputMissionNumber).subscribe({
+            next: (response) => {
+              //
+              this.predictionResult            = response;
+              let predicted_total_time_hours   = this.decimalPipe.transform(response.predicted_total_time_hours, '1.2-2' );
+              let predicted_duration_days      = this.decimalPipe.transform(response.predicted_duration_days   , '1.2-2' );
+              this.status_message.set(`Input Mission Number : ${response.input_mission_number}, Predicted Total Time : ${predicted_total_time_hours} Hours,  Predicted Duration :${predicted_duration_days} Days `);
+              //
+              this.updateChart(response.input_mission_number, response.predicted_total_time_hours);
+            },
+            error: (error) => {
+              console.error('API Error:', error);
+              this.errorMessage = `Error calling API: ${error.message || 'Unknown error'}`;
+               this.status_message.set(this.errorMessage);
+              this.predictionResult = null;
+            },
+            complete: () => {
+              this.isLoading = false;
+            }
+        });
+    }
+
     // PYTHON
     if (this.linearRegressionEngine == 1)
     {
 
-        // REMOVE UNTIL FIX THE FOLLOWING 
+        // REMOVE UNTIL FIX THE FOLLOWING
           // 1) PRELOAD MODEL
-          // 2) ADD  SYNC PROGRESS BAR 
+          // 2) ADD  SYNC PROGRESS BAR
         this.initializeChart();
         this.errorMessage     = "Python/TensorFlow Engine is currently disabled. Please use the C++ Engine for predictions.";
         this.status_message.set(this.errorMessage);
@@ -260,7 +286,7 @@ export class LinearRegressionComponent  extends BaseReferenceComponent implement
               let predicted_total_time_hours   = this.decimalPipe.transform(response.predicted_total_time_hours, '1.2-2' );
               let predicted_duration_days      = this.decimalPipe.transform(response.predicted_duration_days   , '1.2-2' );
               this.status_message.set(`Input Mission Number : ${response.input_mission_number}, Predicted Total Time : ${predicted_total_time_hours} Hours,  Predicted Duration :${predicted_duration_days} Days `);
-              //  
+              //
               this.updateChart(response.input_mission_number, response.predicted_total_time_hours);
             },
             error: (error) => {
