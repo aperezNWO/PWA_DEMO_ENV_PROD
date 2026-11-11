@@ -168,7 +168,7 @@
         "field_10"         : "924c1431-2c6e-40a2-9664-f8191235d8a6"
     },
     {
-		"id"               : 19,
+        "id"               : 19,
         "done"             : true,
         "name"             : "Linear Regression / C++ DLL",
         "description"      : "Machine Learning, Linear Regression / C++ DLL",
