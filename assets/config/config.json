@@ -63,7 +63,7 @@
     "baseUrlNodeJsOcr_render_github_gmail_ws05"    : "https://cs-nodejs-ocr-latest-scjg.onrender.com/",
     "baseUrlNodeJsOcr_render_gmail_WS06"           : "https://cs-nodejs-ocr-latest-e2kc.onrender.com/",
     "baseUrlNodeJsOcr_render_github_hotmail_ws07"  : "https://cs-nodejs-ocr-latest-zkq2.onrender.com/",
-    "baseUrlNodeJsOcr"                             : "https://cs-nodejs-ocr-latest-i0mc.onrender.com/",
+    "baseUrlNodeJsOcr"                             : "https://cs-nodejs-ocr-latest-scjg.onrender.com/",
     "baseUrlNodeJsOcrDocker"                       : "https://docker.io/apereznwogmail/cs_nodejs_ocr:latest",
     "baseUrlNodeJsOcrRepo"                         : "https://github.com/aperezNWO/CS_NodeJs_ocr_/",
     "baseUrlNodeJsOcrModule"                       : "#/GridParam?searchTerm=OCR&pageName=PAGE_DEMOS_NODEJS_JAVASCRIPT",
