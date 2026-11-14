@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1794696704106,
+  "timestamp": 1794697815440,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -107,7 +107,7 @@
   "dataGroups": [],
   "hashTable": {
     "/PWA_DEMO_ENV_PROD/assets/config/config.json": "2d59c30c6c3a3c219738125c69989e8e39848313",
-    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "ad330609f3ec2eca650946fe3bd46ad9d2f2b452",
+    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "35d7413a37c3abfc5cd7c28afc299be56cc6be4b",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "4a8728c8bd972af81187a4da622979133a8cf0c9",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "930b1bb67aacd91a98c1613ff7fb92cce7367553",
@@ -119,7 +119,7 @@
     "/PWA_DEMO_ENV_PROD/assets/demos/dartDemo/dart_Curriculum_base.json": "09d3eed291f44ddfc88b40c8553c886195d06da9",
     "/PWA_DEMO_ENV_PROD/assets/demos/dartDemo/dart_Demos_base.json": "0569ff8e4b38863085fdd1b362ef815d41213809",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json": "c5cb47a936b0f9bc39bd5fcebfaf615e8cf8c497",
-    "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "df481ad31d3f0368a247d8a8aad2333c462aef0f",
+    "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "e7889e6af6ec7fbbbffe7471a95afa71ec934998",
     "/PWA_DEMO_ENV_PROD/assets/demos/goLangDemo/goLang_Demos_base.json": "454dae4c2edf2c8ea4c7f57f8344f5f55842a865",
     "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Curriculum_base.json": "cf322974de925ae07a53966e46ba217f98daf31a",
     "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Demos_base.json": "febf7987c163215b9732b38c830675c0ea5dea5e",
@@ -127,7 +127,7 @@
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "bb2fbbaf736d5960323712e8c5cc8ddecbafbdb3",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Curriculum_base.json": "d9a5f04e6eb21310eab505a8c000ac28a6b050bb",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Demos_base.json": "2069d478fbc9e79adf6ec9782d4c822963a0e2e9",
-    "/PWA_DEMO_ENV_PROD/assets/demos/rustDemo/rust_Demos_base.json": "ab18ea2bbe383b91c81a7721458e4be4596a7bb0",
+    "/PWA_DEMO_ENV_PROD/assets/demos/rustDemo/rust_Demos_base.json": "e447bac0d7f2da2990673caa71f3be6012b6b0d7",
     "/PWA_DEMO_ENV_PROD/assets/demos/springBootDemo/springBoot_Curriculum_base.json": "41a5121544c5c4227848ec6d2f60dbb8e2dfa5c2",
     "/PWA_DEMO_ENV_PROD/assets/demos/springBootDemo/springBoot_Demos_base.json": "54a2d63ed3360314360e552cc95b7b5f37223ed0",
     "/PWA_DEMO_ENV_PROD/assets/demos/swiftDemo/swift_Demos_base.json": "454dae4c2edf2c8ea4c7f57f8344f5f55842a865",

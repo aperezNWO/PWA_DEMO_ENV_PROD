@@ -22,5 +22,29 @@
        "field_6"          : "https://en.wikipedia.org/wiki/Fractal",
        "field_4"          : "{{baseUrlRustLang}}api/fractals/generate?kind=3&width=800&height=600&maxIterations=1000&zoom=1.0&centerX=0.0&centerY=0.0",
        "field_10"         : "76926c63-55fa-4410-b3cc-4ba4250f4ce1"
-   }
+   },
+   {
+	    	"id"               : 3,
+        "done"             : true,
+        "name"             : "[SQL QUERY DEMO - CSV]",
+        "description"      : "Quering MS SQL Server Database- Generate CSV File",
+        "field_1"          : "Rust, Axum, REST Service, MS SQL SERVER",
+        "field_2"          : "./#/FilesGenerationCSV?langName=RS",
+        "field_3"          : "https://github.com/aperezNWO/RUSTLANG_DEMO_001/blob/main/src/models/mod.rs",
+        "field_4"          : "{{baseUrlRustLang}}api/data/getAllPersons"  ,
+        "field_6"          : "https://docs.rs/mssql-client/latest/mssql_client/",
+        "field_10"         : "a3310954-5e47-4a4d-8085-c8dc9e386130"
+    },
+    {
+		    "id"               : 4,
+        "done"             : true,
+        "name"             : "[SQL QUERY DEMO - XLS]",
+        "description"      : "Quering MS SQL Server Database- Generate XLS File",
+        "field_1"          : "Django, Python, REST Service, MS SQL SERVER",
+        "field_2"          : "./#/FilesGenerationXLS?langName=RS",
+        "field_3"          : "https://github.com/aperezNWO/RUSTLANG_DEMO_001/blob/main/src/models/mod.rs",
+        "field_4"          : "{{baseUrlRustLang}}api/data/getAllLogs"  ,
+        "field_6"          : "https://docs.rs/mssql-client/latest/mssql_client/",
+        "field_10"         : "dcf509ce-dfb0-48d7-896d-26e389c757db"
+    }
 ]
