@@ -350,31 +350,41 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
             --[_] PYTHON CORS.
 
-            --[_] HEALTH ENDPOINT
-
-                  --[_] ENDPOINT LOOKUP DICTIONARY.
-
-                  --[_] SERVER VERSION.
-
-                  --[_] HEALTH STRUCTURE.
-
-                  --[_] HEALTH STRUCTURE ENDPONTS CONSTANTS ON FRONTEND.
-
-                  --[_] App Description endpoint.
-
-            --[_] tooltip program description.
-
             --[_] program type | link to hosting.
 
  --[_] [ZIG RESEARCH] I needed a C compiler on Windows for a Neovim plugin. The Zig compiler was, by far, the easiest way to get a C compiler compared to Mingw, Clang, MSVC, or GCC. Awesome stuf.
 
 --[_] WebSocket docker / render / golang
 
---[_] LINKS TO DOCKER / RENDER.
+--[X] LINKS TO DOCKER / RENDER.
 
     --[_] ABOUT -> TECH SPECS -> App Type (Backend / DLL).
 
     --[_] SCM.JSON.
+
+  --[_] HEALTH ENDPOINT
+
+        --[X] ENDPOINT LOOKUP DICTIONARY.
+
+        --[X] SERVER VERSION.
+
+        --[_] HEALTH BASE STRUCTURE.
+
+        --[_] HEALTH STRUCTURE ENDPONTS KEY CONSTANTS ON FRONTEND.
+
+        --[_] HEALTH STRUCTURE ENDPONTS URL CONSTANTS ON FRONTEND.
+
+        --[_] App Description endpoint / tooltip program description..
+
+ --[_] Docker Contingency
+
+    --[_] disable j2see apps / redirect to kotlin.
+
+    --[_] merge node.js / node.js ocr.
+
+    --[_] merge python linux / windows.
+
+    --[_] merge cppAlgorithm + cppTensorflow.
 
 --[_] Render config from database.
 
@@ -394,19 +404,9 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
         --[_] PARAM CORS FROM INI FILE.
 
-    --[_] config naming convention : CppWebServer<feature> -> CppWebServerAlgorithm
-
-    --[_] COMPLETE DEMOS BASED UP ON C++/.NET CORE DEMOS.
-
-          --[x] CPP_GCC_ALGORITHM_DOCKER.
-
-          --[x] CPP_GCC_TESSERACT_DOCKER.
-
-          --[x] CPP_GCC_TENSORFLOW_DOCKER.
-
-          --[x] CPP_GCC_OPEN_CV_DOCKER.
-
     --[_] Param : [DEMOS - C++ / HTTP WEB SERVER ] -> json files
+
+          --[_] Curriculum.
 
           --[_] cppWebServer_Demos_base.json.
 

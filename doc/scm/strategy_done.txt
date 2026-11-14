@@ -1,6 +1,18 @@
 /////////////////////////////////////////////////////////////////
-// STRATEGY DONE 
+// STRATEGY DONE
 /////////////////////////////////////////////////////////////////
+
+  --[x] config naming convention : CppWebServer<feature> -> CppWebServerAlgorithm
+
+  --[x] COMPLETE DEMOS BASED UP ON C++/.NET CORE DEMOS.
+
+        --[x] CPP_GCC_ALGORITHM_DOCKER.
+
+        --[x] CPP_GCC_TESSERACT_DOCKER.
+
+        --[x] CPP_GCC_TENSORFLOW_DOCKER.
+
+        --[x] CPP_GCC_OPEN_CV_DOCKER.
 
   --[x] zig demo (out if disk space).
 
@@ -15,7 +27,7 @@
   --[X] GITHUB CODESPPACES  / VM.
 
   --[X] dart / kotlin curriculums.
-          
+
   --[X] Add Dart links.
 
             --[=>] Curriculum.
@@ -31,13 +43,13 @@
                 --[=>] CONTACT FORM.
 
                       --[=>] Update References.
-            
+
                 --[=>] Fractal.
 
                        --[=>] Update References.
-                
+
                 --[=>] Dijkstra.
-                
+
                         --[=>] Update References.
 
                 --[=>] CSV DEMO.
@@ -53,7 +65,7 @@
             --[=>] Curriculum.
 
                   --[=>] Kotlin Programming Language.
-                              
+
                   --[=>] Spring Boot for Kotlin.
 
             --[=>] Language.
@@ -62,12 +74,12 @@
 
                       --[=>] Update References.
 
-                      --[=>] param URL.                     
-                
+                      --[=>] param URL.
+
                 --[x] Dijkstra.
 
                       --[x] Update References.
-                
+
                 --[x] XLS DEMO.
 
                       --[x] Update References.
@@ -75,7 +87,7 @@
                 --[X] CSV DEMO.
 
                       --[X] Update References.
-                      
+
 --[x] RENSTALL C++ DEV ENVS.
 
        --[x] CPP_GCC_ALGORITHM.
@@ -84,7 +96,7 @@
 
        --[x] CPP_GCC_OPEN_CV.
 
-       --[x] CPP_GCC_TENSORFLOW.       
+       --[x] CPP_GCC_TENSORFLOW.
 
 -- [x] miscelaneous.
 
@@ -93,27 +105,27 @@
       -- [X] SPLIT "STABLE RELEASES" FROM "DEV".
 
       -- [x] BACK TO HOME LINK ON FOOTER.
-      
+
  --[x] render timeout workaroud
 
       --[x] https://gemini.google.com/app/19625a475ad0cbfe
 
-      --[x] cron job -- document on scm. 
+      --[x] cron job -- document on scm.
 
-                --[x] "ping" endpoint with 0kb. 
+                --[x] "ping" endpoint with 0kb.
 
-                        --[x] j2se. 
-                        
- -- [x] Free disk space / one drive / personal / uv.  
+                        --[x] j2se.
+
+ -- [x] Free disk space / one drive / personal / uv.
 
  -- [x] rubik cube.
 
         --[x]   Face rotation on click.
 
         --[x]   Shuffle functionality.
-        
+
         --[x]   Step-by-step solving logic.
-        
+
 --[X] haonoi 3d -> add controls.
 
 --[x] pwa_demo_env_xxx -> LLM TESTING. (__testing folder)
@@ -160,7 +172,7 @@
 
  -- [x] validate empty image on ocr / opencv.
 
- -- [x] Fractal Demo. change text with gauges (tictactoe-ai example).  
+ -- [x] Fractal Demo. change text with gauges (tictactoe-ai example).
 
  -- [x] sort demo -> change buttons order.
 
@@ -169,22 +181,22 @@
  -- [x] COLLISION DEMO.
 
         --[x] MATH.JS.
-        
+
         --[x] VERTICAL / HORIZONTAL GAUGES.
-        
+
         --[x] START BUTTON.
-        
+
         --[x] DRAW COORDINATES.
-        
+
 --[x] Improve Hanoi Program.
-     
+
       --[>>] Hanoi RJXS
 
       --[>>] Hanoi Game Engine.
 
-      --[>>] Hanoi RJXS - Auto 
+      --[>>] Hanoi RJXS - Auto
 
-            --[>>] Merge Hanoi RJXS with Hanoi Game Engine. 
+            --[>>] Merge Hanoi RJXS with Hanoi Game Engine.
 -- [x] index.
 
       -- [x] app routes.
@@ -194,10 +206,10 @@
       -- [x] grid.
 
       -- [x] speech to text search.
-      
--- [x] ngb pad instructions.   
 
--- [x] Angular Url Query Param. 
+-- [x] ngb pad instructions.
+
+-- [x] Angular Url Query Param.
 
 -- [x] RXJS Playground.
 
@@ -206,8 +218,8 @@
       --[x] Replace timers with observables.
 
 -- [x] node.js backend.
-      
--- [x] A.I. Prompts.            
+
+-- [x] A.I. Prompts.
 
         -- [x] page list from json file.
 
@@ -230,7 +242,7 @@
 --[x] Angular.dev / Certification / Community.
 --[x] mongodb demo / backend source.
 --[x] django  demo / backend source.
---[x] chatgtp / xls demo / node.js.  
+--[x] chatgtp / xls demo / node.js.
 --[x]  ofrecer directamente a angular community.
 --[x] Angular Job Alert / Social.
 --[x] Paypal link button.
@@ -239,10 +251,10 @@
 --[x] Select your language.
 --[x] Topics end point.
 
--- [X] HOSTING  
+-- [X] HOSTING
 
         -- [X] [somee.com]
-         
+
                 -- [X] [HELP]
                         https://somee.com/doka/Help/Article/106/How_to_deploy_Web_project_from_Visual_Studio
 
@@ -252,15 +264,15 @@
                        -- [_] enbable   db #2 / (CSV DEMO).
                 -- [X] check disabled accounts.
                        -- [x] https://www.angulardemo.somee.com.
-                       
+
 -- [x] [CPP DEMO]
 
     -- [x] performance benchmark [c# / typescript / c++].
 
 
--- [X] SOURCE github.com        
+-- [X] SOURCE github.com
 
-        -- [X] PUBLIC SOURCES.                        
+        -- [X] PUBLIC SOURCES.
                 -- [x] [mcsdWebApíTFS] (tff)      -->  (github) "mcsd_public".
                 -- [x] [AngularMCSD]   (github)   -->  (github) "AngularMCSD_public".
                 -- [>] Update sources.
@@ -268,9 +280,9 @@
 -- [X] [alternativas]
 
         -- [X] https://xranks.com/es/somee.com
-        
+
 -- [X] REDUCE FILE SIZE.
-        
+
         -- [X] check disable email from "somee.com".
 
 -- [x] DIRECT EMAIL
@@ -297,7 +309,7 @@
 
 -- [X] Config Module.
 
---[X] RESTRINGIR ACCESO A REGISTROS VIA ROLES / OAUTH. 
+--[X] RESTRINGIR ACCESO A REGISTROS VIA ROLES / OAUTH.
 
 --[x] NG BOOTRSRAP ** SAMPLE ** .
 
@@ -320,7 +332,7 @@
                 --[X] utilzar herencia.
 
                 --[X] Duplicar objetos .ts.
-        
+
                 --[X] Cambiar referencia a objetos .ts.
 
 -- [X] LEER ARCHIVO CONFIG / VERSION.
@@ -335,7 +347,7 @@
 
       -- [X] set codesandbox account.
 
--- [X] promise exception handling.    
+-- [X] promise exception handling.
 
 -- [X] ngb grid on public csv query.
 
@@ -349,7 +361,7 @@
 
 -- [X] OWASP.
 
--- [x] Small Icon on NAV MENU. 
+-- [x] Small Icon on NAV MENU.
 
 -- [x] Fix Menu behaviour.
 
@@ -357,13 +369,13 @@
 
 -- [x] nodejs demo, backend url demo.
 
--- [x] page not found triggers logout. 
+-- [x] page not found triggers logout.
 
 -- [x] sortirection dictionary;
 
 -- [x] Datagrid row detail / relacion unos a muchos json.
 
--- [x] OAUTH. 
+-- [x] OAUTH.
 
 -- [x] Edu link group.
 
@@ -372,50 +384,50 @@
       -- [x] Programming References.
 
       -- [x] Patterns.
-      
+
       -- [x] SOLID.
 
 -- [x] php mdemo.
 
--- [x] datagrid record number.  
+-- [x] datagrid record number.
 
  -- [x] Angular curriculum.
 
- -- [x] Contact Form 
- 
-       -- [x] Dynamic Form.  
+ -- [x] Contact Form
+
+       -- [x] Dynamic Form.
 
        -- [x] Read json pages from somee.com / database.
 
   -- [x] RXJS
 
-       -- [x]  https://v17.angular.io/guide/rx-library      
+       -- [x]  https://v17.angular.io/guide/rx-library
 
 
--- [x] NBX GRID.      
+-- [x] NBX GRID.
 
-      -- [x] fix onload data.      
+      -- [x] fix onload data.
 
-            -- [x] basarse en concacform admin grid.      
+            -- [x] basarse en concacform admin grid.
 
-      -- [x] fix onsort.      
+      -- [x] fix onsort.
 
--- [x] SpeechService as Service onLoad.    
+-- [x] SpeechService as Service onLoad.
 
--- [x] scm list.     
+-- [x] scm list.
 
-      -- [x] scm list data from database.     
+      -- [x] scm list data from database.
 
       -- [x] modify tesch specs list.
 
--- [x] merge demos_lang with env_prod.     
+-- [x] merge demos_lang with env_prod.
 
-      -- [x] end_prod add submenu demos_lang.          
+      -- [x] end_prod add submenu demos_lang.
 
       -- [x] end_prod add submenu demos_feature.
- 
+
       -- [x] end_prod add submenu demos_curriculum.
-  
+
       -- [x] end_prod add contact form.
 
       -- [x] end_prod modify tesch specs list.
@@ -454,16 +466,16 @@
 -- [x] UIX --> check.
 
      -- [x] [GENERAR ARCHIVO]
- 
+
      -- [x] [ACERCA DE]
-    
+
         -- [x] [contacto]
         -- [x] [technical specs]
-        -- [x] [job search]  
-            -- [x] oauth.        
+        -- [x] [job search]
+            -- [x] oauth.
         -- [x] [seccion comentarios]
             -- [x] oauth.
-  
+
 -- [x] angular interceptors.
 
 -- [x] uix --> general.
@@ -473,7 +485,7 @@
         -- [x] menu collapse on page entry.
         -- [x] metronic.
         -- [x] [daniel sevilla]         https://primeng.org/installation.
-        
+
 -- [x] ANGULAR TOPICS.
 
     -- [x] https://angular.io/docs
@@ -501,8 +513,8 @@
        -- [x] As standalone demo with index.
        -- [x] Angular Hosting.
 
-    -- [x] [LOGIN]            
-         
+    -- [x] [LOGIN]
+
             -- [x] CUSTOM.
             -- [x] oauth.
             -- [x] DYNAMIC FORM.
@@ -514,7 +526,7 @@
                   -- [x] https://www.geeksforgeeks.org/implementation-of-tic-tac-toe-game/
 
     -- [x] UDEMY / ANGULAR.
-        
+
         -- [x] https://www.udemy.com/topic/angular/free/
 
 -- [x] Use custom login.
@@ -528,7 +540,7 @@
      -- [x] bootstrap menu plegar en entrada a modulo.
      -- [x] Angular Topics.
      -- [x] Renovar https somme.com.
-     
+
 -- [x] OBSERVABLE.
 
        -- [x] https://v17.angular.io/guide/observables.
@@ -552,19 +564,19 @@
        -- [x] mcsdWebApíTFS.
        -- [x] mcsdBackup.
 
-                -- [x] BACKUP /DELETE BOOK "DELORME".  
-                -- [x] BACKUP /DELETE folder "_angular".  
+                -- [x] BACKUP /DELETE BOOK "DELORME".
+                -- [x] BACKUP /DELETE folder "_angular".
                 -- [x] turn off domain "mcsdBackup".
                 -- [x] change tfs/github name "mcsdNet48TFS" / "mcsdNet48GitHub".
                 -- [x] change tfs/github name "mcsd" por "mcsdNetCoreBackup".
 
 
--- [x]  Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GetConsultaLogStatGet' 
+-- [x]  Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GetConsultaLogStatGet'
         from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy:
         No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
--- [x]  Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GenerarInformeCSVJsonSTAT' 
-        from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy: 
+-- [x]  Access to XMLHttpRequest at 'https://mcsd.somee.com/demos/GenerarInformeCSVJsonSTAT'
+        from origin 'https://mcsdbackup.somee.com' has been blocked by CORS policy:
         No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
 -- [x] read pages from json file.
@@ -583,11 +595,11 @@
 
 -- [x] Angular Submeno.
 
--- [x] Marketing strategy table. 
+-- [x] Marketing strategy table.
 
--- [x] Angular Directives. 
+-- [x] Angular Directives.
 
--- [x] hide repo links from demo info.  
+-- [x] hide repo links from demo info.
 
 -- [x] inheritance / interfaces.
 
@@ -603,7 +615,7 @@
 -- [x] export type _NodeJsFeatureSortColumn    = keyof <FatherClass>      | ''; (inheritance)
 
 
- -- [x] load config as dictionary. 
+ -- [x] load config as dictionary.
 
       -- [x] function appModule.ts LoadxxxData() as single function.
 
@@ -618,17 +630,17 @@
       -- [x] Eliminate models.
 
 
- -- [x] Sotable Grid Inheritance.      
+ -- [x] Sotable Grid Inheritance.
 
- -- [x] Sotable Grid Component.      
+ -- [x] Sotable Grid Component.
 
--- [x] clear base service cache.  
+-- [x] clear base service cache.
 
--- [x] load grid info at request.  
+-- [x] load grid info at request.
 
 -- [x] about info
 
-       -- [x] A.I. PROMT LIST.  
+       -- [x] A.I. PROMT LIST.
 
 -- [x] spring boot menu entry.
 
@@ -646,15 +658,15 @@
 
 -- [x] ngb pad instructions.
 
--- [x] Agular / Features.       
+-- [x] Agular / Features.
 
 -- [x] angular pensum.
 
--- [x] Speech Panel component. 
- 
--- [x] Fix sort functionality.  
+-- [x] Speech Panel component.
 
--- [x] Implement grid component / service. 
+-- [x] Fix sort functionality.
+
+-- [x] Implement grid component / service.
 
 -- [x] random guid generator.
 
@@ -674,20 +686,20 @@
 
 -- [x] replace topics with index.
 
-        -- [x] router fields : id, source code, topic, feature. 
+        -- [x] router fields : id, source code, topic, feature.
 
-        -- [x] router from external file. 
+        -- [x] router from external file.
 
-        -- [x] master detail field. 
+        -- [x] master detail field.
 
 -- [x] programming languages links to index.
 
         -- [x] query url.
 
---  [x] json pages with multiple schemas / read on demand.   
+--  [x] json pages with multiple schemas / read on demand.
 
 --  [x] global signal.
-      
+
 --  [x]  Split servivces for languages.
 
 -- [X] fancy home background.
@@ -699,7 +711,7 @@
 -- [X] complete header references.
 
 -- [X] join chart / xls / csv.
-               
+
 -- [X] scmlist, llmlist to new ngbgrid schema.
 
 -- [X] merghe math demo with collision demo.
@@ -716,7 +728,7 @@
 
       -- [X] c++.
 
-      -- [X] java.      
+      -- [X] java.
 
 -- [X] tensorflow.
 
@@ -734,21 +746,21 @@
 
        -- [x] https://opencv.org/
 
-        -- [x] OPEN CV / JAVASCRIPT.   
+        -- [x] OPEN CV / JAVASCRIPT.
 
         -- [x] OPEN CV / c++ builder.
 
-        -- [x] TESSERACT / JAVASCRIPT / C++ .   
+        -- [x] TESSERACT / JAVASCRIPT / C++ .
 
 -- [x] MACHINE LEARNING.
 
-        -- [x] OPEN CV / JAVASCRIPT.   
+        -- [x] OPEN CV / JAVASCRIPT.
 
         -- [x] OPEN CV / c++ builder.
 
-        -- [x] TENSORFLOW / JAVASCRIPT.  
+        -- [x] TENSORFLOW / JAVASCRIPT.
 
--- [x] TOPICS.        
+-- [x] TOPICS.
 
         -- [x] index aditional fields.
 
@@ -762,15 +774,15 @@
 
         -- [x] angular - features.
 
-                        -- [x] route attribute.        
+                        -- [x] route attribute.
 
 -- [x] speech service.
 
- -- [X] change domain PWA_DEMO for ANGULAR_DEMO.    
+ -- [X] change domain PWA_DEMO for ANGULAR_DEMO.
 
- -- [X] asp.net core demo.           
+ -- [X] asp.net core demo.
 
--- [X] Page icons.  
+-- [X] Page icons.
 
 -- [X] Promise<<type>>.
 
@@ -778,19 +790,19 @@
 
 -- [X] relative path.
 
--- [X] references component.       
+-- [X] references component.
 
 -- [X] ENV_LIBRARY
 
--- [X] source code header comments for github.  
+-- [X] source code header comments for github.
 
--- [X] trends page. 
-  
-        -- [X] Machine Learning. 
-    
-        -- [X] Computer Vision. 
-  
-        -- [X] Data Science. 
+-- [X] trends page.
+
+        -- [X] Machine Learning.
+
+        -- [X] Computer Vision.
+
+        -- [X] Data Science.
 
   --  [X] canvas component.
 
@@ -804,22 +816,22 @@
 
    --  [X] PAGES LIST BASE COMPONENT.
 
-   -- [X] base component.    
-     
-        -- [X] signal status message.    
+   -- [X] base component.
+
+        -- [X] signal status message.
 
         -- [X] effect.
- 
+
         -- [X] backend page log.
 
         -- [X] <base.component><base-compoent>.
 
         -- [X] json pages list.
 
--- [X] fix angular curiculum <---> angular reference.    
+-- [X] fix angular curiculum <---> angular reference.
 
- -- [X] disable sound button.    
-     
+ -- [X] disable sound button.
+
  -- [X] github permalink.
 
  --  [X] page Number param grid.
@@ -831,7 +843,7 @@
    -- [X] ENV_DB
 
    -- [x] sudoku button.
-       
+
    -- [x] routers caption text correction.
 
    -- [X] menu items.
@@ -840,7 +852,7 @@
 
               -- [X] amigo secreto.
 
-  -- [X] scm             
+  -- [X] scm
 
         -- [X] row detail grid.
 
@@ -856,67 +868,67 @@
 
         -- [X] DB.
 
-  -- [x] tag effect list .    
+  -- [x] tag effect list .
 
-        -- [x] references.    
+        -- [x] references.
 
-        -- [x] language.    
+        -- [x] language.
 
   --  [X] angular deme welcome speech
 
-  --  [x]  uix library implementation : https://ng-bootstrap.github.io/#/components/table/examples#basic   
+  --  [x]  uix library implementation : https://ng-bootstrap.github.io/#/components/table/examples#basic
 
   --  [X]  ¿Can you please show me a code exaple of creating a dll using Embarcadero C++ builder and tensorflow OCR capabilities ?
- 
+
            --  [X] https://www.tensorflow.org/install/lang_c?spm=a2ty_o01.29997173.0.0.3f3dc921kZ4Z3g&hl=es-419
 
--- [X] Revision general de funcionalidad.  
+-- [X] Revision general de funcionalidad.
 
-        -- [x] mensaje de espera --> signals.  
+        -- [x] mensaje de espera --> signals.
 
-        -- [x] Error en Index / Games.  
+        -- [x] Error en Index / Games.
 
         -- [x] Ver Referencia [Tema].
 
--- [X] both ways reference.    
+-- [X] both ways reference.
 
-        -- [x] ngb grid  => searchTerm?<search_Term>.    
+        -- [x] ngb grid  => searchTerm?<search_Term>.
 
                 -- [_] ngbgrid searchTerm param.
 
-        -- [x] demo page => langName?<lang>.  
+        -- [x] demo page => langName?<lang>.
 
                 -- [>] SCM ENV_LIBRARY.
 
--- [x]  Add current contact form.        
+-- [x]  Add current contact form.
 
--- [x]  node js typescript.  
+-- [x]  node js typescript.
 
--- [x]  ADD JAVA / SPRINGBOOT SAMPLES.  
+-- [x]  ADD JAVA / SPRINGBOOT SAMPLES.
 
--- [x]  programming samples / DEMOS :      
+-- [x]  programming samples / DEMOS :
 
-        -- [x]  by features.        
+        -- [x]  by features.
 
-        -- [x]  by language.        
+        -- [x]  by language.
 
-        -- [x]  curriculum.      
+        -- [x]  curriculum.
 
--- [x] grid lang cache error :          
+-- [x] grid lang cache error :
 
 -- [x] PAGE_<FEATURE>_DEMO --> setLog().
- 
--- [x] demos with query params.  
 
--- [x] Precargar Imagenes Portada.  
+-- [x] demos with query params.
 
--- [x] v[1.5.1]. implementar ngb grid.   
+-- [x] Precargar Imagenes Portada.
 
-        -- [x] name column witout link _blank.  
+-- [x] v[1.5.1]. implementar ngb grid.
 
-        -- [x] delete [done] column, replace with [endPoint] column.  
+        -- [x] name column witout link _blank.
 
-        -- [x] add [tema] column.        
+        -- [x] delete [done] column, replace with [endPoint] column.
+
+        -- [x] add [tema] column.
 
 -- [x] book / resources.
 
@@ -947,7 +959,7 @@
                -- [x] material.
 
                -- [x] ng bootstrap.
-               
+
         -- [x] export  libraries
 
                -- [x] epp plus.
@@ -961,17 +973,17 @@
                -- [x] math parsing.
 
                -- [x] ngb pad.
- 
+
         -- [x] computer visions / machine learning
 
                 -- [x] tesseract.
 
                 -- [x] tensorflow.
-   
+
                 -- [x] opencv.
-                
+
 -- [x] TESSERACT
- 
+
            --  [x] Get Tesseract Version from C++ Builder Wrapper dll / asp.net core end pont.
 
            --  [x] Angular Integration.
@@ -989,9 +1001,9 @@
                           --  [x]  REDUCE CODE.
 
                 --  [x]  ASP_NET_CORE_EF_SAMPLE.
-                
-         --  [x]  REFERENCES : 
-        
+
+         --  [x]  REFERENCES :
+
                 --  [x]  c++ library        -> update version
 
                 --  [x]  ASP.NET end point  -> update version
@@ -999,7 +1011,7 @@
  -- [x] LINK DEMOS|LENGUAGES --> <-- LENGUAES| CURRICULUM
 
  -- [x]  C++ DEMOS -> ALGORITHM.
-        
+
         -- [x] SORT BENCHMARK OUTPUT AS JSON.
 
  -- [x] botones "Ir a Demo" , "ir a Curriculum".
@@ -1022,13 +1034,13 @@
 
         -- [x]  FIX REFERENCES.
 
-        -- [x]  OOP INHERITANCE THROUGH ALGORITHM.DLL PARENT CLASS 
+        -- [x]  OOP INHERITANCE THROUGH ALGORITHM.DLL PARENT CLASS
 
                -- [_] https://chat.qwen.ai/c/98e5e0ec-6031-46b6-adb0-d7a2ef535c5b
 
                 (A). Read/Write  file parent method.
                 (B). Read Config file parent method.
-        
+
 -- [x] ASP.NET CORE c++ ENTRY POINT source code link.
 
         -- [x] swagger for ASP.NET CORE c++ ENTRY POINT.
@@ -1038,10 +1050,10 @@
 --  [x]  Disable C++ BUILDER.
 
         --  [x]  uninstall.
-        
+
         --  [x]  Compatible Toolchain.
-   
--- [x] Sound init workaround.  
+
+-- [x] Sound init workaround.
 
 -- [x] button copy to clipborad guid.
 
@@ -1050,7 +1062,7 @@
                 --  [x]  CPP_CBUILDER_ALGORITHM.
 
                 --  [x]  CPP_CBUILDER_TESSERACT.
-                
+
                 --  [x]  Split Tesseract / Tensorflow.
 
                 --  [x]  CPP_GCC_TESSERACT.
@@ -1091,7 +1103,7 @@
         -- [x] libraries intro.
 
                 -- [x] opencv demo.
-                
+
                 -- [x] tesseract demo.
 
                 -- [x] tensorflow demo.
@@ -1111,30 +1123,30 @@
 
         -- [x] https://apereznwo.github.io/PWA_DEMO_ENV_PROD/#/PageUrlList?pageName=PAGE_DEMOS_MACHINE_LEARNING_INDEX
 
-                -- [x] Add m.l. pending items. 
-                
-                -- [x] TOPICS -> FREECODECAMP. 
+                -- [x] Add m.l. pending items.
 
-        -- [X] Somee list.    
+                -- [x] TOPICS -> FREECODECAMP.
+
+        -- [X] Somee list.
 
         -- [X] DB LIST.
 
         -- [X] Fix codesandbox data. Put 3 codesandbox accounts + root account.
 
-        -- [X] ENV_ONLINE_HOSTING -> ENV_ONLINE_BACKEND.  
+        -- [X] ENV_ONLINE_HOSTING -> ENV_ONLINE_BACKEND.
 
-        -- [>] SCM TRANSLATE TO ENGLISH.  
+        -- [>] SCM TRANSLATE TO ENGLISH.
 
         -- [x] Azure devops list.
 
-        -- [X] Monster ASP.NET list.   
+        -- [X] Monster ASP.NET list.
 
  -- [x] base component.
 
         -- [x] title.
 
         -- [x] error: double sound on title.
- 
+
         -- [x] reference list.
 
 -- [>]  TypeError: Cannot read properties of undefined (reading 'page_name')   : BaseComponent : csv generation.
@@ -1187,12 +1199,12 @@
  -- [x] fix json pages.
 
  -- [x] TIC-TAC-TOE DEMO.
- 
+
         --  [x] c++ neural network which learns to play tictactoe against itself.
 
                 --  [x] https://chat.qwen.ai/c/7d46d2ce-70a5-4c9f-ba4c-d7ce475527ed
 
-        -- [x] param link to specific lang.        
+        -- [x] param link to specific lang.
 
 -- [x] TETRIS DEMO
 
@@ -1202,13 +1214,13 @@
 
 -- [x] chart pdf wait message.
 
--- [x] dijkstra uber reference.      
+-- [x] dijkstra uber reference.
 
--- [x] DISABLE CONTROLS.    
+-- [x] DISABLE CONTROLS.
 
-        -- [x] DIJKSTRA.    
+        -- [x] DIJKSTRA.
 
-        -- [x] FRACTAL.    
+        -- [x] FRACTAL.
 
 -- [x] base reference component implementation.
 
@@ -1219,7 +1231,7 @@
  --  [x]  Tensorflow Update Log.
 
         --  [x]  https://chat.qwen.ai/c/5ebb0c4c-fc7a-4883-8d27-cdcba22e3afb
-        
+
         --  [x]  Somee admits x32 only arch. for c and c++.
 
         --  [x]  TryAsp.net admits both x32 and x64.
@@ -1232,22 +1244,22 @@
 
         --  [x]  TryAsp.net c genrerated Tensorflow code expects *.PB model file.
 
-        --  [x]  *.pb model files are generated mostly on Python.      
-                
- --[x] move somee.com to monsterasp.net. leave dbs only. 
+        --  [x]  *.pb model files are generated mostly on Python.
+
+ --[x] move somee.com to monsterasp.net. leave dbs only.
 
  --[x] complete scm config info (see section).
 
- --[x] Codesandbox list.  
+ --[x] Codesandbox list.
 
- --[X] TRANSLATE FORMS TO ENGLISH.  
+ --[X] TRANSLATE FORMS TO ENGLISH.
 
  --[x] CSV ASYNC REFERENCE.
 
  --[X] codesandbox gmail smtp change email body. Whatsapp contact.
 
  --[x] block text box controls from forms.
- 
+
  --[X] PWA_DEMO_ENV_ADMIN change codesandbox origin from list. getallcontacforms update.
 
  --[X] https://stackblitz.com/edit/angular-66sddqgy?file=src%2Fmain.ts
