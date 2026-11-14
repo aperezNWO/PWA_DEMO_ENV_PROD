@@ -55,9 +55,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _PythonAppVersionTF              = this.fromCache('pythonAppVersionTF');
   _PythonVersionTF                 = this.fromCache('pythonVersionTF');
   _PythonWebServerVersionTF        = this.fromCache('pythonWebServerVersionTF');
-  _JavaAppVersion                  = this.fromCache('javaAppVersion');
-  _JavaVersion                     = this.fromCache('javaVersion');
-  _JavaWebServerVersion            = this.fromCache('javaWebServerVersion');
+  //_JavaAppVersion                  = this.fromCache('javaAppVersion');
+  //_JavaVersion                     = this.fromCache('javaVersion');
+  //_JavaWebServerVersion            = this.fromCache('javaWebServerVersion');
   _NodeAppVersion                  = this.fromCache('nodeAppVersion');
   _NodeVersion                     = this.fromCache('nodeVersion');
   _NodeWebServerVersion            = this.fromCache('nodeWebServerVersion');
@@ -91,9 +91,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _KotlinAppVersion                = this.fromCache('kotlinAppVersion');
   _KotlinVersion                   = this.fromCache('kotlinVersion');
   _KotlinWebServerVersion          = this.fromCache('kotlinWebServerVersion');
-  _SwiftAppVersion                 = this.fromCache('swiftAppVersion');
-  _SwiftVersion                    = this.fromCache('swiftVersion');
-  _SwiftWebServerVersion           = this.fromCache('swiftWebServerVersion');
+  //_SwiftAppVersion                 = this.fromCache('swiftAppVersion');
+  //_SwiftVersion                    = this.fromCache('swiftVersion');
+  //_SwiftWebServerVersion           = this.fromCache('swiftWebServerVersion');
 
     guid = signal<string>('');
 
@@ -160,9 +160,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._PythonAppVersionTF           = v.pythonAppVersionTF ?? '(..loading..)';
         this._PythonVersionTF              = v.pythonVersionTF ?? '(..loading..)';
         this._PythonWebServerVersionTF     = v.pythonWebServerVersionTF ?? '(..loading..)';
-        this._JavaAppVersion               = v.javaAppVersion ?? '(..loading..)';
-        this._JavaVersion                  = v.javaVersion ?? '(..loading..)';
-        this._JavaWebServerVersion         = v.javaWebServerVersion ?? '(..loading..)';
+        //this._JavaAppVersion               = v.javaAppVersion ?? '(..loading..)';
+        //this._JavaVersion                  = v.javaVersion ?? '(..loading..)';
+        //this._JavaWebServerVersion         = v.javaWebServerVersion ?? '(..loading..)';
         this._NodeAppVersion               = v.nodeAppVersion ?? '(..loading..)';
         this._NodeVersion                  = v.nodeVersion ?? '(..loading..)';
         this._NodeWebServerVersion         = v.nodeWebServerVersion ?? '(..loading..)';
@@ -193,9 +193,9 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._KotlinAppVersion             = v.kotlinAppVersion ?? '(..loading..)';
         this._KotlinVersion                = v.kotlinVersion ?? '(..loading..)';
         this._KotlinWebServerVersion       = v.kotlinWebServerVersion ?? '(..loading..)';
-        this._SwiftVersion                 = v.swiftVersion ?? '(..loading..)';
-        this._SwiftAppVersion              = v.swiftAppVersion ?? '(..loading..)';
-        this._SwiftWebServerVersion        = v.swiftWebServerVersion ?? '(..loading..)';
+        //this._SwiftVersion                 = v.swiftVersion ?? '(..loading..)';
+        //this._SwiftAppVersion              = v.swiftAppVersion ?? '(..loading..)';
+        //this._SwiftWebServerVersion        = v.swiftWebServerVersion ?? '(..loading..)';
 
         // Rebuild table when cache resolves
         this.rebuildServicesTable();
@@ -246,7 +246,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                   healthLink            : `${this.__baseUrlNodeJsOcr}api-docs`,
                   repoLink              : this.__baseUrlNodeJsOcrRepo,
                   moduleLink            : `${this.configService.getConfigValue('baseUrlNodeJsOcrModule')}`,
-              },
+              },/*
               {
                   type                  : '(Backend)',
                   name                  : '[App v. / Java / SpringBoot]',
@@ -257,7 +257,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                   repoLink              : `${this.configService.getConfigValue('baseUrlSpringBootJavaRepo')}`,
                   healthLink            : `${this.configService.getConfigValue('baseUrlSpringBootJava')}health`,
                   moduleLink            : `${this.configService.getConfigValue('baseUrlSpringBootJavaModule')}`,
-              },
+                  },*/
               {
                   type                  : '(Backend)',
                   name                  : '[App v. / Kotlin / SpringBoot]',
@@ -279,7 +279,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink              : `${this.configService.getConfigValue('baseUrlDartRepo')}`,
                     healthLink            : `${this.configService.getConfigValue('baseUrlDart')}health`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlDartModule')}`,
-                },
+                },/*
                 {
                     type                  : '(Backend)',
                     name                  : '[App v. / Swift / Vapor]',
@@ -290,7 +290,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink              : `${this.configService.getConfigValue('baseUrlSwiftLangRepo')}`,
                     healthLink            : `${this.configService.getConfigValue('baseUrlSwiftLang')}health`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlSwiftLangModule')}`,
-                },
+                    },*/
                 {
                     type                  : '(Backend)',
                     name                  : '[App v. / Rust / Actix-web]',

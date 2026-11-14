@@ -31,9 +31,9 @@ export interface VersionBundle {
   nodeAppVersionOcr        : string;
   nodeVersionOcr           : string;
   nodeWebServerVersionOcr  : string;
-  javaAppVersion           : string;
-  javaVersion              : string;
-  javaWebServerVersion     : string;
+  //javaAppVersion           : string;
+  //javaVersion              : string;
+  //javaWebServerVersion     : string;
   webApiApp           : string;
   algorithmApp        : string;
   algorithmCpp        : string;
@@ -74,9 +74,9 @@ export interface VersionBundle {
   kotlinAppVersion         : string;
   kotlinVersion            : string;
   kotlinWebServerVersion   : string;
-  swiftAppVersion          : string;
-  swiftVersion             : string;
-  swiftWebServerVersion    : string;
+  //swiftAppVersion          : string;
+  //swiftVersion             : string;
+  //swiftWebServerVersion    : string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -151,9 +151,9 @@ export class VersionCacheService implements OnDestroy {
       nodeAppVersionOcr         : safeSub(this.back.getNodeAppVersionOcr()),
       nodeVersionOcr            : safeSub(this.back.getNodeVersionOcr()),
       nodeWebServerVersionOcr   : safeSub(this.back.getNodeWebServerVersionOcr()),
-      javaAppVersion          : safeSub(this.back.getJavaAppVersion()),
-      javaVersion             : safeSub(this.back.getJavaVersion()),
-      javaWebServerVersion    : safeSub(this.back.getJavaWebServerVersion()),
+      //javaAppVersion          : safeSub(this.back.getJavaAppVersion()),
+      //javaVersion             : safeSub(this.back.getJavaVersion()),
+      //javaWebServerVersion    : safeSub(this.back.getJavaWebServerVersion()),
       webApiApp           : safeSub(this.back._GetWebApiAppVersion()),
       algorithmApp        : safeSub(this.algo._Algorithm_GetAppVersion()),
       algorithmCpp        : safeSub(this.algo._Algorithm_GetCPPSTDVersion()),
@@ -194,9 +194,9 @@ export class VersionCacheService implements OnDestroy {
       kotlinAppVersion       : safeSub(this.back.getKotlinAppVersion()),
       kotlinVersion          : safeSub(this.back.getKotlinVersion()),
       kotlinWebServerVersion : safeSub(this.back.getKotlinWebServerVersion()),
-      swiftAppVersion        : safeSub(this.back.getSwiftAppVersion()),
-      swiftVersion           : safeSub(this.back.getSwiftVersion()),
-      swiftWebServerVersion  : safeSub(this.back.getSwiftWebServerVersion()),
+      //swiftAppVersion        : safeSub(this.back.getSwiftAppVersion()),
+      //swiftVersion           : safeSub(this.back.getSwiftVersion()),
+      //swiftWebServerVersion  : safeSub(this.back.getSwiftWebServerVersion()),
     }).pipe(
       map(bundle => {
         this.writeCache(bundle);
@@ -216,8 +216,8 @@ export class VersionCacheService implements OnDestroy {
       .pipe(
         switchMap(() =>
           forkJoin({
-            java   : this.back.getJavaVersion().pipe(catchError(() => of('Offline'))),
-            node   : this.back.getNodeVersion().pipe(catchError(() => of('Offline'))),
+            //java   : this.back.getJavaVersion().pipe(catchError(() => of('Offline'))),
+            //node   : this.back.getNodeVersion().pipe(catchError(() => of('Offline'))),
             nodeOcr: this.back.getNodeVersionOcr().pipe(catchError(() => of('Offline'))),
             python : this.back.getPythonVersion().pipe(catchError(() => of('Offline'))),
           })
@@ -225,7 +225,7 @@ export class VersionCacheService implements OnDestroy {
       )
       .subscribe({
         next : r => {
-          console.log(`[Heartbeat] java=${r.java} node=${r.node} nodeOcr=${r.nodeOcr}`);
+          console.log(`[Heartbeat] nodeOcr=${r.nodeOcr}`);
           this.reload(); // refresh full bundle so recovered services appear in UI
         },
         error: err => console.error('[Heartbeat] Ping failed:', err),
@@ -241,7 +241,7 @@ export class VersionCacheService implements OnDestroy {
       pythonAppVersionTF:L, pythonVersionTF:L, pythonWebServerVersionTF : L,
       nodeAppVersion: L, nodeVersion: L, nodeWebServerVersion: L,
       nodeAppVersionOcr: L,nodeVersionOcr: L, nodeWebServerVersionOcr: L,
-      javaAppVersion: L, javaVersion: L, javaWebServerVersion : L,
+      //javaAppVersion: L, javaVersion: L, javaWebServerVersion : L,
       webApiApp: L, algorithmApp: L, algorithmCpp: L, aspNetCoreCpp: L,
       openCvApp: L, openCvApi: L, openCvCpp: L,
       tesseractApp: L, tesseractApi: L, tesseractCpp: L,
@@ -263,9 +263,7 @@ export class VersionCacheService implements OnDestroy {
       kotlinAppVersion: L,
       kotlinVersion: L,
       kotlinWebServerVersion: L,
-      swiftAppVersion: L,
-      swiftVersion: L,
-      swiftWebServerVersion: L,
+      //swiftAppVersion: L, swiftVersion: L,   swiftWebServerVersion: L,
     };
     try {
       const raw = localStorage.getItem('version-cache');
