@@ -1,1 +1,26 @@
-[]
+[
+  {
+		   "id"               : 1,
+       "done"             : true,
+       "name"             : "Shortest Path Algorithm",
+       "description"      : "Shortest Path Algorithm",
+       "field_1"          : "Rust, Axum, REST service, Dijkstra",
+       "field_2"          : "./#/AlgorithmDijkstra?langName=RS",
+       "field_3"          : "https://github.com/aperezNWO/RUSTLANG_DEMO_001/blob/main/src/algorithms/mod.rs",
+       "field_6"          : "https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/",
+       "field_4"          : "{{baseUrlRustLang}}api/Algorithm/GenerateRandomVertex_Rust",
+       "field_10"         : "84f75a3c-335f-4f4d-a0d9-cf50775763a1"
+   },
+   {
+		   "id"               : 2,
+       "done"             : true,
+       "name"             : "Fractal Demo - Benchmark",
+       "description"      : "Fractal Demo ",
+       "field_1"          : "Rust, Axum,  REST service, Fractals, Julia, Maldelbrot, Barsley Fern",
+       "field_2"          : "./#/FractalDemo?langName=RS",
+       "field_3"          : "https://github.com/aperezNWO/RUSTLANG_DEMO_001/blob/main/src/engine/mod.rs",
+       "field_6"          : "https://en.wikipedia.org/wiki/Fractal",
+       "field_4"          : "{{baseUrlRustLang}}api/fractals/generate?kind=3&width=800&height=600&maxIterations=1000&zoom=1.0&centerX=0.0&centerY=0.0",
+       "field_10"         : "76926c63-55fa-4410-b3cc-4ba4250f4ce1"
+   }
+]
