@@ -241,5 +241,5 @@
     "baseUrlSpringBootJava"                                 : "https://java2-ee-sb-demo-latest-vte6.onrender.com/",
     "baseUrlSpringBootJavaDocker"                           : "https://docker.io/apereznwogmail/java2_ee_sb_demo:latest",
     "baseUrlSpringBootJavaRepo"                             : "https://github.com/aperezNWO/JAVA2_EE_SB_DEMO.git",
-    "baseUrlSpringBootJavaModule"                           : "#/GridParam?pageName=PAGE_DEMOS_SPRING_BOOT_JAVA",
+    "baseUrlSpringBootJavaModule"                           : "#/GridParam?pageName=PAGE_DEMOS_SPRING_BOOT_JAVA"
  }
