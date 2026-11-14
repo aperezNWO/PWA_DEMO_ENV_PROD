@@ -374,7 +374,9 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
         --[_] HEALTH STRUCTURE ENDPONTS URL CONSTANTS ON FRONTEND.
 
-        --[_] App Description endpoint / tooltip program description..
+        --[_] App Description endpoint / tooltip program description.
+
+        --[_] about -> techspeces -> appType -> link to hosting.
 
  --[_] Docker Contingency
 
