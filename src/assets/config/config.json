@@ -229,7 +229,7 @@
     "baseUrlDjangoPythonDocker"                        : "https://docker.io/apereznwogmail/django_setup_windows:latest",
     "baseUrlDjangoPythonRepo"                          : "https://github.com/aperezNWO/django_setup_windows/",
     "baseUrlDjangoPythonModule"                        : "#/GridParam?searchTerm=XLS&pageName=PAGE_DEMOS_DJANGO_PYTHON",
-    "CPP_WEB_SERVER_ALGORITHM_ENV"               : "--------------------------------------------------",
+    "CPP_WEB_SERVER_ALGORITHM_ENV"                     : "--------------------------------------------------",
     "baseUrlCppWebServer_render_gmail_ws_00"           : "",
     "baseUrlCppWebServer_render_gmail_ws_01"           : "",
     "baseUrlCppWebServer_render_gmail_ws_02"           : "https://cpp-gcc-algorithm-docker.onrender.com/",
@@ -241,5 +241,5 @@
     "baseUrlCppWebServer"                              : "https://cpp-gcc-algorithm-docker-latest-58s4.onrender.com/",
     "baseUrlCppWebServerDocker"                        : "https://docker.io/apereznwogmail/cpp_gcc_algorithm_docker:latest",
     "baseUrlCppWebServerRepo"                          : "https://github.com/aperezNWO/CPP_GCC_ALGORITHM_DOCKER.git",
-    "baseUrlCppWebServerModule"                        : "#/GridParam?searchTerm=algorithm&pageName=PAGE_DEMOS_CPP_WEB_SERVER",
+    "baseUrlCppWebServerModule"                        : "#/GridParam?searchTerm=algorithm&pageName=PAGE_DEMOS_CPP_WEB_SERVER"
 }
