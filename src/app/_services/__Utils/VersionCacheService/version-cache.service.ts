@@ -50,9 +50,6 @@ export interface VersionBundle {
   zigAppVersion       : string;
   zigVersion          : string;
   zigWebServerVersion : string;
-  cppAppVersion            : string;
-  cppVersion               : string;
-  cppWebServerVersion      : string;
   cppTesseractAppVersion        : string;
   cppTesseractVersion           : string;
   cppTesseractWebServerVersion  : string;
@@ -73,7 +70,10 @@ export interface VersionBundle {
   dartWebServerVersion     : string;
   kotlinAppVersion         : string;
   kotlinVersion            : string;
-  kotlinWebServerVersion   : string;
+  kotlinWebServerVersion: string;
+  //cppAppVersion            : string;
+  //cppVersion               : string;
+  //cppWebServerVersion      : string;
   //swiftAppVersion          : string;
   //swiftVersion             : string;
   //swiftWebServerVersion    : string;
@@ -104,7 +104,7 @@ export class VersionCacheService implements OnDestroy {
   ) {
     // Kick off real fetch immediately — no need to wait for a subscriber
     this.reload();
-    this.startHeartbeat();
+    //this.startHeartbeat();
   }
 
   // ── Public API ──────────────────────────────────────────────────────────────
@@ -161,9 +161,6 @@ export class VersionCacheService implements OnDestroy {
       zigAppVersion        : safeSub(this.back.getZigAppVersion()),
       zigVersion           : safeSub(this.back.getZigVersion()),
       zigWebServerVersion  : safeSub(this.back.getZigWebServerVersion()),
-      cppAppVersion          : safeSub(this.back.getCppAppVersion()),
-      cppVersion             : safeSub(this.back.getCppVersion()),
-      cppWebServerVersion    : safeSub(this.back.getCppWebServerVersion()),
       cppTesseractAppVersion       : safeSub(this.back.getCppTesseractAppVersion()),
       cppTesseractVersion          : safeSub(this.back.getCppTesseractVersion()),
       cppTesseractWebServerVersion : safeSub(this.back.getCppTesseractWebServerVersion()),
@@ -185,6 +182,9 @@ export class VersionCacheService implements OnDestroy {
       kotlinAppVersion       : safeSub(this.back.getKotlinAppVersion()),
       kotlinVersion          : safeSub(this.back.getKotlinVersion()),
       kotlinWebServerVersion: safeSub(this.back.getKotlinWebServerVersion()),
+      //cppAppVersion          : safeSub(this.back.getCppAppVersion()),
+      //cppVersion             : safeSub(this.back.getCppVersion()),
+      //cppWebServerVersion    : safeSub(this.back.getCppWebServerVersion()),
       //pythonAppVersion          : safeSub(this.back.getPythonAppVersion()),
       //pythonVersion             : safeSub(this.back.getPythonVersion()),
       //pythonWebServerVersion    : safeSub(this.back.getPythonWebServerVersion()),
@@ -218,14 +218,14 @@ export class VersionCacheService implements OnDestroy {
           forkJoin({
             //java   : this.back.getJavaVersion().pipe(catchError(() => of('Offline'))),
             //node   : this.back.getNodeVersion().pipe(catchError(() => of('Offline'))),
-            nodeOcr: this.back.getNodeVersionOcr().pipe(catchError(() => of('Offline'))),
+            //nodeOcr: this.back.getNodeVersionOcr().pipe(catchError(() => of('Offline'))),
             //python : this.back.getPythonVersionTF().pipe(catchError(() => of('Offline'))),
           })
         )
       )
       .subscribe({
         next : r => {
-          console.log(`[Heartbeat] nodeOcr=${r.nodeOcr}`);
+          //console.log(`[Heartbeat] nodeOcr=${r.nodeOcr}`);
           this.reload(); // refresh full bundle so recovered services appear in UI
         },
         error: err => console.error('[Heartbeat] Ping failed:', err),
@@ -244,14 +244,14 @@ export class VersionCacheService implements OnDestroy {
       tesseractApp: L, tesseractApi: L, tesseractCpp: L,
       tfApp: L, tfApi: L, tfCpp: L,
       zigVersion: L,   zigWebServerVersion: L, zigAppVersion: L,
-      cppAppVersion: L, cppVersion: L, cppWebServerVersion: L,
       cppTesseractAppVersion: L, cppTesseractVersion: L, cppTesseractWebServerVersion: L,
       cppOpenCvAppVersion: L, cppOpenCvVersion: L, cppOpenCvWebServerVersion: L,
       cppTensorflowAppVersion: L, cppTensorflowVersion: L, cppTensorflowWebServerVersion: L,
       rustVersion: L, rustWebServerVersion: L, rustAppVersion: L,
       goLangAppVersion: L,    goLangVersion: L,    goLangWebServerVersion: L,
       dartVersion: L,      dartWebServerVersion: L,   dartAppVersion: L,
-      kotlinAppVersion: L,   kotlinVersion: L,      kotlinWebServerVersion: L,
+      kotlinAppVersion: L, kotlinVersion: L, kotlinWebServerVersion: L,
+      //cppAppVersion: L, cppVersion: L, cppWebServerVersion: L,
       //pythonAppVersion: L, pythonVersion: L, pythonWebServerVersion: L,
       //nodeAppVersion: L, nodeVersion: L, nodeWebServerVersion: L,
       //javaAppVersion: L, javaVersion: L, javaWebServerVersion : L,
@@ -277,6 +277,6 @@ export class VersionCacheService implements OnDestroy {
 
   ngOnDestroy(): void {
     this.fetchSub?.unsubscribe();
-    this.heartSub?.unsubscribe();
+    //this.heartSub?.unsubscribe();
   }
 }
