@@ -217,7 +217,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 {
                     type                  : '(Backend)',
                     name                  : '[App v / Python / Django]',
-                    features              : '<Tensorflow>',
+                    features              : '<Db,ML>',
                     appVersion            : this._PythonAppVersionTF,
                     stdVersion            : this._PythonVersionTF,
                     apiOrServerVersion    : this._PythonWebServerVersionTF,
@@ -240,7 +240,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
               {
                   type                  : '(Backend)',
                   name                  : '[App v / Node.js / Express]',
-                  features              : '<Ocr>',
+                  features              : '<Db,Ocr>',
                   appVersion            : this._NodeAppVersionOcr,
                   stdVersion            : this._NodeVersionOcr,
                   apiOrServerVersion    : this._NodeWebServerVersionOcr,
@@ -324,7 +324,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink             : `${this.configService.getConfigValue('baseUrlZigLangRepo')}`,
                     healthLink           : `${this.configService.getConfigValue('baseUrlZigLang')}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlZigLangModule')}`,
-                },
+                },/*
                 {
                     type                 : '(Backend)',
                     name                 : '[App v. / C++ / cpp-httplib]',
@@ -335,7 +335,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink             : `${this.__baseUrlCppWebServerRepo}`,
                     healthLink           : `${this.__baseUrlCppWebServer}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWebServerModule')}`,
-                },
+                }, */
                 {
                     type                 : '(Backend)',
                     name                 : '[App v. / C++ / cpp-httplib]',
