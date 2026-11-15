@@ -19,15 +19,15 @@ import { BackendService        } from '../../BackendService/backend.service';
 import { ConfigService         } from '../ConfigService/config.service';
 
 export interface VersionBundle {
-  pythonAppVersion           : string;
-  pythonVersion              : string;
-  pythonWebServerVersion     : string;
+  //pythonAppVersion           : string;
+  //pythonVersion              : string;
+  //pythonWebServerVersion     : string;
   pythonAppVersionTF         : string;
   pythonVersionTF            : string;
   pythonWebServerVersionTF   : string;
-  nodeAppVersion       : string;
-  nodeVersion          : string;
-  nodeWebServerVersion: string;
+  //nodeAppVersion       : string;
+  //nodeVersion          : string;
+  //nodeWebServerVersion: string;
   nodeAppVersionOcr        : string;
   nodeVersionOcr           : string;
   nodeWebServerVersionOcr  : string;
@@ -139,21 +139,12 @@ export class VersionCacheService implements OnDestroy {
       );
 
     return forkJoin({
-      pythonAppVersion          : safeSub(this.back.getPythonAppVersion()),
-      pythonVersion             : safeSub(this.back.getPythonVersion()),
-      pythonWebServerVersion    : safeSub(this.back.getPythonWebServerVersion()),
       pythonAppVersionTF        : safeSub(this.back.getPythonAppVersionTF()),
       pythonVersionTF           : safeSub(this.back.getPythonVersionTF()),
       pythonWebServerVersionTF  : safeSub(this.back.getPythonWebServerVersionTF()),
-      nodeAppVersion            : safeSub(this.back.getNodeAppVersion()),
-      nodeVersion               : safeSub(this.back.getNodeVersion()),
-      nodeWebServerVersion      : safeSub(this.back.getNodeWebServerVersion()),
       nodeAppVersionOcr         : safeSub(this.back.getNodeAppVersionOcr()),
       nodeVersionOcr            : safeSub(this.back.getNodeVersionOcr()),
-      nodeWebServerVersionOcr   : safeSub(this.back.getNodeWebServerVersionOcr()),
-      //javaAppVersion          : safeSub(this.back.getJavaAppVersion()),
-      //javaVersion             : safeSub(this.back.getJavaVersion()),
-      //javaWebServerVersion    : safeSub(this.back.getJavaWebServerVersion()),
+      nodeWebServerVersionOcr: safeSub(this.back.getNodeWebServerVersionOcr()),
       webApiApp           : safeSub(this.back._GetWebApiAppVersion()),
       algorithmApp        : safeSub(this.algo._Algorithm_GetAppVersion()),
       algorithmCpp        : safeSub(this.algo._Algorithm_GetCPPSTDVersion()),
@@ -193,7 +184,16 @@ export class VersionCacheService implements OnDestroy {
       dartWebServerVersion   : safeSub(this.back.getDartWebServerVersion()),
       kotlinAppVersion       : safeSub(this.back.getKotlinAppVersion()),
       kotlinVersion          : safeSub(this.back.getKotlinVersion()),
-      kotlinWebServerVersion : safeSub(this.back.getKotlinWebServerVersion()),
+      kotlinWebServerVersion: safeSub(this.back.getKotlinWebServerVersion()),
+      //pythonAppVersion          : safeSub(this.back.getPythonAppVersion()),
+      //pythonVersion             : safeSub(this.back.getPythonVersion()),
+      //pythonWebServerVersion    : safeSub(this.back.getPythonWebServerVersion()),
+      //nodeAppVersion            : safeSub(this.back.getNodeAppVersion()),
+      //nodeVersion               : safeSub(this.back.getNodeVersion()),
+      //nodeWebServerVersion      : safeSub(this.back.getNodeWebServerVersion()),
+      //javaAppVersion          : safeSub(this.back.getJavaAppVersion()),
+      //javaVersion             : safeSub(this.back.getJavaVersion()),
+      //javaWebServerVersion    : safeSub(this.back.getJavaWebServerVersion()),
       //swiftAppVersion        : safeSub(this.back.getSwiftAppVersion()),
       //swiftVersion           : safeSub(this.back.getSwiftVersion()),
       //swiftWebServerVersion  : safeSub(this.back.getSwiftWebServerVersion()),
@@ -219,7 +219,7 @@ export class VersionCacheService implements OnDestroy {
             //java   : this.back.getJavaVersion().pipe(catchError(() => of('Offline'))),
             //node   : this.back.getNodeVersion().pipe(catchError(() => of('Offline'))),
             nodeOcr: this.back.getNodeVersionOcr().pipe(catchError(() => of('Offline'))),
-            python : this.back.getPythonVersion().pipe(catchError(() => of('Offline'))),
+            //python : this.back.getPythonVersionTF().pipe(catchError(() => of('Offline'))),
           })
         )
       )
@@ -237,32 +237,24 @@ export class VersionCacheService implements OnDestroy {
   private readCache(): VersionBundle {
     const L = '(..loading..)';
     const blank: VersionBundle = {
-      pythonAppVersion: L, pythonVersion: L, pythonWebServerVersion: L,
-      pythonAppVersionTF:L, pythonVersionTF:L, pythonWebServerVersionTF : L,
-      nodeAppVersion: L, nodeVersion: L, nodeWebServerVersion: L,
-      nodeAppVersionOcr: L,nodeVersionOcr: L, nodeWebServerVersionOcr: L,
-      //javaAppVersion: L, javaVersion: L, javaWebServerVersion : L,
+      pythonAppVersionTF: L, pythonVersionTF: L, pythonWebServerVersionTF: L,
+      nodeAppVersionOcr: L, nodeVersionOcr: L, nodeWebServerVersionOcr: L,
       webApiApp: L, algorithmApp: L, algorithmCpp: L, aspNetCoreCpp: L,
       openCvApp: L, openCvApi: L, openCvCpp: L,
       tesseractApp: L, tesseractApi: L, tesseractCpp: L,
       tfApp: L, tfApi: L, tfCpp: L,
-      zigVersion: L,
-      zigWebServerVersion: L,
-      zigAppVersion: L,
+      zigVersion: L,   zigWebServerVersion: L, zigAppVersion: L,
       cppAppVersion: L, cppVersion: L, cppWebServerVersion: L,
       cppTesseractAppVersion: L, cppTesseractVersion: L, cppTesseractWebServerVersion: L,
       cppOpenCvAppVersion: L, cppOpenCvVersion: L, cppOpenCvWebServerVersion: L,
       cppTensorflowAppVersion: L, cppTensorflowVersion: L, cppTensorflowWebServerVersion: L,
       rustVersion: L, rustWebServerVersion: L, rustAppVersion: L,
-      goLangAppVersion: L,
-      goLangVersion: L,
-      goLangWebServerVersion: L,
-      dartVersion: L,
-      dartWebServerVersion: L,
-      dartAppVersion: L,
-      kotlinAppVersion: L,
-      kotlinVersion: L,
-      kotlinWebServerVersion: L,
+      goLangAppVersion: L,    goLangVersion: L,    goLangWebServerVersion: L,
+      dartVersion: L,      dartWebServerVersion: L,   dartAppVersion: L,
+      kotlinAppVersion: L,   kotlinVersion: L,      kotlinWebServerVersion: L,
+      //pythonAppVersion: L, pythonVersion: L, pythonWebServerVersion: L,
+      //nodeAppVersion: L, nodeVersion: L, nodeWebServerVersion: L,
+      //javaAppVersion: L, javaVersion: L, javaWebServerVersion : L,
       //swiftAppVersion: L, swiftVersion: L,   swiftWebServerVersion: L,
     };
     try {

@@ -49,18 +49,18 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _TensorFlowAPPVersion            = this.fromCache('tfApp');
   _TensorFlowAPIVersion            = this.fromCache('tfApi');
   _TensorFlowCPPSTDVersion         = this.fromCache('tfCpp');
-  _PythonAppVersion                = this.fromCache('pythonAppVersion');
-  _PythonVersion                   = this.fromCache('pythonVersion');
-  _PythonWebServerVersion          = this.fromCache('pythonWebServerVersion');
+  //_PythonAppVersion                = this.fromCache('pythonAppVersion');
+  //_PythonVersion                   = this.fromCache('pythonVersion');
+  //_PythonWebServerVersion          = this.fromCache('pythonWebServerVersion');
   _PythonAppVersionTF              = this.fromCache('pythonAppVersionTF');
   _PythonVersionTF                 = this.fromCache('pythonVersionTF');
   _PythonWebServerVersionTF        = this.fromCache('pythonWebServerVersionTF');
   //_JavaAppVersion                  = this.fromCache('javaAppVersion');
   //_JavaVersion                     = this.fromCache('javaVersion');
   //_JavaWebServerVersion            = this.fromCache('javaWebServerVersion');
-  _NodeAppVersion                  = this.fromCache('nodeAppVersion');
-  _NodeVersion                     = this.fromCache('nodeVersion');
-  _NodeWebServerVersion            = this.fromCache('nodeWebServerVersion');
+  //_NodeAppVersion                  = this.fromCache('nodeAppVersion');
+  //_NodeVersion                     = this.fromCache('nodeVersion');
+  //_NodeWebServerVersion            = this.fromCache('nodeWebServerVersion');
   _NodeAppVersionOcr               = this.fromCache('nodeAppVersionOcr');
   _NodeVersionOcr                  = this.fromCache('nodeVersionOcr');
   _NodeWebServerVersionOcr         = this.fromCache('nodeWebServerVersionOcr');
@@ -105,8 +105,8 @@ export class TechnicalSpecsComponent extends BaseComponent {
     protected __baseUrlNetCoreRepo       : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreRepo')}`;
     protected __baseUrlNetCoreCPPSwagger : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntry')}swagger`;
     protected __baseUrlNetCoreCPPRepo    : string | undefined = `${this.configService.getConfigValue('baseUrlNetCoreCPPEntryRepo')}`;
-    protected __baseUrlNodeJs            : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJs')}`;
-    protected __baseUrlNodeJsRepo        : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJsRepo')}`;
+    //protected __baseUrlNodeJs            : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJs')}`;
+    //protected __baseUrlNodeJsRepo        : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJsRepo')}`;
     protected __baseUrlNodeJsOcr         : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJsOcr')}`;
     protected __baseUrlNodeJsOcrRepo     : string | undefined = `${this.configService.getConfigValue('baseUrlNodeJsOcrRepo')}`;
     protected __baseUrlCppWebServer      : string | undefined = `${this.configService.getConfigValue('baseUrlCppWebServer')}`;
@@ -154,18 +154,18 @@ export class TechnicalSpecsComponent extends BaseComponent {
         this._TensorFlowAPPVersion         = v.tfApp ?? '(..loading..)';
         this._TensorFlowAPIVersion         = v.tfApi ?? '(..loading..)';
         this._TensorFlowCPPSTDVersion      = v.tfCpp ?? '(..loading..)';
-        this._PythonAppVersion             = v.pythonAppVersion ?? '(..loading..)';
-        this._PythonVersion                = v.pythonVersion ?? '(..loading..)';
-        this._PythonWebServerVersion       = v.pythonWebServerVersion ?? '(..loading..)';
+        //this._PythonAppVersion             = v.pythonAppVersion ?? '(..loading..)';
+        //this._PythonVersion                = v.pythonVersion ?? '(..loading..)';
+        //this._PythonWebServerVersion       = v.pythonWebServerVersion ?? '(..loading..)';
         this._PythonAppVersionTF           = v.pythonAppVersionTF ?? '(..loading..)';
         this._PythonVersionTF              = v.pythonVersionTF ?? '(..loading..)';
         this._PythonWebServerVersionTF     = v.pythonWebServerVersionTF ?? '(..loading..)';
         //this._JavaAppVersion               = v.javaAppVersion ?? '(..loading..)';
         //this._JavaVersion                  = v.javaVersion ?? '(..loading..)';
         //this._JavaWebServerVersion         = v.javaWebServerVersion ?? '(..loading..)';
-        this._NodeAppVersion               = v.nodeAppVersion ?? '(..loading..)';
-        this._NodeVersion                  = v.nodeVersion ?? '(..loading..)';
-        this._NodeWebServerVersion         = v.nodeWebServerVersion ?? '(..loading..)';
+        //this._NodeAppVersion               = v.nodeAppVersion ?? '(..loading..)';
+        //this._NodeVersion                  = v.nodeVersion ?? '(..loading..)';
+        //this._NodeWebServerVersion         = v.nodeWebServerVersion ?? '(..loading..)';
         this._NodeAppVersionOcr            = v.nodeAppVersionOcr  ?? '(..loading..)';
         this._NodeVersionOcr               = v.nodeVersionOcr ?? '(..loading..)';
         this._NodeWebServerVersionOcr      = v.nodeWebServerVersionOcr ?? '(..loading..)';
@@ -203,7 +203,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
 
     private rebuildServicesTable(): void {
             this.services = [
-                {
+                /*{
                     type                  : '(Backend)',
                     name                  : '[App v / Python / Django]',
                     features              : '<db>',
@@ -213,7 +213,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink              : this._PythonDjangoRepo,
                     healthLink            : `${this._baseUrlPythonDjango}api/docs/`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlDjangoPythonModule')}`,
-                },
+                },*/
                 {
                     type                  : '(Backend)',
                     name                  : '[App v / Python / Django]',
@@ -225,6 +225,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     healthLink            : `${this._baseUrlPythonDjangoTF}api/docs/`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlDjangoPythonTFModule')}`,
               },
+              /*
               {
                   type                 : '(Backend)',
                   name                 : '[App v. / Node.js / Express]',
@@ -235,7 +236,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                   healthLink           : `${this.__baseUrlNodeJs}api-docs`,
                   repoLink             : this.__baseUrlNodeJsRepo,
                   moduleLink           : `${this.configService.getConfigValue('baseUrlNodeJsModule')}`,
-              },
+              },*/
               {
                   type                  : '(Backend)',
                   name                  : '[App v / Node.js / Express]',
