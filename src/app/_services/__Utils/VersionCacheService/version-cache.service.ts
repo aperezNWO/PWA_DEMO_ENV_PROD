@@ -92,7 +92,7 @@ export class VersionCacheService implements OnDestroy {
   readonly versions$: Observable<VersionBundle> = this._subject.asObservable();
 
   private fetchSub : Subscription | undefined;
-  private heartSub : Subscription | undefined;
+  //private heartSub : Subscription | undefined;
 
   constructor(
     private cfg : ConfigService,
@@ -212,6 +212,7 @@ export class VersionCacheService implements OnDestroy {
   // ── Heartbeat ───────────────────────────────────────────────────────────────
 
   private startHeartbeat(): void {
+    /*
     this.heartSub = interval(600_000)
       .pipe(
         switchMap(() =>
@@ -229,7 +230,7 @@ export class VersionCacheService implements OnDestroy {
           this.reload(); // refresh full bundle so recovered services appear in UI
         },
         error: err => console.error('[Heartbeat] Ping failed:', err),
-      });
+      });*/
   }
 
   // ── localStorage helpers ────────────────────────────────────────────────────
