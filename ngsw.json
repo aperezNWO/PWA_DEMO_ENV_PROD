@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1794697815440,
+  "timestamp": 1794709890787,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -19,7 +19,7 @@
         "/PWA_DEMO_ENV_PROD/chunk-QBUHZOWM.js",
         "/PWA_DEMO_ENV_PROD/favicon.ico",
         "/PWA_DEMO_ENV_PROD/index.html",
-        "/PWA_DEMO_ENV_PROD/main-AB7RUP5Z.js",
+        "/PWA_DEMO_ENV_PROD/main-4PFBFCAX.js",
         "/PWA_DEMO_ENV_PROD/manifest.webmanifest",
         "/PWA_DEMO_ENV_PROD/polyfills-ERLYOUQC.js",
         "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css"
@@ -106,8 +106,8 @@
   ],
   "dataGroups": [],
   "hashTable": {
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "2d59c30c6c3a3c219738125c69989e8e39848313",
-    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "35d7413a37c3abfc5cd7c28afc299be56cc6be4b",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "5a14d9e47a6665ce2120a6f0ec42a3ba98cad826",
+    "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "8adf5d6f89d56166955ae7134ae7902599dfd003",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "4a8728c8bd972af81187a4da622979133a8cf0c9",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
     "/PWA_DEMO_ENV_PROD/assets/demos/angularDemo/angular_Curriculum_base.json": "930b1bb67aacd91a98c1613ff7fb92cce7367553",
@@ -120,14 +120,14 @@
     "/PWA_DEMO_ENV_PROD/assets/demos/dartDemo/dart_Demos_base.json": "0569ff8e4b38863085fdd1b362ef815d41213809",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json": "c5cb47a936b0f9bc39bd5fcebfaf615e8cf8c497",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "e7889e6af6ec7fbbbffe7471a95afa71ec934998",
-    "/PWA_DEMO_ENV_PROD/assets/demos/goLangDemo/goLang_Demos_base.json": "454dae4c2edf2c8ea4c7f57f8344f5f55842a865",
+    "/PWA_DEMO_ENV_PROD/assets/demos/goLangDemo/goLang_Demos_base.json": "e0822ff5ef500d349174fe91bf8d0dc3fdbc4d73",
     "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Curriculum_base.json": "cf322974de925ae07a53966e46ba217f98daf31a",
     "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Demos_base.json": "febf7987c163215b9732b38c830675c0ea5dea5e",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_Curriculum_base.json": "989628b99da2028ff7ee8b8407d82420bf6b108a",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "bb2fbbaf736d5960323712e8c5cc8ddecbafbdb3",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Curriculum_base.json": "d9a5f04e6eb21310eab505a8c000ac28a6b050bb",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Demos_base.json": "2069d478fbc9e79adf6ec9782d4c822963a0e2e9",
-    "/PWA_DEMO_ENV_PROD/assets/demos/rustDemo/rust_Demos_base.json": "e447bac0d7f2da2990673caa71f3be6012b6b0d7",
+    "/PWA_DEMO_ENV_PROD/assets/demos/rustDemo/rust_Demos_base.json": "8a6bbb93abfad92eadd68063d8431e6774d23bc4",
     "/PWA_DEMO_ENV_PROD/assets/demos/springBootDemo/springBoot_Curriculum_base.json": "41a5121544c5c4227848ec6d2f60dbb8e2dfa5c2",
     "/PWA_DEMO_ENV_PROD/assets/demos/springBootDemo/springBoot_Demos_base.json": "54a2d63ed3360314360e552cc95b7b5f37223ed0",
     "/PWA_DEMO_ENV_PROD/assets/demos/swiftDemo/swift_Demos_base.json": "454dae4c2edf2c8ea4c7f57f8344f5f55842a865",
@@ -179,8 +179,8 @@
     "/PWA_DEMO_ENV_PROD/chunk-PMOVCFET.js": "7b864cebddc9344ef37d7dedd6aaaccd963aa458",
     "/PWA_DEMO_ENV_PROD/chunk-QBUHZOWM.js": "f9a114e2c2299184dc44a9cf400cca6748d4f06f",
     "/PWA_DEMO_ENV_PROD/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/PWA_DEMO_ENV_PROD/index.html": "bba6bb799cfa43fdb0088b1353097ba3b25907c6",
-    "/PWA_DEMO_ENV_PROD/main-AB7RUP5Z.js": "016785b137f52d859c77746975f37840772268f6",
+    "/PWA_DEMO_ENV_PROD/index.html": "2e6372bbe8cb5e28143ae8bb32720075aadc15de",
+    "/PWA_DEMO_ENV_PROD/main-4PFBFCAX.js": "2fd1c6470b12dc2c94c195d00b5ed97e5a7a95ba",
     "/PWA_DEMO_ENV_PROD/manifest.webmanifest": "74d9408e9667c5dd0c7ab01c3c5b5d2e1ea5063a",
     "/PWA_DEMO_ENV_PROD/polyfills-ERLYOUQC.js": "a5955bd090cb03ab54dd7dfcd8139ab0a8d8dd7f",
     "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css": "b4b303773c164ca15ba4f7f09c5ce83918d24668"
