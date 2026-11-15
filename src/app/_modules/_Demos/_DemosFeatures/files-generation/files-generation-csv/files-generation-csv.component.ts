@@ -44,7 +44,7 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
       _P_FECHA_FIN        : [{value : '2022-12-31' ,  disabled : true }  , Validators.required],
     });
     //
-    _model                           = new SearchCriteria( 
+    _model                           = new SearchCriteria(
        "1"
       ,"1"
       ,"999"
@@ -58,7 +58,7 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
     // PROPIEADES - REACTIVE FORMS
     //--------------------------------------------------------------------------
     public csv_dataSource                          = new MatTableDataSource<PersonEntity>();
-    // 
+    //
     public csv_displayedColumns                    : string[] = ['id_Column', 'ciudad','nombreCompleto'];
     //
     public downloadLink                            : string   = "";
@@ -70,20 +70,20 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
     rf_formSubmit                      : boolean = false;
     //
     rf_buttonCaption_csv               : string  = "";
-    // 
+    //
     rf_displayedColumns                : string[] = ['id_Column', 'ciudad', 'nombreCompleto'];
     //
     @ViewChild("csv_paginator" ,{read:MatPaginator}) csv_paginator!:  MatPaginator;
     //--------------------------------------------------------------------------
-    // EVENT HANDLERS FORMIULARIO 
+    // EVENT HANDLERS FORMIULARIO
     //--------------------------------------------------------------------------
     //
     constructor(
-                public          formBuilder          : FormBuilder, 
+                public          formBuilder          : FormBuilder,
                 public override configService        : ConfigService,
-                public override backendService       : BackendService, 
+                public override backendService       : BackendService,
                 public override route                : ActivatedRoute,
-                public override speechService        : SpeechService) 
+                public override speechService        : SpeechService)
     {
           super(configService,
                 backendService,
@@ -102,9 +102,9 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
     //
     ngAfterViewInit():void {
         //
-    }  
+    }
     //--------------------------------------------------------------------------
-    // METODOS COMUNES 
+    // METODOS COMUNES
     //--------------------------------------------------------------------------
     //
     SetCSVData():void
@@ -122,7 +122,7 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                 csv_informeLogRemoto                      = this.backendService.getInformeRemotoCSV();
                 //
                 const csv_observer = {
-                  next: (csv_data: string)     => { 
+                  next: (csv_data: string)     => {
                     //
                     let jsondata     = JSON.parse(csv_data);
                     //
@@ -154,7 +154,7 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                 csv_informeLogRemoto_NodeJS                      = this.backendService.getInformeRemotoCSV_NodeJS();
                 //
                 const csv_observer_node_js = {
-                  next: (csv_data_node_js: string)     => { 
+                  next: (csv_data_node_js: string)     => {
                     //
                     let csv_data_node_js_json =  JSON.parse(csv_data_node_js)['recordsets'][0];
                     //
@@ -176,46 +176,12 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                     //
                     this.rf_buttonCaption = "[Search]";
                   },
-                };      
+                };
                 //
                 csv_informeLogRemoto_NodeJS
                 .subscribe(csv_observer_node_js);
-            break;          
-            case 3: // SPRINGBOOT / JAVA
-                // 
-                let td_informeLogRemoto_SprinbBootJava!   : Observable<string>;
-                td_informeLogRemoto_SprinbBootJava        = this.backendService.getPersonsSprinbBootJava();
-                //
-                const td_observer_sprinbbootjava = {
-                  next: (td_persons_sprinbboot_java: string)     => { 
-                    //
-                    let td_persons_springboot_java_json   = JSON.parse(td_persons_sprinbboot_java);
-                    //
-                    this.status_message.set("[" + td_persons_springboot_java_json.length + "] records found ");
-                    this.rf_formSubmit            = false;
-                    //
-                    this.csv_dataSource           = new MatTableDataSource<PersonEntity>(td_persons_springboot_java_json);
-                    this.csv_dataSource.paginator = this.csv_paginator;
-                  },
-                  error           : (err: Error)      => {
-                    //
-                    console.error('TEMPLATE DRIVEN - sprigboot/Java - (ERROR) : ' + JSON.stringify(err.message));
-                    //
-                    this.status_message.set("[An error ocurred]");
-                    this.rf_formSubmit           = false;
-                    this.rf_buttonCaption        = "[Search]";
-                  },
-                  complete        : ()                => {
-                    //
-                    this.rf_formSubmit           = false;
-                    this.rf_buttonCaption        = "[Search]";
-                  },
-                }; 
-                //
-                td_informeLogRemoto_SprinbBootJava
-                .subscribe(td_observer_sprinbbootjava);
             break;
-            case 4: // SPRINGBOOT / KOTLIN
+         case 3: // SPRINGBOOT / KOTLIN
               let td_informeLogRemoto_SprinbBootKotlin!: Observable<string>;
               td_informeLogRemoto_SprinbBootKotlin = this.backendService.getPersonsSprinbBootKotlin();
 
@@ -247,17 +213,17 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                   this.rf_formSubmit = false;
                   this.rf_buttonCaption = "[Search]";
                 },
-              }; 
+              };
 
               td_informeLogRemoto_SprinbBootKotlin.subscribe(td_observer_sprinbbootkotlin);
             break;
-            case 5: // DJANGO / PYTHON
-                // 
+            case 4: // DJANGO / PYTHON
+                //
                 let td_Persons_DjangoPython!   : Observable<string>;
                 td_Persons_DjangoPython        = this.backendService.getPersonsDjangoPython();
                 //
                 const td_observer_pythondjango = {
-                  next: (td_persons_python_django: string)     => { 
+                  next: (td_persons_python_django: string)     => {
                     //
                     let td_persons_django_pytnon_json   = JSON.parse(td_persons_python_django);
                     //
@@ -280,18 +246,18 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                     this.rf_formSubmit           = false;
                     this.rf_buttonCaption        = "[Search]";
                   },
-                }; 
+                };
                 //
                 td_Persons_DjangoPython
                 .subscribe(td_observer_pythondjango);
             break;
-            case 6: // GO / [net-http]
-               // 
+            case 5: // GO / [net-http]
+               //
                 let td_Persons_GoLang!   : Observable<string>;
                 td_Persons_GoLang        = this.backendService.getPersonsGoLang();
                 //
                 const td_observer_golang = {
-                  next: (td_persons_golang: string)     => { 
+                  next: (td_persons_golang: string)     => {
                     //
                     let td_persons_golang_json   = JSON.parse(td_persons_golang);
                     //
@@ -314,18 +280,18 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                     this.rf_formSubmit           = false;
                     this.rf_buttonCaption        = "[Search]";
                   },
-                }; 
+                };
                 //
                 td_Persons_GoLang
                 .subscribe(td_observer_golang);
             break;
-            case 7: // RUST / Actix Web
-                // 
+            case 6: // RUST / Actix Web
+                //
                 let td_Persons_RustLang!   : Observable<string>;
                 td_Persons_RustLang        = this.backendService.getPersonsRustLang();
                 //
                 const td_observer_rustlang = {
-                  next: (td_Persons_RustLang: string)     => { 
+                  next: (td_Persons_RustLang: string)     => {
                     //
                     let td_persons_rustlang_json   = JSON.parse(td_Persons_RustLang);
                     //
@@ -348,15 +314,50 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
                     this.rf_formSubmit           = false;
                     this.rf_buttonCaption        = "[Search]";
                   },
-                }; 
+                };
                 //
                 td_Persons_RustLang
                 .subscribe(td_observer_rustlang);
             break;
+            /*
+            case 3: // SPRINGBOOT / JAVA
+                //
+                let td_informeLogRemoto_SprinbBootJava!   : Observable<string>;
+                td_informeLogRemoto_SprinbBootJava        = this.backendService.getPersonsSprinbBootJava();
+                //
+                const td_observer_sprinbbootjava = {
+                  next: (td_persons_sprinbboot_java: string)     => {
+                    //
+                    let td_persons_springboot_java_json   = JSON.parse(td_persons_sprinbboot_java);
+                    //
+                    this.status_message.set("[" + td_persons_springboot_java_json.length + "] records found ");
+                    this.rf_formSubmit            = false;
+                    //
+                    this.csv_dataSource           = new MatTableDataSource<PersonEntity>(td_persons_springboot_java_json);
+                    this.csv_dataSource.paginator = this.csv_paginator;
+                  },
+                  error           : (err: Error)      => {
+                    //
+                    console.error('TEMPLATE DRIVEN - sprigboot/Java - (ERROR) : ' + JSON.stringify(err.message));
+                    //
+                    this.status_message.set("[An error ocurred]");
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Search]";
+                  },
+                  complete        : ()                => {
+                    //
+                    this.rf_formSubmit           = false;
+                    this.rf_buttonCaption        = "[Search]";
+                  },
+                };
+                //
+                td_informeLogRemoto_SprinbBootJava
+                .subscribe(td_observer_sprinbbootjava);
+            break; */
             default:
               return;
        };
-    } 
+    }
     //
     SetCSVLink()
     {
@@ -367,13 +368,13 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
         csv_link                      = this.backendService.getCSVLink();
         //
         const csv_link_observer = {
-          next: (p_csv_link: string)          => { 
+          next: (p_csv_link: string)          => {
             //
             let fileUrl        = `${this.configService.getConfigValue('baseUrlNetCore')}${p_csv_link}`;
             //
             let downloadLink_1 = fileUrl;
             //
-            while (downloadLink_1.indexOf("\"") > -1) 
+            while (downloadLink_1.indexOf("\"") > -1)
                 downloadLink_1 = downloadLink_1.replace("\"", "");
             //
             this.downloadLink = downloadLink_1;
@@ -396,7 +397,7 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
         .subscribe(csv_link_observer);
     }
     //--------------------------------------------------------------------------
-    // METODOS REACTIVE FORMS 
+    // METODOS REACTIVE FORMS
     //--------------------------------------------------------------------------
     //
     rf_newSearch()
@@ -429,17 +430,17 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
         this.isListVisible             = false;
     }
     //
-    rf_onSubmit() 
+    rf_onSubmit()
     {
         //
         let _P_DATA_SOURCE_ID  : string = "";
         let _P_ID_TIPO_LOG     : string = "";
         let _P_ROW_NUM         : string = this.rf_searchForm.value["_P_ROW_NUM"]        || "";
-        let _P_FECHA_INICIO    : string = this.rf_searchForm.value["_P_FECHA_INICIO"]   || "";      
+        let _P_FECHA_INICIO    : string = this.rf_searchForm.value["_P_FECHA_INICIO"]   || "";
         let _P_FECHA_FIN       : string = this.rf_searchForm.value["_P_FECHA_FIN"]      || "";
 
         //
-        this._model  = new SearchCriteria( 
+        this._model  = new SearchCriteria(
                                 _P_DATA_SOURCE_ID
                               , _P_ID_TIPO_LOG
                               , _P_ROW_NUM
@@ -466,7 +467,7 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
       this.SetCSVData();
     }
     //--------------------------------------------------------------------------
-    // METODOS COMUNES 
+    // METODOS COMUNES
     //--------------------------------------------------------------------------
     //
     queryParams():void{
@@ -483,22 +484,22 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
         //
         this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS"   ));
         this.__languajeList.push(new _languageName(2, '(Node.js     / JavaScript)'     , false ,"JS"   ));
-        this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
-        this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KT"   ));  
-        this.__languajeList.push(new _languageName(5, '(Django      / Python)'         , false ,"PY"   ));    
-        this.__languajeList.push(new _languageName(6, '(Go          / [net-http])'     , false ,"GO"   ));    
-        this.__languajeList.push(new _languageName(7, '(Rust        / Actix Web)'      , false ,"RS"   ));    
+        this.__languajeList.push(new _languageName(3, '(SpringBoot  / Kotlin)'         , false ,"KT"   ));
+        this.__languajeList.push(new _languageName(4, '(Django      / Python)'         , false ,"PY"   ));
+        this.__languajeList.push(new _languageName(5, '(Go          / [net-http])'     , false ,"GO"   ));
+        this.__languajeList.push(new _languageName(6, '(Rust        / Actix Web)'      , false ,"RS"   ));
+        //this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
 
         //
         let langName = params['langName'] ? params['langName'] : "" ;
         //
         if (langName !== '')
-        {   
+        {
             //
             for (var index = 1; index < this.__languajeList.length; index++) {
                 //
                 if (this.__languajeList[index]._shortName  == langName)
-                  this.__languajeList[index]._selected = true;        
+                  this.__languajeList[index]._selected = true;
             }
 
         } else {
@@ -526,6 +527,5 @@ export class FilesGenerationCSVComponent extends BaseReferenceComponent implemen
         }
         //
         return today;
-  }  
+  }
 }
-

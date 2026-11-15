@@ -41,7 +41,7 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
       _P_FECHA_FIN        : ["2022-12-31"  , Validators.required],
     });
     //
-    _model                           = new SearchCriteria( 
+    _model                           = new SearchCriteria(
       "1"
       ,"1"
       ,"999"
@@ -66,20 +66,20 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
     td_ExcelDownloadLink               : string  = "#";
     //
     td_dataSource                      = new MatTableDataSource<LogEntry>();
-    // 
+    //
     rf_displayedColumns                : string[] = ['id_Column', 'pageName', 'accessDate', 'ipValue'];
     //
     @ViewChild("td_paginator" ,{read:MatPaginator}) td_paginator!:  MatPaginator;
     //--------------------------------------------------------------------------
-    // EVENT HANDLERS FORMIULARIO 
+    // EVENT HANDLERS FORMIULARIO
     //--------------------------------------------------------------------------
     //
     constructor(
-                   public formBuilder                   : FormBuilder, 
+                   public formBuilder                   : FormBuilder,
                    public override configService        : ConfigService,
-                   public override backendService       : BackendService, 
+                   public override backendService       : BackendService,
                    public override route                : ActivatedRoute,
-                   public override speechService        : SpeechService) 
+                   public override speechService        : SpeechService)
     {
              super(configService,
                    backendService,
@@ -91,7 +91,7 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
     //
     ngOnInit(): void {
         //
-        this.speechService.speakTextCustom(this.pageTitle); 
+        this.speechService.speakTextCustom(this.pageTitle);
         //
         this.queryParams();
         //
@@ -99,7 +99,7 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
         this.td_newSearch();
     }
     //--------------------------------------------------------------------------
-    // METODOS TEMÑLEATE BASED FORMS 
+    // METODOS TEMÑLEATE BASED FORMS
     //--------------------------------------------------------------------------
     //
     td_newSearch() : void {
@@ -107,7 +107,7 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
       this.td_dataSource           = new MatTableDataSource<LogEntry>();
       this.td_dataSource.paginator = this.td_paginator;
       //
-      this._model                  = new SearchCriteria( 
+      this._model                  = new SearchCriteria(
           "1"
          ,"1"
          ,"999"
@@ -130,15 +130,15 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
     }
     //
     td_valid_form() : boolean {
-      return (     
-             ( ( this._model.P_ROW_NUM        != "" ) && (this._model.P_ROW_NUM       !=  null) && (this._model.P_ROW_NUM      != "0") ) 
-          && ( ( this._model.P_FECHA_INICIO   != "" ) && (this._model.P_FECHA_INICIO  !=  null) ) 
-          && ( ( this._model.P_FECHA_FIN      != "" ) && (this._model.P_FECHA_FIN     !=  null) ) 
-      );  
+      return (
+             ( ( this._model.P_ROW_NUM        != "" ) && (this._model.P_ROW_NUM       !=  null) && (this._model.P_ROW_NUM      != "0") )
+          && ( ( this._model.P_FECHA_INICIO   != "" ) && (this._model.P_FECHA_INICIO  !=  null) )
+          && ( ( this._model.P_FECHA_FIN      != "" ) && (this._model.P_FECHA_FIN     !=  null) )
+      );
     }
     //
-    td_onSubmit() 
-    { 
+    td_onSubmit()
+    {
         //
         console.warn("TEMPLATE DRIVEN - (SUBMIT)");
         //
@@ -153,7 +153,7 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
     td_update(td_searchCriteria : SearchCriteria):void {
       //
       td_searchCriteria.P_FECHA_INICIO_STR = this.GetFormattedDate(td_searchCriteria.P_FECHA_INICIO,0);
-      td_searchCriteria.P_FECHA_FIN_STR    = this.GetFormattedDate(td_searchCriteria.P_FECHA_FIN   ,0); 
+      td_searchCriteria.P_FECHA_FIN_STR    = this.GetFormattedDate(td_searchCriteria.P_FECHA_FIN   ,0);
       //
       let selectedIndex: number = this._languajeList.nativeElement.options.selectedIndex; // c++ by default
       //
@@ -163,13 +163,13 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
               this.td_buttonCaption = "[Please wait...]";
               //
               this.status_message.set("[Please wait...]");
-              // 
+              //
               let td_informeLogRemoto!                 : Observable<LogEntry[]>;
-              //      
+              //
               td_informeLogRemoto                      = this.backendService.getLogRemoto(td_searchCriteria);
               //
               const td_observer = {
-                next: (td_logEntry: LogEntry[])     => { 
+                next: (td_logEntry: LogEntry[])     => {
                   //
                   this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry);
                   this.td_dataSource.paginator = this.td_paginator;
@@ -190,7 +190,7 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
                   this.td_formSubmit           = false;
                   this.td_buttonCaption        = "[Search]";
                 },
-              }; 
+              };
               //
               td_informeLogRemoto
               .subscribe(td_observer);
@@ -200,13 +200,13 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
               this.td_buttonCaption = "[Please wait...]";
               //
               this.status_message.set("[Please wait...]");
-              // 
+              //
               let td_informeLogRemoto_NodeJs!   : Observable<string>;
-              // 
+              //
               td_informeLogRemoto_NodeJs        = this.backendService.getLogRemotoNodeJS(td_searchCriteria);
               //
               const td_observer_node_js = {
-                next: (td_logEntry_node_js: string)     => { 
+                next: (td_logEntry_node_js: string)     => {
                   //
                   let td_logEntry_node_js_json = JSON.parse(td_logEntry_node_js)['recordsets'][0];
                   //
@@ -229,67 +229,26 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
                   this.td_formSubmit           = false;
                   this.td_buttonCaption        = "[Search]";
                 },
-              }; 
+              };
               //
               td_informeLogRemoto_NodeJs
               .subscribe(td_observer_node_js);
           break;
-        case 3: // SPRINGBOOT / JAVA
-              //
-              this.td_buttonCaption = "[Please wait...]";
-              //
-              this.status_message.set("[Please wait...]");
-              // 
-              let td_informeLogRemoto_SprinbBootJava!   : Observable<string>;
-              // 
-              td_informeLogRemoto_SprinbBootJava        = this.backendService.getLogRemotoSprinbBootJava(td_searchCriteria);
-              //
-              const td_observer_sprinbbootjava = {
-                next: (td_logEntry_sprinbboot_java: string)     => { 
-                  //
-                  //console.log('TEMPLATE DRIVEN - SPRINGBOOT / JAVA - RETURN VALUES  : ' + td_logEntry_sprinbboot_java);
-                  //
-                  let td_logEntry_springboot_java_json   = JSON.parse(td_logEntry_sprinbboot_java);
-                  //
-                  this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_springboot_java_json);
-                  this.td_dataSource.paginator = this.td_paginator;
-                  //
-                  this.status_message.set("[" + td_logEntry_springboot_java_json.length + "] records found ");
-                  this.td_formSubmit           = false;
-                },
-                error           : (err: Error)      => {
-                  //
-                  console.error('TEMPLATE DRIVEN - sprigboot/Java - (ERROR) : ' + JSON.stringify(err.message));
-                  //
-                  this.status_message.set("An error ocurred. Please try again");
-                  this.td_formSubmit           = false;
-                  this.td_buttonCaption        = "[Search]";
-                },
-                complete        : ()                => {
-                  //
-                  this.td_formSubmit           = false;
-                  this.td_buttonCaption        = "[Search]";
-                },
-              }; 
-              //
-              td_informeLogRemoto_SprinbBootJava
-              .subscribe(td_observer_sprinbbootjava);
-          break;
-        case 4: // SPRINGBOOT / KOTLIN
+       case 3: // SPRINGBOOT / KOTLIN
           //
           this.td_buttonCaption = "[Please wait...]";
           //
           this.status_message.set("[Please wait...]");
-          // 
+          //
           let td_informeLogRemoto_SprinbBootKotlin!   : Observable<string>;
-          // 
+          //
           td_informeLogRemoto_SprinbBootKotlin        = this.backendService.getLogRemotoSprinbBootKotlin(td_searchCriteria);
           //
           const td_observer_sprinbbootKotlin = {
-            next: (td_logEntry_sprinbboot_kotlin: string)     => { 
+            next: (td_logEntry_sprinbboot_kotlin: string)     => {
               //
               let rawLogs = JSON.parse(td_logEntry_sprinbboot_kotlin);
-              
+
               // Transform the property key to id_Column
               let td_logEntry_springboot_kotlin_json = rawLogs.map((log: any) => ({
                 id_Column: log.id_Column ?? log.id_column ?? log.Id_column,
@@ -317,23 +276,23 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
               this.td_formSubmit           = false;
               this.td_buttonCaption        = "[Search]";
             },
-          }; 
+          };
           //
           td_informeLogRemoto_SprinbBootKotlin
           .subscribe(td_observer_sprinbbootKotlin);
-      break;    
-        case 5: // DJANGO     / PYTHON
+      break;
+        case 4: // DJANGO     / PYTHON
           //
           this.td_buttonCaption = "[Please wait...]";
           //
           this.status_message.set("[Please wait...]");
-          // 
+          //
           let td_informeLogRemoto_PythonDjango!   : Observable<string>;
-          // 
+          //
           td_informeLogRemoto_PythonDjango        = this.backendService.getLogRemotoDjangoPython(td_searchCriteria);
           //
           const td_observer_pythondjango = {
-            next: (td_logEntry_python_django: string)     => { 
+            next: (td_logEntry_python_django: string)     => {
               //
               let td_logEntry_python_django_json   = JSON.parse(td_logEntry_python_django);
               //
@@ -356,23 +315,23 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
               this.td_formSubmit           = false;
               this.td_buttonCaption        = "[Search]";
             },
-          }; 
+          };
           //
           td_informeLogRemoto_PythonDjango
           .subscribe(td_observer_pythondjango);
       break;
-        case 6: // GO LANG    / [net-http]
+      case 5: // GO LANG    / [net-http]
           //
           this.td_buttonCaption = "[Please wait...]";
           //
           this.status_message.set("[Please wait...]");
-          // 
+          //
           let td_informeLogRemoto_GoLang!   : Observable<string>;
-          // 
+          //
           td_informeLogRemoto_GoLang        = this.backendService.getAllLogsGoLang(td_searchCriteria);
           //
           const td_observer_golang = {
-            next: (td_logEntry_golang: string)     => { 
+            next: (td_logEntry_golang: string)     => {
               //
               let td_logEntry_golang_json   = JSON.parse(td_logEntry_golang);
               //
@@ -395,23 +354,23 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
               this.td_formSubmit           = false;
               this.td_buttonCaption        = "[Search]";
             },
-          }; 
+          };
           //
           td_informeLogRemoto_GoLang
           .subscribe(td_observer_golang);
        break;
-        case 7: // RUST LANG  / [actix-web]
+       case 6: // RUST LANG  / [actix-web]
                    //
           this.td_buttonCaption = "[Please wait...]";
           //
           this.status_message.set("[Please wait...]");
-          // 
+          //
           let td_informeLogRemoto_RustLang!   : Observable<string>;
-          // 
+          //
           td_informeLogRemoto_RustLang        = this.backendService.getAllLogsRustLang(td_searchCriteria);
           //
           const td_observer_rustlang = {
-            next: (td_logEntry_rustlang: string)     => { 
+            next: (td_logEntry_rustlang: string)     => {
               //
               let td_logEntry_rustlang_json   = JSON.parse(td_logEntry_rustlang);
               //
@@ -434,11 +393,54 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
               this.td_formSubmit           = false;
               this.td_buttonCaption        = "[Search]";
             },
-          }; 
+          };
           //
           td_informeLogRemoto_RustLang
           .subscribe(td_observer_rustlang);
-      break;
+          break;
+      /*
+      case 3: // SPRINGBOOT / JAVA
+            //
+            this.td_buttonCaption = "[Please wait...]";
+            //
+            this.status_message.set("[Please wait...]");
+            //
+            let td_informeLogRemoto_SprinbBootJava!   : Observable<string>;
+            //
+            td_informeLogRemoto_SprinbBootJava        = this.backendService.getLogRemotoSprinbBootJava(td_searchCriteria);
+            //
+            const td_observer_sprinbbootjava = {
+              next: (td_logEntry_sprinbboot_java: string)     => {
+                //
+                //console.log('TEMPLATE DRIVEN - SPRINGBOOT / JAVA - RETURN VALUES  : ' + td_logEntry_sprinbboot_java);
+                //
+                let td_logEntry_springboot_java_json   = JSON.parse(td_logEntry_sprinbboot_java);
+                //
+                this.td_dataSource           = new MatTableDataSource<LogEntry>(td_logEntry_springboot_java_json);
+                this.td_dataSource.paginator = this.td_paginator;
+                //
+                this.status_message.set("[" + td_logEntry_springboot_java_json.length + "] records found ");
+                this.td_formSubmit           = false;
+              },
+              error           : (err: Error)      => {
+                //
+                console.error('TEMPLATE DRIVEN - sprigboot/Java - (ERROR) : ' + JSON.stringify(err.message));
+                //
+                this.status_message.set("An error ocurred. Please try again");
+                this.td_formSubmit           = false;
+                this.td_buttonCaption        = "[Search]";
+              },
+              complete        : ()                => {
+                //
+                this.td_formSubmit           = false;
+                this.td_buttonCaption        = "[Search]";
+              },
+            };
+            //
+            td_informeLogRemoto_SprinbBootJava
+            .subscribe(td_observer_sprinbbootjava);
+        break;
+      */
       default:
             return;
       }
@@ -464,9 +466,9 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
       //
       const xlsObserver                       = {
         //
-        next: (_excelFileName: string) => { 
+        next: (_excelFileName: string) => {
           //
-          let urlFile                = UtilManager.DebugHostingContent(_excelFileName); 
+          let urlFile                = UtilManager.DebugHostingContent(_excelFileName);
           //
           this.td_ExcelDownloadLink  = `${this.configService.getConfigValue('baseUrlNetCore')}/wwwroot/xlsx/${urlFile}`;
           //
@@ -496,7 +498,7 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
       .subscribe(xlsObserver);
     }
      //--------------------------------------------------------------------------
-    // METODOS COMUNES 
+    // METODOS COMUNES
     //--------------------------------------------------------------------------
     //
     queryParams():void{
@@ -513,22 +515,22 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
         //
         this.__languajeList.push(new _languageName(1, '(.Net Core   / C#)'             , false ,"CS"   ));
         this.__languajeList.push(new _languageName(2, '(Node.js     / JavaScript)'     , false ,"JS"   ));
-        this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
-        this.__languajeList.push(new _languageName(4, '(SpringBoot  / Kotlin)'         , false ,"KT"   ));        
-        this.__languajeList.push(new _languageName(5, '(Django      / Python)'         , false ,"PY"   ));
-        this.__languajeList.push(new _languageName(6, '(Go          / [net-http])'     , false ,"GO"   ));    
-        this.__languajeList.push(new _languageName(7, '(Rust        / Actix Web)'      , false ,"RS"   ));    
+        this.__languajeList.push(new _languageName(3, '(SpringBoot  / Kotlin)'         , false ,"KT"   ));
+        this.__languajeList.push(new _languageName(4, '(Django      / Python)'         , false ,"PY"   ));
+        this.__languajeList.push(new _languageName(5, '(Go          / [net-http])'     , false ,"GO"   ));
+        this.__languajeList.push(new _languageName(6, '(Rust        / Actix Web)'      , false ,"RS"   ));
+        //this.__languajeList.push(new _languageName(3, '(SpringBoot  / Java)'           , false ,"JAVA" ));
 
         //
         let langName = params['langName'] ? params['langName'] : "" ;
         //
         if (langName !== '')
-        {   
+        {
             //
             for (var index = 1; index < this.__languajeList.length; index++) {
                 //
                 if (this.__languajeList[index]._shortName  == langName)
-                  this.__languajeList[index]._selected = true;        
+                  this.__languajeList[index]._selected = true;
             }
 
         } else {
@@ -556,7 +558,5 @@ export class FilesGenerationXLSComponent extends BaseReferenceComponent implemen
         }
         //
         return today;
-    }  
+    }
 }
-
-

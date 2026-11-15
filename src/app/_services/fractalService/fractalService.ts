@@ -7,6 +7,7 @@ import { ConfigService } from "../__Utils/ConfigService/config.service";
 import { BackendLanguage, DEFAULT_BOUNDS_JULIA, DEFAULT_BOUNDS_MANDELBROT, DEFAULT_BOUNDS_MANDELBROT_WASM, FERN_SENTINEL, FractalBounds, FractalEngine, FractalParams, FractalPoint, FractalType } from "src/app/_engines/fractal.engine";
 import { FractalRequest, FractalResponse } from 'src/app/grpc/fractal';
 import __wbg_init, { FractalEngine as WasmFractalEngine, InitOutput } from 'src/assets/wasm/fractal-wasm/rust_demo_wasm';
+import { WASM_OFFSET } from '../../_engines/fractal.engine';
 
 @Injectable({ providedIn: 'root' })
 export class FractalService extends BaseService {
@@ -58,9 +59,6 @@ export class FractalService extends BaseService {
       case BackendLanguage.NODEJS:
           url = `${this.__baseUrlNodeJsFractal}julia?xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}`;
       break;
-      case BackendLanguage.J2SE:
-          url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;
       case BackendLanguage.KOTLIN:
           url = `${this.__baseUrlKotlinFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
@@ -72,16 +70,19 @@ export class FractalService extends BaseService {
       break;
       case BackendLanguage.RUSTLANG :
           url = `${this.__baseUrlRustLangFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;
-     case BackendLanguage.SWIFTLANG :
-          url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;
+        break;
       case BackendLanguage.ZIGLANG :
           url = `${this.__baseUrlZigLangFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
       case BackendLanguage.CPP_WS :
           url = `${this.__baseUrlCppWebServer}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;
+        break;
+      //case BackendLanguage.J2SE:
+      //    url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      //break;
+      //case BackendLanguage.SWIFTLANG :
+      //    url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.JULIA}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      //break;
       default :
           url = `${this.__baseUrlNodeJsFractal}julia?xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}`;
     }
@@ -102,9 +103,6 @@ export class FractalService extends BaseService {
       case BackendLanguage.NODEJS:
           url = `${this.__baseUrlNodeJsFractal}mandelbrot?xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}`;
       break;
-      case BackendLanguage.J2SE:
-          url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;
       case BackendLanguage.KOTLIN:
           url = `${this.__baseUrlKotlinFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
@@ -117,15 +115,18 @@ export class FractalService extends BaseService {
       case BackendLanguage.RUSTLANG:
           url = `${this.__baseUrlRustLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
-     case BackendLanguage.SWIFTLANG:
-          url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;
      case BackendLanguage.ZIGLANG:
           url = `${this.__baseUrlZigLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
-    case BackendLanguage.CPP_WS:
+      case BackendLanguage.CPP_WS:
           url = `${this.__baseUrlCppWebServer}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
+        //case BackendLanguage.SWIFTLANG:
+        //     url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+        //break;
+        //case BackendLanguage.J2SE:
+        //    url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+        //break;
       default :
           url = `${this.__baseUrlNodeJsFractal}mandelbrot?xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}`;
     }
@@ -144,9 +145,6 @@ export class FractalService extends BaseService {
       case BackendLanguage.NODEJS:
             url = `${this.__baseUrlNodeJsFractal}leaf`;
       break;
-      case BackendLanguage.J2SE:
-            url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;
       case BackendLanguage.KOTLIN:
             url = `${this.__baseUrlKotlinFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
@@ -159,8 +157,6 @@ export class FractalService extends BaseService {
        case BackendLanguage.RUSTLANG:
             url = `${this.__baseUrlRustLangFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
-      case BackendLanguage.SWIFTLANG:
-            url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
       case BackendLanguage.ZIGLANG:
             url = `${this.__baseUrlZigLangFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
@@ -168,7 +164,13 @@ export class FractalService extends BaseService {
       case BackendLanguage.CPP_WS:
             url = `${this.__baseUrlCppWebServer}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
-      default :
+      //case BackendLanguage.J2SE:
+      //      url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      //break;
+      //case BackendLanguage.SWIFTLANG:
+      //  url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.BARNSLEY_FERN}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      //break;
+      default:
             url = `${this.__baseUrlNodeJsFractal}leaf`;
     }
 
@@ -185,17 +187,12 @@ export class FractalService extends BaseService {
     let   url    : string                    = "";
 
     switch (p_fractalParams.selectedBackend) {
-      /*
       case BackendLanguage.NODEJS:
           url = `${this.__baseUrlNodeJsFractal}mandelbrot?xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}`;
       break;
-      case BackendLanguage.J2SE:
-          url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;*/
       case BackendLanguage.KOTLIN:
           url = `${this.__baseUrlKotlinFractal}?kind=${FractalType.GOLDEN_RATIO}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
         break;
-      /*
       case BackendLanguage.DART:
           url = `${this.__baseUrlDartFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
@@ -205,15 +202,20 @@ export class FractalService extends BaseService {
       case BackendLanguage.RUSTLANG:
           url = `${this.__baseUrlRustLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
-     case BackendLanguage.SWIFTLANG:
-          url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break;
      case BackendLanguage.ZIGLANG:
           url = `${this.__baseUrlZigLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
       break;
-    case BackendLanguage.CPP_WS:
+     case BackendLanguage.CPP_WS:
           url = `${this.__baseUrlCppWebServer}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
-      break; */
+     break;
+      /*
+      case BackendLanguage.J2SE:
+          url = `${this.__baseUrlJ2seFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+      break;
+      case BackendLanguage.SWIFTLANG:
+            url = `${this.__baseUrlSwiftLangFractal}?kind=${FractalType.MANDELBROT}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
+        break;
+        */
       default :
           url = `${this.__baseUrlKotlinFractal}?kind=${FractalType.GOLDEN_RATIO}&xMin=${bounds.xMin}&xMax=${bounds.xMax}&yMin=${bounds.yMin}&yMax=${bounds.yMax}&maxIterations=${p_fractalParams.maxIterations}&zoomInOut=${p_fractalParams.serverZoomIn}&zoomStep=${p_fractalParams.serverZoomFactor}`;
     }
@@ -398,7 +400,6 @@ export class FractalService extends BaseService {
  public GenerateFractalClientWasm(
   p_fractalParams: FractalParams
 ): Observable<FractalPoint[]> {
-    const WASM_OFFSET   = 7;
     const fractalKind   = ((p_fractalParams.selectedFractal) ?? FractalType.MANDELBROT_WASM) - WASM_OFFSET;
     const maxIterations = p_fractalParams.maxIterations;
 

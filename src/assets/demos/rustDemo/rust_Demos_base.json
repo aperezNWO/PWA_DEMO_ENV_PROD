@@ -40,7 +40,7 @@
         "done"             : true,
         "name"             : "[SQL QUERY DEMO - XLS]",
         "description"      : "Quering MS SQL Server Database- Generate XLS File",
-        "field_1"          : "Django, Python, REST Service, MS SQL SERVER",
+        "field_1"          : "Rust, Axum, REST Service, MS SQL SERVER",
         "field_2"          : "./#/FilesGenerationXLS?langName=RS",
         "field_3"          : "https://github.com/aperezNWO/RUSTLANG_DEMO_001/blob/main/src/models/mod.rs",
         "field_4"          : "{{baseUrlRustLang}}api/data/getAllLogs"  ,

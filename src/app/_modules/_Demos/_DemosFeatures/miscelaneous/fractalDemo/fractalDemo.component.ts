@@ -224,26 +224,6 @@ get isMandelbrotSelected(): boolean {
     }
   },
   {
-    backendLanguage   : BackendLanguage.J2SE,
-    languageCode      : 'j2se',
-    label             : 'Java J2SE (Spring Boot)',
-    icon              : '☕',
-    description       : 'Runs on Spring Boot Engine',
-    enabled           : true,
-    supportedFractals : {
-      [FractalType.MANDELBROT]        : { supported: true,   zoomable: true   },
-      [FractalType.JULIA]             : { supported: true ,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN]     : { supported: true,   zoomable: false  },
-      [FractalType.GOLDEN_RATIO]      : { supported: false,  zoomable: true   },
-      [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   },
-      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },
-      [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
-      [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
-      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },
-    }
-  },
-  {
     backendLanguage   : BackendLanguage.KOTLIN,
     languageCode      : 'Kotlin',
     label             : 'Kotlin (Spring Boot)',
@@ -362,7 +342,7 @@ get isMandelbrotSelected(): boolean {
       [FractalType.JULIA_WASM]        :   { supported: false,  zoomable: true    },
       [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false   },
     }
-  },
+  }/* ,
   {
     backendLanguage   : BackendLanguage.SWIFTLANG,
     languageCode      : 'swiftlang',
@@ -382,7 +362,28 @@ get isMandelbrotSelected(): boolean {
       [FractalType.JULIA_WASM]        :   { supported: false,  zoomable: true    },
       [FractalType.BARNSLEY_FERN_WASM]:   { supported: false,  zoomable: false   },
     }
-  },
+  },*/
+  /*
+  {
+    backendLanguage   : BackendLanguage.J2SE,
+    languageCode      : 'j2se',
+    label             : 'Java J2SE (Spring Boot)',
+    icon              : '☕',
+    description       : 'Runs on Spring Boot Engine',
+    enabled           : true,
+    supportedFractals : {
+      [FractalType.MANDELBROT]        : { supported: true,   zoomable: true   },
+      [FractalType.JULIA]             : { supported: true ,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN]     : { supported: true,   zoomable: false  },
+      [FractalType.GOLDEN_RATIO]      : { supported: false,  zoomable: true   },
+      [FractalType.MANDELBROT_GRPC]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_GRPC]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_GRPC]: { supported: false,  zoomable: false  },
+      [FractalType.MANDELBROT_WASM]   : { supported: false,  zoomable: true   },
+      [FractalType.JULIA_WASM]        : { supported: false,  zoomable: true   },
+      [FractalType.BARNSLEY_FERN_WASM]: { supported: false,  zoomable: false  },
+    }
+  },*/
 ];
 
 //
@@ -422,13 +423,14 @@ constructor(
     'DART' : 'Dart',
     'JS'   : 'nodejs',
     'NODE' : 'nodejs',
-    'JAVA' : 'j2se',
-    'J2SE' : 'j2se',
     'CWS'  : 'cppws',
-    'GO'    : 'golang',
-    'RS'    : 'rustlang',
-    'SWIFT' : 'swiftlang',
-    'ZIG'   : 'ziglang',
+    'GO'   : 'golang',
+    'RS'   : 'rustlang',
+    'ZIG'  : 'ziglang',
+    //'JAVA' : 'j2se',
+    //'J2SE' : 'j2se',
+    //'SWIFT' : 'swiftlang',
+
   };
 
   ngOnInit(): void {
@@ -724,23 +726,6 @@ constructor(
 
         break;
 
-        case 'j2se':
-
-        fractalParams = {
-            ...DEFAULT_FRACTAL_PARAMS
-            ,selectedBackend  : BackendLanguage.J2SE
-            ,selectedFractal  : this.selectedFractal
-            ,maxIterations    : this.maxIterations
-            ,isZoomable       : this._buildBounds()
-            ,serverZoomIn     : this.serverZoomIn
-            ,serverZoomFactor : this.serverZoomFactor
-        };
-
-        serviceCall = this._fractalEngine.GetFractal(
-          fractalParams
-        ).pipe(take(1));;;
-        break;
-
       case 'golang':
 
          fractalParams = {
@@ -763,23 +748,6 @@ constructor(
         fractalParams = {
               ...DEFAULT_FRACTAL_PARAMS
               ,selectedBackend  : BackendLanguage.RUSTLANG
-              ,selectedFractal  : this.selectedFractal
-              ,maxIterations    : this.maxIterations
-              ,isZoomable       : this._buildBounds()
-              ,serverZoomIn     : this.serverZoomIn
-              ,serverZoomFactor : this.serverZoomFactor
-          };
-
-          serviceCall = this._fractalEngine.GetFractal(
-            fractalParams
-          ).pipe(take(1));
-      break;
-
-    case 'swiftlang':
-
-        fractalParams = {
-              ...DEFAULT_FRACTAL_PARAMS
-              ,selectedBackend  : BackendLanguage.SWIFTLANG
               ,selectedFractal  : this.selectedFractal
               ,maxIterations    : this.maxIterations
               ,isZoomable       : this._buildBounds()
@@ -826,7 +794,43 @@ constructor(
           ).pipe(take(1));
       break;
 
+/*
 
+      case 'j2se':
+
+      fractalParams = {
+          ...DEFAULT_FRACTAL_PARAMS
+          ,selectedBackend  : BackendLanguage.J2SE
+          ,selectedFractal  : this.selectedFractal
+          ,maxIterations    : this.maxIterations
+          ,isZoomable       : this._buildBounds()
+          ,serverZoomIn     : this.serverZoomIn
+          ,serverZoomFactor : this.serverZoomFactor
+      };
+
+      serviceCall = this._fractalEngine.GetFractal(
+        fractalParams
+      ).pipe(take(1));;;
+      break;
+
+      case 'swiftlang':
+
+        fractalParams = {
+              ...DEFAULT_FRACTAL_PARAMS
+              ,selectedBackend  : BackendLanguage.SWIFTLANG
+              ,selectedFractal  : this.selectedFractal
+              ,maxIterations    : this.maxIterations
+              ,isZoomable       : this._buildBounds()
+              ,serverZoomIn     : this.serverZoomIn
+              ,serverZoomFactor : this.serverZoomFactor
+          };
+
+          serviceCall = this._fractalEngine.GetFractal(
+            fractalParams
+          ).pipe(take(1));
+      break;
+
+*/
 
       default:
         {

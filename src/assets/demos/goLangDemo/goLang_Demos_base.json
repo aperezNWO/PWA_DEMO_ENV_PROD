@@ -1,1 +1,50 @@
-[]
+[
+  {
+		   "id"               : 1,
+       "done"             : true,
+       "name"             : "Shortest Path Algorithm",
+       "description"      : "Shortest Path Algorithm",
+       "field_1"          : "Go, Mux, REST service, Dijkstra",
+       "field_2"          : "./#/AlgorithmDijkstra?langName=GO",
+       "field_3"          : "https://github.com/aperezNWO/GOLANG_DEMO_001/blob/main/go-ping-api/pkg/algorithms/algorithms.go",
+       "field_6"          : "https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/",
+       "field_4"          : "{{baseUrlGoLang}}api/Algorithm/GenerateRandomVertex_GoLang",
+       "field_10"         : "11b754ec-74f5-47bd-9f8e-9c89d724ff3f"
+   },
+   {
+		   "id"               : 2,
+       "done"             : true,
+       "name"             : "Fractal Demo - Benchmark",
+       "description"      : "Fractal Demo ",
+       "field_1"          : "Go, Mux,  REST service, Fractals, Julia, Maldelbrot, Barsley Fern",
+       "field_2"          : "./#/FractalDemo?langName=GO",
+       "field_3"          : "https://github.com/aperezNWO/GOLANG_DEMO_001/blob/main/go-ping-api/pkg/fractals/fractals.go",
+       "field_6"          : "https://en.wikipedia.org/wiki/Fractal",
+       "field_4"          : "{{baseUrlGoLang}}api/fractals/generate?kind=3&width=800&height=600&maxIterations=1000&zoom=1.0&centerX=0.0&centerY=0.0",
+       "field_10"         : "2895398f-dba0-4719-81fb-243ade449a3c"
+   },
+   {
+	    	"id"               : 3,
+        "done"             : true,
+        "name"             : "[SQL QUERY DEMO - CSV]",
+        "description"      : "Quering MS SQL Server Database- Generate CSV File",
+        "field_1"          : "Go, Mux, REST Service, MS SQL SERVER",
+        "field_2"          : "./#/FilesGenerationCSV?langName=GO",
+        "field_3"          : "https://github.com/aperezNWO/GOLANG_DEMO_001/blob/main/go-ping-api/pkg/dao/dao.go",
+        "field_4"          : "{{baseUrlGoLang}}api/data/getAllPersons"  ,
+        "field_6"          : "https://pkg.go.dev/github.com/microsoft/go-mssqldb",
+        "field_10"         : "399fafbd-4e0c-4b87-95b1-78f8dd712fb1"
+    },
+    {
+		    "id"               : 4,
+        "done"             : true,
+        "name"             : "[SQL QUERY DEMO - XLS]",
+        "description"      : "Quering MS SQL Server Database- Generate XLS File",
+        "field_1"          : "Go, Mux, REST Service, MS SQL SERVER",
+        "field_2"          : "./#/FilesGenerationXLS?langName=GO",
+        "field_3"          : "https://github.com/aperezNWO/GOLANG_DEMO_001/blob/main/go-ping-api/pkg/dao/dao.go",
+        "field_4"          : "{{baseUrlGoLang}}api/data/getAllLogs"  ,
+        "field_6"          : "https://pkg.go.dev/github.com/microsoft/go-mssqldb",
+        "field_10"         : "13ea130b-22b9-470a-bc51-98dfd5a17c01"
+    }
+]

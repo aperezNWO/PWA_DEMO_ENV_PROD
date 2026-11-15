@@ -19,16 +19,16 @@ export enum BackendLanguage {
   TYPESCRIPT     = 1,
   NODEJS         = 2,
   CPP            = 3,
-  J2SE           = 4,
-  KOTLIN         = 5,
-  DART           = 6,
-  GOLANG         = 7,
-  RUSTLANG       = 8,
-  SWIFTLANG      = 9,
-  ZIGLANG        = 10,
-  CPP_WS         = 11,
-  RUSTLANG_WASM  = 12,
-  GOLANG_RPC     = 13,
+  KOTLIN         = 4,
+  DART           = 5,
+  GOLANG         = 6,
+  RUSTLANG       = 7,
+  ZIGLANG        = 8,
+  CPP_WS         = 9,
+  RUSTLANG_WASM  = 10,
+  GOLANG_RPC     = 11,
+  //J2SE           = 4,
+  //SWIFTLANG      = 9,
 }
 
 export enum FractalType {
@@ -43,6 +43,8 @@ export enum FractalType {
   JULIA_WASM         = 9,
   BARNSLEY_FERN_WASM = 10
 }
+
+export const WASM_OFFSET = 7; // workaround for showing WebAssembly options inside rust lang option
 
 export interface FractalBounds {
   xMin: number;
