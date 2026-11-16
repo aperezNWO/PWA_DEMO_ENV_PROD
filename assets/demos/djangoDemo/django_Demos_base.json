@@ -6,8 +6,8 @@
         "description"      : "Quering MS SQL Server Database- Generate CSV File",
         "field_1"          : "Django, Python, REST Service, MS SQL SERVER",
         "field_2"          : "./#/FilesGenerationCSV?langName=PY",
-        "field_3"          : "https://github.com/aperezNWO/django_setup_windows/blob/main/hello/views.py",
-        "field_4"          : "{{baseUrlDjangoPython}}getAllPersons?format=json"  ,
+        "field_3"          : "",
+        "field_4"          : "{{baseUrlDjangoPythonTF}}getAllPersons?format=json"  ,
         "field_6"          : "https://pypi.org/project/mssql-django/",
         "field_10"         : "882904a3-efd8-4ed7-bf4c-ccae59b995ce"
     },
@@ -18,8 +18,8 @@
         "description"      : "Quering MS SQL Server Database- Generate XLS File",
         "field_1"          : "Django, Python, REST Service, MS SQL SERVER",
         "field_2"          : "./#/FilesGenerationXLS?langName=PY",
-        "field_3"          : "https://github.com/aperezNWO/django_setup_windows/blob/main/hello/views.py",
-        "field_4"          : "{{baseUrlDjangoPython}}getAllLogs?format=json"  ,
+        "field_3"          : "",
+        "field_4"          : "{{baseUrlDjangoPythonTF}}getAllLogs?format=json"  ,
         "field_6"          : "https://pypi.org/project/mssql-django/",
         "field_10"         : "f1ba13c3-131f-4517-aa72-ca9899058317"
     },
