@@ -115,7 +115,7 @@ export class AlgorithmService extends BaseService {
     // CPP - SERVER
     getRandomVertexCppLang(_vertexSize: number, _sourcePoint: number): Observable<string> {
       //
-      let p_url    = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/algorithm/GenerateRandomVertex_CPP?p_vertexSize=${_vertexSize}&p_sourcePoint=${_sourcePoint}`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}api/algorithm/GenerateRandomVertex_CPP?p_vertexSize=${_vertexSize}&p_sourcePoint=${_sourcePoint}`;
       //
       let dijkstraData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text_Plain);
       //
@@ -169,7 +169,7 @@ export class AlgorithmService extends BaseService {
     getSort_CPPLang(p_sortAlgoritm: number, p_unsortedList: string):Observable<string>
     {
       //
-      let p_url    = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/algorithm/GetSort_CPP?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
+      let p_url    = `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}api/algorithm/GetSort_CPP?p_sortAlgoritm=${p_sortAlgoritm}&p_unsortedList=${p_unsortedList}`;
       //
       let newSortData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
       //
@@ -240,7 +240,7 @@ export class AlgorithmService extends BaseService {
   public _RegExEval_CPP_WS(tagSearchIndex: number, textSearchValue: string): Observable<string>
   {
     //
-    let p_url    : string = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/algorithm/Regex_Eval_CPP?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
+    let p_url    : string = `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}api/algorithm/Regex_Eval_CPP?p_tagSearch=${tagSearchIndex}&p_textSearch=${textSearchValue}`;
     //
     let regExData : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
     //

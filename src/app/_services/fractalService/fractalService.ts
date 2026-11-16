@@ -16,14 +16,14 @@ export class FractalService extends BaseService {
   private readonly _configService         = inject(ConfigService);
   private readonly __baseUrlCPPOpenCv     = `${this._configService.getConfigValue('baseUrlNetCoreCPPEntry')}api/computervision/`;
   private readonly __baseUrlNodeJsFractal = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}api/fractal/`;
-  private readonly __baseUrlJ2seFractal   = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate`;
   private readonly __baseUrlKotlinFractal = `${this._configService.getConfigValue('baseUrlSpringBoot_Kotlin')}api/fractals/generate`;
   private readonly __baseUrlDartFractal   = `${this._configService.getConfigValue('baseUrlDart')}api/fractals/generate`;
   private readonly __baseUrlGoLangFractal    = `${this._configService.getConfigValue('baseUrlGoLang')}api/fractals/generate`;
   private readonly __baseUrlRustLangFractal  = `${this._configService.getConfigValue('baseUrlRustLang')}api/fractals/generate`;
-  private readonly __baseUrlSwiftLangFractal = `${this._configService.getConfigValue('baseUrlSwiftLang')}api/fractals/generate`;
   private readonly __baseUrlZigLangFractal   = `${this._configService.getConfigValue('baseUrlZigLang')}api/fractals/generate`;
-  private readonly __baseUrlCppWebServer     = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/fractals/generate`;
+  private readonly __baseUrlCppWebServer     = `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}api/fractals/generate`;
+  //private readonly __baseUrlJ2seFractal   = `${this._configService.getConfigValue('baseUrlSpringBootJava')}api/fractals/generate`;
+  //private readonly __baseUrlSwiftLangFractal = `${this._configService.getConfigValue('baseUrlSwiftLang')}api/fractals/generate`;
 
   // ═══════════════════════════════════════════════════════════════════════════
   //  WASM PROPERTIES

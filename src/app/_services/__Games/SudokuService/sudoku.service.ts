@@ -47,7 +47,7 @@ export class SudokuService extends BaseService {
   _GetSudoku_CPP_WS(): Observable<string>
   {
     //
-    let p_url              : string  =  `${this._configService.getConfigValue('baseUrlCppWebServer')}api/algorithm/Sudoku_Generate_CPP`;
+    let p_url              : string  =  `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}api/algorithm/Sudoku_Generate_CPP`;
     //
     let sudokuGenerated    : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
     //
@@ -67,7 +67,7 @@ export class SudokuService extends BaseService {
   _SolveSudoku_CPP_WS(p_matrix : string): Observable<string>
   {
     //
-    let p_url               : string  = `${this._configService.getConfigValue('baseUrlCppWebServer')}api/algorithm/Sudoku_Solve_CPP?p_matrix=${p_matrix}`
+    let p_url               : string  = `${this._configService.getConfigValue('baseUrlCppWSTensorflow')}api/algorithm/Sudoku_Solve_CPP?p_matrix=${p_matrix}`
     //
     let sudokuSolved        : Observable<string> =  this.http.get<string>(p_url,this.HTTPOptions_Text);
     //
