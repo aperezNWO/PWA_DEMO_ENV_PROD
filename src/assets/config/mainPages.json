@@ -293,6 +293,7 @@
           { "id" : 2, "url": "about:blank"                                              , "text" : "[Node.js / Javascript]"        , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'fa1735e2-b0b9-4fbb-bbb4-d4ee2bdcf6bd' , pageName : 'PAGE_DEMOS_NODEJS_JAVASCRIPT'  }"},
           { "id" : 2, "url": "about:blank"                                              , "text" : "[Dart / Shelf]"                , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: 'be7eb1da-4a54-4ce5-8827-9b47c60afc9b' , pageName : 'PAGE_DEMOS_DART_SHELF'         }"},
           { "id" : 2, "url": "about:blank"                                              , "text" : "[Kotlin / Springboot]"         , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '6eed9cf9-dda3-467f-8bb1-abf1302819ac' , pageName : 'PAGE_DEMOS_SPRING_BOOT_KOTLIN' }"},
+          { "id" : 2, "url": "about:blank"                                              , "text" : "[C++ / cpp http-server]"       , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '1ca596b5-8943-4082-bcd5-a318ec9a315c' , pageName : 'PAGE_DEMOS_CPP_WEB_SERVER'     }"},
           { "id" : 3, "url": "https://en.wikipedia.org/wiki/WebAssembly"                , "text" : "[WebAssembly]"                 , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/Fractal"                    , "text" : "[Fractal]"                     , "routerLink" : "about:blank" , "queryParams" : ""}
         ]
