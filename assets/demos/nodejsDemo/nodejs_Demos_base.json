@@ -1,6 +1,6 @@
 [
     {
-		"id"               : 3,
+		    "id"               : 1,
         "done"             : true,
         "name"             : "CSV DEMO",
         "description"      : "Quering MS SQL Server Database- Generate CSV File",
@@ -24,7 +24,7 @@
         "field_10"         : "e109d2d1-64dc-41ac-bee2-3820bc571a97"
     },
     {
-		"id"               : 5,
+        "id"               : 2,
         "done"             : true,
         "name"             : "SUDOKU GAME",
         "description"      : "SUDOKU GAME",
@@ -36,7 +36,7 @@
         "field_10"         : "f1f0af0b-4032-49b7-9df0-80e578168fa3"
     },
     {
-		"id"               : 0,
+		    "id"               : 3,
         "done"             : true,
         "name"             : "CHAT DEMO",
         "description"      : "CHAT DEMO",
@@ -45,10 +45,10 @@
         "field_3"          : "https://github.com/aperezNWO/cs_node_js_test_chat/blob/048868fdf1a3f770233dab4493df296e37ec2d61/index.js#L61",
         "field_4"          : "{{baseUrlNodeJsChat}}",
         "field_6"          : "https://socket.io/",
-        "field_10"         : "1996fa99-4e01-42eb-ac45-98e2918208d9"   
+        "field_10"         : "1996fa99-4e01-42eb-ac45-98e2918208d9"
     },
     {
-		"id"               : 1,
+		    "id"               : 4,
         "done"             : true,
         "name"             : "OCR DEMO",
         "description"      : "OCR DEMO",
@@ -57,10 +57,10 @@
         "field_3"          : "https://github.com/aperezNWO/cs_nodejs_ocr_/blob/14f75a2df00637d1188644142ea3938febc543db/services/VisionHubService.js#L85",
         "field_4"          : "{{baseUrlNodeJsOcr}}health",
         "field_6"          : "https://github.com/tesseract-ocr/tesseract",
-        "field_10"         : "894ab07b-45d4-4a87-b9d7-a59e78a73e79" 
+        "field_10"         : "894ab07b-45d4-4a87-b9d7-a59e78a73e79"
     },
     {
-		"id"               : 0,
+	     	"id"               : 5,
         "done"             : true,
         "name"             : "COMPUTER VISION DEMO",
         "description"      : "COMPUTER VISION DEMO",
@@ -69,6 +69,18 @@
         "field_3"          : "https://github.com/aperezNWO/cs_nodejs_ocr_/blob/14f75a2df00637d1188644142ea3938febc543db/services/VisionHubService.js#L178",
         "field_4"          : "{{baseUrlNodeJsOcr}}health",
         "field_6"          : "https://docs.opencv.org/4.x/d5/d10/tutorial_js_root.html",
-        "field_10"         : "348d2d81-a9d7-4f22-9f92-03bb24388f73" 
-    }
-]	
+        "field_10"         : "348d2d81-a9d7-4f22-9f92-03bb24388f73"
+    },
+    {
+	    "id"               : 6,
+      "done"             : true,
+      "name"             : "Fractal Demo - Benchmark",
+      "description"      : "Fractal Demo ",
+      "field_1"          : "Node.js, REST service, Fractals, Julia, Maldelbrot, Barsley Fern",
+      "field_2"          : "./#/FractalDemo?langName=JS",
+      "field_3"          : "https://github.com/aperezNWO/cs_nodejs_ocr_/blob/main/services/FractalEngine.js",
+      "field_6"          : "https://en.wikipedia.org/wiki/Fractal",
+      "field_4"          : "{{baseUrlNodeJsOcr}}aapi/fractal/leaf",
+      "field_10"         : "fa1735e2-b0b9-4fbb-bbb4-d4ee2bdcf6bd"
+  }
+]
