@@ -378,16 +378,6 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
         --[_] about -> techspeces -> appType -> link to hosting.
 
- --[_] Docker Contingency
-
-    --[_] disable j2see apps / redirect to kotlin.
-
-    --[_] merge node.js / node.js ocr.
-
-    --[_] merge python linux / windows.
-
-    --[_] Supress Swift and java from render.
-
 --[_] Render config from database.
 
 --[_] node.js security update.
@@ -420,13 +410,23 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
   --[_] web assembly links.
 
--- [_] merge cppAlgorithm + cppTensorflow.
-
--- [_] about -> techinal speces -> c++ -> algorithms -> cpp_web_server_samples & searchTerm=algorithm
+-- [x] about -> techinal speces -> c++ -> algorithms -> cpp_web_server_samples & searchTerm=algorithm
 
 -- [_] Libraries / Mixed Search / Index/ searchTerm.
 
 -- [_] Libraries / Web Assembly Entry.
+
+-- [_] Docker Contingency
+
+    --[x] disable j2see apps / redirect to kotlin.
+
+    --[x] Supress Swift and java from render.
+
+    -- [x] merge cppAlgorithm + cppTensorflow.
+
+    -- [_] merge python linux / windows.
+
+    -- [_] merge node.js / node.js ocr.
 
 ////////////////////////////////////////////////////////////////////////////////
 -- [_] SWEBOK SOFTWARE QUALITY CHECKLIST
