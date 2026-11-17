@@ -339,6 +339,17 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 {
                     type                 : '(Backend)',
                     name                 : '[App v. / C++ / cpp-httplib]',
+                    features             : '<Algorithms>',
+                    appVersion           : this._CppTensorflowAppVersion,
+                    stdVersion           : this._CppTensorflowVersion,
+                    apiOrServerVersion   : this._CppTensorflowWebServerVersion,
+                    repoLink             : `${this.configService.getConfigValue('baseUrlCppWSTensorflowRepo')}`,
+                    healthLink           : `${this.configService.getConfigValue('baseUrlCppWSTensorflow')}health`,
+                    moduleLink           : `${this.configService.getConfigValue('baseUrlCppWebServerModule')}`,
+                },
+                {
+                    type                 : '(Backend)',
+                    name                 : '[App v. / C++ / cpp-httplib]',
                     features             : '<Tesseract>',
                     appVersion           : this._CppTesseractAppVersion,
                     stdVersion           : this._CppTesseractVersion,
