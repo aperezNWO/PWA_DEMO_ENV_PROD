@@ -113,7 +113,7 @@ export class BackendService extends BaseService implements OnInit {
   }
 
   getInformeRemotoCSV_NodeJS(): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}GenerarInformeCSVJson`;
+    const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}GenerarInformeCSVJson`;
     const HTTPOptions = {
       headers: new HttpHeaders({ 'Accept': 'application/text' }),
       'responseType': 'text' as 'json'

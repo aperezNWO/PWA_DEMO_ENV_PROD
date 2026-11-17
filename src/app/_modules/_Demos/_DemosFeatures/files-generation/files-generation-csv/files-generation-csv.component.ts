@@ -3,7 +3,7 @@ import { FormBuilder, Validators                       } from '@angular/forms';
 import { MatTableDataSource                            } from '@angular/material/table';
 import { MatPaginator                                  } from '@angular/material/paginator';
 import { ActivatedRoute                                } from '@angular/router';
-import { BehaviorSubject, Observable                                    } from 'rxjs';
+import { BehaviorSubject, Observable                   } from 'rxjs';
 import { PersonEntity, SearchCriteria, _languageName   } from 'src/app/_models/entity.model';
 import { BackendService                                } from 'src/app/_services/BackendService/backend.service';
 import { SpeechService                                 } from 'src/app/_services/__Utils/SpeechService/speech.service';
