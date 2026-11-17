@@ -416,6 +416,8 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 -- [_] Libraries / Web Assembly Entry.
 
+-- [_] Libraries / socket.io entry.
+
 -- [_] Docker Contingency
 
     --[x] disable j2see apps / redirect to kotlin.
