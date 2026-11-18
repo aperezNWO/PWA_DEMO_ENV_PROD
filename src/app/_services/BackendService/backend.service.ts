@@ -159,7 +159,7 @@ export class BackendService extends BaseService implements OnInit {
   }
 
   getLogRemotoNodeJS(_searchCriteria: SearchCriteria): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlNodeJs')}generarinformejson`;
+    const p_url = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}generarinformejson`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
