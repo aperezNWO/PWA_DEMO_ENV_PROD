@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1795067731707,
+  "timestamp": 1795069172935,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -19,7 +19,7 @@
         "/PWA_DEMO_ENV_PROD/chunk-QBUHZOWM.js",
         "/PWA_DEMO_ENV_PROD/favicon.ico",
         "/PWA_DEMO_ENV_PROD/index.html",
-        "/PWA_DEMO_ENV_PROD/main-PJMLOHWA.js",
+        "/PWA_DEMO_ENV_PROD/main-RSL6DHMG.js",
         "/PWA_DEMO_ENV_PROD/manifest.webmanifest",
         "/PWA_DEMO_ENV_PROD/polyfills-ERLYOUQC.js",
         "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css"
@@ -108,7 +108,7 @@
   "dataGroups": [],
   "hashTable": {
     "/PWA_DEMO_ENV_PROD/assets/config/config.backup.json": "b38793e12aee63f3d9d4a472664584af1c4e76a2",
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "cf42628c4ae59a17e570ff4614c445d962d21e63",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "154f3850485ad858692911afed0d325a97e35ace",
     "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "4095aef6d52f571513c765d8ad6f1e6a8afb152f",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "4a8728c8bd972af81187a4da622979133a8cf0c9",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
@@ -121,7 +121,7 @@
     "/PWA_DEMO_ENV_PROD/assets/demos/dartDemo/dart_Curriculum_base.json": "09d3eed291f44ddfc88b40c8553c886195d06da9",
     "/PWA_DEMO_ENV_PROD/assets/demos/dartDemo/dart_Demos_base.json": "0569ff8e4b38863085fdd1b362ef815d41213809",
     "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Curriculum_base.json": "c5cb47a936b0f9bc39bd5fcebfaf615e8cf8c497",
-    "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "de281e5ba5e7bcfb7afc52f8498471ac7ea7a314",
+    "/PWA_DEMO_ENV_PROD/assets/demos/djangoDemo/django_Demos_base.json": "e3493cdf1c4f259e73bfcefe41962e65543f8737",
     "/PWA_DEMO_ENV_PROD/assets/demos/goLangDemo/goLang_Demos_base.json": "e0822ff5ef500d349174fe91bf8d0dc3fdbc4d73",
     "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Curriculum_base.json": "cf322974de925ae07a53966e46ba217f98daf31a",
     "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Demos_base.json": "febf7987c163215b9732b38c830675c0ea5dea5e",
@@ -181,8 +181,8 @@
     "/PWA_DEMO_ENV_PROD/chunk-PMOVCFET.js": "7b864cebddc9344ef37d7dedd6aaaccd963aa458",
     "/PWA_DEMO_ENV_PROD/chunk-QBUHZOWM.js": "f9a114e2c2299184dc44a9cf400cca6748d4f06f",
     "/PWA_DEMO_ENV_PROD/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/PWA_DEMO_ENV_PROD/index.html": "1309a1986646dd82757a8f267dba1f05afb2ed85",
-    "/PWA_DEMO_ENV_PROD/main-PJMLOHWA.js": "b92032ca5455552c2f1f40ff7336d076bbba043a",
+    "/PWA_DEMO_ENV_PROD/index.html": "b9065ce1c56dd25df4cf2fb4d3b2f6897514b71b",
+    "/PWA_DEMO_ENV_PROD/main-RSL6DHMG.js": "e71dd6a453583429edd22dd637cbb1eb430d1908",
     "/PWA_DEMO_ENV_PROD/manifest.webmanifest": "74d9408e9667c5dd0c7ab01c3c5b5d2e1ea5063a",
     "/PWA_DEMO_ENV_PROD/polyfills-ERLYOUQC.js": "a5955bd090cb03ab54dd7dfcd8139ab0a8d8dd7f",
     "/PWA_DEMO_ENV_PROD/styles-TGGK6DTO.css": "b4b303773c164ca15ba4f7f09c5ce83918d24668"

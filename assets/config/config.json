@@ -1,9 +1,9 @@
 {
     "APP INFO"                                     : "-----------------------------------------",
-    "GIT-TITLE"                                    : "[ANGULAR DEMO] - [ENV_PROD] v[3.5.21]",
+    "GIT-TITLE"                                    : "[ANGULAR DEMO] - [ENV_PROD] v[3.5.22]",
     "appBrand"                                     : "[ANGULAR DEMO]",
     "appEnv"                                       : "[ENV_PROD]",
-    "appVersion"                                   : "3.5.21",
+    "appVersion"                                   : "3.5.22",
     "TECHNICAL INFO"                               : "-----------------------------------------",
     "gitHubRepo"                                   : "https://github.com/aperezNWO/PWA_DEMO_ENV_PROD.git",
     "techDocRoot"                                  : "aperezNWOProtonmail",
@@ -165,5 +165,5 @@
     "baseUrlDjangoPythonTF"                            : "https://django-setup-linux-latest-aqt9.onrender.com/",
     "baseUrlDjangoPythonTFDocker"                      : "https://docker.io/apereznwogmail/django_setup_linux:latest",
     "baseUrlDjangoPythonTFRepo"                        : "https://github.com/aperezNWO/django_setup_linux/",
-    "baseUrlDjangoPythonTFModule"                      : "#/GridParam?searchTerm=Tensorflow&pageName=PAGE_DEMOS_DJANGO_PYTHON"
+    "baseUrlDjangoPythonTFModule"                      : "#/GridParam?pageName=PAGE_DEMOS_DJANGO_PYTHON"
 }
