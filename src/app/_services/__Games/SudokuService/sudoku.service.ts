@@ -13,6 +13,12 @@ export class SudokuService extends BaseService {
   // FIELDS
   ////////////////////////////////////////////////////////////////
 
+  p_url_node_js_base: string = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}`;
+
+  ////////////////////////////////////////////////////////////////
+  // CONSTRUCTOR / INITIALIZE METHODS
+  ////////////////////////////////////////////////////////////////
+
   constructor(public http : HttpClient, public _configService : ConfigService) {
       //
       super();
@@ -24,7 +30,7 @@ export class SudokuService extends BaseService {
   //
   _GetSudoku_NodeJS(): Observable<string> {
     //
-    let p_url: string = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}Sudoku_Generate_NodeJS`;
+    let p_url : string = `${this.p_url_node_js_base}Sudoku_Generate_NodeJS`;
     //
     let sudokuGenerated: Observable<string> = this.http.get<string>(
       p_url,
@@ -75,7 +81,7 @@ export class SudokuService extends BaseService {
   }; //
   _SolveSudoku_NodeJS(p_matrix: string): Observable<string> {
     //
-    let p_url: string = `${this._configService.getConfigValue('baseUrlNodeJsOcr')}Sudoku_Solve_NodeJS?p_matrix=${p_matrix}`;
+    let p_url : string = `${this.p_url_node_js_base}Sudoku_Solve_NodeJS?p_matrix=${p_matrix}`;
     //
     let sudokuSolved: Observable<string> = this.http.get<string>(
       p_url,
