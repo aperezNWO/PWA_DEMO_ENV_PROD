@@ -262,7 +262,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
               {
                   type                  : '(Backend)',
                   name                  : '[App v. / Kotlin / SpringBoot]',
-                  features              : '<db>',
+                  features              : '<Db>',
                   appVersion            : this._KotlinAppVersion,
                   stdVersion            : this._KotlinVersion,
                   apiOrServerVersion    : this._KotlinWebServerVersion,
