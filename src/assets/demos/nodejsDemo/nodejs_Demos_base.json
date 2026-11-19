@@ -80,7 +80,7 @@
       "field_2"          : "./#/FractalDemo?langName=JS",
       "field_3"          : "https://github.com/aperezNWO/cs_nodejs_ocr_/blob/main/services/FractalEngine.js",
       "field_6"          : "https://en.wikipedia.org/wiki/Fractal",
-      "field_4"          : "{{baseUrlNodeJsOcr}}api/OpenCv/generateJuliaImage",
+      "field_4"          : "{{baseUrlNodeJsOcr}}api/fractal/leaf",
       "field_10"         : "fa1735e2-b0b9-4fbb-bbb4-d4ee2bdcf6bd"
   }
 ]
