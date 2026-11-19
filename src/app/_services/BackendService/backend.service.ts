@@ -128,7 +128,7 @@ export class BackendService extends BaseService implements OnInit {
   }
 
   getPersonsDjangoPython(): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getAllPersons?format=json`;
+    const p_url = `${this._configService.getConfigValue('baseUrlDjangoPythonTF')}getAllPersons?format=json`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
@@ -174,7 +174,7 @@ export class BackendService extends BaseService implements OnInit {
   }
 
   getLogRemotoDjangoPython(_searchCriteria: SearchCriteria): Observable<string> {
-    const p_url = `${this._configService.getConfigValue('baseUrlDjangoPython')}getAllLogs?format=json`;
+    const p_url = `${this._configService.getConfigValue('baseUrlDjangoPythonTF')}getAllLogs?format=json`;
     return this.http.get<string>(p_url, this.HTTPOptions_JSON);
   }
 
