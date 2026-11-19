@@ -43,7 +43,7 @@
         "field_1"          : "NodeJs, codesandbox, Chat, Socket.io",
         "field_2"          : "./#/Chat",
         "field_3"          : "",
-        "field_4"          : "{{baseUrlNodeJsOcr}}",
+        "field_4"          : "{{baseUrlNodeJsOcr}}api/socket/diagnostics",
         "field_6"          : "https://socket.io/",
         "field_10"         : "1996fa99-4e01-42eb-ac45-98e2918208d9"
     },
