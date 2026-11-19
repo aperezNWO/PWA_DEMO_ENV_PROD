@@ -15,7 +15,7 @@ export class ChatService {
   //
   constructor(configService : ConfigService) {
     //
-    let url =  configService.getConfigValue("baseUrlNodeJs");
+    let url =  configService.getConfigValue("baseUrlNodeJsOcr");
     //
     //console.log("Setting chat from url : " + url);
     //
