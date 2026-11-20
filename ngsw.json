@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1795141132281,
+  "timestamp": 1795141396511,
   "index": "/PWA_DEMO_ENV_PROD/index.html",
   "assetGroups": [
     {
@@ -108,7 +108,7 @@
   "dataGroups": [],
   "hashTable": {
     "/PWA_DEMO_ENV_PROD/assets/config/config.backup.json": "b38793e12aee63f3d9d4a472664584af1c4e76a2",
-    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "4626bb9769743ba77dd697aea6464de0b9747962",
+    "/PWA_DEMO_ENV_PROD/assets/config/config.json": "249de4eac82c46fad89266e83109bddec68be6df",
     "/PWA_DEMO_ENV_PROD/assets/config/mainPages.json": "4095aef6d52f571513c765d8ad6f1e6a8afb152f",
     "/PWA_DEMO_ENV_PROD/assets/config/scm.json": "4a8728c8bd972af81187a4da622979133a8cf0c9",
     "/PWA_DEMO_ENV_PROD/assets/demos/aiDemo/ai_Curriculum_base.json": "35fc4abfab3b6513cfbe59156d384aeda355eafc",
@@ -126,7 +126,7 @@
     "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Curriculum_base.json": "cf322974de925ae07a53966e46ba217f98daf31a",
     "/PWA_DEMO_ENV_PROD/assets/demos/kotlinDemo/kotlin_Demos_base.json": "febf7987c163215b9732b38c830675c0ea5dea5e",
     "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_Curriculum_base.json": "989628b99da2028ff7ee8b8407d82420bf6b108a",
-    "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "bb2fbbaf736d5960323712e8c5cc8ddecbafbdb3",
+    "/PWA_DEMO_ENV_PROD/assets/demos/netCoreDemo/netcore_demos_base.json": "79b9b0b3c1eca67381c502844ad76084d8dd4c3e",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Curriculum_base.json": "d9a5f04e6eb21310eab505a8c000ac28a6b050bb",
     "/PWA_DEMO_ENV_PROD/assets/demos/nodejsDemo/nodejs_Demos_base.json": "e91e93cb55f14a6e168541815cea63af16590b9b",
     "/PWA_DEMO_ENV_PROD/assets/demos/rustDemo/rust_Demos_base.json": "8a6bbb93abfad92eadd68063d8431e6774d23bc4",
