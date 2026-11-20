@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Input } from '@angular/core';
 import { _environment                    } from 'src/environments/environment';
 import { ConfigService                   } from 'src/app/_services/__Utils/ConfigService/config.service';
 import { PAGE_ANGULAR_DEMO_LANDING       } from 'src/app/_models/common';
-import { Params, RouterLink                          } from '@angular/router';
+import { Params, RouterLink              } from '@angular/router';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Params, RouterLink                          } from '@angular/router';
     imports : [
         RouterLink,
     ],
-    standalone: true 
+    standalone: true
 })
 export class LandingComponent implements AfterViewInit {
   //
@@ -26,21 +26,21 @@ export class LandingComponent implements AfterViewInit {
   }
   //
   ngAfterViewInit(): void {
-    // 
+    //
     this.loadLandingPage();
   }
   //
   loadLandingPage()
   {
-      //      
-      this.configService._loadMainPages().then( ()=> 
+      //
+      this.configService._loadMainPages().then( ()=>
       {
               //
               const pageData = _environment.mainPageListDictionary?.[PAGE_ANGULAR_DEMO_LANDING];
               const pageName = this.LandingPage? this.LandingPage :  pageData?.page_name;
               //
               if (pageName && typeof pageName === 'string') {
-                
+
                   //
                   console.log(`Selected Landing Page : ${pageName}`);
 
@@ -60,7 +60,7 @@ export class LandingComponent implements AfterViewInit {
               }
       });
   }
-  // 
+  //
   parseQueryParams(str: string): Params {
         // Comprehensive validation
         if (typeof str !== 'string' || !str.trim()) {
@@ -73,7 +73,7 @@ export class LandingComponent implements AfterViewInit {
             .replace(/['"]/g, '')
             .replace(/\s+/g, ' ')
             .trim();
-        
+
         // Split into key-value pairs
         return cleanStr.split(',').reduce((params, pair) => {
             const [key, value] = pair.split(':').map(s => s.trim());
