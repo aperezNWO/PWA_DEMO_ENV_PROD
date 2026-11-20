@@ -404,10 +404,6 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
   --[_] PARAM CORS FROM INI FILE.
 
-  --[_] update demos.
-
-  --[_] update curriculums
-
   --[_] web assembly links.
 
 -- [x] about -> techinal speces -> c++ -> algorithms -> cpp_web_server_samples & searchTerm=algorithm
@@ -418,17 +414,15 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 -- [_] Libraries / socket.io entry.
 
--- [_] Docker Contingency
+-- [_] Get passwords and connection strings by oauth.
 
-    --[x] disable j2see apps / redirect to kotlin.
+-- [_] BaseUrlRepo apereznwogmail no sensitive data.
 
-    --[x] Supress Swift and java from render.
+-- [_] github aperezNWO private.
 
-    -- [x] merge cppAlgorithm + cppTensorflow.
+--[_] update demos.
 
-    -- [_] merge python linux / windows.
-
-    -- [_] merge node.js / node.js ocr.
+--[_] update curriculums
 
 ////////////////////////////////////////////////////////////////////////////////
 -- [_] SWEBOK SOFTWARE QUALITY CHECKLIST
@@ -441,5 +435,9 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 ////////////////////////////////////////////////////////////////////////////////
 
 -- [_] UPWORK.
+
+-- [_] Domain based customers.
+
+-- [_] Get involved ibto a community / corporation.
 
 ////////////////////////////////////////////////////////////////////////////////

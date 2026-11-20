@@ -1,6 +1,17 @@
 /////////////////////////////////////////////////////////////////
 // STRATEGY DONE
 /////////////////////////////////////////////////////////////////
+-- [x] Docker Contingency
+
+    --[x] disable j2see apps / redirect to kotlin.
+
+    --[x] Supress Swift and java from render.
+
+    -- [x] merge cppAlgorithm + cppTensorflow.
+
+    -- [x] merge python linux / windows.
+
+    -- [x] merge node.js / node.js ocr.
 
   --[x] config naming convention : CppWebServer<feature> -> CppWebServerAlgorithm
 
