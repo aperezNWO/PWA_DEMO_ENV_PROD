@@ -1,6 +1,106 @@
 /////////////////////////////////////////////////////////////////
 // STRATEGY DONE
 /////////////////////////////////////////////////////////////////
+
+            --[x] cleangetxxxversions() ??? ==> ask i.a.
+
+            --[x] Python App Version.
+
+            --[x] Python swagger dark theme.
+
+            --[x] node.js health() endpoints.
+
+            --[x] SWIFT SHORT DOCKER DEPLOY.
+
+            --[x] LANGUAJE / SERVER VERSION
+
+                          --[x] ZIG.
+
+                          --[x] Rust.
+
+                          --[x] Golang.
+
+                          --[x] Dart.
+
+                          --[X] Kotlin.
+
+                          --[X] J2SE.
+
+                          --[x] (missing from lookup) C++ web server.
+
+                              --[x] lang version.
+
+                              --[x] server version.
+
+                          --[x] zig / c++ web server group
+
+                     --[X] Node.js / ocr.
+
+                              --[x] lang version / repo link.
+
+                              --[x] server version / health link / SWAGGER.
+
+                              --[x] SWAGGER dymamic root.
+
+                      --[x] PYTHON
+
+                          --[x] DJANGO-WINDOWS
+
+                              --[x] LINK TO HEALTH / SWAGGER (complete / arrange links).
+
+                              --[x] LINK TO REPO / PRIVATE.
+
+                              --[x] LANGUAGE VERSION.
+
+                              --[x] SERVER VERSION.
+                                      {6.0.8}
+
+                        --[x] DJANGO-LINUX
+
+                              --[x] LINK TO HEALTH / SWAGGER.
+
+                              --[x] LINK TO REPO / PRIVATE.
+
+                              --[x] SERVER VERSION.
+                                      {6.0.8}
+
+                              --[x] LANGUAGE VERSION.
+
+  --[X] (missing from lookup) Swift.
+
+  --[X] node.js dynamic root url  - swagger.
+
+  --[X] [App v. / xx ] name prefix.
+
+  --[x] gitHub Repo FROM CONFIG.
+
+  --[x] TECHNICAL SPECS LOOK UP TABLE
+
+        --[x] TYPE ATTRIBUTE.
+        --[x] FEATURES LIST <, , ,>.
+
+--[x] "CppWebServerDemo.cpp". OOP.
+
+-- [x] about -> techinal speces -> c++ -> algorithms -> cpp_web_server_samples & searchTerm=algorithm
+
+-- [x] C++ HTTP WEB SERVER.
+
+    --[x] CPP_GCC_TEMPLATE.
+
+    --[x] CPP_WEB_SERVER CLASS.
+
+    --[x] CPP_GCC_ALGORITHM_DOCKER / UPDATE SCM.TXT.
+
+    --[x] C++ RAW ALGORITHMS.
+
+    --[x] Param : [DEMOS - C++ / HTTP WEB SERVER ] -> json files
+
+          --[x] Curriculum.
+
+          --[x] cppWebServer_Demos_base.json.
+
+          --[x] update references.
+
 -- [x] Docker Contingency
 
     --[x] disable j2see apps / redirect to kotlin.

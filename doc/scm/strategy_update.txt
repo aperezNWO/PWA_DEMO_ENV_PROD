@@ -43,19 +43,6 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 //////////////////////////////////////////////////////////////
 
-  --[X] (missing from lookup) Swift.
-
-  --[X] node.js dynamic root url  - swagger.
-
-  --[X] [App v. / xx ] name prefix.
-
-  --[x] gitHub Repo FROM CONFIG.
-
-  --[x] TECHNICAL SPECS LOOK UP TABLE
-
-        --[x] TYPE ATTRIBUTE.
-        --[x] FEATURES LIST <, , ,>.
-
 --[_] SHOW REFERENCES ==> LIBRAREIS ==> NAME V[X.X.X].
 
 --[_] Test visual studio code angent window ==> ask copilot about functionality.
@@ -270,81 +257,15 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
             --[_] external json source.
 
-            --[x] cleangetxxxversions() ??? ==> ask i.a.
-
             --[_] MS SQL SERVER VERSION.
 
             --[_] .NET CORE SERVER VERSIONS.
 
-            --[_] LANGUAJE / SERVER VERSION
-
-                          --[x] ZIG.
-
-                          --[x] Rust.
-
-                          --[x] Golang.
-
-                          --[x] Dart.
-
-                          --[X] Kotlin.
-
-                          --[X] J2SE.
-
-                          --[x] (missing from lookup) C++ web server.
-
-                              --[x] lang version.
-
-                              --[x] server version.
-
-                          --[x] zig / c++ web server group
-
-                     --[X] Node.js / ocr.
-
-                              --[_] lang version / repo link.
-
-                              --[_] server version / health link / SWAGGER.
-
-                              --[_] SWAGGER dymamic root.
-
-                      --[_] PYTHON
-
-                          --[_] DJANGO-WINDOWS
-
-                              --[_] LINK TO HEALTH / SWAGGER (complete / arrange links).
-
-                              --[x] LINK TO REPO / PRIVATE.
-
-                              --[x] LANGUAGE VERSION.
-
-                              --[x] SERVER VERSION.
-                                      {6.0.8}
-
-                        --[_] DJANGO-LINUX
-
-                              --[x] LINK TO HEALTH / SWAGGER.
-
-                              --[x] LINK TO REPO / PRIVATE.
-
-                              --[x] SERVER VERSION.
-                                      {6.0.8}
-
-                              --[x] LANGUAGE VERSION.
-
             --[_] django dynamic site config - render.
-
-            --[_] Python App Version.
-
-            --[_] Python swagger dark theme.
-
-            --[_] node.js health() endpoints.
-
-            --[_] SWIFT SHORT DOCKER DEPLOY.
 
             --[_] LINK TO MODULE.
 
             --[_] APP VERSION.
-
-            --[_] "CppWebServerDemo.cpp". OOP.
 
             --[_] ZIG CORS.
 
@@ -362,7 +283,7 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
     --[_] SCM.JSON.
 
-  --[_] HEALTH ENDPOINT
+  --[x] HEALTH ENDPOINT
 
         --[X] ENDPOINT LOOKUP DICTIONARY.
 
@@ -384,27 +305,7 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 --[_] PYTHON - MODIFY TIC TAC TOE TENSORFLOW/PYTHON TRAINING LOGIC.
 
---[_] C++ HTTP WEB SERVER.
-
-    --[x] CPP_GCC_TEMPLATE.
-
-    --[x] CPP_WEB_SERVER CLASS.
-
-    --[x] CPP_GCC_ALGORITHM_DOCKER / UPDATE SCM.TXT.
-
-    --[_] C++ RAW ALGORITHMS.
-
-    --[_] Param : [DEMOS - C++ / HTTP WEB SERVER ] -> json files
-
-          --[_] Curriculum.
-
-          --[_] cppWebServer_Demos_base.json.
-
-          --[_] update references.
-
-  --[_] PARAM CORS FROM INI FILE.
-
--- [x] about -> techinal speces -> c++ -> algorithms -> cpp_web_server_samples & searchTerm=algorithm
+--[_] PARAM CORS FROM INI FILE.
 
 -- [_] Libraries / Mixed Search / Index/ searchTerm.
 
@@ -414,7 +315,7 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 --[_] web assembly links.
 
---[_] Baudi ocr.
+--[_] Baidu ocr.
 
 -- [_] Get passwords and connection strings by oauth.
 
