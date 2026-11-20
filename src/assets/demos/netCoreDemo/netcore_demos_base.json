@@ -30,7 +30,7 @@
         "description"      : "Generate files PDF",
         "field_1"          : ".net core, sql server, api rest, EPPPlus",
         "field_2"          : "./#/FilesGenerationPDF/",
-        "field_3"          : "https://github.com/aperezNWO/ASP_NET_CORE_CSHARP_DEMO/blob/c82bc7d07a491f3292161be872da3d7ea0433830/mcsd.Core.Library/Managers/PDFManager.cs#L31",
+        "field_3"          : "https://github.com/aperezNWO/ASP_NET_CORE_CSHARP_DEMO/blob/main/mcsd.Service/mcsd.Service/Controllers/PDFManagerController.cs",
         "field_4"          : "{{baseUrlNetCore}}api/PDFManager/GetPdf?subjectName=taty",
         "field_6"          : "https://itextpdf.com/products/itextsharp",
         "field_10"         : "0cd41eee-f54c-44be-b03a-422769b1a8f2"
@@ -83,4 +83,4 @@
         "field_6"          : "https://learn.microsoft.com/en-us/aspnet/core/performance/caching/memory?view=aspnetcore-10.0",
         "field_10"         : "0b0b083f-bda7-44b8-9922-2365317ee934"
 	}
-]  
+]
