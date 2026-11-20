@@ -404,8 +404,6 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
   --[_] PARAM CORS FROM INI FILE.
 
-  --[_] web assembly links.
-
 -- [x] about -> techinal speces -> c++ -> algorithms -> cpp_web_server_samples & searchTerm=algorithm
 
 -- [_] Libraries / Mixed Search / Index/ searchTerm.
@@ -413,6 +411,10 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 -- [_] Libraries / Web Assembly Entry.
 
 -- [_] Libraries / socket.io entry.
+
+--[_] web assembly links.
+
+--[_] Baudi ocr.
 
 -- [_] Get passwords and connection strings by oauth.
 
