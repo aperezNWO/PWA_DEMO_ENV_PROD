@@ -214,7 +214,55 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     healthLink            : `${this._baseUrlPythonDjango}api/docs/`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlDjangoPythonModule')}`,
                 },*/
+                /*
                 {
+                    type                 : '(Backend)',
+                    name                 : '[App v. / C++ / cpp-httplib]',
+                    features             : '<Algorithm>',
+                    appVersion           : this._CppAppVersion,
+                    stdVersion           : this._CppVersion,
+                    apiOrServerVersion   : this._CppWebServerVersion,
+                    repoLink             : `${this.__baseUrlCppWebServerRepo}`,
+                    healthLink           : `${this.__baseUrlCppWebServer}health`,
+                    moduleLink           : `${this.configService.getConfigValue('baseUrlCppWebServerModule')}`,
+                }, */
+                /*
+                {
+                    type                 : '(Backend)',
+                    name                 : '[App v. / Node.js / Express]',
+                    features             : '<db>',
+                    appVersion           : this._NodeAppVersion,
+                    stdVersion           : this._NodeVersion,
+                    apiOrServerVersion   : this._NodeWebServerVersion,
+                    healthLink           : `${this.__baseUrlNodeJs}api-docs`,
+                    repoLink             : this.__baseUrlNodeJsRepo,
+                    moduleLink           : `${this.configService.getConfigValue('baseUrlNodeJsModule')}`,
+                },*/
+                /*
+                {
+                    type                  : '(Backend)',
+                    name                  : '[App v. / Java / SpringBoot]',
+                    features              : '<db>',
+                    appVersion            : this._JavaAppVersion,
+                    stdVersion            : this._JavaVersion,
+                    apiOrServerVersion    : this._JavaWebServerVersion,
+                    repoLink              : `${this.configService.getConfigValue('baseUrlSpringBootJavaRepo')}`,
+                    healthLink            : `${this.configService.getConfigValue('baseUrlSpringBootJava')}health`,
+                    moduleLink            : `${this.configService.getConfigValue('baseUrlSpringBootJavaModule')}`,
+                    },*/
+                    /*
+                    {
+                        type                  : '(Backend)',
+                        name                  : '[App v. / Swift / Vapor]',
+                        features              : '<Apple lang>',
+                        appVersion            : this._SwiftAppVersion,
+                        stdVersion            : this._SwiftVersion,
+                        apiOrServerVersion    : this._SwiftWebServerVersion,
+                        repoLink              : `${this.configService.getConfigValue('baseUrlSwiftLangRepo')}`,
+                        healthLink            : `${this.configService.getConfigValue('baseUrlSwiftLang')}health`,
+                        moduleLink            : `${this.configService.getConfigValue('baseUrlSwiftLangModule')}`,
+                        },*/
+              {
                     type                  : '(Backend)',
                     name                  : '[App v / Python / Django]',
                     features              : '<Db,ML>',
@@ -225,18 +273,6 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     healthLink            : `${this._baseUrlPythonDjangoTF}api/docs/`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlDjangoPythonTFModule')}`,
               },
-              /*
-              {
-                  type                 : '(Backend)',
-                  name                 : '[App v. / Node.js / Express]',
-                  features             : '<db>',
-                  appVersion           : this._NodeAppVersion,
-                  stdVersion           : this._NodeVersion,
-                  apiOrServerVersion   : this._NodeWebServerVersion,
-                  healthLink           : `${this.__baseUrlNodeJs}api-docs`,
-                  repoLink             : this.__baseUrlNodeJsRepo,
-                  moduleLink           : `${this.configService.getConfigValue('baseUrlNodeJsModule')}`,
-              },*/
               {
                   type                  : '(Backend)',
                   name                  : '[App v / Node.js / Express]',
@@ -247,18 +283,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                   healthLink            : `${this.__baseUrlNodeJsOcr}api-docs`,
                   repoLink              : this.__baseUrlNodeJsOcrRepo,
                   moduleLink            : `${this.configService.getConfigValue('baseUrlNodeJsOcrModule')}`,
-              },/*
-              {
-                  type                  : '(Backend)',
-                  name                  : '[App v. / Java / SpringBoot]',
-                  features              : '<db>',
-                  appVersion            : this._JavaAppVersion,
-                  stdVersion            : this._JavaVersion,
-                  apiOrServerVersion    : this._JavaWebServerVersion,
-                  repoLink              : `${this.configService.getConfigValue('baseUrlSpringBootJavaRepo')}`,
-                  healthLink            : `${this.configService.getConfigValue('baseUrlSpringBootJava')}health`,
-                  moduleLink            : `${this.configService.getConfigValue('baseUrlSpringBootJavaModule')}`,
-                  },*/
+              },
               {
                   type                  : '(Backend)',
                   name                  : '[App v. / Kotlin / SpringBoot]',
@@ -280,18 +305,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink              : `${this.configService.getConfigValue('baseUrlDartRepo')}`,
                     healthLink            : `${this.configService.getConfigValue('baseUrlDart')}health`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlDartModule')}`,
-                },/*
-                {
-                    type                  : '(Backend)',
-                    name                  : '[App v. / Swift / Vapor]',
-                    features              : '<Apple lang>',
-                    appVersion            : this._SwiftAppVersion,
-                    stdVersion            : this._SwiftVersion,
-                    apiOrServerVersion    : this._SwiftWebServerVersion,
-                    repoLink              : `${this.configService.getConfigValue('baseUrlSwiftLangRepo')}`,
-                    healthLink            : `${this.configService.getConfigValue('baseUrlSwiftLang')}health`,
-                    moduleLink            : `${this.configService.getConfigValue('baseUrlSwiftLangModule')}`,
-                    },*/
+                },
                 {
                     type                  : '(Backend)',
                     name                  : '[App v. / Rust / Actix-web]',
@@ -324,18 +338,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink             : `${this.configService.getConfigValue('baseUrlZigLangRepo')}`,
                     healthLink           : `${this.configService.getConfigValue('baseUrlZigLang')}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlZigLangModule')}`,
-                },/*
-                {
-                    type                 : '(Backend)',
-                    name                 : '[App v. / C++ / cpp-httplib]',
-                    features             : '<Algorithm>',
-                    appVersion           : this._CppAppVersion,
-                    stdVersion           : this._CppVersion,
-                    apiOrServerVersion   : this._CppWebServerVersion,
-                    repoLink             : `${this.__baseUrlCppWebServerRepo}`,
-                    healthLink           : `${this.__baseUrlCppWebServer}health`,
-                    moduleLink           : `${this.configService.getConfigValue('baseUrlCppWebServerModule')}`,
-                }, */
+                },
                 {
                     type                 : '(Backend)',
                     name                 : '[App v. / C++ / cpp-httplib]',
