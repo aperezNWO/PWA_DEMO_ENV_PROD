@@ -31,6 +31,8 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 -- [_] TODO LIST.
 ////////////////////////////////////////////////////////////////////////////////
 
+--[_] Fix brave nsvigator go/rust/zig/c++
+
 --[_] windows backends
 
         --[_] .NET CORE PROJECTS WITH GITHUB CODESPACES.
@@ -198,8 +200,6 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
       --[_] https://deepwiki.com/Exam70486/PWA_DEMO_ENV_PROD
 
---[_] Fix brave nsvigator go/rust/zig/c++
-
 --[_] Online / Streaming / Radio / Video app (chillout channel / dev. channel)
 
 --[_] Domain specific solution / upwork.
@@ -219,8 +219,6 @@ Thar the north I want to give to an existing basic showcase I programmes using a
         --[x] Server.
 
         --[_] Client.
-
---[_] Collaborative benchmarking.
 
 --[_] CURL DOS OUPTUT GRAPHS TESTING.
 
@@ -250,7 +248,7 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
             --[_] SWEBOK LIST : SECURITY / CORS / END POINTS NAMING CONVENTION.
 
-            --[] LINKS TO HOSTING (DOCKER / RENDER / SOMEE).
+            --[_] LINKS TO HOSTING (DOCKER / RENDER / SOMEE).
 
             --[_] ABOUT -> TECH SPECS -> App Type (Backend / DLL).
 
@@ -288,8 +286,6 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 -- [_] github aperezNWO private.
 
--- [_] update curriculums
-
 --[_] version 4.0.0 : LANDING PAGE - DROP DOWN LIST MENU.
 
     --[_] Topic / Features
@@ -304,7 +300,7 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
         -- [_] Libraries / socket.io entry.
 
-    --[_] Domain Specific.
+    --[_] Domain Specific / Collaborative benchmarking.
 
     --[_] Language Clasification
 

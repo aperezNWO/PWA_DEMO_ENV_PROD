@@ -2,6 +2,8 @@
 // STRATEGY DONE
 /////////////////////////////////////////////////////////////////
 
+--[x] update curriculums.
+
 --[X] Add rust / go link.
 
 --[X] Modify dynamic landing with dropdown list.
