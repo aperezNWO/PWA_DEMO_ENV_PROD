@@ -2,6 +2,10 @@
 // STRATEGY DONE
 /////////////////////////////////////////////////////////////////
 
+--[X] Add rust / go link.
+
+--[X] Modify dynamic landing with dropdown list.
+
 --[X] DART
 
 --[x] DART console app.

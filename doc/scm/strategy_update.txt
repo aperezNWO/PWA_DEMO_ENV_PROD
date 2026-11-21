@@ -53,6 +53,30 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 --[X] SHOW REFERENCES ==> LIBRAREIS ==> NAME V[X.X.X].
 
+--[_] update demos.
+
+       --[_] URL and navigation fixes.
+
+       --[_] UPDATE FRACTAL REFERENCE LINKS.
+
+       --[_] SCM.
+
+            --[_] protonmail repo.
+
+            --[_] C++ AND OTHER LANGUAGES REPO INFO.
+
+            --[_] Devin doc replace from config value {{devinDoc}}.
+
+            --[_] url Repo  replace from config value {{devinDoc}}.
+
+            --[_] RENDER.
+
+            --[_] DOCKER.
+
+            --[_] CRON JOB.
+
+            --[_] FLUTTER DEMO.
+
 --[_] COMPLETE LLM DEMO.
 
         --[_] Interpositive.
@@ -287,33 +311,6 @@ Thar the north I want to give to an existing basic showcase I programmes using a
           --[_] LANDING MENU CLASSIFIED BY LANG TYPE.
 
           --[_] c / c++ / [c++ + .net core] / rust / [rust + webassembly] / go / go GRPC - benchmark (c++ demos basis).
---[_] update demos.
-
-       --[_] URL and navigation fixes.
-
-       --[=>] Add rust / go link.
-
-            --[=>] Modify dynamic landing with dropdown list.
-
-       --[_] UPDATE FRACTAL REFERENCE LINKS.
-
-       --[_] SCM.
-
-            --[_] protonmail repo.
-
-            --[_] C++ AND OTHER LANGUAGES REPO INFO.
-
-            --[_] Devin doc replace from config value {{devinDoc}}.
-
-            --[_] url Repo  replace from config value {{devinDoc}}.
-
-            --[_] RENDER.
-
-            --[_] DOCKER.
-
-            --[_] CRON JOB.
-
-            --[_] FLUTTER DEMO.
 
 ////////////////////////////////////////////////////////////////////////////////
 -- [_] SWEBOK SOFTWARE QUALITY CHECKLIST
