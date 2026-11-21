@@ -2,26 +2,14 @@ r///////////////////////////////////////////////////////////////////////////////
                         -- STRATEGY UPDATE --
 ////////////////////////////////////////////////////////////////////////////////
 
+-- [_] DOMAIN BASED PROPOSAL
+
 [1:36 a.m., 9/10/2026] pablo alejandro perez a: I came with a fresh idea about programming lsnguages showcasing. Something I baptized as Non-Punishing benchmarking. Instead of falling in the religious discussion trap of comparing a sewer with s hammer, i realized that is better to show with metrics that one language/framrwork is better suited for specific scenarios and even domains.
 
 Thar the north I want to give to an existing basic showcase I programmes using angular as frontend and several languages/frameworks as backends like. .net core/ c#, springboot / java, spring boot kotlin, node.js / express, swift / vapor, dart / actix web, go / http lib, rust / http lib, c++ / http lib, zig / httpblib
-[1:59 a.m., 9/10/2026] pablo alejandro perez a: Non punisging collaborative benchmsrk is other idea meaning. I uploades an image using angulat typescript, extracted the texr using c++ based ocr,  saved the binsey image and the exteacted text usibg a .net core / ns sql database, classified thextext using a tensorfliw/ python ml model, sent a processing report from a node.js smtp bsckend, or insread of a image i fearuresd a msndelbrot frac4tal engine built in rust/ webassembly; or inferred the big o notation from several sort or shortest path algorithns with kotlin; o created a high performsnce tetris autoplay (genetic algrithn)  game engine in go, dart or swift, a high lerformance 3d collisuin calculatin  in zig, complemented with online chat features with node.js socket io
+[1:59 a.m., 9/10/2026] pablo alejandro perez a: [Non punisging] collaborative benchmsrk is other idea meaning. I uploades an image using angulat typescript, extracted the texr using c++ based ocr,  saved the binsey image and the exteacted text usibg a .net core / ns sql database, classified thextext using a tensorfliw/ python ml model, sent a processing report from a node.js smtp bsckend, or insread of a image i fearuresd a msndelbrot frac4tal engine built in rust/ webassembly; or inferred the big o notation from several sort or shortest path algorithns with kotlin; o created a high performsnce tetris autoplay (genetic algrithn)  game engine in go, dart or swift, a high lerformance 3d collisuin calculatin  in zig, complemented with online chat features with node.js socket io
 
-////////////////////////////////////////////////////////////////////////////////
-
--- [_] TODO LIST.
-
-////////////////////////////////////////////////////////////////////////////////
-// DINAMYC LANDING PAGES
-////////////////////////////////////////////////////////////////////////////////
-
---[_] Topic / Features
-
---[_] Libraries.
-
---[_] Domain Specific.
-
---[_] Language Clasification
+-- [_] DINAMYC LANDING PAGES
 
 ├── 1. Presentation & Client Layer
 │   └── Angular 21 (TypeScript)
@@ -39,51 +27,33 @@ Thar the north I want to give to an existing basic showcase I programmes using a
     ├── Go (Axum/Gin - Fractal Engine)
     └── Rust (Axum - High-Throughput Compute Engine)
 
-      --[_] c / c++ / [c++ + .net core] / rust / [rust + webassembly] / go / go GRPC - benchmark (c++ demos basis).
+////////////////////////////////////////////////////////////////////////////////
+-- [_] TODO LIST.
+////////////////////////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////
+--[_] windows backends
 
---[_] SHOW REFERENCES ==> LIBRAREIS ==> NAME V[X.X.X].
+        --[_] .NET CORE PROJECTS WITH GITHUB CODESPACES.
 
---[_] Test visual studio code angent window ==> ask copilot about functionality.
+        --[_]  Object Pascal backend.
 
---[_] Free disk space.
+        --[_]  .NET Core.
 
---[_] visual studio alternatives zed.
+        --[_] Turbo C++ / Pascal.
 
---[_] podman vs docker.
+--[_] LINUX UBUNTU / KDE TEST.
 
---[_] Server: Go gRPC server with a WebSocket gateway.Client: Angular service using a WebSocket client that sends/receives Protobuf bytes
+    --[_] KDE COMMUNITY.
 
- --[_] Move VersionCache to APP_INIT.
+    --[_] CHECK CURRENT VOSTRO LAPTOP INSTALL / PARTITION.
 
- --[_] machine learning graph fix.
+    --[_] https://distrosea.com.
 
- --[_] version 4.0.0 : LANDING PAGE - DROP DOWN LIST MENU.
+ --[_] [ZIG RESEARCH] I needed a C compiler on Windows for a Neovim plugin. The Zig compiler was, by far, the easiest way to get a C compiler compared to Mingw, Clang, MSVC, or GCC. Awesome stuf.
 
- --[_] 1.fm landing page style.
+--[X] SHOW REFERENCES ==> LIBRAREIS ==> NAME V[X.X.X].
 
- --[_] RUST HTTP INTERCEPT.
-
- --[_] webRTC demo.
-
- --[_] https://deepwiki.com/Exam70486/PWA_DEMO_ENV_PROD
-
- --[_] full stack demo languages.
-
-       --[_] DART
-
-            --[x] console app.
-
-            --[x] DART PING / DOCKER / RENDER.
-
-            --[x] FRACTAL
-
-            --[_] CONTAC FORM FLUTTER.
-
-            --[_] About > Tech Info > Admin (Auth Required) > front (flutter) / back (kottlin).
-
- --[_] COMPLETE LLM DEMO.
+--[_] COMPLETE LLM DEMO.
 
         --[_] Interpositive.
 
@@ -101,47 +71,52 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
           --[_] Custom LLM.
 
-       --[_] MERGE DEMOS.
+         --[_] MERGE DEMOS.
 
-       --[_] ADD LINKS TO KEYS.
+         --[_] ADD LINKS TO KEYS / GET FROM CONFIG.
 
-       --[_] https://faraday.ai/
+         --[_] https://faraday.ai/
 
-      --[_]  groq Compound Mini is being decommissioned - enabled attribute.
+        --[_]  groq Compound Mini is being decommissioned - enabled attribute.
 
-      --[_] https://www.liquid.ai/models
+        --[_] https://www.liquid.ai/models
 
- --[_] socket.io - play audio/video online.
+        -- [_] Complete llm testing.
+
+        --[_] https://aistudio.xiaomimimo.com.
+
+        --[_] JEV.
+
+
+--[_] Test visual studio code angent window ==> ask copilot about functionality.
+
+--[_] Free disk space.
+
+--[_] visual studio alternatives zed.
+
+--[_] podman vs docker.
+
+--[_] Server: Go gRPC server with a WebSocket gateway.Client: Angular service using a WebSocket client that sends/receives Protobuf bytes
+
+ --[_] Move VersionCache to APP_INIT.
+
+ --[_] machine learning graph fix.
+
+ --[_] 1.fm landing page style.
+
+ --[_] webRTC demo.
+
+--[_] DART CONTACT FORM FLUTTER.
+
+    --[_] About > Tech Info > Admin (Auth Required) > front (flutter) / back (kottlin).
+
+--[_] socket.io - play audio/video online.
+
+     --[_] VIDEO CAPTURE DEMO.
 
      --[_] short videos on forms/ social media.
 
      --[_] voice record / streaming / authentication / sentient analisys.
-
- --[_] URL and navigation fixes.
-
-       --[=>] Add rust / go link.
-
-            --[=>] Modify dynamic landing with dropdown list.
-
-       --[_] UPDATE FRACTAL REFERENCE LINKS.
-
-       --[_] SCM.
-
-            --[_] protonmail repo.
-
-            --[_] C++ AND OTHER LANGUAGES REPO INFO.
-
-            --[_] Devin doc replace from config value {{devinDoc}}.
-
-            --[_] url Repo  replace from config value {{devinDoc}}.
-
-            --[_] RENDER.
-
-            --[_] DOCKER.
-
-            --[_] CRON JOB.
-
-            --[_] FLUTTER DEMO.
 
 --[_] GAMES UPDATE.
 
@@ -159,11 +134,7 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
      --[_] Complete all languages.
 
---[_] Devin doc   FROM CONFIG.
-
-          --[_] GRUPO-MATRIZ ACCOUNT.
-
-          --[_] VIDEO CAPTURE DEMO.
+      --[_] BigO notation.
 
 --[_] Fractal Demo.
 
@@ -193,10 +164,15 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 --[_]  DEVIN DOC / aperezNWOProtonmail.
 
-     --[_] https://deepwiki.com/aperezNWOProtonmail/PWA_DEMO_ENV_PROD.
+      --[_] https://deepwiki.com/aperezNWOProtonmail/PWA_DEMO_ENV_PROD.
 
-     --[_] https://gitdiagram.com/apereznwo/pwa_demo_env_prod
+      --[_] https://gitdiagram.com/apereznwo/pwa_demo_env_prod
 
+      --[_] Devin doc   FROM CONFIG.
+
+      --[_] GRUPO-MATRIZ ACCOUNT.
+
+      --[_] https://deepwiki.com/Exam70486/PWA_DEMO_ENV_PROD
 
 --[_] Fix brave nsvigator go/rust/zig/c++
 
@@ -208,21 +184,9 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 --[_] Domain specific algorithm, math, physics.
 
---[_] Zig Web Assembly.
-
 --[_] make repo private.
 
 --[_] DOCKER / PODMAN CI/CD (PYTHON/DJANGO CHANGES).
-
---[_] LINUX UBUNTU / KDE TEST.
-
-    --[_] KDE COMMUNITY.
-
-    --[_] CHECK CURRENT VOSTRO LAPTOP INSTALL / PARTITION.
-
-    --[_] https://distrosea.com.
-
---[_] .NET CORE PROJECTS WITH GITHUB CODESPACES.
 
 --[_] GOLDEN RATION SPIRAL FRACTAL.
 
@@ -232,26 +196,9 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
         --[_] Client.
 
-
---[_] Non-Punishing benchmarking
-
---[_] LANDING MENU CLASSIFIED BY LANG TYPE.
-
---[_] windows backends
-
-        --[_]  Object Pascal backend.
-
-        --[_]  .NET Core.
-
-        --[_] Turbo C++ / Pascal.
+--[_] Collaborative benchmarking.
 
 --[_] CURL DOS OUPTUT GRAPHS TESTING.
-
---[_] SWEBOK CHECKLIST.
-
---[_] https://aistudio.xiaomimimo.com.
-
---[_] jev.
 
 --[_] ABOUT.
 
@@ -269,19 +216,21 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
             --[_] ZIG CORS.
 
+            --[_] Zig Web Assembly.
+
+            --[_] RUST HTTP INTERCEPT.
+
             --[_] PYTHON CORS.
 
             --[_] program type | link to hosting.
 
- --[_] [ZIG RESEARCH] I needed a C compiler on Windows for a Neovim plugin. The Zig compiler was, by far, the easiest way to get a C compiler compared to Mingw, Clang, MSVC, or GCC. Awesome stuf.
+            --[_] SWEBOK LIST : SECURITY / CORS / END POINTS NAMING CONVENTION.
 
---[_] WebSocket docker / render / golang
+            --[] LINKS TO HOSTING (DOCKER / RENDER / SOMEE).
 
---[X] LINKS TO DOCKER / RENDER.
+            --[_] ABOUT -> TECH SPECS -> App Type (Backend / DLL).
 
-    --[_] ABOUT -> TECH SPECS -> App Type (Backend / DLL).
-
-    --[_] SCM.JSON.
+                  --[_] SCM.JSON.
 
   --[x] HEALTH ENDPOINT
 
@@ -301,19 +250,11 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 --[_] Render config from database.
 
---[_] node.js security update.
+--[_] node.js / GITHUB security update.
 
 --[_] PYTHON - MODIFY TIC TAC TOE TENSORFLOW/PYTHON TRAINING LOGIC.
 
 --[_] PARAM CORS FROM INI FILE.
-
--- [_] Libraries / Mixed Search / Index/ searchTerm.
-
--- [_] Libraries / Web Assembly Entry.
-
--- [_] Libraries / socket.io entry.
-
---[_] web assembly links.
 
 --[_] Baidu ocr.
 
@@ -323,15 +264,64 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 -- [_] github aperezNWO private.
 
+-- [_] update curriculums
+
+--[_] version 4.0.0 : LANDING PAGE - DROP DOWN LIST MENU.
+
+    --[_] Topic / Features
+
+    --[_] Libraries.
+
+        -- [_] Libraries / Mixed Search / Index/ searchTerm.
+
+        -- [_] Libraries / Web Assembly Entry / web assembly links.
+
+              --[_] WebSocket docker / render / golang.
+
+        -- [_] Libraries / socket.io entry.
+
+    --[_] Domain Specific.
+
+    --[_] Language Clasification
+
+          --[_] LANDING MENU CLASSIFIED BY LANG TYPE.
+
+          --[_] c / c++ / [c++ + .net core] / rust / [rust + webassembly] / go / go GRPC - benchmark (c++ demos basis).
 --[_] update demos.
 
---[_] update curriculums
+       --[_] URL and navigation fixes.
+
+       --[=>] Add rust / go link.
+
+            --[=>] Modify dynamic landing with dropdown list.
+
+       --[_] UPDATE FRACTAL REFERENCE LINKS.
+
+       --[_] SCM.
+
+            --[_] protonmail repo.
+
+            --[_] C++ AND OTHER LANGUAGES REPO INFO.
+
+            --[_] Devin doc replace from config value {{devinDoc}}.
+
+            --[_] url Repo  replace from config value {{devinDoc}}.
+
+            --[_] RENDER.
+
+            --[_] DOCKER.
+
+            --[_] CRON JOB.
+
+            --[_] FLUTTER DEMO.
 
 ////////////////////////////////////////////////////////////////////////////////
 -- [_] SWEBOK SOFTWARE QUALITY CHECKLIST
 ////////////////////////////////////////////////////////////////////////////////
 
 -- [_] CERTIFICATION.
+
+--[_]  SWEBOK CHECKLIST / SOFTWARE ARCHITECTURE QUALITY ATTRIBUTES.
 
 ////////////////////////////////////////////////////////////////////////////////
 -- [_] HOW TO SELL C++ SERVICES (ASK A.I.).
@@ -341,6 +331,8 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
 -- [_] Domain based customers.
 
--- [_] Get involved ibto a community / corporation.
+-- [_] Get involved ibto a community / corporation
+
+-- [_] Marketing videos.
 
 ////////////////////////////////////////////////////////////////////////////////

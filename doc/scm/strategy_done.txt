@@ -2,69 +2,77 @@
 // STRATEGY DONE
 /////////////////////////////////////////////////////////////////
 
-            --[x] cleangetxxxversions() ??? ==> ask i.a.
+--[X] DART
 
-            --[x] Python App Version.
+--[x] DART console app.
 
-            --[x] Python swagger dark theme.
+--[x] DART PING / DOCKER / RENDER.
 
-            --[x] node.js health() endpoints.
+--[x] DART FRACTAL.
 
-            --[x] SWIFT SHORT DOCKER DEPLOY.
+--[x] cleangetxxxversions() ??? ==> ask i.a.
 
-            --[x] LANGUAJE / SERVER VERSION
+--[x] Python App Version.
 
-                          --[x] ZIG.
+--[x] Python swagger dark theme.
 
-                          --[x] Rust.
+--[x] node.js health() endpoints.
 
-                          --[x] Golang.
+--[x] SWIFT SHORT DOCKER DEPLOY.
 
-                          --[x] Dart.
+--[x] LANGUAJE / SERVER VERSION
 
-                          --[X] Kotlin.
+            --[x] ZIG.
 
-                          --[X] J2SE.
+            --[x] Rust.
 
-                          --[x] (missing from lookup) C++ web server.
+            --[x] Golang.
 
-                              --[x] lang version.
+            --[x] Dart.
 
-                              --[x] server version.
+            --[X] Kotlin.
 
-                          --[x] zig / c++ web server group
+            --[X] J2SE.
 
-                     --[X] Node.js / ocr.
+            --[x] (missing from lookup) C++ web server.
 
-                              --[x] lang version / repo link.
+                --[x] lang version.
 
-                              --[x] server version / health link / SWAGGER.
+                --[x] server version.
 
-                              --[x] SWAGGER dymamic root.
+            --[x] zig / c++ web server group
 
-                      --[x] PYTHON
+        --[X] Node.js / ocr.
 
-                          --[x] DJANGO-WINDOWS
+                --[x] lang version / repo link.
 
-                              --[x] LINK TO HEALTH / SWAGGER (complete / arrange links).
+                --[x] server version / health link / SWAGGER.
 
-                              --[x] LINK TO REPO / PRIVATE.
+                --[x] SWAGGER dymamic root.
 
-                              --[x] LANGUAGE VERSION.
+        --[x] PYTHON
 
-                              --[x] SERVER VERSION.
-                                      {6.0.8}
+            --[x] DJANGO-WINDOWS
 
-                        --[x] DJANGO-LINUX
+                --[x] LINK TO HEALTH / SWAGGER (complete / arrange links).
 
-                              --[x] LINK TO HEALTH / SWAGGER.
+                --[x] LINK TO REPO / PRIVATE.
 
-                              --[x] LINK TO REPO / PRIVATE.
+                --[x] LANGUAGE VERSION.
 
-                              --[x] SERVER VERSION.
-                                      {6.0.8}
+                --[x] SERVER VERSION.
+                        {6.0.8}
 
-                              --[x] LANGUAGE VERSION.
+          --[x] DJANGO-LINUX
+
+                --[x] LINK TO HEALTH / SWAGGER.
+
+                --[x] LINK TO REPO / PRIVATE.
+
+                --[x] SERVER VERSION.
+                        {6.0.8}
+
+                --[x] LANGUAGE VERSION.
 
   --[X] (missing from lookup) Swift.
 
