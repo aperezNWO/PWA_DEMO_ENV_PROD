@@ -64,6 +64,13 @@
 // NPM PACKAGES
 /////////////////////////////////////////////////////////////////
 
+## POWERSHELL PERMISSIONS
+
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
+## install globally
+
+npm install -g @angular/cli
 
 ## BASIC PACKAGES
    Remove-Item -Recurse -Force .angular/cache
