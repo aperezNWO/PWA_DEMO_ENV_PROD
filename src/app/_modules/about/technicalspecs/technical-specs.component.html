@@ -26,11 +26,12 @@
     @for (item of services; track item.name) {
       <tr>
         <td>
-            @if (item.type) {
-              {{ item.type }}
+          <!-- PROGRAM TYPE -->
+           @if (item.hostingLink) {
+              <a [href]="item.hostingLink" target="_blank">{{ item.type }}</a>
               <span>|</span>
             } @else {
-              <span></span>
+              {{ item.type }}
             }
 
             @if (item.moduleLink) {

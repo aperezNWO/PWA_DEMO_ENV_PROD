@@ -22,6 +22,7 @@ export interface ServiceVersionMeta {
   repoLink?:             string | null;
   healthLink?:           string | null;
   moduleLink?:           string | null;
+  hostingLink?:          string | null;
 }
 
 @Component({
@@ -78,7 +79,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
   _DartWebServerVersion            = this.fromCache('dartWebServerVersion');
   _KotlinAppVersion                = this.fromCache('kotlinAppVersion');
   _KotlinVersion                   = this.fromCache('kotlinVersion');
-  _KotlinWebServerVersion = this.fromCache('kotlinWebServerVersion');
+  _KotlinWebServerVersion          = this.fromCache('kotlinWebServerVersion');
   //_CppAppVersion                   = this.fromCache('cppAppVersion');
   //_CppVersion                      = this.fromCache('cppVersion');
   //_CppWebServerVersion             = this.fromCache('cppWebServerVersion');
@@ -272,6 +273,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink              : this._PythonDjangoRepoTF,
                     healthLink            : `${this._baseUrlPythonDjangoTF}api/docs/`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlDjangoPythonTFModule')}`,
+                    hostingLink           : `${this.configService.getConfigValue('RENDER_HOSTING')}`,
               },
               {
                   type                  : '(Backend)',
@@ -283,6 +285,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                   healthLink            : `${this.__baseUrlNodeJsOcr}api-docs`,
                   repoLink              : this.__baseUrlNodeJsOcrRepo,
                   moduleLink            : `${this.configService.getConfigValue('baseUrlNodeJsOcrModule')}`,
+                  hostingLink           : `${this.configService.getConfigValue('RENDER_HOSTING')}`,
               },
               {
                   type                  : '(Backend)',
@@ -294,6 +297,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                   repoLink              : `${this.configService.getConfigValue('baseUrlSpringBoot_KotlinRepo')}`,
                   healthLink            : `${this.configService.getConfigValue('baseUrlSpringBoot_Kotlin')}health`,
                   moduleLink            : `${this.configService.getConfigValue('baseUrlSpringBoot_KotlinModule')}`,
+                  hostingLink           : `${this.configService.getConfigValue('RENDER_HOSTING')}`,
               },
               {
                     type                  : '(Backend)',
@@ -305,6 +309,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink              : `${this.configService.getConfigValue('baseUrlDartRepo')}`,
                     healthLink            : `${this.configService.getConfigValue('baseUrlDart')}health`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlDartModule')}`,
+                    hostingLink           : `${this.configService.getConfigValue('RENDER_HOSTING')}`,
                 },
                 {
                     type                  : '(Backend)',
@@ -316,6 +321,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink              : `${this.configService.getConfigValue('baseUrlRustLangRepo')}`,
                     healthLink            : `${this.configService.getConfigValue('baseUrlRustLang')}health`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlRustLangModule')}`,
+                    hostingLink           : `${this.configService.getConfigValue('RENDER_HOSTING')}`,
                 },
                 {
                     type                  : '(Backend)',
@@ -327,6 +333,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink              : `${this.configService.getConfigValue('baseUrlGoLangRepo')}`,
                     healthLink            : `${this.configService.getConfigValue('baseUrlGoLang')}health`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlGoLangModule')}`,
+                    hostingLink           : `${this.configService.getConfigValue('RENDER_HOSTING')}`,
                 },
                 {
                     type                 : '(Backend)',
@@ -338,6 +345,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink             : `${this.configService.getConfigValue('baseUrlZigLangRepo')}`,
                     healthLink           : `${this.configService.getConfigValue('baseUrlZigLang')}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlZigLangModule')}`,
+                    hostingLink          : `${this.configService.getConfigValue('RENDER_HOSTING')}`,
                 },
                 {
                     type                 : '(Backend)',
@@ -349,6 +357,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink             : `${this.configService.getConfigValue('baseUrlCppWSTensorflowRepo')}`,
                     healthLink           : `${this.configService.getConfigValue('baseUrlCppWSTensorflow')}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWebServerModule')}`,
+                    hostingLink          : `${this.configService.getConfigValue('RENDER_HOSTING')}`,
                 },
                 {
                     type                 : '(Backend)',
@@ -360,6 +369,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink             : `${this.configService.getConfigValue('baseUrlCppWSTesseractRepo')}`,
                     healthLink           : `${this.configService.getConfigValue('baseUrlCppWSTesseract')}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSTesseractModule')}`,
+                    hostingLink          : `${this.configService.getConfigValue('RENDER_HOSTING')}`,
                 },
                 {
                     type                 : '(Backend)',
@@ -371,6 +381,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink             : `${this.configService.getConfigValue('baseUrlCppWSTensorflowRepo')}`,
                     healthLink           : `${this.configService.getConfigValue('baseUrlCppWSTensorflow')}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSTensorflowModule')}`,
+                    hostingLink          : `${this.configService.getConfigValue('RENDER_HOSTING')}`,
                 },
                 {
                     type                 : '(Backend)',
@@ -382,6 +393,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     repoLink             : `${this.configService.getConfigValue('baseUrlCppWSOpenCvRepo')}`,
                     healthLink           : `${this.configService.getConfigValue('baseUrlCppWSOpenCv')}health`,
                     moduleLink           : `${this.configService.getConfigValue('baseUrlCppWSOpenCvModule')}`,
+                    hostingLink          : `${this.configService.getConfigValue('RENDER_HOSTING')}`,
                 },
                 {
                     type               : '(Backend)',
@@ -392,6 +404,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     healthLink         : this.__baseUrlNetCoreSwagger,
                     repoLink           : this.__baseUrlNetCoreRepo,
                     moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreModule')}`,
+                    hostingLink        : `${this.configService.getConfigValue('baseUrlNetCoreModuleHosting')}`,
                 },
                 {
                     type               : '(Backend)',
@@ -402,6 +415,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion : '8.0',
                     healthLink         : this.__baseUrlNetCoreCPPSwagger,
                     moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPEntryModule')}`,
+                    hostingLink        : `${this.configService.getConfigValue('baseUrlNetCoreCPPEntryModuleHosting')}`,
                 },
                 {
                     type                  : '(DLL C++)',
@@ -411,6 +425,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion    : this._Algorithm_CPPSTDVersion,
                     repoLink              : `${this.configService.getConfigValue('baseUrlNetCoreCPPAlgorithmRepo')}`,
                     moduleLink            : `${this.configService.getConfigValue('baseUrlNetCoreCPPAlgorithmModule')}`,
+                    hostingLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPAlgorithmHosting')}`,
                 },
                 {
                     type                : '(DLL C++)',
@@ -421,7 +436,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion  : this._tesseractAPIVersion,
                     repoLink            : `${this.configService.getConfigValue('baseUrlNetCoreCPPTesseractRepo')}`,
                     moduleLink          : `${this.configService.getConfigValue('baseUrlNetCoreCPPTesseractModule')}`,
-
+                    hostingLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPTesseractHosting')}`,
                 },
                 {
                     type               : '(DLL C++)',
@@ -432,6 +447,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion : this._TensorFlowAPIVersion,
                     repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowRepo')}`,
                     moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowModule')}`,
+                    hostingLink        : `${this.configService.getConfigValue('baseUrlNetCoreCPPTensorflowHosting')}`,
                 },
                 {
                     type               : '(DLL C++)',
@@ -442,6 +458,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                     apiOrServerVersion : this._OpenCvAPIVersion,
                     repoLink           : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvRepo')}`,
                     moduleLink         : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvModule')}`,
+                    hostingLink        : `${this.configService.getConfigValue('baseUrlNetCoreCPPOpenCvHosting')}`,
                 }
             ];
     }
