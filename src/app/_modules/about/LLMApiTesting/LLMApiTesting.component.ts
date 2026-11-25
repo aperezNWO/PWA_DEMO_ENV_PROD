@@ -16,11 +16,11 @@ interface GroqModel {
   templateUrl: './LLMApiTesting.component.html',
   styleUrls: ['./LLMApiTesting.component.css'],
   providers: [{ provide: PAGE_TITLE_LOG, useValue: PAGE_MISCELANEOUS_LLM_TESTING }],
-  standalone: false 
+  standalone: false
 })
 export class LLMApiTestingComponent  extends BaseReferenceComponent  {
   //
-  apiKey = signal<string>('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');
+  apiKey = signal<string>('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');
   prompt         = signal<string>('Latest Stable C++ Version');
   responseStream = signal<string>('');
   isLoading      = signal<boolean>(false);
@@ -34,7 +34,7 @@ export class LLMApiTestingComponent  extends BaseReferenceComponent  {
     { id: 'openai/gpt-oss-20b' , name: 'GPT-OSS 20B (Native Browser Search)'         , isGptOss   : true   },
     //{ id: 'canopylabs/orpheus-v1-english', name: 'Orpheus v1 English (TTS)' },  // DOES NOT SUPPORT CHAT COMPLETIONS
     //{ id: 'meta-llama/llama-prompt-guard-2-86m', name: 'Llama Prompt Guard 2 86M' },  // TEXT CLASSIFICATIONS DOES NOT SUPPORT STREAMING
-    //{ id: 'meta-llama/llama-prompt-guard-2-22m', name: 'Llama Prompt Guard 2 22M' },  // TEXT CLASSIFICATIONS DOES NOT SUPPORT STREAMING 
+    //{ id: 'meta-llama/llama-prompt-guard-2-22m', name: 'Llama Prompt Guard 2 22M' },  // TEXT CLASSIFICATIONS DOES NOT SUPPORT STREAMING
     //{ id: 'whisper-large-v3', name: 'Whisper Large V3 (Speech-to-Text)', isAudio: true },      // NEEDS AUDIO FILE UPLOAD
     //{ id: 'whisper-large-v3-turbo', name: 'Whisper Large V3 Turbo (Fast STT)', isAudio: true } // NEEDS AUDIO FILE UPLOAD
   ];
