@@ -796,8 +796,8 @@
           { "id": 0, "url" : "/ProgramDescription"                                       , "text": "[PROGRAM DESCRIPTION]"                       },
           { "id": 1, "url" : "/TechnicalSpecs"                                           , "text": "[TECHNICAL SPECS.]"                          },
           { "id": 2, "url" : "/SCM"                                                      , "text": "[SOFTWARE CONFIGURATION MANAGEMENT]"         },
-          { "id": 3, "url" : "/PageUrlList"                                              , "text": "[LARGE LANGUAGE MODELS LIST]"                , "queryParams" : "{ pageName : 'PAGE_ABOUT_LLM_LIST'}"     },
-          { "id": 4, "url" : "/PageUrlList"                                              , "text": "[EDUCATIONAL RESOURCES]"                     , "queryParams" : "{ pageName : 'PAGE_ABOUT_EDU_RESC'}"     },
+          { "id": 3, "url" : "/PageUrlList"                                              , "text": "[EDUCATIONAL RESOURCES]"                     , "queryParams" : "{ pageName : 'PAGE_ABOUT_EDU_RESC'}"     },
+          { "id": 4, "url" : "/PageUrlList"                                              , "text": "[LARGE LANGUAGE MODELS LIST]"                , "queryParams" : "{ pageName : 'PAGE_ABOUT_LLM_LIST'}"     },
           { "id": 5, "url" : "/LLMApiTesting"                                            , "text": "[LLM API TESTING]"                           },
           { "id": 6, "url" : "/ContactForm"                                              , "text": "[CONTACT FORM]"                              },
           { "id": 7, "url" : "/Index"                                                    , "text": "[INDEX]"                                     }
