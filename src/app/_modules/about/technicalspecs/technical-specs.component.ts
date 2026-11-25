@@ -398,7 +398,7 @@ export class TechnicalSpecsComponent extends BaseComponent {
                 {
                     type               : '(Backend)',
                     name               : '[App v. / .NET  v.]',
-                    features           : '<x32,C#>',
+                    features           : '<x32,C#,SQL>',
                     appVersion         : this._webApiAppVersion,
                     apiOrServerVersion : '5.0',
                     healthLink         : this.__baseUrlNetCoreSwagger,
