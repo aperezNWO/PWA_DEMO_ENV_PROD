@@ -22,7 +22,6 @@ import { GameTictactoeComponent      } from './_modules/_Demos/_DemosFeatures/ga
 import { TicTacToeBoardAiComponent   } from './_modules/_Demos/_DemosFeatures/games/tic-tac-toe-board-ai/tic-tac-toe-board-ai.component';
 import { ChatComponent               } from './_modules/_Demos/_DemosFeatures/miscelaneous/chat/chat/chat.component';
 import { VisionHUBComponent          } from './_modules/_Demos/_DemosFeatures/miscelaneous/VisionHUB/vision-HUB.component';
-import { LinearRegressionComponent   } from './_modules/_Demos/_DemosFeatures/_machineLearning/LinearRegression/linear-regression/linear-regression.component';
 import { ContactformComponent        } from './_modules/about/contactform/contactform.component';
 import { IndexComponent              } from './_modules/about/index/index.component';
 import { FractalDemoComponent        } from './_modules/_Demos/_DemosFeatures/miscelaneous/fractalDemo/fractalDemo.component';
@@ -30,9 +29,10 @@ import { PageUrlListComponent        } from './_components/page-url-list/page-ur
 import { GridParamComponent          } from './_components/grid-param/grid-param.component';
 import { LandingComponent            } from './_components/landing/landing.component';
 import { RubikCubeComponent          } from './_modules/_Demos/_DemosFeatures/games/rubik-cube/rubik-cube.component';
-import { LLMApiTestingComponent as LLMApiTestingComponent } from './_modules/_Demos/_DemosFeatures/miscelaneous/LLMApiTesting/LLMApiTesting.component';
-import { inkLingComponent                                 } from './_modules/__Testing/LLM/InkLing/inkLing.component';
-import { TechnicalSpecsComponent } from './_modules/about/technicalspecs/technical-specs.component';
+import { inkLingComponent          } from './_modules/__Testing/LLM/InkLing/inkLing.component';
+import { TechnicalSpecsComponent   } from './_modules/about/technicalspecs/technical-specs.component';
+import { LinearRegressionComponent } from './_modules/_Demos/_DemosFeatures/_machineLearning/linear-regression/linear-regression.component';
+import { LLMApiTestingComponent    } from './_modules/about/LLMApiTesting/LLMApiTesting.component';
 
 
 export interface _Route extends Route

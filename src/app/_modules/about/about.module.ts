@@ -18,6 +18,7 @@ import { SpeechPanelComponent                    } from 'src/app/_components/spe
 import { NgbHighlight, NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProgramDescriptionComponent                       } from './programDescription/program-description.component';
 import { CleanVersionPipe                                  } from '../../_pipes/CleanVersionPipe';
+import { LLMApiTestingComponent } from './LLMApiTesting/LLMApiTesting.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CleanVersionPipe                                  } from '../../_pipes/
         TechnicalSpecsComponent,
         ContactformComponent,
         ProgramDescriptionComponent,
+        LLMApiTestingComponent,
   ],
   imports: [
     CommonModule,

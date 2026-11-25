@@ -1,13 +1,12 @@
 // ANGYULAR MODULES
 import { ErrorHandler, NgModule     } from '@angular/core';
 import { CommonModule               } from '@angular/common';
-// CUSTOM MODULES 
+// CUSTOM MODULES
 import { SharedModule               } from 'src/app/_modules/shared/shared.module';
 import { ChatComponent              } from './chat/chat/chat.component';
 import { FractalDemoComponent       } from './fractalDemo/fractalDemo.component';
 import { VisionHUBComponent         } from './VisionHUB/vision-HUB.component';
-import { LLMApiTestingComponent     } from './LLMApiTesting/LLMApiTesting.component';
-// THIRD PARTY 
+// THIRD PARTY
 import { NgxSignaturePadModule      } from '@eve-sama/ngx-signature-pad';
 import { CustomErrorHandler         } from 'src/app/app.module';
 
@@ -17,7 +16,6 @@ import { CustomErrorHandler         } from 'src/app/app.module';
         VisionHUBComponent,
         ChatComponent,
         FractalDemoComponent,
-        LLMApiTestingComponent
   ],
   imports: [
     CommonModule,
@@ -28,13 +26,12 @@ import { CustomErrorHandler         } from 'src/app/app.module';
         VisionHUBComponent,
         ChatComponent,
         FractalDemoComponent,
-        LLMApiTestingComponent
   ],
   providers : [
       // Referenciamos la clase que definimos arriba
     { provide: ErrorHandler, useClass: CustomErrorHandler },
   ]
 })
-export class MiscelaneousModule { 
+export class MiscelaneousModule {
   //
 }
