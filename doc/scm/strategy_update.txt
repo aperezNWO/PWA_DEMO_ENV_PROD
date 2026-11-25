@@ -288,9 +288,13 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
         --[_] HEALTH STRUCTURE ENDPONTS URL CONSTANTS ON FRONTEND.
 
-        --[_] App Description endpoint / tooltip program description.
+        --[_] App Description endpoint
 
-        --[_] about -> techspeces -> appType -> link to hosting.
+              --[_] tooltip program description.
+
+        --[_]  Techical Specs pop up backend detail (all fields).
+
+        --[x] about -> techspeces -> appType -> link to hosting.
 
 --[_] Render config from database.
 
@@ -340,20 +344,20 @@ Thar the north I want to give to an existing basic showcase I programmes using a
 
         --[_] move to federation.
 
---[_] Math Engine Federation.
+--[_]  Move llm testing to about  tech specs.
+
+--[_]  collision webassembly game engine.
+
+        --[_] Math Engine Federation.
 
         --[_] Colission Demo.
 
         --[_] ZIG CORS.
 
---[_]  Move llm testing to about  tech specs.
+        --[_] A great way to structure this in your demo is to assign each game (or each variant of a game) to a different Wasm language so visitors can test client-side execution side by side.
 
---[_]  Zig webassembly game engine.
+--[x]  monster.asp link.
 
---[_]  monster.asp link.
-
---[_]  dashboard.render/billing.
-
---[_]  Techical Specs pop up backend detail.
+--[x]  dashboard.render/billing.
 
 ////////////////////////////////////////////////////////////////////////////////
