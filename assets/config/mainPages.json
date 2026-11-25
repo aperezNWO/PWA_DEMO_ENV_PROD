@@ -221,8 +221,7 @@
             { "id": 1, "url" : "/VisionHub"             , "text": "[MISCELLANEOUS - OCR]"                  , "queryParams" : "{ aiFeature : 'OCR' , langName : 'CPP' }"  },
             { "id": 2, "url" : "/VisionHub"             , "text": "[MISCELLANEOUS - COMPUTER VISION]"      , "queryParams" : "{ aiFeature : 'CV'  , langName : 'CPP' }"  },
             { "id": 3, "url" : "/Chat"                  , "text": "[MISCELLANEOUS - CHAT]"               },
-            { "id": 4, "url" : "/FractalDemo"           , "text": "[MISCELLANEOUS - FRACTAL DEMO]"       },
-            { "id": 5, "url" : "/LLMApiTesting"         , "text": "[MISCELLANEOUS - LLM API TESTING]"    }
+            { "id": 4, "url" : "/FractalDemo"           , "text": "[MISCELLANEOUS - FRACTAL DEMO]"       }
           ]
       },
       {
@@ -330,18 +329,6 @@
           { "id" : 2, "url": "about:blank"                                              , "text" : "[C++ / cpp http-server]"       , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '1ca596b5-8943-4082-bcd5-a318ec9a315c' , pageName : 'PAGE_DEMOS_CPP_WEB_SERVER'     }"},
           { "id" : 3, "url": "https://en.wikipedia.org/wiki/WebAssembly"                , "text" : "[WebAssembly]"                 , "routerLink" : "about:blank" , "queryParams" : ""},
           { "id" : 4, "url": "https://en.wikipedia.org/wiki/Fractal"                    , "text" : "[Fractal]"                     , "routerLink" : "about:blank" , "queryParams" : ""}
-        ]
-      },
-      {
-        "log_name"   : "PAGE_MISCELANEOUS_LLM_TESTING",
-        "page_name"  : "[MISCELLANEOUS - LLM TESTING]",
-        "pages"      : [
-          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
-          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
-        ],
-        "pages_nested" : [
-          { "id" : 1, "url": "about:blank"                                          , "text" : "[Angular]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '5e5bfdf8-6876-43a5-a2ea-858628bf0dae' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
-          { "id" : 4, "url": "https://en.wikipedia.org/wiki/Large_language_model"   , "text" : "[LARGE LANGUAGE MODELS LLM]"  , "routerLink" : "about:blank" , "queryParams" : "" }
         ]
       },
       {
@@ -811,8 +798,9 @@
           { "id": 2, "url" : "/SCM"                                                      , "text": "[SOFTWARE CONFIGURATION MANAGEMENT]"         },
           { "id": 3, "url" : "/PageUrlList"                                              , "text": "[LARGE LANGUAGE MODELS LIST]"                , "queryParams" : "{ pageName : 'PAGE_ABOUT_LLM_LIST'}"     },
           { "id": 4, "url" : "/PageUrlList"                                              , "text": "[EDUCATIONAL RESOURCES]"                     , "queryParams" : "{ pageName : 'PAGE_ABOUT_EDU_RESC'}"     },
-          { "id": 5, "url" : "/ContactForm"                                              , "text": "[CONTACT FORM]"                              },
-          { "id": 6, "url" : "/Index"                                                    , "text": "[INDEX]"                                     }
+          { "id": 5, "url" : "/LLMApiTesting"                                            , "text": "[LLM API TESTING]"                           },
+          { "id": 6, "url" : "/ContactForm"                                              , "text": "[CONTACT FORM]"                              },
+          { "id": 7, "url" : "/Index"                                                    , "text": "[INDEX]"                                     }
         ]
       },
       {
@@ -1023,6 +1011,18 @@
                   "text" : "CISCO Networking Academy - Programming"
               }
          ]
+      },
+      {
+        "log_name"   : "PAGE_MISCELANEOUS_LLM_TESTING",
+        "page_name"  : "[ABOUT - LLM TESTING]",
+        "pages"      : [
+          { "id": 1, "url" : "/#/"           , "text": "[Frontend]"    },
+          { "id": 4, "url" : "/#/"           , "text": "[Topics]"      }
+        ],
+        "pages_nested" : [
+          { "id" : 1, "url": "about:blank"                                          , "text" : "[Angular]"                    , "routerLink" : "/GridParam"  , "queryParams" : "{ searchTerm: '5e5bfdf8-6876-43a5-a2ea-858628bf0dae' , pageName : 'PAGE_DEMOS_ANGULAR_JAVASCRIPT' }"},
+          { "id" : 4, "url": "https://en.wikipedia.org/wiki/Large_language_model"   , "text" : "[LARGE LANGUAGE MODELS LLM]"  , "routerLink" : "about:blank" , "queryParams" : "" }
+        ]
       },
       {
         "log_name"   : "PAGE_ABOUT_CONTACT_FORM",
