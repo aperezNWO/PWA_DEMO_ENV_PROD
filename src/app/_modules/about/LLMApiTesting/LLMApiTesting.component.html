@@ -8,11 +8,11 @@
     <div class="form-group">
         <label for="apiKey">Groq API Key: (get it from <a href="https://console.groq.com/keys" target="_blank" style="color:black;">Groq Console</a>)</label>
         <div class="input-wrapper">
-            <input 
-                type="password" 
-                id="apiKey" 
-                [(ngModel)]="apiKey" 
-                placeholder="gsk_..." 
+            <input
+                type="password"
+                id="apiKey"
+                [(ngModel)]="apiKey"
+                placeholder="gsk_..."
             />
             @if (apiKey()) {
                 <button type="button" class="clear-btn" (click)="clearApiKey()" title="Clean API Key">×</button>
@@ -32,21 +32,21 @@
             * <em>GPT-OSS models</em> automatically trigger web search with non-streaming execution. <em>Other models</em> utilize real-time chunk streaming.
         </small>
     </div>
-    
+
     <div class="form-group">
         <label for="prompt">Message:</label>
         <div class="input-wrapper">
-            <input 
-                type="text" 
-                id="prompt" 
-                [(ngModel)]="prompt" 
+            <input
+                type="text"
+                id="prompt"
+                [(ngModel)]="prompt"
             />
             @if (prompt()) {
                 <button type="button" class="clear-btn" (click)="clearPrompt()" title="Clear message">×</button>
             }
         </div>
     </div>
-    
+
     <div class="button-group">
         <button (click)="testGroq()" [disabled]="isLoading()">
             {{ isLoading() ? 'Processing...' : 'Send Request' }}
@@ -64,7 +64,7 @@
 </div>
 
   <div align="right">
-    <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_DEMOS_MISCELLANEOUS_INDEX'}">
+    <a [routerLink]="'/PageUrlList'" [queryParams]="{pageName : 'PAGE_ABOUT_INDEX'}">
       [ &laquo; Return to Menu ]
     </a>
   </div>
