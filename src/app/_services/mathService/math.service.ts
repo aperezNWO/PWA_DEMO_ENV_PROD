@@ -50,7 +50,7 @@ interface CollisionWasmExports {
 }
 
 @Injectable({ providedIn: 'root' })
-export class CollisionWasmService {
+export class mathService {
   private exports: CollisionWasmExports | null = null;
   private readonly defaultWasmUrl = 'assets/wasm/collision_engine-wasm/collision_engine.wasm';
 
